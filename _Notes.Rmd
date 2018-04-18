@@ -1,0 +1,116 @@
+---
+title: "Notes"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Notes
+
+This is a place to keep track of my thoughts and notes.
+
+[Sample](https://privefl.github.io/advr38book/introduction.html#prerequisites)
+[Robust Programming](https://github.com/lgatto/2016-02-25-adv-programming-EMBL)
+[R Programing](https://bookdown.org/rdpeng/rprogdatascience/)
+[R Software Development](https://bookdown.org/rdpeng/RProgDA/)
+Intro
+*    What we are going to learn
+    * Data Science + Programming
+*   Prerequisits
+    *    RStudio 
+    *    R
+    *    MiTex
+    *    RTools
+*    Reproducible Research
+*    FDA / Validation
+
+Programming
+*    Coding Style
+*    Naming Conventions
+*    Functions / Objects / Environemnts
+*    R4DS chapter 4 workflow basics
+*    Scoping
+*    Dont use rm(ls()) or setwd()
+*    Rule of 3
+*    Variable
+
+R Basics
+
+Data Types
+
+
+Subsetting
+
+Tidyverse
+[Tricks](http://www.brodrigues.co/blog/2017-06-19-dplyr-0-70-tutorial/)
+
+Definitions
+Packages 
+
+Reading Data in
+*    Text
+*    Excel
+*    Databases
+*    SAS
+*    Other
+
+Writing data out
+*   Text
+*   Excel
+*   Powerpoint / Slides
+*   Databases
+*   SAS
+*   Markdown
+
+Markdown
+[Pimp RMD](https://www.r-bloggers.com/performance-avoid-coercing-indices-to-doubles/)
+
+Visualizing
+*   Base plot
+*   ggplot
+*   dashboard
+*   Shiny 
+
+[GGplot / Dplyr Functions](https://www.r-bloggers.com/writing-functions-for-dplyr-and-ggplot2-april-2-2018/)
+[GGplot Function](https://www.r-bloggers.com/writing-better-r-functions-part-three-april-13-2018/)
+[Maps](https://moderndata.plot.ly/visualizing-geo-spatial-data-with-sf-and-plotly/)
+[Bump Charts](https://dominikkoch.github.io/Bump-Chart/)
+
+
+Looping
+*    For loops
+*    apply
+*    tidyverse / purrr
+[loops](https://www.r-exercises.com/2018/03/30/loops-in-r-exercises/)
+
+Funtions
+
+Strings / Regular Expressions
+[Intro Regex](https://blog.jumpingrivers.com/posts/2018/top_regular_expressions_r_stringr/)
+
+
+
+# Production Ready Code
+
+*    Unit Testing
+*    Assertions
+*    Scheduling Tasks
+
+
+# Books
+[R for Data Science](http://r4ds.had.co.nz)
+[Advanced R](http://adv-r.had.co.nz/Vocabulary.html)
+[Efficent R](https://bookdown.org/csgillespie/efficientR/)
+
+
+# Links
+[Describe](http://www.brodrigues.co/blog/2018-04-10-brotools_describe/)
+[Think Values](http://www.win-vector.com/blog/2018/04/r-tip-think-in-terms-of-values/)
+[Avoid Castings](https://www.r-bloggers.com/performance-avoid-coercing-indices-to-doubles/)
+[Parallel Imputation](https://www.r-bloggers.com/imputing-missing-values-in-parallel-using-furrr/)
+
+# Quotes
+ 
+> "Always remember, however, that there’s usually a simpler and better way to do something than the first way that pops into your head."

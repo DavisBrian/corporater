@@ -1,0 +1,23 @@
+--- 
+title: "Modern R in a Corporate Environment"
+subtitle: "Original materials developed for RADARS"
+author: "Brian Davis"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: DavisBrian/bookdown-demo
+description: "This is an original course for RADARS"
+---
+
+# About {-}
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

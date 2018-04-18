@@ -1,0 +1,91 @@
+# Introduction {#intro}
+
+> Something that will make life easier in the long-run can be the most difficult thing to do today. 
+
+```{r setup, include=FALSE}
+# source("knitr-options.R")
+# source("spelling-check.R")
+```
+
+## Course Philosophy
+
+>  "The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly. A programmer is ideally an essayist who works with traditional aesthetic and literary forms as well as mathematical concepts, to communicate the way that an algorithm works and to convince a reader that the results will be correct." Donald Knuth
+
+
+### Reproducible Research
+
+Reproducible research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them. There are two basic reasons to be concerned about making your research reproducible. The first is *to show evidence of the correctness of your results*. The second reason to aspire to reproducibility is *to enable others to make use of our methods and results*.  
+
+> "A key component of scientific communication is sufficient information for other researchers in the field to reproduce published findings. For computational and data-enabled research, this has often been interpreted to mean making available the raw data from which results were generated, the computer code that generated the findings, and any additional information needed such as workflows and input parameters. Many journals are revising author guidelines to include data and code availability. We chose a random sample of 204 scientific papers published in the journal **Science** after the implementation of their policy in February 2011. We found that were able to reproduce the findings for 26%." [Proceedings of the National Academy of Sciences of the United States of America](http://www.pnas.org/content/115/11/2584)
+
+Modern challenges of reproducibility in research, particularly computational reproducibility, have produced a lot of discussion in papers, blogs and videos, some of which are listed [here](http://ropensci.github.io/reproducibility-guide/sections/references/) and [here](https://reproducibleresearch.net/).
+
+> "Starting September 1 2016, JASA ACS will require code and data as a minimum standard for reproducibility of statistical scientific research." [JASA](https://magazine.amstat.org/blog/2016/07/01/jasa-reproducible16/)
+
+
+
+### FDA Validation
+
+> “Establishing documented evidence which provides a high
+degree of assurance that a specific process will consistently produce a product meeting its
+predetermined specifications and quality attributes." -Validation as defined by the FDA in **Validation of Systems for 21 CFR Part 11 Compliance**
+
+### The SAS Myth
+
+> "FDA does not require use of any specific software for statistical analyses,
+and statistical software is not explicitly discussed in Title 21 of the Code of
+Federal Regulations [e.g., in 21CFR part 11].  However, the software package(s)
+used for statistical analyses should be fully documented in the submission,
+including version and build identification.As noted in the FDA guidance, E9
+Statistical Principles for Clinical Trials (available at
+http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Guidances/default.htm),
+“The computer software used for data management and statistical analysis should
+be reliable, and documentation of appropriate software testing procedures should
+be available.” Sponsors are encouraged to consult with FDA review teams and
+especially with FDA statisticians regarding the choice and suitability of
+statistical software packages at an early stage in t he product development
+process. May 6, 2015" [FDA Statistical Software Clarifying Statement](https://www.fda.gov/downloads/forindustry/datastandards/studydatastandards/ucm587506.pdf)
+
+## Prerequisites
+
+- We will assume you have minimal experience and knowledge of R
+- IT should have installed:
+  - [R](https://cran.r-project.org/) version 3.5
+  - [RStudio](https://www.rstudio.com/products/rstudio/download/#download) version 1.1 
+  - [MiTeX](https://miktex.org/)
+  - [RTools](https://cran.r-project.org/bin/windows/Rtools/) version 3.4
+- We will install other dependencies throughout the course.
+
+## Content
+
+It is impossible to become an expert in R in only one course. Yet, this course aims at giving a wide understanding on many aspects of R as used in a corporate / production environment. It will roughly be based on [R for Data Science](http://r4ds.had.co.nz).  While this is an *excellent* resource it does not cover much of what we will need on a routine basis.  Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.
+
+This is your course so if you feel we need to hit an area deeper, or add content based on a current need, let me know an we will work to adjust it.
+
+The **rough** topic list of the course:
+
+1. Good programming practices
+2. Basics of R Programming
+3. Importing Data
+4. Tiyding Data
+5. Visualizing Data
+6. Functions
+7. Strings
+8. Dates and Time
+9. Communicating Results
+
+Making Code Production Ready:
+
+10. Functions (part II)
+11. Assertions
+12. Unit tests
+13. Documentation
+14. Communicating Results (part II)
+
+## Structure
+
+My current thoughts are to meet an hour a week and discuss a topic.  We will not be going strictly through the R4DS, but will use it as our foundation into the topic at hand. Then give an assignment due for the next week which we go over the solutions.  We will incorporate these assignemnts into a RADARS R package so we will have a collection of usefull reusable code 
+
+Open to other ideas.  
+
+I’m going to try to keep the assignments related to our current work (maybe working through Site Investigator and/or Subscriber Reports) so we can work on the class during work hours.
