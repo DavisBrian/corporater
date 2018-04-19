@@ -5,3 +5,27 @@ WORDS_TO_IGNORE <- "butitsuremakesthingseasiertoread"
 source("knitr-options.R")
 # source("spelling-check.R")
 ```
+
+See this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) for a good starting point of the basics of base R and some important libraries.
+
+## Objects
+
+### Making vectors 
+
+### Lists & data.frames 
+
+### Vectors and matrices
+
+automatic coercion rules character > numeric > logical
+
+## Important operators and assignment
+
+## Comparison
+
+## Basic math
+
+## Logical and Sets
+
+## Control flow 
+
+## Ordering and tabulating 

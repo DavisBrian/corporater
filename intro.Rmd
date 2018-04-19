@@ -1,4 +1,4 @@
-# Introduction {#intro}
+# Introduction
 
 ```{r setup, include=FALSE}
 source("knitr-options.R")

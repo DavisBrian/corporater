@@ -1,7 +1,10 @@
 book_filename: "corporater"
-rmd_files: ["index.Rmd", "intro.Rmd", "good-practices.Rmd", "rbasics.Rmd"]
-output_dir: docs
 new_session: yes
+rmd_files: [
+  "index.Rmd",
+  "intro.Rmd",
+  "rbasics.Rmd"]
+output_dir: docs
 edit: https://github.com/privefl/advr38book/edit/master/%s
 language:
   ui:
