@@ -6,26 +6,172 @@ source("knitr-options.R")
 # source("spelling-check.R")
 ```
 
-See this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) for a good starting point of the basics of base R and some important libraries.
+See this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) for a good starting point on the basics functions in base R and some important libraries.
 
-## Objects
+[advr38book](https://privefl.github.io/advr38book/r-programming.html)
 
-### Making vectors 
+In R there three basic constructs; objects, functions, and environments.
+
+Two most important functions in R `?` and `str`.
+
+## Names
+
+R has strict rules about what constitutes a valid name. A __syntactic__ name must consist of letters[^letters], digits, `.` and `_`, and can't begin with `_`. Additionally, it can not be one of a list of __reserved words__ like `TRUE`, `NULL`, `if`, and `function` (see the complete list in `?Reserved`). Names that don't follow these rules are called __non-syntactic__ names, and if you try to use them, you'll get an error:
+
+```{r, eval = FALSE}
+_abc <- 1
+#> Error: unexpected input in "_"
+
+if <- 10
+#> Error: unexpected assignment in "if <-"
+```
+
+[^letters]: Surprisingly, what constitutes a letter is determined by your current locale. That means that the syntax of R code actually differs from computer to computer, and it's possible for a file that works on one computer to not even parse on another!
+
+## Notes
+
+where do factors fit in?
+
+## Atomic Vectors
+
+There are many "atomic" types of data: `logical`, `integer`, `double` and `character` (in this order, see below). There are also `raw` and `complex` but they are rarely used.
+
+You can't mix types in an atomic vector (you can in a list). Coercion will automatically occur if you mix types:
+
+```{r}
+(a <- FALSE)
+typeof(a)
+
+(b <- 1:10)
+typeof(b)
+c(a, b)  ## FALSE is coerced to integer 0
+
+(c <- 10.5)
+typeof(c)
+(d <- c(b, c))  ## coerced to numeric
+
+c(d, "a")  ## coerced to character
+
+c(list(1), "a")
+
+50 < "7"
+```
+
+You can force coercion with `as.logical`, `as.integer`, `as.double`, `as.numeric`, and `as.character`. Most of the time the coercion rules are straight forward, but not always.
+
+```{r}
+x <- c(TRUE, FALSE)
+typeof(x)
+
+as.integer(x)
+as.numeric(x)
+as.character(x)
+```
+
+However, coercion is not associative.
+
+```{r}
+x <- c(TRUE, FALSE)
+
+x2 <- as.integer(x)
+x3 <- as.numeric(x2)
+as.character(x3)
+```
+
+What would you expect this to return?
+
+```{r, eval = FALSE}
+x <- c(TRUE, FALSE)
+
+as.integer(as.character(x))
+```
+
+You can test for an "atomic" types of data with: `is.logical`, `is.integer`, `is.double`, `is.numeric`, and `is.character`.
+
+```{r}
+x <- c(TRUE, FALSE)
+
+is.logical(x)
+is.integer(x)
+```
+
+What would you expect these to return?
+
+```{r, eval = FALSE}
+x <- 2
+
+is.integer(x)
+is.numeric(x)
+is.double(x)
+```
+
+
+## Base objects
+
+- "atomic" vector: vector of same type (see above).
+
+- scalar: this doesn't exist, there are only vector of length 1.
+
+- matrices/arrays: just an atomic vector with some dimensions (attribute).
+
+```{r}
+vec <- 1:12
+vec
+class(vec)
+
+dim(vec) <- c(3, 4)
+vec
+class(vec)
+
+dim(vec) <- c(3, 2, 2)
+vec
+class(vec)
+```
+
+- list: vector of elements with possible different types in it. 
+
+- data.frame: a list whose elements have the same lengths, and formatted somewhat as a matrix.
+
+
+[Figure out how to make results nicer inside RMarkdown]{.todo}
+
+
+### Vectors 
+
+#### Important operators and assignment
+
+#### Comparison
+
+#### Logical, Sets and Missing Values
+
+### Control flow 
+
+#### Ordering and tabulating
+
+#### Basic math
+
+
+### Matrices
+
+
 
 ### Lists & data.frames 
 
-### Vectors and matrices
+### Selecting Values
 
-automatic coercion rules character > numeric > logical
 
-## Important operators and assignment
 
-## Comparison
+## Functions
 
-## Basic math
 
-## Logical and Sets
+### Functional Programming
 
-## Control flow 
+### Functionals
 
-## Ordering and tabulating 
+### Function operators
+
+## Environments
+
+Scoping
+
+

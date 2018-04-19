@@ -31,6 +31,46 @@
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{natbib}
 \bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
 \usepackage{graphicx,grffile}
 \makeatletter
@@ -85,7 +125,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-04-18}
+  \date{2018-04-19}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -96,6 +136,20 @@
 }
 \makeatother
 
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -103,12 +157,10 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{about}{%
-\chapter*{About}\label{about}}
+\chapter*{About}\label{about}
 \addcontentsline{toc}{chapter}{About}
 
-\hypertarget{introduction}{%
-\chapter{Introduction}\label{introduction}}
+\chapter{Introduction}\label{introduction}
 
 \begin{quote}
 Something that will make life easier in the long-run can be the most
@@ -116,8 +168,7 @@ difficult thing to do today. For coders, prioritising the long term may
 involve an overhaul of current practice and the learning of a new skill.
 \end{quote}
 
-\hypertarget{course-philosophy}{%
-\section{Course Philosophy}\label{course-philosophy}}
+\section{Course Philosophy}\label{course-philosophy}
 
 \begin{quote}
 ``The best programs are written so that computing machines can perform
@@ -128,8 +179,7 @@ way that an algorithm works and to convince a reader that the results
 will be correct.'' Donald Knuth
 \end{quote}
 
-\hypertarget{reproducible-research}{%
-\subsection{Reproducible Research}\label{reproducible-research}}
+\subsection{Reproducible Research}\label{reproducible-research}
 
 Reproducible research is the idea that data analyses, and more
 generally, scientific claims, are published with their data and software
@@ -179,8 +229,7 @@ research.''
 \href{https://magazine.amstat.org/blog/2016/07/01/jasa-reproducible16/}{JASA}
 \end{quote}
 
-\hypertarget{fda-validation}{%
-\subsection{FDA Validation}\label{fda-validation}}
+\subsection{FDA Validation}\label{fda-validation}
 
 \begin{quote}
 ``Establishing documented evidence which provides a high degree of
@@ -190,8 +239,7 @@ meeting its predetermined specifications and quality attributes.''
 21 CFR Part 11 Compliance}
 \end{quote}
 
-\hypertarget{the-sas-myth}{%
-\subsection{The SAS Myth}\label{the-sas-myth}}
+\subsection{The SAS Myth}\label{the-sas-myth}
 
 Contray to what we hear the FDA does not require SAS to be used
 \emph{EVER}. There are instances that you have to deliver data in XPORT
@@ -213,8 +261,7 @@ Statistical Software Clarifying Statement}
 Good \href{http://blog.revolutionanalytics.com/2017/06/r-fda.html}{write
 up} with links to several FDA talks on the subject.
 
-\hypertarget{prerequisites}{%
-\section{Prerequisites}\label{prerequisites}}
+\section{Prerequisites}\label{prerequisites}
 
 \begin{itemize}
 \tightlist
@@ -240,8 +287,7 @@ up} with links to several FDA talks on the subject.
   We will install other dependencies throughout the course.
 \end{itemize}
 
-\hypertarget{content}{%
-\section{Content}\label{content}}
+\section{Content}\label{content}
 
 It is impossible to become an expert in R in only one course even a
 multi-week one. Yet, this course aims at giving a wide understanding on
@@ -299,8 +345,7 @@ Making Code Production Ready:
   Communicating Results (part II)
 \end{enumerate}
 
-\hypertarget{structure}{%
-\section{Structure}\label{structure}}
+\section{Structure}\label{structure}
 
 My current thoughts are to meet an hour a week and discuss a topic. We
 will not be going strictly through the R4DS, but will use it as our
@@ -314,46 +359,903 @@ assignments related to our current work (maybe working through Site
 Investigator and/or Subscriber Reports) so we can work on the class
 during work hours.
 
-\hypertarget{r-programming-basics}{%
-\chapter{R Programming Basics}\label{r-programming-basics}}
+\chapter{Good practices}\label{good-practices}
+
+\begin{quote}
+``Programs must be written for people to read, and only incidentally for
+machines to execute.'' Harold Abelson
+\end{quote}
+
+\begin{quote}
+``Programming is the art of telling another human being what one wants
+the computer to do.'' Donald Knuth
+\end{quote}
+
+\begin{quote}
+``Let us change our traditional attitude to the construction of
+programs. Instead of imagining that our main task is to instruct a
+computer what to do, let us concentrate rather on explaining to human
+beings what we want a computer to do.'' Donald Knuth
+\end{quote}
+
+\begin{quote}
+``When you write a program, think of it primarily as a work of
+literature. You're trying to write something that human beings are going
+to read. Don't think of it primarily as something a computer is going to
+follow. The more effective you are at making your program readable, the
+more effective it's going to be: You'll understand it today, you'll
+understand it next week, and your successors who are going to maintain
+and modify it will understand it.''
+\end{quote}
+
+\section{Coding style}\label{coding-style}
+
+Good coding style is like correct punctuation: you can manage without
+it, butitsuremakesthingseasiertoread. When I answer questions; first, I
+read the title of the question to see if I can answer the question,
+secondly, I check the coding style of the question and if the code is
+too difficult to read, I just move on. Please make your code readable by
+following e.g. \href{http://style.tidyverse.org/}{this coding style}
+(most examples below come from this guide).
+
+\subsection{Comments}\label{comments}
+
+In code, use comments to explain the ``why'' not the ``what'' or
+``how''. Each line of a comment should begin with the comment symbol and
+a single space: \texttt{\#}.
+
+\subsection{Naming}\label{naming}
+
+\begin{quote}
+There are only two hard things in Computer Science: cache invalidation
+and naming things. -- Phil Karlton
+\end{quote}
+
+Names are not limited to 8 characters as in some other languages. Be
+smart with your naming; be descriptive yet concise. Think about how your
+names will show up in autocomplete.
+
+Throughout the course we will point out some standard naming conventions
+that are used in R (and other languages). (Ex. \texttt{i} and \texttt{j}
+as row and column indicies)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Good}
+\NormalTok{average_height <-}\StringTok{ }\KeywordTok{mean}\NormalTok{((feet }\OperatorTok{/}\StringTok{ }\DecValTok{12}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{inches)}
+\KeywordTok{plot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{disp, mtcars}\OperatorTok{$}\NormalTok{mpg)}
+
+\CommentTok{# Bad}
+\NormalTok{ah<-}\KeywordTok{mean}\NormalTok{(x}\OperatorTok{/}\DecValTok{12}\OperatorTok{+}\NormalTok{y)}
+\KeywordTok{plot}\NormalTok{(mtcars[, }\DecValTok{3}\NormalTok{], mtcars[, }\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Structure}\label{structure-1}
+
+Use commented lines of \texttt{-} to create a code outline.
+
+\subsection{Spacing}\label{spacing}
+
+Put a space before and after \texttt{=} when naming arguments in
+function calls. Most infix operators (\texttt{==}, \texttt{+},
+\texttt{-}, \texttt{\textless{}-}, etc.) are also surrounded by spaces,
+except those with relatively high precedence: \texttt{\^{}}, \texttt{:},
+\texttt{::}, and \texttt{:::}. Always put a space after a comma, and
+never before (just like in regular English).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Good}
+\NormalTok{average <-}\StringTok{ }\KeywordTok{mean}\NormalTok{((feet }\OperatorTok{/}\StringTok{ }\DecValTok{12}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{inches, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{sqrt}\NormalTok{(x}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{y}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\NormalTok{base}\OperatorTok{::}\NormalTok{sum}
+
+\CommentTok{# Bad}
+\NormalTok{average<-}\KeywordTok{mean}\NormalTok{(feet}\OperatorTok{/}\DecValTok{12}\OperatorTok{+}\NormalTok{inches,}\DataTypeTok{na.rm=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{sqrt}\NormalTok{(x }\OperatorTok{^}\StringTok{ }\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{y }\OperatorTok{^}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\DecValTok{1} \OperatorTok{:}\StringTok{ }\DecValTok{10}
+\NormalTok{base }\OperatorTok{::}\StringTok{ }\NormalTok{sum}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Indenting}\label{indenting}
+
+Curly braces, \texttt{\{\}}, define the the most important hierarchy of
+R code. To make this hierarchy easy to see, always indent the code
+inside \texttt{\{\}} by two spaces.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Good}
+\ControlFlowTok{if}\NormalTok{ (y }\OperatorTok{<}\StringTok{ }\DecValTok{0} \OperatorTok{&&}\StringTok{ }\NormalTok{debug) \{}
+  \KeywordTok{message}\NormalTok{(}\StringTok{"y is negative"}\NormalTok{)}
+\NormalTok{\}}
+
+\ControlFlowTok{if}\NormalTok{ (y }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+  \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+    \KeywordTok{log}\NormalTok{(x)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \KeywordTok{message}\NormalTok{(}\StringTok{"x is negative or zero"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  y }\OperatorTok{^}\StringTok{ }\NormalTok{x}
+\NormalTok{\}}
+
+\CommentTok{# Bad}
+\ControlFlowTok{if}\NormalTok{ (y }\OperatorTok{<}\StringTok{ }\DecValTok{0} \OperatorTok{&&}\StringTok{ }\NormalTok{debug)}
+\KeywordTok{message}\NormalTok{(}\StringTok{"Y is negative"}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ (y }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\NormalTok{\{}
+    \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+      \KeywordTok{log}\NormalTok{(x)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+  \KeywordTok{message}\NormalTok{(}\StringTok{"x is negative or zero"}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{ y }\OperatorTok{^}\StringTok{ }\NormalTok{x \}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Long lines}\label{long-lines}
+
+Strive to limit your code to 80 characters per line. This fits
+comfortably on a printed page with a reasonably sized font. If you find
+yourself running out of room, this is a good indication that you should
+encapsulate some of the work into a separate function.
+
+If a function call is too long to fit on a single line, use one line
+each for the function name, each argument, and the closing \texttt{)}.
+This makes the code easier to read and to change later.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Good}
+\KeywordTok{do_something_very_complicated}\NormalTok{(}
+  \DataTypeTok{something =} \StringTok{"that"}\NormalTok{,}
+  \DataTypeTok{requires  =}\NormalTok{ many,}
+  \DataTypeTok{arguments =} \StringTok{"some of which may be long"}
+\NormalTok{)}
+
+\CommentTok{# Bad}
+\KeywordTok{do_something_very_complicated}\NormalTok{(}\StringTok{"that"}\NormalTok{, requires, many, arguments,}
+                              \StringTok{"some of which may be long"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Other}\label{other}
+
+\begin{itemize}
+\tightlist
+\item
+  Use \texttt{\textless{}-}, not \texttt{=}, for assignment. Keep
+  \texttt{=} for parameters.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Good}
+\NormalTok{x <-}\StringTok{ }\DecValTok{5}
+\KeywordTok{system.time}\NormalTok{(}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\FloatTok{1e6}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{# Bad}
+\NormalTok{x =}\StringTok{ }\DecValTok{5}
+\KeywordTok{system.time}\NormalTok{(}
+  \DataTypeTok{x =} \KeywordTok{rnorm}\NormalTok{(}\FloatTok{1e6}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Don't put \texttt{;} at the end of a line, and don't use \texttt{;} to
+  put multiple commands on one line.
+\item
+  Only use \texttt{return()} for early returns. Otherwise rely on R to
+  return the result of the last evaluated expression.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Good}
+\NormalTok{add_two <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y) \{}
+\NormalTok{  x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\NormalTok{\}}
+
+\CommentTok{# Bad}
+\NormalTok{add_two <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y) \{}
+  \KeywordTok{return}\NormalTok{(x }\OperatorTok{+}\StringTok{ }\NormalTok{y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Use \texttt{"}, not \texttt{\textquotesingle{}}, for quoting text. The
+  only exception is when the text already contains double quotes and no
+  single quotes.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Good}
+\StringTok{"Text"}
+\StringTok{'Text with "quotes"'}
+\StringTok{'<a href="http://style.tidyverse.org">A link</a>'}
+
+\CommentTok{# Bad}
+\StringTok{'Text'}
+\StringTok{'Text with "double" and }\CharTok{\textbackslash{}'}\StringTok{single}\CharTok{\textbackslash{}'}\StringTok{ quotes'}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Coding practices}\label{coding-practices}
+
+\subsection{Variables}\label{variables}
+
+Create variables for values that are likely to change.
+
+\subsection{\texorpdfstring{\emph{Rule of
+3}}{Rule of 3}}\label{rule-of-3}
+
+Try not to copy code, or copy then modify the code, more than twice.
+
+\begin{itemize}
+\tightlist
+\item
+  If a change requires you to search/replace 3 or more times make a
+  variable.
+\item
+  If you copy a code chunk 3 or more times \emph{make a function}
+\item
+  If you copy a function 3 or more times \emph{make your function more
+  generic}
+\item
+  If you copy a function 3 or more times into a project \emph{make a
+  package}
+\item
+  If 3 or more people will use the function \emph{make a package}
+\item
+  If 3 or more projects will use the function \emph{make a package}
+\end{itemize}
+
+Same thing goes for lookup tables and such. The key thing to think about
+is; if something changes how many touch points will there be? If it is 3
+or more places it is time to abstract this code a bit.
+
+\subsection{Path names}\label{path-names}
+
+It is better to use relative path names instead of hard coded ones. If
+you must read from (or write to) paths that are not in your project
+directory structure create a file name variable at the highest level you
+can (\emph{always end with the \texttt{/}}) and then use relative
+paths.\\
+\textbf{DO NOT EVER USE \texttt{setwd()}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Good}
+\NormalTok{raw_data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"./data/mydatafile.csv"}\NormalTok{) }
+
+\NormalTok{input_file <-}\StringTok{ "./data/mydatafile.csv"}
+\NormalTok{raw_data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(input_file)  }
+
+\NormalTok{input_path <-}\StringTok{ "C:/Path/To/Some/other/project/directory/"}
+\NormalTok{input_file <-}\StringTok{ }\KeywordTok{paste0}\NormalTok{(input_path, }\StringTok{"data/mydatafile.csv"}\NormalTok{)}
+\NormalTok{raw_data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(input_file)}
+
+\CommentTok{# Bad}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"C:/Path/To/Some/other/project/directory/data/"}\NormalTok{)}
+\NormalTok{raw_data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"mydatafile.csv"}\NormalTok{)}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"C:/Path/back/to/my/project/"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{RStudio}\label{rstudio}
+
+Download the latest version of
+\href{https://www.rstudio.com/products/rstudio/download/\#download}{RStudio}
+(\textgreater{} 1.1) and use it!
+
+Learn more about new features of RStudio v1.1
+\href{https://www.rstudio.com/resources/videos/rstudio-1-1-new-features/}{there}.
+
+RStudio features:
+
+\begin{itemize}
+\item
+  everything you can expect from a good IDE
+\item
+  keyboard shortcuts I use frequently
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    \emph{Ctrl + Space} (auto-completion, better than \emph{Tab})
+  \item
+    \emph{Ctrl + Up} (command history \& search)
+  \item
+    \emph{Ctrl + Enter} (execute line of code)
+  \item
+    \emph{Ctrl + Shift + A} (reformat code)
+  \item
+    \emph{Ctrl + Shift + C} (comment/uncomment selected lines)
+  \item
+    \emph{Ctrl + Shift + /} (reflow comments)
+  \item
+    \emph{Ctrl + Shift + O} (View code outline)
+  \item
+    \emph{Ctrl + Shift + B} (build package, website or book)
+  \item
+    \emph{Ctrl + Shift + M} (pipe)
+  \item
+    \emph{Alt + Shift + K} to see all shortcuts\ldots{}
+  \end{enumerate}
+\item
+  Panels (everything is integrated, including \textbf{Git} and a
+  terminal)
+\item
+  Interactive data importation from files and connections (see
+  \href{https://www.rstudio.com/resources/webinars/importing-data-into-r/}{this
+  webinar})
+\item
+  Use
+  \href{https://support.rstudio.com/hc/en-us/articles/205753617-Code-Diagnostics}{code
+  diagnostics}:
+\item
+  \textbf{R Projects}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Meaningful structure} in one folder
+  \item
+    The working directory automatically switches to the project's folder
+  \item
+    File tab displays the associated files and folders in the project
+  \item
+    History of R commands and open files
+  \item
+    Any settings associated with the project, such as Git settings, are
+    loaded. Note that a \emph{set-up.R} or even a \emph{.Rprofile} file
+    in the project's root directory enable project-specific settings to
+    be loaded each time people work on the project.
+  \end{itemize}
+\end{itemize}
+
+The only two things that make @JennyBryan 😤😠🤯. Instead use projects +
+here::here() \#rstats pic.twitter.com/GwxnHePL4n
+
+--- Hadley Wickham (@hadleywickham) December 11 2017
+
+Read more at
+\url{https://www.tidyverse.org/articles/2017/12/workflow-vs-script/} and
+also see chapter
+\href{https://bookdown.org/csgillespie/efficientR/set-up.html}{\emph{Efficient
+set-up}} of book \emph{Efficient R programming}.
+
+\section{Getting help}\label{getting-help}
+
+\subsection{Help yourself, learn how to
+debug}\label{help-yourself-learn-how-to-debug}
+
+A basic solution is to print everything, but it usually does not work
+well on complex problems. A convenient solution to see all the
+variables' states in your code is to place some \texttt{browser()}
+anywhere you want to check the variables' states.
+
+Learn more with
+\href{https://bookdown.org/rdpeng/rprogdatascience/debugging.html}{this
+book chapter},
+\href{http://adv-r.had.co.nz/Exceptions-Debugging.html}{this other book
+chapter},
+\href{https://www.rstudio.com/resources/videos/debugging-techniques-in-rstudio/}{this
+webinar} and
+\href{https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio}{this
+RStudio article}.
+
+\subsection{External help}\label{external-help}
+
+Can't remember useful functions? Use
+\href{https://www.rstudio.com/resources/cheatsheets/}{cheat sheets}.
+
+You can search for specific R stuff on \url{https://rseek.org/}. You
+should also read documentations carefully. If you're using a package,
+search for vignettes and a GitHub repository.
+
+You can also use \href{https://stackoverflow.com/}{Stack Overflow}. The
+most common use of Stack Overflow is when you have an error or a
+question, you google it, and most of the times the first links are Q/A
+on Stack Overflow.
+
+You can ask questions on Stack Overflow (using the tag \texttt{r}). You
+need to
+\href{https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example}{make
+a great R reproducible example} if you want your question to be
+answered. Most of the times, while making this reproducible example, you
+will find the answer to your problem.
+
+If you're confident enough in your R skills, you can go to the next step
+and
+\href{https://stackoverflow.com/unanswered/tagged/r?tab=newest}{answer
+questions on Stack Overflow}. It's a good way to increase your skills,
+or just to
+\href{https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/}{procrastinate
+while writing a scientific manuscript}.
+
+\section{Keeping up to date}\label{keeping-up-to-date}
+
+With over 10,000 packages on CRAN it is hard to keep up with the
+constantly changing landscape.
+\href{https://www.r-bloggers.com/}{R-Bloggers} is an R forcused blog
+aggregator with dozens of posts per day. Checkit out.
+
+Join the \href{https://www.r-project.org/mail.html}{R-help} mailing
+list. Sign up to get the daily digest and scan it for questions that
+interest you.
+
+\section{Assignement}\label{assignement}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  See these Rstudio
+  \href{https://rviews.rstudio.com/categories/tips-and-tricks/}{Tips \&
+  Tricks} or \href{https://twitter.com/rstudiotips}{these} and find one
+  that looks interesting and \textbf{practice} it all week.
+\item
+  Create an R Project for this class.
+\item
+  Create the following directories in your project (tip sheet?)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Bonus points if you can do it from R and not RStudio or Windows
+    Explorer
+  \item
+    Double Bonus points if you can make it a function.
+  \end{itemize}
+\item
+  Read Chapters 1-3 of the
+  \href{http://style.tidyverse.org/index.html}{Tidyverse Style Guide}
+\item
+  Copy one of your R scripts into your R directory. (Bonus points if you
+  can do it from R and not RStudio or Windows Explorer)
+\item
+  Apply the style guide to your code.\\
+\item
+  Apply the ``Rule of 3''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Create variables as needed
+  \item
+    Identify code that is used 3 or more times to make functions
+  \item
+    Identify code that would be useful in 3 or more projects to
+    integrate into a package.
+  \end{itemize}
+\item
+  Read how to
+  \href{https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example}{make
+  a great R reproducible example}
+\end{enumerate}
+
+\chapter{R Programming Basics}\label{r-programming-basics}
 
 See this \href{http://adv-r.had.co.nz/Vocabulary.html}{vocabulary list}
-for a good starting point of the basics of base R and some important
-libraries.
+for a good starting point on the basics functions in base R and some
+important libraries.
 
-\hypertarget{objects}{%
-\section{Objects}\label{objects}}
+\href{https://privefl.github.io/advr38book/r-programming.html}{advr38book}
 
-\hypertarget{making-vectors}{%
-\subsection{Making vectors}\label{making-vectors}}
+In R there three basic constructs; objects, functions, and environments.
 
-\hypertarget{lists-data.frames}{%
-\subsection{Lists \& data.frames}\label{lists-data.frames}}
+Two most important functions in R \texttt{?} and \texttt{str}.
 
-\hypertarget{vectors-and-matrices}{%
-\subsection{Vectors and matrices}\label{vectors-and-matrices}}
+\section{Names}\label{names}
 
-automatic coercion rules character \textgreater{} numeric \textgreater{}
-logical
+R has strict rules about what constitutes a valid name. A
+\textbf{syntactic} name must consist of letters\footnote{Surprisingly,
+  what constitutes a letter is determined by your current locale. That
+  means that the syntax of R code actually differs from computer to
+  computer, and it's possible for a file that works on one computer to
+  not even parse on another!}, digits, \texttt{.} and \texttt{\_}, and
+can't begin with \texttt{\_}. Additionally, it can not be one of a list
+of \textbf{reserved words} like \texttt{TRUE}, \texttt{NULL},
+\texttt{if}, and \texttt{function} (see the complete list in
+\texttt{?Reserved}). Names that don't follow these rules are called
+\textbf{non-syntactic} names, and if you try to use them, you'll get an
+error:
 
-\hypertarget{important-operators-and-assignment}{%
-\section{Important operators and
-assignment}\label{important-operators-and-assignment}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{_abc <-}\StringTok{ }\DecValTok{1}
+\CommentTok{#> Error: unexpected input in "_"}
 
-\hypertarget{comparison}{%
-\section{Comparison}\label{comparison}}
+\ControlFlowTok{if}\NormalTok{ <-}\StringTok{ }\DecValTok{10}
+\CommentTok{#> Error: unexpected assignment in "if <-"}
+\end{Highlighting}
+\end{Shaded}
 
-\hypertarget{basic-math}{%
-\section{Basic math}\label{basic-math}}
+\section{Notes}\label{notes}
 
-\hypertarget{logical-and-sets}{%
-\section{Logical and Sets}\label{logical-and-sets}}
+where do factors fit in?
 
-\hypertarget{control-flow}{%
-\section{Control flow}\label{control-flow}}
+\section{Atomic Vectors}\label{atomic-vectors}
 
-\hypertarget{ordering-and-tabulating}{%
-\section{Ordering and tabulating}\label{ordering-and-tabulating}}
+There are many ``atomic'' types of data: \texttt{logical},
+\texttt{integer}, \texttt{double} and \texttt{character} (in this order,
+see below). There are also \texttt{raw} and \texttt{complex} but they
+are rarely used.
+
+You can't mix types in an atomic vector (you can in a list). Coercion
+will automatically occur if you mix types:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(a <-}\StringTok{ }\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{typeof}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "logical"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(b <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{typeof}\NormalTok{(b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "integer"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{c}\NormalTok{(a, b)  ## FALSE is coerced to integer 0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>  [1]  0  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(c <-}\StringTok{ }\FloatTok{10.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] 10.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{typeof}\NormalTok{(c)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "double"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(d <-}\StringTok{ }\KeywordTok{c}\NormalTok{(b, c))  ## coerced to numeric}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>  [1]  1.0  2.0  3.0  4.0  5.0  6.0  7.0  8.0  9.0 10.0 10.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{c}\NormalTok{(d, }\StringTok{"a"}\NormalTok{)  ## coerced to character}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>  [1] "1"    "2"    "3"    "4"    "5"    "6"    "7"    "8"    "9"    "10"   "10.5" "a"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{c}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{), }\StringTok{"a"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [[1]]
+#> [1] 1
+#> 
+#> [[2]]
+#> [1] "a"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{50} \OperatorTok{<}\StringTok{ "7"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] TRUE
+\end{verbatim}
+
+You can force coercion with \texttt{as.logical}, \texttt{as.integer},
+\texttt{as.double}, \texttt{as.numeric}, and \texttt{as.character}. Most
+of the time the coercion rules are straight forward, but not always.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{typeof}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "logical"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.integer}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] 1 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.numeric}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] 1 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.character}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "TRUE"  "FALSE"
+\end{verbatim}
+
+However, coercion is not associative.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+
+\NormalTok{x2 <-}\StringTok{ }\KeywordTok{as.integer}\NormalTok{(x)}
+\NormalTok{x3 <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(x2)}
+\KeywordTok{as.character}\NormalTok{(x3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "1" "0"
+\end{verbatim}
+
+What would you expect this to return?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+
+\KeywordTok{as.integer}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+You can test for an ``atomic'' types of data with: \texttt{is.logical},
+\texttt{is.integer}, \texttt{is.double}, \texttt{is.numeric}, and
+\texttt{is.character}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+
+\KeywordTok{is.logical}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.integer}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] FALSE
+\end{verbatim}
+
+What would you expect these to return?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{2}
+
+\KeywordTok{is.integer}\NormalTok{(x)}
+\KeywordTok{is.numeric}\NormalTok{(x)}
+\KeywordTok{is.double}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Base objects}\label{base-objects}
+
+\begin{itemize}
+\item
+  ``atomic'' vector: vector of same type (see above).
+\item
+  scalar: this doesn't exist, there are only vector of length 1.
+\item
+  matrices/arrays: just an atomic vector with some dimensions
+  (attribute).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vec <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{12}
+\NormalTok{vec}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(vec)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "integer"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(vec) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\NormalTok{vec}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>      [,1] [,2] [,3] [,4]
+#> [1,]    1    4    7   10
+#> [2,]    2    5    8   11
+#> [3,]    3    6    9   12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(vec)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "matrix"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(vec) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{vec}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> , , 1
+#> 
+#>      [,1] [,2]
+#> [1,]    1    4
+#> [2,]    2    5
+#> [3,]    3    6
+#> 
+#> , , 2
+#> 
+#>      [,1] [,2]
+#> [1,]    7   10
+#> [2,]    8   11
+#> [3,]    9   12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(vec)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] "array"
+\end{verbatim}
+
+\begin{itemize}
+\item
+  list: vector of elements with possible different types in it.
+\item
+  data.frame: a list whose elements have the same lengths, and formatted
+  somewhat as a matrix.
+\end{itemize}
+
+{Figure out how to make results nicer inside RMarkdown}
+
+\subsection{Vectors}\label{vectors}
+
+\subsubsection{Important operators and
+assignment}\label{important-operators-and-assignment}
+
+\subsubsection{Comparison}\label{comparison}
+
+\subsubsection{Logical, Sets and Missing
+Values}\label{logical-sets-and-missing-values}
+
+\subsection{Control flow}\label{control-flow}
+
+\subsubsection{Ordering and tabulating}\label{ordering-and-tabulating}
+
+\subsubsection{Basic math}\label{basic-math}
+
+\subsection{Matrices}\label{matrices}
+
+\subsection{Lists \& data.frames}\label{lists-data.frames}
+
+\subsection{Selecting Values}\label{selecting-values}
+
+\section{Functions}\label{functions}
+
+\subsection{Functional Programming}\label{functional-programming}
+
+\subsection{Functionals}\label{functionals}
+
+\subsection{Function operators}\label{function-operators}
+
+\section{Environments}\label{environments}
+
+Scoping
 
 \bibliography{book.bib,packages.bib}
 

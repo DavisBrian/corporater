@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Modern R in a Corporate Environment</title>
   <meta name="description" content="This is an original course for RADARS">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
   <meta property="og:title" content="Modern R in a Corporate Environment" />
   <meta property="og:type" content="book" />
@@ -25,14 +25,14 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-04-18">
+<meta name="date" content="2018-04-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="introduction.html">
+<link rel="prev" href="good-practices.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,8 +49,44 @@
 
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -77,18 +113,46 @@
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content"><i class="fa fa-check"></i><b>1.3</b> Content</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#structure"><i class="fa fa-check"></i><b>1.4</b> Structure</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="r-programming-basics.html"><a href="r-programming-basics.html"><i class="fa fa-check"></i><b>2</b> R Programming Basics</a><ul>
-<li class="chapter" data-level="2.1" data-path="r-programming-basics.html"><a href="r-programming-basics.html#objects"><i class="fa fa-check"></i><b>2.1</b> Objects</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="r-programming-basics.html"><a href="r-programming-basics.html#making-vectors"><i class="fa fa-check"></i><b>2.1.1</b> Making vectors</a></li>
-<li class="chapter" data-level="2.1.2" data-path="r-programming-basics.html"><a href="r-programming-basics.html#lists-data.frames"><i class="fa fa-check"></i><b>2.1.2</b> Lists &amp; data.frames</a></li>
-<li class="chapter" data-level="2.1.3" data-path="r-programming-basics.html"><a href="r-programming-basics.html#vectors-and-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Vectors and matrices</a></li>
+<li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a><ul>
+<li class="chapter" data-level="2.1" data-path="good-practices.html"><a href="good-practices.html#coding-style"><i class="fa fa-check"></i><b>2.1</b> Coding style</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="good-practices.html"><a href="good-practices.html#comments"><i class="fa fa-check"></i><b>2.1.1</b> Comments</a></li>
+<li class="chapter" data-level="2.1.2" data-path="good-practices.html"><a href="good-practices.html#naming"><i class="fa fa-check"></i><b>2.1.2</b> Naming</a></li>
+<li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#structure-1"><i class="fa fa-check"></i><b>2.1.3</b> Structure</a></li>
+<li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#spacing"><i class="fa fa-check"></i><b>2.1.4</b> Spacing</a></li>
+<li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.5</b> Indenting</a></li>
+<li class="chapter" data-level="2.1.6" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.6</b> Long lines</a></li>
+<li class="chapter" data-level="2.1.7" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.7</b> Other</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="r-programming-basics.html"><a href="r-programming-basics.html#important-operators-and-assignment"><i class="fa fa-check"></i><b>2.2</b> Important operators and assignment</a></li>
-<li class="chapter" data-level="2.3" data-path="r-programming-basics.html"><a href="r-programming-basics.html#comparison"><i class="fa fa-check"></i><b>2.3</b> Comparison</a></li>
-<li class="chapter" data-level="2.4" data-path="r-programming-basics.html"><a href="r-programming-basics.html#basic-math"><i class="fa fa-check"></i><b>2.4</b> Basic math</a></li>
-<li class="chapter" data-level="2.5" data-path="r-programming-basics.html"><a href="r-programming-basics.html#logical-and-sets"><i class="fa fa-check"></i><b>2.5</b> Logical and Sets</a></li>
-<li class="chapter" data-level="2.6" data-path="r-programming-basics.html"><a href="r-programming-basics.html#control-flow"><i class="fa fa-check"></i><b>2.6</b> Control flow</a></li>
-<li class="chapter" data-level="2.7" data-path="r-programming-basics.html"><a href="r-programming-basics.html#ordering-and-tabulating"><i class="fa fa-check"></i><b>2.7</b> Ordering and tabulating</a></li>
+<li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-3"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of 3</em></a></li>
+<li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
+<li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#keeping-up-to-date"><i class="fa fa-check"></i><b>2.5</b> Keeping up to date</a></li>
+<li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#assignement"><i class="fa fa-check"></i><b>2.6</b> Assignement</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-programming-basics.html"><a href="r-programming-basics.html"><i class="fa fa-check"></i><b>3</b> R Programming Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-programming-basics.html"><a href="r-programming-basics.html#names"><i class="fa fa-check"></i><b>3.1</b> Names</a></li>
+<li class="chapter" data-level="3.2" data-path="r-programming-basics.html"><a href="r-programming-basics.html#notes"><i class="fa fa-check"></i><b>3.2</b> Notes</a></li>
+<li class="chapter" data-level="3.3" data-path="r-programming-basics.html"><a href="r-programming-basics.html#atomic-vectors"><i class="fa fa-check"></i><b>3.3</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="3.4" data-path="r-programming-basics.html"><a href="r-programming-basics.html#base-objects"><i class="fa fa-check"></i><b>3.4</b> Base objects</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="r-programming-basics.html"><a href="r-programming-basics.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r-programming-basics.html"><a href="r-programming-basics.html#control-flow"><i class="fa fa-check"></i><b>3.4.2</b> Control flow</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r-programming-basics.html"><a href="r-programming-basics.html#matrices"><i class="fa fa-check"></i><b>3.4.3</b> Matrices</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r-programming-basics.html"><a href="r-programming-basics.html#lists-data.frames"><i class="fa fa-check"></i><b>3.4.4</b> Lists &amp; data.frames</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r-programming-basics.html"><a href="r-programming-basics.html#selecting-values"><i class="fa fa-check"></i><b>3.4.5</b> Selecting Values</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r-programming-basics.html"><a href="r-programming-basics.html#functions"><i class="fa fa-check"></i><b>3.5</b> Functions</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="r-programming-basics.html"><a href="r-programming-basics.html#functional-programming"><i class="fa fa-check"></i><b>3.5.1</b> Functional Programming</a></li>
+<li class="chapter" data-level="3.5.2" data-path="r-programming-basics.html"><a href="r-programming-basics.html#functionals"><i class="fa fa-check"></i><b>3.5.2</b> Functionals</a></li>
+<li class="chapter" data-level="3.5.3" data-path="r-programming-basics.html"><a href="r-programming-basics.html#function-operators"><i class="fa fa-check"></i><b>3.5.3</b> Function operators</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="r-programming-basics.html"><a href="r-programming-basics.html#environments"><i class="fa fa-check"></i><b>3.6</b> Environments</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -111,47 +175,198 @@
 
             <section class="normal" id="section-">
 <div id="r-programming-basics" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> R Programming Basics</h1>
-<p>See this <a href="http://adv-r.had.co.nz/Vocabulary.html">vocabulary list</a> for a good starting point of the basics of base R and some important libraries.</p>
-<div id="objects" class="section level2">
-<h2><span class="header-section-number">2.1</span> Objects</h2>
-<div id="making-vectors" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Making vectors</h3>
+<h1><span class="header-section-number">Chapter 3</span> R Programming Basics</h1>
+<p>See this <a href="http://adv-r.had.co.nz/Vocabulary.html">vocabulary list</a> for a good starting point on the basics functions in base R and some important libraries.</p>
+<p><a href="https://privefl.github.io/advr38book/r-programming.html">advr38book</a></p>
+<p>In R there three basic constructs; objects, functions, and environments.</p>
+<p>Two most important functions in R <code>?</code> and <code>str</code>.</p>
+<div id="names" class="section level2">
+<h2><span class="header-section-number">3.1</span> Names</h2>
+<p>R has strict rules about what constitutes a valid name. A <strong>syntactic</strong> name must consist of letters<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, digits, <code>.</code> and <code>_</code>, and can’t begin with <code>_</code>. Additionally, it can not be one of a list of <strong>reserved words</strong> like <code>TRUE</code>, <code>NULL</code>, <code>if</code>, and <code>function</code> (see the complete list in <code>?Reserved</code>). Names that don’t follow these rules are called <strong>non-syntactic</strong> names, and if you try to use them, you’ll get an error:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">_abc &lt;-<span class="st"> </span><span class="dv">1</span>
+<span class="co">#&gt; Error: unexpected input in &quot;_&quot;</span>
+
+<span class="cf">if</span> &lt;-<span class="st"> </span><span class="dv">10</span>
+<span class="co">#&gt; Error: unexpected assignment in &quot;if &lt;-&quot;</span></code></pre></div>
+</div>
+<div id="notes" class="section level2">
+<h2><span class="header-section-number">3.2</span> Notes</h2>
+<p>where do factors fit in?</p>
+</div>
+<div id="atomic-vectors" class="section level2">
+<h2><span class="header-section-number">3.3</span> Atomic Vectors</h2>
+<p>There are many “atomic” types of data: <code>logical</code>, <code>integer</code>, <code>double</code> and <code>character</code> (in this order, see below). There are also <code>raw</code> and <code>complex</code> but they are rarely used.</p>
+<p>You can’t mix types in an atomic vector (you can in a list). Coercion will automatically occur if you mix types:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(a &lt;-<span class="st"> </span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>#&gt; [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(a)</code></pre></div>
+<pre><code>#&gt; [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(b &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre></div>
+<pre><code>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(b)</code></pre></div>
+<pre><code>#&gt; [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(a, b)  ## FALSE is coerced to integer 0</code></pre></div>
+<pre><code>#&gt;  [1]  0  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(c &lt;-<span class="st"> </span><span class="fl">10.5</span>)</code></pre></div>
+<pre><code>#&gt; [1] 10.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(c)</code></pre></div>
+<pre><code>#&gt; [1] &quot;double&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(d &lt;-<span class="st"> </span><span class="kw">c</span>(b, c))  ## coerced to numeric</code></pre></div>
+<pre><code>#&gt;  [1]  1.0  2.0  3.0  4.0  5.0  6.0  7.0  8.0  9.0 10.0 10.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(d, <span class="st">&quot;a&quot;</span>)  ## coerced to character</code></pre></div>
+<pre><code>#&gt;  [1] &quot;1&quot;    &quot;2&quot;    &quot;3&quot;    &quot;4&quot;    &quot;5&quot;    &quot;6&quot;    &quot;7&quot;    &quot;8&quot;    &quot;9&quot;    &quot;10&quot;   &quot;10.5&quot; &quot;a&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="kw">list</span>(<span class="dv">1</span>), <span class="st">&quot;a&quot;</span>)</code></pre></div>
+<pre><code>#&gt; [[1]]
+#&gt; [1] 1
+#&gt; 
+#&gt; [[2]]
+#&gt; [1] &quot;a&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">50</span> <span class="op">&lt;</span><span class="st"> &quot;7&quot;</span></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<p>You can force coercion with <code>as.logical</code>, <code>as.integer</code>, <code>as.double</code>, <code>as.numeric</code>, and <code>as.character</code>. Most of the time the coercion rules are straight forward, but not always.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+<span class="kw">typeof</span>(x)</code></pre></div>
+<pre><code>#&gt; [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.integer</span>(x)</code></pre></div>
+<pre><code>#&gt; [1] 1 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(x)</code></pre></div>
+<pre><code>#&gt; [1] 1 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.character</span>(x)</code></pre></div>
+<pre><code>#&gt; [1] &quot;TRUE&quot;  &quot;FALSE&quot;</code></pre>
+<p>However, coercion is not associative.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+
+x2 &lt;-<span class="st"> </span><span class="kw">as.integer</span>(x)
+x3 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(x2)
+<span class="kw">as.character</span>(x3)</code></pre></div>
+<pre><code>#&gt; [1] &quot;1&quot; &quot;0&quot;</code></pre>
+<p>What would you expect this to return?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+
+<span class="kw">as.integer</span>(<span class="kw">as.character</span>(x))</code></pre></div>
+<p>You can test for an “atomic” types of data with: <code>is.logical</code>, <code>is.integer</code>, <code>is.double</code>, <code>is.numeric</code>, and <code>is.character</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+
+<span class="kw">is.logical</span>(x)</code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.integer</span>(x)</code></pre></div>
+<pre><code>#&gt; [1] FALSE</code></pre>
+<p>What would you expect these to return?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">2</span>
+
+<span class="kw">is.integer</span>(x)
+<span class="kw">is.numeric</span>(x)
+<span class="kw">is.double</span>(x)</code></pre></div>
+</div>
+<div id="base-objects" class="section level2">
+<h2><span class="header-section-number">3.4</span> Base objects</h2>
+<ul>
+<li><p>“atomic” vector: vector of same type (see above).</p></li>
+<li><p>scalar: this doesn’t exist, there are only vector of length 1.</p></li>
+<li><p>matrices/arrays: just an atomic vector with some dimensions (attribute).</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span>
+vec</code></pre></div>
+<pre><code>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(vec)</code></pre></div>
+<pre><code>#&gt; [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(vec) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)
+vec</code></pre></div>
+<pre><code>#&gt;      [,1] [,2] [,3] [,4]
+#&gt; [1,]    1    4    7   10
+#&gt; [2,]    2    5    8   11
+#&gt; [3,]    3    6    9   12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(vec)</code></pre></div>
+<pre><code>#&gt; [1] &quot;matrix&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(vec) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)
+vec</code></pre></div>
+<pre><code>#&gt; , , 1
+#&gt; 
+#&gt;      [,1] [,2]
+#&gt; [1,]    1    4
+#&gt; [2,]    2    5
+#&gt; [3,]    3    6
+#&gt; 
+#&gt; , , 2
+#&gt; 
+#&gt;      [,1] [,2]
+#&gt; [1,]    7   10
+#&gt; [2,]    8   11
+#&gt; [3,]    9   12</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(vec)</code></pre></div>
+<pre><code>#&gt; [1] &quot;array&quot;</code></pre>
+<ul>
+<li><p>list: vector of elements with possible different types in it.</p></li>
+<li><p>data.frame: a list whose elements have the same lengths, and formatted somewhat as a matrix.</p></li>
+</ul>
+<p><span class="todo">Figure out how to make results nicer inside RMarkdown</span></p>
+<div id="vectors" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Vectors</h3>
+<div id="important-operators-and-assignment" class="section level4">
+<h4><span class="header-section-number">3.4.1.1</span> Important operators and assignment</h4>
+</div>
+<div id="comparison" class="section level4">
+<h4><span class="header-section-number">3.4.1.2</span> Comparison</h4>
+</div>
+<div id="logical-sets-and-missing-values" class="section level4">
+<h4><span class="header-section-number">3.4.1.3</span> Logical, Sets and Missing Values</h4>
+</div>
+</div>
+<div id="control-flow" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Control flow</h3>
+<div id="ordering-and-tabulating" class="section level4">
+<h4><span class="header-section-number">3.4.2.1</span> Ordering and tabulating</h4>
+</div>
+<div id="basic-math" class="section level4">
+<h4><span class="header-section-number">3.4.2.2</span> Basic math</h4>
+</div>
+</div>
+<div id="matrices" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Matrices</h3>
 </div>
 <div id="lists-data.frames" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Lists &amp; data.frames</h3>
+<h3><span class="header-section-number">3.4.4</span> Lists &amp; data.frames</h3>
 </div>
-<div id="vectors-and-matrices" class="section level3">
-<h3><span class="header-section-number">2.1.3</span> Vectors and matrices</h3>
-<p>automatic coercion rules character &gt; numeric &gt; logical</p>
+<div id="selecting-values" class="section level3">
+<h3><span class="header-section-number">3.4.5</span> Selecting Values</h3>
 </div>
 </div>
-<div id="important-operators-and-assignment" class="section level2">
-<h2><span class="header-section-number">2.2</span> Important operators and assignment</h2>
+<div id="functions" class="section level2">
+<h2><span class="header-section-number">3.5</span> Functions</h2>
+<div id="functional-programming" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Functional Programming</h3>
 </div>
-<div id="comparison" class="section level2">
-<h2><span class="header-section-number">2.3</span> Comparison</h2>
+<div id="functionals" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Functionals</h3>
 </div>
-<div id="basic-math" class="section level2">
-<h2><span class="header-section-number">2.4</span> Basic math</h2>
+<div id="function-operators" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> Function operators</h3>
 </div>
-<div id="logical-and-sets" class="section level2">
-<h2><span class="header-section-number">2.5</span> Logical and Sets</h2>
 </div>
-<div id="control-flow" class="section level2">
-<h2><span class="header-section-number">2.6</span> Control flow</h2>
-</div>
-<div id="ordering-and-tabulating" class="section level2">
-<h2><span class="header-section-number">2.7</span> Ordering and tabulating</h2>
+<div id="environments" class="section level2">
+<h2><span class="header-section-number">3.6</span> Environments</h2>
+<p>Scoping</p>
 
 </div>
+</div>
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Surprisingly, what constitutes a letter is determined by your current locale. That means that the syntax of R code actually differs from computer to computer, and it’s possible for a file that works on one computer to not even parse on another!<a href="r-programming-basics.html#fnref1">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="introduction.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="good-practices.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -170,11 +385,10 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
-"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -182,13 +396,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/rbasics.Rmd",
+"link": "https://github.com/DavisBrian/corporater/edit/master/rbasics.Rmd",
 "text": "Edit"
 },
 "download": ["corporater.pdf", "corporater.epub"],
 "toc": {
 "collapse": "subsection"
-}
+},
+"css": "corp.css"
 });
 });
 </script>

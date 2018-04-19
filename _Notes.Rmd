@@ -7,6 +7,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Sections Subsseting
+
+## Loops
+
 ## Notes
 
 This is a place to keep track of my thoughts and notes.
@@ -15,26 +19,7 @@ This is a place to keep track of my thoughts and notes.
 [Robust Programming](https://github.com/lgatto/2016-02-25-adv-programming-EMBL)
 [R Programing](https://bookdown.org/rdpeng/rprogdatascience/)
 [R Software Development](https://bookdown.org/rdpeng/RProgDA/)
-Intro
-*    What we are going to learn
-    * Data Science + Programming
-*   Prerequisits
-    *    RStudio 
-    *    R
-    *    MiTex
-    *    RTools
-*    Reproducible Research
-*    FDA / Validation
 
-Programming
-*    Coding Style
-*    Naming Conventions
-*    Functions / Objects / Environemnts
-*    R4DS chapter 4 workflow basics
-*    Scoping
-*    Dont use rm(ls()) or setwd()
-*    Rule of 3
-*    Variable
 
 R Basics
 
