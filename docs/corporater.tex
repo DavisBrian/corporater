@@ -125,7 +125,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-04-19}
+  \date{2018-04-20}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -849,7 +849,7 @@ interest you.
   a great R reproducible example}
 \end{enumerate}
 
-\chapter{R Programming Basics}\label{r-programming-basics}
+\chapter{R Base Basics}\label{r-base-basics}
 
 See this \href{http://adv-r.had.co.nz/Vocabulary.html}{vocabulary list}
 for a good starting point on the basics functions in base R and some
@@ -859,9 +859,10 @@ important libraries.
 
 In R there three basic constructs; objects, functions, and environments.
 
-Two most important functions in R \texttt{?} and \texttt{str}.
+The three most important functions in R \texttt{?}, \texttt{??}, and
+\texttt{str}.
 
-\section{Names}\label{names}
+\section{Nameing Rules}\label{nameing-rules}
 
 R has strict rules about what constitutes a valid name. A
 \textbf{syntactic} name must consist of letters\footnote{Surprisingly,
@@ -886,11 +887,52 @@ error:
 \end{Highlighting}
 \end{Shaded}
 
-\section{Notes}\label{notes}
+\section{Vectors}\label{vectors}
 
-where do factors fit in?
+The most common data structure in R is the vector. R's vectors can be
+organised by their dimensionality (1d, 2d, or nd) and whether they're
+homogeneous or heterogeneous. This gives rise to the five data types
+most often used in data analysis:
 
-\section{Atomic Vectors}\label{atomic-vectors}
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& Homogeneous & Heterogeneous\tabularnewline
+\midrule
+\endhead
+1d & Atomic vector & List\tabularnewline
+2d & Matrix & Data frame\tabularnewline
+nd & Array &\tabularnewline
+\bottomrule
+\end{longtable}
+
+Given an object, the best way to understand what data structures it is
+composed of is to use \texttt{str()}. \texttt{str()} is short for
+structure and it gives a compact, human readable description of any R
+data structure.
+
+Vectors have three common properties:
+
+\begin{itemize}
+\tightlist
+\item
+  Type, \texttt{typeof()}, what it is.
+\item
+  Length, \texttt{length()}, how many elements it contains.
+\item
+  Attributes, \texttt{attributes()}, additional arbitrary metadata.
+\end{itemize}
+
+They differ in the types of their elements: all elements of an atomic
+vector must be the same type, whereas the elements of a list can have
+different types.
+
+NOTE: \texttt{is.vector()} does not test if an object is a vector.
+Instead it returns TRUE only if the object is a vector with no
+attributes apart from names. Use
+\texttt{is.atomic(x)\ \textbar{}\textbar{}\ is.list(x)} to test if an
+object is actually a vector.
+
+\subsection{Atomic Vectors}\label{atomic-vectors}
 
 There are many ``atomic'' types of data: \texttt{logical},
 \texttt{integer}, \texttt{double} and \texttt{character} (in this order,
@@ -942,7 +984,7 @@ will automatically occur if you mix types:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{c}\NormalTok{(a, b)  ## FALSE is coerced to integer 0}
+\KeywordTok{c}\NormalTok{(a, b)         ## FALSE is coerced to integer 0}
 \end{Highlighting}
 \end{Shaded}
 
@@ -972,7 +1014,7 @@ will automatically occur if you mix types:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(d <-}\StringTok{ }\KeywordTok{c}\NormalTok{(b, c))  ## coerced to numeric}
+\NormalTok{(d <-}\StringTok{ }\KeywordTok{c}\NormalTok{(b, c))  ## coerced to double}
 \end{Highlighting}
 \end{Shaded}
 
@@ -982,7 +1024,7 @@ will automatically occur if you mix types:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{c}\NormalTok{(d, }\StringTok{"a"}\NormalTok{)  ## coerced to character}
+\KeywordTok{c}\NormalTok{(d, }\StringTok{"a"}\NormalTok{)       ## coerced to character}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1086,7 +1128,10 @@ What would you expect this to return?
 \end{Shaded}
 
 You can test for an ``atomic'' types of data with: \texttt{is.logical},
-\texttt{is.integer}, \texttt{is.double}, \texttt{is.numeric}, and
+\texttt{is.integer}, \texttt{is.double}, \texttt{is.numeric}\footnote{\texttt{is.numeric()}
+  is a general test for the ``numberliness'' of a vector and returns
+  TRUE for both integer and double vectors. It is not a specific test
+  for double vectors, which are often called numeric.}, and
 \texttt{is.character}.
 
 \begin{Shaded}
@@ -1123,20 +1168,317 @@ What would you expect these to return?
 \end{Highlighting}
 \end{Shaded}
 
-\section{Base objects}\label{base-objects}
+Missing values are specified with \texttt{NA}, which is a logical vector
+of length 1. \texttt{NA} will always be coerced to the correct type if
+used inside \texttt{c()}, or you can create \texttt{NA}s of a specific
+type with \texttt{NA\_real\_} (a double vector), \texttt{NA\_integer\_}
+and \texttt{NA\_character\_}.
 
-\begin{itemize}
-\item
-  ``atomic'' vector: vector of same type (see above).
-\item
-  scalar: this doesn't exist, there are only vector of length 1.
-\item
-  matrices/arrays: just an atomic vector with some dimensions
-  (attribute).
-\end{itemize}
+\subsection{Lists}\label{lists}
+
+Lists are different from atomic vectors because their elements can be of
+any type, including other lists. Lists can contain complex objects so
+it's not possible to pick one visual style that works for every list.
+You construct lists by using \texttt{list()} instead of \texttt{c()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\FloatTok{2.3}\NormalTok{, }\FloatTok{5.9}\NormalTok{))}
+\KeywordTok{str}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> List of 4
+#>  $ : int [1:3] 1 2 3
+#>  $ : chr "a"
+#>  $ : logi [1:3] TRUE FALSE TRUE
+#>  $ : num [1:2] 2.3 5.9
+\end{verbatim}
+
+Lists are sometimes called \textbf{recursive} vectors, because a list
+can contain other lists. This makes them fundamentally different from
+atomic vectors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{))))}
+\KeywordTok{str}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> List of 1
+#>  $ :List of 1
+#>   ..$ :List of 1
+#>   .. ..$ :List of 1
+#>   .. .. ..$ : num 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.recursive}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] TRUE
+\end{verbatim}
+
+\texttt{c()} will combine several lists into one. If given a combination
+of atomic vectors and lists, \texttt{c()} will coerce the vectors to
+lists before combining them. Compare the results of \texttt{list()} and
+\texttt{c()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+\KeywordTok{str}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> List of 2
+#>  $ :List of 2
+#>   ..$ : num 1
+#>   ..$ : num 2
+#>  $ : num [1:2] 3 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> List of 4
+#>  $ : num 1
+#>  $ : num 2
+#>  $ : num 3
+#>  $ : num 4
+\end{verbatim}
+
+The \texttt{typeof()} a list is \texttt{list}. You can test for a list
+with \texttt{is.list()} and coerce to a list with \texttt{as.list()}.
+You can turn a list into an atomic vector with \texttt{unlist()}. If the
+elements of a list have different types, \texttt{unlist()} uses the same
+coercion rules as \texttt{c()}.
+
+Lists are used to build up many of the more complicated data structures
+in R. For example, both data frames (described in data frames) and
+linear models objects (as produced by \texttt{lm()}) are lists
+
+\subsection{\texorpdfstring{\texttt{NULL}}{NULL}}\label{null}
+
+Closely related to vectors is \texttt{NULL}, a singleton object often
+used to represent a vector of length 0. \texttt{NULL} is different than
+\texttt{NA}. For a good explanation of the differences see
+\href{https://www.r-bloggers.com/r-na-vs-null/}{this} blog post.
+
+\subsection{Attributes}\label{attributes}
+
+All objects can have arbitrary additional attributes, used to store
+metadata about the object. Attributes can be thought of as a named
+list\footnote{The reality is a little more complicated: attributes are
+  actually stored in something called pairlists, which can you learn
+  more about in \href{http://adv-r.had.co.nz}{Advanced R}} (with unique
+names). Attributes can be accessed individually with \texttt{attr()} or
+all at once (as a list) with \texttt{attributes()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{3}
+\KeywordTok{attr}\NormalTok{(a, }\StringTok{"x"}\NormalTok{) <-}\StringTok{ "abcdef"}
+\KeywordTok{attr}\NormalTok{(a, }\StringTok{"y"}\NormalTok{) <-}\StringTok{ }\DecValTok{4}\OperatorTok{:}\DecValTok{6}
+\KeywordTok{attr}\NormalTok{(a, }\StringTok{"z"}\NormalTok{) <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{())}
+\KeywordTok{str}\NormalTok{(}\KeywordTok{attributes}\NormalTok{(a))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> List of 3
+#>  $ x: chr "abcdef"
+#>  $ y: int [1:3] 4 5 6
+#>  $ z:List of 1
+#>   ..$ : list()
+\end{verbatim}
+
+The \texttt{structure()} function returns a new object with modified
+attributes. Care must be taken with attributes since, by default, most
+attributes are lost when modifying a vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{attributes}\NormalTok{(a[}\DecValTok{1}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> NULL
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{attributes}\NormalTok{(}\KeywordTok{sum}\NormalTok{(a))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> NULL
+\end{verbatim}
+
+The only attributes not lost are the three most important:
+
+\begin{itemize}
+\item
+  Names, a character vector giving each element a name.
+\item
+  Dimensions, used to turn vectors into matrices and arrays.
+\item
+  Class, used to implement the S3 object system.
+\end{itemize}
+
+Each of these attributes has a specific accessor function to get and set
+values. When working with these attributes, use \texttt{names(x)},
+\texttt{dim(x)}, and \texttt{class(x)}, not \texttt{attr(x,\ "names")},
+\texttt{attr(x,\ "dim")}, and \texttt{attr(x,\ "class")}.
+
+\subsubsection{Names}\label{names}
+
+You can name a vector in a couple\footnote{There are a couple less
+  common ways. See \href{http://adv-r.had.co.nz}{Advanced R}} ways:
+
+\begin{itemize}
+\item
+  When creating it:
+  \texttt{x\ \textless{}-\ c(a\ =\ 1,\ b\ =\ 2,\ c\ =\ 3)}.
+\item
+  By modifying an existing vector in place:
+  \texttt{x\ \textless{}-\ 1:3;\ names(x)\ \textless{}-\ c("a",\ "b",\ "c")}.
+\end{itemize}
+
+Named vectors a a great way to make an easy, human readable look up
+table. We will see this use case extensively when we get to data
+visualizations.
+
+\subsubsection{Factors}\label{factors}
+
+One important use of attributes is to define factors. A factor is a
+vector that can contain only predefined values, and is used to store
+categorical data. Factors are built on top of \textbf{integer vectors}
+using two attributes: the \texttt{class}, ``factor'', which makes them
+behave differently from regular integer vectors, and the
+\texttt{levels}, which defines the set of allowed values.
+
+Factors are useful when you know the possible values a variable may
+take, even if you don't see all values in a given dataset. Using a
+factor instead of a character vector makes it obvious when some groups
+contain no observations:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sex_char <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"m"}\NormalTok{, }\StringTok{"m"}\NormalTok{, }\StringTok{"m"}\NormalTok{)}
+\NormalTok{sex_factor <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(sex_char, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"m"}\NormalTok{, }\StringTok{"f"}\NormalTok{))}
+
+\KeywordTok{table}\NormalTok{(sex_char)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> sex_char
+#> m 
+#> 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(sex_factor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> sex_factor
+#> m f 
+#> 3 0
+\end{verbatim}
+
+While factors look like (and often behave like) character vectors, they
+are actually \textbf{integers}. Be careful when treating them like
+strings. Some string methods (like \texttt{gsub()} and \texttt{grepl()})
+will coerce factors to strings, while others (like \texttt{nchar()})
+will throw an error, and still others (like \texttt{c()}) will use the
+underlying integer values. For this reason, it is best to explicitly
+convert factors to character vectors if you need string-like behaviour.
+
+Unfortunately, many base R functions (like \texttt{read.csv()} and
+\texttt{data.frame()}) automatically convert character vectors to
+factors. This is suboptimal, because there's no way for those functions
+to know the set of all possible levels or their optimal order. Instead,
+use the argument \texttt{stringsAsFactors\ =\ FALSE} to suppress this
+behaviour, and then manually convert character vectors to factors using
+your knowledge of the data only when you need the behavior of factors.
+
+Factors tend to be most useful in data visualization and table creations
+where you want to report all categories but some categories may not be
+present in your data, or when you want to order the categories in
+somethin other than the default ordering. We will revisit factors and
+there usefulness later when we study the tidyverse and in particular the
+forcats package.
+
+\subsection{Matrices and arrays}\label{matrices-and-arrays}
+
+Adding a \texttt{dim} attribute to an atomic vector allows it to behave
+like a multi-dimensional \textbf{array}. A special case of the array is
+the \textbf{matrix}, which has two dimensions. Matrices are used
+commonly as part of the mathematical machinery of statistics. Arrays are
+much rarer, but worth being aware of.
+
+Matrices and arrays are created with \texttt{matrix()} and
+\texttt{array()}, or by using the assignment form of \texttt{dim()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Two scalar arguments to specify rows and columns}
+\NormalTok{a <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{12}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{3}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{4}\NormalTok{)}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>      [,1] [,2] [,3]
+#> [1,]    1    5    9
+#> [2,]    2    6   10
+#> [3,]    3    7   11
+#> [4,]    4    8   12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# One vector argument to describe all dimensions}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{12}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> , , 1
+#> 
+#>      [,1] [,2] [,3]
+#> [1,]    1    3    5
+#> [2,]    2    4    6
+#> 
+#> , , 2
+#> 
+#>      [,1] [,2] [,3]
+#> [1,]    7    9   11
+#> [2,]    8   10   12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# You can also modify an object in place by setting dim()}
 \NormalTok{vec <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{12}
 \NormalTok{vec}
 \end{Highlighting}
@@ -1213,37 +1555,343 @@ What would you expect these to return?
 #> [1] "array"
 \end{verbatim}
 
+\texttt{length()} and \texttt{names()} have high-dimensional
+generalisations:
+
 \begin{itemize}
 \item
-  list: vector of elements with possible different types in it.
+  \texttt{length()} generalises to \texttt{nrow()} and \texttt{ncol()}
+  for matrices, and \texttt{dim()} for arrays.
 \item
-  data.frame: a list whose elements have the same lengths, and formatted
-  somewhat as a matrix.
+  \texttt{names()} generalises to \texttt{rownames()} and
+  \texttt{colnames()} for matrices, and \texttt{dimnames()}, a list of
+  character vectors, for arrays.
 \end{itemize}
 
-{Figure out how to make results nicer inside RMarkdown}
+\texttt{c()} generalises to \texttt{cbind()} and \texttt{rbind()} for
+matrices, and to \texttt{abind::abind()} for arrays. You can transpose a
+matrix with \texttt{t()}; the generalised equivalent for arrays is
+\texttt{aperm()}.
 
-\subsection{Vectors}\label{vectors}
+You can test if an object is a matrix or array using
+\texttt{is.matrix()} and \texttt{is.array()}, or by looking at the
+length of the \texttt{dim()}. \texttt{as.matrix()} and
+\texttt{as.array()} make it easy to turn an existing vector into a
+matrix or array.
 
-\subsubsection{Important operators and
-assignment}\label{important-operators-and-assignment}
+Vectors are not the only 1-dimensional data structure. You can have
+matrices with a single row or single column, or arrays with a single
+dimension. They may print similarly, but will behave differently. The
+differences aren't too important, but it's useful to know they exist in
+case you get strange output from a function (\texttt{tapply()} is a
+frequent offender). As always, use \texttt{str()} to reveal the
+differences.
 
-\subsubsection{Comparison}\label{comparison}
+Matrices and arrays are most useful for mathematical calculations
+(particularly when fitting models); lists are a better fit for most
+other programming tasks in R.
 
-\subsubsection{Logical, Sets and Missing
-Values}\label{logical-sets-and-missing-values}
+\subsection{Data Frames}\label{data-frames}
 
-\subsection{Control flow}\label{control-flow}
+A data frame is the most common way of storing data in R, and if used
+systematically makes data analysis easier. Under the hood, a data frame
+is a list of equal-length vectors. This makes it a 2-dimensional
+structure, so it shares properties of both the matrix and the list. This
+means that a data frame has \texttt{names()}, \texttt{colnames()}, and
+\texttt{rownames()}, although \texttt{names()} and \texttt{colnames()}
+are the same thing. The \texttt{length()} of a data frame is the length
+of the underlying list and so is the same as \texttt{ncol()};
+\texttt{nrow()} gives the number of rows. You can subset a data frame
+like a 1d structure (where it behaves like a list), or a 2d structure
+(where it behaves like a matrix), we will discuss this further when we
+discuss subsetting.
 
-\subsubsection{Ordering and tabulating}\label{ordering-and-tabulating}
+\subsubsection{Creation}\label{creation}
 
-\subsubsection{Basic math}\label{basic-math}
+You create a data frame using \texttt{data.frame()}, which takes named
+vectors as input:
 
-\subsection{Matrices}\label{matrices}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{))}
+\KeywordTok{str}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
 
-\subsection{Lists \& data.frames}\label{lists-data.frames}
+\begin{verbatim}
+#> 'data.frame':    3 obs. of  2 variables:
+#>  $ x: int  1 2 3
+#>  $ y: Factor w/ 3 levels "a","b","c": 1 2 3
+\end{verbatim}
 
-\subsection{Selecting Values}\label{selecting-values}
+Beware \texttt{data.frame()}'s default behaviour which turns strings
+into factors. Use \texttt{stringsAsFactors\ =\ FALSE} to suppress this
+behaviour:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+  \DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,}
+  \DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{),}
+  \DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 'data.frame':    3 obs. of  2 variables:
+#>  $ x: int  1 2 3
+#>  $ y: chr  "a" "b" "c"
+\end{verbatim}
+
+\subsubsection{Testing and coercion}\label{testing-and-coercion}
+
+Because a \texttt{data.frame} is an S3 class, its type reflects the
+underlying vector used to build it: the list. To check if an object is a
+data frame, use \texttt{is.data.frame()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.data.frame}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] TRUE
+\end{verbatim}
+
+You can coerce an object to a data frame with \texttt{as.data.frame()}:
+
+\begin{itemize}
+\item
+  A vector will create a one-column data frame.
+\item
+  A list will create one column for each element; it's an error if
+  they're not all the same length.
+\item
+  A matrix will create a data frame with the same number of columns and
+  rows as the matrix.
+\end{itemize}
+
+The automatic coercion that causes the most problems is if you select a
+single column of a data.frame. R will coerce the column to an atomic
+vector, which generally is not what you want\footnote{We'll revisit this
+  when we get into R for Data Science and discuss tibbles}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x1 <-}\StringTok{ }\NormalTok{df[, }\StringTok{"x"}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> [1] 1 2 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(x1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>  int [1:3] 1 2 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x2 <-}\StringTok{ }\NormalTok{df[, }\StringTok{"y"}\NormalTok{, }\DataTypeTok{drop =} \OtherTok{FALSE}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   y
+#> 1 a
+#> 2 b
+#> 3 c
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(x2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 'data.frame':    3 obs. of  1 variable:
+#>  $ y: chr  "a" "b" "c"
+\end{verbatim}
+
+\subsubsection{Combining data frames}\label{combining-data-frames}
+
+You can combine data frames using \texttt{cbind()} and \texttt{rbind()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cbind}\NormalTok{(df, }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{z =} \DecValTok{3}\OperatorTok{:}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   x y z
+#> 1 1 a 3
+#> 2 2 b 2
+#> 3 3 c 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rbind}\NormalTok{(df, }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \StringTok{"z"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>    x y
+#> 1  1 a
+#> 2  2 b
+#> 3  3 c
+#> 4 10 z
+\end{verbatim}
+
+When combining column-wise, the number of rows must match, but row names
+are ignored. When combining row-wise, both the number and names of
+columns must match. Use \texttt{dplyr::bind\_rows()},
+\texttt{data.table::rbindlist()}, or similar to combine data frames that
+don't have the same columns.
+
+It's a common mistake to try and create a data frame by
+\texttt{cbind()}ing vectors together. This is unlikely to do what you
+want because \texttt{cbind()} will create a matrix unless one of the
+arguments is already a data frame. Instead use \texttt{data.frame()}
+directly:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# This is always a mistake}
+\NormalTok{bad <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DataTypeTok{b =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{)))}
+\KeywordTok{str}\NormalTok{(bad)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 'data.frame':    2 obs. of  2 variables:
+#>  $ a: Factor w/ 2 levels "1","2": 1 2
+#>  $ b: Factor w/ 2 levels "a","b": 1 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{good <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{a =} \DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DataTypeTok{b =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{))}
+\KeywordTok{str}\NormalTok{(good)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 'data.frame':    2 obs. of  2 variables:
+#>  $ a: int  1 2
+#>  $ b: Factor w/ 2 levels "a","b": 1 2
+\end{verbatim}
+
+\subsubsection{List and matrix columns}\label{list-and-matrix-columns}
+
+Since a data frame is a list of vectors, it is possible for a data frame
+to have a column that is a list. This is a powerful technique because a
+list can contain any other R object. This means that you can have a
+column of data frames, or model objects, or even functions! We will see
+this again when we discuss tidy data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{)}
+\NormalTok{df}\OperatorTok{$}\NormalTok{y <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   x          y
+#> 1 1       1, 2
+#> 2 2    1, 2, 3
+#> 3 3 1, 2, 3, 4
+\end{verbatim}
+
+However, when a list is given to \texttt{data.frame()}, it tries to put
+each item of the list into its own column, so this fails:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{y =} \KeywordTok{list}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> Error in (function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE, : arguments imply differing number of rows: 2, 3, 4
+\end{verbatim}
+
+A workaround is to use \texttt{I()}, which causes \texttt{data.frame()}
+to treat the list as one unit:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfl <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{y =} \KeywordTok{I}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{)))}
+\KeywordTok{str}\NormalTok{(dfl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 'data.frame':    3 obs. of  2 variables:
+#>  $ x: int  1 2 3
+#>  $ y:List of 3
+#>   ..$ : int  1 2
+#>   ..$ : int  1 2 3
+#>   ..$ : int  1 2 3 4
+#>   ..- attr(*, "class")= chr "AsIs"
+\end{verbatim}
+
+\texttt{I()} adds the \texttt{AsIs} class to its input, but this can
+usually be safely ignored.
+
+Similarly, it's also possible to have a column of a data frame that's a
+matrix or array, as long as the number of rows matches the data frame:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfm <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{3} \OperatorTok{*}\StringTok{ }\DecValTok{10}\NormalTok{, }\DataTypeTok{y =} \KeywordTok{I}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{)))}
+\KeywordTok{str}\NormalTok{(dfm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#> 'data.frame':    3 obs. of  2 variables:
+#>  $ x: num  10 20 30
+#>  $ y: 'AsIs' int [1:3, 1:3] 1 2 3 4 5 6 7 8 9
+\end{verbatim}
+
+Use list and array columns with caution. Many functions that work with
+data frames assume that all columns are atomic vectors, and the printed
+display can be confusing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfl[}\DecValTok{2}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>   x       y
+#> 2 2 1, 2, 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dfm[}\DecValTok{2}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>    x y.1 y.2 y.3
+#> 2 20   2   5   8
+\end{verbatim}
 
 \section{Functions}\label{functions}
 
