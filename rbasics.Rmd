@@ -18,6 +18,8 @@ The three most important functions in R `?`, `??`, and `str`:
 
 See this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) for a good starting point on the basics functions in base R and some important libraries.  
 
+A book to learn the basics is [R Programmig for Data Science](https://bookdown.org/rdpeng/rprogdatascience/)
+
 In R there three basic constructs; objects, functions, and environments:
 
 ## Assignment
@@ -52,7 +54,7 @@ There are several shortcut functions for common vector creation.
 seq_len(0)
 
 # another common mistake
-n<-6
+n <- 6
 1:n+1        # is (1:n) + 1, so 2:(n + 1)
 1:(n+1)      # usually what is meant
 seq_len(n+1) # another way
@@ -105,7 +107,7 @@ A data frame is a list with each vector of the same length.  This is the main da
 
 ```{r}
 df = data.frame(n = c(2, 3, 5),
-                s = c("aa", "bb", "cc") ,
+                s = c("aa", "bb", "cc"),
                 b = c(TRUE, FALSE, TRUE),
                 y = v
                 )       # df is a data frame 
@@ -163,8 +165,7 @@ df$xor  <- xor(df$x, df$y) # exlusive or
 df
 ```
 
-R has two versions of a logical and (or) `&` and `&&` (`|` and `||`).  The single version is the vectorized version while the the double version returns a length-one vector.  Use the double version in logical control structures (if, for, while, etc).
-
+R has two versions of the logical operators `&` and `&&`  (`|` and `||`).  The single version is the vectorized version while the the double version returns a length-one vector.  Use the double version in logical control structures (if, for, while, etc).  
 ```{r}
 # TRUE/FALSE and each element
 TRUE & c(TRUE, FALSE)
@@ -179,6 +180,12 @@ FALSE | c(TRUE, FALSE)
 TRUE || c(TRUE, FALSE)
 FALSE || c(TRUE, FALSE)
 ```
+
+
+This is a common source of bugs in control structures (if, for, while, etc) where you must have a single TRUE / FALSE. 
+
+Also, note that `=` is used for assignment and not comparison `==`.
+
 
 It also has useful helpers `any` and `all`
 
@@ -195,27 +202,340 @@ And also some useful set operations intersect, union, setdiff, setequal
 x <- 1:5
 y <- 3:7
 
-intersect(x, y)
-union(x, y)
-setdiff(x, y)
-setdiff(y, x)
+intersect(x, y) # in x and in y
+union(x, y)     # different than c()
+c(x,y)          # not a set operation
+setdiff(x, y)   # in x but not in y
+setdiff(y, x)   # in y but not in x
 setequal(x, y)
 z <- 5:1
 setequal(x, z)
 ```
 
-
 ## Vectorization & Recycling
 
+Many operations in R are _vectorized_, meaning that operations occur in parallel in certain R objects. This allows you to write code that is efficient, concise, and easier to read than in non-vectorized languages.
+
+The simplest example is when adding two vectors together.
+
+```{r}
+x <- 1:3
+y <- 11:13
+z <- x + y
+z
+```
+
+In most other languages you would have to do something like
+```{r}
+z <- numeric(length(x))
+
+for(i in seq_along(x)) {
+      z[i] <- x[i] + y[i]
+}
+z
+```
+
+We saw a a form of vectorization above in the logical operators.
+
+```{r}
+x
+x > 2
+x[x > 2]
+```
+
+Matrix operations are also vectorized, making for nice compact notation. This way, we can do element-by-element operations on matrices without having to loop over every element.
+
+```{r}
+x <- matrix(1:4, 2, 2)
+y <- matrix(rep(10, 4), 2, 2)
+x
+y
+x * y  # element-wise multiplication
+x / y  # element-wise division
+x %*% y  # true matrix multiplication
+```
+
+R also recyles arguments.  
+
+```{r}
+x <- 1:10
+z <- x + .1  # add .1 to each element
+z
+```
+
+While you usually either want the same length vector or a length one vector.  You are not limited to just these options.
+
+```{r}
+x <- 1:10
+y <- x + c(.1, .2) 
+y
+z <- x + c(.1, .2, .3)
+z
+```
 
 
-## Basic Looping
+## Control Structures
 
-### For
+Control structures allow you to put some "logic" into your R code, rather than just always executing the same R code every time. Control structures allow you to respond to inputs or to features of the data and execute different R expressions accordingly.
 
-### Apply
+Commonly used control structures are
 
-### Others
+- `if` and `else`: testing a condition and acting on it
+
+- `for`: execute a loop a fixed number of times 
+
+- `while`: execute a loop _while_ a condition is true 
+
+- `repeat`: execute an infinite loop (must `break` out of it to stop)
+
+- `break`: break the execution of a loop
+
+- `next`: skip an interation of a loop
+
+### `if`-`else`
+
+The `if`-`else` combination is probably the most commonly used control
+structure in R (or perhaps any language). This structure allows you to
+test a condition and act on it depending on whether it's true or
+false. 
+
+For starters, you can just use the `if` statement.
+
+```r
+if(<condition>) {
+        # do something
+} 
+# Continue with rest of code
+```
+
+The above code does nothing if the condition is false. If you have an
+action you want to execute when the condition is false, then you need
+an `else` clause.
+
+```r
+if(<condition>) {
+        # do something
+} 
+else {
+        # do something else
+}
+```
+
+You can have a series of tests by following the initial `if` with any
+number of `else if`s.
+
+```r
+if(<condition1>) {
+        # do something
+} else if(<condition2>)  {
+        # do something different
+} else {
+        # do something else different
+}
+```
+### `for` Loops
+
+For loops are pretty much the only looping construct that you will
+need in R. While you may occasionally find a need for other types of
+loops, in my experience doing data analysis, I've found very few
+situations where a for loop wasn't sufficient. 
+
+In R, for loops take an interator variable and assign it successive
+values from a sequence or vector. For loops are most commonly used for
+iterating over the elements of an object (list, vector, etc.)
+
+The following three loops all have the similar behavior.
+
+```{r}
+x <- c("a", "b", "c", "d")
+
+for(i in 1:length(x)) {
+        ## Print out each element of 'x'
+        print(x[i])  
+}
+```
+
+The `seq_along()` function is commonly used in conjunction with for
+loops in order to generate an integer sequence based on the length of
+an object (in this case, the object `x`).
+
+```{r}
+## Generate a sequence based on length of 'x'
+for(i in seq_along(x)) {   
+        print(x[i])
+}
+```
+
+It is not necessary to use an index-type variable. 
+
+```{r}
+for(letter in x) {
+        print(letter)
+}
+```
+
+Try these examples above but with `x <- NULL` and notice the difference in behavior.
+
+Nested loops are commonly needed for multidimensional or hierarchical
+data structures (e.g. matrices, lists). Be careful with nesting
+though. Nesting beyond 2 to 3 levels often makes it difficult to
+read/understand the code. If you find yourself in need of a large
+number of nested loops, you may want to break up the loops by using
+functions (discussed later).
+
+### `while` Loops
+
+While loops begin by testing a condition. If it is true, then they
+execute the loop body. Once the loop body is executed, the condition
+is tested again, and so forth, until the condition is false, after
+which the loop exits.
+
+```{r}
+count <- 0
+while(count < 10) {
+        print(count)
+        count <- count + 1
+}
+```
+
+While loops can potentially result in infinite loops if not written
+properly. Use with care!
+
+Sometimes there will be more than one condition in the test.
+
+```{r}
+z <- 5
+set.seed(1)
+
+while(z >= 3 && z <= 10) {
+        coin <- rbinom(1, 1, 0.5)
+        
+        if(coin == 1) {  ## random walk
+                z <- z + 1
+        } else {
+                z <- z - 1
+        } 
+}
+print(z)
+```
+
+Conditions are always evaluated from left to right. For example, in
+the above code, if `z` were less than 3, the second test would not
+have been evaluated.
+
+### `repeat` Loops
+
+`repeat` initiates an infinite loop right from the start. These are
+not commonly used in statistical or data analysis applications but
+they do have their uses. The only way to exit a `repeat` loop is to
+call `break`.
+
+One possible paradigm might be in an iterative algorith where you may
+be searching for a solution and you don't want to stop until you're
+close enough to the solution. In this kind of situation, you often
+don't know in advance how many iterations it's going to take to get
+"close enough" to the solution.
+
+```{r,eval=FALSE,prompt=FALSE}
+x0 <- 1
+tol <- 1e-8
+
+repeat {
+        x1 <- computeEstimate()
+        
+        if(abs(x1 - x0) < tol) {  ## Close enough?
+                break
+        } else {
+                x0 <- x1
+        } 
+}
+```
+
+Note that the above code will not run if the `computeEstimate()`
+function is not defined (I just made it up for the purposes of this
+demonstration).
+
+The loop above is a bit dangerous because there's no guarantee it will ever stop. You could get in a situation where the values of `x0` and `x1`
+oscillate back and forth and never converge. Better to set a hard
+limit on the number of iterations by using a `for` loop and then
+report whether convergence was achieved or not.
+
+### `next`, `break`
+
+While not used very often it's nice to know about these.
+
+`next` is used to skip an iteration of a loop. 
+
+```{r,eval=FALSE,prompt=FALSE}
+for(i in 1:100) {
+        if(i <= 20) {
+                ## Skip the first 20 iterations
+                next                 
+        }
+        ## Do something here
+}
+```
+
+`break` is used to exit a loop immediately, regardless of what
+iteration the loop may be on.
+
+```{r,eval=FALSE,prompt=FALSE}
+for(i in 1:100) {
+      print(i)
+
+      if(i > 20) {
+              ## Stop loop after 20 iterations
+              break  
+      }		
+}
+```
+
+### Looping 
+
+For loops are so common that that R has some functions which implement looping in a compact form to make your life easier.  For a more in depth look see [this](https://bookdown.org/rdpeng/rprogdatascience/loop-functions.html)
+
+*  `apply` is generic: applies a function to a matrix's rows or columns (or, more generally, to dimensions of an array)
+*  `lapply` is a list apply which acts on a list or vector and returns a list.
+*  `sapply` is a simple lapply but defaults to returning a vector (or matrix) if possible.
+*  `vapply` is a verified apply.  This is a sapply with the return object type prespecified.
+*  `rapply` is a recursive apply for nested lists, i.e. lists within lists
+*  `tapply` is a tagged apply where the tags identify the subsets to apply a function
+*  `mapply` is a multivariabe apply for functions that have multiple arguments.
+*  `Map` is a wrapper to mapply with SIMPLIFY = FALSE, so it is guaranteed to return a list.
+*  `replicate` is a wrapper around sapply for repeated evaluation of an expression
+
+```{r}
+# Two dimensional matrix
+M <- matrix(seq(1,16), 4, 4)
+M
+# apply min to rows
+apply(M, 1, min)
+# apply max to columns
+apply(M, 2, max)
+```
+
+If you want row/column means or sums for a 2D matrix, be sure to investigate the highly optimized, lightning-quick `colMeans`, `rowMeans`, `colSums`, `rowSums`.
+
+```{r}
+x <- list(a = 1, b = 1:3, c = 10:25)
+x
+lapply(x, FUN = length) 
+sapply(x, FUN = length) 
+vapply(x, FUN = length, FUN.VALUE = 0L) 
+
+x <- 1:20
+y <- factor(rep(letters[1:5], each = 4)) # a vector of the same length as x
+tapply(x, y, sum) 
+
+# Sums the 1st elements, the 2nd elements, etc. 
+mapply(sum, 1:5, 1:5, 1:5) 
+
+# find the mean of 10 random normal variables, 5 times
+replicate(5, mean(rnorm(10)))
+```
+
+`tapply` is in a simalar spirit to a common data analysis paradigm called split-apply-combine where we split our data set based on a group, apply a function or code to it, and combine the results back together.  We will revisit this paradigm in greater detail when we get to _R for Data Science_.  
+
 
 ## Function Basics
 
@@ -224,7 +544,7 @@ setequal(x, z)
 ## Assignment
 
 1. Browse this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) and read the help file for functions that interest you.
-2. ddd
+2. Vectorization
 
 
 
