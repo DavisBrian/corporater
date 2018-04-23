@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Loops
 
+## Recycling
+
 ## Notes
 
 This is a place to keep track of my thoughts and notes.
@@ -21,26 +23,20 @@ This is a place to keep track of my thoughts and notes.
 [R Software Development](https://bookdown.org/rdpeng/RProgDA/)
 
 
-R Basics
-## Base objects
-
-- "atomic" vector: vector of same type.
-
-- scalar: this doesn't exist, there are only vectors of length 1.
-
-- matrices/arrays: just an atomic vector with some dimensions (attribute).
-
-- list: vector of elements with possible different types in it. 
-
-- data.frame: a list whose elements have the same lengths, and formatted somewhat as a matrix.
+## Functions
 
 
-Like "atomic" vectors, you can coerce between data structures with `as.` and `is.`.  In a few instances R will perform automatic coercion, usually between matrices and data frames. 
+### Functional Programming
 
-Data Types
+### Functionals
+
+### Function operators
+
+## Environments
+
+Scoping
 
 
-Subsetting
 
 Tidyverse
 [Tricks](http://www.brodrigues.co/blog/2017-06-19-dplyr-0-70-tutorial/)

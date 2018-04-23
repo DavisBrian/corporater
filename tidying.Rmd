@@ -1,0 +1,10 @@
+# Tidying
+
+```{r, include=FALSE}
+WORDS_TO_IGNORE <- "butitsuremakesthingseasiertoread"
+source("knitr-options.R")
+# source("spelling-check.R")
+```
+
+> "90% of data science is wrangling data.  The other 10% is complaining about wrangling data" - David Robinson
+

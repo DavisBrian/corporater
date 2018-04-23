@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Modern R in a Corporate Environment</title>
+  <meta name="description" content="This is an original course for RADARS">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Modern R in a Corporate Environment" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an original course for RADARS" />
+  <meta name="github-repo" content="DavisBrian/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Modern R in a Corporate Environment" />
+  
+  <meta name="twitter:description" content="This is an original course for RADARS" />
+  
+
+<meta name="author" content="Brian Davis">
+
+
+<meta name="date" content="2018-04-21">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="base-r-data-structures.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modern R in a Corporate Environment</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#course-philosophy"><i class="fa fa-check"></i><b>1.1</b> Course Philosophy</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#reproducible-research"><i class="fa fa-check"></i><b>1.1.1</b> Reproducible Research</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#fda-validation"><i class="fa fa-check"></i><b>1.1.2</b> FDA Validation</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction.html"><a href="introduction.html#the-sas-myth"><i class="fa fa-check"></i><b>1.1.3</b> The SAS Myth</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content"><i class="fa fa-check"></i><b>1.3</b> Content</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#structure"><i class="fa fa-check"></i><b>1.4</b> Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a><ul>
+<li class="chapter" data-level="2.1" data-path="good-practices.html"><a href="good-practices.html#coding-style"><i class="fa fa-check"></i><b>2.1</b> Coding style</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="good-practices.html"><a href="good-practices.html#comments"><i class="fa fa-check"></i><b>2.1.1</b> Comments</a></li>
+<li class="chapter" data-level="2.1.2" data-path="good-practices.html"><a href="good-practices.html#naming"><i class="fa fa-check"></i><b>2.1.2</b> Naming</a></li>
+<li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#structure-1"><i class="fa fa-check"></i><b>2.1.3</b> Structure</a></li>
+<li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#spacing"><i class="fa fa-check"></i><b>2.1.4</b> Spacing</a></li>
+<li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.5</b> Indenting</a></li>
+<li class="chapter" data-level="2.1.6" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.6</b> Long lines</a></li>
+<li class="chapter" data-level="2.1.7" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.7</b> Other</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-3"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of 3</em></a></li>
+<li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
+<li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#keeping-up-to-date"><i class="fa fa-check"></i><b>2.5</b> Keeping up to date</a></li>
+<li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#assignement"><i class="fa fa-check"></i><b>2.6</b> Assignement</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>3</b> R Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-basics.html"><a href="r-basics.html#assignment"><i class="fa fa-check"></i><b>3.1</b> Assignment</a></li>
+<li class="chapter" data-level="3.2" data-path="r-basics.html"><a href="r-basics.html#objects"><i class="fa fa-check"></i><b>3.2</b> Objects</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-basics.html"><a href="r-basics.html#vector"><i class="fa fa-check"></i><b>3.2.1</b> Vector</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-basics.html"><a href="r-basics.html#matrix"><i class="fa fa-check"></i><b>3.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="3.2.3" data-path="r-basics.html"><a href="r-basics.html#list"><i class="fa fa-check"></i><b>3.2.3</b> List</a></li>
+<li class="chapter" data-level="3.2.4" data-path="r-basics.html"><a href="r-basics.html#data-frame"><i class="fa fa-check"></i><b>3.2.4</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-basics.html"><a href="r-basics.html#comparision"><i class="fa fa-check"></i><b>3.3</b> Comparision</a></li>
+<li class="chapter" data-level="3.4" data-path="r-basics.html"><a href="r-basics.html#logical-and-sets"><i class="fa fa-check"></i><b>3.4</b> Logical and sets</a></li>
+<li class="chapter" data-level="3.5" data-path="r-basics.html"><a href="r-basics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.5</b> Vectorization &amp; Recycling</a></li>
+<li class="chapter" data-level="3.6" data-path="r-basics.html"><a href="r-basics.html#basic-looping"><i class="fa fa-check"></i><b>3.6</b> Basic Looping</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="r-basics.html"><a href="r-basics.html#for"><i class="fa fa-check"></i><b>3.6.1</b> For</a></li>
+<li class="chapter" data-level="3.6.2" data-path="r-basics.html"><a href="r-basics.html#apply"><i class="fa fa-check"></i><b>3.6.2</b> Apply</a></li>
+<li class="chapter" data-level="3.6.3" data-path="r-basics.html"><a href="r-basics.html#others"><i class="fa fa-check"></i><b>3.6.3</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="r-basics.html"><a href="r-basics.html#function-basics"><i class="fa fa-check"></i><b>3.7</b> Function Basics</a></li>
+<li class="chapter" data-level="3.8" data-path="r-basics.html"><a href="r-basics.html#environments-scoping"><i class="fa fa-check"></i><b>3.8</b> Environments &amp; Scoping</a></li>
+<li class="chapter" data-level="3.9" data-path="r-basics.html"><a href="r-basics.html#assignment-1"><i class="fa fa-check"></i><b>3.9</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>4</b> Base R Data Structures</a><ul>
+<li class="chapter" data-level="4.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#naming-rules"><i class="fa fa-check"></i><b>4.1</b> Naming Rules</a></li>
+<li class="chapter" data-level="4.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#vectors"><i class="fa fa-check"></i><b>4.2</b> Vectors</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>4.2.1</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="4.2.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#lists"><i class="fa fa-check"></i><b>4.2.2</b> Lists</a></li>
+<li class="chapter" data-level="4.2.3" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#null"><i class="fa fa-check"></i><b>4.2.3</b> <code>NULL</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#attributes"><i class="fa fa-check"></i><b>4.2.4</b> Attributes</a></li>
+<li class="chapter" data-level="4.2.5" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>4.2.5</b> Matrices and arrays</a></li>
+<li class="chapter" data-level="4.2.6" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#data-frames"><i class="fa fa-check"></i><b>4.2.6</b> Data Frames</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>5</b> Subsetting</a><ul>
+<li class="chapter" data-level="5.1" data-path="subsetting.html"><a href="subsetting.html#selecting-multiple-elements"><i class="fa fa-check"></i><b>5.1</b> Selecting multiple elements <code>[</code></a><ul>
+<li class="chapter" data-level="5.1.1" data-path="subsetting.html"><a href="subsetting.html#atomic-vectors-1"><i class="fa fa-check"></i><b>5.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="5.1.2" data-path="subsetting.html"><a href="subsetting.html#matrices-and-arrays-1"><i class="fa fa-check"></i><b>5.1.2</b> Matrices and Arrays</a></li>
+<li class="chapter" data-level="5.1.3" data-path="subsetting.html"><a href="subsetting.html#lists-1"><i class="fa fa-check"></i><b>5.1.3</b> Lists</a></li>
+<li class="chapter" data-level="5.1.4" data-path="subsetting.html"><a href="subsetting.html#data-frames-1"><i class="fa fa-check"></i><b>5.1.4</b> Data Frames</a></li>
+<li class="chapter" data-level="5.1.5" data-path="subsetting.html"><a href="subsetting.html#preserving-dimensionality"><i class="fa fa-check"></i><b>5.1.5</b> Preserving dimensionality</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="subsetting.html"><a href="subsetting.html#selecting-a-single-elements"><i class="fa fa-check"></i><b>5.2</b> Selecting a single elements</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="subsetting.html"><a href="subsetting.html#section"><i class="fa fa-check"></i><b>5.2.1</b> <code>$</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="subsetting.html"><a href="subsetting.html#missingout-of-bounds-indices"><i class="fa fa-check"></i><b>5.2.2</b> Missing/out of bounds indices</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="subsetting.html"><a href="subsetting.html#subassignment"><i class="fa fa-check"></i><b>5.3</b> Subsetting and assignment</a></li>
+<li class="chapter" data-level="5.4" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>5.4</b> Applications</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="subsetting.html"><a href="subsetting.html#lookup-tables-character-subsetting"><i class="fa fa-check"></i><b>5.4.1</b> Lookup tables (character subsetting)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="subsetting.html"><a href="subsetting.html#ordering-integer-subsetting"><i class="fa fa-check"></i><b>5.4.2</b> Ordering (integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.3" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>5.4.3</b> Selecting rows based on a condition (logical subsetting)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>5.4.4</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.5" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>5.4.5</b> Removing columns from data frames (character subsetting)</a></li>
+<li class="chapter" data-level="5.4.6" data-path="subsetting.html"><a href="subsetting.html#matching-and-merging-by-hand-integer-subsetting"><i class="fa fa-check"></i><b>5.4.6</b> Matching and merging by hand (integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.7" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>5.4.7</b> Random samples/bootstrap (integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.8" data-path="subsetting.html"><a href="subsetting.html#expanding-aggregated-counts-integer-subsetting"><i class="fa fa-check"></i><b>5.4.8</b> Expanding aggregated counts (integer subsetting)</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modern R in a Corporate Environment</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="subsetting" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Subsetting</h1>
+<p>R’s subsetting operators are powerful and fast. Mastery of subsetting allows you to succinctly express complex operations in a way that few other languages can match. Subsetting is hard to learn because you need to master a number of interrelated concepts:</p>
+<ul>
+<li>The three subsetting operators
+<ul>
+<li><code>[</code> select multiple elements</li>
+<li><code>[[</code>, and <code>$</code> select a single element</li>
+</ul></li>
+<li>The six types of subsetting.
+<ul>
+<li><strong>Positive integers</strong> return elements at the specified positions</li>
+<li><strong>Negative integers</strong> omit elements at the specified positions</li>
+<li><strong>Logical vectors</strong> select elements where the corresponding logical value is <code>TRUE</code></li>
+<li><strong>Nothing</strong> returns the original object.</li>
+<li><strong>Zero</strong> returns a zero-length object (This is not something you usually do on purpose)</li>
+<li><strong>Character vectors</strong> to return elements with matching names.</li>
+</ul></li>
+<li><p>Important differences in behaviour for different objects (e.g., vectors,
+lists, factors, matrices, and data frames).</p></li>
+<li><p>The use of subsetting in conjunction with assignment.</p></li>
+</ul>
+<p>It’s easiest to learn how subsetting works for atomic vectors, and then how it generalises to higher dimensions and other more complicated objects.</p>
+<div id="selecting-multiple-elements" class="section level2">
+<h2><span class="header-section-number">5.1</span> Selecting multiple elements <code>[</code></h2>
+<div id="atomic-vectors-1" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Atomic vectors</h3>
+<p>Let’s explore the different types of subsetting with a simple vector, <code>x</code>.</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">4.2</span>, <span class="fl">3.3</span>, <span class="fl">5.4</span>)</a></code></pre></div>
+<p>Note that the number after the decimal point gives the original position in the vector.</p>
+<p>There are five things that you can use to subset a vector.</p>
+<ul>
+<li><strong>Positive integers</strong> return elements at the specified positions</li>
+</ul>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1">x[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>)]</a></code></pre></div>
+<pre><code>#&gt; [1] 3.3 2.1</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1"><span class="co"># order returns an indice</span></a>
+<a class="sourceLine" id="cb215-2" data-line-number="2">x[<span class="kw">order</span>(x)]</a></code></pre></div>
+<pre><code>#&gt; [1] 2.1 3.3 4.2 5.4</code></pre>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1"><span class="co"># Duplicated indices yield duplicated values</span></a>
+<a class="sourceLine" id="cb217-2" data-line-number="2">x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)]</a></code></pre></div>
+<pre><code>#&gt; [1] 2.1 2.1</code></pre>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="co"># Real numbers are silently truncated (not rounded) to integers</span></a>
+<a class="sourceLine" id="cb219-2" data-line-number="2">x[<span class="kw">c</span>(<span class="fl">2.1</span>, <span class="fl">2.9</span>)]</a></code></pre></div>
+<pre><code>#&gt; [1] 4.2 4.2</code></pre>
+<ul>
+<li><strong>Negative integers</strong> omit elements at the specified positions</li>
+</ul>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>)]</a></code></pre></div>
+<pre><code>#&gt; [1] 4.2 5.4</code></pre>
+<p>You can’t mix positive and negative integers in a single subset.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1">x[<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">2</span>)]</a></code></pre></div>
+<pre><code>#&gt; Error in x[c(-1, 2)]: only 0&#39;s may be mixed with negative subscripts</code></pre>
+<ul>
+<li><strong>Logical vectors</strong> select elements where the corresponding logical value is <code>TRUE</code>. This is probably the most useful type of subsetting because you write the expression that creates the logical vector:</li>
+</ul>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1">x[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)]</a></code></pre></div>
+<pre><code>#&gt; [1] 2.1 4.2</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1">x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>]</a></code></pre></div>
+<pre><code>#&gt; [1] 4.2 3.3 5.4</code></pre>
+<p>If the logical vector is shorter than the vector being subsetted, it will be <em>recycled</em> to be the same length.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1">x[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</a></code></pre></div>
+<pre><code>#&gt; [1] 2.1 3.3</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="co"># Equivalent to</span></a>
+<a class="sourceLine" id="cb231-2" data-line-number="2">x[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</a></code></pre></div>
+<pre><code>#&gt; [1] 2.1 3.3</code></pre>
+<p>A missing value in the index always yields a missing value in the output.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">x[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">NA</span>, <span class="ot">FALSE</span>)]</a></code></pre></div>
+<pre><code>#&gt; [1] 2.1 4.2  NA</code></pre>
+<ul>
+<li><strong>Nothing</strong> returns the original vector. This is not useful for vectors but is very useful for matrices, data frames, and arrays. It can also be useful in conjunction with assignment.</li>
+</ul>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">x[]</a></code></pre></div>
+<pre><code>#&gt; [1] 2.1 4.2 3.3 5.4</code></pre>
+<ul>
+<li><strong>Zero</strong> returns a zero-length vector. This is not something you usually do on purpose, but it can be helpful for generating test data and testing corner cases of functions.</li>
+</ul>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1">x[<span class="dv">0</span>]</a></code></pre></div>
+<pre><code>#&gt; numeric(0)</code></pre>
+<p>If the vector is named, you can also use:</p>
+<ul>
+<li><strong>Character vectors</strong> to return elements with matching names.</li>
+</ul>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">(y &lt;-<span class="st"> </span><span class="kw">setNames</span>(x, letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]))</a></code></pre></div>
+<pre><code>#&gt;   a   b   c   d 
+#&gt; 2.1 4.2 3.3 5.4</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1"><span class="co"># subsetting by name</span></a>
+<a class="sourceLine" id="cb241-2" data-line-number="2">y[<span class="kw">c</span>(<span class="st">&quot;d&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;a&quot;</span>)]</a></code></pre></div>
+<pre><code>#&gt;   d   c   a 
+#&gt; 5.4 3.3 2.1</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="co"># Like integer indices, you can repeat indices</span></a>
+<a class="sourceLine" id="cb243-2" data-line-number="2">y[<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;a&quot;</span>)]</a></code></pre></div>
+<pre><code>#&gt;   a   a   a 
+#&gt; 2.1 2.1 2.1</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="co"># When subsetting with [ names are always matched exactly</span></a>
+<a class="sourceLine" id="cb245-2" data-line-number="2">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">abc =</span> <span class="dv">1</span>, <span class="dt">def =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb245-3" data-line-number="3">z[<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;d&quot;</span>)]</a></code></pre></div>
+<pre><code>#&gt; &lt;NA&gt; &lt;NA&gt; 
+#&gt;   NA   NA</code></pre>
+</div>
+<div id="matrices-and-arrays-1" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Matrices and Arrays</h3>
+<p>You can subset higher-dimensional structures in three ways:</p>
+<ul>
+<li>With multiple vectors.</li>
+<li>With a single vector.</li>
+<li>With a matrix.</li>
+</ul>
+<p>The most common way of subsetting matrices (2d) and arrays (&gt;2d) is a simple generalisation of 1d subsetting: you supply a 1d index for each dimension, separated by a comma. Blank subsetting is now useful because it lets you keep all rows or all columns.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb247-2" data-line-number="2"><span class="kw">colnames</span>(a) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>)</a>
+<a class="sourceLine" id="cb247-3" data-line-number="3">a[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, ]</a></code></pre></div>
+<pre><code>#&gt;      A B C
+#&gt; [1,] 1 4 7
+#&gt; [2,] 2 5 8</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">a[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>), <span class="kw">c</span>(<span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>)]</a></code></pre></div>
+<pre><code>#&gt;      B A
+#&gt; [1,] 4 1
+#&gt; [2,] 6 3</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1">a[<span class="dv">0</span>, <span class="dv">-2</span>]</a></code></pre></div>
+<pre><code>#&gt;      A C</code></pre>
+<p>By default, <code>[</code> will simplify the results to the lowest possible dimensionality. See below how to avoid this behavior.</p>
+<p>Because matrices and arrays are implemented as vectors with special attributes, you can subset them with a single vector. In that case, they will behave like a vector. Arrays in R are stored in column-major order:</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">(vals &lt;-<span class="st"> </span><span class="kw">outer</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">FUN =</span> <span class="st">&quot;paste&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>))</a></code></pre></div>
+<pre><code>#&gt;      [,1]  [,2]  [,3]  [,4]  [,5] 
+#&gt; [1,] &quot;1,1&quot; &quot;1,2&quot; &quot;1,3&quot; &quot;1,4&quot; &quot;1,5&quot;
+#&gt; [2,] &quot;2,1&quot; &quot;2,2&quot; &quot;2,3&quot; &quot;2,4&quot; &quot;2,5&quot;
+#&gt; [3,] &quot;3,1&quot; &quot;3,2&quot; &quot;3,3&quot; &quot;3,4&quot; &quot;3,5&quot;
+#&gt; [4,] &quot;4,1&quot; &quot;4,2&quot; &quot;4,3&quot; &quot;4,4&quot; &quot;4,5&quot;
+#&gt; [5,] &quot;5,1&quot; &quot;5,2&quot; &quot;5,3&quot; &quot;5,4&quot; &quot;5,5&quot;</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1">vals[<span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">15</span>)]</a></code></pre></div>
+<pre><code>#&gt; [1] &quot;4,1&quot; &quot;5,3&quot;</code></pre>
+<p>This behavior allows you to replace all missing values in one line.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="co"># make a few values missing</span></a>
+<a class="sourceLine" id="cb257-2" data-line-number="2">vals[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">25</span>, <span class="dv">5</span>)] &lt;-<span class="st"> </span><span class="ot">NA_character_</span></a>
+<a class="sourceLine" id="cb257-3" data-line-number="3">vals</a></code></pre></div>
+<pre><code>#&gt;      [,1]  [,2]  [,3]  [,4]  [,5] 
+#&gt; [1,] &quot;1,1&quot; NA    &quot;1,3&quot; &quot;1,4&quot; NA   
+#&gt; [2,] &quot;2,1&quot; &quot;2,2&quot; &quot;2,3&quot; &quot;2,4&quot; NA   
+#&gt; [3,] &quot;3,1&quot; &quot;3,2&quot; &quot;3,3&quot; NA    &quot;3,5&quot;
+#&gt; [4,] &quot;4,1&quot; &quot;4,2&quot; &quot;4,3&quot; &quot;4,4&quot; &quot;4,5&quot;
+#&gt; [5,] &quot;5,1&quot; &quot;5,2&quot; NA    &quot;5,4&quot; &quot;5,5&quot;</code></pre>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="co"># replace missing values with &quot;missing&quot;</span></a>
+<a class="sourceLine" id="cb259-2" data-line-number="2">vals[<span class="kw">is.na</span>(vals)] &lt;-<span class="st"> &quot;missing&quot;</span></a>
+<a class="sourceLine" id="cb259-3" data-line-number="3">vals</a></code></pre></div>
+<pre><code>#&gt;      [,1]  [,2]      [,3]      [,4]      [,5]     
+#&gt; [1,] &quot;1,1&quot; &quot;missing&quot; &quot;1,3&quot;     &quot;1,4&quot;     &quot;missing&quot;
+#&gt; [2,] &quot;2,1&quot; &quot;2,2&quot;     &quot;2,3&quot;     &quot;2,4&quot;     &quot;missing&quot;
+#&gt; [3,] &quot;3,1&quot; &quot;3,2&quot;     &quot;3,3&quot;     &quot;missing&quot; &quot;3,5&quot;    
+#&gt; [4,] &quot;4,1&quot; &quot;4,2&quot;     &quot;4,3&quot;     &quot;4,4&quot;     &quot;4,5&quot;    
+#&gt; [5,] &quot;5,1&quot; &quot;5,2&quot;     &quot;missing&quot; &quot;5,4&quot;     &quot;5,5&quot;</code></pre>
+<p>You can also subset higher-dimensional data structures with an integer matrix (or, if named, a character matrix). Each row in the matrix specifies the location of one value, where each column corresponds to a dimension in the array being subsetted. This means that you use a 2 column matrix to subset a matrix, a 3 column matrix to subset a 3d array, and so on. The result is a vector of values:</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">vals &lt;-<span class="st"> </span><span class="kw">outer</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">FUN =</span> <span class="st">&quot;paste&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a>
+<a class="sourceLine" id="cb261-2" data-line-number="2">select &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb261-3" data-line-number="3">  <span class="dv">1</span>, <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb261-4" data-line-number="4">  <span class="dv">3</span>, <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb261-5" data-line-number="5">  <span class="dv">2</span>, <span class="dv">4</span></a>
+<a class="sourceLine" id="cb261-6" data-line-number="6">))</a>
+<a class="sourceLine" id="cb261-7" data-line-number="7">vals[select]</a></code></pre></div>
+<pre><code>#&gt; [1] &quot;1,1&quot; &quot;3,1&quot; &quot;2,4&quot;</code></pre>
+</div>
+<div id="lists-1" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Lists</h3>
+<p>Subsetting a list works in the same way as subsetting an atomic vector. Using <code>[</code> will always return a list; <code>[[</code> and <code>$</code>, as described below, let you pull out the components of the list.</p>
+</div>
+<div id="data-frames-1" class="section level3">
+<h3><span class="header-section-number">5.1.4</span> Data Frames</h3>
+<p>Data frames possess the characteristics of both lists and matrices: if you subset with a single vector, they behave like lists; if you subset with two vectors, they behave like matrices.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>, <span class="dt">z =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb263-2" data-line-number="2">df</a></code></pre></div>
+<pre><code>#&gt;   x y z
+#&gt; 1 1 3 a
+#&gt; 2 2 2 b
+#&gt; 3 3 1 c</code></pre>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">df[df<span class="op">$</span>x <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, ]</a></code></pre></div>
+<pre><code>#&gt;   x y z
+#&gt; 2 2 2 b</code></pre>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1">df[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), ]</a></code></pre></div>
+<pre><code>#&gt;   x y z
+#&gt; 1 1 3 a
+#&gt; 3 3 1 c</code></pre>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1"><span class="co"># There are two ways to select columns from a data frame</span></a>
+<a class="sourceLine" id="cb269-2" data-line-number="2"><span class="co"># Like a list:</span></a>
+<a class="sourceLine" id="cb269-3" data-line-number="3">df[<span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;z&quot;</span>)]</a></code></pre></div>
+<pre><code>#&gt;   x z
+#&gt; 1 1 a
+#&gt; 2 2 b
+#&gt; 3 3 c</code></pre>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="co"># Like a matrix</span></a>
+<a class="sourceLine" id="cb271-2" data-line-number="2">df[, <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;z&quot;</span>)]</a></code></pre></div>
+<pre><code>#&gt;   x z
+#&gt; 1 1 a
+#&gt; 2 2 b
+#&gt; 3 3 c</code></pre>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1"><span class="co"># There&#39;s an important difference if you select a single </span></a>
+<a class="sourceLine" id="cb273-2" data-line-number="2"><span class="co"># column: matrix subsetting simplifies by default, list </span></a>
+<a class="sourceLine" id="cb273-3" data-line-number="3"><span class="co"># subsetting does not.</span></a>
+<a class="sourceLine" id="cb273-4" data-line-number="4"><span class="kw">str</span>(df[<span class="st">&quot;x&quot;</span>])</a></code></pre></div>
+<pre><code>#&gt; &#39;data.frame&#39;:    3 obs. of  1 variable:
+#&gt;  $ x: int  1 2 3</code></pre>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="kw">str</span>(df[, <span class="st">&quot;x&quot;</span>])</a></code></pre></div>
+<pre><code>#&gt;  int [1:3] 1 2 3</code></pre>
+</div>
+<div id="preserving-dimensionality" class="section level3">
+<h3><span class="header-section-number">5.1.5</span> Preserving dimensionality</h3>
+<p>By default, any subsetting 2d data structures with a single number, single name, or a logical vector containing a single <code>TRUE</code> will simplify the returned output as described below. To preserve the original dimensionality, you must use <code>drop = FALSE</code></p>
+<ul>
+<li><p>For matrices and arrays, any dimensions with length 1 will be dropped:</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1">(a &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">nrow =</span> <span class="dv">2</span>))</a></code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    1    3
+#&gt; [2,]    2    4</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw">str</span>(a[<span class="dv">1</span>, ])</a></code></pre></div>
+<pre><code>#&gt;  int [1:2] 1 3</code></pre>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">str</span>(a[<span class="dv">1</span>, , <span class="dt">drop =</span> <span class="ot">FALSE</span>])</a></code></pre></div>
+<pre><code>#&gt;  int [1, 1:2] 1 3</code></pre></li>
+<li><p>Data frames with a single column will return just that column:</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1">(df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">b =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>))</a></code></pre></div>
+<pre><code>#&gt;   a b
+#&gt; 1 1 1
+#&gt; 2 2 2</code></pre>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw">str</span>(df[, <span class="st">&quot;a&quot;</span>])</a></code></pre></div>
+<pre><code>#&gt;  int [1:2] 1 2</code></pre>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="kw">str</span>(df[, <span class="st">&quot;a&quot;</span>, <span class="dt">drop =</span> <span class="ot">FALSE</span>])</a></code></pre></div>
+<pre><code>#&gt; &#39;data.frame&#39;:    2 obs. of  1 variable:
+#&gt;  $ a: int  1 2</code></pre></li>
+</ul>
+<p>The default <code>drop = TRUE</code> behaviour is a common source of bugs in functions: you check your code with a data frame or matrix with multiple columns, and it works. Six months later you (or someone else) uses it with a single column data frame and it fails with a mystifying error. When writing functions, get in the habit of always using <code>drop = FALSE</code> when subsetting a 2d object.</p>
+<p>Factor subsetting also has a <code>drop</code> argument, but the meaning it rather different. It controls whether or not levels are preserved (not the dimensionality), and it defaults to <code>FALSE</code> (levels are preserved, not simplified by default). If you find you are using <code>drop = TRUE</code> a lot it’s often a sign that you should be using a character vector instead of a factor.</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1">z &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>))</a>
+<a class="sourceLine" id="cb289-2" data-line-number="2">z[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>#&gt; [1] a
+#&gt; Levels: a b</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1">z[<span class="dv">1</span>, drop =<span class="st"> </span><span class="ot">TRUE</span>]</a></code></pre></div>
+<pre><code>#&gt; [1] a
+#&gt; Levels: a</code></pre>
+</div>
+</div>
+<div id="selecting-a-single-elements" class="section level2">
+<h2><span class="header-section-number">5.2</span> Selecting a single elements</h2>
+<p>There are two other subsetting operators: <code>[[</code> and <code>$</code>. <code>[[</code> is used for extracting single values, and <code>$</code> is a useful shorthand for <code>[[</code> combined with character subsetting. <code>[[</code> is most important working with lists because subsetting a list with <code>[</code> always returns a smaller list. To help make this easier to understand we can use a metaphor:</p>
+<blockquote>
+<p>“If list <code>x</code> is a train carrying objects, then <code>x[[5]]</code> is
+the object in car 5; <code>x[4:6]</code> is a train of cars 4-6.”</p>
+<p>— @RLangTip, <a href="https://twitter.com/RLangTip/status/268375867468681216" class="uri">https://twitter.com/RLangTip/status/268375867468681216</a></p>
+</blockquote>
+<p>Let’s make a simple list and draw it as a train:</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="st">&quot;a&quot;</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">5</span>)</a></code></pre></div>
+<p><img src="images/subsetting/train.png" style="display: block; margin: auto;" /></p>
+<p>When extracting a single element, you have two options: you can create a smaller train, or you can extract the contents of a carriage. This is the difference between <code>[</code> and <code>[[</code>:</p>
+<p><img src="images/subsetting/train-single.png" style="display: block; margin: auto;" /></p>
+<p>When extracting multiple elements (or zero!), you have to make a smaller train:</p>
+<p><img src="images/subsetting/train-multiple.png" style="display: block; margin: auto;" /></p>
+<p>Because it can return only a single value, you must use <code>[[</code> with either a single positive integer or a string. Because data frames are lists of columns, you can use <code>[[</code> to extract a column from data frames: <code>mtcars[[1]]</code>, <code>mtcars[[&quot;cyl&quot;]]</code>.</p>
+<p>If you use a vector with <code>[[</code>, it will subset recursively:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">(b &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="kw">list</span>(<span class="dt">b =</span> <span class="kw">list</span>(<span class="dt">c =</span> <span class="kw">list</span>(<span class="dt">d =</span> <span class="dv">1</span>)))))</a></code></pre></div>
+<pre><code>#&gt; $a
+#&gt; $a$b
+#&gt; $a$b$c
+#&gt; $a$b$c$d
+#&gt; [1] 1</code></pre>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1">b[[<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)]]</a></code></pre></div>
+<pre><code>#&gt; [1] 1</code></pre>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1"><span class="co"># Equivalent to</span></a>
+<a class="sourceLine" id="cb298-2" data-line-number="2">b[[<span class="st">&quot;a&quot;</span>]][[<span class="st">&quot;b&quot;</span>]][[<span class="st">&quot;c&quot;</span>]][[<span class="st">&quot;d&quot;</span>]]</a></code></pre></div>
+<pre><code>#&gt; [1] 1</code></pre>
+<p><code>[[</code> is crucial for working with lists, but I recommend using it whenever you want your code to clearly express that it’s working with a single value. That frequently arises in for loops, i.e. instead of writing:</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(x)) {</a>
+<a class="sourceLine" id="cb300-2" data-line-number="2">  out[i] &lt;-<span class="st"> </span><span class="kw">fun</span>(x[i], out[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb300-3" data-line-number="3">}</a></code></pre></div>
+<p>It’s better to write:</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(x)) {</a>
+<a class="sourceLine" id="cb301-2" data-line-number="2">  out[[i]] &lt;-<span class="st"> </span><span class="kw">fun</span>(x[[i]], out[[i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>]])</a>
+<a class="sourceLine" id="cb301-3" data-line-number="3">}</a></code></pre></div>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> <code>$</code></h3>
+<p><code>$</code> is a shorthand operator: <code>x$y</code> is roughly equivalent to <code>x[[&quot;y&quot;]]</code>. It’s often used to access variables in a data frame, as in <code>mtcars$cyl</code> or <code>diamonds$carat</code>. One common mistake with <code>$</code> is to try and use it when you have the name of a column stored in a variable:</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1">var &lt;-<span class="st"> &quot;cyl&quot;</span></a>
+<a class="sourceLine" id="cb302-2" data-line-number="2"><span class="co"># Doesn&#39;t work - mtcars$var translated to mtcars[[&quot;var&quot;]]</span></a>
+<a class="sourceLine" id="cb302-3" data-line-number="3">mtcars<span class="op">$</span>var</a></code></pre></div>
+<pre><code>#&gt; NULL</code></pre>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="co"># Instead use [[</span></a>
+<a class="sourceLine" id="cb304-2" data-line-number="2">mtcars[[var]]</a></code></pre></div>
+<pre><code>#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</code></pre>
+<p>There’s one important difference between <code>$</code> and <code>[[</code>. <code>$</code> does partial matching:</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">abc =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb306-2" data-line-number="2">x<span class="op">$</span>a</a></code></pre></div>
+<pre><code>#&gt; [1] 1</code></pre>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1">x[[<span class="st">&quot;a&quot;</span>]]</a></code></pre></div>
+<pre><code>#&gt; NULL</code></pre>
+<p>It is usually a good idea to <strong>NOT</strong> use partial matching. It tends to to lead to hard to track down bugs and makes your code much less readable. With autocomplete in RStudio it tends not to save any time or keystrokes.</p>
+</div>
+<div id="missingout-of-bounds-indices" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Missing/out of bounds indices</h3>
+<p>TL;DR version use <code>purrr::pluck()</code>, which we will get to in <em>R for Data Science</em></p>
+<p>It’s useful to understand what happens with <code>[</code> and <code>[[</code> when you use an “invalid” index. The following tables summarise what happen when you subset a logical vector, list, and <code>NULL</code> with an out-of-bounds value (OOB), a missing value (i.e <code>NA_integer_</code>), and a zero-length object (like <code>NULL</code> or <code>logical()</code>) with <code>[</code> and <code>[[</code>. Each cell shows the result of subsetting the data structure named in the row by the type of index described in the column. I’ve only shown the results for logical vectors, but other atomic vectors behave similarly, returning elements of the same type.</p>
+<table>
+<thead>
+<tr class="header">
+<th><code>row[col]</code></th>
+<th>Zero-length</th>
+<th>OOB</th>
+<th>Missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+</tr>
+<tr class="even">
+<td>Logical</td>
+<td><code>logical(0)</code></td>
+<td><code>NA</code></td>
+<td><code>NA</code></td>
+</tr>
+<tr class="odd">
+<td>List</td>
+<td><code>list()</code></td>
+<td><code>list(NULL)</code></td>
+<td><code>list(NULL)</code></td>
+</tr>
+</tbody>
+</table>
+<p>With <code>[</code>, it doesn’t matter whether the OOB index is a position or a name, but it does for <code>[[</code>:</p>
+<table>
+<thead>
+<tr class="header">
+<th><code>row[[col]]</code></th>
+<th>Zero-length</th>
+<th>OOB (int)</th>
+<th>OOB (chr)</th>
+<th>Missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+</tr>
+<tr class="even">
+<td>Atomic</td>
+<td>Error</td>
+<td>Error</td>
+<td>Error</td>
+<td>Error</td>
+</tr>
+<tr class="odd">
+<td>List</td>
+<td>Error</td>
+<td>Error</td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+</tr>
+</tbody>
+</table>
+<p>If the input vector is named, then the names of OOB, missing, or <code>NULL</code> components will be <code>&quot;&lt;NA&gt;&quot;</code>.</p>
+</div>
+</div>
+<div id="subassignment" class="section level2">
+<h2><span class="header-section-number">5.3</span> Subsetting and assignment</h2>
+<p>All subsetting operators can be combined with assignment to modify selected values of the input vector.</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb310-2" data-line-number="2">x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)] &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb310-3" data-line-number="3">x</a></code></pre></div>
+<pre><code>#&gt; [1] 2 3 3 4 5</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="co"># The length of the LHS needs to match the RHS</span></a>
+<a class="sourceLine" id="cb312-2" data-line-number="2">x[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">4</span><span class="op">:</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb312-3" data-line-number="3">x</a></code></pre></div>
+<pre><code>#&gt; [1] 2 4 3 2 1</code></pre>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1"><span class="co"># Duplicated indices go unchecked and may be problematic</span></a>
+<a class="sourceLine" id="cb314-2" data-line-number="2">x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)] &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb314-3" data-line-number="3">x</a></code></pre></div>
+<pre><code>#&gt; [1] 3 4 3 2 1</code></pre>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="co"># You can&#39;t combine integer indices with NA</span></a>
+<a class="sourceLine" id="cb316-2" data-line-number="2">x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a></code></pre></div>
+<pre><code>#&gt; Error in x[c(1, NA)] &lt;- c(1, 2): NAs are not allowed in subscripted assignments</code></pre>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1"><span class="co"># But you can combine logical indices with NA</span></a>
+<a class="sourceLine" id="cb318-2" data-line-number="2"><span class="co"># (where they&#39;re treated as false).</span></a>
+<a class="sourceLine" id="cb318-3" data-line-number="3">x[<span class="kw">c</span>(T, F, <span class="ot">NA</span>)] &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb318-4" data-line-number="4">x</a></code></pre></div>
+<pre><code>#&gt; [1] 1 4 3 1 1</code></pre>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1"><span class="co"># This is mostly useful when conditionally modifying vectors</span></a>
+<a class="sourceLine" id="cb320-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb320-3" data-line-number="3">df<span class="op">$</span>a[df<span class="op">$</span>a <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb320-4" data-line-number="4">df<span class="op">$</span>a</a></code></pre></div>
+<pre><code>#&gt; [1]  0 10 NA</code></pre>
+<p>Subsetting with nothing can be useful in conjunction with assignment because it will preserve the original object class and structure. Compare the following two expressions. In the first, <code>mtcars</code> will remain as a data frame. In the second, <code>mtcars</code> will become a list.</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1">(mtcars[] &lt;-<span class="st"> </span><span class="kw">lapply</span>(mtcars, as.integer))</a>
+<a class="sourceLine" id="cb322-2" data-line-number="2">(mtcars &lt;-<span class="st"> </span><span class="kw">lapply</span>(mtcars, as.integer))</a></code></pre></div>
+<p>With lists, you can use <code>[[</code> + assignment + <code>NULL</code> to remove components from a list. To add a literal <code>NULL</code> to a list, use <code>[</code> and <code>list(NULL)</code>: </p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb323-2" data-line-number="2">x[[<span class="st">&quot;b&quot;</span>]] &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb323-3" data-line-number="3"><span class="kw">str</span>(x)</a></code></pre></div>
+<pre><code>#&gt; List of 1
+#&gt;  $ a: num 1</code></pre>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb325-2" data-line-number="2">y[<span class="st">&quot;b&quot;</span>] &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb325-3" data-line-number="3"><span class="kw">str</span>(y)</a></code></pre></div>
+<pre><code>#&gt; List of 2
+#&gt;  $ a: num 1
+#&gt;  $ b: NULL</code></pre>
+</div>
+<div id="applications" class="section level2">
+<h2><span class="header-section-number">5.4</span> Applications</h2>
+<p>The basic principles described above give rise to a wide variety of useful applications. Some of the most important are described below. Many of these basic techniques are wrapped up into more concise functions (e.g., <code>subset()</code>, <code>merge()</code>, <code>dplyr::arrange()</code>), but it is useful to understand how they are implemented with basic subsetting. This will allow you to adapt to new situations that are not dealt with by existing functions.</p>
+<div id="lookup-tables-character-subsetting" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> Lookup tables (character subsetting)</h3>
+<p>Character matching provides a powerful way to make lookup tables. Say you want to convert abbreviations:</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;u&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>, <span class="st">&quot;m&quot;</span>)</a>
+<a class="sourceLine" id="cb327-2" data-line-number="2">lookup &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">m =</span> <span class="st">&quot;Male&quot;</span>, <span class="dt">f =</span> <span class="st">&quot;Female&quot;</span>, <span class="dt">u =</span> <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb327-3" data-line-number="3">lookup[x]</a></code></pre></div>
+<pre><code>#&gt;        m        f        u        f        f        m        m 
+#&gt;   &quot;Male&quot; &quot;Female&quot;       NA &quot;Female&quot; &quot;Female&quot;   &quot;Male&quot;   &quot;Male&quot;</code></pre>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1"><span class="kw">unname</span>(lookup[x])</a></code></pre></div>
+<pre><code>#&gt; [1] &quot;Male&quot;   &quot;Female&quot; NA       &quot;Female&quot; &quot;Female&quot; &quot;Male&quot;   &quot;Male&quot;</code></pre>
+<p>If you don’t want names in the result, use <code>unname()</code> to remove them.</p>
+</div>
+<div id="ordering-integer-subsetting" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> Ordering (integer subsetting)</h3>
+<p><code>order()</code> takes a vector as input and returns an integer vector describing how the subsetted vector should be ordered:</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;a&quot;</span>)</a>
+<a class="sourceLine" id="cb331-2" data-line-number="2"><span class="kw">order</span>(x)</a></code></pre></div>
+<pre><code>#&gt; [1] 3 1 2</code></pre>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">x[<span class="kw">order</span>(x)]</a></code></pre></div>
+<pre><code>#&gt; [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<p>To break ties, you can supply additional variables to <code>order()</code>, and you can change from ascending to descending order using <code>decreasing = TRUE</code>. By default, any missing values will be put at the end of the vector; however, you can remove them with <code>na.last = NA</code> or put at the front with <code>na.last = FALSE</code>.</p>
+<p>For two or more dimensions, <code>order()</code> and integer subsetting makes it easy to order either the rows or columns of an object:</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">(df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">2</span>), <span class="dt">y =</span> <span class="dv">6</span><span class="op">:</span><span class="dv">1</span>, <span class="dt">z =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]))</a></code></pre></div>
+<pre><code>#&gt;   x y z
+#&gt; 1 1 6 a
+#&gt; 2 1 5 b
+#&gt; 3 2 4 c
+#&gt; 4 2 3 d
+#&gt; 5 3 2 e
+#&gt; 6 3 1 f</code></pre>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" data-line-number="1"><span class="co"># Randomly reorder df</span></a>
+<a class="sourceLine" id="cb337-2" data-line-number="2">df2 &lt;-<span class="st"> </span>df[<span class="kw">sample</span>(<span class="kw">nrow</span>(df)), <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb337-3" data-line-number="3">df2</a></code></pre></div>
+<pre><code>#&gt;   z y x
+#&gt; 4 d 3 2
+#&gt; 1 a 6 1
+#&gt; 3 c 4 2
+#&gt; 2 b 5 1
+#&gt; 6 f 1 3
+#&gt; 5 e 2 3</code></pre>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1">df2[<span class="kw">order</span>(df2<span class="op">$</span>x), ]</a></code></pre></div>
+<pre><code>#&gt;   z y x
+#&gt; 1 a 6 1
+#&gt; 2 b 5 1
+#&gt; 4 d 3 2
+#&gt; 3 c 4 2
+#&gt; 6 f 1 3
+#&gt; 5 e 2 3</code></pre>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1">df2[, <span class="kw">order</span>(<span class="kw">names</span>(df2))]</a></code></pre></div>
+<pre><code>#&gt;   x y z
+#&gt; 4 2 3 d
+#&gt; 1 1 6 a
+#&gt; 3 2 4 c
+#&gt; 2 1 5 b
+#&gt; 6 3 1 f
+#&gt; 5 3 2 e</code></pre>
+<p>You can sort vectors directly with <code>sort()</code>, or use <code>dplyr::arrange()</code> or similar to sort a data frame.</p>
+</div>
+<div id="selecting-rows-based-on-a-condition-logical-subsetting" class="section level3">
+<h3><span class="header-section-number">5.4.3</span> Selecting rows based on a condition (logical subsetting)</h3>
+<p>Because it allows you to easily combine conditions from multiple columns, logical subsetting is probably the most commonly used technique for extracting rows out of a data frame.</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1">mtcars[mtcars<span class="op">$</span>gear <span class="op">==</span><span class="st"> </span><span class="dv">5</span>, ]</a></code></pre></div>
+<pre><code>#&gt;                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
+#&gt; Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.7  0  1    5    2
+#&gt; Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+#&gt; Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+#&gt; Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+#&gt; Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8</code></pre>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" data-line-number="1">mtcars[mtcars<span class="op">$</span>gear <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">&amp;</span><span class="st"> </span>mtcars<span class="op">$</span>cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, ]</a></code></pre></div>
+<pre><code>#&gt;                mpg cyl  disp  hp drat    wt qsec vs am gear carb
+#&gt; Porsche 914-2 26.0   4 120.3  91 4.43 2.140 16.7  0  1    5    2
+#&gt; Lotus Europa  30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2</code></pre>
+<p>Remember to use the vector boolean operators <code>&amp;</code> and <code>|</code>, not the short-circuiting scalar operators <code>&amp;&amp;</code> and <code>||</code> which are more useful inside if statements. Don’t forget <a href="https://en.wikipedia.org/wiki/De_Morgan%27s_laws">De Morgan’s laws</a>, which can be useful to simplify negations:</p>
+<ul>
+<li><code>!(X &amp; Y)</code> is the same as <code>!X | !Y</code></li>
+<li><code>!(X | Y)</code> is the same as <code>!X &amp; !Y</code></li>
+</ul>
+<p>For example, <code>!(X &amp; !(Y | Z))</code> simplifies to <code>!X | !!(Y|Z)</code>, and then to <code>!X | Y | Z</code>.</p>
+<p><code>subset()</code> is a specialised shorthand function for subsetting data frames, and saves some typing because you don’t need to repeat the name of the data frame..</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="kw">subset</span>(mtcars, gear <span class="op">==</span><span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
+<pre><code>#&gt;                 mpg cyl  disp  hp drat    wt qsec vs am gear carb
+#&gt; Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.7  0  1    5    2
+#&gt; Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2
+#&gt; Ford Pantera L 15.8   8 351.0 264 4.22 3.170 14.5  0  1    5    4
+#&gt; Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.5  0  1    5    6
+#&gt; Maserati Bora  15.0   8 301.0 335 3.54 3.570 14.6  0  1    5    8</code></pre>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" data-line-number="1"><span class="kw">subset</span>(mtcars, gear <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">&amp;</span><span class="st"> </span>cyl <span class="op">==</span><span class="st"> </span><span class="dv">4</span>)</a></code></pre></div>
+<pre><code>#&gt;                mpg cyl  disp  hp drat    wt qsec vs am gear carb
+#&gt; Porsche 914-2 26.0   4 120.3  91 4.43 2.140 16.7  0  1    5    2
+#&gt; Lotus Europa  30.4   4  95.1 113 3.77 1.513 16.9  1  1    5    2</code></pre>
+</div>
+<div id="boolean-algebra-vs.sets-logical-integer-subsetting" class="section level3">
+<h3><span class="header-section-number">5.4.4</span> Boolean algebra vs. sets (logical &amp; integer subsetting)</h3>
+<p>It’s useful to be aware of the natural equivalence between set operations (integer subsetting) and boolean algebra (logical subsetting). Using set operations is more effective when:</p>
+<ul>
+<li><p>You want to find the first (or last) <code>TRUE</code>.</p></li>
+<li><p>You have very few <code>TRUE</code>s and very many <code>FALSE</code>s; a set representation
+may be faster and require less storage.</p></li>
+</ul>
+<p><code>which()</code> allows you to convert a boolean representation to an integer representation. There’s no reverse operation in base R but we can easily create one:</p>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">10</span>) <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb351-2" data-line-number="2"><span class="kw">which</span>(x)</a></code></pre></div>
+<pre><code>#&gt; [1]  5  8 10</code></pre>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1">unwhich &lt;-<span class="st"> </span><span class="cf">function</span>(x, n) {</a>
+<a class="sourceLine" id="cb353-2" data-line-number="2">  out &lt;-<span class="st"> </span><span class="kw">rep_len</span>(<span class="ot">FALSE</span>, n)</a>
+<a class="sourceLine" id="cb353-3" data-line-number="3">  out[x] &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb353-4" data-line-number="4">  out</a>
+<a class="sourceLine" id="cb353-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb353-6" data-line-number="6"><span class="kw">unwhich</span>(<span class="kw">which</span>(x), <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>#&gt;  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE</code></pre>
+<p>Let’s create two logical vectors and their integer equivalents and then explore the relationship between boolean and set operations.</p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1">(x1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</a></code></pre></div>
+<pre><code>#&gt;  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1">(x2 &lt;-<span class="st"> </span><span class="kw">which</span>(x1))</a></code></pre></div>
+<pre><code>#&gt; [1]  2  4  6  8 10</code></pre>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1">(y1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</a></code></pre></div>
+<pre><code>#&gt;  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1">(y2 &lt;-<span class="st"> </span><span class="kw">which</span>(y1))</a></code></pre></div>
+<pre><code>#&gt; [1]  5 10</code></pre>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1"><span class="co"># X &amp; Y &lt;-&gt; intersect(x, y)</span></a>
+<a class="sourceLine" id="cb363-2" data-line-number="2">x1 <span class="op">&amp;</span><span class="st"> </span>y1</a></code></pre></div>
+<pre><code>#&gt;  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1"><span class="kw">intersect</span>(x2, y2)</a></code></pre></div>
+<pre><code>#&gt; [1] 10</code></pre>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1"><span class="co"># X | Y &lt;-&gt; union(x, y)</span></a>
+<a class="sourceLine" id="cb367-2" data-line-number="2">x1 <span class="op">|</span><span class="st"> </span>y1</a></code></pre></div>
+<pre><code>#&gt;  [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1"><span class="kw">union</span>(x2, y2)</a></code></pre></div>
+<pre><code>#&gt; [1]  2  4  6  8 10  5</code></pre>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" data-line-number="1"><span class="co"># X &amp; !Y &lt;-&gt; setdiff(x, y)</span></a>
+<a class="sourceLine" id="cb371-2" data-line-number="2">x1 <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>y1</a></code></pre></div>
+<pre><code>#&gt;  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" data-line-number="1"><span class="kw">setdiff</span>(x2, y2)</a></code></pre></div>
+<pre><code>#&gt; [1] 2 4 6 8</code></pre>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" data-line-number="1"><span class="co"># xor(X, Y) &lt;-&gt; setdiff(union(x, y), intersect(x, y))</span></a>
+<a class="sourceLine" id="cb375-2" data-line-number="2"><span class="kw">xor</span>(x1, y1)</a></code></pre></div>
+<pre><code>#&gt;  [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" data-line-number="1"><span class="kw">setdiff</span>(<span class="kw">union</span>(x2, y2), <span class="kw">intersect</span>(x2, y2))</a></code></pre></div>
+<pre><code>#&gt; [1] 2 4 6 8 5</code></pre>
+<p>When first learning subsetting, a common mistake is to use <code>x[which(y)]</code> instead of <code>x[y]</code>. Here the <code>which()</code> achieves nothing: it switches from logical to integer subsetting but the result will be exactly the same. In more general cases, there are two important differences. First, when the logical vector contains NA, logical subsetting replaces these values by NA while <code>which()</code> drops these values. Second, <code>x[-which(y)]</code> is <strong>not</strong> equivalent to <code>x[!y]</code>: if <code>y</code> is all FALSE, <code>which(y)</code> will be <code>integer(0)</code> and <code>-integer(0)</code> is still <code>integer(0)</code>, so you’ll get no values, instead of all values. In general, avoid switching from logical to integer subsetting unless you want, for example, the first or last <code>TRUE</code> value.</p>
+</div>
+<div id="removing-columns-from-data-frames-character-subsetting" class="section level3">
+<h3><span class="header-section-number">5.4.5</span> Removing columns from data frames (character subsetting)</h3>
+<p>There are two ways to remove columns from a data frame. You can set individual columns to <code>NULL</code>:</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>, <span class="dt">z =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb379-2" data-line-number="2">df<span class="op">$</span>z &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<p>Or you can subset to return only the columns you want:</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>, <span class="dt">z =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb380-2" data-line-number="2">df[<span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)]</a></code></pre></div>
+<pre><code>#&gt;   x y
+#&gt; 1 1 3
+#&gt; 2 2 2
+#&gt; 3 3 1</code></pre>
+<p>If you know the columns you don’t want, use set operations to work out which colums to keep:</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1">df[<span class="kw">setdiff</span>(<span class="kw">names</span>(df), <span class="st">&quot;z&quot;</span>)]</a></code></pre></div>
+<pre><code>#&gt;   x y
+#&gt; 1 1 3
+#&gt; 2 2 2
+#&gt; 3 3 1</code></pre>
+</div>
+<div id="matching-and-merging-by-hand-integer-subsetting" class="section level3">
+<h3><span class="header-section-number">5.4.6</span> Matching and merging by hand (integer subsetting)</h3>
+<p>You may have a more complicated lookup table which has multiple columns of information. Suppose we have a vector of integer grades, and a table that describes their properties:</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1">grades &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb384-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb384-3" data-line-number="3">info &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb384-4" data-line-number="4">  <span class="dt">grade =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb384-5" data-line-number="5">  <span class="dt">desc =</span> <span class="kw">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Poor&quot;</span>),</a>
+<a class="sourceLine" id="cb384-6" data-line-number="6">  <span class="dt">fail =</span> <span class="kw">c</span>(F, F, T)</a>
+<a class="sourceLine" id="cb384-7" data-line-number="7">)</a></code></pre></div>
+<p>We want to duplicate the info table so that we have a row for each value in <code>grades</code>. An elegant way to do this is by combining <code>match()</code> and integer subsetting:</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1">id &lt;-<span class="st"> </span><span class="kw">match</span>(grades, info<span class="op">$</span>grade)</a>
+<a class="sourceLine" id="cb385-2" data-line-number="2">info[id, ]</a></code></pre></div>
+<pre><code>#&gt;     grade      desc  fail
+#&gt; 3       1      Poor  TRUE
+#&gt; 2       2      Good FALSE
+#&gt; 2.1     2      Good FALSE
+#&gt; 1       3 Excellent FALSE
+#&gt; 3.1     1      Poor  TRUE</code></pre>
+<p>If you have multiple columns to match on, you’ll need to first collapse them to a single column (with e.g. <code>interaction()</code>), but typically you are better off switching to a function design specifically for joining multiple tables like <code>merge()</code>, or <code>dplyr::left_join()</code>.</p>
+</div>
+<div id="random-samplesbootstrap-integer-subsetting" class="section level3">
+<h3><span class="header-section-number">5.4.7</span> Random samples/bootstrap (integer subsetting)</h3>
+<p>You can use integer indices to perform random sampling or bootstrapping of a vector or data frame. <code>sample()</code> generates a vector of indices, then subsetting accesses the values:</p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1">(df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">2</span>), <span class="dt">y =</span> <span class="dv">6</span><span class="op">:</span><span class="dv">1</span>, <span class="dt">z =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]))</a></code></pre></div>
+<pre><code>#&gt;   x y z
+#&gt; 1 1 6 a
+#&gt; 2 1 5 b
+#&gt; 3 2 4 c
+#&gt; 4 2 3 d
+#&gt; 5 3 2 e
+#&gt; 6 3 1 f</code></pre>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1"><span class="co"># Randomly reorder</span></a>
+<a class="sourceLine" id="cb389-2" data-line-number="2">df[<span class="kw">sample</span>(<span class="kw">nrow</span>(df)), ]</a></code></pre></div>
+<pre><code>#&gt;   x y z
+#&gt; 2 1 5 b
+#&gt; 4 2 3 d
+#&gt; 1 1 6 a
+#&gt; 6 3 1 f
+#&gt; 5 3 2 e
+#&gt; 3 2 4 c</code></pre>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1"><span class="co"># Select 3 random rows</span></a>
+<a class="sourceLine" id="cb391-2" data-line-number="2">df[<span class="kw">sample</span>(<span class="kw">nrow</span>(df), <span class="dv">3</span>), ]</a></code></pre></div>
+<pre><code>#&gt;   x y z
+#&gt; 4 2 3 d
+#&gt; 3 2 4 c
+#&gt; 2 1 5 b</code></pre>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1"><span class="co"># Select 6 bootstrap replicates</span></a>
+<a class="sourceLine" id="cb393-2" data-line-number="2">df[<span class="kw">sample</span>(<span class="kw">nrow</span>(df), <span class="dv">6</span>, <span class="dt">rep =</span> <span class="ot">TRUE</span>), ]</a></code></pre></div>
+<pre><code>#&gt;     x y z
+#&gt; 6   3 1 f
+#&gt; 5   3 2 e
+#&gt; 5.1 3 2 e
+#&gt; 1   1 6 a
+#&gt; 2   1 5 b
+#&gt; 4   2 3 d</code></pre>
+<p>The arguments of <code>sample()</code> control the number of samples to extract, and whether sampling is performed with or without replacement.</p>
+</div>
+<div id="expanding-aggregated-counts-integer-subsetting" class="section level3">
+<h3><span class="header-section-number">5.4.8</span> Expanding aggregated counts (integer subsetting)</h3>
+<p>Sometimes you get a data frame where identical rows have been collapsed into one and a count column has been added. <code>rep()</code> and integer subsetting make it easy to uncollapse the data by subsetting with a repeated row index:</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">6</span>), <span class="dt">n =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb395-2" data-line-number="2">df</a></code></pre></div>
+<pre><code>#&gt;   x  y n
+#&gt; 1 2  9 3
+#&gt; 2 4 11 5
+#&gt; 3 1  6 1</code></pre>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(df), df<span class="op">$</span>n)</a></code></pre></div>
+<pre><code>#&gt; [1] 1 1 1 2 2 2 2 2 3</code></pre>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" data-line-number="1">df[<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(df), df<span class="op">$</span>n), ]</a></code></pre></div>
+<pre><code>#&gt;     x  y n
+#&gt; 1   2  9 3
+#&gt; 1.1 2  9 3
+#&gt; 1.2 2  9 3
+#&gt; 2   4 11 5
+#&gt; 2.1 4 11 5
+#&gt; 2.2 4 11 5
+#&gt; 2.3 4 11 5
+#&gt; 2.4 4 11 5
+#&gt; 3   1  6 1</code></pre>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="base-r-data-structures.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DavisBrian/corporater/edit/master/subset.Rmd",
+"text": "Edit"
+},
+"download": ["corporater.pdf", "corporater.epub"],
+"toc": {
+"collapse": "subsection"
+},
+"css": "corp.css"
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Modern R in a Corporate Environment</title>
+  <meta name="description" content="This is an original course for RADARS">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Modern R in a Corporate Environment" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an original course for RADARS" />
+  <meta name="github-repo" content="DavisBrian/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Modern R in a Corporate Environment" />
+  
+  <meta name="twitter:description" content="This is an original course for RADARS" />
+  
+
+<meta name="author" content="Brian Davis">
+
+
+<meta name="date" content="2018-04-21">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="good-practices.html">
+<link rel="next" href="base-r-data-structures.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modern R in a Corporate Environment</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#course-philosophy"><i class="fa fa-check"></i><b>1.1</b> Course Philosophy</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#reproducible-research"><i class="fa fa-check"></i><b>1.1.1</b> Reproducible Research</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#fda-validation"><i class="fa fa-check"></i><b>1.1.2</b> FDA Validation</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction.html"><a href="introduction.html#the-sas-myth"><i class="fa fa-check"></i><b>1.1.3</b> The SAS Myth</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content"><i class="fa fa-check"></i><b>1.3</b> Content</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#structure"><i class="fa fa-check"></i><b>1.4</b> Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a><ul>
+<li class="chapter" data-level="2.1" data-path="good-practices.html"><a href="good-practices.html#coding-style"><i class="fa fa-check"></i><b>2.1</b> Coding style</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="good-practices.html"><a href="good-practices.html#comments"><i class="fa fa-check"></i><b>2.1.1</b> Comments</a></li>
+<li class="chapter" data-level="2.1.2" data-path="good-practices.html"><a href="good-practices.html#naming"><i class="fa fa-check"></i><b>2.1.2</b> Naming</a></li>
+<li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#structure-1"><i class="fa fa-check"></i><b>2.1.3</b> Structure</a></li>
+<li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#spacing"><i class="fa fa-check"></i><b>2.1.4</b> Spacing</a></li>
+<li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.5</b> Indenting</a></li>
+<li class="chapter" data-level="2.1.6" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.6</b> Long lines</a></li>
+<li class="chapter" data-level="2.1.7" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.7</b> Other</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-3"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of 3</em></a></li>
+<li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
+<li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#keeping-up-to-date"><i class="fa fa-check"></i><b>2.5</b> Keeping up to date</a></li>
+<li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#assignement"><i class="fa fa-check"></i><b>2.6</b> Assignement</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>3</b> R Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-basics.html"><a href="r-basics.html#assignment"><i class="fa fa-check"></i><b>3.1</b> Assignment</a></li>
+<li class="chapter" data-level="3.2" data-path="r-basics.html"><a href="r-basics.html#objects"><i class="fa fa-check"></i><b>3.2</b> Objects</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="r-basics.html"><a href="r-basics.html#vector"><i class="fa fa-check"></i><b>3.2.1</b> Vector</a></li>
+<li class="chapter" data-level="3.2.2" data-path="r-basics.html"><a href="r-basics.html#matrix"><i class="fa fa-check"></i><b>3.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="3.2.3" data-path="r-basics.html"><a href="r-basics.html#list"><i class="fa fa-check"></i><b>3.2.3</b> List</a></li>
+<li class="chapter" data-level="3.2.4" data-path="r-basics.html"><a href="r-basics.html#data-frame"><i class="fa fa-check"></i><b>3.2.4</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="r-basics.html"><a href="r-basics.html#comparision"><i class="fa fa-check"></i><b>3.3</b> Comparision</a></li>
+<li class="chapter" data-level="3.4" data-path="r-basics.html"><a href="r-basics.html#logical-and-sets"><i class="fa fa-check"></i><b>3.4</b> Logical and sets</a></li>
+<li class="chapter" data-level="3.5" data-path="r-basics.html"><a href="r-basics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.5</b> Vectorization &amp; Recycling</a></li>
+<li class="chapter" data-level="3.6" data-path="r-basics.html"><a href="r-basics.html#basic-looping"><i class="fa fa-check"></i><b>3.6</b> Basic Looping</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="r-basics.html"><a href="r-basics.html#for"><i class="fa fa-check"></i><b>3.6.1</b> For</a></li>
+<li class="chapter" data-level="3.6.2" data-path="r-basics.html"><a href="r-basics.html#apply"><i class="fa fa-check"></i><b>3.6.2</b> Apply</a></li>
+<li class="chapter" data-level="3.6.3" data-path="r-basics.html"><a href="r-basics.html#others"><i class="fa fa-check"></i><b>3.6.3</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="r-basics.html"><a href="r-basics.html#function-basics"><i class="fa fa-check"></i><b>3.7</b> Function Basics</a></li>
+<li class="chapter" data-level="3.8" data-path="r-basics.html"><a href="r-basics.html#environments-scoping"><i class="fa fa-check"></i><b>3.8</b> Environments &amp; Scoping</a></li>
+<li class="chapter" data-level="3.9" data-path="r-basics.html"><a href="r-basics.html#assignment-1"><i class="fa fa-check"></i><b>3.9</b> Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>4</b> Base R Data Structures</a><ul>
+<li class="chapter" data-level="4.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#naming-rules"><i class="fa fa-check"></i><b>4.1</b> Naming Rules</a></li>
+<li class="chapter" data-level="4.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#vectors"><i class="fa fa-check"></i><b>4.2</b> Vectors</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>4.2.1</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="4.2.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#lists"><i class="fa fa-check"></i><b>4.2.2</b> Lists</a></li>
+<li class="chapter" data-level="4.2.3" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#null"><i class="fa fa-check"></i><b>4.2.3</b> <code>NULL</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#attributes"><i class="fa fa-check"></i><b>4.2.4</b> Attributes</a></li>
+<li class="chapter" data-level="4.2.5" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>4.2.5</b> Matrices and arrays</a></li>
+<li class="chapter" data-level="4.2.6" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#data-frames"><i class="fa fa-check"></i><b>4.2.6</b> Data Frames</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>5</b> Subsetting</a><ul>
+<li class="chapter" data-level="5.1" data-path="subsetting.html"><a href="subsetting.html#selecting-multiple-elements"><i class="fa fa-check"></i><b>5.1</b> Selecting multiple elements <code>[</code></a><ul>
+<li class="chapter" data-level="5.1.1" data-path="subsetting.html"><a href="subsetting.html#atomic-vectors-1"><i class="fa fa-check"></i><b>5.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="5.1.2" data-path="subsetting.html"><a href="subsetting.html#matrices-and-arrays-1"><i class="fa fa-check"></i><b>5.1.2</b> Matrices and Arrays</a></li>
+<li class="chapter" data-level="5.1.3" data-path="subsetting.html"><a href="subsetting.html#lists-1"><i class="fa fa-check"></i><b>5.1.3</b> Lists</a></li>
+<li class="chapter" data-level="5.1.4" data-path="subsetting.html"><a href="subsetting.html#data-frames-1"><i class="fa fa-check"></i><b>5.1.4</b> Data Frames</a></li>
+<li class="chapter" data-level="5.1.5" data-path="subsetting.html"><a href="subsetting.html#preserving-dimensionality"><i class="fa fa-check"></i><b>5.1.5</b> Preserving dimensionality</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="subsetting.html"><a href="subsetting.html#selecting-a-single-elements"><i class="fa fa-check"></i><b>5.2</b> Selecting a single elements</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="subsetting.html"><a href="subsetting.html#section"><i class="fa fa-check"></i><b>5.2.1</b> <code>$</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="subsetting.html"><a href="subsetting.html#missingout-of-bounds-indices"><i class="fa fa-check"></i><b>5.2.2</b> Missing/out of bounds indices</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="subsetting.html"><a href="subsetting.html#subassignment"><i class="fa fa-check"></i><b>5.3</b> Subsetting and assignment</a></li>
+<li class="chapter" data-level="5.4" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>5.4</b> Applications</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="subsetting.html"><a href="subsetting.html#lookup-tables-character-subsetting"><i class="fa fa-check"></i><b>5.4.1</b> Lookup tables (character subsetting)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="subsetting.html"><a href="subsetting.html#ordering-integer-subsetting"><i class="fa fa-check"></i><b>5.4.2</b> Ordering (integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.3" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>5.4.3</b> Selecting rows based on a condition (logical subsetting)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>5.4.4</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.5" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>5.4.5</b> Removing columns from data frames (character subsetting)</a></li>
+<li class="chapter" data-level="5.4.6" data-path="subsetting.html"><a href="subsetting.html#matching-and-merging-by-hand-integer-subsetting"><i class="fa fa-check"></i><b>5.4.6</b> Matching and merging by hand (integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.7" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>5.4.7</b> Random samples/bootstrap (integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.8" data-path="subsetting.html"><a href="subsetting.html#expanding-aggregated-counts-integer-subsetting"><i class="fa fa-check"></i><b>5.4.8</b> Expanding aggregated counts (integer subsetting)</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modern R in a Corporate Environment</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-basics" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> R Basics</h1>
+<p>With over 10,000 packages on CRAN we can’t cover everything. In general there are several ways, or packages, to accomplish a given task.</p>
+<p>Here is a quick look at some of the basics. Next we’ll dive deep into R’s basic data structures and how to subset them in subsequent chapters. This will give us a good overview of base R and the background needed to dive into <strong>R for Data Science</strong>.</p>
+<p>The three most important functions in R <code>?</code>, <code>??</code>, and <code>str</code>:</p>
+<ul>
+<li><code>?&lt;topic&gt;</code> provides access to the documentation for &lt;topic&gt;.</li>
+<li><code>??&lt;topic&gt;</code> searches the documention for &lt;topic&gt;.</li>
+<li><code>str</code> displays the structure of an R object in human readable form.</li>
+</ul>
+<p>See this <a href="http://adv-r.had.co.nz/Vocabulary.html">vocabulary list</a> for a good starting point on the basics functions in base R and some important libraries.</p>
+<p>In R there three basic constructs; objects, functions, and environments:</p>
+<div id="assignment" class="section level2">
+<h2><span class="header-section-number">3.1</span> Assignment</h2>
+<p>We saw this is Coding Style. Use <code>&lt;-</code> for assignment and use <code>=</code> for parameters. While you can use <code>=</code> for assignment it is generally considered bad practice.</p>
+</div>
+<div id="objects" class="section level2">
+<h2><span class="header-section-number">3.2</span> Objects</h2>
+<div id="vector" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Vector</h3>
+<p>You create a vector with <code>c</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;my&quot;</span>, <span class="st">&quot;first&quot;</span>, <span class="st">&quot;vector&quot;</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">v</a></code></pre></div>
+<pre><code>#&gt; [1] &quot;my&quot;     &quot;first&quot;  &quot;vector&quot;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># length of our vector</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">length</span>(v)</a></code></pre></div>
+<pre><code>#&gt; [1] 3</code></pre>
+<p>There are several shortcut functions for common vector creation.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># create an ordered sequence</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="dv">2</span><span class="op">:</span><span class="dv">10</span></a></code></pre></div>
+<pre><code>#&gt; [1]  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="dv">9</span><span class="op">:</span><span class="dv">3</span></a></code></pre></div>
+<pre><code>#&gt; [1] 9 8 7 6 5 4 3</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># common mistake using 1:length(n) in loops</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="co"># but if n = 0</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="dv">1</span><span class="op">:</span><span class="dv">0</span></a></code></pre></div>
+<pre><code>#&gt; [1] 1 0</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># use seq_len(n) instead and the loop won&#39;t execute</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">seq_len</span>(<span class="dv">0</span>)</a></code></pre></div>
+<pre><code>#&gt; integer(0)</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># another common mistake</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">n&lt;-<span class="dv">6</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="dv">1</span><span class="op">:</span>n<span class="op">+</span><span class="dv">1</span>        <span class="co"># is (1:n) + 1, so 2:(n + 1)</span></a></code></pre></div>
+<pre><code>#&gt; [1] 2 3 4 5 6 7</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="dv">1</span><span class="op">:</span>(n<span class="op">+</span><span class="dv">1</span>)      <span class="co"># usually what is meant</span></a></code></pre></div>
+<pre><code>#&gt; [1] 1 2 3 4 5 6 7</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">seq_len</span>(n<span class="op">+</span><span class="dv">1</span>) <span class="co"># another way</span></a></code></pre></div>
+<pre><code>#&gt; [1] 1 2 3 4 5 6 7</code></pre>
+</div>
+<div id="matrix" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Matrix</h3>
+<p>Matrices are 2D vectors, with all elements of the same type. Genearlly used for mathematics.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># fill in column order (default)</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>#&gt;      [,1] [,2] [,3] [,4]
+#&gt; [1,]    1    4    7   10
+#&gt; [2,]    2    5    8   11
+#&gt; [3,]    3    6    9   12</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># fill in row order</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>#&gt;      [,1] [,2] [,3] [,4]
+#&gt; [1,]    1    2    3    4
+#&gt; [2,]    5    6    7    8
+#&gt; [3,]    9   10   11   12</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># can also specify the number of columns instead</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>#&gt;      [,1] [,2] [,3]
+#&gt; [1,]    1    5    9
+#&gt; [2,]    2    6   10
+#&gt; [3,]    3    7   11
+#&gt; [4,]    4    8   12</code></pre>
+<p>You find the dimensions of a matrix with <code>nrow</code>, <code>ncol</code>, and <code>dim</code></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">ncol =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">dim</span>(m)</a></code></pre></div>
+<pre><code>#&gt; [1] 4 3</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">nrow</span>(m)</a></code></pre></div>
+<pre><code>#&gt; [1] 4</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">ncol</span>(m)</a></code></pre></div>
+<pre><code>#&gt; [1] 3</code></pre>
+</div>
+<div id="list" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> List</h3>
+<p>A list is a generic vector containing other objects. These do <strong>NOT</strong> have to be the same type or the same length.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">s &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;aa&quot;</span>, <span class="st">&quot;bb&quot;</span>, <span class="st">&quot;cc&quot;</span>, <span class="st">&quot;dd&quot;</span>, <span class="st">&quot;ee&quot;</span>) </a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>) </a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="co"># x contains copies of n, s, b and our matrix from above</span></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">n =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>) , s, b, <span class="dv">3</span>, m)   </a>
+<a class="sourceLine" id="cb39-5" data-line-number="5">x</a></code></pre></div>
+<pre><code>#&gt; $n
+#&gt; [1] 2 3 5
+#&gt; 
+#&gt; [[2]]
+#&gt; [1] &quot;aa&quot; &quot;bb&quot; &quot;cc&quot; &quot;dd&quot; &quot;ee&quot;
+#&gt; 
+#&gt; [[3]]
+#&gt; [1]  TRUE FALSE  TRUE FALSE FALSE
+#&gt; 
+#&gt; [[4]]
+#&gt; [1] 3
+#&gt; 
+#&gt; [[5]]
+#&gt;      [,1] [,2] [,3]
+#&gt; [1,]    1    5    9
+#&gt; [2,]    2    6   10
+#&gt; [3,]    3    7   11
+#&gt; [4,]    4    8   12</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># length gives you length of the list not the elements in the list</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="kw">length</span>(x)</a></code></pre></div>
+<pre><code>#&gt; [1] 5</code></pre>
+<p>We’ll discuss lists in detail in the next chapter.</p>
+</div>
+<div id="data-frame" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Data frame</h3>
+<p>A data frame is a list with each vector of the same length. This is the main data structure used and is analagous to a data set in SAS. While these <strong>look</strong> like matrices they behave very different.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">df =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">n =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2">                <span class="dt">s =</span> <span class="kw">c</span>(<span class="st">&quot;aa&quot;</span>, <span class="st">&quot;bb&quot;</span>, <span class="st">&quot;cc&quot;</span>) ,</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3">                <span class="dt">b =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb43-4" data-line-number="4">                <span class="dt">y =</span> v</a>
+<a class="sourceLine" id="cb43-5" data-line-number="5">                )       <span class="co"># df is a data frame </span></a>
+<a class="sourceLine" id="cb43-6" data-line-number="6">df</a></code></pre></div>
+<pre><code>#&gt;   n  s     b      y
+#&gt; 1 2 aa  TRUE     my
+#&gt; 2 3 bb FALSE  first
+#&gt; 3 5 cc  TRUE vector</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># dimensions</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw">dim</span>(df)</a></code></pre></div>
+<pre><code>#&gt; [1] 3 4</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">nrow</span>(df)</a></code></pre></div>
+<pre><code>#&gt; [1] 3</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">ncol</span>(df)</a></code></pre></div>
+<pre><code>#&gt; [1] 4</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">length</span>(df)</a></code></pre></div>
+<pre><code>#&gt; [1] 4</code></pre>
+<p>We’ll discuss data frames in great detail in the next chapter.</p>
+</div>
+</div>
+<div id="comparision" class="section level2">
+<h2><span class="header-section-number">3.3</span> Comparision</h2>
+<p>Logical Operators include:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&gt;</td>
+<td>greater than</td>
+</tr>
+<tr class="even">
+<td>&gt;=</td>
+<td>greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td>&lt;</td>
+<td>less than</td>
+</tr>
+<tr class="even">
+<td>&lt;=</td>
+<td>less than or equal to</td>
+</tr>
+<tr class="odd">
+<td>==</td>
+<td>exactly equal to</td>
+</tr>
+<tr class="even">
+<td>!=</td>
+<td>not equal to</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">v &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2">v[v <span class="op">&gt;</span><span class="st"> </span><span class="dv">9</span>]</a></code></pre></div>
+<pre><code>#&gt; [1] 10 11 12</code></pre>
+<p>Equality can be tricky to test for since real numbers can’t be expressed exactly in computers.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">(y &lt;-<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>#&gt; [1] 2</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">y <span class="op">==</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>#&gt; [1] FALSE</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">print</span>(y, <span class="dt">digits =</span> <span class="dv">20</span>)</a></code></pre></div>
+<pre><code>#&gt; [1] 2.0000000000000004441</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">all.equal</span>(y, <span class="dv">2</span>)          ## equality with some tolerance</a></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">all.equal</span>(y, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>#&gt; [1] &quot;Mean relative difference: 0.5&quot;</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">isTRUE</span>(<span class="kw">all.equal</span>(y, <span class="dv">3</span>))  ## if you want a boolean, use isTRUE()</a></code></pre></div>
+<pre><code>#&gt; [1] FALSE</code></pre>
+</div>
+<div id="logical-and-sets" class="section level2">
+<h2><span class="header-section-number">3.4</span> Logical and sets</h2>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb67-2" data-line-number="2">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">expand.grid</span>(x, x))</a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="kw">names</span>(df) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</a>
+<a class="sourceLine" id="cb67-4" data-line-number="4">df<span class="op">$</span>and  &lt;-<span class="st"> </span>df<span class="op">$</span>x <span class="op">&amp;</span><span class="st"> </span>df<span class="op">$</span>y     <span class="co"># logical and</span></a>
+<a class="sourceLine" id="cb67-5" data-line-number="5">df<span class="op">$</span>or   &lt;-<span class="st"> </span>df<span class="op">$</span>x <span class="op">|</span><span class="st"> </span>df<span class="op">$</span>y     <span class="co"># logical or</span></a>
+<a class="sourceLine" id="cb67-6" data-line-number="6">df<span class="op">$</span>notx &lt;-<span class="st"> </span><span class="op">!</span>df<span class="op">$</span>x           <span class="co"># negation</span></a>
+<a class="sourceLine" id="cb67-7" data-line-number="7">df<span class="op">$</span>xor  &lt;-<span class="st"> </span><span class="kw">xor</span>(df<span class="op">$</span>x, df<span class="op">$</span>y) <span class="co"># exlusive or</span></a>
+<a class="sourceLine" id="cb67-8" data-line-number="8">df</a></code></pre></div>
+<pre><code>#&gt;       x     y   and    or  notx   xor
+#&gt; 1  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+#&gt; 2 FALSE  TRUE FALSE  TRUE  TRUE  TRUE
+#&gt; 3  TRUE FALSE FALSE  TRUE FALSE  TRUE
+#&gt; 4 FALSE FALSE FALSE FALSE  TRUE FALSE</code></pre>
+<p>R has two versions of a logical and (or) <code>&amp;</code> and <code>&amp;&amp;</code> (<code>|</code> and <code>||</code>). The single version is the vectorized version while the the double version returns a length-one vector. Use the double version in logical control structures (if, for, while, etc).</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="co"># TRUE/FALSE and each element</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="ot">TRUE</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt; [1]  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="ot">FALSE</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt; [1] FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="co"># TRUE/FALSE and first element</span></a>
+<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="ot">TRUE</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="ot">FALSE</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt; [1] FALSE</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="co"># TRUE/FALSE or each element</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="ot">TRUE</span> <span class="op">|</span><span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt; [1] TRUE TRUE</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="ot">FALSE</span> <span class="op">|</span><span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt; [1]  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="co"># TRUE/FALSE or first element</span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="ot">TRUE</span> <span class="op">||</span><span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="ot">FALSE</span> <span class="op">||</span><span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<p>It also has useful helpers <code>any</code> and <code>all</code></p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="kw">any</span>(x)</a></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">all</span>(x)</a></code></pre></div>
+<pre><code>#&gt; [1] FALSE</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">all</span>(<span class="op">!</span>x[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</a></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<p>And also some useful set operations intersect, union, setdiff, setequal</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb91-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">:</span><span class="dv">7</span></a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb91-4" data-line-number="4"><span class="kw">intersect</span>(x, y)</a></code></pre></div>
+<pre><code>#&gt; [1] 3 4 5</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">union</span>(x, y)</a></code></pre></div>
+<pre><code>#&gt; [1] 1 2 3 4 5 6 7</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">setdiff</span>(x, y)</a></code></pre></div>
+<pre><code>#&gt; [1] 1 2</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="kw">setdiff</span>(y, x)</a></code></pre></div>
+<pre><code>#&gt; [1] 6 7</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="kw">setequal</span>(x, y)</a></code></pre></div>
+<pre><code>#&gt; [1] FALSE</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">z &lt;-<span class="st"> </span><span class="dv">5</span><span class="op">:</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="kw">setequal</span>(x, z)</a></code></pre></div>
+<pre><code>#&gt; [1] TRUE</code></pre>
+</div>
+<div id="vectorization-recycling" class="section level2">
+<h2><span class="header-section-number">3.5</span> Vectorization &amp; Recycling</h2>
+</div>
+<div id="basic-looping" class="section level2">
+<h2><span class="header-section-number">3.6</span> Basic Looping</h2>
+<div id="for" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> For</h3>
+</div>
+<div id="apply" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Apply</h3>
+</div>
+<div id="others" class="section level3">
+<h3><span class="header-section-number">3.6.3</span> Others</h3>
+</div>
+</div>
+<div id="function-basics" class="section level2">
+<h2><span class="header-section-number">3.7</span> Function Basics</h2>
+</div>
+<div id="environments-scoping" class="section level2">
+<h2><span class="header-section-number">3.8</span> Environments &amp; Scoping</h2>
+</div>
+<div id="assignment-1" class="section level2">
+<h2><span class="header-section-number">3.9</span> Assignment</h2>
+<ol style="list-style-type: decimal">
+<li>Browse this <a href="http://adv-r.had.co.nz/Vocabulary.html">vocabulary list</a> and read the help file for functions that interest you.</li>
+<li>ddd</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="good-practices.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="base-r-data-structures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DavisBrian/corporater/edit/master/rbasics.Rmd",
+"text": "Edit"
+},
+"download": ["corporater.pdf", "corporater.epub"],
+"toc": {
+"collapse": "subsection"
+},
+"css": "corp.css"
+});
+});
+</script>
+
+</body>
+
+</html>
