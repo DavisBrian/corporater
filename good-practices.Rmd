@@ -28,7 +28,7 @@ In code, use comments to explain the “why” not the “what” or “how”. 
 > There are only two hard things in Computer Science: cache invalidation and naming things.
 > -- Phil Karlton
 
-Names are not limited to 8 characters as in some other languages.  Be smart with your naming; be descriptive yet concise. Think about how your names will show up in autocomplete.
+Names are not limited to 8 characters as in some other languages, however they are case sensitive.  Be smart with your naming; be descriptive yet concise. Think about how your names will show up in autocomplete.
 
 Throughout the course we will point out some standard naming conventions that are used in R (and other languages).  (Ex. `i` and `j` as row and column indicies)
 
@@ -179,7 +179,7 @@ add_two <- function(x, y) {
 
 Create variables for values that are likely to change.
 
-### *Rule of 3* 
+### *Rule of 3*[^DRY]
 
 Try not to copy code, or copy then modify the code, more than twice.
 
@@ -190,10 +190,10 @@ Try not to copy code, or copy then modify the code, more than twice.
 -  If 3 or more people will use the function *make a package*
 -  If 3 or more projects will use the function *make a package*
 
-Same thing goes for lookup tables and such.  The key thing to think about is; if
-something changes how many touch points will there be?  If it is 3 or more
+Same thing goes for lookup tables and such.  The key thing to think about is; if something changes how many touch points will there be?  If it is 3 or more
 places it is time to abstract this code a bit.
 
+[^DRY]: This is sometimes called the DRY principle, or Don't Repeat Yourself.
 
 ### Path names
 

@@ -10,7 +10,9 @@ bookdown::gitbook:
       text: "Edit"
     css: corp.css
     download: ["pdf", "epub"]
-    
+    sharing:
+      facebook: false
+      twitter: false
 bookdown::pdf_book:
   latex_engine: xelatex
   includes:

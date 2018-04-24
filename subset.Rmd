@@ -398,7 +398,7 @@ Subsetting with nothing can be useful in conjunction with assignment because it 
 (mtcars <- lapply(mtcars, as.integer))
 ```
 
-With lists, you can use `[[` + assignment + `NULL` to remove components from a list. To add a literal `NULL` to a list, use `[` and `list(NULL)`: \index{lists!removing an element}
+With lists, you can use `[[` + assignment + `NULL` to remove components from a list. To add a literal `NULL` to a list, use `[` and `list(NULL)`:
 
 ```{r}
 x <- list(a = 1, b = 2)

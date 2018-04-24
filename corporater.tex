@@ -2219,6 +2219,80 @@ vector. You are not limited to just these options.
 #>  [1]  1.1  2.2  3.3  4.1  5.2  6.3  7.1  8.2  9.3 10.1
 \end{verbatim}
 
+\subsection{Example}\label{example}
+
+One (not so good) way to estimate \texttt{pi} is through Monte-Carlo
+simulation.
+
+Suppose we wish to estimate the value of \texttt{pi} using a Monte-Carlo
+method. Esentially, we throw darts at the unit square and count the
+number of darts that fall within the unit circle. We'll only deal with
+quadrant one. Thus the \(Area = \frac{\pi}{4}\)
+
+Monte-Carlo psuedo code:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Initalize \texttt{hits\ =\ 0}
+\item
+  \textbf{for i in 1:N}
+\item
+  Generate two random numbers, \(U_1\) and \(U_2\), between 0 and 1
+\item
+  If \(U_1^2 + U_2^2 < 1\), then \texttt{hits\ =\ hits\ +\ 1}
+\item
+  \textbf{end for}
+\item
+  Area estimate = \texttt{hits\ /\ N}
+\item
+  \(\hat{pi} = 4 * Area Estimate\)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pi_naive <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(N) \{}
+\NormalTok{  hits <-}\StringTok{ }\DecValTok{0}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \KeywordTok{seq_len}\NormalTok{(N)) \{}
+\NormalTok{    U1 <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{    U2 <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ ((U1}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{U2}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{<}\StringTok{ }\DecValTok{1}\NormalTok{) \{}
+\NormalTok{      hits <-}\StringTok{ }\NormalTok{hits }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  
+  \DecValTok{4}\OperatorTok{*}\NormalTok{hits}\OperatorTok{/}\NormalTok{N}
+\NormalTok{\}}
+\NormalTok{N <-}\StringTok{ }\FloatTok{1e6}
+\KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_naive}\NormalTok{(N))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>    user  system elapsed 
+#>    3.94    0.00    4.19
+\end{verbatim}
+
+That's a long runtime (and bad estimate). Let's vecrtorize it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pi_vect <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(N) \{}
+\NormalTok{  U1 <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(N)}
+\NormalTok{  U2 <-}\StringTok{ }\KeywordTok{runif}\NormalTok{(N)}
+\NormalTok{  hits <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(U1}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{U2}\OperatorTok{^}\DecValTok{2} \OperatorTok{<}\StringTok{ }\DecValTok{1}\NormalTok{)}
+  \DecValTok{4}\OperatorTok{*}\NormalTok{hits}\OperatorTok{/}\NormalTok{N}
+\NormalTok{\}}
+\KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>    user  system elapsed 
+#>    0.17    0.01    0.20
+\end{verbatim}
+
 \section{Function Basics}\label{function-basics}
 
 \begin{quote}
@@ -2749,7 +2823,7 @@ nested function only lives inside the parent function.
 #> function(x) {
 #>     x^n 
 #>   }
-#> <environment: 0x00000000082efa00>
+#> <environment: 0x00000000071a1970>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2776,8 +2850,59 @@ nested function only lives inside the parent function.
   Browse this \href{http://adv-r.had.co.nz/Vocabulary.html}{vocabulary
   list} and read the help file for functions that interest you.
 \item
-  Vectorization
+  Vectorization / function practice.
 \end{enumerate}
+
+We'll calcualte pi using the Gregory-Leibniz series. Mathematicians will
+be quick to point out that this is a poor way to calculate pi, since the
+series converges very slowly. But our goal is not calculating pi, our
+goal is examining the performance benefit that be be achieved using
+vectorization.
+
+Here is a formula for the Gregory-Leibniz series:
+
+\(1 - 1/3 + 1/5 - 1/7 + 1/9 - ... = \frac{\pi}{4}\)
+
+Here is the Gregory-Leibniz series in summation notation:
+
+\$ \sum\limits\_\{n=0\}\^{}\infty\frac{(-1)^n}{(2*n+1)} =
+\frac{\pi}{4}\$
+
+The straightforward implementation using an R loop would look like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GL_naive <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{ (limit) \{}
+\NormalTok{  p =}\StringTok{ }\DecValTok{0}
+  \ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in} \DecValTok{0}\OperatorTok{:}\NormalTok{limit) \{}
+\NormalTok{    p =}\StringTok{ }\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{)}\OperatorTok{^}\NormalTok{n}\OperatorTok{/}\NormalTok{(}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{n }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{p}
+\NormalTok{    \}}
+
+  \DecValTok{4}\OperatorTok{*}\NormalTok{p}
+\NormalTok{\}}
+
+\NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
+\KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+#>    user  system elapsed 
+#>    2.56    0.00    2.61
+\end{verbatim}
+
+Your take is to vectorize this function. Do not use any looping or apply
+functions. This one is a bit tricky. Hint: It may be easier to think
+about it in terms of the series notation and not the summation notation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GL_vect <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(limit) \{}
+  \CommentTok{# your code here}
+  \CommentTok{# use only base functions and no looping mechanisms}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \chapter{Base R Data Structures}\label{base-r-data-structures}
 
@@ -4223,11 +4348,11 @@ This behavior allows you to replace all missing values in one line.
 
 \begin{verbatim}
 #>      [,1]  [,2]  [,3]  [,4]  [,5] 
-#> [1,] "1,1" "1,2" "1,3" "1,4" NA   
-#> [2,] "2,1" NA    "2,3" "2,4" "2,5"
-#> [3,] NA    "3,2" "3,3" NA    "3,5"
-#> [4,] "4,1" "4,2" "4,3" "4,4" "4,5"
-#> [5,] "5,1" "5,2" "5,3" "5,4" NA
+#> [1,] "1,1" "1,2" NA    "1,4" NA   
+#> [2,] "2,1" "2,2" "2,3" "2,4" NA   
+#> [3,] NA    "3,2" "3,3" "3,4" "3,5"
+#> [4,] NA    "4,2" "4,3" "4,4" "4,5"
+#> [5,] "5,1" "5,2" "5,3" "5,4" "5,5"
 \end{verbatim}
 
 \begin{Shaded}
@@ -4239,12 +4364,12 @@ This behavior allows you to replace all missing values in one line.
 \end{Shaded}
 
 \begin{verbatim}
-#>      [,1]      [,2]      [,3]  [,4]      [,5]     
-#> [1,] "1,1"     "1,2"     "1,3" "1,4"     "missing"
-#> [2,] "2,1"     "missing" "2,3" "2,4"     "2,5"    
-#> [3,] "missing" "3,2"     "3,3" "missing" "3,5"    
-#> [4,] "4,1"     "4,2"     "4,3" "4,4"     "4,5"    
-#> [5,] "5,1"     "5,2"     "5,3" "5,4"     "missing"
+#>      [,1]      [,2]  [,3]      [,4]  [,5]     
+#> [1,] "1,1"     "1,2" "missing" "1,4" "missing"
+#> [2,] "2,1"     "2,2" "2,3"     "2,4" "missing"
+#> [3,] "missing" "3,2" "3,3"     "3,4" "3,5"    
+#> [4,] "missing" "4,2" "4,3"     "4,4" "4,5"    
+#> [5,] "5,1"     "5,2" "5,3"     "5,4" "5,5"
 \end{verbatim}
 
 You can also subset higher-dimensional data structures with an integer
@@ -4931,12 +5056,12 @@ makes it easy to order either the rows or columns of an object:
 
 \begin{verbatim}
 #>   z y x
-#> 3 c 4 2
-#> 6 f 1 3
 #> 1 a 6 1
-#> 2 b 5 1
 #> 4 d 3 2
 #> 5 e 2 3
+#> 3 c 4 2
+#> 2 b 5 1
+#> 6 f 1 3
 \end{verbatim}
 
 \begin{Shaded}
@@ -4949,10 +5074,10 @@ makes it easy to order either the rows or columns of an object:
 #>   z y x
 #> 1 a 6 1
 #> 2 b 5 1
-#> 3 c 4 2
 #> 4 d 3 2
-#> 6 f 1 3
+#> 3 c 4 2
 #> 5 e 2 3
+#> 6 f 1 3
 \end{verbatim}
 
 \begin{Shaded}
@@ -4963,12 +5088,12 @@ makes it easy to order either the rows or columns of an object:
 
 \begin{verbatim}
 #>   x y z
-#> 3 2 4 c
-#> 6 3 1 f
 #> 1 1 6 a
-#> 2 1 5 b
 #> 4 2 3 d
 #> 5 3 2 e
+#> 3 2 4 c
+#> 2 1 5 b
+#> 6 3 1 f
 \end{verbatim}
 
 You can sort vectors directly with \texttt{sort()}, or use
@@ -5085,7 +5210,7 @@ can easily create one:
 \end{Shaded}
 
 \begin{verbatim}
-#> [1] 4 5 8
+#> [1] 3 4 9
 \end{verbatim}
 
 \begin{Shaded}
@@ -5100,7 +5225,7 @@ can easily create one:
 \end{Shaded}
 
 \begin{verbatim}
-#>  [1] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE
+#>  [1] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE
 \end{verbatim}
 
 Let's create two logical vectors and their integer equivalents and then
@@ -5366,12 +5491,12 @@ indices, then subsetting accesses the values:
 
 \begin{verbatim}
 #>   x y z
-#> 6 3 1 f
-#> 2 1 5 b
 #> 1 1 6 a
-#> 4 2 3 d
-#> 3 2 4 c
+#> 2 1 5 b
 #> 5 3 2 e
+#> 3 2 4 c
+#> 4 2 3 d
+#> 6 3 1 f
 \end{verbatim}
 
 \begin{Shaded}
@@ -5383,9 +5508,9 @@ indices, then subsetting accesses the values:
 
 \begin{verbatim}
 #>   x y z
+#> 1 1 6 a
+#> 5 3 2 e
 #> 3 2 4 c
-#> 2 1 5 b
-#> 4 2 3 d
 \end{verbatim}
 
 \begin{Shaded}
@@ -5396,13 +5521,13 @@ indices, then subsetting accesses the values:
 \end{Shaded}
 
 \begin{verbatim}
-#>   x y z
-#> 5 3 2 e
-#> 3 2 4 c
-#> 1 1 6 a
-#> 4 2 3 d
-#> 6 3 1 f
-#> 2 1 5 b
+#>     x y z
+#> 1   1 6 a
+#> 4   2 3 d
+#> 6   3 1 f
+#> 2   1 5 b
+#> 6.1 3 1 f
+#> 5   3 2 e
 \end{verbatim}
 
 The arguments of \texttt{sample()} control the number of samples to

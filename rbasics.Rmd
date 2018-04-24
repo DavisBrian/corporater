@@ -12,9 +12,9 @@ Here is  a quick look at some of the basics.  Next we'll dive deep into R's basi
 
 The three most important functions in R `?`, `??`, and `str`:
 
-*  `?<topic>` provides access to the documentation for \<topic\>.
-*  `??<topic>` searches the documention for \<topic\>.
-*  `str` displays the structure of an R object in human readable form.
+- `?topic` provides access to the documentation for _topic_.
+- `??topic` searches the documention for _topic_.
+- `str` displays the structure of an R object in human readable form.
 
 See this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) for a good starting point on the basics functions in base R and some important libraries.  
 
@@ -22,7 +22,7 @@ A book to learn the basics is [R Programmig for Data Science](https://bookdown.o
 
 In R there three basic constructs; objects, functions, and environments:
 
-## Assignment
+## Assignment Operators
 
 We saw this is Coding Style. Use `<-` for assignment and use `=` for parameters.  While you can use `=` for assignment it is generally considered bad practice.
 
@@ -45,6 +45,12 @@ There are several shortcut functions for common vector creation.
 # create an ordered sequence
 2:10
 9:3
+
+# generate regular sequences
+seq(1, 5, by = 3)
+
+# replicate a number n times
+rep(3, times = 4)
 
 # common mistake using 1:length(n) in loops
 # but if n = 0
@@ -211,68 +217,6 @@ setequal(x, y)
 z <- 5:1
 setequal(x, z)
 ```
-
-## Vectorization & Recycling
-
-Many operations in R are _vectorized_, meaning that operations occur in parallel in certain R objects. This allows you to write code that is efficient, concise, and easier to read than in non-vectorized languages.
-
-The simplest example is when adding two vectors together.
-
-```{r}
-x <- 1:3
-y <- 11:13
-z <- x + y
-z
-```
-
-In most other languages you would have to do something like
-```{r}
-z <- numeric(length(x))
-
-for(i in seq_along(x)) {
-      z[i] <- x[i] + y[i]
-}
-z
-```
-
-We saw a a form of vectorization above in the logical operators.
-
-```{r}
-x
-x > 2
-x[x > 2]
-```
-
-Matrix operations are also vectorized, making for nice compact notation. This way, we can do element-by-element operations on matrices without having to loop over every element.
-
-```{r}
-x <- matrix(1:4, 2, 2)
-y <- matrix(rep(10, 4), 2, 2)
-x
-y
-x * y  # element-wise multiplication
-x / y  # element-wise division
-x %*% y  # true matrix multiplication
-```
-
-R also recyles arguments.  
-
-```{r}
-x <- 1:10
-z <- x + .1  # add .1 to each element
-z
-```
-
-While you usually either want the same length vector or a length one vector.  You are not limited to just these options.
-
-```{r}
-x <- 1:10
-y <- x + c(.1, .2) 
-y
-z <- x + c(.1, .2, .3)
-z
-```
-
 
 ## Control Structures
 
@@ -537,15 +481,400 @@ replicate(5, mean(rnorm(10)))
 `tapply` is in a simalar spirit to a common data analysis paradigm called split-apply-combine where we split our data set based on a group, apply a function or code to it, and combine the results back together.  We will revisit this paradigm in greater detail when we get to _R for Data Science_.  
 
 
+## Vectorization & Recycling
+
+Many operations in R are _vectorized_, meaning that operations occur in parallel in certain R objects. This allows you to write code that is efficient, concise, and easier to read than in non-vectorized languages.
+
+The simplest example is when adding two vectors together.
+
+```{r}
+x <- 1:3
+y <- 11:13
+z <- x + y
+z
+```
+
+In most other languages you would have to do something like
+```{r}
+z <- numeric(length(x))
+
+for(i in seq_along(x)) {
+      z[i] <- x[i] + y[i]
+}
+z
+```
+
+We saw a a form of vectorization above in the logical operators.
+
+```{r}
+x
+x > 2
+x[x > 2]
+```
+
+Matrix operations are also vectorized, making for nice compact notation. This way, we can do element-by-element operations on matrices without having to loop over every element.
+
+```{r}
+x <- matrix(1:4, 2, 2)
+y <- matrix(rep(10, 4), 2, 2)
+x
+y
+x * y  # element-wise multiplication
+x / y  # element-wise division
+x %*% y  # true matrix multiplication
+```
+
+R also recyles arguments.  
+
+```{r}
+x <- 1:10
+z <- x + .1  # add .1 to each element
+z
+```
+
+While you usually either want the same length vector or a length one vector.  You are not limited to just these options.
+
+```{r}
+x <- 1:10
+y <- x + c(.1, .2) 
+y
+z <- x + c(.1, .2, .3)
+z
+```
+
+### Example
+
+One (not so good) way to estimate `pi` is through Monte-Carlo simulation.
+
+Suppose we wish to estimate the value of `pi` using a Monte-Carlo method.  Esentially, we throw darts at the unit square and count the number of darts that fall within the unit circle.  We'll only deal with quadrant one.  Thus the $Area = \frac{\pi}{4}$
+
+Monte-Carlo psuedo code:
+
+1. Initalize `hits = 0`
+2. __for i in 1:N__
+3.   Generate two random numbers, $U_1$ and $U_2$, between 0 and 1
+4.   If $U_1^2 + U_2^2 < 1$, then `hits = hits + 1`
+5. __end for__
+6. Area estimate = `hits / N`
+7. $\hat{pi} = 4 * Area Estimate$
+
+```{r cache=TRUE}
+pi_naive <- function(N) {
+  hits <- 0
+  for(i in seq_len(N)) {
+    U1 <- runif(1)
+    U2 <- runif(1)
+    if ((U1^2 + U2^2) < 1) {
+      hits <- hits + 1
+    }
+  }
+  
+  4*hits/N
+}
+N <- 1e6
+system.time(pi_naive(N))
+```
+
+That's a long runtime (and bad estimate).  Let's vecrtorize it.
+
+```{r}
+pi_vect <- function(N) {
+  U1 <- runif(N)
+  U2 <- runif(N)
+  hits <- sum(U1^2 + U2^2 < 1)
+  4*hits/N
+}
+system.time(pi_vect(N))
+```
+
+
 ## Function Basics
 
+> To understand computations in R, two slogans are helpful:  
+> - Everything that exists is an object.  
+> - Everything that happens is a function call.  
+> John Chambers
+
+Functions in R are "first class objects", which means that they can be
+treated much like any other R object. Importantly,
+
+- Functions can be passed as arguments to other functions. This is very handy for the various apply functions, like `lapply()` and `sapply()`.
+
+- Functions can be nested, so that you can define a function inside of
+  another function
+
+If you're familiar with common language like C, these features might appear a bit strange. However, they are really important in R and can be useful for data analysis.
+
+__Messy code hides bugs__
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/funs.png", dpi = 300)
+```
+
+- Functions are a means of **abstraction**. A concept/computation is
+  encapsulated/isolated from the rest with a function.
+- Functions should **do one thing**, and do it well (compute, or plot,
+  or save, ... not all in one go).
+- **Side effects**: your functions should not have any (unless, of
+  course, that is the main point of that function - plotting, write to
+  disk, ...). Functions shouldn't make any changes in any
+  environment. The only return their output.
+- **Do not use global variables**. Everything the function needs is
+  being passed as an argument. Function must be **self-contained**.
+- Function streamline code and process
+
+From the [R Inferno](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf):
+
+Make your functions as simple as possible. Simple has many advantages:
+
+- Simple functions are likely to be human efficient: they will be easy
+  to understand and to modify.
+- Simple functions are likely to be computer efficient.
+- Simple functions are less likely to be buggy, and bugs will be
+  easier to fix.
+- (Perhaps ironically) simple functions may be more general—thinking
+  about the heart of the matter often broadens the application.
+
+
+Functions can be
+
+1. Correct.
+2. An error occurs that is clearly identified.
+3. An obscure error occurs.
+4. An incorrect value is returned.
+
+We like category 1. Category 2 is the right behavior if the inputs do
+not make sense, but not if the inputs are sensible. Category 3 is an
+unpleasant place for your users, and possibly for you if the users
+have access to you. Category 4 is by far the worst place to be - the
+user has no reason to believe that anything is wrong. Steer clear of
+category 4.
+
+
+Finally, functions are
+
+- Easier to debug
+- Easier to profile
+- Easier to parallelise
+
+Functions are an central part of robust R programming and we will spend a significant amount of time writing functions.
+
+### Your First Function
+
+All R functions have three parts: 
+
+* the `body()`, the code inside the function.
+
+* the `formals()`, the list of arguments which controls how you can call the function.
+
+* the `environment()`, the "map" of the location of the function's variables.
+
+When you print a function in R, it shows you these three important components. If the environment isn't displayed, it means that the function was created in the global environment.
+
+```{r}
+myadd <- function(x, y) {
+  cat(paste0("x = ", x, "\n"))
+  cat(paste0("y = ", y, "\n"))
+  x + y
+}
+myadd(1, 3)            # call by position
+myadd(x = 1, y = 3)    # call by name
+myadd(y = 3, x = 1)    # name order doesn't matter
+```
+
+- The body of the function is everything between the `{ }`.  Note this does the computation __AND__ returns the result.
+- `x` and `y` are the arguments to the function.
+- the environment this function lives in is the global environement. (We'll discuss environments more in the next section.)
+
+Even though it’s legal, I don’t recommend messing around with the order of the arguments too much, since it can lead to some confusion.
+
+You can also specify default values for your arguments.  Default values _should_ be the values most often used.  `rnorm` uses the default of `mean = 0` and `sd = 1`.  We usually want to sample from the standard normal distribution, but we are not forced to. 
+
+```{r}
+myadd2 <- function(x = 3, y = 0){
+  cat(paste0("x = ", x, "\n"))
+  cat(paste0("y = ", y, "\n"))
+  x + y
+}
+myadd2()              # use the defaults
+myadd2(x = 1)
+myadd2(y = 1)
+myadd2(x = 1, y = 1)
+```
+
+By defualt the last line of the function is returned.  Thus, there is no reason to explicitly call `return`, unless you are returning from the function early.  Inside functions use `stop` to return error messages, `warning` to return warning messages, and `message` to print a message to the console.
+
+```{r warning=TRUE, error=TRUE}
+f <- function(age) {
+  if (age < 0) {
+    stop("age must be a positive number")
+  }
+  
+  if (age < 18) {
+    warning("Check your data.  We only care about adults.")
+  }
+  
+  message(paste0("Your person is ", age, " years old"))
+  invisible()
+}
+
+f(-10)
+f(10)
+f(30)
+```
+
+### Lazy Evaluation
+
+R is lazy.  Arguments to functions are evaluated _lazily_, that is they are evaluated only as needed in the body of the function.
+
+In this example, the function `f()` has two arguments: `a` and `b`.
+
+```{r}
+f <- function(a, b) {
+  a^2
+} 
+
+f(2)     # this works
+f(2, 1)  # this does too
+```
+
+This function never actually uses the argument `b`, so calling `f(2)` or `f(2, 1)` will not produce an error because the 2 gets positionally matched to a. This behavior can be good or bad. It’s common to write a function that doesn’t use an argument and not notice it simply because R never throws an error.
+
+### The `...` Argument
+
+There is a special argument in R known as the `...` argument, which indicate a variable number of arguments that are usually passed on to other functions. The `...` argument is often used when extending another function and you don’t want to copy the entire argument list of the original function
+
+For example, a custom plotting function may want to make use of the default `plot()` function along with its entire argument list. The function below changes the default for the `type` argument to the value `type = "l"` (the original default was `type = "p"`).
+
+```r
+myplot <- function(x, y, type = "l", ...) {
+        plot(x, y, type = type, ...)         ## Pass '...' to 'plot' function
+}
+```
+The `...` argument is also necessary when the number of arguments passed to the function cannot be known in advance. This is clear in functions like `paste()` and `cat()`.
+
+```{r}
+args(paste)
+args(cat)
+```
+
+Because both `paste()` and `cat()` print out text to the console by combining multiple character vectors together, it is impossible for those functions to know in advance how many character vectors will be passed to the function by the user. So the first argument to either function is `...`.
+
+One catch with `...` is that any arguments that appear _after_ `...` on the argument list must be named explicitly and cannot be partially matched or matched positionally.
+
+Take a look at the arguments to the `paste()` function.
+
+```{r}
+args(paste)
+```
+
+With the `paste()` function, the arguments `sep` and `collapse` must be named explicitly and in full if the default values are not going to be used.
+
 ## Environments & Scoping
+
+An __environment__ is a collection of (symbol, value) pairs, i.e. `x` is a symbol and `3.14` might be its value. Every environment has a parent environment and it is possible for an environment to have multiple “children”. The only environment without a parent is the empty environment.  
+
+__Scoping__ is the set of rules that govern how R looks up the value of a symbol. In the example below, scoping is the set of rules that R applies to go from the symbol `x` to its value `10`:
+
+```{r}
+x <- 10
+x
+```
+
+R has two types of scoping: lexical scoping, implemented automatically at the language level, and dynamic scoping, used in select functions to save typing during interactive analysis. We discuss lexical scoping here because it is intimately tied to function creation. Dynamic scoping is an advanced topic and is discussed in [Advanced R](http://adv-r.had.co.nz).
+
+How do we associate a value to a free variable? There is a search process that occurs that goes as follows:
+
+If the value of a symbol is not found in the environment in which a function was defined, then the search is continued in the parent environment.
+The search continues up the sequence of parent environments until we hit the top-level environment; this usually the global environment (workspace) or the namespace of a package.
+After the top-level environment, the search continues down the search list until we hit the empty environment.
+If a value for a given symbol cannot be found once the empty environment is arrived at, then an error is thrown.
+
+```{r}
+x <- 0
+f <- function(x = -1) {
+  x <- 1
+  y <- 2
+  c(x, y)
+}
+
+g <- function(x = -1) {
+  y <- 1
+  c(x, y)
+}
+
+h <- function() {
+  y <- 1
+  c(x, y)
+}
+```
+
+What do the following return?
+
+- `f()`
+- `g()`
+- `h()`
+- `g(h())`
+- `f(g())`
+- `g(f())`
+
+Unlike most languages you can define a function within a function.  This nested function only lives inside the parent function.
+
+```{r error=TRUE}
+make.power <- function(n) {
+  pow <- function(x) {
+    x^n 
+  }
+  pow
+}
+
+make.power(4)
+cube <- make.power(3)
+square <- make.power(2)
+
+x <- 1
+n <- 2
+pow(x=4)
+```
 
 ## Assignment
 
 1. Browse this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) and read the help file for functions that interest you.
-2. Vectorization
+2. Vectorization / function practice.
+
+We'll calcualte pi using the Gregory-Leibniz series. Mathematicians will be quick to point out that this is a poor way to calculate pi, since the series converges very slowly. But our goal is not calculating pi, our goal is examining the performance benefit that be be achieved using vectorization.
+
+Here is a formula for the Gregory-Leibniz series:
+
+$1 - 1/3 + 1/5 - 1/7 + 1/9 - ... = \frac{\pi}{4}$
+
+Here is the Gregory-Leibniz series in summation notation:
+
+$ \sum_\limits_{n=0}^{\infty} \frac{(-1)^n}{2*n+1} = \frac{\pi}{4}$
 
 
+The straightforward implementation using an R loop would look like this:
 
+```{r}
+GL_naive <- function (limit) {
+  p = 0
+  for (n in 0:limit) {
+    p = (-1)^n/(2 * n + 1) + p
+    }
 
+  4*p
+}
+
+N <- 1e7
+system.time(pi_est <- GL_naive(N))
+pi_est
+```
+
+Your take is to vectorize this function.  Do not use any looping or apply functions.  This one is a bit tricky.  Hint: It may be easier to think about it in terms of the series notation and not the summation notation.
+
+```{r eval=FALSE}
+GL_vect <- function(limit) {
+  # your code here
+  # use only base functions and no looping mechanisms
+}
+```

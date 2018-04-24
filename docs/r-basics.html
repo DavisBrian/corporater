@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-04-23">
+<meta name="date" content="2018-04-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -102,7 +102,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Modern R in a Corporate Environment</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i><b>0.1</b> Useful Resources</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#course-philosophy"><i class="fa fa-check"></i><b>1.1</b> Course Philosophy</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#reproducible-research"><i class="fa fa-check"></i><b>1.1.1</b> Reproducible Research</a></li>
@@ -125,7 +127,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
-<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-3"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of 3</em></a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-3dry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of 3</em>[^DRY]</a></li>
 <li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
@@ -137,7 +139,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#assignement"><i class="fa fa-check"></i><b>2.6</b> Assignement</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>3</b> R Basics</a><ul>
-<li class="chapter" data-level="3.1" data-path="r-basics.html"><a href="r-basics.html#assignment"><i class="fa fa-check"></i><b>3.1</b> Assignment</a></li>
+<li class="chapter" data-level="3.1" data-path="r-basics.html"><a href="r-basics.html#assignment-operators"><i class="fa fa-check"></i><b>3.1</b> Assignment Operators</a></li>
 <li class="chapter" data-level="3.2" data-path="r-basics.html"><a href="r-basics.html#objects"><i class="fa fa-check"></i><b>3.2</b> Objects</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="r-basics.html"><a href="r-basics.html#vector"><i class="fa fa-check"></i><b>3.2.1</b> Vector</a></li>
 <li class="chapter" data-level="3.2.2" data-path="r-basics.html"><a href="r-basics.html#matrix"><i class="fa fa-check"></i><b>3.2.2</b> Matrix</a></li>
@@ -146,18 +148,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="r-basics.html"><a href="r-basics.html#comparision"><i class="fa fa-check"></i><b>3.3</b> Comparision</a></li>
 <li class="chapter" data-level="3.4" data-path="r-basics.html"><a href="r-basics.html#logical-and-sets"><i class="fa fa-check"></i><b>3.4</b> Logical and sets</a></li>
-<li class="chapter" data-level="3.5" data-path="r-basics.html"><a href="r-basics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.5</b> Vectorization &amp; Recycling</a></li>
-<li class="chapter" data-level="3.6" data-path="r-basics.html"><a href="r-basics.html#control-structures"><i class="fa fa-check"></i><b>3.6</b> Control Structures</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="r-basics.html"><a href="r-basics.html#if-else"><i class="fa fa-check"></i><b>3.6.1</b> <code>if</code>-<code>else</code></a></li>
-<li class="chapter" data-level="3.6.2" data-path="r-basics.html"><a href="r-basics.html#for-loops"><i class="fa fa-check"></i><b>3.6.2</b> <code>for</code> Loops</a></li>
-<li class="chapter" data-level="3.6.3" data-path="r-basics.html"><a href="r-basics.html#while-loops"><i class="fa fa-check"></i><b>3.6.3</b> <code>while</code> Loops</a></li>
-<li class="chapter" data-level="3.6.4" data-path="r-basics.html"><a href="r-basics.html#repeat-loops"><i class="fa fa-check"></i><b>3.6.4</b> <code>repeat</code> Loops</a></li>
-<li class="chapter" data-level="3.6.5" data-path="r-basics.html"><a href="r-basics.html#next-break"><i class="fa fa-check"></i><b>3.6.5</b> <code>next</code>, <code>break</code></a></li>
-<li class="chapter" data-level="3.6.6" data-path="r-basics.html"><a href="r-basics.html#looping"><i class="fa fa-check"></i><b>3.6.6</b> Looping</a></li>
+<li class="chapter" data-level="3.5" data-path="r-basics.html"><a href="r-basics.html#control-structures"><i class="fa fa-check"></i><b>3.5</b> Control Structures</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="r-basics.html"><a href="r-basics.html#if-else"><i class="fa fa-check"></i><b>3.5.1</b> <code>if</code>-<code>else</code></a></li>
+<li class="chapter" data-level="3.5.2" data-path="r-basics.html"><a href="r-basics.html#for-loops"><i class="fa fa-check"></i><b>3.5.2</b> <code>for</code> Loops</a></li>
+<li class="chapter" data-level="3.5.3" data-path="r-basics.html"><a href="r-basics.html#while-loops"><i class="fa fa-check"></i><b>3.5.3</b> <code>while</code> Loops</a></li>
+<li class="chapter" data-level="3.5.4" data-path="r-basics.html"><a href="r-basics.html#repeat-loops"><i class="fa fa-check"></i><b>3.5.4</b> <code>repeat</code> Loops</a></li>
+<li class="chapter" data-level="3.5.5" data-path="r-basics.html"><a href="r-basics.html#next-break"><i class="fa fa-check"></i><b>3.5.5</b> <code>next</code>, <code>break</code></a></li>
+<li class="chapter" data-level="3.5.6" data-path="r-basics.html"><a href="r-basics.html#looping"><i class="fa fa-check"></i><b>3.5.6</b> Looping</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="r-basics.html"><a href="r-basics.html#function-basics"><i class="fa fa-check"></i><b>3.7</b> Function Basics</a></li>
+<li class="chapter" data-level="3.6" data-path="r-basics.html"><a href="r-basics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.6</b> Vectorization &amp; Recycling</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="r-basics.html"><a href="r-basics.html#example"><i class="fa fa-check"></i><b>3.6.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="r-basics.html"><a href="r-basics.html#function-basics"><i class="fa fa-check"></i><b>3.7</b> Function Basics</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="r-basics.html"><a href="r-basics.html#your-first-function"><i class="fa fa-check"></i><b>3.7.1</b> Your First Function</a></li>
+<li class="chapter" data-level="3.7.2" data-path="r-basics.html"><a href="r-basics.html#lazy-evaluation"><i class="fa fa-check"></i><b>3.7.2</b> Lazy Evaluation</a></li>
+<li class="chapter" data-level="3.7.3" data-path="r-basics.html"><a href="r-basics.html#the-...-argument"><i class="fa fa-check"></i><b>3.7.3</b> The <code>...</code> Argument</a></li>
+</ul></li>
 <li class="chapter" data-level="3.8" data-path="r-basics.html"><a href="r-basics.html#environments-scoping"><i class="fa fa-check"></i><b>3.8</b> Environments &amp; Scoping</a></li>
-<li class="chapter" data-level="3.9" data-path="r-basics.html"><a href="r-basics.html#assignment-1"><i class="fa fa-check"></i><b>3.9</b> Assignment</a></li>
+<li class="chapter" data-level="3.9" data-path="r-basics.html"><a href="r-basics.html#assignment"><i class="fa fa-check"></i><b>3.9</b> Assignment</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>4</b> Base R Data Structures</a><ul>
 <li class="chapter" data-level="4.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#naming-rules"><i class="fa fa-check"></i><b>4.1</b> Naming Rules</a></li>
@@ -220,15 +228,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Here is a quick look at some of the basics. Next we’ll dive deep into R’s basic data structures and how to subset them in subsequent chapters. This will give us a good overview of base R and the background needed to dive into <strong>R for Data Science</strong>.</p>
 <p>The three most important functions in R <code>?</code>, <code>??</code>, and <code>str</code>:</p>
 <ul>
-<li><code>?&lt;topic&gt;</code> provides access to the documentation for &lt;topic&gt;.</li>
-<li><code>??&lt;topic&gt;</code> searches the documention for &lt;topic&gt;.</li>
+<li><code>?topic</code> provides access to the documentation for <em>topic</em>.</li>
+<li><code>??topic</code> searches the documention for <em>topic</em>.</li>
 <li><code>str</code> displays the structure of an R object in human readable form.</li>
 </ul>
 <p>See this <a href="http://adv-r.had.co.nz/Vocabulary.html">vocabulary list</a> for a good starting point on the basics functions in base R and some important libraries.</p>
 <p>A book to learn the basics is <a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programmig for Data Science</a></p>
 <p>In R there three basic constructs; objects, functions, and environments:</p>
-<div id="assignment" class="section level2">
-<h2><span class="header-section-number">3.1</span> Assignment</h2>
+<div id="assignment-operators" class="section level2">
+<h2><span class="header-section-number">3.1</span> Assignment Operators</h2>
 <p>We saw this is Coding Style. Use <code>&lt;-</code> for assignment and use <code>=</code> for parameters. While you can use <code>=</code> for assignment it is generally considered bad practice.</p>
 </div>
 <div id="objects" class="section level2">
@@ -248,6 +256,12 @@ v</code></pre></div>
 <pre><code>#&gt; [1]  2  3  4  5  6  7  8  9 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">9</span><span class="op">:</span><span class="dv">3</span></code></pre></div>
 <pre><code>#&gt; [1] 9 8 7 6 5 4 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate regular sequences</span>
+<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dt">by =</span> <span class="dv">3</span>)</code></pre></div>
+<pre><code>#&gt; [1] 1 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># replicate a number n times</span>
+<span class="kw">rep</span>(<span class="dv">3</span>, <span class="dt">times =</span> <span class="dv">4</span>)</code></pre></div>
+<pre><code>#&gt; [1] 3 3 3 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># common mistake using 1:length(n) in loops</span>
 <span class="co"># but if n = 0</span>
 <span class="dv">1</span><span class="op">:</span><span class="dv">0</span></code></pre></div>
@@ -472,70 +486,8 @@ y &lt;-<span class="st"> </span><span class="dv">3</span><span class="op">:</spa
 <span class="kw">setequal</span>(x, z)</code></pre></div>
 <pre><code>#&gt; [1] TRUE</code></pre>
 </div>
-<div id="vectorization-recycling" class="section level2">
-<h2><span class="header-section-number">3.5</span> Vectorization &amp; Recycling</h2>
-<p>Many operations in R are <em>vectorized</em>, meaning that operations occur in parallel in certain R objects. This allows you to write code that is efficient, concise, and easier to read than in non-vectorized languages.</p>
-<p>The simplest example is when adding two vectors together.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
-y &lt;-<span class="st"> </span><span class="dv">11</span><span class="op">:</span><span class="dv">13</span>
-z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y
-z</code></pre></div>
-<pre><code>#&gt; [1] 12 14 16</code></pre>
-<p>In most other languages you would have to do something like</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(x))
-
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">seq_along</span>(x)) {
-      z[i] &lt;-<span class="st"> </span>x[i] <span class="op">+</span><span class="st"> </span>y[i]
-}
-z</code></pre></div>
-<pre><code>#&gt; [1] 12 14 16</code></pre>
-<p>We saw a a form of vectorization above in the logical operators.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x</code></pre></div>
-<pre><code>#&gt; [1] 1 2 3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
-<pre><code>#&gt; [1] FALSE FALSE  TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]</code></pre></div>
-<pre><code>#&gt; [1] 3</code></pre>
-<p>Matrix operations are also vectorized, making for nice compact notation. This way, we can do element-by-element operations on matrices without having to loop over every element.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)
-y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">10</span>, <span class="dv">4</span>), <span class="dv">2</span>, <span class="dv">2</span>)
-x</code></pre></div>
-<pre><code>#&gt;      [,1] [,2]
-#&gt; [1,]    1    3
-#&gt; [2,]    2    4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y</code></pre></div>
-<pre><code>#&gt;      [,1] [,2]
-#&gt; [1,]   10   10
-#&gt; [2,]   10   10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">*</span><span class="st"> </span>y  <span class="co"># element-wise multiplication</span></code></pre></div>
-<pre><code>#&gt;      [,1] [,2]
-#&gt; [1,]   10   30
-#&gt; [2,]   20   40</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">/</span><span class="st"> </span>y  <span class="co"># element-wise division</span></code></pre></div>
-<pre><code>#&gt;      [,1] [,2]
-#&gt; [1,]  0.1  0.3
-#&gt; [2,]  0.2  0.4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">%*%</span><span class="st"> </span>y  <span class="co"># true matrix multiplication</span></code></pre></div>
-<pre><code>#&gt;      [,1] [,2]
-#&gt; [1,]   40   40
-#&gt; [2,]   60   60</code></pre>
-<p>R also recyles arguments.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
-z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>.<span class="dv">1</span>  <span class="co"># add .1 to each element</span>
-z</code></pre></div>
-<pre><code>#&gt;  [1]  1.1  2.1  3.1  4.1  5.1  6.1  7.1  8.1  9.1 10.1</code></pre>
-<p>While you usually either want the same length vector or a length one vector. You are not limited to just these options.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
-y &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(.<span class="dv">1</span>, .<span class="dv">2</span>) 
-y</code></pre></div>
-<pre><code>#&gt;  [1]  1.1  2.2  3.1  4.2  5.1  6.2  7.1  8.2  9.1 10.2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(.<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>)</code></pre></div>
-<pre><code>#&gt; Warning in x + c(0.1, 0.2, 0.3): longer object length is not a multiple of shorter object length</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z</code></pre></div>
-<pre><code>#&gt;  [1]  1.1  2.2  3.3  4.1  5.2  6.3  7.1  8.2  9.3 10.1</code></pre>
-</div>
 <div id="control-structures" class="section level2">
-<h2><span class="header-section-number">3.6</span> Control Structures</h2>
+<h2><span class="header-section-number">3.5</span> Control Structures</h2>
 <p>Control structures allow you to put some “logic” into your R code, rather than just always executing the same R code every time. Control structures allow you to respond to inputs or to features of the data and execute different R expressions accordingly.</p>
 <p>Commonly used control structures are</p>
 <ul>
@@ -547,7 +499,7 @@ y</code></pre></div>
 <li><p><code>next</code>: skip an interation of a loop</p></li>
 </ul>
 <div id="if-else" class="section level3">
-<h3><span class="header-section-number">3.6.1</span> <code>if</code>-<code>else</code></h3>
+<h3><span class="header-section-number">3.5.1</span> <code>if</code>-<code>else</code></h3>
 <p>The <code>if</code>-<code>else</code> combination is probably the most commonly used control structure in R (or perhaps any language). This structure allows you to test a condition and act on it depending on whether it’s true or false.</p>
 <p>For starters, you can just use the <code>if</code> statement.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">&lt;</span>condition<span class="op">&gt;</span>) {
@@ -571,7 +523,7 @@ y</code></pre></div>
 }</code></pre></div>
 </div>
 <div id="for-loops" class="section level3">
-<h3><span class="header-section-number">3.6.2</span> <code>for</code> Loops</h3>
+<h3><span class="header-section-number">3.5.2</span> <code>for</code> Loops</h3>
 <p>For loops are pretty much the only looping construct that you will need in R. While you may occasionally find a need for other types of loops, in my experience doing data analysis, I’ve found very few situations where a for loop wasn’t sufficient.</p>
 <p>In R, for loops take an interator variable and assign it successive values from a sequence or vector. For loops are most commonly used for iterating over the elements of an object (list, vector, etc.)</p>
 <p>The following three loops all have the similar behavior.</p>
@@ -606,7 +558,7 @@ y</code></pre></div>
 <p>Nested loops are commonly needed for multidimensional or hierarchical data structures (e.g. matrices, lists). Be careful with nesting though. Nesting beyond 2 to 3 levels often makes it difficult to read/understand the code. If you find yourself in need of a large number of nested loops, you may want to break up the loops by using functions (discussed later).</p>
 </div>
 <div id="while-loops" class="section level3">
-<h3><span class="header-section-number">3.6.3</span> <code>while</code> Loops</h3>
+<h3><span class="header-section-number">3.5.3</span> <code>while</code> Loops</h3>
 <p>While loops begin by testing a condition. If it is true, then they execute the loop body. Once the loop body is executed, the condition is tested again, and so forth, until the condition is false, after which the loop exits.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">count &lt;-<span class="st"> </span><span class="dv">0</span>
 <span class="cf">while</span>(count <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) {
@@ -642,7 +594,7 @@ y</code></pre></div>
 <p>Conditions are always evaluated from left to right. For example, in the above code, if <code>z</code> were less than 3, the second test would not have been evaluated.</p>
 </div>
 <div id="repeat-loops" class="section level3">
-<h3><span class="header-section-number">3.6.4</span> <code>repeat</code> Loops</h3>
+<h3><span class="header-section-number">3.5.4</span> <code>repeat</code> Loops</h3>
 <p><code>repeat</code> initiates an infinite loop right from the start. These are not commonly used in statistical or data analysis applications but they do have their uses. The only way to exit a <code>repeat</code> loop is to call <code>break</code>.</p>
 <p>One possible paradigm might be in an iterative algorith where you may be searching for a solution and you don’t want to stop until you’re close enough to the solution. In this kind of situation, you often don’t know in advance how many iterations it’s going to take to get “close enough” to the solution.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x0 &lt;-<span class="st"> </span><span class="dv">1</span>
@@ -661,7 +613,7 @@ tol &lt;-<span class="st"> </span><span class="fl">1e-8</span>
 <p>The loop above is a bit dangerous because there’s no guarantee it will ever stop. You could get in a situation where the values of <code>x0</code> and <code>x1</code> oscillate back and forth and never converge. Better to set a hard limit on the number of iterations by using a <code>for</code> loop and then report whether convergence was achieved or not.</p>
 </div>
 <div id="next-break" class="section level3">
-<h3><span class="header-section-number">3.6.5</span> <code>next</code>, <code>break</code></h3>
+<h3><span class="header-section-number">3.5.5</span> <code>next</code>, <code>break</code></h3>
 <p>While not used very often it’s nice to know about these.</p>
 <p><code>next</code> is used to skip an iteration of a loop.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>) {
@@ -682,8 +634,8 @@ tol &lt;-<span class="st"> </span><span class="fl">1e-8</span>
 }</code></pre></div>
 </div>
 <div id="looping" class="section level3">
-<h3><span class="header-section-number">3.6.6</span> Looping</h3>
-<p>For loops are so common that that R has some functions which implement looping in a compact form to make your life easier.</p>
+<h3><span class="header-section-number">3.5.6</span> Looping</h3>
+<p>For loops are so common that that R has some functions which implement looping in a compact form to make your life easier. For a more in depth look see <a href="https://bookdown.org/rdpeng/rprogdatascience/loop-functions.html">this</a></p>
 <ul>
 <li><code>apply</code> is generic: applies a function to a matrix’s rows or columns (or, more generally, to dimensions of an array)</li>
 <li><code>lapply</code> is a list apply which acts on a list or vector and returns a list.</li>
@@ -749,18 +701,357 @@ y &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">
 <p><code>tapply</code> is in a simalar spirit to a common data analysis paradigm called split-apply-combine where we split our data set based on a group, apply a function or code to it, and combine the results back together. We will revisit this paradigm in greater detail when we get to <em>R for Data Science</em>.</p>
 </div>
 </div>
+<div id="vectorization-recycling" class="section level2">
+<h2><span class="header-section-number">3.6</span> Vectorization &amp; Recycling</h2>
+<p>Many operations in R are <em>vectorized</em>, meaning that operations occur in parallel in certain R objects. This allows you to write code that is efficient, concise, and easier to read than in non-vectorized languages.</p>
+<p>The simplest example is when adding two vectors together.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>
+y &lt;-<span class="st"> </span><span class="dv">11</span><span class="op">:</span><span class="dv">13</span>
+z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y
+z</code></pre></div>
+<pre><code>#&gt; [1] 12 14 16</code></pre>
+<p>In most other languages you would have to do something like</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(x))
+
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">seq_along</span>(x)) {
+      z[i] &lt;-<span class="st"> </span>x[i] <span class="op">+</span><span class="st"> </span>y[i]
+}
+z</code></pre></div>
+<pre><code>#&gt; [1] 12 14 16</code></pre>
+<p>We saw a a form of vectorization above in the logical operators.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x</code></pre></div>
+<pre><code>#&gt; [1] 1 2 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre><code>#&gt; [1] FALSE FALSE  TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]</code></pre></div>
+<pre><code>#&gt; [1] 3</code></pre>
+<p>Matrix operations are also vectorized, making for nice compact notation. This way, we can do element-by-element operations on matrices without having to loop over every element.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)
+y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">10</span>, <span class="dv">4</span>), <span class="dv">2</span>, <span class="dv">2</span>)
+x</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]    1    3
+#&gt; [2,]    2    4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y</code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]   10   10
+#&gt; [2,]   10   10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">*</span><span class="st"> </span>y  <span class="co"># element-wise multiplication</span></code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]   10   30
+#&gt; [2,]   20   40</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">/</span><span class="st"> </span>y  <span class="co"># element-wise division</span></code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]  0.1  0.3
+#&gt; [2,]  0.2  0.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">%*%</span><span class="st"> </span>y  <span class="co"># true matrix multiplication</span></code></pre></div>
+<pre><code>#&gt;      [,1] [,2]
+#&gt; [1,]   40   40
+#&gt; [2,]   60   60</code></pre>
+<p>R also recyles arguments.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>.<span class="dv">1</span>  <span class="co"># add .1 to each element</span>
+z</code></pre></div>
+<pre><code>#&gt;  [1]  1.1  2.1  3.1  4.1  5.1  6.1  7.1  8.1  9.1 10.1</code></pre>
+<p>While you usually either want the same length vector or a length one vector. You are not limited to just these options.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+y &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(.<span class="dv">1</span>, .<span class="dv">2</span>) 
+y</code></pre></div>
+<pre><code>#&gt;  [1]  1.1  2.2  3.1  4.2  5.1  6.2  7.1  8.2  9.1 10.2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(.<span class="dv">1</span>, .<span class="dv">2</span>, .<span class="dv">3</span>)</code></pre></div>
+<pre><code>#&gt; Warning in x + c(0.1, 0.2, 0.3): longer object length is not a multiple of shorter object length</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z</code></pre></div>
+<pre><code>#&gt;  [1]  1.1  2.2  3.3  4.1  5.2  6.3  7.1  8.2  9.3 10.1</code></pre>
+<div id="example" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Example</h3>
+<p>One (not so good) way to estimate <code>pi</code> is through Monte-Carlo simulation.</p>
+<p>Suppose we wish to estimate the value of <code>pi</code> using a Monte-Carlo method. Esentially, we throw darts at the unit square and count the number of darts that fall within the unit circle. We’ll only deal with quadrant one. Thus the <span class="math inline">\(Area = \frac{\pi}{4}\)</span></p>
+<p>Monte-Carlo psuedo code:</p>
+<ol style="list-style-type: decimal">
+<li>Initalize <code>hits = 0</code></li>
+<li><strong>for i in 1:N</strong></li>
+<li>Generate two random numbers, <span class="math inline">\(U_1\)</span> and <span class="math inline">\(U_2\)</span>, between 0 and 1</li>
+<li>If <span class="math inline">\(U_1^2 + U_2^2 &lt; 1\)</span>, then <code>hits = hits + 1</code></li>
+<li><strong>end for</strong></li>
+<li>Area estimate = <code>hits / N</code></li>
+<li><span class="math inline">\(\hat{pi} = 4 * Area Estimate\)</span></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pi_naive &lt;-<span class="st"> </span><span class="cf">function</span>(N) {
+  hits &lt;-<span class="st"> </span><span class="dv">0</span>
+  <span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">seq_len</span>(N)) {
+    U1 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>)
+    U2 &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1</span>)
+    <span class="cf">if</span> ((U1<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>U2<span class="op">^</span><span class="dv">2</span>) <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>) {
+      hits &lt;-<span class="st"> </span>hits <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+    }
+  }
+  
+  <span class="dv">4</span><span class="op">*</span>hits<span class="op">/</span>N
+}
+N &lt;-<span class="st"> </span><span class="fl">1e6</span>
+<span class="kw">system.time</span>(<span class="kw">pi_naive</span>(N))</code></pre></div>
+<pre><code>#&gt;    user  system elapsed 
+#&gt;    3.29    0.00    3.33</code></pre>
+<p>That’s a long runtime (and bad estimate). Let’s vecrtorize it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pi_vect &lt;-<span class="st"> </span><span class="cf">function</span>(N) {
+  U1 &lt;-<span class="st"> </span><span class="kw">runif</span>(N)
+  U2 &lt;-<span class="st"> </span><span class="kw">runif</span>(N)
+  hits &lt;-<span class="st"> </span><span class="kw">sum</span>(U1<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>U2<span class="op">^</span><span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>)
+  <span class="dv">4</span><span class="op">*</span>hits<span class="op">/</span>N
+}
+<span class="kw">system.time</span>(<span class="kw">pi_vect</span>(N))</code></pre></div>
+<pre><code>#&gt;    user  system elapsed 
+#&gt;    0.18    0.00    0.17</code></pre>
+</div>
+</div>
 <div id="function-basics" class="section level2">
 <h2><span class="header-section-number">3.7</span> Function Basics</h2>
+<blockquote>
+<p>To understand computations in R, two slogans are helpful:<br />
+- Everything that exists is an object.<br />
+- Everything that happens is a function call.<br />
+John Chambers</p>
+</blockquote>
+<p>Functions in R are “first class objects”, which means that they can be treated much like any other R object. Importantly,</p>
+<ul>
+<li><p>Functions can be passed as arguments to other functions. This is very handy for the various apply functions, like <code>lapply()</code> and <code>sapply()</code>.</p></li>
+<li><p>Functions can be nested, so that you can define a function inside of another function</p></li>
+</ul>
+<p>If you’re familiar with common language like C, these features might appear a bit strange. However, they are really important in R and can be useful for data analysis.</p>
+<p><strong>Messy code hides bugs</strong></p>
+<p><img src="images/funs.png" width="1014" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Functions are a means of <strong>abstraction</strong>. A concept/computation is encapsulated/isolated from the rest with a function.</li>
+<li>Functions should <strong>do one thing</strong>, and do it well (compute, or plot, or save, … not all in one go).</li>
+<li><strong>Side effects</strong>: your functions should not have any (unless, of course, that is the main point of that function - plotting, write to disk, …). Functions shouldn’t make any changes in any environment. The only return their output.</li>
+<li><strong>Do not use global variables</strong>. Everything the function needs is being passed as an argument. Function must be <strong>self-contained</strong>.</li>
+<li>Function streamline code and process</li>
+</ul>
+<p>From the <a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">R Inferno</a>:</p>
+<p>Make your functions as simple as possible. Simple has many advantages:</p>
+<ul>
+<li>Simple functions are likely to be human efficient: they will be easy to understand and to modify.</li>
+<li>Simple functions are likely to be computer efficient.</li>
+<li>Simple functions are less likely to be buggy, and bugs will be easier to fix.</li>
+<li>(Perhaps ironically) simple functions may be more general—thinking about the heart of the matter often broadens the application.</li>
+</ul>
+<p>Functions can be</p>
+<ol style="list-style-type: decimal">
+<li>Correct.</li>
+<li>An error occurs that is clearly identified.</li>
+<li>An obscure error occurs.</li>
+<li>An incorrect value is returned.</li>
+</ol>
+<p>We like category 1. Category 2 is the right behavior if the inputs do not make sense, but not if the inputs are sensible. Category 3 is an unpleasant place for your users, and possibly for you if the users have access to you. Category 4 is by far the worst place to be - the user has no reason to believe that anything is wrong. Steer clear of category 4.</p>
+<p>Finally, functions are</p>
+<ul>
+<li>Easier to debug</li>
+<li>Easier to profile</li>
+<li>Easier to parallelise</li>
+</ul>
+<p>Functions are an central part of robust R programming and we will spend a significant amount of time writing functions.</p>
+<div id="your-first-function" class="section level3">
+<h3><span class="header-section-number">3.7.1</span> Your First Function</h3>
+<p>All R functions have three parts:</p>
+<ul>
+<li><p>the <code>body()</code>, the code inside the function.</p></li>
+<li><p>the <code>formals()</code>, the list of arguments which controls how you can call the function.</p></li>
+<li><p>the <code>environment()</code>, the “map” of the location of the function’s variables.</p></li>
+</ul>
+<p>When you print a function in R, it shows you these three important components. If the environment isn’t displayed, it means that the function was created in the global environment.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myadd &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
+  <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;x = &quot;</span>, x, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))
+  <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;y = &quot;</span>, y, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))
+  x <span class="op">+</span><span class="st"> </span>y
+}
+<span class="kw">myadd</span>(<span class="dv">1</span>, <span class="dv">3</span>)            <span class="co"># call by position</span></code></pre></div>
+<pre><code>#&gt; x = 1
+#&gt; y = 3</code></pre>
+<pre><code>#&gt; [1] 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myadd</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">3</span>)    <span class="co"># call by name</span></code></pre></div>
+<pre><code>#&gt; x = 1
+#&gt; y = 3</code></pre>
+<pre><code>#&gt; [1] 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myadd</span>(<span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">x =</span> <span class="dv">1</span>)    <span class="co"># name order doesn&#39;t matter</span></code></pre></div>
+<pre><code>#&gt; x = 1
+#&gt; y = 3</code></pre>
+<pre><code>#&gt; [1] 4</code></pre>
+<ul>
+<li>The body of the function is everything between the <code>{ }</code>. Note this does the computation <strong>AND</strong> returns the result.</li>
+<li><code>x</code> and <code>y</code> are the arguments to the function.</li>
+<li>the environment this function lives in is the global environement. (We’ll discuss environments more in the next section.)</li>
+</ul>
+<p>Even though it’s legal, I don’t recommend messing around with the order of the arguments too much, since it can lead to some confusion.</p>
+<p>You can also specify default values for your arguments. Default values <em>should</em> be the values most often used. <code>rnorm</code> uses the default of <code>mean = 0</code> and <code>sd = 1</code>. We usually want to sample from the standard normal distribution, but we are not forced to.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myadd2 &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x =</span> <span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">0</span>){
+  <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;x = &quot;</span>, x, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))
+  <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;y = &quot;</span>, y, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))
+  x <span class="op">+</span><span class="st"> </span>y
+}
+<span class="kw">myadd2</span>()              <span class="co"># use the defaults</span></code></pre></div>
+<pre><code>#&gt; x = 3
+#&gt; y = 0</code></pre>
+<pre><code>#&gt; [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myadd2</span>(<span class="dt">x =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>#&gt; x = 1
+#&gt; y = 0</code></pre>
+<pre><code>#&gt; [1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myadd2</span>(<span class="dt">y =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>#&gt; x = 3
+#&gt; y = 1</code></pre>
+<pre><code>#&gt; [1] 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myadd2</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">1</span>)</code></pre></div>
+<pre><code>#&gt; x = 1
+#&gt; y = 1</code></pre>
+<pre><code>#&gt; [1] 2</code></pre>
+<p>By defualt the last line of the function is returned. Thus, there is no reason to explicitly call <code>return</code>, unless you are returning from the function early. Inside functions use <code>stop</code> to return error messages, <code>warning</code> to return warning messages, and <code>message</code> to print a message to the console.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>(age) {
+  <span class="cf">if</span> (age <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {
+    <span class="kw">stop</span>(<span class="st">&quot;age must be a positive number&quot;</span>)
+  }
+  
+  <span class="cf">if</span> (age <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>) {
+    <span class="kw">warning</span>(<span class="st">&quot;Check your data.  We only care about adults.&quot;</span>)
+  }
+  
+  <span class="kw">message</span>(<span class="kw">paste0</span>(<span class="st">&quot;Your person is &quot;</span>, age, <span class="st">&quot; years old&quot;</span>))
+  <span class="kw">invisible</span>()
+}
+
+<span class="kw">f</span>(<span class="op">-</span><span class="dv">10</span>)</code></pre></div>
+<pre><code>#&gt; Error in f(-10): age must be a positive number</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f</span>(<span class="dv">10</span>)</code></pre></div>
+<pre><code>#&gt; Warning in f(10): Check your data. We only care about adults.</code></pre>
+<pre><code>#&gt; Your person is 10 years old</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f</span>(<span class="dv">30</span>)</code></pre></div>
+<pre><code>#&gt; Your person is 30 years old</code></pre>
+</div>
+<div id="lazy-evaluation" class="section level3">
+<h3><span class="header-section-number">3.7.2</span> Lazy Evaluation</h3>
+<p>R is lazy. Arguments to functions are evaluated <em>lazily</em>, that is they are evaluated only as needed in the body of the function.</p>
+<p>In this example, the function <code>f()</code> has two arguments: <code>a</code> and <code>b</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {
+  a<span class="op">^</span><span class="dv">2</span>
+} 
+
+<span class="kw">f</span>(<span class="dv">2</span>)     <span class="co"># this works</span></code></pre></div>
+<pre><code>#&gt; [1] 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f</span>(<span class="dv">2</span>, <span class="dv">1</span>)  <span class="co"># this does too</span></code></pre></div>
+<pre><code>#&gt; [1] 4</code></pre>
+<p>This function never actually uses the argument <code>b</code>, so calling <code>f(2)</code> or <code>f(2, 1)</code> will not produce an error because the 2 gets positionally matched to a. This behavior can be good or bad. It’s common to write a function that doesn’t use an argument and not notice it simply because R never throws an error.</p>
+</div>
+<div id="the-...-argument" class="section level3">
+<h3><span class="header-section-number">3.7.3</span> The <code>...</code> Argument</h3>
+<p>There is a special argument in R known as the <code>...</code> argument, which indicate a variable number of arguments that are usually passed on to other functions. The <code>...</code> argument is often used when extending another function and you don’t want to copy the entire argument list of the original function</p>
+<p>For example, a custom plotting function may want to make use of the default <code>plot()</code> function along with its entire argument list. The function below changes the default for the <code>type</code> argument to the value <code>type = &quot;l&quot;</code> (the original default was <code>type = &quot;p&quot;</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myplot &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, ...) {
+        <span class="kw">plot</span>(x, y, <span class="dt">type =</span> type, ...)         ## Pass &#39;...&#39; to &#39;plot&#39; function
+}</code></pre></div>
+<p>The <code>...</code> argument is also necessary when the number of arguments passed to the function cannot be known in advance. This is clear in functions like <code>paste()</code> and <code>cat()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(paste)</code></pre></div>
+<pre><code>#&gt; function (..., sep = &quot; &quot;, collapse = NULL) 
+#&gt; NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(cat)</code></pre></div>
+<pre><code>#&gt; function (..., file = &quot;&quot;, sep = &quot; &quot;, fill = FALSE, labels = NULL, 
+#&gt;     append = FALSE) 
+#&gt; NULL</code></pre>
+<p>Because both <code>paste()</code> and <code>cat()</code> print out text to the console by combining multiple character vectors together, it is impossible for those functions to know in advance how many character vectors will be passed to the function by the user. So the first argument to either function is <code>...</code>.</p>
+<p>One catch with <code>...</code> is that any arguments that appear <em>after</em> <code>...</code> on the argument list must be named explicitly and cannot be partially matched or matched positionally.</p>
+<p>Take a look at the arguments to the <code>paste()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(paste)</code></pre></div>
+<pre><code>#&gt; function (..., sep = &quot; &quot;, collapse = NULL) 
+#&gt; NULL</code></pre>
+<p>With the <code>paste()</code> function, the arguments <code>sep</code> and <code>collapse</code> must be named explicitly and in full if the default values are not going to be used.</p>
+</div>
 </div>
 <div id="environments-scoping" class="section level2">
 <h2><span class="header-section-number">3.8</span> Environments &amp; Scoping</h2>
+<p>An <strong>environment</strong> is a collection of (symbol, value) pairs, i.e. <code>x</code> is a symbol and <code>3.14</code> might be its value. Every environment has a parent environment and it is possible for an environment to have multiple “children”. The only environment without a parent is the empty environment.</p>
+<p><strong>Scoping</strong> is the set of rules that govern how R looks up the value of a symbol. In the example below, scoping is the set of rules that R applies to go from the symbol <code>x</code> to its value <code>10</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">10</span>
+x</code></pre></div>
+<pre><code>#&gt; [1] 10</code></pre>
+<p>R has two types of scoping: lexical scoping, implemented automatically at the language level, and dynamic scoping, used in select functions to save typing during interactive analysis. We discuss lexical scoping here because it is intimately tied to function creation. Dynamic scoping is an advanced topic and is discussed in <a href="http://adv-r.had.co.nz">Advanced R</a>.</p>
+<p>How do we associate a value to a free variable? There is a search process that occurs that goes as follows:</p>
+<p>If the value of a symbol is not found in the environment in which a function was defined, then the search is continued in the parent environment. The search continues up the sequence of parent environments until we hit the top-level environment; this usually the global environment (workspace) or the namespace of a package. After the top-level environment, the search continues down the search list until we hit the empty environment. If a value for a given symbol cannot be found once the empty environment is arrived at, then an error is thrown.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">0</span>
+f &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x =</span> <span class="op">-</span><span class="dv">1</span>) {
+  x &lt;-<span class="st"> </span><span class="dv">1</span>
+  y &lt;-<span class="st"> </span><span class="dv">2</span>
+  <span class="kw">c</span>(x, y)
+}
+
+g &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x =</span> <span class="op">-</span><span class="dv">1</span>) {
+  y &lt;-<span class="st"> </span><span class="dv">1</span>
+  <span class="kw">c</span>(x, y)
+}
+
+h &lt;-<span class="st"> </span><span class="cf">function</span>() {
+  y &lt;-<span class="st"> </span><span class="dv">1</span>
+  <span class="kw">c</span>(x, y)
+}</code></pre></div>
+<p>What do the following return?</p>
+<ul>
+<li><code>f()</code></li>
+<li><code>g()</code></li>
+<li><code>h()</code></li>
+<li><code>g(h())</code></li>
+<li><code>f(g())</code></li>
+<li><code>g(f())</code></li>
+</ul>
+<p>Unlike most languages you can define a function within a function. This nested function only lives inside the parent function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">make.power &lt;-<span class="st"> </span><span class="cf">function</span>(n) {
+  pow &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+    x<span class="op">^</span>n 
+  }
+  pow
+}
+
+<span class="kw">make.power</span>(<span class="dv">4</span>)</code></pre></div>
+<pre><code>#&gt; function(x) {
+#&gt;     x^n 
+#&gt;   }
+#&gt; &lt;environment: 0x00000000082fe9b8&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cube &lt;-<span class="st"> </span><span class="kw">make.power</span>(<span class="dv">3</span>)
+square &lt;-<span class="st"> </span><span class="kw">make.power</span>(<span class="dv">2</span>)
+
+x &lt;-<span class="st"> </span><span class="dv">1</span>
+n &lt;-<span class="st"> </span><span class="dv">2</span>
+<span class="kw">pow</span>(<span class="dt">x=</span><span class="dv">4</span>)</code></pre></div>
+<pre><code>#&gt; Error in pow(x = 4): could not find function &quot;pow&quot;</code></pre>
 </div>
-<div id="assignment-1" class="section level2">
+<div id="assignment" class="section level2">
 <h2><span class="header-section-number">3.9</span> Assignment</h2>
 <ol style="list-style-type: decimal">
 <li>Browse this <a href="http://adv-r.had.co.nz/Vocabulary.html">vocabulary list</a> and read the help file for functions that interest you.</li>
-<li>ddd</li>
+<li>Vectorization / function practice.</li>
 </ol>
+<p>We’ll calcualte pi using the Gregory-Leibniz series. Mathematicians will be quick to point out that this is a poor way to calculate pi, since the series converges very slowly. But our goal is not calculating pi, our goal is examining the performance benefit that be be achieved using vectorization.</p>
+<p>Here is a formula for the Gregory-Leibniz series:</p>
+<p><span class="math inline">\(1 - 1/3 + 1/5 - 1/7 + 1/9 - ... = \frac{\pi}{4}\)</span></p>
+<p>Here is the Gregory-Leibniz series in summation notation:</p>
+<p>$ <em></em>{n=0}^{}  = $</p>
+<p>The straightforward implementation using an R loop would look like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GL_naive &lt;-<span class="st"> </span><span class="cf">function</span> (limit) {
+  p =<span class="st"> </span><span class="dv">0</span>
+  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">0</span><span class="op">:</span>limit) {
+    p =<span class="st"> </span>(<span class="op">-</span><span class="dv">1</span>)<span class="op">^</span>n<span class="op">/</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>n <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) <span class="op">+</span><span class="st"> </span>p
+    }
+
+  <span class="dv">4</span><span class="op">*</span>p
+}
+
+N &lt;-<span class="st"> </span><span class="fl">1e7</span>
+<span class="kw">system.time</span>(pi_est &lt;-<span class="st"> </span><span class="kw">GL_naive</span>(N))</code></pre></div>
+<pre><code>#&gt;    user  system elapsed 
+#&gt;    2.10    0.00    2.14</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pi_est</code></pre></div>
+<pre><code>#&gt; [1] 3.141593</code></pre>
+<p>Your take is to vectorize this function. Do not use any looping or apply functions. This one is a bit tricky. Hint: It may be easier to think about it in terms of the series notation and not the summation notation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GL_vect &lt;-<span class="st"> </span><span class="cf">function</span>(limit) {
+  <span class="co"># your code here</span>
+  <span class="co"># use only base functions and no looping mechanisms</span>
+}</code></pre></div>
 
 </div>
 </div>
@@ -785,8 +1076,8 @@ gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
-"facebook": true,
-"twitter": true,
+"facebook": false,
+"twitter": false,
 "google": false,
 "weibo": false,
 "instapper": false,
@@ -811,6 +1102,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
