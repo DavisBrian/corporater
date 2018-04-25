@@ -27,7 +27,9 @@ R's subsetting operators are powerful and fast. Mastery of subsetting allows you
 
 It’s easiest to learn how subsetting works for atomic vectors, and then how it generalises to higher dimensions and other more complicated objects.
 
-## Selecting multiple elements `[`
+## Selecting multiple elements
+
+There is one accessor for selecting multiple elements `[`.
 
 ### Atomic vectors
 

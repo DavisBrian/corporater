@@ -846,12 +846,15 @@ We'll calcualte pi using the Gregory-Leibniz series. Mathematicians will be quic
 
 Here is a formula for the Gregory-Leibniz series:
 
-$1 - 1/3 + 1/5 - 1/7 + 1/9 - ... = \frac{\pi}{4}$
+\begin{equation}
+1 - 1/3 + 1/5 - 1/7 + 1/9 - ... = \frac{\pi}{4}
+\end{equation}
 
 Here is the Gregory-Leibniz series in summation notation:
 
-$ \sum_\limits_{n=0}^{\infty} \frac{(-1)^n}{2*n+1} = \frac{\pi}{4}$
-
+\begin{equation}
+\sum_{\text{n}=0}^{\infty} \frac{(-1)^n}{2\cdot n + 1} = \frac{\pi}{4}
+\end{equation}
 
 The straightforward implementation using an R loop would look like this:
 
@@ -870,7 +873,7 @@ system.time(pi_est <- GL_naive(N))
 pi_est
 ```
 
-Your take is to vectorize this function.  Do not use any looping or apply functions.  This one is a bit tricky.  Hint: It may be easier to think about it in terms of the series notation and not the summation notation.
+Your task is to vectorize this function.  Do not use any looping or apply functions.  This one is a bit tricky.  Hint: It may be easier to think about it in terms of the series notation and not the summation notation.
 
 ```{r eval=FALSE}
 GL_vect <- function(limit) {
