@@ -1,19 +1,15 @@
-# R Basics
+# (PART) Base R Basics {-}
 
-```{r, include=FALSE}
-WORDS_TO_IGNORE <- "butitsuremakesthingseasiertoread"
-source("knitr-options.R")
-# source("spelling-check.R")
-```
+# R Basics {#baser-rbasics}
 
 With over 10,000 packages on CRAN we can't cover everything.  In general there are several ways, or packages, to accomplish a given task.
 
-Here is  a quick look at some of the basics.  Next we'll dive deep into R's basic data structures and how to subset them in subsequent chapters.  This will give us a good overview of base R and the background needed to dive into __R for Data Science__.
+Here is  a quick overview of the basics.  Next we'll dive deep into R's basic data structures and then how to subset these data structures.  This will give us a good overview of base R and the background needed to dive into __R for Data Science__.
 
 The three most important functions in R `?`, `??`, and `str`:
 
 - `?topic` provides access to the documentation for _topic_.
-- `??topic` searches the documention for _topic_.
+- `??topic` searches the documentation for _topic_.
 - `str` displays the structure of an R object in human readable form.
 
 See this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) for a good starting point on the basics functions in base R and some important libraries.  
@@ -47,10 +43,13 @@ There are several shortcut functions for common vector creation.
 9:3
 
 # generate regular sequences
-seq(1, 5, by = 3)
+seq(1, 20, by = 3)
 
 # replicate a number n times
 rep(3, times = 4)
+
+# arguments are generally vectorized
+rep(1:3, times = 3:1)
 
 # common mistake using 1:length(n) in loops
 # but if n = 0
@@ -63,12 +62,12 @@ seq_len(0)
 n <- 6
 1:n+1        # is (1:n) + 1, so 2:(n + 1)
 1:(n+1)      # usually what is meant
-seq_len(n+1) # another way
+seq_len(n+1) # a better way
 ```
 
 ### Matrix
 
-Matrices are 2D vectors, with all elements of the same type.  Genearlly used for mathematics.
+Matrices are 2D vectors, with all elements of the same type.  Generally used for mathematics.
 
 ```{r}
 # fill in column order (default)
@@ -109,7 +108,7 @@ We'll discuss lists in detail in the next chapter.
 
 ### Data frame
 
-A data frame is a list with each vector of the same length.  This is the main data structure used and is analagous to a data set in SAS.  While these __look__ like matrices they behave very different.
+A data frame is a list with each vector of the same length.  This is the main data structure used and is analogous to a data set in SAS.  While these __look__ like matrices they behave very different.
 
 ```{r}
 df = data.frame(n = c(2, 3, 5),
@@ -126,7 +125,7 @@ ncol(df)
 length(df)
 ```
 
-We'll discuss data frames in great detail in the next chapter.
+We'll discuss data frames in greater detail in the next chapter.
 
 ## Comparision 
 
@@ -202,7 +201,7 @@ all(x)
 all(!x[1:3])
 ```
 
-And also some useful set operations intersect, union, setdiff, setequal
+And also some useful __set__ operations `intersect`, `union`, `setdiff`, `setequal`
 
 ```{r}
 x <- 1:5
@@ -234,7 +233,7 @@ Commonly used control structures are
 
 - `break`: break the execution of a loop
 
-- `next`: skip an interation of a loop
+- `next`: skip an iteration of a loop
 
 ### `if`-`else`
 
@@ -284,7 +283,7 @@ need in R. While you may occasionally find a need for other types of
 loops, in my experience doing data analysis, I've found very few
 situations where a for loop wasn't sufficient. 
 
-In R, for loops take an interator variable and assign it successive
+In R, for loops take an iterator variable and assign it successive
 values from a sequence or vector. For loops are most commonly used for
 iterating over the elements of an object (list, vector, etc.)
 
@@ -317,8 +316,6 @@ for(letter in x) {
         print(letter)
 }
 ```
-
-Try these examples above but with `x <- NULL` and notice the difference in behavior.
 
 Nested loops are commonly needed for multidimensional or hierarchical
 data structures (e.g. matrices, lists). Be careful with nesting
@@ -374,7 +371,7 @@ not commonly used in statistical or data analysis applications but
 they do have their uses. The only way to exit a `repeat` loop is to
 call `break`.
 
-One possible paradigm might be in an iterative algorith where you may
+One possible paradigm might be in an iterative algorithm where you may
 be searching for a solution and you don't want to stop until you're
 close enough to the solution. In this kind of situation, you often
 don't know in advance how many iterations it's going to take to get
@@ -444,13 +441,13 @@ For loops are so common that that R has some functions which implement looping i
 *  `vapply` is a verified apply.  This is a sapply with the return object type prespecified.
 *  `rapply` is a recursive apply for nested lists, i.e. lists within lists
 *  `tapply` is a tagged apply where the tags identify the subsets to apply a function
-*  `mapply` is a multivariabe apply for functions that have multiple arguments.
+*  `mapply` is a multivariate apply for functions that have multiple arguments.
 *  `Map` is a wrapper to mapply with SIMPLIFY = FALSE, so it is guaranteed to return a list.
 *  `replicate` is a wrapper around sapply for repeated evaluation of an expression
 
 ```{r}
 # Two dimensional matrix
-M <- matrix(seq(1,16), 4, 4)
+M <- matrix(sample(1:16), 4, 4)
 M
 # apply min to rows
 apply(M, 1, min)
@@ -524,7 +521,7 @@ x / y  # element-wise division
 x %*% y  # true matrix multiplication
 ```
 
-R also recyles arguments.  
+R also recycles arguments.  
 
 ```{r}
 x <- 1:10
@@ -546,14 +543,14 @@ z
 
 One (not so good) way to estimate `pi` is through Monte-Carlo simulation.
 
-Suppose we wish to estimate the value of `pi` using a Monte-Carlo method.  Esentially, we throw darts at the unit square and count the number of darts that fall within the unit circle.  We'll only deal with quadrant one.  Thus the $Area = \frac{\pi}{4}$
+Suppose we wish to estimate the value of `pi` using a Monte-Carlo method.  Essentially, we throw darts at the unit square and count the number of darts that fall within the unit circle.  We'll only deal with quadrant one.  Thus the $Area = \frac{\pi}{4}$
 
-Monte-Carlo psuedo code:
+Monte-Carlo pseudo code:
 
-1. Initalize `hits = 0`
+1. Initialize `hits = 0`
 2. __for i in 1:N__
-3.   Generate two random numbers, $U_1$ and $U_2$, between 0 and 1
-4.   If $U_1^2 + U_2^2 < 1$, then `hits = hits + 1`
+3.    Generate two random numbers, $U_1$ and $U_2$, between 0 and 1
+4.    If $U_1^2 + U_2^2 < 1$, then `hits = hits + 1`
 5. __end for__
 6. Area estimate = `hits / N`
 7. $\hat{pi} = 4 * Area Estimate$
@@ -575,7 +572,7 @@ N <- 1e6
 system.time(pi_naive(N))
 ```
 
-That's a long runtime (and bad estimate).  Let's vecrtorize it.
+That's a long run time (and bad estimate).  Let's vectorize it.
 
 ```{r}
 pi_vect <- function(N) {
@@ -587,13 +584,17 @@ pi_vect <- function(N) {
 system.time(pi_vect(N))
 ```
 
+That is ~20x speed up.
 
 ## Function Basics
 
 > To understand computations in R, two slogans are helpful:  
 > - Everything that exists is an object.  
 > - Everything that happens is a function call.  
-> John Chambers
+> 
+> -- John Chambers
+
+Functions are an central part of robust R programming and we will spend a significant amount of time writing functions.
 
 Functions in R are "first class objects", which means that they can be
 treated much like any other R object. Importantly,
@@ -604,12 +605,6 @@ treated much like any other R object. Importantly,
   another function
 
 If you're familiar with common language like C, these features might appear a bit strange. However, they are really important in R and can be useful for data analysis.
-
-__Messy code hides bugs__
-
-```{r, echo = FALSE, out.width = NULL}
-knitr::include_graphics("images/funs.png", dpi = 300)
-```
 
 - Functions are a means of **abstraction**. A concept/computation is
   encapsulated/isolated from the rest with a function.
@@ -623,7 +618,7 @@ knitr::include_graphics("images/funs.png", dpi = 300)
   being passed as an argument. Function must be **self-contained**.
 - Function streamline code and process
 
-From the [R Inferno](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf):
+Advice from the [R Inferno](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf):
 
 Make your functions as simple as possible. Simple has many advantages:
 
@@ -635,7 +630,6 @@ Make your functions as simple as possible. Simple has many advantages:
 - (Perhaps ironically) simple functions may be more general—thinking
   about the heart of the matter often broadens the application.
 
-
 Functions can be
 
 1. Correct.
@@ -643,21 +637,7 @@ Functions can be
 3. An obscure error occurs.
 4. An incorrect value is returned.
 
-We like category 1. Category 2 is the right behavior if the inputs do
-not make sense, but not if the inputs are sensible. Category 3 is an
-unpleasant place for your users, and possibly for you if the users
-have access to you. Category 4 is by far the worst place to be - the
-user has no reason to believe that anything is wrong. Steer clear of
-category 4.
-
-
-Finally, functions are
-
-- Easier to debug
-- Easier to profile
-- Easier to parallelise
-
-Functions are an central part of robust R programming and we will spend a significant amount of time writing functions.
+We like __category 1__. __Category 2__ is the right behavior if the inputs do not make sense, but not if the inputs are sensible. __Category 3__ is an unpleasant place for your users, and possibly for you if the users have access to you.  __Category 4__ is by far the worst place to be - the user has no reason to believe that anything is wrong. Steer clear of category 4.
 
 ### Your First Function
 
@@ -677,14 +657,14 @@ myadd <- function(x, y) {
   cat(paste0("y = ", y, "\n"))
   x + y
 }
-myadd(1, 3)            # call by position
-myadd(x = 1, y = 3)    # call by name
+myadd(1, 3)            # arguments by position
+myadd(x = 1, y = 3)    # arguments by name
 myadd(y = 3, x = 1)    # name order doesn't matter
 ```
 
 - The body of the function is everything between the `{ }`.  Note this does the computation __AND__ returns the result.
 - `x` and `y` are the arguments to the function.
-- the environment this function lives in is the global environement. (We'll discuss environments more in the next section.)
+- the environment this function lives in is the global environment. (We'll discuss environments more in the next section.)
 
 Even though it’s legal, I don’t recommend messing around with the order of the arguments too much, since it can lead to some confusion.
 
@@ -702,7 +682,7 @@ myadd2(y = 1)
 myadd2(x = 1, y = 1)
 ```
 
-By defualt the last line of the function is returned.  Thus, there is no reason to explicitly call `return`, unless you are returning from the function early.  Inside functions use `stop` to return error messages, `warning` to return warning messages, and `message` to print a message to the console.
+By default the last line of the function is returned.  Thus, there is no reason to explicitly call `return`, unless you are returning from the function early.  Inside functions use `stop` to return error messages, `warning` to return warning messages, and `message` to print a message to the console.
 
 ```{r warning=TRUE, error=TRUE}
 f <- function(age) {
@@ -738,7 +718,7 @@ f(2)     # this works
 f(2, 1)  # this does too
 ```
 
-This function never actually uses the argument `b`, so calling `f(2)` or `f(2, 1)` will not produce an error because the 2 gets positionally matched to a. This behavior can be good or bad. It’s common to write a function that doesn’t use an argument and not notice it simply because R never throws an error.
+This function never actually uses the argument `b`, so calling `f(2)` or `f(2, 1)` will not produce an error because the 2 gets positionally matched to a. This behavior can be good or bad. It’s common to write a function that does not use an argument and not notice it simply because R never throws an error.
 
 ### The `...` Argument
 
@@ -837,17 +817,18 @@ n <- 2
 pow(x=4)
 ```
 
-## Assignment
+## Exercises
 
 1. Browse this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) and read the help file for functions that interest you.
-2. Vectorization / function practice.
+2. Re-run the three cases in the For loop section with `x <- NULL`
+3. Vectorization / function practice.
 
-We'll calcualte pi using the Gregory-Leibniz series. Mathematicians will be quick to point out that this is a poor way to calculate pi, since the series converges very slowly. But our goal is not calculating pi, our goal is examining the performance benefit that be be achieved using vectorization.
+We'll calculate pi using the Gregory-Leibniz series. Mathematicians will be quick to point out that this is a poor way to calculate pi, since the series converges very slowly. But our goal is not calculating pi, our goal is examining the performance benefit that be be achieved using vectorization.
 
 Here is a formula for the Gregory-Leibniz series:
 
 \begin{equation}
-1 - 1/3 + 1/5 - 1/7 + 1/9 - ... = \frac{\pi}{4}
+1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \cdots = \frac{\pi}{4}
 \end{equation}
 
 Here is the Gregory-Leibniz series in summation notation:

@@ -7,11 +7,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Sections Subsseting
-
-## Loops
-
-## Recycling
 
 ## Notes
 

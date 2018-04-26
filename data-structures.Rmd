@@ -1,18 +1,12 @@
 # Base R Data Structures
 
-```{r, include=FALSE}
-WORDS_TO_IGNORE <- "butitsuremakesthingseasiertoread"
-source("knitr-options.R")
-# source("spelling-check.R")
-```
-
 See this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) for a good starting point on the basics functions in base R and some important libraries.
 
-[advr38book](https://privefl.github.io/advr38book/r-programming.html)
-
-In R there three basic constructs; objects, functions, and environments.
+In R there three basic constructs[^constructs]; objects, functions, and environments.
 
 The three most important functions in R `?`, `??`, and `str`.
+
+[^constructs]: Technically speaking functions and environments are objects which allows one to do things in R you can't do in many other languages.
 
 ## Naming Rules
 
@@ -202,29 +196,41 @@ You can name a vector in a couple[^named-vectors] ways:
 * By modifying an existing vector in place: 
   `x <- 1:3; names(x) <- c("a", "b", "c")`.
   
-Named vectors a a great way to make an easy, human readable look up table.  We will see this use case extensively when we get to data visualizations.  
+Named vectors are a great way to make an easy, human readable look up table.  We will see this use case extensively when we get to data visualizations.  
 
 [^named-vectors]: There are a couple less common ways. See [Advanced R](http://adv-r.had.co.nz)
 
-#### Factors
+### Factors
 
-One important use of attributes is to define factors. A factor is a vector that can contain only predefined values, and is used to store categorical data. Factors are built on top of **integer vectors** using two attributes: the `class`, "factor", which makes them behave differently from regular integer vectors, and the `levels`, which defines the set of allowed values.  
+One important use of attributes is to define factors. A factor is a vector that can contains only predefined values, and is used to store categorical data. Factors are built on top of **integer vectors** using two attributes: the `class`, "factor", which makes them behave differently from regular integer vectors, and the `levels`, which defines the set of allowed values.  Factors can also have labels which effect how the factors are displayed.  By default the labels are the same as the levels.
 
-Factors are useful when you know the possible values a variable may take, even if you don't see all values in a given dataset. Using a factor instead of a character vector makes it obvious when some groups contain no observations:
+The order of the levels of a factor can be set using the levels argument to `factor()`. This can be important in linear modelling because the first level is used as the baseline level. This feature can also be used to customize order in plots that include factors, since by default factors are plotted in the order of their levels. Labels are also useful in plotting where you want the displayed text to be different than the underlying representation.
+
+Factors are useful when you know the possible values a variable may take, even if you don't see all values in a given data set. Using a factor instead of a character vector makes it obvious when some groups contain no observations:
 
 ```{r}
-sex_char <- c("m", "m", "m")
-sex_factor <- factor(sex_char, levels = c("m", "f"))
+gender_char <- c("m", "m", "m")
+gender_factor <- factor(gender_char, levels = c("m", "f"))
 
-table(sex_char)
-table(sex_factor)
+gender_char
+table(gender_char)
+gender_factor
+table(gender_factor)
+# See the underlying representation of a factor
+unclass(gender_factor)
+
+gender_factor2 <- factor(gender_char, levels = c("m", "f"), labels = c("Male", "Female"))
+gender_factor2
+table(gender_factor2)
+# See the underlying representation of a factor
+unclass(gender_factor2)
 ```
 
-While factors look like (and often behave like) character vectors, they are actually **integers**. Be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. For this reason, it is best to explicitly convert factors to character vectors if you need string-like behaviour.  
+While factors look like (and often behave like) character vectors, they are actually **integers**. Be careful when treating them like strings. Some string methods (like `gsub()` and `grepl()`) will coerce factors to strings, while others (like `nchar()`) will throw an error, and still others (like `c()`) will use the underlying integer values. For this reason, it is best to explicitly convert factors to character vectors if you need string-like behavior.  
 
-Unfortunately, many base R functions (like `read.csv()` and `data.frame()`) automatically convert character vectors to factors. This is suboptimal, because there's no way for those functions to know the set of all possible levels or their optimal order. Instead, use the argument `stringsAsFactors = FALSE` to suppress this behaviour, and then manually convert character vectors to factors using your knowledge of the data only when you need the behavior of factors.  
+Unfortunately, many base R functions (like `read.csv()` and `data.frame()`) automatically convert character vectors to factors. This is sub-optimal, because there's no way for those functions to know the set of all possible levels or their optimal order. Instead, use the argument `stringsAsFactors = FALSE` to suppress this behavior, and then manually convert character vectors to factors using your knowledge of the data only when you need the behavior of factors.  
 
-Factors tend to be most useful in data visualization and table creations where you want to report all categories but some categories may not be present in your data, or when you want to order the categories in somethin other than the default ordering.  We will revisit factors and there usefulness later when we study the tidyverse and in particular the forcats package.
+Factors tend to be most useful in data visualization and table creations where you want to report all categories but some categories may not be present in your data, or when you want to order the categories in something other than the default ordering.  We will revisit factors and there usefulness later when we study the tidyverse and in particular the forcats package.
 
 ### Matrices and arrays
 
@@ -254,21 +260,21 @@ vec
 class(vec)
 ```
 
-`length()` and `names()` have high-dimensional generalisations:
+`length()` and `names()` have high-dimensional generalizations:
 
-* `length()` generalises to `nrow()` and `ncol()` for matrices, and `dim()`
+* `length()` generalizes to `nrow()` and `ncol()` for matrices, and `dim()`
   for arrays.
 
-* `names()` generalises to `rownames()` and `colnames()` for matrices, and
+* `names()` generalizes to `rownames()` and `colnames()` for matrices, and
   `dimnames()`, a list of character vectors, for arrays. 
 
-`c()` generalises to `cbind()` and `rbind()` for matrices, and to `abind::abind()` for arrays. You can transpose a matrix with `t()`; the generalised equivalent for arrays is `aperm()`.
+`c()` generalizes to `cbind()` and `rbind()` for matrices, and to `abind::abind()` for arrays. You can transpose a matrix with `t()`; the generalized equivalent for arrays is `aperm()`.
 
 You can test if an object is a matrix or array using `is.matrix()` and `is.array()`, or by looking at the length of the `dim()`. `as.matrix()` and `as.array()` make it easy to turn an existing vector into a matrix or array.
 
 Vectors are not the only 1-dimensional data structure. You can have matrices with a single row or single column, or arrays with a single dimension. They may print similarly, but will behave differently. The differences aren't too important, but it's useful to know they exist in case you get strange output from a function (`tapply()` is a frequent offender). As always, use `str()` to reveal the differences.
 
-Matrices and arrays are most useful for mathematical calculations (particularly when fitting models); lists are a better fit for most other programming tasks in R.
+Matrices and arrays are most useful for mathematical calculations (particularly when fitting models); lists and data frames are a better fit for most other programming tasks in R.
 
 ### Data Frames
 
@@ -284,7 +290,7 @@ df <- data.frame(x = 1:3, y = c("a", "b", "c"))
 str(df)
 ```
 
-Beware `data.frame()`'s default behaviour which turns strings into factors. Use `stringsAsFactors = FALSE` to suppress this behaviour:
+Beware `data.frame()`'s default behavior which turns strings into factors. Use `stringsAsFactors = FALSE` to suppress this behavior:
 
 ```{r}
 df <- data.frame(
@@ -336,7 +342,7 @@ cbind(df, data.frame(z = 3:1))
 rbind(df, data.frame(x = 10, y = "z"))
 ```
 
-When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match. Use `dplyr::bind_rows()`, `data.table::rbindlist()`, or similar to combine data frames that don't have the same columns. 
+When combining column-wise, the number of rows must match, but row names are ignored. When combining row-wise, both the number and names of columns must match.
 
 It's a common mistake to try and create a data frame by `cbind()`ing vectors together. This is unlikely to do what you want because `cbind()` will create a matrix unless one of the arguments is already a data frame. Instead use `data.frame()` directly:
 

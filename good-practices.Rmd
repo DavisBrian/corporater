@@ -1,22 +1,29 @@
 # Good practices
 
-```{r, include=FALSE}
-WORDS_TO_IGNORE <- "butitsuremakesthingseasiertoread"
-source("knitr-options.R")
-# source("spelling-check.R")
-```
+> “Programs must be written for people to read, and only incidentally for machines to execute.” 
+>
+> -- Harold Abelson
 
-> “Programs must be written for people to read, and only incidentally for machines to execute.” Harold Abelson
+> "Programming is the art of telling another human being what one wants the computer to do." 
+>
+> -- Donald Knuth
 
-> "Programming is the art of telling another human being what one wants the computer to do." Donald Knuth
-
-> "Let us change our traditional attitude to the construction of programs. Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do." Donald Knuth
+> "Let us change our traditional attitude to the construction of programs. Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do." 
+>
+> -- Donald Knuth
 
 > "When you write a program, think of it primarily as a work of literature. You're trying to write something that human beings are going to read. Don't think of it primarily as something a computer is going to follow. The more effective you are at making your program readable, the more effective it's going to be: You'll understand it today, you'll understand it next week, and your successors who are going to maintain and modify it will understand it."
 
 ## Coding style
 
-Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. When I answer questions; first, I read the title of the question to see if I can answer the question, secondly, I check the coding style of the question and if the code is too difficult to read, I just move on. Please make your code readable by following e.g. [this coding style](http://style.tidyverse.org/) (most examples below come from this guide).
+Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. When I answer questions; first, I see if think I can answer the question, secondly, I check the coding style of the question and if the code is too difficult to read, I just move on. Please make your code readable by following e.g. [this coding style](http://style.tidyverse.org/) (most examples below come from this guide).
+
+__Messy code hides bugs__
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/funs.png", dpi = 300)
+```
+
 
 ### Comments
 
@@ -26,11 +33,12 @@ In code, use comments to explain the “why” not the “what” or “how”. 
 
 
 > There are only two hard things in Computer Science: cache invalidation and naming things.
+>
 > -- Phil Karlton
 
-Names are not limited to 8 characters as in some other languages, however they are case sensitive.  Be smart with your naming; be descriptive yet concise. Think about how your names will show up in autocomplete.
+Names are not limited to 8 characters as in some other languages, however they are case sensitive.  Be smart with your naming; be descriptive yet concise. Think about how your names will show up in auto complete.
 
-Throughout the course we will point out some standard naming conventions that are used in R (and other languages).  (Ex. `i` and `j` as row and column indicies)
+Throughout the course we will point out some standard naming conventions that are used in R (and other languages).  (Ex. `i` and `j` as row and column indices)
 
 ```{r, eval=FALSE}
 # Good
@@ -179,18 +187,17 @@ add_two <- function(x, y) {
 
 Create variables for values that are likely to change.
 
-### *Rule of 3*[^DRY]
+### *Rule of Three*[^DRY]
 
 Try not to copy code, or copy then modify the code, more than twice.
 
 -  If a change requires you to search/replace 3 or more times make a variable.
 -  If you copy a code chunk 3 or more times *make a function*
 -  If you copy a function 3 or more times *make your function more generic*
--  If you copy a function 3 or more times into a project *make a package*
+-  If you copy a function into a project 3 or more times *make a package*
 -  If 3 or more people will use the function *make a package*
--  If 3 or more projects will use the function *make a package*
 
-Same thing goes for lookup tables and such.  The key thing to think about is; if something changes how many touch points will there be?  If it is 3 or more
+The _Rule of Threee_ applies look-up tables and such.  The key thing to think about is; if something changes how many touch points will there be?  If it is 3 or more
 places it is time to abstract this code a bit.
 
 [^DRY]: This is sometimes called the DRY principle, or Don't Repeat Yourself.
@@ -268,7 +275,7 @@ Can't remember useful functions? Use [cheat sheets](https://www.rstudio.com/reso
 
 You can search for specific R stuff on https://rseek.org/. You should also read documentations carefully. If you're using a package, search for vignettes and a GitHub repository.
 
-You can also use [Stack Overflow](https://stackoverflow.com/). The most common use of Stack Overflow is when you have an error or a question, you google it, and most of the times the first links are Q/A on Stack Overflow.
+You can also use [Stack Overflow](https://stackoverflow.com/). The most common use of Stack Overflow is when you have an error or a question, you Google it, and most of the times the first links are Q/A on Stack Overflow.
 
 You can ask questions on Stack Overflow (using the tag `r`). You need to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) if you want your question to be answered. Most of the times, while making this reproducible example, you will find the answer to your problem.
 
@@ -276,13 +283,13 @@ If you're confident enough in your R skills, you can go to the next step and [an
 
 ## Keeping up to date
 
-With over 10,000 packages on CRAN it is hard to keep up with the constantly changing landscape.  [R-Bloggers](https://www.r-bloggers.com/) is an R forcused blog aggregator with dozens of posts per day.  Checkit out.
+With over 10,000 packages on CRAN it is hard to keep up with the constantly changing landscape.  [R-Bloggers](https://www.r-bloggers.com/) is an R focused blog aggregation site with dozens of posts per day.  Check it out.
 
 Join the [R-help](https://www.r-project.org/mail.html) mailing list.  Sign up to get the daily digest and scan it for questions that interest you.
 
-## Assignement
+## Exercises
 
-1. See these Rstudio [Tips & Tricks](https://rviews.rstudio.com/categories/tips-and-tricks/) or [these](https://twitter.com/rstudiotips) and find one that looks interesting and **practice** it all week.
+1. See these RStudio [Tips & Tricks](https://rviews.rstudio.com/categories/tips-and-tricks/) or [these](https://twitter.com/rstudiotips) and find one that looks interesting and **practice** it all week.
 2. Create an R Project for this class.
 3. Create the following directories in your project (tip sheet?)
     - Bonus points if you can do it from R and not RStudio or Windows Explorer

@@ -1,19 +1,20 @@
-# Introduction
+# (PART) Preamble {-}
 
-```{r setup, include=FALSE}
-source("knitr-options.R")
-# source("spelling-check.R")
-```
+# Introduction {#preamble-intro}
 
 > Something that will make life easier in the long-run can be the most difficult thing to do today. For coders, prioritising the long term may involve an overhaul of current practice and the learning of a new skill.
 
 
 ## Course Philosophy
 
->  "The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly. A programmer is ideally an essayist who works with traditional aesthetic and literary forms as well as mathematical concepts, to communicate the way that an algorithm works and to convince a reader that the results will be correct." Donald Knuth
+>  "The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly. A programmer is ideally an essayist who works with traditional aesthetic and literary forms as well as mathematical concepts, to communicate the way that an algorithm works and to convince a reader that the results will be correct." 
+>
+> --- Donald Knuth
 
 
-### Reproducible Research
+### Reproducible Research Approach
+
+[What is Reproducible Research About?](https://www.coursera.org/learn/reproducible-research/lecture/FvOGB/what-is-reproducible-research-about)
 
 Reproducible research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them. There are two basic reasons to be concerned about making your research reproducible. The first is *to show evidence of the correctness of your results*. The second reason to aspire to reproducibility is *to enable others to make use of our methods and results*.  
 
@@ -38,7 +39,7 @@ predetermined specifications and quality attributes." -Validation as defined by 
 
 ### The SAS Myth
 
-Contray to what we hear the FDA does not require SAS to be used *EVER*.  There are instances that you have to deliver data in XPORT format though which is open and implemented in many programming languages.
+Contrary to what we hear the FDA does not require SAS to be used *EVER*.  There are instances that you have to deliver data in XPORT format though which is open and implemented in many programming languages.
 
 > "FDA does not require use of any specific software for statistical analyses,
 and statistical software is not explicitly discussed in Title 21 of the Code of
@@ -64,7 +65,7 @@ Good [write up](http://blog.revolutionanalytics.com/2017/06/r-fda.html) with lin
 
 ## Content
 
-It is impossible to become an expert in R in only one course even a multi-week one. Yet, this course aims at giving a wide understanding on many aspects of R as used in a corporate / production environment. It will roughly be based on [R for Data Science](http://r4ds.had.co.nz).  While this is an *excellent* resource it does not cover much of what we will need on a routine basis.  Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.
+It is impossible to become an expert in R in only one course even a multi-week one. Our aim is at gaining a wide understanding on many aspects of R as used in a corporate / production environment. It will roughly be based on [R for Data Science](http://r4ds.had.co.nz).  While this is an *excellent* resource it does not cover much of what we will need on a routine basis.  Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.
 
 This is your course so if you feel we need to hit an area deeper, or add content based on a current need, let me know an we will work to adjust it.
 
@@ -73,7 +74,7 @@ The **rough** topic list of the course:
 1. Good programming practices
 2. Basics of R Programming
 3. Importing Data
-4. Tiyding Data
+4. Tidying Data
 5. Visualizing Data
 6. Functions
 7. Strings
@@ -90,9 +91,10 @@ Making Code Production Ready:
 
 ## Structure
 
-My current thoughts are to meet an hour a week and discuss a topic.  We will not be going strictly through the R4DS, but will use it as our foundation into the topic at hand. Then give an assignment due for the next week which we go over the solutions.  We will incorporate these assignments into a RADARS R package(s?) so we will have a collection of usefull reusable code for the future.
+My current thoughts are to meet an hour a week and discuss a topic.  We will not be going strictly through the R4DS, but will use it as our foundation into the topic at hand. Then give some exercises due for the next week which we go over the solutions.  We will incorporate these exercises into an R package(s?) so we will have a collection of useful reusable code for the future.
 
 Open to other ideas as we go along.
-I’m going to try to keep the assignments related to our current work (maybe working through Site Investigator and/or Subscriber Reports) so we can work on the class during work hours.
+
+I’m going to try to keep the assignments related to our current work so we can work on the class during work hours.
 
 
