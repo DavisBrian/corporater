@@ -125,7 +125,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-04-26}
+  \date{2018-04-27}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -1800,7 +1800,7 @@ Monte-Carlo pseudo code:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e6}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    3.39    0.00    3.40}
+\CommentTok{#>    3.78    0.00    3.79}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1816,7 +1816,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.20    0.00    0.22}
+\CommentTok{#>    0.20    0.02    0.22}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2217,7 +2217,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x0000000008f47860>}
+\CommentTok{#> <environment: 0x0000000008f4cdb8>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2277,7 +2277,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.12    0.00    2.17}
+\CommentTok{#>    2.06    0.00    2.12}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
