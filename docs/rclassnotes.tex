@@ -250,26 +250,6 @@ difficult thing to do today. For coders, prioritising the long term may
 involve an overhaul of current practice and the learning of a new skill.
 \end{quote}
 
-\begin{rmdnote}
-This is a note
-\end{rmdnote}
-
-\begin{rmdcaution}
-This is a caution
-\end{rmdcaution}
-
-\BeginKnitrBlock{rmdimportant}
-This is important
-\EndKnitrBlock{rmdimportant}
-
-\BeginKnitrBlock{rmdtip}
-this is a Tip
-\EndKnitrBlock{rmdtip}
-
-\BeginKnitrBlock{rmdwarning}
-This is a warning!
-\EndKnitrBlock{rmdwarning}
-
 \section{Course Philosophy}\label{course-philosophy}
 
 \begin{quote}
@@ -500,6 +480,8 @@ follow. The more effective you are at making your program readable, the
 more effective it's going to be: You'll understand it today, you'll
 understand it next week, and your successors who are going to maintain
 and modify it will understand it.''
+
+-- Donald Knuth
 \end{quote}
 
 \section{Coding style}\label{coding-style}
@@ -512,15 +494,25 @@ move on. Please make your code readable by following e.g.
 \href{http://style.tidyverse.org/}{this coding style} (most examples
 below come from this guide).
 
-\textbf{Messy code hides bugs}
+\begin{quote}
+``To become ssignificantly more reliable, code must become more
+transparent. In particular, nested conditions and loops must be viewed
+with great suspicion. Complicated control flows confuse programmers.
+\textbf{Messy code often hides bugs}.''
 
-\begin{center}\includegraphics[width=10.56in]{images/funs} \end{center}
+--- Bjarne Stroustrup
+\end{quote}
 
 \subsection{Comments}\label{comments}
 
 In code, use comments to explain the ``why'' not the ``what'' or
 ``how''. Each line of a comment should begin with the comment symbol and
 a single space: \texttt{\#}.
+
+\BeginKnitrBlock{rmdtip}
+Use commented lines of - to break up your file into easily readable
+chunks and to create a code outline in RStudio
+\EndKnitrBlock{rmdtip}
 
 \subsection{Naming}\label{naming}
 
@@ -551,10 +543,6 @@ as row and column indices)
 \KeywordTok{plot}\NormalTok{(mtcars[, }\DecValTok{3}\NormalTok{], mtcars[, }\DecValTok{1}\NormalTok{])}
 \end{Highlighting}
 \end{Shaded}
-
-\subsection{Structure}\label{structure-1}
-
-Use commented lines of \texttt{-} to create a code outline.
 
 \subsection{Spacing}\label{spacing}
 
@@ -743,7 +731,7 @@ Try not to copy code, or copy then modify the code, more than twice.
   If 3 or more people will use the function \emph{make a package}
 \end{itemize}
 
-The \emph{Rule of Threee} applies look-up tables and such. The key thing
+The \emph{Rule of Three} applies look-up tables and such. The key thing
 to think about is; if something changes how many touch points will there
 be? If it is 3 or more places it is time to abstract this code a bit.
 
@@ -973,9 +961,6 @@ interest you.
 
 \chapter{R Basics}\label{baser-rbasics}
 
-With over 10,000 packages on CRAN we can't cover everything. In general
-there are several ways, or packages, to accomplish a given task.
-
 Here is a quick overview of the basics. Next we'll dive deep into R's
 basic data structures and then how to subset these data structures. This
 will give us a good overview of base R and the background needed to dive
@@ -1191,21 +1176,23 @@ We'll discuss data frames in greater detail in the next chapter.
 
 \section{Comparision}\label{comparision}
 
-Logical Operators include:
+\begin{table}
 
-\begin{longtable}[]{@{}ll@{}}
+\caption{\label{tab:table-logicalOps}Logical Operators}
+\centering
+\begin{tabular}[t]{ll}
 \toprule
-Operator & Description\tabularnewline
+Operator & Description\\
 \midrule
-\endhead
-\textgreater{} & greater than\tabularnewline
-\textgreater{}= & greater than or equal to\tabularnewline
-\textless{} & less than\tabularnewline
-\textless{}= & less than or equal to\tabularnewline
-== & exactly equal to\tabularnewline
-!= & not equal to\tabularnewline
+> & greater than\\
+>= & greater than or equal to\\
+< & less than\\
+<= & less than or equal to\\
+== & exactly equal to\\
+!= & not equal to\\
 \bottomrule
-\end{longtable}
+\end{tabular}
+\end{table}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1290,8 +1277,11 @@ control structures (if, for, while, etc).
 This is a common source of bugs in control structures (if, for, while,
 etc) where you must have a single TRUE / FALSE.
 
-Also, note that \texttt{=} is used for assignment and not comparison
-\texttt{==}.
+\begin{rmdcaution}
+\texttt{=} is used for assignment while \texttt{==} is used for
+comparison. A common bug is to use \texttt{=} instead of \texttt{==}
+inside a control structure.
+\end{rmdcaution}
 
 It also has useful helpers \texttt{any} and \texttt{all}
 
@@ -1466,12 +1456,14 @@ It is not necessary to use an index-type variable.
 \end{Highlighting}
 \end{Shaded}
 
+\BeginKnitrBlock{rmdtip}
 Nested loops are commonly needed for multidimensional or hierarchical
 data structures (e.g.~matrices, lists). Be careful with nesting though.
 Nesting beyond 2 to 3 levels often makes it difficult to read/understand
 the code. If you find yourself in need of a large number of nested
 loops, you may want to break up the loops by using functions (discussed
 later).
+\EndKnitrBlock{rmdtip}
 
 \subsection{\texorpdfstring{\texttt{while}
 Loops}{while Loops}}\label{while-loops}
@@ -1501,8 +1493,10 @@ the loop exits.
 \end{Highlighting}
 \end{Shaded}
 
+\BeginKnitrBlock{rmdwarning}
 While loops can potentially result in infinite loops if not written
 properly. Use with care!
+\EndKnitrBlock{rmdwarning}
 
 Sometimes there will be more than one condition in the test.
 
@@ -1560,9 +1554,11 @@ enough'' to the solution.
 \end{Highlighting}
 \end{Shaded}
 
-Note that the above code will not run if the \texttt{computeEstimate()}
-function is not defined (I just made it up for the purposes of this
-demonstration).
+\begin{rmdnote}
+The above code will not run since the \texttt{computeEstimate()}
+function is not defined. I just made it up for the purposes of this
+demonstration.
+\end{rmdnote}
 
 The loop above is a bit dangerous because there's no guarantee it will
 ever stop. You could get in a situation where the values of \texttt{x0}
@@ -1869,7 +1865,7 @@ Monte-Carlo pseudo code:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e6}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    3.78    0.00    3.79}
+\CommentTok{#>    3.57    0.00    3.60}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1885,7 +1881,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.17    0.02    0.19}
+\CommentTok{#>    0.14    0.02    0.16}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2036,8 +2032,10 @@ function was created in the global environment.
   (We'll discuss environments more in the next section.)
 \end{itemize}
 
+\BeginKnitrBlock{rmdtip}
 Even though it's legal, I don't recommend messing around with the order
 of the arguments too much, since it can lead to some confusion.
+\EndKnitrBlock{rmdtip}
 
 You can also specify default values for your arguments. Default values
 \emph{should} be the values most often used. \texttt{rnorm} uses the
@@ -2124,9 +2122,9 @@ and \texttt{b}.
 
 This function never actually uses the argument \texttt{b}, so calling
 \texttt{f(2)} or \texttt{f(2,\ 1)} will not produce an error because the
-2 gets positionally matched to a. This behavior can be good or bad. It's
-common to write a function that does not use an argument and not notice
-it simply because R never throws an error.
+2 gets positionally matched to a. It's common to write a function that
+does not use an argument and not notice it simply because R never throws
+an error.
 
 \subsection{\texorpdfstring{The \texttt{...}
 Argument}{The ... Argument}}\label{the-...-argument}
@@ -2286,7 +2284,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x0000000008f47250>}
+\CommentTok{#> <environment: 0x000000000be69ab0>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2346,7 +2344,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.06    0.00    2.06}
+\CommentTok{#>    2.21    0.00    2.24}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -2366,10 +2364,6 @@ about it in terms of the series notation and not the summation notation.
 \end{Shaded}
 
 \chapter{Base R Data Structures}\label{base-r-data-structures}
-
-See this \href{http://adv-r.had.co.nz/Vocabulary.html}{vocabulary list}
-for a good starting point on the basics functions in base R and some
-important libraries.
 
 In R there three basic constructs\footnote{Technically speaking
   functions and environments are objects which allows one to do things
@@ -2443,11 +2437,12 @@ They differ in the types of their elements: all elements of an atomic
 vector must be the same type, whereas the elements of a list can have
 different types.
 
-NOTE: \texttt{is.vector()} does not test if an object is a vector.
-Instead it returns TRUE only if the object is a vector with no
-attributes apart from names. Use
-\texttt{is.atomic(x)\ \textbar{}\textbar{}\ is.list(x)} to test if an
-object is actually a vector.
+\begin{rmdnote}
+\texttt{is.vector()} does not test if an object is a vector. Instead it
+returns TRUE only if the object is a vector with no attributes apart
+from names. Use \texttt{is.atomic(x)\ \textbar{}\textbar{}\ is.list(x)}
+to test if an object is actually a vector.
+\end{rmdnote}
 
 \subsection{Atomic Vectors}\label{atomic-vectors}
 
@@ -2949,9 +2944,11 @@ vectors as input:
 \end{Highlighting}
 \end{Shaded}
 
+\BeginKnitrBlock{rmdwarning}
 Beware \texttt{data.frame()}'s default behavior which turns strings into
 factors. Use \texttt{stringsAsFactors\ =\ FALSE} to suppress this
-behavior:
+behavior.
+\EndKnitrBlock{rmdwarning}
 
 \begin{Shaded}
 \begin{Highlighting}[]

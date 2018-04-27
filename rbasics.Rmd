@@ -127,16 +127,21 @@ We'll discuss data frames in greater detail in the next chapter.
 
 ## Comparision 
 
-Logical Operators include:
+```{r table-logicalOps, tidy=FALSE, echo=FALSE}
 
-| Operator |	Description             |
-|----------|--------------------------|
-| > 	     | greater than             |
-| >= 	     | greater than or equal to |
-| < 	     | less than                |
-| <= 	     | less than or equal to    |
-| == 	     | exactly equal to         |
-| != 	     | not equal to             |
+log_ops <- data.frame(Operator = c(">", ">=", "<", "<=", "==", "!="),
+                      Description = c("greater than",
+                                      "greater than or equal to",
+                                      "less than",
+                                      "less than or equal to",
+                                      "exactly equal to",
+                                      "not equal to "))
+
+knitr::kable(
+  log_ops, booktabs = TRUE,
+  caption = 'Logical Operators'
+)
+```
 
 ```{r}
 v <- 1:12
@@ -187,7 +192,9 @@ FALSE || c(TRUE, FALSE)
 
 This is a common source of bugs in control structures (if, for, while, etc) where you must have a single TRUE / FALSE. 
 
-Also, note that `=` is used for assignment and not comparison `==`.
+```{block type='rmdcaution'}
+`=` is used for assignment while `==` is used for comparison. A common bug is to use `=` instead of `==` inside a control structure. 
+```
 
 
 It also has useful helpers `any` and `all`
@@ -315,12 +322,14 @@ for(letter in x) {
 }
 ```
 
+```{block2, type='rmdtip'}
 Nested loops are commonly needed for multidimensional or hierarchical
 data structures (e.g. matrices, lists). Be careful with nesting
 though. Nesting beyond 2 to 3 levels often makes it difficult to
 read/understand the code. If you find yourself in need of a large
 number of nested loops, you may want to break up the loops by using
 functions (discussed later).
+```
 
 ### `while` Loops
 
@@ -337,8 +346,10 @@ while(count < 10) {
 }
 ```
 
+```{block2, type='rmdwarning'}
 While loops can potentially result in infinite loops if not written
 properly. Use with care!
+```
 
 Sometimes there will be more than one condition in the test.
 
@@ -390,9 +401,9 @@ repeat {
 }
 ```
 
-Note that the above code will not run if the `computeEstimate()`
-function is not defined (I just made it up for the purposes of this
-demonstration).
+```{block type='rmdnote'}
+The above code will not run since the `computeEstimate()` function is not defined. I just made it up for the purposes of this demonstration.
+```
 
 The loop above is a bit dangerous because there's no guarantee it will ever stop. You could get in a situation where the values of `x0` and `x1`
 oscillate back and forth and never converge. Better to set a hard
@@ -664,7 +675,9 @@ myadd(y = 3, x = 1)    # name order doesn't matter
 - `x` and `y` are the arguments to the function.
 - the environment this function lives in is the global environment. (We'll discuss environments more in the next section.)
 
+```{block2, type='rmdtip'}
 Even though it’s legal, I don’t recommend messing around with the order of the arguments too much, since it can lead to some confusion.
+```
 
 You can also specify default values for your arguments.  Default values _should_ be the values most often used.  `rnorm` uses the default of `mean = 0` and `sd = 1`.  We usually want to sample from the standard normal distribution, but we are not forced to. 
 
@@ -716,7 +729,7 @@ f(2)     # this works
 f(2, 1)  # this does too
 ```
 
-This function never actually uses the argument `b`, so calling `f(2)` or `f(2, 1)` will not produce an error because the 2 gets positionally matched to a. This behavior can be good or bad. It’s common to write a function that does not use an argument and not notice it simply because R never throws an error.
+This function never actually uses the argument `b`, so calling `f(2)` or `f(2, 1)` will not produce an error because the 2 gets positionally matched to a. It’s common to write a function that does not use an argument and not notice it simply because R never throws an error.
 
 ### The `...` Argument
 
