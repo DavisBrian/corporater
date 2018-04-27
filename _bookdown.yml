@@ -7,7 +7,11 @@ rmd_files: [
   
   "rbasics.Rmd",
   "data-structures.Rmd",
-  "subset.Rmd"]
+  "subset.Rmd",
+  
+  "data-viz.Rmd",
+  
+  "appendix-A.Rmd"]
   
 output_dir: docs
 edit: https://github.com/DavisBrian/rclassnotes/edit/master/%s

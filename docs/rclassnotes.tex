@@ -206,39 +206,8 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter*{About}\label{about}
-\addcontentsline{toc}{chapter}{About}
-
-\section{Useful Resources}\label{useful-resources}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://bookdown.org/rdpeng/rprogdatascience/}{R Programming for
-  Data Science} by Roger D. Peng,
-\item
-  \href{https://bookdown.org/csgillespie/efficientR/}{Efficient R
-  programming} by Colin Gillespie \& Robin Lovelace,
-\item
-  \href{https://bookdown.org/rdpeng/RProgDA/}{Mastering Software
-  Development in R} by Roger D. Peng, Sean Kross, and Brooke Anderson
-\item
-  \href{https://github.com/lgatto/2016-02-25-adv-programming-EMBL}{Course
-  on R debugging and robust programming} by Laurent Gatto \& Robert
-  Stojnic,
-\item
-  \href{https://bookdown.org/rdpeng/RProgDA/}{Mastering Software
-  Development in R} by Roger D. Peng, Sean Kross and Brooke Anderson,
-\item
-  \href{http://r4ds.had.co.nz/index.html}{R for Data Science} by Garrett
-  Grolemund \& Hadley Wickham
-\item
-  \href{http://adv-r.had.co.nz/}{Advanced R} by Hadley Wickham
-\item
-  \href{http://r-pkgs.had.co.nz/}{R packages} by Hadley Wickham,
-\item
-  other resources linked from this material.
-\end{itemize}
+\chapter*{Title Page}\label{title-page}
+\addcontentsline{toc}{chapter}{Title Page}
 
 \part{Preamble}\label{part-preamble}
 
@@ -1881,7 +1850,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.14    0.02    0.16}
+\CommentTok{#>    0.15    0.02    0.17}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2284,7 +2253,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000be69ab0>}
+\CommentTok{#> <environment: 0x00000000063f3a18>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2344,7 +2313,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.21    0.00    2.24}
+\CommentTok{#>    2.46    0.00    2.51}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -2945,9 +2914,8 @@ vectors as input:
 \end{Shaded}
 
 \BeginKnitrBlock{rmdwarning}
-Beware \texttt{data.frame()}'s default behavior which turns strings into
-factors. Use \texttt{stringsAsFactors\ =\ FALSE} to suppress this
-behavior.
+Beware data.frame()'s default behavior which turns strings into factors.
+Use \texttt{stringsAsFactors\ =\ FALSE} to suppress this behavior.
 \EndKnitrBlock{rmdwarning}
 
 \begin{Shaded}
@@ -4251,6 +4219,47 @@ repeated row index:
 \KeywordTok{unwhich}\NormalTok{(}\KeywordTok{which}\NormalTok{(x), }\DecValTok{10}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\part{R4DS}\label{part-r4ds}
+
+\chapter{Data Visualization}\label{data-visualization}
+
+Place holder for data viz.
+
+\part{Appendix}\label{part-appendix}
+
+\chapter{Appendix A}\label{appendix-resources}
+
+\section{E-Books}\label{e-books}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://bookdown.org/rdpeng/rprogdatascience/}{R Programming for
+  Data Science} by Roger D. Peng,
+\item
+  \href{https://bookdown.org/csgillespie/efficientR/}{Efficient R
+  programming} by Colin Gillespie \& Robin Lovelace,
+\item
+  \href{https://bookdown.org/rdpeng/RProgDA/}{Mastering Software
+  Development in R} by Roger D. Peng, Sean Kross, and Brooke Anderson
+\item
+  \href{https://github.com/lgatto/2016-02-25-adv-programming-EMBL}{Course
+  on R debugging and robust programming} by Laurent Gatto \& Robert
+  Stojnic,
+\item
+  \href{https://bookdown.org/rdpeng/RProgDA/}{Mastering Software
+  Development in R} by Roger D. Peng, Sean Kross and Brooke Anderson,
+\item
+  \href{http://r4ds.had.co.nz/index.html}{R for Data Science} by Garrett
+  Grolemund \& Hadley Wickham
+\item
+  \href{http://adv-r.had.co.nz/}{Advanced R} by Hadley Wickham
+\item
+  \href{http://r-pkgs.had.co.nz/}{R packages} by Hadley Wickham,
+\item
+  other resources linked from this material.
+\end{itemize}
 
 \bibliography{book.bib,packages.bib}
 

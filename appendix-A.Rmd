@@ -1,0 +1,17 @@
+# (PART) Appendix {-}
+
+# Appendix A {#appendix-resources}
+
+## E-Books
+
+- [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger D. Peng,
+- [Efficient R programming](https://bookdown.org/csgillespie/efficientR/) by Colin Gillespie & Robin Lovelace,
+- [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/) by Roger D. Peng, Sean Kross, and Brooke Anderson
+- [Course on R debugging and robust programming](https://github.com/lgatto/2016-02-25-adv-programming-EMBL) by Laurent Gatto & Robert Stojnic,
+- [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/) by Roger D. Peng, Sean Kross and Brooke Anderson,
+- [R for Data Science](http://r4ds.had.co.nz/index.html) by Garrett Grolemund & Hadley Wickham
+- [Advanced R](http://adv-r.had.co.nz/) by Hadley Wickham
+- [R packages](http://r-pkgs.had.co.nz/) by Hadley Wickham,
+- other resources linked from this material.
+
+
