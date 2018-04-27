@@ -1,4 +1,4 @@
-book_filename: "corporater"
+book_filename: "rclassnotes"
 new_session: yes
 rmd_files: [
   "index.Rmd",
@@ -10,7 +10,7 @@ rmd_files: [
   "subset.Rmd"]
   
 output_dir: docs
-edit: https://github.com/DavisBrian/corporater/edit/master/%s
+edit: https://github.com/DavisBrian/rclassnotes/edit/master/%s
 language:
   label:
     fig: "FIGURE "
