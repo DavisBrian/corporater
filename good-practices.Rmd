@@ -13,24 +13,26 @@
 > -- Donald Knuth
 
 > "When you write a program, think of it primarily as a work of literature. You're trying to write something that human beings are going to read. Don't think of it primarily as something a computer is going to follow. The more effective you are at making your program readable, the more effective it's going to be: You'll understand it today, you'll understand it next week, and your successors who are going to maintain and modify it will understand it."
+>
+> -- Donald Knuth
 
 ## Coding style
 
 Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. When I answer questions; first, I see if think I can answer the question, secondly, I check the coding style of the question and if the code is too difficult to read, I just move on. Please make your code readable by following e.g. [this coding style](http://style.tidyverse.org/) (most examples below come from this guide).
 
-__Messy code hides bugs__
-
-```{r, echo = FALSE, out.width = NULL}
-knitr::include_graphics("images/funs.png", dpi = 300)
-```
-
+> "To become ssignificantly more reliable, code must become more transparent.  In particular, nested conditions and loops must be viewed with great suspicion.  Complicated control flows confuse programmers.  __Messy code often hides bugs__."
+>
+> --- Bjarne Stroustrup
 
 ### Comments
 
 In code, use comments to explain the “why” not the “what” or “how”. Each line of a comment should begin with the comment symbol and a single space: `#`.
 
-### Naming
+```{block2, type='rmdtip'}
+Use commented lines of - to break up your file into easily readable chunks and to create a code outline in RStudio
+```
 
+### Naming
 
 > There are only two hard things in Computer Science: cache invalidation and naming things.
 >
@@ -49,11 +51,6 @@ plot(mtcars$disp, mtcars$mpg)
 ah<-mean(x/12+y)
 plot(mtcars[, 3], mtcars[, 1])
 ```
-
-
-### Structure
-
-Use commented lines of `-` to create a code outline.
 
 ### Spacing
 
@@ -197,7 +194,7 @@ Try not to copy code, or copy then modify the code, more than twice.
 -  If you copy a function into a project 3 or more times *make a package*
 -  If 3 or more people will use the function *make a package*
 
-The _Rule of Threee_ applies look-up tables and such.  The key thing to think about is; if something changes how many touch points will there be?  If it is 3 or more
+The _Rule of Three_ applies look-up tables and such.  The key thing to think about is; if something changes how many touch points will there be?  If it is 3 or more
 places it is time to abstract this code a bit.
 
 [^DRY]: This is sometimes called the DRY principle, or Don't Repeat Yourself.

@@ -2,8 +2,6 @@
 
 # R Basics {#baser-rbasics}
 
-With over 10,000 packages on CRAN we can't cover everything.  In general there are several ways, or packages, to accomplish a given task.
-
 Here is  a quick overview of the basics.  Next we'll dive deep into R's basic data structures and then how to subset these data structures.  This will give us a good overview of base R and the background needed to dive into __R for Data Science__.
 
 The three most important functions in R `?`, `??`, and `str`:

@@ -7,6 +7,27 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{block type='rmdnote'}
+This is a note
+```
+
+```{block type='rmdcaution'}
+This is a caution
+```
+
+```{block2, type='rmdimportant'}
+This is important
+```
+
+
+```{block2, type='rmdtip'}
+this is a Tip
+```
+
+```{block2, type='rmdwarning'}
+This is a warning!
+```
+
 
 ## Notes
 
