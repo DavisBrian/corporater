@@ -1,17 +1,5 @@
 # Good practices
 
-> “Programs must be written for people to read, and only incidentally for machines to execute.” 
->
-> -- Harold Abelson
-
-> "Programming is the art of telling another human being what one wants the computer to do." 
->
-> -- Donald Knuth
-
-> "Let us change our traditional attitude to the construction of programs. Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do." 
->
-> -- Donald Knuth
-
 > "When you write a program, think of it primarily as a work of literature. You're trying to write something that human beings are going to read. Don't think of it primarily as something a computer is going to follow. The more effective you are at making your program readable, the more effective it's going to be: You'll understand it today, you'll understand it next week, and your successors who are going to maintain and modify it will understand it."
 >
 > -- Donald Knuth
@@ -194,7 +182,7 @@ Try not to copy code, or copy then modify the code, more than twice.
 -  If you copy a function into a project 3 or more times *make a package*
 -  If 3 or more people will use the function *make a package*
 
-The _Rule of Three_ applies look-up tables and such.  The key thing to think about is; if something changes how many touch points will there be?  If it is 3 or more
+The _Rule of Three_ applies to look-up tables and such also.  The key thing to think about is; if something changes how many touch points will there be?  If it is 3 or more
 places it is time to abstract this code a bit.
 
 [^DRY]: This is sometimes called the DRY principle, or Don't Repeat Yourself.
@@ -276,13 +264,11 @@ You can also use [Stack Overflow](https://stackoverflow.com/). The most common u
 
 You can ask questions on Stack Overflow (using the tag `r`). You need to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example) if you want your question to be answered. Most of the times, while making this reproducible example, you will find the answer to your problem.
 
-If you're confident enough in your R skills, you can go to the next step and [answer questions on Stack Overflow](https://stackoverflow.com/unanswered/tagged/r?tab=newest). It's a good way to increase your skills, or just to [procrastinate while writing a scientific manuscript](https://privefl.github.io/blog/one-month-as-a-procrastinator-on-stack-overflow/).
+Join the [R-help](https://www.r-project.org/mail.html) mailing list.  Sign up to get the daily digest and scan it for questions that interest you.
 
 ## Keeping up to date
 
 With over 10,000 packages on CRAN it is hard to keep up with the constantly changing landscape.  [R-Bloggers](https://www.r-bloggers.com/) is an R focused blog aggregation site with dozens of posts per day.  Check it out.
-
-Join the [R-help](https://www.r-project.org/mail.html) mailing list.  Sign up to get the daily digest and scan it for questions that interest you.
 
 ## Exercises
 

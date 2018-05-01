@@ -24,7 +24,7 @@ We saw this is Coding Style. Use `<-` for assignment and use `=` for parameters.
 
 ### Vector
 
-You create a vector with `c`.
+You create a vector with `c`.  These have to be the same data type.
 
 ```{r}
 v <- c("my", "first", "vector")
@@ -281,6 +281,12 @@ if(<condition1>) {
         # do something else different
 }
 ```
+
+```{block type='rmdwarning'}
+There is also an `ifelse` function which is vectorized version.  It is essentially an `if`-`else` wrapped in a `for` loop so that the condition, and action, is performed on each element in a vector.
+```
+
+
 ### `for` Loops
 
 For loops are pretty much the only looping construct that you will
@@ -510,7 +516,7 @@ for(i in seq_along(x)) {
 z
 ```
 
-We saw a a form of vectorization above in the logical operators.
+We saw a form of vectorization above in the logical operators.
 
 ```{r}
 x
@@ -856,7 +862,6 @@ GL_naive <- function (limit) {
   for (n in 0:limit) {
     p = (-1)^n/(2 * n + 1) + p
     }
-
   4*p
 }
 

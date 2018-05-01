@@ -56,7 +56,7 @@ Good [write up](http://blog.revolutionanalytics.com/2017/06/r-fda.html) with lin
 
 - We will assume you have minimal experience and knowledge of R
 - IT should have installed:
-    - [R](https://cran.r-project.org/) version 3.5
+    - [R](https://cran.r-project.org/) version 3.4.4
     - [RStudio](https://www.rstudio.com/products/rstudio/download/#download) version 1.1 
     - [MiTeX](https://miktex.org/)
     - [RTools](https://cran.r-project.org/bin/windows/Rtools/) version 3.4
@@ -73,7 +73,7 @@ The **rough** topic list of the course:
 
 1. Good programming practices
 2. Basics of R Programming
-3. Importing Data
+3. Importing / Exporting Data
 4. Tidying Data
 5. Visualizing Data
 6. Functions
@@ -95,6 +95,6 @@ My current thoughts are to meet an hour a week and discuss a topic.  We will not
 
 Open to other ideas as we go along.
 
-I’m going to try to keep the assignments related to our current work so we can work on the class during work hours.
+I’m going to try to keep the assignments related to our current work so we can work on the class during work hours.  Bring what you are working on and we will see how we can fit it into the class.
 
 

@@ -1,6 +1,6 @@
 --- 
 title: "Modern R in a Corporate Environment"
-subtitle: "R Course developed for the office"
+subtitle: "R course developed for the office"
 author: "Brian Davis"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -13,7 +13,13 @@ github-repo: DavisBrian/corporater
 description: "This is an original course for RADARS"
 ---
 
-# Title Page {-}
+# Welcome {-}
+
+This is the course notes for our class. This course will teach you how to do data science with R.  You'll learn the basics of R and then we'll go through [R for Data Science](http://r4ds.had.co.nz/index.html) by Garrett Grolemund & Hadley Wickham. You’ll learn how to get your data into R, get it into the most useful structure, transform it, visualize it and communicate out your results.  We'll mix in various topics from our current workload as well as some unique challenges of working in a corporate environment.
+
+Most of these are the skills that allow data science to happen, and here you will find the best practices for doing each of these things with R. You’ll learn how to use the grammar of graphics, literate programming, and reproducible research to save time and reduce errors. 
+
+We will build the tools to make our work easier and more streamlined together.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
