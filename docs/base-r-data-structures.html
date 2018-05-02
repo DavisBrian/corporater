@@ -260,8 +260,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="base-r-data-structures" class="section level1">
 <h1><span class="header-section-number">4</span> Base R Data Structures</h1>
-<p>In R there three basic constructs<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>; objects, functions, and environments.</p>
-<p>The three most important functions in R <code>?</code>, <code>??</code>, and <code>str</code>.</p>
 <div id="naming-rules" class="section level2">
 <h2><span class="header-section-number">4.1</span> Naming Rules</h2>
 <p>R has strict rules about what constitutes a valid name. A <strong>syntactic</strong> name must consist of letters<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>, digits, <code>.</code> and <code>_</code>, and can’t begin with <code>_</code>. Additionally, it can not be one of a list of <strong>reserved words</strong> like <code>TRUE</code>, <code>NULL</code>, <code>if</code>, and <code>function</code> (see the complete list in <code>?Reserved</code>). Names that don’t follow these rules are called <strong>non-syntactic</strong> names, and if you try to use them, you’ll get an error:</p>
@@ -270,6 +268,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb54-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb54-4" data-line-number="4"><span class="cf">if</span> &lt;-<span class="st"> </span><span class="dv">10</span></a>
 <a class="sourceLine" id="cb54-5" data-line-number="5"><span class="co">#&gt; Error: unexpected assignment in &quot;if &lt;-&quot;</span></a></code></pre></div>
+<div class="rmdwarning">
+<p>
+While <code>TRUE</code> and <code>FALSE</code> are reserved words <code>T</code> and <code>F</code> are not. However, you can use <code>T</code> and <code>F</code> as logical. If someone assigns either of those a different value you will get a <strong>very</strong> hard to track down bug. Always spell out the <code>TRUE</code> and <code>FALSE</code>.
+</p>
+</div>
 </div>
 <div id="vectors" class="section level2">
 <h2><span class="header-section-number">4.2</span> Vectors</h2>
@@ -707,8 +710,7 @@ rows as the matrix.</p></li>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="2">
-<li id="fn2"><p>Technically speaking functions and environments are objects which allows one to do things in R you can’t do in many other languages.<a href="base-r-data-structures.html#fnref2" class="footnote-back">↩</a></p></li>
+<ol start="3">
 <li id="fn3"><p>Surprisingly, what constitutes a letter is determined by your current locale. That means that the syntax of R code actually differs from computer to computer, and it’s possible for a file that works on one computer to not even parse on another!<a href="base-r-data-structures.html#fnref3" class="footnote-back">↩</a></p></li>
 <li id="fn4"><p><code>is.numeric()</code> is a general test for the “numberliness” of a vector and returns TRUE for both integer and double vectors. It is not a specific test for double vectors, which are often called numeric.<a href="base-r-data-structures.html#fnref4" class="footnote-back">↩</a></p></li>
 <li id="fn5"><p>The reality is a little more complicated: attributes are actually stored in something called pairlists, which can you learn more about in <a href="http://adv-r.had.co.nz">Advanced R</a><a href="base-r-data-structures.html#fnref5" class="footnote-back">↩</a></p></li>

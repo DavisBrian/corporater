@@ -12,9 +12,11 @@ The three most important functions in R `?`, `??`, and `str`:
 
 See this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) for a good starting point on the basics functions in base R and some important libraries.  
 
-A book to learn the basics is [R Programmig for Data Science](https://bookdown.org/rdpeng/rprogdatascience/)
+A book to learn the basics is [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/)
 
-In R there three basic constructs; objects, functions, and environments:
+In R there three basic constructs[^constructs]; objects, functions, and environments.
+
+[^constructs]: Technically speaking functions and environments are objects which allows one to do things in R you can't do in many other languages.
 
 ## Assignment Operators
 
@@ -175,18 +177,8 @@ df
 
 R has two versions of the logical operators `&` and `&&`  (`|` and `||`).  The single version is the vectorized version while the the double version returns a length-one vector.  Use the double version in logical control structures (if, for, while, etc).  
 ```{r}
-# TRUE/FALSE and each element
-TRUE & c(TRUE, FALSE)
-FALSE & c(TRUE, FALSE)
-# TRUE/FALSE and first element
-TRUE && c(TRUE, FALSE)
-FALSE && c(TRUE, FALSE)
-# TRUE/FALSE or each element
-TRUE | c(TRUE, FALSE)
-FALSE | c(TRUE, FALSE)
-# TRUE/FALSE or first element
-TRUE || c(TRUE, FALSE)
-FALSE || c(TRUE, FALSE)
+df$x && df$y  # only and the first elements
+df$x || df$y  # only or the first elements
 ```
 
 
@@ -453,7 +445,7 @@ For loops are so common that that R has some functions which implement looping i
 *  `apply` is generic: applies a function to a matrix's rows or columns (or, more generally, to dimensions of an array)
 *  `lapply` is a list apply which acts on a list or vector and returns a list.
 *  `sapply` is a simple lapply but defaults to returning a vector (or matrix) if possible.
-*  `vapply` is a verified apply.  This is a sapply with the return object type prespecified.
+*  `vapply` is a verified apply.  This is a sapply with the return object type pre-specified.
 *  `rapply` is a recursive apply for nested lists, i.e. lists within lists
 *  `tapply` is a tagged apply where the tags identify the subsets to apply a function
 *  `mapply` is a multivariate apply for functions that have multiple arguments.
@@ -490,7 +482,7 @@ mapply(sum, 1:5, 1:5, 1:5)
 replicate(5, mean(rnorm(10)))
 ```
 
-`tapply` is in a simalar spirit to a common data analysis paradigm called split-apply-combine where we split our data set based on a group, apply a function or code to it, and combine the results back together.  We will revisit this paradigm in greater detail when we get to _R for Data Science_.  
+`tapply` is in a similar spirit to a common data analysis paradigm called split-apply-combine where we split our data set based on a group, apply a function or code to it, and combine the results back together.  We will revisit this paradigm in greater detail when we get to _R for Data Science_.  
 
 
 ## Vectorization & Recycling

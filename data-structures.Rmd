@@ -1,11 +1,5 @@
 # Base R Data Structures
 
-In R there three basic constructs[^constructs]; objects, functions, and environments.
-
-The three most important functions in R `?`, `??`, and `str`.
-
-[^constructs]: Technically speaking functions and environments are objects which allows one to do things in R you can't do in many other languages.
-
 ## Naming Rules
 
 R has strict rules about what constitutes a valid name. A __syntactic__ name must consist of letters[^letters], digits, `.` and `_`, and can't begin with `_`. Additionally, it can not be one of a list of __reserved words__ like `TRUE`, `NULL`, `if`, and `function` (see the complete list in `?Reserved`). Names that don't follow these rules are called __non-syntactic__ names, and if you try to use them, you'll get an error:
@@ -16,6 +10,10 @@ _abc <- 1
 
 if <- 10
 #> Error: unexpected assignment in "if <-"
+```
+
+```{block type='rmdwarning'}
+While `TRUE` and `FALSE` are reserved words `T` and `F` are not.  However, you can use `T` and `F` as logical.  If someone assigns either of those a different value you will get a __very__ hard to track down bug.  Always spell out the `TRUE` and `FALSE`.
 ```
 
 [^letters]: Surprisingly, what constitutes a letter is determined by your current locale. That means that the syntax of R code actually differs from computer to computer, and it's possible for a file that works on one computer to not even parse on another!

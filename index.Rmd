@@ -15,6 +15,8 @@ description: "This is an original course for RADARS"
 
 # Welcome {-}
 
+> Something that will make life easier in the long-run can be the most difficult thing to do today. For coders, prioritising the long term may involve an overhaul of current practice and the learning of a new skill.
+
 This is the course notes for our class. This course will teach you how to do data science with R.  You'll learn the basics of R and then we'll go through [R for Data Science](http://r4ds.had.co.nz/index.html) by Garrett Grolemund & Hadley Wickham. You’ll learn how to get your data into R, get it into the most useful structure, transform it, visualize it and communicate out your results.  We'll mix in various topics from our current workload as well as some unique challenges of working in a corporate environment.
 
 Most of these are the skills that allow data science to happen, and here you will find the best practices for doing each of these things with R. You’ll learn how to use the grammar of graphics, literate programming, and reproducible research to save time and reduce errors. 

@@ -210,6 +210,12 @@
 \chapter*{Welcome}\label{welcome}}
 \addcontentsline{toc}{chapter}{Welcome}
 
+\begin{quote}
+Something that will make life easier in the long-run can be the most
+difficult thing to do today. For coders, prioritising the long term may
+involve an overhaul of current practice and the learning of a new skill.
+\end{quote}
+
 This is the course notes for our class. This course will teach you how
 to do data science with R. You'll learn the basics of R and then we'll
 go through \href{http://r4ds.had.co.nz/index.html}{R for Data Science}
@@ -232,12 +238,6 @@ together.
 
 \hypertarget{preamble-intro}{%
 \chapter{Introduction}\label{preamble-intro}}
-
-\begin{quote}
-Something that will make life easier in the long-run can be the most
-difficult thing to do today. For coders, prioritising the long term may
-involve an overhaul of current practice and the learning of a new skill.
-\end{quote}
 
 \hypertarget{course-philosophy}{%
 \section{Course Philosophy}\label{course-philosophy}}
@@ -972,10 +972,13 @@ for a good starting point on the basics functions in base R and some
 important libraries.
 
 A book to learn the basics is
-\href{https://bookdown.org/rdpeng/rprogdatascience/}{R Programmig for
+\href{https://bookdown.org/rdpeng/rprogdatascience/}{R Programming for
 Data Science}
 
-In R there three basic constructs; objects, functions, and environments:
+In R there three basic constructs\footnote{Technically speaking
+  functions and environments are objects which allows one to do things
+  in R you can't do in many other languages.}; objects, functions, and
+environments.
 
 \hypertarget{assignment-operators}{%
 \section{Assignment Operators}\label{assignment-operators}}
@@ -1247,25 +1250,9 @@ control structures (if, for, while, etc).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# TRUE/FALSE and each element}
-\OtherTok{TRUE} \OperatorTok{&}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
-\CommentTok{#> [1]  TRUE FALSE}
-\OtherTok{FALSE} \OperatorTok{&}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
-\CommentTok{#> [1] FALSE FALSE}
-\CommentTok{# TRUE/FALSE and first element}
-\OtherTok{TRUE} \OperatorTok{&&}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{df}\OperatorTok{$}\NormalTok{x }\OperatorTok{&&}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{y  }\CommentTok{# only and the first elements}
 \CommentTok{#> [1] TRUE}
-\OtherTok{FALSE} \OperatorTok{&&}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
-\CommentTok{#> [1] FALSE}
-\CommentTok{# TRUE/FALSE or each element}
-\OtherTok{TRUE} \OperatorTok{|}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
-\CommentTok{#> [1] TRUE TRUE}
-\OtherTok{FALSE} \OperatorTok{|}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
-\CommentTok{#> [1]  TRUE FALSE}
-\CommentTok{# TRUE/FALSE or first element}
-\OtherTok{TRUE} \OperatorTok{||}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
-\CommentTok{#> [1] TRUE}
-\OtherTok{FALSE} \OperatorTok{||}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{df}\OperatorTok{$}\NormalTok{x }\OperatorTok{||}\StringTok{ }\NormalTok{df}\OperatorTok{$}\NormalTok{y  }\CommentTok{# only or the first elements}
 \CommentTok{#> [1] TRUE}
 \end{Highlighting}
 \end{Shaded}
@@ -1631,7 +1618,7 @@ look see
   (or matrix) if possible.
 \item
   \texttt{vapply} is a verified apply. This is a sapply with the return
-  object type prespecified.
+  object type pre-specified.
 \item
   \texttt{rapply} is a recursive apply for nested lists, i.e.~lists
   within lists
@@ -1716,7 +1703,7 @@ investigate the highly optimized, lightning-quick \texttt{colMeans},
 \end{Highlighting}
 \end{Shaded}
 
-\texttt{tapply} is in a simalar spirit to a common data analysis
+\texttt{tapply} is in a similar spirit to a common data analysis
 paradigm called split-apply-combine where we split our data set based on
 a group, apply a function or code to it, and combine the results back
 together. We will revisit this paradigm in greater detail when we get to
@@ -1893,7 +1880,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>   0.191   0.009   0.200}
+\CommentTok{#>   0.196   0.012   0.208}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2301,7 +2288,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x7f8b48a1db08>}
+\CommentTok{#> <environment: 0x7fa38a44e940>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2361,7 +2348,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>   0.807   0.001   0.808}
+\CommentTok{#>   0.851   0.001   0.854}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -2382,14 +2369,6 @@ about it in terms of the series notation and not the summation notation.
 
 \hypertarget{base-r-data-structures}{%
 \chapter{Base R Data Structures}\label{base-r-data-structures}}
-
-In R there three basic constructs\footnote{Technically speaking
-  functions and environments are objects which allows one to do things
-  in R you can't do in many other languages.}; objects, functions, and
-environments.
-
-The three most important functions in R \texttt{?}, \texttt{??}, and
-\texttt{str}.
 
 \hypertarget{naming-rules}{%
 \section{Naming Rules}\label{naming-rules}}
@@ -2416,6 +2395,14 @@ error:
 \CommentTok{#> Error: unexpected assignment in "if <-"}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{rmdwarning}
+While \texttt{TRUE} and \texttt{FALSE} are reserved words \texttt{T} and
+\texttt{F} are not. However, you can use \texttt{T} and \texttt{F} as
+logical. If someone assigns either of those a different value you will
+get a \textbf{very} hard to track down bug. Always spell out the
+\texttt{TRUE} and \texttt{FALSE}.
+\end{rmdwarning}
 
 \hypertarget{vectors}{%
 \section{Vectors}\label{vectors}}
