@@ -62,8 +62,6 @@ typeof(c)
 
 c(d, "a")       ## coerced to character
 
-c(list(1), "a")
-
 50 < "7"
 ```
 
@@ -139,8 +137,10 @@ is.recursive(x)
 `c()` will combine several lists into one. If given a combination of atomic vectors and lists, `c()` will coerce the vectors to lists before combining them. Compare the results of `list()` and `c()`:
 
 ```{r}
-x <- list(list(1, 2), c(3, 4))
-y <- c(list(1, 2), c(3, 4))
+l1 <- list(1, 2)
+c1 <- c(3, 4)
+x <- list(l1, c1)
+y <- c(l1, c1)
 str(x)
 str(y)
 ```
@@ -321,7 +321,7 @@ You can coerce an object to a data frame with `as.data.frame()`:
 The automatic coercion that causes the most problems is if you select a single column of a data.frame. R will coerce the column to an atomic vector, which generally is not what you want[^data.frame].
 
 ```{r}
-(x1 <- df[, "x"])
+(x1 <- df[, "y"])
 str(x1)
 
 (x2 <- df[, "y", drop = FALSE])

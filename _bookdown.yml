@@ -9,8 +9,6 @@ rmd_files: [
   "data-structures.Rmd",
   "subset.Rmd",
   
-  "data-viz.Rmd",
-  
   "appendix-A.Rmd"]
   
 output_dir: docs

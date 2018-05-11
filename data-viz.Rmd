@@ -4,3 +4,30 @@
 
 
 Place holder for data viz.
+
+
+## Links
+[ggplot2](https://github.com/tidyverse/ggplot2)
+[ggplot turtorial](http://r-statistics.co/ggplot2-Tutorial-With-R.html)
+[R Cookbook](http://www.cookbook-r.com/Graphs/)
+[Examples and Themes](https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html)
+[ggplot wiki](https://github.com/tidyverse/ggplot2/wiki)
+[Visualizing Data](https://flowingdata.com/category/guides/)
+
+### Math and symbols
+[labeller](http://ggplot2.tidyverse.org/reference/label_bquote.html)
+[bquote method](https://trinkerrstuff.wordpress.com/2018/03/15/2246/)
+
+
+[Corporate Palettes](https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2)
+[hmbrthemes](https://cran.r-project.org/web/packages/hrbrthemes/vignettes/why_hrbrthemes.html)
+
+[Maps](https://geocompr.robinlovelace.net/)
+
+[Writing Functions with ggplot](https://groups.google.com/forum/#!topic/ggplot2/qVE6Uxd_IFQ)
+[ggplot2 function writing tips](http://novyden.blogspot.com/2013/07/ggplot-inside-function-needs-some-care.html)
+
+
+[Base plot](https://www.stat.auckland.ac.nz/~ihaka/120/Notes/ch03.pdf)
+[Base plot limits](https://www.stat.auckland.ac.nz/~ihaka/787/lectures-r-graphics.pdf)
+[base R Graphics](https://blog.jumpingrivers.com/posts/2018/2018-01-24-base-r-graphics/)

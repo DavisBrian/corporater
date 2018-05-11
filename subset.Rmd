@@ -602,3 +602,9 @@ unwhich <- function(x, n) {
 }
 unwhich(which(x), 10)
 ```
+
+2. Install the tidyverse package, if you already have it installed upgrade to the latest version.  This can be done by either typing `install.packages("tidyverse")` in the console or by using the "Packages"" tab inside RStudio.
+
+The tideverse package is a collection of other packages and will take a while to install  Also, you may get an error that R could not move a file or package from a temporary directory to it's final location.  This happens because of our corporate virus scanner.  The file is being virus scanned when R tries to move it.  The simplest solution it reinstall just the offending package.  You can also go to the temporary directory and manually move it via windows explorer.
+
+3. Read and do the exercises in Chapters 1-3 of[R for Data Science](http://r4ds.had.co.nz/).  I highly recommend reading [A Layered Grammar of Graphics](http://vita.had.co.nz/papers/layered-grammar.pdf).

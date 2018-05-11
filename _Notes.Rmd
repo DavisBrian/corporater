@@ -28,6 +28,7 @@ this is a Tip
 This is a warning!
 ```
 
+[R BAsics](http://r-statistics.co/R-Tutorial.html)
 
 ## Notes
 
@@ -39,23 +40,25 @@ This is a place to keep track of my thoughts and notes.
 [R Software Development](https://bookdown.org/rdpeng/RProgDA/)
 
 
-## Functions
+[Coodbooks](https://www.r-bloggers.com/generating-codebooks-in-r/)
+[datamaid](http://sandsynligvis.dk/articles/17/datamaid.html)
 
 
-### Functional Programming
-
-### Functionals
-
-### Function operators
-
-## Environments
-
-Scoping
-
-
+[Maps](https://geocompr.robinlovelace.net/)
 
 Tidyverse
 [Tricks](http://www.brodrigues.co/blog/2017-06-19-dplyr-0-70-tutorial/)
+
+
+
+[Programming with dplyr](https://www.r-bloggers.com/programming-with-dplyr-by-using-dplyr/)
+
+[Regex](https://www.r-bloggers.com/regular-expressions-every-r-programmer-should-know/)
+[Regex2](https://blog.jumpingrivers.com/posts/2018/top_regular_expressions_r_stringr/)
+
+
+
+
 
 Definitions
 Packages 
@@ -66,6 +69,7 @@ Reading Data in
 *    Databases
 *    SAS
 *    Other
+[PDFs](https://itsalocke.com/blog/working-with-pdfs---scraping-the-pass-budget/)
 
 Writing data out
 *   Text
