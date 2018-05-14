@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 packages.bib
+.DS_Store
 docs/*.md
 spelling.errors
 _cache
