@@ -30,6 +30,10 @@ This is a warning!
 
 [R BAsics](http://r-statistics.co/R-Tutorial.html)
 
+## String exercises
+ Change as string from Windows Paths to R paths (convert \\ to / and end with / )
+ make headers sytantic names (tolower, start with a letter, replace special characters and spaces with an underscore)
+
 ## Notes
 
 This is a place to keep track of my thoughts and notes.
