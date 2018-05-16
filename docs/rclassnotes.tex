@@ -125,7 +125,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-05-11}
+  \date{2018-05-16}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1817,7 +1817,7 @@ Monte-Carlo pseudo code:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e6}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    3.72    0.00    3.77}
+\CommentTok{#>    4.83    0.02    4.93}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1833,7 +1833,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.21    0.00    0.20}
+\CommentTok{#>    0.22    0.02    0.24}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2236,7 +2236,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000b3382a0>}
+\CommentTok{#> <environment: 0x000000000b34d5b0>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2295,7 +2295,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.16    0.00    2.27}
+\CommentTok{#>    2.83    0.00    2.87}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -2606,14 +2606,33 @@ all at once (as a list) with \texttt{attributes()}.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{a <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{3}
-\KeywordTok{attr}\NormalTok{(a, }\StringTok{"x"}\NormalTok{) <-}\StringTok{ "abcdef"}
-\KeywordTok{attr}\NormalTok{(a, }\StringTok{"y"}\NormalTok{) <-}\StringTok{ }\DecValTok{4}\OperatorTok{:}\DecValTok{6}
+\KeywordTok{attr}\NormalTok{(a, }\StringTok{"createdBy"}\NormalTok{) <-}\StringTok{ "Brian Davis"}
+\KeywordTok{attr}\NormalTok{(a, }\StringTok{"version"}\NormalTok{) <-}\StringTok{ }\FloatTok{1.0}
 \KeywordTok{attr}\NormalTok{(a, }\StringTok{"z"}\NormalTok{) <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{())}
+\NormalTok{a}
+\CommentTok{#> [1] 1 2 3}
+\CommentTok{#> attr(,"createdBy")}
+\CommentTok{#> [1] "Brian Davis"}
+\CommentTok{#> attr(,"version")}
+\CommentTok{#> [1] 1}
+\CommentTok{#> attr(,"z")}
+\CommentTok{#> attr(,"z")[[1]]}
+\CommentTok{#> list()}
+\KeywordTok{attributes}\NormalTok{(a)}
+\CommentTok{#> $createdBy}
+\CommentTok{#> [1] "Brian Davis"}
+\CommentTok{#> }
+\CommentTok{#> $version}
+\CommentTok{#> [1] 1}
+\CommentTok{#> }
+\CommentTok{#> $z}
+\CommentTok{#> $z[[1]]}
+\CommentTok{#> list()}
 \KeywordTok{str}\NormalTok{(}\KeywordTok{attributes}\NormalTok{(a))}
 \CommentTok{#> List of 3}
-\CommentTok{#>  $ x: chr "abcdef"}
-\CommentTok{#>  $ y: int [1:3] 4 5 6}
-\CommentTok{#>  $ z:List of 1}
+\CommentTok{#>  $ createdBy: chr "Brian Davis"}
+\CommentTok{#>  $ version  : num 1}
+\CommentTok{#>  $ z        :List of 1}
 \CommentTok{#>   ..$ : list()}
 \end{Highlighting}
 \end{Shaded}
@@ -2905,6 +2924,16 @@ Use \texttt{stringsAsFactors\ =\ FALSE} to suppress this behavior.
 \CommentTok{#> 'data.frame':    3 obs. of  2 variables:}
 \CommentTok{#>  $ x: int  1 2 3}
 \CommentTok{#>  $ y: chr  "a" "b" "c"}
+\end{Highlighting}
+\end{Shaded}
+
+Because a \texttt{data.frame} is an S3 class, its type reflects the
+underlying vector used to build it: the list.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{typeof}\NormalTok{(df)}
+\CommentTok{#> [1] "list"}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3329,8 +3358,10 @@ columns.
 \CommentTok{#>      B A}
 \CommentTok{#> [1,] 4 1}
 \CommentTok{#> [2,] 6 3}
-\NormalTok{a[}\DecValTok{0}\NormalTok{, }\OperatorTok{-}\DecValTok{2}\NormalTok{]}
+\NormalTok{a[}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\OperatorTok{-}\DecValTok{2}\NormalTok{]}
 \CommentTok{#>      A C}
+\CommentTok{#> [1,] 2 8}
+\CommentTok{#> [2,] 3 9}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3407,6 +3438,30 @@ Using \texttt{{[}} will always return a list; \texttt{{[}{[}} and
 \texttt{\$}, as described below, let you pull out the components of the
 list.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\FloatTok{2.3}\NormalTok{, }\FloatTok{5.9}\NormalTok{))}
+\NormalTok{x}
+\CommentTok{#> [[1]]}
+\CommentTok{#> [1] 1 2 3}
+\CommentTok{#> }
+\CommentTok{#> [[2]]}
+\CommentTok{#> [1] "a"}
+\CommentTok{#> }
+\CommentTok{#> [[3]]}
+\CommentTok{#> [1]  TRUE FALSE  TRUE}
+\CommentTok{#> }
+\CommentTok{#> [[4]]}
+\CommentTok{#> [1] 2.3 5.9}
+\NormalTok{x[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{4}\NormalTok{)]}
+\CommentTok{#> [[1]]}
+\CommentTok{#> [1] 1 2 3}
+\CommentTok{#> }
+\CommentTok{#> [[2]]}
+\CommentTok{#> [1] 2.3 5.9}
+\end{Highlighting}
+\end{Shaded}
+
 \subsection{Data Frames}\label{data-frames-1}
 
 Data frames possess the characteristics of both lists and matrices: if
@@ -3420,13 +3475,6 @@ with two vectors, they behave like matrices.
 \CommentTok{#>   x y z}
 \CommentTok{#> 1 1 3 a}
 \CommentTok{#> 2 2 2 b}
-\CommentTok{#> 3 3 1 c}
-\NormalTok{df[df}\OperatorTok{$}\NormalTok{x }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{, ]}
-\CommentTok{#>   x y z}
-\CommentTok{#> 2 2 2 b}
-\NormalTok{df[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{), ]}
-\CommentTok{#>   x y z}
-\CommentTok{#> 1 1 3 a}
 \CommentTok{#> 3 3 1 c}
 
 \CommentTok{# There are two ways to select columns from a data frame}
@@ -3451,6 +3499,15 @@ with two vectors, they behave like matrices.
 \CommentTok{#>  $ x: int  1 2 3}
 \KeywordTok{str}\NormalTok{(df[, }\StringTok{"x"}\NormalTok{])}
 \CommentTok{#>  int [1:3] 1 2 3}
+
+\CommentTok{# for row subset like a matrix}
+\NormalTok{df[df}\OperatorTok{$}\NormalTok{x }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{, ]}
+\CommentTok{#>   x y z}
+\CommentTok{#> 2 2 2 b}
+\NormalTok{df[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{), ]}
+\CommentTok{#>   x y z}
+\CommentTok{#> 1 1 3 a}
+\CommentTok{#> 3 3 1 c}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3546,7 +3603,7 @@ Let's make a simple list and draw it as a train:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\DecValTok{4}\OperatorTok{:}\DecValTok{5}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3579,6 +3636,12 @@ If you use a vector with \texttt{{[}{[}}, it will subset recursively:
 \CommentTok{#> $a$b$c}
 \CommentTok{#> $a$b$c$d}
 \CommentTok{#> [1] 1}
+\KeywordTok{str}\NormalTok{(b)}
+\CommentTok{#> List of 1}
+\CommentTok{#>  $ a:List of 1}
+\CommentTok{#>   ..$ b:List of 1}
+\CommentTok{#>   .. ..$ c:List of 1}
+\CommentTok{#>   .. .. ..$ d: num 1}
 \NormalTok{b[[}\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{, }\StringTok{"d"}\NormalTok{)]]}
 \CommentTok{#> [1] 1}
 
@@ -3637,11 +3700,13 @@ There's one important difference between \texttt{\$} and
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{abc =} \DecValTok{1}\NormalTok{)}
-\NormalTok{x}\OperatorTok{$}\NormalTok{a}
-\CommentTok{#> [1] 1}
-\NormalTok{x[[}\StringTok{"a"}\NormalTok{]]}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{abc =} \DecValTok{1}\NormalTok{, }\DataTypeTok{def =} \DecValTok{2}\NormalTok{, }\DataTypeTok{ghi =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{))}
+\NormalTok{x}\OperatorTok{$}\NormalTok{d}
+\CommentTok{#> [1] 2}
+\NormalTok{x[[}\StringTok{"d"}\NormalTok{]]}
 \CommentTok{#> NULL}
+\NormalTok{x[[}\StringTok{"def"}\NormalTok{]]}
+\CommentTok{#> [1] 2}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3672,13 +3737,42 @@ returning elements of the same type.
 \texttt{row{[}col{]}} & Zero-length & OOB & Missing\tabularnewline
 \midrule
 \endhead
-\texttt{NULL} & \texttt{NULL} & \texttt{NULL} &
-\texttt{NULL}\tabularnewline
 Logical & \texttt{logical(0)} & \texttt{NA} & \texttt{NA}\tabularnewline
 List & \texttt{list()} & \texttt{list(NULL)} &
 \texttt{list(NULL)}\tabularnewline
+\texttt{NULL} & \texttt{NULL} & \texttt{NULL} &
+\texttt{NULL}\tabularnewline
 \bottomrule
 \end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{x[}\OtherTok{NULL}\NormalTok{]}
+\CommentTok{#> logical(0)}
+\NormalTok{x[}\DecValTok{10}\NormalTok{]}
+\CommentTok{#> [1] NA}
+\NormalTok{x[}\OtherTok{NA_real_}\NormalTok{]}
+\CommentTok{#> [1] NA}
+
+\NormalTok{y <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{abc =} \DecValTok{1}\NormalTok{, }\DataTypeTok{def =} \DecValTok{2}\NormalTok{, }\DataTypeTok{ghi =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{))}
+\NormalTok{y[}\OtherTok{NULL}\NormalTok{]}
+\CommentTok{#> named list()}
+\NormalTok{y[}\DecValTok{10}\NormalTok{]}
+\CommentTok{#> $<NA>}
+\CommentTok{#> NULL}
+\NormalTok{y[}\OtherTok{NA_real_}\NormalTok{]}
+\CommentTok{#> $<NA>}
+\CommentTok{#> NULL}
+
+\OtherTok{NULL}\NormalTok{[}\OtherTok{NULL}\NormalTok{]}
+\CommentTok{#> NULL}
+\OtherTok{NULL}\NormalTok{[}\DecValTok{1}\NormalTok{]}
+\CommentTok{#> NULL}
+\OtherTok{NULL}\NormalTok{[}\OtherTok{NA_real_}\NormalTok{]}
+\CommentTok{#> NULL}
+\end{Highlighting}
+\end{Shaded}
 
 With \texttt{{[}}, it doesn't matter whether the OOB index is a position
 or a name, but it does for \texttt{{[}{[}}:
@@ -3689,12 +3783,54 @@ or a name, but it does for \texttt{{[}{[}}:
 Missing\tabularnewline
 \midrule
 \endhead
-\texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} &
-\texttt{NULL}\tabularnewline
 Atomic & Error & Error & Error & Error\tabularnewline
 List & Error & Error & \texttt{NULL} & \texttt{NULL}\tabularnewline
+\texttt{NULL} & \texttt{NULL} & \texttt{NULL} & \texttt{NULL} &
+\texttt{NULL}\tabularnewline
 \bottomrule
 \end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}
+\CommentTok{#> [1]  TRUE FALSE  TRUE}
+\NormalTok{x[[}\OtherTok{NULL}\NormalTok{]]}
+\CommentTok{#> Error in x[[NULL]]: attempt to select less than one element in get1index}
+\NormalTok{x[[}\DecValTok{10}\NormalTok{]]}
+\CommentTok{#> Error in x[[10]]: subscript out of bounds}
+\NormalTok{x[[}\StringTok{"x"}\NormalTok{]]}
+\CommentTok{#> Error in x[["x"]]: subscript out of bounds}
+\NormalTok{x[[}\OtherTok{NA_real_}\NormalTok{]]}
+\CommentTok{#> Error in x[[NA_real_]]: subscript out of bounds}
+
+\NormalTok{y}
+\CommentTok{#> $abc}
+\CommentTok{#> [1] 1}
+\CommentTok{#> }
+\CommentTok{#> $def}
+\CommentTok{#> [1] 2}
+\CommentTok{#> }
+\CommentTok{#> $ghi}
+\CommentTok{#> [1] 4 5 6}
+\NormalTok{y[[}\OtherTok{NULL}\NormalTok{]]}
+\CommentTok{#> Error in y[[NULL]]: attempt to select less than one element in get1index}
+\NormalTok{y[[}\DecValTok{10}\NormalTok{]]}
+\CommentTok{#> Error in y[[10]]: subscript out of bounds}
+\NormalTok{y[[}\StringTok{"x"}\NormalTok{]]}
+\CommentTok{#> NULL}
+\NormalTok{y[[}\OtherTok{NA_real_}\NormalTok{]]}
+\CommentTok{#> NULL}
+
+\OtherTok{NULL}\NormalTok{[[}\OtherTok{NULL}\NormalTok{]]}
+\CommentTok{#> NULL}
+\OtherTok{NULL}\NormalTok{[[}\DecValTok{1}\NormalTok{]]}
+\CommentTok{#> NULL}
+\OtherTok{NULL}\NormalTok{[[}\StringTok{"x"}\NormalTok{]]}
+\CommentTok{#> NULL}
+\OtherTok{NULL}\NormalTok{[[}\OtherTok{NA_real_}\NormalTok{]]}
+\CommentTok{#> NULL}
+\end{Highlighting}
+\end{Shaded}
 
 If the input vector is named, then the names of OOB, missing, or
 \texttt{NULL} components will be \texttt{"\textless{}NA\textgreater{}"}.
@@ -3725,7 +3861,7 @@ selected values of the input vector.
 \NormalTok{x[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\OtherTok{NA}\NormalTok{)] <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)}
 \CommentTok{#> Error in x[c(1, NA)] <- c(1, 2): NAs are not allowed in subscripted assignments}
 \CommentTok{# But you can combine logical indices with NA}
-\CommentTok{# (where they're treated as false).}
+\CommentTok{# (where they are treated as FALSE).}
 \NormalTok{x[}\KeywordTok{c}\NormalTok{(T, F, }\OtherTok{NA}\NormalTok{)] <-}\StringTok{ }\DecValTok{1}
 \NormalTok{x}
 \CommentTok{#> [1] 1 4 3 1 1}
@@ -3746,8 +3882,8 @@ a list.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(mtcars[] <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(mtcars, as.integer))}
-\NormalTok{(mtcars <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(mtcars, as.integer))}
+\NormalTok{mtcars[] <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(mtcars, as.integer)}
+\NormalTok{mtcars <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(mtcars, as.integer)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4048,48 +4184,6 @@ which columns to keep:
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Matching and merging by hand (integer
-subsetting)}\label{matching-and-merging-by-hand-integer-subsetting}
-
-You may have a more complicated look-up table which has multiple columns
-of information. Suppose we have a vector of integer grades, and a table
-that describes their properties:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{grades <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{)}
-
-\NormalTok{info <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
-  \DataTypeTok{grade =} \DecValTok{3}\OperatorTok{:}\DecValTok{1}\NormalTok{,}
-  \DataTypeTok{desc =} \KeywordTok{c}\NormalTok{(}\StringTok{"Excellent"}\NormalTok{, }\StringTok{"Good"}\NormalTok{, }\StringTok{"Poor"}\NormalTok{),}
-  \DataTypeTok{fail =} \KeywordTok{c}\NormalTok{(F, F, T)}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-We want to duplicate the info table so that we have a row for each value
-in \texttt{grades}. An elegant way to do this is by combining
-\texttt{match()} and integer subsetting:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{id <-}\StringTok{ }\KeywordTok{match}\NormalTok{(grades, info}\OperatorTok{$}\NormalTok{grade)}
-\NormalTok{info[id, ]}
-\CommentTok{#>     grade      desc  fail}
-\CommentTok{#> 3       1      Poor  TRUE}
-\CommentTok{#> 2       2      Good FALSE}
-\CommentTok{#> 2.1     2      Good FALSE}
-\CommentTok{#> 1       3 Excellent FALSE}
-\CommentTok{#> 3.1     1      Poor  TRUE}
-\end{Highlighting}
-\end{Shaded}
-
-If you have multiple columns to match on, you'll need to first collapse
-them to a single column (with e.g. \texttt{interaction()}), but
-typically you are better off switching to a function design specifically
-for joining multiple tables like \texttt{merge()}, or
-\texttt{dplyr::left\_join()}.
-
 \subsection{Random samples/bootstrap (integer
 subsetting)}\label{random-samplesbootstrap-integer-subsetting}
 
@@ -4139,39 +4233,6 @@ indices, then subsetting accesses the values:
 
 The arguments of \texttt{sample()} control the number of samples to
 extract, and whether sampling is performed with or without replacement.
-
-\subsection{Expanding aggregated counts (integer
-subsetting)}\label{expanding-aggregated-counts-integer-subsetting}
-
-Sometimes you get a data frame where identical rows have been collapsed
-into one and a count column has been added. \texttt{rep()} and integer
-subsetting make it easy to uncollapse the data by subsetting with a
-repeated row index:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{6}\NormalTok{), }\DataTypeTok{n =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{1}\NormalTok{))}
-\NormalTok{df}
-\CommentTok{#>   x  y n}
-\CommentTok{#> 1 2  9 3}
-\CommentTok{#> 2 4 11 5}
-\CommentTok{#> 3 1  6 1}
-\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(df), df}\OperatorTok{$}\NormalTok{n)}
-\CommentTok{#> [1] 1 1 1 2 2 2 2 2 3}
-
-\NormalTok{df[}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(df), df}\OperatorTok{$}\NormalTok{n), ]}
-\CommentTok{#>     x  y n}
-\CommentTok{#> 1   2  9 3}
-\CommentTok{#> 1.1 2  9 3}
-\CommentTok{#> 1.2 2  9 3}
-\CommentTok{#> 2   4 11 5}
-\CommentTok{#> 2.1 4 11 5}
-\CommentTok{#> 2.2 4 11 5}
-\CommentTok{#> 2.3 4 11 5}
-\CommentTok{#> 2.4 4 11 5}
-\CommentTok{#> 3   1  6 1}
-\end{Highlighting}
-\end{Shaded}
 
 \section{Exercises}\label{exercises-2}
 

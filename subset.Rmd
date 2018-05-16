@@ -129,7 +129,7 @@ a <- matrix(1:9, nrow = 3)
 colnames(a) <- c("A", "B", "C")
 a[1:2, ]
 a[c(TRUE, FALSE, TRUE), c("B", "A")]
-a[0, -2]
+a[2:3, -2]
 ```
 
 By default, `[` will simplify the results to the lowest possible dimensionality.  See below how to avoid this behavior.
@@ -167,6 +167,12 @@ vals[select]
 
 Subsetting a list works in the same way as subsetting an atomic vector. Using `[` will always return a list; `[[` and `$`, as described below, let you pull out the components of the list.
 
+```{r}
+x <- list(1:3, "a", c(TRUE, FALSE, TRUE), c(2.3, 5.9))
+x
+x[c(1,4)]
+```
+
 ### Data Frames
 
 Data frames possess the characteristics of both lists and matrices: if you subset with a single vector, they behave like lists; if you subset with two vectors, they behave like matrices. 
@@ -174,8 +180,6 @@ Data frames possess the characteristics of both lists and matrices: if you subse
 ```{r}
 df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
 df
-df[df$x == 2, ]
-df[c(1, 3), ]
 
 # There are two ways to select columns from a data frame
 # Like a list:
@@ -188,6 +192,10 @@ df[, c("x", "z")]
 # subsetting does not.
 str(df["x"])
 str(df[, "x"])
+
+# for row subset like a matrix
+df[df$x == 2, ]
+df[c(1, 3), ]
 ```
 
 ### Preserving dimensionality 
@@ -235,7 +243,7 @@ There are two other subsetting operators: `[[` and `$`. `[[` is used for extract
 Let's make a simple list and draw it as a train:
 
 ```{r}
-x <- list(1:3, "a", 4:5)
+x <- list(1:3, "a", 4:6)
 ```
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("images/subsetting/train.png", dpi = 300)
@@ -259,6 +267,7 @@ If you use a vector with `[[`, it will subset recursively:
 
 ```{r}
 (b <- list(a = list(b = list(c = list(d = 1)))))
+str(b)
 b[[c("a", "b", "c", "d")]]
 
 # Equivalent to
@@ -297,9 +306,10 @@ mtcars[[var]]
 There's one important difference between `$` and `[[`. `$` does partial matching:
 
 ```{r}
-x <- list(abc = 1)
-x$a
-x[["a"]]
+x <- list(abc = 1, def = 2, ghi = c(4:6))
+x$d
+x[["d"]]
+x[["def"]]
 ```
 
 It is usually a good idea to __NOT__ use partial matching.  It tends to to lead to hard to track down bugs and makes your code much less readable.  With auto complete in RStudio it tends not to save any time or keystrokes.
@@ -312,47 +322,51 @@ It's useful to understand what happens with `[` and `[[` when you use an "invali
 
 | `row[col]`| Zero-length  |  OOB         | Missing       |
 |-----------|--------------|--------------|---------------|
-| `NULL`    | `NULL`       | `NULL`       | `NULL`        |
 | Logical   | `logical(0)` | `NA`         | `NA`          |
 | List      | `list()`     | `list(NULL)` | `list(NULL)`  |
+| `NULL`    | `NULL`       | `NULL`       | `NULL`        |
 
-```{r, eval = FALSE, echo = FALSE}
-logical()[1]
-logical()[NA_real_]
-logical()[NULL]
+```{r}
+x <- c(TRUE, FALSE, TRUE)
+x[NULL]
+x[10]
+x[NA_real_]
 
-list()[1]
-list()[NA_real_]
-list()[NULL]
+y <- list(abc = 1, def = 2, ghi = c(4:6))
+y[NULL]
+y[10]
+y[NA_real_]
 
+NULL[NULL]
 NULL[1]
 NULL[NA_real_]
-NULL[NULL]
 ```
 
 With `[`, it doesn't matter whether the OOB index is a position or a name, but it does for `[[`:
 
 | `row[[col]]` | Zero-length | OOB (int)  | OOB (chr) | Missing  |
 |--------------|-------------|------------|-----------|----------|
-| `NULL`       | `NULL`      | `NULL`     | `NULL`    | `NULL`   |
 | Atomic       | Error       | Error      | Error     | Error    |
 | List         | Error       | Error      | `NULL`    | `NULL`   |
+| `NULL`       | `NULL`      | `NULL`     | `NULL`    | `NULL`   |
 
-```{r, eval = FALSE, echo = FALSE}
-logical()[[1]]
-logical()[["x"]]
-logical()[[NA_real_]]
-logical()[[NULL]]
+```{r, error=TRUE}
+x
+x[[NULL]]
+x[[10]]
+x[["x"]]
+x[[NA_real_]]
 
-list()[[1]]
-list()[["x"]]
-list()[[NA_real_]]
-list()[[NULL]]
+y
+y[[NULL]]
+y[[10]]
+y[["x"]]
+y[[NA_real_]]
 
+NULL[[NULL]]
 NULL[[1]]
 NULL[["x"]]
 NULL[[NA_real_]]
-NULL[[NULL]]
 ```
 
 If the input vector is named, then the names of OOB, missing, or `NULL` components will be `"<NA>"`.
@@ -377,7 +391,7 @@ x
 # You can't combine integer indices with NA
 x[c(1, NA)] <- c(1, 2)
 # But you can combine logical indices with NA
-# (where they're treated as false).
+# (where they are treated as FALSE).
 x[c(T, F, NA)] <- 1
 x
 
@@ -390,8 +404,8 @@ df$a
 Subsetting with nothing can be useful in conjunction with assignment because it will preserve the original object class and structure. Compare the following two expressions. In the first, `mtcars` will remain as a data frame. In the second, `mtcars` will become a list.
 
 ```{r, eval = FALSE}
-(mtcars[] <- lapply(mtcars, as.integer))
-(mtcars <- lapply(mtcars, as.integer))
+mtcars[] <- lapply(mtcars, as.integer)
+mtcars <- lapply(mtcars, as.integer)
 ```
 
 With lists, you can use `[[` + assignment + `NULL` to remove components from a list. To add a literal `NULL` to a list, use `[` and `list(NULL)`:
@@ -535,29 +549,6 @@ If you know the columns you don't want, use set operations to work out which col
 df[setdiff(names(df), "z")]
 ```
 
-### Matching and merging by hand (integer subsetting)
-
-You may have a more complicated look-up table which has multiple columns of information. Suppose we have a vector of integer grades, and a table that describes their properties: 
-
-```{r}
-grades <- c(1, 2, 2, 3, 1)
-
-info <- data.frame(
-  grade = 3:1,
-  desc = c("Excellent", "Good", "Poor"),
-  fail = c(F, F, T)
-)
-```
-
-We want to duplicate the info table so that we have a row for each value in `grades`. An elegant way to do this is by combining `match()` and integer subsetting: 
-
-```{r}
-id <- match(grades, info$grade)
-info[id, ]
-```
-
-If you have multiple columns to match on, you'll need to first collapse them to a single column (with e.g. `interaction()`), but typically you are better off switching to a function design specifically for joining multiple tables like `merge()`, or `dplyr::left_join()`.
-
 ### Random samples/bootstrap (integer subsetting)
 
 You can use integer indices to perform random sampling or bootstrapping of a vector or data frame. `sample()` generates a vector of indices, then subsetting accesses the values: 
@@ -576,18 +567,6 @@ df[sample(nrow(df), 6, rep = TRUE), ]
 ```
 
 The arguments of `sample()` control the number of samples to extract, and whether sampling is performed with or without replacement.
-
-### Expanding aggregated counts (integer subsetting)
-
-Sometimes you get a data frame where identical rows have been collapsed into one and a count column has been added. `rep()` and integer subsetting make it easy to uncollapse the data by subsetting with a repeated row index:
-
-```{r}
-df <- data.frame(x = c(2, 4, 1), y = c(9, 11, 6), n = c(3, 5, 1))
-df
-rep(1:nrow(df), df$n)
-
-df[rep(1:nrow(df), df$n), ]
-```
 
 ## Exercises
 

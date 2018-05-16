@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-05-11">
+<meta name="date" content="2018-05-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -198,9 +198,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.3" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>5.4.3</b> Selecting rows based on a condition (logical subsetting)</a></li>
 <li class="chapter" data-level="5.4.4" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>5.4.4</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
 <li class="chapter" data-level="5.4.5" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>5.4.5</b> Removing columns from data frames (character subsetting)</a></li>
-<li class="chapter" data-level="5.4.6" data-path="subsetting.html"><a href="subsetting.html#matching-and-merging-by-hand-integer-subsetting"><i class="fa fa-check"></i><b>5.4.6</b> Matching and merging by hand (integer subsetting)</a></li>
-<li class="chapter" data-level="5.4.7" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>5.4.7</b> Random samples/bootstrap (integer subsetting)</a></li>
-<li class="chapter" data-level="5.4.8" data-path="subsetting.html"><a href="subsetting.html#expanding-aggregated-counts-integer-subsetting"><i class="fa fa-check"></i><b>5.4.8</b> Expanding aggregated counts (integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.6" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>5.4.6</b> Random samples/bootstrap (integer subsetting)</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="subsetting.html"><a href="subsetting.html#exercises-2"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
 </ul></li>
@@ -350,8 +348,10 @@ a[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE
 <span class="co">#&gt;      B A</span>
 <span class="co">#&gt; [1,] 4 1</span>
 <span class="co">#&gt; [2,] 6 3</span>
-a[<span class="dv">0</span>, <span class="op">-</span><span class="dv">2</span>]
-<span class="co">#&gt;      A C</span></code></pre></div>
+a[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="op">-</span><span class="dv">2</span>]
+<span class="co">#&gt;      A C</span>
+<span class="co">#&gt; [1,] 2 8</span>
+<span class="co">#&gt; [2,] 3 9</span></code></pre></div>
 <p>By default, <code>[</code> will simplify the results to the lowest possible dimensionality. See below how to avoid this behavior.</p>
 <p>Because matrices and arrays are implemented as vectors with special attributes, you can subset them with a single vector. In that case, they will behave like a vector. Arrays in R are stored in column-major order:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(vals &lt;-<span class="st"> </span><span class="kw">outer</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">FUN =</span> <span class="st">&quot;paste&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>))
@@ -395,6 +395,25 @@ vals[select]
 <div id="lists-1" class="section level3">
 <h3><span class="header-section-number">5.1.3</span> Lists</h3>
 <p>Subsetting a list works in the same way as subsetting an atomic vector. Using <code>[</code> will always return a list; <code>[[</code> and <code>$</code>, as described below, let you pull out the components of the list.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="st">&quot;a&quot;</span>, <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>), <span class="kw">c</span>(<span class="fl">2.3</span>, <span class="fl">5.9</span>))
+x
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 1 2 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;a&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1]  TRUE FALSE  TRUE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] 2.3 5.9</span>
+x[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>)]
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 1 2 3</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 2.3 5.9</span></code></pre></div>
 </div>
 <div id="data-frames-1" class="section level3">
 <h3><span class="header-section-number">5.1.4</span> Data Frames</h3>
@@ -404,13 +423,6 @@ df
 <span class="co">#&gt;   x y z</span>
 <span class="co">#&gt; 1 1 3 a</span>
 <span class="co">#&gt; 2 2 2 b</span>
-<span class="co">#&gt; 3 3 1 c</span>
-df[df<span class="op">$</span>x <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, ]
-<span class="co">#&gt;   x y z</span>
-<span class="co">#&gt; 2 2 2 b</span>
-df[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), ]
-<span class="co">#&gt;   x y z</span>
-<span class="co">#&gt; 1 1 3 a</span>
 <span class="co">#&gt; 3 3 1 c</span>
 
 <span class="co"># There are two ways to select columns from a data frame</span>
@@ -434,7 +446,16 @@ df[, <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span clas
 <span class="co">#&gt; &#39;data.frame&#39;:    3 obs. of  1 variable:</span>
 <span class="co">#&gt;  $ x: int  1 2 3</span>
 <span class="kw">str</span>(df[, <span class="st">&quot;x&quot;</span>])
-<span class="co">#&gt;  int [1:3] 1 2 3</span></code></pre></div>
+<span class="co">#&gt;  int [1:3] 1 2 3</span>
+
+<span class="co"># for row subset like a matrix</span>
+df[df<span class="op">$</span>x <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, ]
+<span class="co">#&gt;   x y z</span>
+<span class="co">#&gt; 2 2 2 b</span>
+df[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), ]
+<span class="co">#&gt;   x y z</span>
+<span class="co">#&gt; 1 1 3 a</span>
+<span class="co">#&gt; 3 3 1 c</span></code></pre></div>
 </div>
 <div id="preserving-dimensionality" class="section level3">
 <h3><span class="header-section-number">5.1.5</span> Preserving dimensionality</h3>
@@ -481,7 +502,7 @@ z[<span class="dv">1</span>, drop =<span class="st"> </span><span class="ot">TRU
 <p>— @RLangTip, <a href="https://twitter.com/RLangTip/status/268375867468681216" class="uri">https://twitter.com/RLangTip/status/268375867468681216</a></p>
 </blockquote>
 <p>Let’s make a simple list and draw it as a train:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="st">&quot;a&quot;</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">5</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="st">&quot;a&quot;</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>)</code></pre></div>
 <p><img src="images/subsetting/train.png" width="340" style="display: block; margin: auto;" /></p>
 <p>When extracting a single element, you have two options: you can create a smaller train, or you can extract the contents of a carriage. This is the difference between <code>[</code> and <code>[[</code>:</p>
 <p><img src="images/subsetting/train-single.png" width="264" style="display: block; margin: auto;" /></p>
@@ -495,6 +516,12 @@ z[<span class="dv">1</span>, drop =<span class="st"> </span><span class="ot">TRU
 <span class="co">#&gt; $a$b$c</span>
 <span class="co">#&gt; $a$b$c$d</span>
 <span class="co">#&gt; [1] 1</span>
+<span class="kw">str</span>(b)
+<span class="co">#&gt; List of 1</span>
+<span class="co">#&gt;  $ a:List of 1</span>
+<span class="co">#&gt;   ..$ b:List of 1</span>
+<span class="co">#&gt;   .. ..$ c:List of 1</span>
+<span class="co">#&gt;   .. .. ..$ d: num 1</span>
 b[[<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)]]
 <span class="co">#&gt; [1] 1</span>
 
@@ -521,11 +548,13 @@ mtcars<span class="op">$</span>var
 mtcars[[var]]
 <span class="co">#&gt;  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4</span></code></pre></div>
 <p>There’s one important difference between <code>$</code> and <code>[[</code>. <code>$</code> does partial matching:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">abc =</span> <span class="dv">1</span>)
-x<span class="op">$</span>a
-<span class="co">#&gt; [1] 1</span>
-x[[<span class="st">&quot;a&quot;</span>]]
-<span class="co">#&gt; NULL</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">abc =</span> <span class="dv">1</span>, <span class="dt">def =</span> <span class="dv">2</span>, <span class="dt">ghi =</span> <span class="kw">c</span>(<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>))
+x<span class="op">$</span>d
+<span class="co">#&gt; [1] 2</span>
+x[[<span class="st">&quot;d&quot;</span>]]
+<span class="co">#&gt; NULL</span>
+x[[<span class="st">&quot;def&quot;</span>]]
+<span class="co">#&gt; [1] 2</span></code></pre></div>
 <p>It is usually a good idea to <strong>NOT</strong> use partial matching. It tends to to lead to hard to track down bugs and makes your code much less readable. With auto complete in RStudio it tends not to save any time or keystrokes.</p>
 </div>
 <div id="missingout-of-bounds-indices" class="section level3">
@@ -543,25 +572,49 @@ x[[<span class="st">&quot;a&quot;</span>]]
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>NULL</code></td>
-<td><code>NULL</code></td>
-<td><code>NULL</code></td>
-<td><code>NULL</code></td>
-</tr>
-<tr class="even">
 <td>Logical</td>
 <td><code>logical(0)</code></td>
 <td><code>NA</code></td>
 <td><code>NA</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>List</td>
 <td><code>list()</code></td>
 <td><code>list(NULL)</code></td>
 <td><code>list(NULL)</code></td>
 </tr>
+<tr class="odd">
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+</tr>
 </tbody>
 </table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)
+x[<span class="ot">NULL</span>]
+<span class="co">#&gt; logical(0)</span>
+x[<span class="dv">10</span>]
+<span class="co">#&gt; [1] NA</span>
+x[<span class="ot">NA_real_</span>]
+<span class="co">#&gt; [1] NA</span>
+
+y &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">abc =</span> <span class="dv">1</span>, <span class="dt">def =</span> <span class="dv">2</span>, <span class="dt">ghi =</span> <span class="kw">c</span>(<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>))
+y[<span class="ot">NULL</span>]
+<span class="co">#&gt; named list()</span>
+y[<span class="dv">10</span>]
+<span class="co">#&gt; $&lt;NA&gt;</span>
+<span class="co">#&gt; NULL</span>
+y[<span class="ot">NA_real_</span>]
+<span class="co">#&gt; $&lt;NA&gt;</span>
+<span class="co">#&gt; NULL</span>
+
+<span class="ot">NULL</span>[<span class="ot">NULL</span>]
+<span class="co">#&gt; NULL</span>
+<span class="ot">NULL</span>[<span class="dv">1</span>]
+<span class="co">#&gt; NULL</span>
+<span class="ot">NULL</span>[<span class="ot">NA_real_</span>]
+<span class="co">#&gt; NULL</span></code></pre></div>
 <p>With <code>[</code>, it doesn’t matter whether the OOB index is a position or a name, but it does for <code>[[</code>:</p>
 <table>
 <thead>
@@ -575,28 +628,65 @@ x[[<span class="st">&quot;a&quot;</span>]]
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>NULL</code></td>
-<td><code>NULL</code></td>
-<td><code>NULL</code></td>
-<td><code>NULL</code></td>
-<td><code>NULL</code></td>
-</tr>
-<tr class="even">
 <td>Atomic</td>
 <td>Error</td>
 <td>Error</td>
 <td>Error</td>
 <td>Error</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>List</td>
 <td>Error</td>
 <td>Error</td>
 <td><code>NULL</code></td>
 <td><code>NULL</code></td>
 </tr>
+<tr class="odd">
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+<td><code>NULL</code></td>
+</tr>
 </tbody>
 </table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x
+<span class="co">#&gt; [1]  TRUE FALSE  TRUE</span>
+x[[<span class="ot">NULL</span>]]
+<span class="co">#&gt; Error in x[[NULL]]: attempt to select less than one element in get1index</span>
+x[[<span class="dv">10</span>]]
+<span class="co">#&gt; Error in x[[10]]: subscript out of bounds</span>
+x[[<span class="st">&quot;x&quot;</span>]]
+<span class="co">#&gt; Error in x[[&quot;x&quot;]]: subscript out of bounds</span>
+x[[<span class="ot">NA_real_</span>]]
+<span class="co">#&gt; Error in x[[NA_real_]]: subscript out of bounds</span>
+
+y
+<span class="co">#&gt; $abc</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $def</span>
+<span class="co">#&gt; [1] 2</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ghi</span>
+<span class="co">#&gt; [1] 4 5 6</span>
+y[[<span class="ot">NULL</span>]]
+<span class="co">#&gt; Error in y[[NULL]]: attempt to select less than one element in get1index</span>
+y[[<span class="dv">10</span>]]
+<span class="co">#&gt; Error in y[[10]]: subscript out of bounds</span>
+y[[<span class="st">&quot;x&quot;</span>]]
+<span class="co">#&gt; NULL</span>
+y[[<span class="ot">NA_real_</span>]]
+<span class="co">#&gt; NULL</span>
+
+<span class="ot">NULL</span>[[<span class="ot">NULL</span>]]
+<span class="co">#&gt; NULL</span>
+<span class="ot">NULL</span>[[<span class="dv">1</span>]]
+<span class="co">#&gt; NULL</span>
+<span class="ot">NULL</span>[[<span class="st">&quot;x&quot;</span>]]
+<span class="co">#&gt; NULL</span>
+<span class="ot">NULL</span>[[<span class="ot">NA_real_</span>]]
+<span class="co">#&gt; NULL</span></code></pre></div>
 <p>If the input vector is named, then the names of OOB, missing, or <code>NULL</code> components will be <code>&quot;&lt;NA&gt;&quot;</code>.</p>
 </div>
 </div>
@@ -622,7 +712,7 @@ x
 x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)
 <span class="co">#&gt; Error in x[c(1, NA)] &lt;- c(1, 2): NAs are not allowed in subscripted assignments</span>
 <span class="co"># But you can combine logical indices with NA</span>
-<span class="co"># (where they&#39;re treated as false).</span>
+<span class="co"># (where they are treated as FALSE).</span>
 x[<span class="kw">c</span>(T, F, <span class="ot">NA</span>)] &lt;-<span class="st"> </span><span class="dv">1</span>
 x
 <span class="co">#&gt; [1] 1 4 3 1 1</span>
@@ -633,8 +723,8 @@ df<span class="op">$</span>a[df<span class="op">$</span>a <span class="op">&lt;<
 df<span class="op">$</span>a
 <span class="co">#&gt; [1]  0 10 NA</span></code></pre></div>
 <p>Subsetting with nothing can be useful in conjunction with assignment because it will preserve the original object class and structure. Compare the following two expressions. In the first, <code>mtcars</code> will remain as a data frame. In the second, <code>mtcars</code> will become a list.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(mtcars[] &lt;-<span class="st"> </span><span class="kw">lapply</span>(mtcars, as.integer))
-(mtcars &lt;-<span class="st"> </span><span class="kw">lapply</span>(mtcars, as.integer))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars[] &lt;-<span class="st"> </span><span class="kw">lapply</span>(mtcars, as.integer)
+mtcars &lt;-<span class="st"> </span><span class="kw">lapply</span>(mtcars, as.integer)</code></pre></div>
 <p>With lists, you can use <code>[[</code> + assignment + <code>NULL</code> to remove components from a list. To add a literal <code>NULL</code> to a list, use <code>[</code> and <code>list(NULL)</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">2</span>)
 x[[<span class="st">&quot;b&quot;</span>]] &lt;-<span class="st"> </span><span class="ot">NULL</span>
@@ -809,29 +899,8 @@ df[<span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class=
 <span class="co">#&gt; 2 2 2</span>
 <span class="co">#&gt; 3 3 1</span></code></pre></div>
 </div>
-<div id="matching-and-merging-by-hand-integer-subsetting" class="section level3">
-<h3><span class="header-section-number">5.4.6</span> Matching and merging by hand (integer subsetting)</h3>
-<p>You may have a more complicated look-up table which has multiple columns of information. Suppose we have a vector of integer grades, and a table that describes their properties:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grades &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)
-
-info &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">grade =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>,
-  <span class="dt">desc =</span> <span class="kw">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Poor&quot;</span>),
-  <span class="dt">fail =</span> <span class="kw">c</span>(F, F, T)
-)</code></pre></div>
-<p>We want to duplicate the info table so that we have a row for each value in <code>grades</code>. An elegant way to do this is by combining <code>match()</code> and integer subsetting:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">id &lt;-<span class="st"> </span><span class="kw">match</span>(grades, info<span class="op">$</span>grade)
-info[id, ]
-<span class="co">#&gt;     grade      desc  fail</span>
-<span class="co">#&gt; 3       1      Poor  TRUE</span>
-<span class="co">#&gt; 2       2      Good FALSE</span>
-<span class="co">#&gt; 2.1     2      Good FALSE</span>
-<span class="co">#&gt; 1       3 Excellent FALSE</span>
-<span class="co">#&gt; 3.1     1      Poor  TRUE</span></code></pre></div>
-<p>If you have multiple columns to match on, you’ll need to first collapse them to a single column (with e.g. <code>interaction()</code>), but typically you are better off switching to a function design specifically for joining multiple tables like <code>merge()</code>, or <code>dplyr::left_join()</code>.</p>
-</div>
 <div id="random-samplesbootstrap-integer-subsetting" class="section level3">
-<h3><span class="header-section-number">5.4.7</span> Random samples/bootstrap (integer subsetting)</h3>
+<h3><span class="header-section-number">5.4.6</span> Random samples/bootstrap (integer subsetting)</h3>
 <p>You can use integer indices to perform random sampling or bootstrapping of a vector or data frame. <code>sample()</code> generates a vector of indices, then subsetting accesses the values:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">each =</span> <span class="dv">2</span>), <span class="dt">y =</span> <span class="dv">6</span><span class="op">:</span><span class="dv">1</span>, <span class="dt">z =</span> letters[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]))
 <span class="co">#&gt;   x y z</span>
@@ -869,30 +938,6 @@ df[<span class="kw">sample</span>(<span class="kw">nrow</span>(df), <span class=
 <span class="co">#&gt; 6.1 3 1 f</span>
 <span class="co">#&gt; 1   1 6 a</span></code></pre></div>
 <p>The arguments of <code>sample()</code> control the number of samples to extract, and whether sampling is performed with or without replacement.</p>
-</div>
-<div id="expanding-aggregated-counts-integer-subsetting" class="section level3">
-<h3><span class="header-section-number">5.4.8</span> Expanding aggregated counts (integer subsetting)</h3>
-<p>Sometimes you get a data frame where identical rows have been collapsed into one and a count column has been added. <code>rep()</code> and integer subsetting make it easy to uncollapse the data by subsetting with a repeated row index:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">1</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">6</span>), <span class="dt">n =</span> <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>))
-df
-<span class="co">#&gt;   x  y n</span>
-<span class="co">#&gt; 1 2  9 3</span>
-<span class="co">#&gt; 2 4 11 5</span>
-<span class="co">#&gt; 3 1  6 1</span>
-<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(df), df<span class="op">$</span>n)
-<span class="co">#&gt; [1] 1 1 1 2 2 2 2 2 3</span>
-
-df[<span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(df), df<span class="op">$</span>n), ]
-<span class="co">#&gt;     x  y n</span>
-<span class="co">#&gt; 1   2  9 3</span>
-<span class="co">#&gt; 1.1 2  9 3</span>
-<span class="co">#&gt; 1.2 2  9 3</span>
-<span class="co">#&gt; 2   4 11 5</span>
-<span class="co">#&gt; 2.1 4 11 5</span>
-<span class="co">#&gt; 2.2 4 11 5</span>
-<span class="co">#&gt; 2.3 4 11 5</span>
-<span class="co">#&gt; 2.4 4 11 5</span>
-<span class="co">#&gt; 3   1  6 1</span></code></pre></div>
 </div>
 </div>
 <div id="exercises-2" class="section level2">
