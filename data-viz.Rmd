@@ -2,9 +2,31 @@
 
 # Data Visualization
 
+## Why ggplot
 
-Place holder for data viz.
+## Data 
 
+## Aesthetic mappings
+
+## Geometric objects
+
+## Facets
+
+## Labels
+
+## Scales
+
+## Theme
+
+
+## Layers
+
+Together data, mappings, statistical tranformations, and geometric objects form a layer.
+
+## Exercises
+
+
+## Resources
 
 ## Links
 [ggplot2](https://github.com/tidyverse/ggplot2)
@@ -18,6 +40,8 @@ Place holder for data viz.
 [labeller](http://ggplot2.tidyverse.org/reference/label_bquote.html)
 [bquote method](https://trinkerrstuff.wordpress.com/2018/03/15/2246/)
 
+
+[Beautiful Plots Cheatsheet](http://www.cs.utexas.edu/~cannata/dataVis/Class%20Notes/Beautiful%20plotting%20in%20R_%20A%20ggplot2%20cheatsheet%20_%20Technical%20Tidbits%20From%20Spatial%20Analysis%20&%20Data%20Science.pdf)
 
 [Corporate Palettes](https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2)
 [hmbrthemes](https://cran.r-project.org/web/packages/hrbrthemes/vignettes/why_hrbrthemes.html)

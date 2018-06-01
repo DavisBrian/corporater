@@ -125,7 +125,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-05-16}
+  \date{2018-05-29}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1817,7 +1817,7 @@ Monte-Carlo pseudo code:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e6}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    4.83    0.02    4.93}
+\CommentTok{#>    5.28    0.00    5.36}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1833,7 +1833,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.22    0.02    0.24}
+\CommentTok{#>    0.25    0.00    0.25}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2236,7 +2236,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000b34d5b0>}
+\CommentTok{#> <environment: 0x000000000b2b8138>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2295,7 +2295,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.83    0.00    2.87}
+\CommentTok{#>    3.05    0.00    3.09}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -4073,78 +4073,6 @@ name of the data frame..
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{Boolean algebra vs.~sets (logical \& integer
-subsetting)}\label{boolean-algebra-vs.sets-logical-integer-subsetting}
-
-It's useful to be aware of the natural equivalence between set
-operations (integer subsetting) and boolean algebra (logical
-subsetting). Using set operations is more effective when:
-
-\begin{itemize}
-\item
-  You want to find the first (or last) \texttt{TRUE}.
-\item
-  You have very few \texttt{TRUE}s and very many \texttt{FALSE}s; a set
-  representation may be faster and require less storage.
-\end{itemize}
-
-\texttt{which()} allows you to convert a boolean representation to an
-integer representation.
-
-Let's create two logical vectors and their integer equivalents and then
-explore the relationship between boolean and set operations.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{(x1 <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10} \OperatorTok{%%}\StringTok{ }\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)}
-\CommentTok{#>  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE}
-\NormalTok{(x2 <-}\StringTok{ }\KeywordTok{which}\NormalTok{(x1))}
-\CommentTok{#> [1]  2  4  6  8 10}
-\NormalTok{(y1 <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10} \OperatorTok{%%}\StringTok{ }\DecValTok{5} \OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)}
-\CommentTok{#>  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE}
-\NormalTok{(y2 <-}\StringTok{ }\KeywordTok{which}\NormalTok{(y1))}
-\CommentTok{#> [1]  5 10}
-
-\CommentTok{# X & Y <-> intersect(x, y)}
-\NormalTok{x1 }\OperatorTok{&}\StringTok{ }\NormalTok{y1}
-\CommentTok{#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE}
-\KeywordTok{intersect}\NormalTok{(x2, y2)}
-\CommentTok{#> [1] 10}
-
-\CommentTok{# X | Y <-> union(x, y)}
-\NormalTok{x1 }\OperatorTok{|}\StringTok{ }\NormalTok{y1}
-\CommentTok{#>  [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE}
-\KeywordTok{union}\NormalTok{(x2, y2)}
-\CommentTok{#> [1]  2  4  6  8 10  5}
-
-\CommentTok{# X & !Y <-> setdiff(x, y)}
-\NormalTok{x1 }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\NormalTok{y1}
-\CommentTok{#>  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE}
-\KeywordTok{setdiff}\NormalTok{(x2, y2)}
-\CommentTok{#> [1] 2 4 6 8}
-
-\CommentTok{# xor(X, Y) <-> setdiff(union(x, y), intersect(x, y))}
-\KeywordTok{xor}\NormalTok{(x1, y1)}
-\CommentTok{#>  [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE}
-\KeywordTok{setdiff}\NormalTok{(}\KeywordTok{union}\NormalTok{(x2, y2), }\KeywordTok{intersect}\NormalTok{(x2, y2))}
-\CommentTok{#> [1] 2 4 6 8 5}
-\end{Highlighting}
-\end{Shaded}
-
-When first learning subsetting, a common mistake is to use
-\texttt{x{[}which(y){]}} instead of \texttt{x{[}y{]}}. Here the
-\texttt{which()} achieves nothing: it switches from logical to integer
-subsetting but the result will be exactly the same. In more general
-cases, there are two important differences. First, when the logical
-vector contains NA, logical subsetting replaces these values by NA while
-\texttt{which()} drops these values. Second, \texttt{x{[}-which(y){]}}
-is \textbf{not} equivalent to \texttt{x{[}!y{]}}: if \texttt{y} is all
-FALSE, \texttt{which(y)} will be \texttt{integer(0)} and
-\texttt{-integer(0)} is still \texttt{integer(0)}, so you'll get no
-values, instead of all values. In general, avoid switching from logical
-to integer subsetting unless you want, for example, the first or last
-\texttt{TRUE} value.
-
 \subsection{Removing columns from data frames (character
 subsetting)}\label{removing-columns-from-data-frames-character-subsetting}
 
@@ -4234,11 +4162,113 @@ indices, then subsetting accesses the values:
 The arguments of \texttt{sample()} control the number of samples to
 extract, and whether sampling is performed with or without replacement.
 
+\subsection{Boolean algebra vs.~sets (logical \& integer
+subsetting)}\label{boolean-algebra-vs.sets-logical-integer-subsetting}
+
+It's useful to be aware of the natural equivalence between set
+operations (integer subsetting) and boolean algebra (logical
+subsetting). Using set operations is more effective when:
+
+\begin{itemize}
+\item
+  You want to find the first (or last) \texttt{TRUE}.
+\item
+  You have very few \texttt{TRUE}s and very many \texttt{FALSE}s; a set
+  representation may be faster and require less storage.
+\end{itemize}
+
+\texttt{which()} allows you to convert a boolean representation to an
+integer representation.
+
+Let's create two logical vectors and their integer equivalents and then
+explore the relationship between boolean and set operations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x1 <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10} \OperatorTok{%%}\StringTok{ }\DecValTok{2} \OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\CommentTok{#>  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE}
+\NormalTok{(x2 <-}\StringTok{ }\KeywordTok{which}\NormalTok{(x1))}
+\CommentTok{#> [1]  2  4  6  8 10}
+\NormalTok{(y1 <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10} \OperatorTok{%%}\StringTok{ }\DecValTok{5} \OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)}
+\CommentTok{#>  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE}
+\NormalTok{(y2 <-}\StringTok{ }\KeywordTok{which}\NormalTok{(y1))}
+\CommentTok{#> [1]  5 10}
+
+\CommentTok{# X & Y <-> intersect(x, y)}
+\NormalTok{x1 }\OperatorTok{&}\StringTok{ }\NormalTok{y1}
+\CommentTok{#>  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE}
+\KeywordTok{intersect}\NormalTok{(x2, y2)}
+\CommentTok{#> [1] 10}
+
+\CommentTok{# X | Y <-> union(x, y)}
+\NormalTok{x1 }\OperatorTok{|}\StringTok{ }\NormalTok{y1}
+\CommentTok{#>  [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE}
+\KeywordTok{union}\NormalTok{(x2, y2)}
+\CommentTok{#> [1]  2  4  6  8 10  5}
+
+\CommentTok{# X & !Y <-> setdiff(x, y)}
+\NormalTok{x1 }\OperatorTok{&}\StringTok{ }\OperatorTok{!}\NormalTok{y1}
+\CommentTok{#>  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE}
+\KeywordTok{setdiff}\NormalTok{(x2, y2)}
+\CommentTok{#> [1] 2 4 6 8}
+
+\CommentTok{# xor(X, Y) <-> setdiff(union(x, y), intersect(x, y))}
+\KeywordTok{xor}\NormalTok{(x1, y1)}
+\CommentTok{#>  [1] FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE}
+\KeywordTok{setdiff}\NormalTok{(}\KeywordTok{union}\NormalTok{(x2, y2), }\KeywordTok{intersect}\NormalTok{(x2, y2))}
+\CommentTok{#> [1] 2 4 6 8 5}
+\end{Highlighting}
+\end{Shaded}
+
+When first learning subsetting, a common mistake is to use
+\texttt{x{[}which(y){]}} instead of \texttt{x{[}y{]}}. Here the
+\texttt{which()} achieves nothing: it switches from logical to integer
+subsetting but the result will be exactly the same. In more general
+cases, there are two important differences. First, when the logical
+vector contains NA, logical subsetting replaces these values by NA while
+\texttt{which()} drops these values. Second, \texttt{x{[}-which(y){]}}
+is \textbf{not} equivalent to \texttt{x{[}!y{]}}: if \texttt{y} is all
+FALSE, \texttt{which(y)} will be \texttt{integer(0)} and
+\texttt{-integer(0)} is still \texttt{integer(0)}, so you'll get no
+values, instead of all values. In general, avoid switching from logical
+to integer subsetting unless you want, for example, the first or last
+\texttt{TRUE} value.
+
 \section{Exercises}\label{exercises-2}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
+\item
+  Install the tidyverse package, if you already have it installed
+  upgrade to the latest version. This can be done by either typing
+  \texttt{install.packages("tidyverse")} in the console or by using the
+  ``Packages'' tab inside RStudio.
+\end{enumerate}
+
+The tideverse package is a collection of other packages and will take a
+while to install. Also, you may get an error that R could not move a
+file or package from a temporary directory to it's final location. This
+happens because of our corporate virus scanner. The file is being virus
+scanned when R tries to move it. The simplest solution it reinstall just
+the offending package. You can also go to the temporary directory and
+manually move it via windows explorer.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Read \href{http://vita.had.co.nz/papers/layered-grammar.pdf}{A Layered
+  Grammar of Graphics}. This is a shortish paper that introduces the
+  concepts of the grammar of graphics and forms the basis for
+  \texttt{ggplot}.
+\item
+  Read and do the exercises in Chapters 1-3 of
+  \href{http://r4ds.had.co.nz/}{R for Data Science}.
+\item
+  Bring a couple example plots from out reports to next class. The goal
+  is to have each of us work an a different type of plot so we can begin
+  to build our plotting library.
 \item
   \texttt{which()} allows you to convert a boolean representation to an
   integer representation. There's no reverse operation in base R. Create
@@ -4257,37 +4287,6 @@ extract, and whether sampling is performed with or without replacement.
 \KeywordTok{unwhich}\NormalTok{(}\KeywordTok{which}\NormalTok{(x), }\DecValTok{10}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Install the tidyverse package, if you already have it installed
-  upgrade to the latest version. This can be done by either typing
-  \texttt{install.packages("tidyverse")} in the console or by using the
-  ``Packages''" tab inside RStudio.
-\end{enumerate}
-
-The tideverse package is a collection of other packages and will take a
-while to install Also, you may get an error that R could not move a file
-or package from a temporary directory to it's final location. This
-happens because of our corporate virus scanner. The file is being virus
-scanned when R tries to move it. The simplest solution it reinstall just
-the offending package. You can also go to the temporary directory and
-manually move it via windows explorer.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  Read and do the exercises in Chapters 1-3
-  of\href{http://r4ds.had.co.nz/}{R for Data Science}. I highly
-  recommend reading
-  \href{http://vita.had.co.nz/papers/layered-grammar.pdf}{A Layered
-  Grammar of Graphics}.
-\end{enumerate}
 
 \part{Appendix}\label{part-appendix}
 
