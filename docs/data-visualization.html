@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Modern R in a Corporate Environment</title>
+  <meta name="description" content="This is an original course for RADARS">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Modern R in a Corporate Environment" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an original course for RADARS" />
+  <meta name="github-repo" content="DavisBrian/corporater" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Modern R in a Corporate Environment" />
+  
+  <meta name="twitter:description" content="This is an original course for RADARS" />
+  
+
+<meta name="author" content="Brian Davis">
+
+
+<meta name="date" content="2018-06-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="subsetting.html">
+<link rel="next" href="appendix-resources.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modern R in a Corporate Environment</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="part"><span><b>I Preamble</b></span></li>
+<li class="chapter" data-level="1" data-path="preamble-intro.html"><a href="preamble-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="preamble-intro.html"><a href="preamble-intro.html#course-philosophy"><i class="fa fa-check"></i><b>1.1</b> Course Philosophy</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="preamble-intro.html"><a href="preamble-intro.html#reproducible-research-approach"><i class="fa fa-check"></i><b>1.1.1</b> Reproducible Research Approach</a></li>
+<li class="chapter" data-level="1.1.2" data-path="preamble-intro.html"><a href="preamble-intro.html#fda-validation"><i class="fa fa-check"></i><b>1.1.2</b> FDA Validation</a></li>
+<li class="chapter" data-level="1.1.3" data-path="preamble-intro.html"><a href="preamble-intro.html#the-sas-myth"><i class="fa fa-check"></i><b>1.1.3</b> The SAS Myth</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="preamble-intro.html"><a href="preamble-intro.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="preamble-intro.html"><a href="preamble-intro.html#content"><i class="fa fa-check"></i><b>1.3</b> Content</a></li>
+<li class="chapter" data-level="1.4" data-path="preamble-intro.html"><a href="preamble-intro.html#structure"><i class="fa fa-check"></i><b>1.4</b> Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a><ul>
+<li class="chapter" data-level="2.1" data-path="good-practices.html"><a href="good-practices.html#coding-style"><i class="fa fa-check"></i><b>2.1</b> Coding style</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="good-practices.html"><a href="good-practices.html#comments"><i class="fa fa-check"></i><b>2.1.1</b> Comments</a></li>
+<li class="chapter" data-level="2.1.2" data-path="good-practices.html"><a href="good-practices.html#naming"><i class="fa fa-check"></i><b>2.1.2</b> Naming</a></li>
+<li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#spacing"><i class="fa fa-check"></i><b>2.1.3</b> Spacing</a></li>
+<li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.4</b> Indenting</a></li>
+<li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.5</b> Long lines</a></li>
+<li class="chapter" data-level="2.1.6" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.6</b> Other</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em>[^DRY]</a></li>
+<li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
+<li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#keeping-up-to-date"><i class="fa fa-check"></i><b>2.5</b> Keeping up to date</a></li>
+<li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#exercises"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>II Base R Basics</b></span></li>
+<li class="chapter" data-level="3" data-path="baser-rbasics.html"><a href="baser-rbasics.html"><i class="fa fa-check"></i><b>3</b> R Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#assignment-operators"><i class="fa fa-check"></i><b>3.1</b> Assignment Operators</a></li>
+<li class="chapter" data-level="3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#objects"><i class="fa fa-check"></i><b>3.2</b> Objects</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vector"><i class="fa fa-check"></i><b>3.2.1</b> Vector</a></li>
+<li class="chapter" data-level="3.2.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#matrix"><i class="fa fa-check"></i><b>3.2.2</b> Matrix</a></li>
+<li class="chapter" data-level="3.2.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#list"><i class="fa fa-check"></i><b>3.2.3</b> List</a></li>
+<li class="chapter" data-level="3.2.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#data-frame"><i class="fa fa-check"></i><b>3.2.4</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#comparision"><i class="fa fa-check"></i><b>3.3</b> Comparision</a></li>
+<li class="chapter" data-level="3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#logical-and-sets"><i class="fa fa-check"></i><b>3.4</b> Logical and sets</a></li>
+<li class="chapter" data-level="3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#control-structures"><i class="fa fa-check"></i><b>3.5</b> Control Structures</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#if-else"><i class="fa fa-check"></i><b>3.5.1</b> <code>if</code>-<code>else</code></a></li>
+<li class="chapter" data-level="3.5.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#for-loops"><i class="fa fa-check"></i><b>3.5.2</b> <code>for</code> Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#generate-a-sequence-based-on-length-of-x"><i class="fa fa-check"></i><b>3.6</b> Generate a sequence based on length of ‘x’</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#while-loops"><i class="fa fa-check"></i><b>3.6.1</b> <code>while</code> Loops</a></li>
+<li class="chapter" data-level="3.6.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#repeat-loops"><i class="fa fa-check"></i><b>3.6.2</b> <code>repeat</code> Loops</a></li>
+<li class="chapter" data-level="3.6.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#next-break"><i class="fa fa-check"></i><b>3.6.3</b> <code>next</code>, <code>break</code></a></li>
+<li class="chapter" data-level="3.6.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#looping"><i class="fa fa-check"></i><b>3.6.4</b> Looping</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.7</b> Vectorization &amp; Recycling</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.7.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#function-basics"><i class="fa fa-check"></i><b>3.8</b> Function Basics</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#your-first-function"><i class="fa fa-check"></i><b>3.8.1</b> Your First Function</a></li>
+<li class="chapter" data-level="3.8.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#lazy-evaluation"><i class="fa fa-check"></i><b>3.8.2</b> Lazy Evaluation</a></li>
+<li class="chapter" data-level="3.8.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#the-...-argument"><i class="fa fa-check"></i><b>3.8.3</b> The <code>...</code> Argument</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#environments-scoping"><i class="fa fa-check"></i><b>3.9</b> Environments &amp; Scoping</a></li>
+<li class="chapter" data-level="3.10" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.10</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>4</b> Base R Data Structures</a><ul>
+<li class="chapter" data-level="4.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#naming-rules"><i class="fa fa-check"></i><b>4.1</b> Naming Rules</a></li>
+<li class="chapter" data-level="4.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#vectors"><i class="fa fa-check"></i><b>4.2</b> Vectors</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>4.2.1</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="4.2.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#lists"><i class="fa fa-check"></i><b>4.2.2</b> Lists</a></li>
+<li class="chapter" data-level="4.2.3" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#null"><i class="fa fa-check"></i><b>4.2.3</b> <code>NULL</code></a></li>
+<li class="chapter" data-level="4.2.4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#attributes"><i class="fa fa-check"></i><b>4.2.4</b> Attributes</a></li>
+<li class="chapter" data-level="4.2.5" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#factors"><i class="fa fa-check"></i><b>4.2.5</b> Factors</a></li>
+<li class="chapter" data-level="4.2.6" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>4.2.6</b> Matrices and arrays</a></li>
+<li class="chapter" data-level="4.2.7" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#data-frames"><i class="fa fa-check"></i><b>4.2.7</b> Data Frames</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>5</b> Subsetting</a><ul>
+<li class="chapter" data-level="5.1" data-path="subsetting.html"><a href="subsetting.html#selecting-multiple-elements"><i class="fa fa-check"></i><b>5.1</b> Selecting multiple elements</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="subsetting.html"><a href="subsetting.html#atomic-vectors-1"><i class="fa fa-check"></i><b>5.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="5.1.2" data-path="subsetting.html"><a href="subsetting.html#matrices-and-arrays-1"><i class="fa fa-check"></i><b>5.1.2</b> Matrices and Arrays</a></li>
+<li class="chapter" data-level="5.1.3" data-path="subsetting.html"><a href="subsetting.html#lists-1"><i class="fa fa-check"></i><b>5.1.3</b> Lists</a></li>
+<li class="chapter" data-level="5.1.4" data-path="subsetting.html"><a href="subsetting.html#data-frames-1"><i class="fa fa-check"></i><b>5.1.4</b> Data Frames</a></li>
+<li class="chapter" data-level="5.1.5" data-path="subsetting.html"><a href="subsetting.html#preserving-dimensionality"><i class="fa fa-check"></i><b>5.1.5</b> Preserving dimensionality</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="subsetting.html"><a href="subsetting.html#selecting-a-single-elements"><i class="fa fa-check"></i><b>5.2</b> Selecting a single elements</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="subsetting.html"><a href="subsetting.html#section"><i class="fa fa-check"></i><b>5.2.1</b> <code>$</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="subsetting.html"><a href="subsetting.html#missingout-of-bounds-indices"><i class="fa fa-check"></i><b>5.2.2</b> Missing/out of bounds indices</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="subsetting.html"><a href="subsetting.html#subassignment"><i class="fa fa-check"></i><b>5.3</b> Subsetting and assignment</a></li>
+<li class="chapter" data-level="5.4" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>5.4</b> Applications</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="subsetting.html"><a href="subsetting.html#lookup-tables-character-subsetting"><i class="fa fa-check"></i><b>5.4.1</b> Lookup tables (character subsetting)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="subsetting.html"><a href="subsetting.html#ordering-integer-subsetting"><i class="fa fa-check"></i><b>5.4.2</b> Ordering (integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.3" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>5.4.3</b> Selecting rows based on a condition (logical subsetting)</a></li>
+<li class="chapter" data-level="5.4.4" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>5.4.4</b> Removing columns from data frames (character subsetting)</a></li>
+<li class="chapter" data-level="5.4.5" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>5.4.5</b> Random samples/bootstrap (integer subsetting)</a></li>
+<li class="chapter" data-level="5.4.6" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>5.4.6</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="subsetting.html"><a href="subsetting.html#exercises-2"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>III R4DS</b></span></li>
+<li class="chapter" data-level="6" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>6</b> Data Visualization</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-visualization.html"><a href="data-visualization.html#why-ggplot2"><i class="fa fa-check"></i><b>6.1</b> Why ggplot2</a></li>
+<li class="chapter" data-level="6.2" data-path="data-visualization.html"><a href="data-visualization.html#example-1"><i class="fa fa-check"></i><b>6.2</b> Example</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="data-visualization.html"><a href="data-visualization.html#data"><i class="fa fa-check"></i><b>6.2.1</b> Data</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-visualization.html"><a href="data-visualization.html#aesthetics"><i class="fa fa-check"></i><b>6.2.2</b> Aesthetics</a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-visualization.html"><a href="data-visualization.html#geoms"><i class="fa fa-check"></i><b>6.2.3</b> Geoms</a></li>
+<li class="chapter" data-level="6.2.4" data-path="data-visualization.html"><a href="data-visualization.html#scales"><i class="fa fa-check"></i><b>6.2.4</b> Scales</a></li>
+<li class="chapter" data-level="6.2.5" data-path="data-visualization.html"><a href="data-visualization.html#themes"><i class="fa fa-check"></i><b>6.2.5</b> Themes</a></li>
+<li class="chapter" data-level="6.2.6" data-path="data-visualization.html"><a href="data-visualization.html#re-imagining-the-plot"><i class="fa fa-check"></i><b>6.2.6</b> Re-Imagining the plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>6.3</b> Facets</a></li>
+<li class="chapter" data-level="6.4" data-path="data-visualization.html"><a href="data-visualization.html#exercises-3"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="data-visualization.html"><a href="data-visualization.html#resources"><i class="fa fa-check"></i><b>6.5</b> Resources</a></li>
+<li class="chapter" data-level="6.6" data-path="data-visualization.html"><a href="data-visualization.html#links"><i class="fa fa-check"></i><b>6.6</b> Links</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="data-visualization.html"><a href="data-visualization.html#math-and-symbols"><i class="fa fa-check"></i><b>6.6.1</b> Math and symbols</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Appendix</b></span></li>
+<li class="chapter" data-level="7" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>7</b> Appendix A</a><ul>
+<li class="chapter" data-level="7.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>7.1</b> E-Books</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modern R in a Corporate Environment</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualization" class="section level1">
+<h1><span class="header-section-number">6</span> Data Visualization</h1>
+<div id="why-ggplot2" class="section level2">
+<h2><span class="header-section-number">6.1</span> Why ggplot2</h2>
+<blockquote>
+<p>The transferrable skills from ggplot2 are not the idiosyncracies of plotting syntax, but a powerful way of thinking about visualisation, as a way of <strong>mapping between variables and the visual properties of geometric objects</strong> that you can perceive.</p>
+<p>— Hadley Wickham</p>
+</blockquote>
+<p>Base plotting is <strong>imperative</strong>,it’s about what you do. You set up your <code>layout()</code>, then you go to the first group (drug) You add the points for that group (drug) along with a title. Then you fit and plot a best-fit-line for the first grouping, then the second grouping, and so on. Then you go on to the next plot. After 20 of those, you end with a legend.</p>
+<p>ggplot2 plotting is <strong>declarative</strong>, it’s about what <strong>your graph is</strong>. The graph has drug group mapped to the x-axis, prevalance rate mapped to the y, and abuse type mapped to the color. The graph displays both points and best-fit lines for each drug group And it’s faceted into one-plot-per-drug group, with a drug group described by its market name.</p>
+<ul>
+<li><strong>Functional</strong> data visualization
+<ol style="list-style-type: decimal">
+<li>Wrange your data</li>
+<li>Map data to visual elements</li>
+<li>Tweak scales, guides, axis, labels, theme</li>
+</ol></li>
+<li>Easy to <strong>reason</strong> about how the data drives the visualization</li>
+<li>Easy to <strong>iterate</strong></li>
+<li>East to be <strong>consistent</strong></li>
+</ul>
+<p><code>ggplot2</code> is a huge package: philosophy + functions …but it’s very well organized</p>
+<p>Going to throw a lot at you …but you’ll know where and what to look for</p>
+<p><code>ggplot2</code> has it’s one website with some <strong>very</strong> good examples and how to do common task.</p>
+<p>See <a href="http://ggplot2.tidyverse.org/reference" class="uri">http://ggplot2.tidyverse.org/reference</a></p>
+</div>
+<div id="example-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> Example</h2>
+<p><img src="images/dataviz/api_life_means.png" width="70%" style="display: block; margin: auto;" /><img src="images/dataviz/comp_recent_means.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>What is similar / difrerent between these plots? What is and what isn’t driven by data?</p>
+<p>We’ll build this style of plot in stages. In chapter 9 of <a href="">R for Data Science</a> we will go into detail about how to get our data in this format.</p>
+<div id="data" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Data</h3>
+<p>All plots start with data. `<code>ggplot</code> expects the data to be in a “Tidy Data” format. We’ll dive deeper into “tidy data” in Chapter 9 of <a href="">R for Data Science</a>, but for now the basic principle is</p>
+<ol style="list-style-type: decimal">
+<li>Each varible forms a <strong>column</strong></li>
+<li>Each observation forms a <strong>row</strong></li>
+<li>Each observational unit forms a table</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="co">#&gt; -- Attaching packages ------ tidyverse 1.2.1 --</span>
+<span class="co">#&gt; v ggplot2 2.2.1     v purrr   0.2.4</span>
+<span class="co">#&gt; v tibble  1.4.2     v dplyr   0.7.4</span>
+<span class="co">#&gt; v tidyr   0.8.0     v stringr 1.3.0</span>
+<span class="co">#&gt; v readr   1.1.1     v forcats 0.3.0</span>
+<span class="co">#&gt; -- Conflicts --------- tidyverse_conflicts() --</span>
+<span class="co">#&gt; x dplyr::filter() masks stats::filter()</span>
+<span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span>
+dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;H:/Projects/rclasscode/data/bargraphdat.RDS&quot;</span>)
+dat
+<span class="co">#&gt; # A tibble: 18 x 5</span>
+<span class="co">#&gt;   drug          use_type  mean lower upper</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Buprenorphine use       5.45  5.26  5.64</span>
+<span class="co">#&gt; 2 Fentanyl      use       9.26  9.02  9.51</span>
+<span class="co">#&gt; 3 Hydrocodone   use      46.8  46.4  47.2 </span>
+<span class="co">#&gt; 4 Hydromorphone use       6.08  5.89  6.28</span>
+<span class="co">#&gt; 5 Methadone     use       5.59  5.39  5.79</span>
+<span class="co">#&gt; 6 Morphine      use      18.7  18.4  19.0 </span>
+<span class="co">#&gt; # ... with 12 more rows</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat)
+p</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-4-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+<p>Thats uninteresting. We haven’t mapped the data to our plot yet. Let’s work on getting the bar chart roughly right.</p>
+</div>
+<div id="aesthetics" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Aesthetics</h3>
+<p><strong>Aesthetics</strong> map data to visual elements or parameters.</p>
+<ul>
+<li><code>drug</code> -&gt; x-axis</li>
+<li><code>mean</code> -&gt; y-axis</li>
+<li><code>use_type</code> -&gt; color</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) 
+p</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-5-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="geoms" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> Geoms</h3>
+<p>Geoms are short for geometric objects which are diplayed on the plot. Some of the more familiar ones are</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Type</th>
+<th align="center">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Point</td>
+<td align="center"><code>geom_point()</code></td>
+</tr>
+<tr class="even">
+<td align="center">Line</td>
+<td align="center"><code>geom_line()</code></td>
+</tr>
+<tr class="odd">
+<td align="center">Bar</td>
+<td align="center"><code>geom_bar()</code>, <code>geom_col()</code></td>
+</tr>
+<tr class="even">
+<td align="center">Histogram</td>
+<td align="center"><code>geom_histogram()</code></td>
+</tr>
+<tr class="odd">
+<td align="center">Regression</td>
+<td align="center"><code>geom_smooth()</code></td>
+</tr>
+<tr class="even">
+<td align="center">Boxplot</td>
+<td align="center"><code>geom_boxplot()</code></td>
+</tr>
+<tr class="odd">
+<td align="center">Text</td>
+<td align="center"><code>geom_text()</code></td>
+</tr>
+<tr class="even">
+<td align="center">Vert./Horiz. Line</td>
+<td align="center"><code>geom_{vh}line()</code></td>
+</tr>
+<tr class="odd">
+<td align="center">Count</td>
+<td align="center"><code>geom_count()</code></td>
+</tr>
+<tr class="even">
+<td align="center">Density</td>
+<td align="center"><code>geom_density()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Those are just the <a href="https://eric.netlify.com/2017/08/10/most-popular-ggplot2-geoms/">top 10 most popular geoms</a></p>
+<p>See <a href="http://ggplot2.tidyverse.org/reference/" class="uri">http://ggplot2.tidyverse.org/reference/</a> for many more options</p>
+<p>Or just start typing <code>geom_</code> in RStudio</p>
+<pre><code>#&gt;  [1] &quot;geom_abline&quot;     &quot;geom_area&quot;       &quot;geom_bar&quot;        &quot;geom_bin2d&quot;     
+#&gt;  [5] &quot;geom_blank&quot;      &quot;geom_boxplot&quot;    &quot;geom_col&quot;        &quot;geom_contour&quot;   
+#&gt;  [9] &quot;geom_count&quot;      &quot;geom_crossbar&quot;   &quot;geom_curve&quot;      &quot;geom_density&quot;   
+#&gt; [13] &quot;geom_density_2d&quot; &quot;geom_density2d&quot;  &quot;geom_dotplot&quot;    &quot;geom_errorbar&quot;  
+#&gt; [17] &quot;geom_errorbarh&quot;  &quot;geom_freqpoly&quot;   &quot;geom_hex&quot;        &quot;geom_histogram&quot; 
+#&gt; [21] &quot;geom_hline&quot;      &quot;geom_jitter&quot;     &quot;geom_label&quot;      &quot;geom_line&quot;      
+#&gt; [25] &quot;geom_linerange&quot;  &quot;geom_map&quot;        &quot;geom_path&quot;       &quot;geom_point&quot;     
+#&gt; [29] &quot;geom_pointrange&quot; &quot;geom_polygon&quot;    &quot;geom_qq&quot;         &quot;geom_quantile&quot;  
+#&gt; [33] &quot;geom_raster&quot;     &quot;geom_rect&quot;       &quot;geom_ribbon&quot;     &quot;geom_rug&quot;       
+#&gt; [37] &quot;geom_segment&quot;    &quot;geom_smooth&quot;     &quot;geom_spoke&quot;      &quot;geom_step&quot;      
+#&gt; [41] &quot;geom_text&quot;       &quot;geom_tile&quot;       &quot;geom_violin&quot;     &quot;geom_vline&quot;</code></pre>
+<p>There are also many ggplot extensions that add other usefull geoms. See <a href="https://www.ggplot2-exts.org/" class="uri">https://www.ggplot2-exts.org/</a> for many usefull features and extentions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>()
+p</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-7-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+<p>Oops….</p>
+<p>The <code>color</code> only controls the border of our bar chart, what we want to do is <code>fill</code> the bar. Also, note that by default the bars are <code>stacked</code>. We can fix that by having the postion of each subgroup <code>dodge</code> each other.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)
+p</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-8-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+<div class="rmdnote">
+<p>
+There are two types of bar charts: <code>geom_bar</code> makes the height of the bar proportional to the number of cases in each group (or if the weight aethetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use <code>geom_col</code> instead. <code>geom_bar</code> will calculate the counts or proportions from the raw data. There is no reason to precompute those.
+</p>
+</div>
+<p><code>geom_*(mapping, data, stat, position)</code></p>
+<ul>
+<li><code>data</code> Geoms can have their own data
+<ul>
+<li>Has to map onto global coordinates</li>
+</ul></li>
+<li><code>map</code> Geoms can have their own aesthetics
+<ul>
+<li>Inherits global aesthetics</li>
+<li>Have geom-specific aesthetics
+<ul>
+<li><code>geom_point</code> needs <code>x</code> and <code>y</code>, optional <code>shape</code>, <code>color</code>, <code>size</code>, etc.</li>
+<li><code>geom_ribbon</code> requires <code>x</code>, <code>ymin</code> and <code>ymax</code>, optional <code>fill</code></li>
+</ul></li>
+<li><code>?geom_ribbon</code></li>
+</ul></li>
+<li><code>stat</code> Some geoms apply further transformations to the data
+<ul>
+<li>All respect <code>stat = 'identity'</code></li>
+<li>Ex: <code>geom_histogram</code> uses <code>stat_bin()</code> to group observations</li>
+</ul></li>
+<li><code>position</code> Some adjust location of objects
+<ul>
+<li><code>'dodge'</code>, <code>'stack'</code>, <code>'jitter'</code></li>
+</ul></li>
+</ul>
+<p>Now lets add the error bars to our plot. We will have to add the upper and lower bounds to our aesthetics, and align them with our bars.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)
+p</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-10-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+<p>We’ve come pretty close to recreating the orginal plot. We still have some tweeking to do.</p>
+<ol style="list-style-type: decimal">
+<li>Reorder the grouping so that “Use” comes before “Non-Medical Use” and use the full description.</li>
+<li>Change the fill colors</li>
+<li>Change the y-axis label to “Prevalence % (95% CI)”</li>
+<li>Remove the x-axis lable “drug”.</li>
+<li>Change the y-axis scales to go in increments of 5</li>
+<li>Rotate the x-axis labels</li>
+<li>Remove the variable name over the legend.</li>
+<li>Move the legend to the bottom</li>
+</ol>
+<p>The first one is handled with our data. Factors to the rescue. while the second can be done with a named vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert the use_type to a factor with the correct label</span>
+dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, 
+                      <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), 
+                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))
+
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)
+p</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-11-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="scales" class="section level3">
+<h3><span class="header-section-number">6.2.4</span> Scales</h3>
+<p>Scales control the details of how data values are translated to visual properties. Override the default scales to tweak details like the axis labels or legend keys, or to use a completely different translation from data to aesthetic.</p>
+<p><code>labs()</code> <code>xlab()</code> <code>ylab()</code> and <code>ggtitle()</code> modify the axis, legend, and plot labels.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)
+
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>) ) <span class="op">+</span><span class="st">  </span><span class="co"># change the y-axis scale</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
+       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>)          <span class="co"># Change the y-axis label</span>
+p</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-12-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="themes" class="section level3">
+<h3><span class="header-section-number">6.2.5</span> Themes</h3>
+<p>Themes control the display of all non-data elements of the plot. You can override all settings with a complete theme like theme_bw(), or choose to tweak individual settings by using theme() and the element_ functions.</p>
+<p>There are a handful of built in themes and tons of packages that have additional themes. `<code>ggthemes</code> has a collection of themes used by various organization (Ex. The Economist, Fivethiryeight.com, The Wall St. Journal, etc)</p>
+<p>Themes contain a huge number or parameters, grouped by plot area:</p>
+<ul>
+<li>Global options: <code>line</code>, <code>rect</code>, <code>text</code>, <code>title</code></li>
+<li><code>axis</code>: x-, y- or other axis title, ticks, lines</li>
+<li><code>legend</code>: Plot legends</li>
+<li><code>panel</code>: Actual plot area</li>
+<li><code>plot</code>: Whole image</li>
+<li><code>strip</code>: Facet labels</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-13-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+<p>This is almost what we want. Our final code would look like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;H:/Projects/rclasscode/data/bargraphdat.RDS&quot;</span>)
+
+<span class="co"># convert the use_type to a factor with the correct label</span>
+dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))
+
+bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)
+
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)<span class="op">+</span><span class="dv">15</span>), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
+                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
+       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span>
+        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>(),   <span class="co"># remove the legend variable</span>
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))  <span class="co"># rotate the x-axis text</span>
+p</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-14-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="re-imagining-the-plot" class="section level3">
+<h3><span class="header-section-number">6.2.6</span> Re-Imagining the plot</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">coord_flip</span>() <span class="op">+</span><span class="st">   </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">0</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))  <span class="co"># reset the x-axis text</span></code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-15-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)<span class="op">+</span><span class="dv">15</span>), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
+                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
+       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span>
+        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>(),   <span class="co"># remove the legend variable</span>
+        )  <span class="op">+</span><span class="st"> </span><span class="co"># rotate the x-axis text</span>
+<span class="st">  </span><span class="kw">coord_flip</span>() 
+p</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-16-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="facets" class="section level2">
+<h2><span class="header-section-number">6.3</span> Facets</h2>
+<p>Facets are subplots of the data with each subplot displaying one subset of the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(drug, mean), <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>use_type, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)<span class="op">+</span><span class="dv">15</span>), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
+                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
+       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span>
+        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span><span class="co"># remove the legend variable</span>
+<span class="st">  </span><span class="kw">coord_flip</span>()
+p</code></pre></div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-17-1.svg" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="exercises-3" class="section level2">
+<h2><span class="header-section-number">6.4</span> Exercises</h2>
+</div>
+<div id="resources" class="section level2">
+<h2><span class="header-section-number">6.5</span> Resources</h2>
+</div>
+<div id="links" class="section level2">
+<h2><span class="header-section-number">6.6</span> Links</h2>
+<p><a href="http://ggplot2.tidyverse.org/reference/" class="uri">http://ggplot2.tidyverse.org/reference/</a> <a href="https://github.com/tidyverse/ggplot2/wiki">ggplot wiki</a> <a href="http://www.cookbook-r.com/Graphs/">R Cookbook</a> <a href="http://r-statistics.co/ggplot2-Tutorial-With-R.html">ggplot turtorial</a> <a href="https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html">Examples and Themes</a> <a href="https://cran.r-project.org/web/packages/hrbrthemes/vignettes/why_hrbrthemes.html">hmbrthemes</a></p>
+<p><a href="https://flowingdata.com/category/guides/">Visualizing Data</a></p>
+<div id="math-and-symbols" class="section level3">
+<h3><span class="header-section-number">6.6.1</span> Math and symbols</h3>
+<p><a href="http://ggplot2.tidyverse.org/reference/label_bquote.html">labeller</a> <a href="https://trinkerrstuff.wordpress.com/2018/03/15/2246/">bquote method</a></p>
+<p><a href="http://www.cs.utexas.edu/~cannata/dataVis/Class%20Notes/Beautiful%20plotting%20in%20R_%20A%20ggplot2%20cheatsheet%20_%20Technical%20Tidbits%20From%20Spatial%20Analysis%20&amp;%20Data%20Science.pdf">Beautiful Plots Cheatsheet</a></p>
+<p><a href="https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2">Corporate Palettes</a></p>
+<p><a href="https://geocompr.robinlovelace.net/">Maps</a></p>
+<p><a href="https://groups.google.com/forum/#!topic/ggplot2/qVE6Uxd_IFQ">Writing Functions with ggplot</a> <a href="http://novyden.blogspot.com/2013/07/ggplot-inside-function-needs-some-care.html">ggplot2 function writing tips</a></p>
+<p><a href="https://www.stat.auckland.ac.nz/~ihaka/120/Notes/ch03.pdf">Base plot</a> <a href="https://www.stat.auckland.ac.nz/~ihaka/787/lectures-r-graphics.pdf">Base plot limits</a> <a href="https://blog.jumpingrivers.com/posts/2018/2018-01-24-base-r-graphics/">base R Graphics</a></p>
+
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="subsetting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DavisBrian/corporater/edit/master/dataviz.Rmd",
+"text": "Edit"
+},
+"download": ["rclassnotes.pdf", "rclassnotes.epub"],
+"toc": {
+"collapse": "section"
+},
+"css": "corp.css"
+});
+});
+</script>
+
+</body>
+
+</html>

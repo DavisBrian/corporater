@@ -1,0 +1,330 @@
+# (PART) R4DS {-}
+
+# Data Visualization
+
+## Why ggplot2
+
+>The transferrable skills from ggplot2 are not the idiosyncracies of plotting syntax, but a powerful way of thinking about visualisation, as a way of __mapping between variables and the visual properties of geometric objects__ that you can perceive. 
+>
+> --- Hadley Wickham
+
+Base plotting is __imperative__,it’s about what you do. You set up your `layout()`, then you go to the first group (drug) You add the points for that group (drug) along with a title. Then you fit and plot a best-fit-line for the first grouping, then the second grouping, and so on. Then you go on to the next plot. After 20 of those, you end with a legend.
+
+ggplot2 plotting is __declarative__, it’s about what __your graph is__. The graph has drug group mapped to the x-axis, prevalance rate mapped to the y, and abuse type mapped to the color. The graph displays both points and best-fit lines for each drug group And it’s faceted into one-plot-per-drug group, with a drug group described by its market name.
+
+*  __Functional__ data visualization
+    1. Wrange your data
+    2. Map data to visual elements
+    3. Tweak scales, guides, axis, labels, theme
+*  Easy to __reason__ about how the data drives the visualization
+*  Easy to __iterate__
+*  East to be __consistent__
+
+
+`ggplot2` is a huge package: philosophy + functions 
+...but it's very well organized
+
+Going to throw a lot at you 
+...but you'll know where and what to look for
+
+`ggplot2` has it's one website with some **very** good examples and how to do common task.
+
+See [http://ggplot2.tidyverse.org/reference](http://ggplot2.tidyverse.org/reference)
+
+## Example
+
+```{r, echo = FALSE}
+knitr::include_graphics("images/dataviz/api_life_means.png", dpi = 450)
+# knitr::include_graphics("images/dataviz/api_nmu_means.png", dpi = 450)
+knitr::include_graphics("images/dataviz/comp_recent_means.png", dpi = 450)
+```
+
+What is similar / difrerent between these plots?
+What is and what isn't driven by data?
+
+We'll build this style of plot in stages.  In chapter 9 of [R for Data
+Science]() we will go into detail about how to get our data in this format.
+
+### Data 
+
+All plots start with data.  ``ggplot` expects the data to be in a "Tidy Data" format.  We'll dive deeper into "tidy data" in Chapter 9 of [R for Data Science](), but for now the basic principle is
+
+1.  Each varible forms a __column__
+2.  Each observation forms a __row__
+3.  Each observational unit forms a table
+
+```{r}
+library(tidyverse)
+dat <- readRDS("H:/Projects/rclasscode/data/bargraphdat.RDS")
+dat
+```
+
+```{r}
+p <- ggplot(data = dat)
+p
+```
+
+Thats uninteresting.  We haven't mapped the data to our plot yet.  Let's work on getting the bar chart roughly right.
+
+### Aesthetics
+
+__Aesthetics__ map data to visual elements or parameters.
+
+*  `drug` -> x-axis
+*  `mean` -> y-axis
+*  `use_type` -> color
+
+```{r}
+p <- ggplot(data = dat, aes(x = drug, y = mean, color = use_type)) 
+p
+```
+
+### Geoms
+
+Geoms are short for geometric objects which are diplayed on the plot.  Some of the more familiar ones are
+
+| Type | Function |
+|:----:|:--------:|
+| Point | `geom_point()` |
+| Line | `geom_line()` |
+| Bar | `geom_bar()`, `geom_col()` |
+| Histogram | `geom_histogram()` |
+| Regression | `geom_smooth()` |
+| Boxplot | `geom_boxplot()` |
+| Text | `geom_text()` |
+| Vert./Horiz. Line | `geom_{vh}line()` |
+| Count | `geom_count()` |
+| Density | `geom_density()` |
+
+Those are just the [top 10 most popular geoms](https://eric.netlify.com/2017/08/10/most-popular-ggplot2-geoms/)
+
+See [http://ggplot2.tidyverse.org/reference/](http://ggplot2.tidyverse.org/reference/) for many more options
+
+Or just start typing `geom_` in RStudio
+
+```{r, echo=FALSE}
+# geom_
+old_width = options(width = 80)
+lsf.str("package:ggplot2") %>% grep("^geom_", ., value = TRUE)
+options(width = old_width$width)
+```
+
+There are also many ggplot extensions that add other usefull geoms.  See [https://www.ggplot2-exts.org/](https://www.ggplot2-exts.org/) for many usefull features and extentions.
+
+```{r}
+p <- ggplot(data = dat, aes(x = drug, y = mean, color = use_type)) +
+  geom_col()
+p
+```
+
+Oops.... 
+
+The `color` only controls the border of our bar chart, what we want to do is `fill` the bar.  Also, note that by default the bars are `stacked`.  We can fix that by having the postion of each subgroup `dodge` each other.
+
+```{r}
+p <- ggplot(data = dat, aes(x = drug, y = mean, fill = use_type)) +
+  geom_col(position = "dodge")
+p
+```
+
+
+```{block type='rmdnote'}
+There are two types of bar charts: `geom_bar` makes the height of the bar proportional to the number of cases in each group (or if the weight aethetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col` instead.  `geom_bar` will calculate the counts or proportions from the raw data.  There is no reason to precompute those.
+```
+
+`geom_*(mapping, data, stat, position)`
+
+*  `data` Geoms can have their own data
+    - Has to map onto global coordinates
+
+*  `map` Geoms can have their own aesthetics
+    - Inherits global aesthetics
+    - Have geom-specific aesthetics
+        - `geom_point` needs `x` and `y`, optional `shape`, `color`, `size`, etc.
+        - `geom_ribbon` requires `x`, `ymin` and `ymax`, optional `fill`
+    - `?geom_ribbon`
+
+*  `stat` Some geoms apply further transformations to the data
+    - All respect `stat = 'identity'`
+    - Ex: `geom_histogram` uses `stat_bin()` to group observations
+    
+*  `position` Some adjust location of objects
+    - `'dodge'`, `'stack'`, `'jitter'`
+
+Now lets add the error bars to our plot.  We will have to add the upper and lower bounds to our aesthetics, and align them with our bars.
+
+```{r}
+p <- ggplot(data = dat, aes(x = drug, y = mean, fill = use_type, ymin = lower, ymax = upper)) +
+  geom_col(position = "dodge", width = 0.75) +
+  geom_errorbar(position = position_dodge(width = 0.75), width = 0.5)
+p
+```
+
+We've come pretty close to recreating the orginal plot.  We still have some tweeking to do.
+
+1. Reorder the grouping so that "Use" comes before "Non-Medical Use" and use the full description.
+2. Change the fill colors
+3. Change the y-axis label to "Prevalence % (95% CI)"
+4. Remove the x-axis lable "drug".
+5. Change the y-axis scales to go in increments of 5
+6. Rotate the x-axis labels
+7. Remove the variable name over the legend.
+8. Move the legend to the bottom
+
+The first one is handled with our data.  Factors to the rescue. while the second can be done with a named vector.
+
+```{r}
+# convert the use_type to a factor with the correct label
+dat$use_type <-factor(dat$use_type, 
+                      levels = c("use", "nmu"), 
+                      labels = c("Lifetime Use", "Lifetime Non-Medical Use"))
+
+p <- ggplot(data = dat, aes(x = drug, y = mean, fill = use_type, ymin = lower, ymax = upper)) +
+  geom_col(position = "dodge", width = 0.75) +
+  geom_errorbar(position = position_dodge(width = 0.75), width = 0.5)
+p
+```
+
+### Scales
+
+Scales control the details of how data values are translated to visual properties. Override the default scales to tweak details like the axis labels or legend keys, or to use a completely different translation from data to aesthetic.
+
+`labs()` `xlab()` `ylab()` and `ggtitle()` modify the axis, legend, and plot labels.
+
+```{r}
+bar_colors <- c("Lifetime Use" = "grey", "Lifetime Non-Medical Use" = "blue")
+
+p <- ggplot(data = dat, aes(x = drug, y = mean, fill = use_type, ymin = lower, ymax = upper)) +
+  geom_col(position = "dodge", width = 0.75) +
+  geom_errorbar(position = position_dodge(width = 0.75), width = 0.5) +
+  scale_fill_manual(values=bar_colors) +     # change the bar colors
+  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)), 5) ) +  # change the y-axis scale
+  labs(x = NULL,                             # Remove the x-axis label "drug"
+       y = "Prevalence % (95% CI)")          # Change the y-axis label
+p
+```
+
+
+### Themes
+
+Themes control the display of all non-data elements of the plot. You can override all settings with a complete theme like theme_bw(), or choose to tweak individual settings by using theme() and the element_ functions. 
+
+There are a handful of built in themes and tons of packages that have additional themes.  ``ggthemes` has a collection of themes used by various organization (Ex. The Economist, Fivethiryeight.com, The Wall St. Journal, etc)
+
+Themes contain a huge number or parameters, grouped by plot area:
+
+*  Global options: `line`, `rect`, `text`, `title`
+*  `axis`: x-, y- or other axis title, ticks, lines
+*  `legend`: Plot legends
+*  `panel`: Actual plot area
+*  `plot`: Whole image
+*  `strip`: Facet labels
+
+```{r}
+p + theme_classic()
+```
+
+This is almost what we want. Our final code would look like:
+
+```{r}
+library(tidyverse)
+dat <- readRDS("H:/Projects/rclasscode/data/bargraphdat.RDS")
+
+# convert the use_type to a factor with the correct label
+dat$use_type <-factor(dat$use_type, levels = c("use", "nmu"), labels = c("Lifetime Use", "Lifetime Non-Medical Use"))
+
+bar_colors <- c("Lifetime Use" = "grey", "Lifetime Non-Medical Use" = "blue")
+
+p <- ggplot(data = dat, aes(x = drug, y = mean, fill = use_type, ymin = lower, ymax = upper)) +
+  geom_col(position = "dodge", width = 0.75) +
+  geom_errorbar(position = position_dodge(width = 0.75), width = 0.5) +
+  scale_fill_manual(values=bar_colors) +     # change the bar colors
+  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)+15), 5),  # change the y-axis scale
+                     expand = c(0,0)) +      # remove the spacing between the x axis and the bars
+  labs(x = NULL,                             # Remove the x-axis label "drug"
+       y = "Prevalence % (95% CI)") +        # Change the y-axis label
+  theme_classic() +
+  theme(legend.position = "bottom",          # move the legend to the bottom
+        legend.title    = element_blank(),   # remove the legend variable
+        axis.text.x = element_text(angle = 90, hjust = 1))  # rotate the x-axis text
+p
+```
+
+### Re-Imagining the plot
+```{r}
+p + coord_flip() +   
+  theme(axis.text.x = element_text(angle = 0, hjust = 1))  # reset the x-axis text
+```
+
+```{r}
+p <- ggplot(data = dat, aes(x = drug, y = mean, color = use_type, ymin = lower, ymax = upper)) +
+  geom_point() +
+  geom_errorbar(width = 0.5) +
+  scale_fill_manual(values=bar_colors) +     # change the bar colors
+  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)+15), 5),  # change the y-axis scale
+                     expand = c(0,0)) +      # remove the spacing between the x axis and the bars
+  labs(x = NULL,                             # Remove the x-axis label "drug"
+       y = "Prevalence % (95% CI)") +        # Change the y-axis label
+  theme_classic() +
+  theme(legend.position = "bottom",          # move the legend to the bottom
+        legend.title    = element_blank(),   # remove the legend variable
+        )  + # rotate the x-axis text
+  coord_flip() 
+p
+```
+
+## Facets
+
+Facets are subplots of the data with each subplot displaying one subset of the data.
+
+```{r}
+p <- ggplot(data = dat, aes(x = fct_reorder(drug, mean), y = mean, fill = use_type, ymin = lower, ymax = upper)) +
+  geom_col(width = 0.75) +
+  geom_errorbar(position = position_dodge(width = 0.75), width = 0.5) +
+  facet_wrap(~ use_type, scales = "free") +
+  scale_fill_manual(values=bar_colors) +     # change the bar colors
+  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)+15), 5),  # change the y-axis scale
+                     expand = c(0,0)) +      # remove the spacing between the x axis and the bars
+  labs(x = NULL,                             # Remove the x-axis label "drug"
+       y = "Prevalence % (95% CI)") +        # Change the y-axis label
+  theme_classic() +
+  theme(legend.position = "bottom",          # move the legend to the bottom
+        legend.title    = element_blank()) + # remove the legend variable
+  coord_flip()
+p
+
+```
+
+
+## Exercises
+
+
+## Resources
+
+## Links
+[http://ggplot2.tidyverse.org/reference/](http://ggplot2.tidyverse.org/reference/) 
+[ggplot wiki](https://github.com/tidyverse/ggplot2/wiki)
+[R Cookbook](http://www.cookbook-r.com/Graphs/)
+[ggplot turtorial](http://r-statistics.co/ggplot2-Tutorial-With-R.html)
+[Examples and Themes](https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html)
+[hmbrthemes](https://cran.r-project.org/web/packages/hrbrthemes/vignettes/why_hrbrthemes.html)
+
+[Visualizing Data](https://flowingdata.com/category/guides/)
+
+### Math and symbols
+[labeller](http://ggplot2.tidyverse.org/reference/label_bquote.html)
+[bquote method](https://trinkerrstuff.wordpress.com/2018/03/15/2246/)
+
+
+[Beautiful Plots Cheatsheet](http://www.cs.utexas.edu/~cannata/dataVis/Class%20Notes/Beautiful%20plotting%20in%20R_%20A%20ggplot2%20cheatsheet%20_%20Technical%20Tidbits%20From%20Spatial%20Analysis%20&%20Data%20Science.pdf)
+
+[Corporate Palettes](https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2)
+
+[Maps](https://geocompr.robinlovelace.net/)
+
+[Writing Functions with ggplot](https://groups.google.com/forum/#!topic/ggplot2/qVE6Uxd_IFQ)
+[ggplot2 function writing tips](http://novyden.blogspot.com/2013/07/ggplot-inside-function-needs-some-care.html)
+
+[Base plot](https://www.stat.auckland.ac.nz/~ihaka/120/Notes/ch03.pdf)
+[Base plot limits](https://www.stat.auckland.ac.nz/~ihaka/787/lectures-r-graphics.pdf)
+[base R Graphics](https://blog.jumpingrivers.com/posts/2018/2018-01-24-base-r-graphics/)

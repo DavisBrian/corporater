@@ -1833,7 +1833,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.19    0.00    0.21}
+\CommentTok{#>    0.20    0.03    0.23}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2236,7 +2236,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000b55b740>}
+\CommentTok{#> <environment: 0x000000000b45d640>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2295,7 +2295,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.10    0.00    2.12}
+\CommentTok{#>    2.17    0.00    2.19}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -4385,12 +4385,12 @@ basic principle is
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{#> -- Attaching packages ------------------------------------------------------------- tidyverse 1.2.1 --}
+\CommentTok{#> -- Attaching packages ------------------------------------------------- tidyverse 1.2.1 --}
 \CommentTok{#> v ggplot2 2.2.1     v purrr   0.2.4}
 \CommentTok{#> v tibble  1.4.2     v dplyr   0.7.4}
 \CommentTok{#> v tidyr   0.8.0     v stringr 1.3.0}
 \CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
-\CommentTok{#> -- Conflicts ---------------------------------------------------------------- tidyverse_conflicts() --}
+\CommentTok{#> -- Conflicts ---------------------------------------------------- tidyverse_conflicts() --}
 \CommentTok{#> x dplyr::filter() masks stats::filter()}
 \CommentTok{#> x dplyr::lag()    masks stats::lag()}
 \NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"H:/Projects/rclasscode/data/bargraphdat.RDS"}\NormalTok{)}
@@ -4407,6 +4407,15 @@ basic principle is
 \CommentTok{#> # ... with 12 more rows}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mpg) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ displ, }\DataTypeTok{y =}\NormalTok{ hwy), }\DataTypeTok{color =} \StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 \part{Appendix}\label{part-appendix}
 
