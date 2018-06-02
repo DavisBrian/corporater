@@ -219,7 +219,7 @@ This is almost what we want. Our final code would look like:
 
 ```{r}
 library(tidyverse)
-dat <- readRDS("H:/Projects/rclasscode/data/bargraphdat.RDS")
+dat <- readRDS("./data/bargraphdat.RDS")
 
 # convert the use_type to a factor with the correct label
 dat$use_type <-factor(dat$use_type, levels = c("use", "nmu"), labels = c("Lifetime Use", "Lifetime Non-Medical Use"))
@@ -243,17 +243,6 @@ p
 
 
 ## Facets
-
-
-
-
-
-
-## Layers
-
-Together data, mappings, statistical tranformations, and geometric objects form a layer.
-
-
 
 
 ## Exercises
