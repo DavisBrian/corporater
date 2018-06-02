@@ -8,7 +8,7 @@
 >
 > --- Hadley Wickham
 
-Base plotting is __imperative__,it’s about what you do. You set up your `layout()`, then you go to the first group (drug) You add the points for that group (drug) along with a title. Then you fit and plot a best-fit-line for the first grouping, then the second grouping, and so on. Then you go on to the next plot. After 20 of those, you end with a legend.
+Base plotting is __imperative__,it’s about what you do. You set up your layout(), then you go to the first group (drug) You add the points for that group (drug) along with a title. Then you fit and plot a best-fit-line for the first grouping, then the second grouping, and so on. Then you go on to the next plot. After 20 of those, you end with a legend.
 
 ggplot2 plotting is __declarative__, it’s about what __your graph is__. The graph has drug group mapped to the x-axis, prevalance rate mapped to the y, and abuse type mapped to the color. The graph displays both points and best-fit lines for each drug group And it’s faceted into one-plot-per-drug group, with a drug group described by its market name.
 
@@ -55,7 +55,7 @@ All plots start with data.  ``ggplot` expects the data to be in a "Tidy Data" fo
 
 ```{r}
 library(tidyverse)
-dat <- readRDS("H:/Projects/rclasscode/data/bargraphdat.RDS")
+dat <- readRDS("./data/bargraphdat.RDS")
 dat
 ```
 
@@ -211,15 +211,6 @@ Themes control the display of all non-data elements of the plot. You can overrid
 
 There are a handful of built in themes and tons of packages that have additional themes.  ``ggthemes` has a collection of themes used by various organization (Ex. The Economist, Fivethiryeight.com, The Wall St. Journal, etc)
 
-Themes contain a huge number or parameters, grouped by plot area:
-
-*  Global options: `line`, `rect`, `text`, `title`
-*  `axis`: x-, y- or other axis title, ticks, lines
-*  `legend`: Plot legends
-*  `panel`: Actual plot area
-*  `plot`: Whole image
-*  `strip`: Facet labels
-
 ```{r}
 p + theme_classic()
 ```
@@ -250,50 +241,19 @@ p <- ggplot(data = dat, aes(x = drug, y = mean, fill = use_type, ymin = lower, y
 p
 ```
 
-### Re-Imagining the plot
-```{r}
-p + coord_flip() +   
-  theme(axis.text.x = element_text(angle = 0, hjust = 1))  # reset the x-axis text
-```
-
-```{r}
-p <- ggplot(data = dat, aes(x = drug, y = mean, color = use_type, ymin = lower, ymax = upper)) +
-  geom_point() +
-  geom_errorbar(width = 0.5) +
-  scale_fill_manual(values=bar_colors) +     # change the bar colors
-  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)+15), 5),  # change the y-axis scale
-                     expand = c(0,0)) +      # remove the spacing between the x axis and the bars
-  labs(x = NULL,                             # Remove the x-axis label "drug"
-       y = "Prevalence % (95% CI)") +        # Change the y-axis label
-  theme_classic() +
-  theme(legend.position = "bottom",          # move the legend to the bottom
-        legend.title    = element_blank(),   # remove the legend variable
-        )  + # rotate the x-axis text
-  coord_flip() 
-p
-```
 
 ## Facets
 
-Facets are subplots of the data with each subplot displaying one subset of the data.
 
-```{r}
-p <- ggplot(data = dat, aes(x = fct_reorder(drug, mean), y = mean, fill = use_type, ymin = lower, ymax = upper)) +
-  geom_col(width = 0.75) +
-  geom_errorbar(position = position_dodge(width = 0.75), width = 0.5) +
-  facet_wrap(~ use_type, scales = "free") +
-  scale_fill_manual(values=bar_colors) +     # change the bar colors
-  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)+15), 5),  # change the y-axis scale
-                     expand = c(0,0)) +      # remove the spacing between the x axis and the bars
-  labs(x = NULL,                             # Remove the x-axis label "drug"
-       y = "Prevalence % (95% CI)") +        # Change the y-axis label
-  theme_classic() +
-  theme(legend.position = "bottom",          # move the legend to the bottom
-        legend.title    = element_blank()) + # remove the legend variable
-  coord_flip()
-p
 
-```
+
+
+
+## Layers
+
+Together data, mappings, statistical tranformations, and geometric objects form a layer.
+
+
 
 
 ## Exercises
