@@ -111,7 +111,7 @@ options(width = old_width$width)
 
 There are also many ggplot extensions that add other usefull geoms.  See [https://www.ggplot2-exts.org/](https://www.ggplot2-exts.org/) for many usefull features and extentions.
 
-```{r}
+```{r plot1}
 p <- ggplot(data = dat, aes(x = drug, y = mean, color = use_type)) +
   geom_col()
 p
@@ -211,6 +211,15 @@ Themes control the display of all non-data elements of the plot. You can overrid
 
 There are a handful of built in themes and tons of packages that have additional themes.  ``ggthemes` has a collection of themes used by various organization (Ex. The Economist, Fivethiryeight.com, The Wall St. Journal, etc)
 
+Themes contain a huge number or parameters, grouped by plot area:
+
+*  Global options: `line`, `rect`, `text`, `title`
+*  `axis`: x-, y- or other axis title, ticks, lines
+*  `legend`: Plot legends
+*  `panel`: Actual plot area
+*  `plot`: Whole image
+*  `strip`: Facet labels
+
 ```{r}
 p + theme_classic()
 ```
@@ -241,8 +250,27 @@ p <- ggplot(data = dat, aes(x = drug, y = mean, fill = use_type, ymin = lower, y
 p
 ```
 
-
 ## Facets
+
+Facets are subplots of the data with each subplot displaying one subset of the data.
+
+```{r}
+p <- ggplot(data = dat, aes(x = fct_reorder(drug, mean), y = mean, fill = use_type, ymin = lower, ymax = upper)) +
+  geom_col(width = 0.75) +
+  geom_errorbar(position = position_dodge(width = 0.75), width = 0.5) +
+  facet_wrap(~ use_type, scales = "free") +
+  scale_fill_manual(values=bar_colors) +     # change the bar colors
+  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)+15), 5),  # change the y-axis scale
+                     expand = c(0,0)) +      # remove the spacing between the x axis and the bars
+  labs(x = NULL,                             # Remove the x-axis label "drug"
+       y = "Prevalence % (95% CI)") +        # Change the y-axis label
+  theme_classic() +
+  theme(legend.position = "bottom",          # move the legend to the bottom
+        legend.title    = element_blank()) + # remove the legend variable
+  coord_flip()
+p
+
+```
 
 
 ## Exercises
