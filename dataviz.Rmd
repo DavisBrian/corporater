@@ -8,7 +8,7 @@
 >
 > --- Hadley Wickham
 
-Base plotting is __imperative__,it’s about what you do. You set up your `layout()`, then you go to the first group (drug) You add the points for that group (drug) along with a title. Then you fit and plot a best-fit-line for the first grouping, then the second grouping, and so on. Then you go on to the next plot. After 20 of those, you end with a legend.
+Base plotting is __imperative__,it’s about what you do. You set up your layout(), then you go to the first group (drug) You add the points for that group (drug) along with a title. Then you fit and plot a best-fit-line for the first grouping, then the second grouping, and so on. Then you go on to the next plot. After 20 of those, you end with a legend.
 
 ggplot2 plotting is __declarative__, it’s about what __your graph is__. The graph has drug group mapped to the x-axis, prevalance rate mapped to the y, and abuse type mapped to the color. The graph displays both points and best-fit lines for each drug group And it’s faceted into one-plot-per-drug group, with a drug group described by its market name.
 
@@ -55,7 +55,7 @@ All plots start with data.  ``ggplot` expects the data to be in a "Tidy Data" fo
 
 ```{r}
 library(tidyverse)
-dat <- readRDS("H:/Projects/rclasscode/data/bargraphdat.RDS")
+dat <- readRDS("./data/bargraphdat.RDS")
 dat
 ```
 
@@ -111,7 +111,7 @@ options(width = old_width$width)
 
 There are also many ggplot extensions that add other usefull geoms.  See [https://www.ggplot2-exts.org/](https://www.ggplot2-exts.org/) for many usefull features and extentions.
 
-```{r}
+```{r plot1}
 p <- ggplot(data = dat, aes(x = drug, y = mean, color = use_type)) +
   geom_col()
 p
@@ -228,7 +228,7 @@ This is almost what we want. Our final code would look like:
 
 ```{r}
 library(tidyverse)
-dat <- readRDS("H:/Projects/rclasscode/data/bargraphdat.RDS")
+dat <- readRDS("./data/bargraphdat.RDS")
 
 # convert the use_type to a factor with the correct label
 dat$use_type <-factor(dat$use_type, levels = c("use", "nmu"), labels = c("Lifetime Use", "Lifetime Non-Medical Use"))
@@ -247,29 +247,6 @@ p <- ggplot(data = dat, aes(x = drug, y = mean, fill = use_type, ymin = lower, y
   theme(legend.position = "bottom",          # move the legend to the bottom
         legend.title    = element_blank(),   # remove the legend variable
         axis.text.x = element_text(angle = 90, hjust = 1))  # rotate the x-axis text
-p
-```
-
-### Re-Imagining the plot
-```{r}
-p + coord_flip() +   
-  theme(axis.text.x = element_text(angle = 0, hjust = 1))  # reset the x-axis text
-```
-
-```{r}
-p <- ggplot(data = dat, aes(x = drug, y = mean, color = use_type, ymin = lower, ymax = upper)) +
-  geom_point() +
-  geom_errorbar(width = 0.5) +
-  scale_fill_manual(values=bar_colors) +     # change the bar colors
-  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)+15), 5),  # change the y-axis scale
-                     expand = c(0,0)) +      # remove the spacing between the x axis and the bars
-  labs(x = NULL,                             # Remove the x-axis label "drug"
-       y = "Prevalence % (95% CI)") +        # Change the y-axis label
-  theme_classic() +
-  theme(legend.position = "bottom",          # move the legend to the bottom
-        legend.title    = element_blank(),   # remove the legend variable
-        )  + # rotate the x-axis text
-  coord_flip() 
 p
 ```
 
