@@ -19,4 +19,3 @@ bookdown::pdf_book:
     in_header: preamble.tex
   citation_package: natbib
   keep_tex: true
-bookdown::epub_book: default

@@ -1,8 +1,7 @@
 knitr::opts_chunk$set(
   comment = "#>",
   out.width = "70%", 
-  fig.align = 'center',
-  dev = "svg"
+  fig.align = 'center'
 )
 
 options(width = 100)

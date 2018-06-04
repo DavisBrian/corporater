@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="good-practices.html">
+<link rel="prev" href="data-visualization.html">
+<link rel="next" href="appendix-resources.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -126,7 +126,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
-<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em></a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em>[^DRY]</a></li>
 <li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
@@ -151,21 +151,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#control-structures"><i class="fa fa-check"></i><b>3.5</b> Control Structures</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#if-else"><i class="fa fa-check"></i><b>3.5.1</b> <code>if</code>-<code>else</code></a></li>
 <li class="chapter" data-level="3.5.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#for-loops"><i class="fa fa-check"></i><b>3.5.2</b> <code>for</code> Loops</a></li>
-<li class="chapter" data-level="3.5.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#while-loops"><i class="fa fa-check"></i><b>3.5.3</b> <code>while</code> Loops</a></li>
-<li class="chapter" data-level="3.5.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#repeat-loops"><i class="fa fa-check"></i><b>3.5.4</b> <code>repeat</code> Loops</a></li>
-<li class="chapter" data-level="3.5.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#next-break"><i class="fa fa-check"></i><b>3.5.5</b> <code>next</code>, <code>break</code></a></li>
-<li class="chapter" data-level="3.5.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#looping"><i class="fa fa-check"></i><b>3.5.6</b> Looping</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.6</b> Vectorization &amp; Recycling</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.6.1</b> Example</a></li>
+<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#generate-a-sequence-based-on-length-of-x"><i class="fa fa-check"></i><b>3.6</b> Generate a sequence based on length of ‘x’</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#while-loops"><i class="fa fa-check"></i><b>3.6.1</b> <code>while</code> Loops</a></li>
+<li class="chapter" data-level="3.6.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#repeat-loops"><i class="fa fa-check"></i><b>3.6.2</b> <code>repeat</code> Loops</a></li>
+<li class="chapter" data-level="3.6.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#next-break"><i class="fa fa-check"></i><b>3.6.3</b> <code>next</code>, <code>break</code></a></li>
+<li class="chapter" data-level="3.6.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#looping"><i class="fa fa-check"></i><b>3.6.4</b> Looping</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#function-basics"><i class="fa fa-check"></i><b>3.7</b> Function Basics</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#your-first-function"><i class="fa fa-check"></i><b>3.7.1</b> Your First Function</a></li>
-<li class="chapter" data-level="3.7.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#lazy-evaluation"><i class="fa fa-check"></i><b>3.7.2</b> Lazy Evaluation</a></li>
-<li class="chapter" data-level="3.7.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#the-...-argument"><i class="fa fa-check"></i><b>3.7.3</b> The <code>...</code> Argument</a></li>
+<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.7</b> Vectorization &amp; Recycling</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.7.1</b> Example</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#environments-scoping"><i class="fa fa-check"></i><b>3.8</b> Environments &amp; Scoping</a></li>
-<li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
+<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#function-basics"><i class="fa fa-check"></i><b>3.8</b> Function Basics</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#your-first-function"><i class="fa fa-check"></i><b>3.8.1</b> Your First Function</a></li>
+<li class="chapter" data-level="3.8.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#lazy-evaluation"><i class="fa fa-check"></i><b>3.8.2</b> Lazy Evaluation</a></li>
+<li class="chapter" data-level="3.8.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#the-...-argument"><i class="fa fa-check"></i><b>3.8.3</b> The <code>...</code> Argument</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#environments-scoping"><i class="fa fa-check"></i><b>3.9</b> Environments &amp; Scoping</a></li>
+<li class="chapter" data-level="3.10" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.10</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>4</b> Base R Data Structures</a><ul>
 <li class="chapter" data-level="4.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#naming-rules"><i class="fa fa-check"></i><b>4.1</b> Naming Rules</a></li>
@@ -215,11 +217,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.3" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>6.3</b> Facets</a></li>
 <li class="chapter" data-level="6.4" data-path="data-visualization.html"><a href="data-visualization.html#saving"><i class="fa fa-check"></i><b>6.4</b> Saving</a></li>
 <li class="chapter" data-level="6.5" data-path="data-visualization.html"><a href="data-visualization.html#exercises-3"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
-<li class="chapter" data-level="6.6" data-path="data-visualization.html"><a href="data-visualization.html#resources-and-links"><i class="fa fa-check"></i><b>6.6</b> Resources and Links</a></li>
+<li class="chapter" data-level="6.6" data-path="data-visualization.html"><a href="data-visualization.html#resources-and-links"><i class="fa fa-check"></i><b>6.6</b> Resources and Links</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="data-visualization.html"><a href="data-visualization.html#math-and-symbols"><i class="fa fa-check"></i><b>6.6.1</b> Math and symbols</a></li>
+<li class="chapter" data-level="6.6.2" data-path="data-visualization.html"><a href="data-visualization.html#tips-and-tricks"><i class="fa fa-check"></i><b>6.6.2</b> Tips and Tricks</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="base-plot.html"><a href="base-plot.html"><i class="fa fa-check"></i><b>7</b> Base Plot</a></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="7" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>7</b> Appendix A</a><ul>
-<li class="chapter" data-level="7.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>7.1</b> E-Books</a></li>
+<li class="chapter" data-level="8" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>8</b> Appendix A</a><ul>
+<li class="chapter" data-level="8.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>8.1</b> E-Books</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -241,98 +247,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preamble-intro" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<div id="course-philosophy" class="section level2">
-<h2><span class="header-section-number">1.1</span> Course Philosophy</h2>
-<blockquote>
-<p>“The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly. A programmer is ideally an essayist who works with traditional aesthetic and literary forms as well as mathematical concepts, to communicate the way that an algorithm works and to convince a reader that the results will be correct.”</p>
-<p>— Donald Knuth</p>
-</blockquote>
-<div id="reproducible-research-approach" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Reproducible Research Approach</h3>
-<p><a href="https://www.coursera.org/learn/reproducible-research/lecture/FvOGB/what-is-reproducible-research-about">What is Reproducible Research About?</a></p>
-<p>Reproducible research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them. There are two basic reasons to be concerned about making your research reproducible. The first is <em>to show evidence of the correctness of your results</em>. The second reason to aspire to reproducibility is <em>to enable others to make use of our methods and results</em>.</p>
-<p>Modern challenges of reproducibility in research, particularly computational reproducibility, have produced a lot of discussion in papers, blogs and videos, some of which are listed <a href="http://ropensci.github.io/reproducibility-guide/sections/references/">here</a> and <a href="https://reproducibleresearch.net/">here</a>.</p>
-<blockquote>
-<p>Conclusions in experimental psychology often are the result of null hypothesis significance testing. Unfortunately, there is evidence ((from eight major psychology journals published between 1985 and 2013) that roughly half of all published empirical psychology articles contain at least one inconsistent p-value, and around one in eight articles contain a grossly inconsistent p-value that makes a non-significant result seem significant, or vice versa. <a href="https://mbnuijten.com/statcheck/">statscheck</a> and <a href="http://blog.revolutionanalytics.com/2016/10/statcheck.html">here</a></p>
-</blockquote>
-<blockquote>
-<p>“A key component of scientific communication is sufficient information for other researchers in the field to reproduce published findings. For computational and data-enabled research, this has often been interpreted to mean making available the raw data from which results were generated, the computer code that generated the findings, and any additional information needed such as workflows and input parameters. Many journals are revising author guidelines to include data and code availability. We chose a random sample of 204 scientific papers published in the journal <strong>Science</strong> after the implementation of their policy in February 2011. We found that were able to reproduce the findings for 26%.” <a href="http://www.pnas.org/content/115/11/2584">Proceedings of the National Academy of Sciences of the United States of America</a></p>
-</blockquote>
-<blockquote>
-<p>“Starting September 1 2016, JASA ACS will require code and data as a minimum standard for reproducibility of statistical scientific research.” <a href="https://magazine.amstat.org/blog/2016/07/01/jasa-reproducible16/">JASA</a></p>
-</blockquote>
-</div>
-<div id="fda-validation" class="section level3">
-<h3><span class="header-section-number">1.1.2</span> FDA Validation</h3>
-<blockquote>
-<p>“Establishing documented evidence which provides a high degree of assurance that a specific process will consistently produce a product meeting its predetermined specifications and quality attributes.” -Validation as defined by the FDA in <strong>Validation of Systems for 21 CFR Part 11 Compliance</strong></p>
-</blockquote>
-</div>
-<div id="the-sas-myth" class="section level3">
-<h3><span class="header-section-number">1.1.3</span> The SAS Myth</h3>
-<p>Contrary to what we hear the FDA does not require SAS to be used <em>EVER</em>. There are instances that you have to deliver data in XPORT format though which is open and implemented in many programming languages.</p>
-<blockquote>
-<p>“FDA does not require use of any specific software for statistical analyses, and statistical software is not explicitly discussed in Title 21 of the Code of Federal Regulations [e.g., in 21CFR part 11]. However, the software package(s) used for statistical analyses should be fully documented in the submission, including version and build identification. As noted in the FDA guidance, E9 Statistical Principles for Clinical Trials” <a href="https://www.fda.gov/downloads/forindustry/datastandards/studydatastandards/ucm587506.pdf">FDA Statistical Software Clarifying Statement</a></p>
-</blockquote>
-<p>Good <a href="http://blog.revolutionanalytics.com/2017/06/r-fda.html">write up</a> with links to several FDA talks on the subject.</p>
-</div>
-</div>
-<div id="prerequisites" class="section level2">
-<h2><span class="header-section-number">1.2</span> Prerequisites</h2>
+<div id="base-plot" class="section level1">
+<h1><span class="header-section-number">7</span> Base Plot</h1>
 <ul>
-<li>We will assume you have minimal experience and knowledge of R</li>
-<li>IT should have installed:
-<ul>
-<li><a href="https://cran.r-project.org/">R</a> version 3.4.4</li>
-<li><a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> version 1.1</li>
-<li><a href="https://miktex.org/">MiTeX</a></li>
-<li><a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> version 3.4</li>
-</ul></li>
-<li>We will install other dependencies throughout the course.</li>
+<li><a href="https://www.stat.auckland.ac.nz/~ihaka/120/Notes/ch03.pdf">Base plot</a></li>
+<li><a href="https://www.stat.auckland.ac.nz/~ihaka/787/lectures-r-graphics.pdf">Base plot limits</a></li>
+<li><a href="https://blog.jumpingrivers.com/posts/2018/2018-01-24-base-r-graphics/">base R Graphics</a></li>
 </ul>
-</div>
-<div id="content" class="section level2">
-<h2><span class="header-section-number">1.3</span> Content</h2>
-<p>It is impossible to become an expert in R in only one course even a multi-week one. Our aim is at gaining a wide understanding on many aspects of R as used in a corporate / production environment. It will roughly be based on <a href="http://r4ds.had.co.nz">R for Data Science</a>. While this is an <em>excellent</em> resource it does not cover much of what we will need on a routine basis. Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.</p>
-<p>This is your course so if you feel we need to hit an area deeper, or add content based on a current need, let me know an we will work to adjust it.</p>
-<p>The <strong>rough</strong> topic list of the course:</p>
-<ol style="list-style-type: decimal">
-<li>Good programming practices</li>
-<li>Basics of R Programming</li>
-<li>Importing / Exporting Data</li>
-<li>Tidying Data</li>
-<li>Visualizing Data</li>
-<li>Functions</li>
-<li>Strings</li>
-<li>Dates and Time</li>
-<li>Communicating Results</li>
-</ol>
-<p>Making Code Production Ready:</p>
-<ol start="10" style="list-style-type: decimal">
-<li>Functions (part II)</li>
-<li>Assertions</li>
-<li>Unit tests</li>
-<li>Documentation</li>
-<li>Communicating Results (part II)</li>
-</ol>
-</div>
-<div id="structure" class="section level2">
-<h2><span class="header-section-number">1.4</span> Structure</h2>
-<p>My current thoughts are to meet an hour a week and discuss a topic. We will not be going strictly through the R4DS, but will use it as our foundation into the topic at hand. Then give some exercises due for the next week which we go over the solutions. We will incorporate these exercises into an R package(s?) so we will have a collection of useful reusable code for the future.</p>
-<p>Open to other ideas as we go along.</p>
-<p>I’m going to try to keep the assignments related to our current work so we can work on the class during work hours. Bring what you are working on and we will see how we can fit it into the class.</p>
 
 </div>
-</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="good-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -352,7 +285,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DavisBrian/corporater/edit/master/intro.Rmd",
+"link": "https://github.com/DavisBrian/corporater/edit/master/dataviz.Rmd",
 "text": "Edit"
 },
 "download": ["rclassnotes.pdf", "rclassnotes.epub"],
@@ -364,19 +297,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
