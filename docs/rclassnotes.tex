@@ -81,6 +81,9 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \IfFileExists{parskip.sty}{%
 \usepackage{parskip}
 }{% else
@@ -125,7 +128,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-06-04}
+  \date{2018-06-08}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1817,7 +1820,7 @@ Monte-Carlo pseudo code:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e6}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    3.86    0.00    4.01}
+\CommentTok{#>    4.24    0.00    4.29}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2236,7 +2239,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000b43b398>}
+\CommentTok{#> <environment: 0x000000000b4fccd8>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2295,7 +2298,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.39    0.02    2.47}
+\CommentTok{#>    2.40    0.00    2.51}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -4328,7 +4331,7 @@ market name.
   \item
     Wrangle your data
   \item
-    Map data to visual elements
+    Map data elements to visual elements
   \item
     Tweak scales, guides, axis, labels, theme
   \end{enumerate}
@@ -4347,6 +4350,13 @@ it is very well organized
 examples and how to do common task.
 
 See \url{http://ggplot2.tidyverse.org/reference}
+
+\BeginKnitrBlock{rmdwarning}
+On 6/15 ggplot2 2.3.0 will come out and there are
+\href{https://github.com/tidyverse/ggplot2/blob/master/NEWS.md}{Breaking
+Changes}. If you upgrade your version of ggplot there may be instances
+that code from the book (or websites) will no longer work.
+\EndKnitrBlock{rmdwarning}
 
 \section{Example}\label{example-1}
 
@@ -4385,12 +4395,12 @@ of \href{}{R for Data Science}, but for now the basic principle is
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{#> -- Attaching packages ------------------------------------------------------------------------------------------------ tidyverse 1.2.1 --}
+\CommentTok{#> -- Attaching packages ---------------------------------------------------------------------------------------------------------------- tidyverse 1.2.1 --}
 \CommentTok{#> v ggplot2 2.2.1     v purrr   0.2.4}
 \CommentTok{#> v tibble  1.4.2     v dplyr   0.7.4}
 \CommentTok{#> v tidyr   0.8.0     v stringr 1.3.0}
 \CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
-\CommentTok{#> -- Conflicts --------------------------------------------------------------------------------------------------- tidyverse_conflicts() --}
+\CommentTok{#> -- Conflicts ------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --}
 \CommentTok{#> x dplyr::filter() masks stats::filter()}
 \CommentTok{#> x dplyr::lag()    masks stats::lag()}
 \NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bargraphdat.RDS"}\NormalTok{)}
@@ -4415,7 +4425,7 @@ of \href{}{R for Data Science}, but for now the basic principle is
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-4-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 That's uninteresting. We haven't mapped the data to our plot yet. Let's
 work on getting the bar chart roughly right.
@@ -4441,7 +4451,7 @@ work on getting the bar chart roughly right.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-5-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 \subsection{Geoms}\label{geoms}
 
@@ -4492,6 +4502,16 @@ There are also many ggplot extensions that add other useful geoms. See
 \url{https://www.ggplot2-exts.org/} for many useful features and
 extensions.
 
+\begin{rmdnote}
+There are two types of bar charts: \texttt{geom\_bar} makes the height
+of the bar proportional to the number of cases in each group (or if the
+weight aesthetic is supplied, the sum of the weights). If you want the
+heights of the bars to represent values in the data, use
+\texttt{geom\_col} instead. \texttt{geom\_bar} will calculate the counts
+or proportions from the raw data. There is no reason to precompute
+those.
+\end{rmdnote}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dat, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ drug, }\DataTypeTok{y =}\NormalTok{ mean, }\DataTypeTok{color =}\NormalTok{ use_type)) }\OperatorTok{+}
@@ -4517,17 +4537,7 @@ subgroup \texttt{dodge} each other.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-7-1} \end{center}
-
-\begin{rmdnote}
-There are two types of bar charts: \texttt{geom\_bar} makes the height
-of the bar proportional to the number of cases in each group (or if the
-weight aesthetic is supplied, the sum of the weights). If you want the
-heights of the bars to represent values in the data, use
-\texttt{geom\_col} instead. \texttt{geom\_bar} will calculate the counts
-or proportions from the raw data. There is no reason to precompute
-those.
-\end{rmdnote}
+\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-9-1} \end{center}
 
 \texttt{geom\_*(mapping,\ data,\ stat,\ position)}
 
@@ -4599,7 +4609,7 @@ and lower bounds to our aesthetics, and align them with our bars.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-9-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 We've come pretty close to recreating the original plot. We still have
 some tweaking to do.
@@ -4643,7 +4653,7 @@ second can be done with a named vector.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-10-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 \subsection{Scales}\label{scales}
 
@@ -4670,7 +4680,7 @@ modify the axis, legend, and plot labels.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 \BeginKnitrBlock{rmdtip}
 library \texttt{scales} provides many useful functions for automatically
@@ -4716,7 +4726,7 @@ Themes contain a huge number or parameters, grouped by plot area:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 This is almost what we want. Our final code would look like:
 
@@ -4732,7 +4742,8 @@ This is almost what we want. Our final code would look like:
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position_dodge}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{), }\DataTypeTok{width =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{bar_colors) }\OperatorTok{+}\StringTok{     }\CommentTok{# change the bar colors}
-\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{ceiling}\NormalTok{(}\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{upper)}\OperatorTok{+}\DecValTok{15}\NormalTok{), }\DecValTok{5}\NormalTok{),  }\CommentTok{# change the y-axis scale}
+\StringTok{  }\KeywordTok{coord_cartesian}\NormalTok{(}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{50}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{ceiling}\NormalTok{(}\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{upper)}\OperatorTok{+}\DecValTok{5}\NormalTok{), }\DecValTok{5}\NormalTok{),  }\CommentTok{# change the y-axis scale}
                      \DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{      }\CommentTok{# remove the spacing between the x axis and the bars}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \OtherTok{NULL}\NormalTok{,                             }\CommentTok{# Remove the x-axis label "drug"}
        \DataTypeTok{y =} \StringTok{"Prevalence % (95% CI)"}\NormalTok{) }\OperatorTok{+}\StringTok{        }\CommentTok{# Change the y-axis label}
@@ -4745,7 +4756,7 @@ This is almost what we want. Our final code would look like:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-14-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-15-1} \end{center}
 
 \section{Facets}\label{facets}
 
@@ -4768,7 +4779,7 @@ displays are roughly rectangular.
 \StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position_dodge}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{), }\DataTypeTok{width =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{use_type, }\DataTypeTok{scales =} \StringTok{"free"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{bar_colors) }\OperatorTok{+}\StringTok{     }\CommentTok{# change the bar colors}
-\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{ceiling}\NormalTok{(}\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{upper)}\OperatorTok{+}\DecValTok{15}\NormalTok{), }\DecValTok{5}\NormalTok{),  }\CommentTok{# change the y-axis scale}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{ceiling}\NormalTok{(}\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{upper)), }\DecValTok{5}\NormalTok{),  }\CommentTok{# change the y-axis scale}
                      \DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{      }\CommentTok{# remove the spacing between the x axis and the bars}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \OtherTok{NULL}\NormalTok{,                             }\CommentTok{# Remove the x-axis label "drug"}
        \DataTypeTok{y =} \StringTok{"Prevalence % (95% CI)"}\NormalTok{) }\OperatorTok{+}\StringTok{        }\CommentTok{# Change the y-axis label}
@@ -4780,12 +4791,35 @@ displays are roughly rectangular.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-15-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-16-1} \end{center}
+
+\section{Stats}\label{stats}
+
+While we didn't use them for this particular plot \texttt{stat\_*()}
+function can be a huge time saver. \texttt{stat\_*} functions display
+statistical summaries of the data. For a bar plot there is no reason the
+count then number of items in a group (or percentage) on the data.
+Instead we can use the appropriate function have it calculated
+automatically for us.
+
+\begin{verbatim}
+#>  [1] "stat_bin"         "stat_bin_2d"      "stat_bin_hex"     "stat_bin2d"      
+#>  [5] "stat_binhex"      "stat_boxplot"     "stat_contour"     "stat_count"      
+#>  [9] "stat_density"     "stat_density_2d"  "stat_density2d"   "stat_ecdf"       
+#> [13] "stat_ellipse"     "stat_function"    "stat_identity"    "stat_qq"         
+#> [17] "stat_quantile"    "stat_smooth"      "stat_spoke"       "stat_sum"        
+#> [21] "stat_summary"     "stat_summary_2d"  "stat_summary_bin" "stat_summary_hex"
+#> [25] "stat_summary2d"   "stat_unique"      "stat_ydensity"
+\end{verbatim}
+
+There are many more useful \texttt{stat\_*()} functions in various
+packages.
 
 \section{Saving}\label{saving}
 
 Save your plot with \texttt{ggsave}. Use the correct extension for the
-plot type you wish to save. E.g .pdf for pdf, .png for png,
+plot type you wish to save. E.g .pdf for pdf, .png for png, etc. See
+\texttt{?ggsave} for details and other parameters.
 
 \section{Exercises}\label{exercises-3}
 
@@ -4795,9 +4829,8 @@ plot type you wish to save. E.g .pdf for pdf, .png for png,
 \item
   Modify the above code to produce the plot below. You can read in the
   data with:
+  \texttt{dat\ \textless{}-\ readRDS("./data/bargraphdat2.RDS")}
 \end{enumerate}
-
-\texttt{dat\ \textless{}-\ readRDS("./data/bargraphdat2.RDS")}
 
 \begin{center}\includegraphics[width=0.7\linewidth]{images/dataviz/comp_recent_means} \end{center}
 
@@ -4814,6 +4847,13 @@ plot type you wish to save. E.g .pdf for pdf, .png for png,
 \item
   For the above plot (exercise 3). Re-imagine a different visualization
   for the data and create the plot using ggplot.
+\item
+  Begin making a RADARS theme. What is our font, font size for various
+  elements, background, etc. We will end up making a custom theme based
+  on this for everyone to use. This will allow us to get presentation
+  quality graphics quickly.
+\item
+  Read Chapter 2 (Workflow: Basics)
 \end{enumerate}
 
 \section{Resources and Links}\label{resources-and-links}
@@ -4839,39 +4879,230 @@ plot type you wish to save. E.g .pdf for pdf, .png for png,
   scale, and theme editing
 \end{itemize}
 
-\textbf{General Help and How-To's} *
-\url{http://ggplot2.tidyverse.org/reference/} *
-\href{https://github.com/tidyverse/ggplot2/wiki}{ggplot wiki} *
-\href{http://www.cookbook-r.com/Graphs/}{R Cookbook} *
-\href{http://r-statistics.co/ggplot2-Tutorial-With-R.html}{ggplot
-tutorial} *
-\href{https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html}{Examples
-and Themes} *
-\href{https://cran.r-project.org/web/packages/hrbrthemes/vignettes/why_hrbrthemes.html}{hmbrthemes}
-* \href{https://flowingdata.com/category/guides/}{Visualizing Data}
+\textbf{General Help and How-To's}
 
-\textbf{Tips and Tricks} *
-\href{http://www.cs.utexas.edu/~cannata/dataVis/Class\%20Notes/Beautiful\%20plotting\%20in\%20R_\%20A\%20ggplot2\%20cheatsheet\%20_\%20Technical\%20Tidbits\%20From\%20Spatial\%20Analysis\%20\&\%20Data\%20Science.pdf}{Beautiful
-Plots Cheatsheet} *
-\href{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}{Corporate
-Palettes} * \href{https://geocompr.robinlovelace.net/}{Maps} *
-\href{https://groups.google.com/forum/\#!topic/ggplot2/qVE6Uxd_IFQ}{Writing
-Functions with ggplot} *
-\href{http://novyden.blogspot.com/2013/07/ggplot-inside-function-needs-some-care.html}{ggplot2
-function writing tips}
+\begin{itemize}
+\tightlist
+\item
+  \url{http://ggplot2.tidyverse.org/reference/}
+\item
+  \href{https://github.com/tidyverse/ggplot2/wiki}{ggplot wiki}
+\item
+  \href{http://www.cookbook-r.com/Graphs/}{R Cookbook}
+\item
+  \href{https://rpubs.com/hadley/ggplot2-toolbox}{ggplot2-toolbox}
+\item
+  \href{http://r-statistics.co/ggplot2-Tutorial-With-R.html}{ggplot
+  tutorial}
+\item
+  \href{https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html}{Examples
+  and Themes}
+\item
+  \href{https://cran.r-project.org/web/packages/hrbrthemes/vignettes/why_hrbrthemes.html}{hmbrthemes}
+\item
+  \href{https://flowingdata.com/category/guides/}{Visualizing Data}
+\end{itemize}
 
-\textbf{Math and symbols} *
-\href{http://ggplot2.tidyverse.org/reference/label_bquote.html}{labeller}
-* \href{https://trinkerrstuff.wordpress.com/2018/03/15/2246/}{bquote
-method}
+\textbf{Tips and Tricks}
 
-\textbf{Base Plot} *
-\href{https://www.stat.auckland.ac.nz/~ihaka/120/Notes/ch03.pdf}{Base
-plot} *
-\href{https://www.stat.auckland.ac.nz/~ihaka/787/lectures-r-graphics.pdf}{Base
-plot limits} *
-\href{https://blog.jumpingrivers.com/posts/2018/2018-01-24-base-r-graphics/}{base
-R Graphics}
+\begin{itemize}
+\tightlist
+\item
+  \href{http://www.cs.utexas.edu/~cannata/dataVis/Class\%20Notes/Beautiful\%20plotting\%20in\%20R_\%20A\%20ggplot2\%20cheatsheet\%20_\%20Technical\%20Tidbits\%20From\%20Spatial\%20Analysis\%20\&\%20Data\%20Science.pdf}{Beautiful
+  Plots Cheatsheet}
+\item
+  \href{https://drsimonj.svbtle.com/pretty-scatter-plots-with-ggplot2}{Pretty
+  Scatter Plots}
+\item
+  \href{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}{Corporate
+  Palettes}
+\item
+  \href{https://geocompr.robinlovelace.net/}{Maps}
+\item
+  \href{https://groups.google.com/forum/\#!topic/ggplot2/qVE6Uxd_IFQ}{Writing
+  Functions with ggplot}
+\item
+  \href{http://novyden.blogspot.com/2013/07/ggplot-inside-function-needs-some-care.html}{ggplot2
+  function writing tips}
+\item
+  \href{https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html}{Cowplot
+  Vignette}
+\end{itemize}
+
+\textbf{Math and symbols}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://ggplot2.tidyverse.org/reference/label_bquote.html}{labeller}
+\item
+  \href{https://trinkerrstuff.wordpress.com/2018/03/15/2246/}{bquote
+  method}
+\end{itemize}
+
+\textbf{Base Plot}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.stat.auckland.ac.nz/~ihaka/120/Notes/ch03.pdf}{Base
+  plot}
+\item
+  \href{https://www.stat.auckland.ac.nz/~ihaka/787/lectures-r-graphics.pdf}{Base
+  plot limits}
+\item
+  \href{https://blog.jumpingrivers.com/posts/2018/2018-01-24-base-r-graphics/}{base
+  R Graphics}
+\end{itemize}
+
+\chapter{Programming with ggplot2}\label{programming-with-ggplot2}
+
+Programming with ggplot2 can be \sout{a pain in the ass} tricky. The
+same features that allow ggplot2 to build complex graphs easily makes
+programming and writing functions more complicated with it. Genearlly
+speaking the more flexibility you want the more difficult it will be.
+
+There are three main function levels you will do. you will generally
+write functions to:
+
+\begin{itemize}
+\tightlist
+\item
+  Modify a single component
+\item
+  Modify multiple components
+\item
+  Create an entire plot.
+\end{itemize}
+
+\begin{rmdnote}
+There are also a few one(ish) time things you'll write like themes and
+color palettes.
+\end{rmdnote}
+
+Remember the plot from last chapter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\CommentTok{#> -- Attaching packages ---------------------------------------------------------------------------------------------------------------- tidyverse 1.2.1 --}
+\CommentTok{#> v ggplot2 2.2.1     v purrr   0.2.4}
+\CommentTok{#> v tibble  1.4.2     v dplyr   0.7.4}
+\CommentTok{#> v tidyr   0.8.0     v stringr 1.3.0}
+\CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
+\CommentTok{#> -- Conflicts ------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --}
+\CommentTok{#> x dplyr::filter() masks stats::filter()}
+\CommentTok{#> x dplyr::lag()    masks stats::lag()}
+\NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bargraphdat.RDS"}\NormalTok{)}
+\CommentTok{# convert the use_type to a factor with the correct label}
+\NormalTok{dat}\OperatorTok{$}\NormalTok{use_type <-}\KeywordTok{factor}\NormalTok{(dat}\OperatorTok{$}\NormalTok{use_type, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"use"}\NormalTok{, }\StringTok{"nmu"}\NormalTok{), }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Lifetime Use"}\NormalTok{, }\StringTok{"Lifetime Non-Medical Use"}\NormalTok{))}
+\NormalTok{bar_colors <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Lifetime Use"}\NormalTok{ =}\StringTok{ "grey"}\NormalTok{, }\StringTok{"Lifetime Non-Medical Use"}\NormalTok{ =}\StringTok{ "blue"}\NormalTok{)}
+
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dat, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ drug, }\DataTypeTok{y =}\NormalTok{ mean, }\DataTypeTok{fill =}\NormalTok{ use_type, }\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position_dodge}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{), }\DataTypeTok{width =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{bar_colors) }\OperatorTok{+}\StringTok{     }\CommentTok{# change the bar colors}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{ceiling}\NormalTok{(}\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{upper)), }\DecValTok{5}\NormalTok{),  }\CommentTok{# change the y-axis scale}
+                     \DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{      }\CommentTok{# remove the spacing between the x axis and the bars}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \OtherTok{NULL}\NormalTok{,                             }\CommentTok{# Remove the x-axis label "drug"}
+       \DataTypeTok{y =} \StringTok{"Prevalence % (95% CI)"}\NormalTok{) }\OperatorTok{+}\StringTok{        }\CommentTok{# Change the y-axis label}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{,          }\CommentTok{# move the legend to the bottom}
+        \DataTypeTok{legend.title    =} \KeywordTok{element_blank}\NormalTok{(),   }\CommentTok{# remove the legend variable}
+        \DataTypeTok{axis.text.x     =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{),   }\CommentTok{# rotate the x-axis text}
+        \DataTypeTok{axis.ticks.x    =} \KeywordTok{element_blank}\NormalTok{())       }\CommentTok{# remove the x asix tick marks}
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{ggplot_funs_files/figure-latex/unnamed-chunk-3-1} \end{center}
+
+\section{Single Components}\label{single-components}
+
+Let's say we do error bars often and we've had trouble with consitancy.
+One way to help with that is to write a wrapper function arround
+\texttt{geom\_errorbar} with our typical settings. This make a drop in
+replacement
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{errorbar <-}\StringTok{ }\KeywordTok{geom_errorbar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position_dodge}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{), }
+                  \DataTypeTok{width =} \FloatTok{0.5}\NormalTok{)}
+
+\CommentTok{# }
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dat, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ drug, }\DataTypeTok{y =}\NormalTok{ mean, }\DataTypeTok{fill =}\NormalTok{ use_type, }\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\NormalTok{errorbar }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{bar_colors) }\OperatorTok{+}\StringTok{     }\CommentTok{# change the bar colors}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{ceiling}\NormalTok{(}\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{upper)), }\DecValTok{5}\NormalTok{),  }\CommentTok{# change the y-axis scale}
+                     \DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{      }\CommentTok{# remove the spacing between the x axis and the bars}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \OtherTok{NULL}\NormalTok{,                             }\CommentTok{# Remove the x-axis label "drug"}
+       \DataTypeTok{y =} \StringTok{"Prevalence % (95% CI)"}\NormalTok{) }\OperatorTok{+}\StringTok{        }\CommentTok{# Change the y-axis label}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{,          }\CommentTok{# move the legend to the bottom}
+        \DataTypeTok{legend.title    =} \KeywordTok{element_blank}\NormalTok{(),   }\CommentTok{# remove the legend variable}
+        \DataTypeTok{axis.text.x     =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{),   }\CommentTok{# rotate the x-axis text}
+        \DataTypeTok{axis.ticks.x    =} \KeywordTok{element_blank}\NormalTok{())       }\CommentTok{# remove the x asix tick marks}
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{ggplot_funs_files/figure-latex/unnamed-chunk-4-1} \end{center}
+
+The main problem with this function is there is no way for the user to
+change any of the other properties of the error bar. This \textbf{may}
+be the desired behaviour but it seems limiting. Let's re-write the
+function to allow the user to control \emph{some} aspects of the error
+bar.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{errorbar2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position_dodge}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{),}
+                      \DataTypeTok{width =} \FloatTok{0.5}\NormalTok{, ...) \{}
+  \KeywordTok{geom_errorbar}\NormalTok{(}\DataTypeTok{position =}\NormalTok{ position, }\DataTypeTok{width =}\NormalTok{ width, ...)}
+\NormalTok{\}}
+                    
+\CommentTok{# make the error bars red}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dat, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ drug, }\DataTypeTok{y =}\NormalTok{ mean, }\DataTypeTok{fill =}\NormalTok{ use_type, }\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{errorbar2}\NormalTok{(}\DataTypeTok{color =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{bar_colors) }\OperatorTok{+}\StringTok{     }\CommentTok{# change the bar colors}
+\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{ceiling}\NormalTok{(}\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{upper)), }\DecValTok{5}\NormalTok{),  }\CommentTok{# change the y-axis scale}
+                     \DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{      }\CommentTok{# remove the spacing between the x axis and the bars}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \OtherTok{NULL}\NormalTok{,                             }\CommentTok{# Remove the x-axis label "drug"}
+       \DataTypeTok{y =} \StringTok{"Prevalence % (95% CI)"}\NormalTok{) }\OperatorTok{+}\StringTok{        }\CommentTok{# Change the y-axis label}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{,          }\CommentTok{# move the legend to the bottom}
+        \DataTypeTok{legend.title    =} \KeywordTok{element_blank}\NormalTok{(),   }\CommentTok{# remove the legend variable}
+        \DataTypeTok{axis.text.x     =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{),   }\CommentTok{# rotate the x-axis text}
+        \DataTypeTok{axis.ticks.x    =} \KeywordTok{element_blank}\NormalTok{())       }\CommentTok{# remove the x asix tick marks}
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{ggplot_funs_files/figure-latex/unnamed-chunk-5-1} \end{center}
+
+\section{Multiple Components}\label{multiple-components}
+
+\section{Whole Plots}\label{whole-plots}
+
+Creating small reusable components is most in line with the ggplot2
+spirit: you can recombine them flexibly to create whatever plot you
+want. But sometimes you're creating the same plot over and over again,
+and you don't need that flexibility. Instead of creating components, you
+might want to write a function that takes data and parameters and
+returns a complete plot.
+
+\section{Plot Style}\label{plot-style}
+
+\begin{center}\includegraphics[width=0.7\linewidth]{images/dataviz/api_life_means} \end{center}
+
+\includegraphics[width=0.7\linewidth]{images/dataviz/api_nmu_means}
+\includegraphics[width=0.7\linewidth]{images/dataviz/comp_recent_means}
+
+\section{Color Palettes}\label{color-palettes}
+
+\section{Themes}\label{themes-1}
 
 \part{Appendix}\label{part-appendix}
 

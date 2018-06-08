@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-06-04">
+<meta name="date" content="2018-06-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="subsetting.html">
-<link rel="next" href="appendix-resources.html">
+<link rel="next" href="programming-with-ggplot2.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -213,13 +213,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.2.5" data-path="data-visualization.html"><a href="data-visualization.html#themes"><i class="fa fa-check"></i><b>6.2.5</b> Themes</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>6.3</b> Facets</a></li>
-<li class="chapter" data-level="6.4" data-path="data-visualization.html"><a href="data-visualization.html#saving"><i class="fa fa-check"></i><b>6.4</b> Saving</a></li>
-<li class="chapter" data-level="6.5" data-path="data-visualization.html"><a href="data-visualization.html#exercises-3"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
-<li class="chapter" data-level="6.6" data-path="data-visualization.html"><a href="data-visualization.html#resources-and-links"><i class="fa fa-check"></i><b>6.6</b> Resources and Links</a></li>
+<li class="chapter" data-level="6.4" data-path="data-visualization.html"><a href="data-visualization.html#stats"><i class="fa fa-check"></i><b>6.4</b> Stats</a></li>
+<li class="chapter" data-level="6.5" data-path="data-visualization.html"><a href="data-visualization.html#saving"><i class="fa fa-check"></i><b>6.5</b> Saving</a></li>
+<li class="chapter" data-level="6.6" data-path="data-visualization.html"><a href="data-visualization.html#exercises-3"><i class="fa fa-check"></i><b>6.6</b> Exercises</a></li>
+<li class="chapter" data-level="6.7" data-path="data-visualization.html"><a href="data-visualization.html#resources-and-links"><i class="fa fa-check"></i><b>6.7</b> Resources and Links</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="programming-with-ggplot2.html"><a href="programming-with-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Programming with ggplot2</a><ul>
+<li class="chapter" data-level="7.1" data-path="programming-with-ggplot2.html"><a href="programming-with-ggplot2.html#single-components"><i class="fa fa-check"></i><b>7.1</b> Single Components</a></li>
+<li class="chapter" data-level="7.2" data-path="programming-with-ggplot2.html"><a href="programming-with-ggplot2.html#multiple-components"><i class="fa fa-check"></i><b>7.2</b> Multiple Components</a></li>
+<li class="chapter" data-level="7.3" data-path="programming-with-ggplot2.html"><a href="programming-with-ggplot2.html#whole-plots"><i class="fa fa-check"></i><b>7.3</b> Whole Plots</a></li>
+<li class="chapter" data-level="7.4" data-path="programming-with-ggplot2.html"><a href="programming-with-ggplot2.html#plot-style"><i class="fa fa-check"></i><b>7.4</b> Plot Style</a></li>
+<li class="chapter" data-level="7.5" data-path="programming-with-ggplot2.html"><a href="programming-with-ggplot2.html#color-palettes"><i class="fa fa-check"></i><b>7.5</b> Color Palettes</a></li>
+<li class="chapter" data-level="7.6" data-path="programming-with-ggplot2.html"><a href="programming-with-ggplot2.html#themes-1"><i class="fa fa-check"></i><b>7.6</b> Themes</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="7" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>7</b> Appendix A</a><ul>
-<li class="chapter" data-level="7.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>7.1</b> E-Books</a></li>
+<li class="chapter" data-level="8" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>8</b> Appendix A</a><ul>
+<li class="chapter" data-level="8.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>8.1</b> E-Books</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -255,7 +264,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><strong>Functional</strong> data visualization
 <ol style="list-style-type: decimal">
 <li>Wrangle your data</li>
-<li>Map data to visual elements</li>
+<li>Map data elements to visual elements</li>
 <li>Tweak scales, guides, axis, labels, theme</li>
 </ol></li>
 <li>Easy to <strong>reason</strong> about how the data drives the visualization</li>
@@ -265,6 +274,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><code>ggplot2</code> is a huge package: philosophy + functions …but it is very well organized</p>
 <p><code>ggplot2</code> has it’s one website with some <strong>very</strong> good examples and how to do common task.</p>
 <p>See <a href="http://ggplot2.tidyverse.org/reference" class="uri">http://ggplot2.tidyverse.org/reference</a></p>
+
+<div class="rmdwarning">
+On 6/15 ggplot2 2.3.0 will come out and there are <a href="https://github.com/tidyverse/ggplot2/blob/master/NEWS.md">Breaking Changes</a>. If you upgrade your version of ggplot there may be instances that code from the book (or websites) will no longer work.
+</div>
+
 </div>
 <div id="example-1" class="section level2">
 <h2><span class="header-section-number">6.2</span> Example</h2>
@@ -281,12 +295,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Each observational unit forms a table</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="co">#&gt; -- Attaching packages ------------------------------------------------------------------------------------------------ tidyverse 1.2.1 --</span>
+<span class="co">#&gt; -- Attaching packages ---------------------------------------------------------------------------------------------------------------- tidyverse 1.2.1 --</span>
 <span class="co">#&gt; v ggplot2 2.2.1     v purrr   0.2.4</span>
 <span class="co">#&gt; v tibble  1.4.2     v dplyr   0.7.4</span>
 <span class="co">#&gt; v tidyr   0.8.0     v stringr 1.3.0</span>
 <span class="co">#&gt; v readr   1.1.1     v forcats 0.3.0</span>
-<span class="co">#&gt; -- Conflicts --------------------------------------------------------------------------------------------------- tidyverse_conflicts() --</span>
+<span class="co">#&gt; -- Conflicts ------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --</span>
 <span class="co">#&gt; x dplyr::filter() masks stats::filter()</span>
 <span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span>
 dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)
@@ -303,7 +317,7 @@ dat
 <span class="co">#&gt; # ... with 12 more rows</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat)
 p</code></pre></div>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>That’s uninteresting. We haven’t mapped the data to our plot yet. Let’s work on getting the bar chart roughly right.</p>
 </div>
 <div id="aesthetics" class="section level3">
@@ -316,7 +330,7 @@ p</code></pre></div>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) 
 p</code></pre></div>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="geoms" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Geoms</h3>
@@ -386,6 +400,11 @@ p</code></pre></div>
 #&gt; [37] &quot;geom_segment&quot;    &quot;geom_smooth&quot;     &quot;geom_spoke&quot;      &quot;geom_step&quot;      
 #&gt; [41] &quot;geom_text&quot;       &quot;geom_tile&quot;       &quot;geom_violin&quot;     &quot;geom_vline&quot;</code></pre>
 <p>There are also many ggplot extensions that add other useful geoms. See <a href="https://www.ggplot2-exts.org/" class="uri">https://www.ggplot2-exts.org/</a> for many useful features and extensions.</p>
+<div class="rmdnote">
+<p>
+There are two types of bar charts: <code>geom_bar</code> makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use <code>geom_col</code> instead. <code>geom_bar</code> will calculate the counts or proportions from the raw data. There is no reason to precompute those.
+</p>
+</div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>()
 p</code></pre></div>
@@ -395,12 +414,7 @@ p</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)
 p</code></pre></div>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div class="rmdnote">
-<p>
-There are two types of bar charts: <code>geom_bar</code> makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use <code>geom_col</code> instead. <code>geom_bar</code> will calculate the counts or proportions from the raw data. There is no reason to precompute those.
-</p>
-</div>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><code>geom_*(mapping, data, stat, position)</code></p>
 <ul>
 <li><code>data</code> Geoms can have their own data
@@ -432,7 +446,7 @@ There are two types of bar charts: <code>geom_bar</code> makes the height of the
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)
 p</code></pre></div>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>We’ve come pretty close to recreating the original plot. We still have some tweaking to do.</p>
 <ol style="list-style-type: decimal">
 <li>Reorder the grouping so that “Use” comes before “Non-Medical Use” and use the full description.</li>
@@ -454,7 +468,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)
 p</code></pre></div>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="scales" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Scales</h3>
@@ -470,7 +484,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
        <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>)          <span class="co"># Change the y-axis label</span>
 p</code></pre></div>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /></p>
 
 <div class="rmdtip">
 library <code>scales</code> provides many useful functions for automatically determining breaks and labels for axes and legends. Also has many useful formatting functions such as commas and percentages
@@ -491,7 +505,7 @@ library <code>scales</code> provides many useful functions for automatically det
 <li><code>strip</code>: Facet labels</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</code></pre></div>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>This is almost what we want. Our final code would look like:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)
@@ -503,7 +517,8 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)<span class="op">+</span><span class="dv">15</span>), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)<span class="op">+</span><span class="dv">5</span>), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
                      <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
        <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
@@ -513,7 +528,7 @@ p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
         <span class="dt">axis.text.x     =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),   <span class="co"># rotate the x-axis text</span>
         <span class="dt">axis.ticks.x    =</span> <span class="kw">element_blank</span>())       <span class="co"># remove the x asix tick marks</span>
 p</code></pre></div>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="facets" class="section level2">
@@ -526,7 +541,7 @@ p</code></pre></div>
 <span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>use_type, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)<span class="op">+</span><span class="dv">15</span>), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
                      <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
        <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
@@ -535,27 +550,40 @@ p</code></pre></div>
         <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span><span class="co"># remove the legend variable</span>
 <span class="st">  </span><span class="kw">coord_flip</span>()
 p</code></pre></div>
-<p><img src="dataviz_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="dataviz_files/figure-html/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="stats" class="section level2">
+<h2><span class="header-section-number">6.4</span> Stats</h2>
+<p>While we didn’t use them for this particular plot <code>stat_*()</code> function can be a huge time saver. <code>stat_*</code> functions display statistical summaries of the data. For a bar plot there is no reason the count then number of items in a group (or percentage) on the data. Instead we can use the appropriate function have it calculated automatically for us.</p>
+<pre><code>#&gt;  [1] &quot;stat_bin&quot;         &quot;stat_bin_2d&quot;      &quot;stat_bin_hex&quot;     &quot;stat_bin2d&quot;      
+#&gt;  [5] &quot;stat_binhex&quot;      &quot;stat_boxplot&quot;     &quot;stat_contour&quot;     &quot;stat_count&quot;      
+#&gt;  [9] &quot;stat_density&quot;     &quot;stat_density_2d&quot;  &quot;stat_density2d&quot;   &quot;stat_ecdf&quot;       
+#&gt; [13] &quot;stat_ellipse&quot;     &quot;stat_function&quot;    &quot;stat_identity&quot;    &quot;stat_qq&quot;         
+#&gt; [17] &quot;stat_quantile&quot;    &quot;stat_smooth&quot;      &quot;stat_spoke&quot;       &quot;stat_sum&quot;        
+#&gt; [21] &quot;stat_summary&quot;     &quot;stat_summary_2d&quot;  &quot;stat_summary_bin&quot; &quot;stat_summary_hex&quot;
+#&gt; [25] &quot;stat_summary2d&quot;   &quot;stat_unique&quot;      &quot;stat_ydensity&quot;</code></pre>
+<p>There are many more useful <code>stat_*()</code> functions in various packages.</p>
 </div>
 <div id="saving" class="section level2">
-<h2><span class="header-section-number">6.4</span> Saving</h2>
-<p>Save your plot with <code>ggsave</code>. Use the correct extension for the plot type you wish to save. E.g .pdf for pdf, .png for png,</p>
+<h2><span class="header-section-number">6.5</span> Saving</h2>
+<p>Save your plot with <code>ggsave</code>. Use the correct extension for the plot type you wish to save. E.g .pdf for pdf, .png for png, etc. See <code>?ggsave</code> for details and other parameters.</p>
 </div>
 <div id="exercises-3" class="section level2">
-<h2><span class="header-section-number">6.5</span> Exercises</h2>
+<h2><span class="header-section-number">6.6</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Modify the above code to produce the plot below. You can read in the data with:</li>
+<li>Modify the above code to produce the plot below. You can read in the data with: <code>dat &lt;- readRDS(&quot;./data/bargraphdat2.RDS&quot;)</code></li>
 </ol>
-<p><code>dat &lt;- readRDS(&quot;./data/bargraphdat2.RDS&quot;)</code></p>
 <p><img src="images/dataviz/comp_recent_means.png" width="70%" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>If you wanted to make this style of plot a function, what would you need to pass to the function? What customization would you allow a user to make and what would you not?</p></li>
 <li><p>For the plot you brought, create a data set and create the the plot using ggplot.</p></li>
 <li><p>For the above plot (exercise 3). Re-imagine a different visualization for the data and create the plot using ggplot.</p></li>
+<li><p>Begin making a RADARS theme. What is our font, font size for various elements, background, etc. We will end up making a custom theme based on this for everyone to use. This will allow us to get presentation quality graphics quickly.</p></li>
+<li><p>Read Chapter 2 (Workflow: Basics)</p></li>
 </ol>
 </div>
 <div id="resources-and-links" class="section level2">
-<h2><span class="header-section-number">6.6</span> Resources and Links</h2>
+<h2><span class="header-section-number">6.7</span> Resources and Links</h2>
 <p><strong>Learn more</strong></p>
 <ul>
 <li><p><strong>ggplot2 docs:</strong> <a href="http://ggplot2.tidyverse.org/" class="uri">http://ggplot2.tidyverse.org/</a></p></li>
@@ -566,23 +594,48 @@ p</code></pre></div>
 <li><p><a href="https://github.com/calligross/ggthemeassist">ggplotThemeAssist</a>: Customize your ggplot theme interactively</p></li>
 <li><p><a href="https://github.com/metrumresearchgroup/ggedit">ggedit</a>: Layer, scale, and theme editing</p></li>
 </ul>
-<p><strong>General Help and How-To’s</strong> * <a href="http://ggplot2.tidyverse.org/reference/" class="uri">http://ggplot2.tidyverse.org/reference/</a> * <a href="https://github.com/tidyverse/ggplot2/wiki">ggplot wiki</a> * <a href="http://www.cookbook-r.com/Graphs/">R Cookbook</a> * <a href="http://r-statistics.co/ggplot2-Tutorial-With-R.html">ggplot tutorial</a> * <a href="https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html">Examples and Themes</a> * <a href="https://cran.r-project.org/web/packages/hrbrthemes/vignettes/why_hrbrthemes.html">hmbrthemes</a> * <a href="https://flowingdata.com/category/guides/">Visualizing Data</a></p>
-<p><strong>Tips and Tricks</strong> * <a href="http://www.cs.utexas.edu/~cannata/dataVis/Class%20Notes/Beautiful%20plotting%20in%20R_%20A%20ggplot2%20cheatsheet%20_%20Technical%20Tidbits%20From%20Spatial%20Analysis%20&amp;%20Data%20Science.pdf">Beautiful Plots Cheatsheet</a> * <a href="https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2">Corporate Palettes</a> * <a href="https://geocompr.robinlovelace.net/">Maps</a> * <a href="https://groups.google.com/forum/#!topic/ggplot2/qVE6Uxd_IFQ">Writing Functions with ggplot</a> * <a href="http://novyden.blogspot.com/2013/07/ggplot-inside-function-needs-some-care.html">ggplot2 function writing tips</a></p>
-<p><strong>Math and symbols</strong> * <a href="http://ggplot2.tidyverse.org/reference/label_bquote.html">labeller</a> * <a href="https://trinkerrstuff.wordpress.com/2018/03/15/2246/">bquote method</a></p>
-<p><strong>Base Plot</strong> * <a href="https://www.stat.auckland.ac.nz/~ihaka/120/Notes/ch03.pdf">Base plot</a> * <a href="https://www.stat.auckland.ac.nz/~ihaka/787/lectures-r-graphics.pdf">Base plot limits</a> * <a href="https://blog.jumpingrivers.com/posts/2018/2018-01-24-base-r-graphics/">base R Graphics</a></p>
+<p><strong>General Help and How-To’s</strong></p>
+<ul>
+<li><a href="http://ggplot2.tidyverse.org/reference/" class="uri">http://ggplot2.tidyverse.org/reference/</a></li>
+<li><a href="https://github.com/tidyverse/ggplot2/wiki">ggplot wiki</a></li>
+<li><a href="http://www.cookbook-r.com/Graphs/">R Cookbook</a></li>
+<li><a href="https://rpubs.com/hadley/ggplot2-toolbox">ggplot2-toolbox</a></li>
+<li><a href="http://r-statistics.co/ggplot2-Tutorial-With-R.html">ggplot tutorial</a></li>
+<li><a href="https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html">Examples and Themes</a></li>
+<li><a href="https://cran.r-project.org/web/packages/hrbrthemes/vignettes/why_hrbrthemes.html">hmbrthemes</a></li>
+<li><a href="https://flowingdata.com/category/guides/">Visualizing Data</a></li>
+</ul>
+<p><strong>Tips and Tricks</strong></p>
+<ul>
+<li><a href="http://www.cs.utexas.edu/~cannata/dataVis/Class%20Notes/Beautiful%20plotting%20in%20R_%20A%20ggplot2%20cheatsheet%20_%20Technical%20Tidbits%20From%20Spatial%20Analysis%20&amp;%20Data%20Science.pdf">Beautiful Plots Cheatsheet</a></li>
+<li><a href="https://drsimonj.svbtle.com/pretty-scatter-plots-with-ggplot2">Pretty Scatter Plots</a></li>
+<li><a href="https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2">Corporate Palettes</a></li>
+<li><a href="https://geocompr.robinlovelace.net/">Maps</a></li>
+<li><a href="https://groups.google.com/forum/#!topic/ggplot2/qVE6Uxd_IFQ">Writing Functions with ggplot</a></li>
+<li><a href="http://novyden.blogspot.com/2013/07/ggplot-inside-function-needs-some-care.html">ggplot2 function writing tips</a></li>
+<li><a href="https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html">Cowplot Vignette</a></li>
+</ul>
+<p><strong>Math and symbols</strong></p>
+<ul>
+<li><a href="http://ggplot2.tidyverse.org/reference/label_bquote.html">labeller</a></li>
+<li><a href="https://trinkerrstuff.wordpress.com/2018/03/15/2246/">bquote method</a></li>
+</ul>
+<p><strong>Base Plot</strong></p>
+<ul>
+<li><a href="https://www.stat.auckland.ac.nz/~ihaka/120/Notes/ch03.pdf">Base plot</a></li>
+<li><a href="https://www.stat.auckland.ac.nz/~ihaka/787/lectures-r-graphics.pdf">Base plot limits</a></li>
+<li><a href="https://blog.jumpingrivers.com/posts/2018/2018-01-24-base-r-graphics/">base R Graphics</a></li>
+</ul>
 
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
 <a href="subsetting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="programming-with-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -14,7 +14,7 @@ ggplot2 plotting is __declarative__, it’s about what __your graph is__. The gr
 
 *  __Functional__ data visualization
     1. Wrangle your data
-    2. Map data to visual elements
+    2. Map data elements to visual elements
     3. Tweak scales, guides, axis, labels, theme
 *  Easy to __reason__ about how the data drives the visualization
 *  Easy to __iterate__
@@ -26,6 +26,11 @@ ggplot2 plotting is __declarative__, it’s about what __your graph is__. The gr
 `ggplot2` has it's one website with some **very** good examples and how to do common task.
 
 See [http://ggplot2.tidyverse.org/reference](http://ggplot2.tidyverse.org/reference)
+
+
+```{block2, type='rmdwarning'}
+On 6/15 ggplot2 2.3.0 will come out and there are [Breaking Changes](https://github.com/tidyverse/ggplot2/blob/master/NEWS.md).  If you upgrade your version of ggplot there may be instances that code from the book (or websites) will no longer work.
+```
 
 
 ## Example
@@ -110,6 +115,12 @@ options(width = old_width$width)
 
 There are also many ggplot extensions that add other useful geoms.  See [https://www.ggplot2-exts.org/](https://www.ggplot2-exts.org/) for many useful features and extensions.
 
+
+```{block type='rmdnote'}
+There are two types of bar charts: `geom_bar` makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col` instead.  `geom_bar` will calculate the counts or proportions from the raw data.  There is no reason to precompute those.
+```
+
+
 ```{r plot1}
 p <- ggplot(data = dat, aes(x = drug, y = mean, color = use_type)) +
   geom_col()
@@ -124,11 +135,6 @@ The `color` only controls the border of our bar chart, what we want to do is `fi
 p <- ggplot(data = dat, aes(x = drug, y = mean, fill = use_type)) +
   geom_col(position = "dodge")
 p
-```
-
-
-```{block type='rmdnote'}
-There are two types of bar charts: `geom_bar` makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use `geom_col` instead.  `geom_bar` will calculate the counts or proportions from the raw data.  There is no reason to precompute those.
 ```
 
 `geom_*(mapping, data, stat, position)`
@@ -239,7 +245,8 @@ p <- ggplot(data = dat, aes(x = drug, y = mean, fill = use_type, ymin = lower, y
   geom_col(position = "dodge", width = 0.75) +
   geom_errorbar(position = position_dodge(width = 0.75), width = 0.5) +
   scale_fill_manual(values=bar_colors) +     # change the bar colors
-  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)+15), 5),  # change the y-axis scale
+  coord_cartesian(ylim=c(0, 50)) +
+  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)+5), 5),  # change the y-axis scale
                      expand = c(0,0)) +      # remove the spacing between the x axis and the bars
   labs(x = NULL,                             # Remove the x-axis label "drug"
        y = "Prevalence % (95% CI)") +        # Change the y-axis label
@@ -265,7 +272,7 @@ p <- ggplot(data = dat, aes(x = fct_reorder(drug, mean), y = mean, fill = use_ty
   geom_errorbar(position = position_dodge(width = 0.75), width = 0.5) +
   facet_wrap(~ use_type, scales = "free") +
   scale_fill_manual(values=bar_colors) +     # change the bar colors
-  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)+15), 5),  # change the y-axis scale
+  scale_y_continuous(breaks = seq(0, ceiling(max(dat$upper)), 5),  # change the y-axis scale
                      expand = c(0,0)) +      # remove the spacing between the x axis and the bars
   labs(x = NULL,                             # Remove the x-axis label "drug"
        y = "Prevalence % (95% CI)") +        # Change the y-axis label
@@ -277,15 +284,27 @@ p
 
 ```
 
+## Stats
+
+While we didn't use them for this particular plot `stat_*()` function can be a huge time saver.  `stat_*` functions display statistical summaries of the data.  For a bar plot there is no reason the count then number of items in a group (or percentage) on the data.  Instead we can use the appropriate function have it calculated automatically for us.
+
+```{r, echo=FALSE}
+# geom_
+old_width = options(width = 80)
+lsf.str("package:ggplot2") %>% grep("^stat_", ., value = TRUE)
+options(width = old_width$width)
+```
+
+There are many more useful `stat_*()` functions in various packages.
+
 ## Saving
 
-Save your plot with `ggsave`.  Use the correct extension for the plot type you wish to save.  E.g .pdf for pdf, .png for png, 
+Save your plot with `ggsave`.  Use the correct extension for the plot type you wish to save.  E.g .pdf for pdf, .png for png, etc.  See `?ggsave` for details and other parameters.
 
 
 ## Exercises
 
 1.  Modify the above code to produce the plot below.  You can read in the data with: 
-
 `dat <- readRDS("./data/bargraphdat2.RDS")`
 
 ```{r, echo = FALSE}
@@ -298,6 +317,9 @@ knitr::include_graphics("images/dataviz/comp_recent_means.png", dpi = 450)
 
 4.  For the above plot (exercise 3).  Re-imagine a different visualization for the data and create the plot using ggplot.
 
+5.  Begin making a RADARS theme.  What is our font, font size for various elements, background, etc.  We will end up making a custom theme based on this for everyone to use.  This will allow us to get presentation quality graphics quickly.
+
+6.  Read Chapter 2 (Workflow: Basics)
 
 ## Resources and Links
 
@@ -315,27 +337,34 @@ knitr::include_graphics("images/dataviz/comp_recent_means.png", dpi = 450)
 
 
 **General Help and How-To's**
+
 *    [http://ggplot2.tidyverse.org/reference/](http://ggplot2.tidyverse.org/reference/) 
 *    [ggplot wiki](https://github.com/tidyverse/ggplot2/wiki)
 *    [R Cookbook](http://www.cookbook-r.com/Graphs/)
+*    [ggplot2-toolbox](https://rpubs.com/hadley/ggplot2-toolbox)
 *    [ggplot tutorial](http://r-statistics.co/ggplot2-Tutorial-With-R.html)
 *    [Examples and Themes](https://rstudio-pubs-static.s3.amazonaws.com/3364_d1a578f521174152b46b19d0c83cbe7e.html)
 *    [hmbrthemes](https://cran.r-project.org/web/packages/hrbrthemes/vignettes/why_hrbrthemes.html)
 *    [Visualizing Data](https://flowingdata.com/category/guides/)
 
 **Tips and Tricks**
+
 *    [Beautiful Plots Cheatsheet](http://www.cs.utexas.edu/~cannata/dataVis/Class%20Notes/Beautiful%20plotting%20in%20R_%20A%20ggplot2%20cheatsheet%20_%20Technical%20Tidbits%20From%20Spatial%20Analysis%20&%20Data%20Science.pdf)
+*    [Pretty Scatter Plots](https://drsimonj.svbtle.com/pretty-scatter-plots-with-ggplot2)
 *    [Corporate Palettes](https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2)
 *    [Maps](https://geocompr.robinlovelace.net/)
 *    [Writing Functions with ggplot](https://groups.google.com/forum/#!topic/ggplot2/qVE6Uxd_IFQ)
 *    [ggplot2 function writing tips](http://novyden.blogspot.com/2013/07/ggplot-inside-function-needs-some-care.html)
+*    [Cowplot Vignette](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html)
 
 **Math and symbols**
+
 *    [labeller](http://ggplot2.tidyverse.org/reference/label_bquote.html)
 *    [bquote method](https://trinkerrstuff.wordpress.com/2018/03/15/2246/)
 
 
 **Base Plot**
+
 *    [Base plot](https://www.stat.auckland.ac.nz/~ihaka/120/Notes/ch03.pdf)
 *    [Base plot limits](https://www.stat.auckland.ac.nz/~ihaka/787/lectures-r-graphics.pdf)
 *    [base R Graphics](https://blog.jumpingrivers.com/posts/2018/2018-01-24-base-r-graphics/)
