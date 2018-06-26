@@ -10,6 +10,7 @@ rmd_files: [
   "subset.Rmd",
   
   "dataviz.Rmd",
+  "data-transform.Rmd",
   "ggplot_funs.Rmd",
   
   "appendix-A.Rmd"]

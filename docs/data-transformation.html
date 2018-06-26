@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="programming-with-ggplot2.html">
-
+<link rel="prev" href="data-visualization.html">
+<link rel="next" href="programming-with-ggplot2.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -293,43 +293,180 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendix-resources" class="section level1">
-<h1><span class="header-section-number">9</span> Appendix A</h1>
-<div id="e-books" class="section level2">
-<h2><span class="header-section-number">9.1</span> E-Books</h2>
+<div id="data-transformation" class="section level1">
+<h1><span class="header-section-number">7</span> Data transformation</h1>
+<div id="tibbles" class="section level2">
+<h2><span class="header-section-number">7.1</span> Tibbles</h2>
+<p>Tibbles <strong>are</strong> data frames, but they tweak some older behaviours to make life a little easier. R is an old language, and some things that were useful 10 or 20 years ago now get in your way. It’s difficult to change base R without breaking existing code, so most innovation occurs in packages.</p>
+<p>Key advantages of tibbles:</p>
 <ul>
-<li><a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programming for Data Science</a> by Roger D. Peng,</li>
-<li><a href="https://bookdown.org/csgillespie/efficientR/">Efficient R programming</a> by Colin Gillespie &amp; Robin Lovelace,</li>
-<li><a href="https://bookdown.org/rdpeng/RProgDA/">Mastering Software Development in R</a> by Roger D. Peng, Sean Kross, and Brooke Anderson</li>
-<li><a href="https://github.com/lgatto/2016-02-25-adv-programming-EMBL">Course on R debugging and robust programming</a> by Laurent Gatto &amp; Robert Stojnic,</li>
-<li><a href="https://bookdown.org/rdpeng/RProgDA/">Mastering Software Development in R</a> by Roger D. Peng, Sean Kross and Brooke Anderson,</li>
-<li><a href="http://r4ds.had.co.nz/index.html">R for Data Science</a> by Garrett Grolemund &amp; Hadley Wickham</li>
-<li><a href="http://adv-r.had.co.nz/">Advanced R</a> by Hadley Wickham</li>
-<li><a href="http://r-pkgs.had.co.nz/">R packages</a> by Hadley Wickham,</li>
-<li>other resources linked from this material.</li>
+<li>Never changes the types of the inputs (e.g. it never converts strings to factors!).</li>
+<li>Never changes the names of variables.</li>
+<li>Never creates row names.</li>
+<li>Refined printing to the console:
+<ul>
+<li>only prints the first 10 rows</li>
+<li>shows the data type of each column</li>
+<li>highlights missing values</li>
+<li>aligns numeric data</li>
+</ul></li>
+<li>Enhanced subsetting</li>
 </ul>
+<p>When creating a tibble:</p>
+<ul>
+<li>it will <strong>ONLY</strong> recycle inputs of length 1</li>
+<li>you can refer to varaibles you just created</li>
+</ul>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">mytibble &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb134-2" data-line-number="2">  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb134-3" data-line-number="3">  <span class="dt">y =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb134-4" data-line-number="4">  <span class="dt">z =</span> x <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb134-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb134-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb134-7" data-line-number="7"><span class="co"># versus</span></a>
+<a class="sourceLine" id="cb134-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb134-9" data-line-number="9">mydf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb134-10" data-line-number="10">  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb134-11" data-line-number="11">  <span class="dt">y =</span> <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb134-12" data-line-number="12">)</a>
+<a class="sourceLine" id="cb134-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb134-14" data-line-number="14">mydf<span class="op">$</span>z &lt;-<span class="st"> </span>mydf<span class="op">$</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>mydf<span class="op">$</span>y</a>
+<a class="sourceLine" id="cb134-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb134-16" data-line-number="16">mytibble</a>
+<a class="sourceLine" id="cb134-17" data-line-number="17"><span class="co">#&gt; # A tibble: 5 x 3</span></a>
+<a class="sourceLine" id="cb134-18" data-line-number="18"><span class="co">#&gt;       x     y     z</span></a>
+<a class="sourceLine" id="cb134-19" data-line-number="19"><span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb134-20" data-line-number="20"><span class="co">#&gt; 1     1    1.    2.</span></a>
+<a class="sourceLine" id="cb134-21" data-line-number="21"><span class="co">#&gt; 2     2    1.    5.</span></a>
+<a class="sourceLine" id="cb134-22" data-line-number="22"><span class="co">#&gt; 3     3    1.   10.</span></a>
+<a class="sourceLine" id="cb134-23" data-line-number="23"><span class="co">#&gt; 4     4    1.   17.</span></a>
+<a class="sourceLine" id="cb134-24" data-line-number="24"><span class="co">#&gt; 5     5    1.   26.</span></a>
+<a class="sourceLine" id="cb134-25" data-line-number="25">mydf</a>
+<a class="sourceLine" id="cb134-26" data-line-number="26"><span class="co">#&gt;   x y  z</span></a>
+<a class="sourceLine" id="cb134-27" data-line-number="27"><span class="co">#&gt; 1 1 1  2</span></a>
+<a class="sourceLine" id="cb134-28" data-line-number="28"><span class="co">#&gt; 2 2 1  5</span></a>
+<a class="sourceLine" id="cb134-29" data-line-number="29"><span class="co">#&gt; 3 3 1 10</span></a>
+<a class="sourceLine" id="cb134-30" data-line-number="30"><span class="co">#&gt; 4 4 1 17</span></a>
+<a class="sourceLine" id="cb134-31" data-line-number="31"><span class="co">#&gt; 5 5 1 26</span></a></code></pre></div>
+<p>For the most part you can use data.frames and tibbles interchangeably. However, some older functions in base R do not work properly with tibbles. This is because of the <code>[</code> subset operator. As we saw in subsetting, if you return a single column with <code>[</code> on a data.frame you will get a vector back instead of a single column data.frame. Tibbles always return tibbles and never a vector.</p>
+<p>You can convert a data frame to a tibble with <code>as_tibble()</code>, while you con coerce a tibble to a data frame with <code>as.data.fame()</code>.</p>
+
+<div class="rmdimportant">
+dplyr functions never modify their inputs, so if you want to save the result, you’ll need to use the assignment operator, &lt;-
+</div>
+
+</div>
+<div id="filter-rows-with-filter" class="section level2">
+<h2><span class="header-section-number">7.2</span> Filter rows with <code>filter()</code></h2>
+<p><code>filter()</code> allows you to subset observations based on their values. The first argument is the name of the data frame. The second and subsequent arguments are the expressions that filter the data frame.</p>
+</div>
+<div id="arrange-rows-with-arrange" class="section level2">
+<h2><span class="header-section-number">7.3</span> Arrange rows with <code>arrange()</code></h2>
+<p><code>arrange()</code> works similarly to <code>filter()</code> except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names (or more complicated expressions) to order by. If you provide more than one column name, each additional column will be used to break ties in the values of preceding columns.</p>
+<p>Notes:</p>
+<ul>
+<li>Use <code>desc()</code> to re-order by a column in descending order:</li>
+<li>Missing values are always sorted at the end.</li>
+</ul>
+</div>
+<div id="select-columns-with-select" class="section level2">
+<h2><span class="header-section-number">7.4</span> Select columns with <code>select</code></h2>
+<p>It’s not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often narrowing in on the variables you’re actually interested in. <code>select()</code> allows you to rapidly zoom in on a useful subset using operations based on the names of the variables.</p>
+<p>There are a number of helper functions you can use within select():</p>
+<ul>
+<li>everything(): all varaibles or everything else not already selected / deselected.</li>
+<li>starts_with(): start with a prefix.</li>
+<li>ends_with(): ends with a prefix</li>
+<li>contains(“ijk”): contains a literal string</li>
+<li>matches(): match a regular expression.</li>
+<li>num_range(): a numerical range like x1, x2, x3.</li>
+<li>one_of(): variable in a character vector</li>
+</ul>
+<div class="rmdnote">
+<p>
+This is a note
+</p>
+</div>
+</div>
+<div id="add-new-variables-with-mutate" class="section level2">
+<h2><span class="header-section-number">7.5</span> Add New Variables with <code>mutate</code></h2>
+<p>Besides selecting sets of existing columns, it’s often useful to add new columns that are functions of existing columns. <code>mutate()</code> always adds new columns at the end of your dataset so we’ll start by creating a narrower dataset so we can see the new variables. Remember that when you’re in RStudio, the easiest way to see all the columns is <code>View()</code>.</p>
+<p>Because we have are using tibbles you can refer to columns you just created.</p>
+<div class="rmdnote">
+<p>
+If you only want to keep the new variables, use <code>transmute()</code>
+</p>
+</div>
+</div>
+<div id="pipes" class="section level2">
+<h2><span class="header-section-number">7.6</span> Pipes</h2>
+<p>Typically it takes a series of operations to go from raw data to meaningful anlaysis. There are (at least) four ways to to do this:</p>
+<ul>
+<li>Save each intermediate step as a new object.</li>
+<li>Overwrite the original object many times.</li>
+<li>Compose functions.</li>
+<li>Use pipes</li>
+</ul>
+<p>Each have the place an utility. None are perfect for every situation.</p>
+<div id="intermediate-steps" class="section level3">
+<h3><span class="header-section-number">7.6.1</span> Intermediate steps</h3>
+<p>Simplest approach is to create a new object at each step. This method tends to clutter the code with unimportant, and uninformative names. Also, each object eats up memory, whcih becomes an issue as data set sizes grow large.</p>
+<p>Rule of thumb: If there is a natrual new name it may be an appropriate method. If the natrual name is to increment a counter on the end of the original varaible a different method is generally preferable.</p>
+</div>
+<div id="overwrite-the-original" class="section level3">
+<h3><span class="header-section-number">7.6.2</span> Overwrite the original</h3>
+<p>Instead of creating intermediate objects at each step, we could overwrite the original object.</p>
+<p>This is less typing (and less thinking), so you’re less likely to make mistakes. However, there are two problems:</p>
+<ul>
+<li>Debugging is painful: if you make a mistake you’ll need to re-run the complete pipeline from the beginning.</li>
+<li>The repetition of the object being transformed (we’ve written foo_foo six times!) obscures what’s changing on each line.</li>
+</ul>
+<div class="rmdnote">
+<p>
+A common method is to combine the abve methods and use an temporary varaible name for the intermediate steps such a “tmp”&quot; or “.”.
+</p>
+</div>
+</div>
+<div id="function-composition" class="section level3">
+<h3><span class="header-section-number">7.6.3</span> Function composition</h3>
+<p>Another approach is to abandon assignment and just string the function calls together. Here the disadvantage is that you have to read from inside-out, from right-to-left, and that the arguments end up spread far apart (evocatively called the dagwood sandwhich problem). In short, this code is hard for a human to consume.</p>
+<div class="rmdnote">
+<p>
+This method is generally not appropriate if you need to next more than two functions together. However, it is appropriate in many cases. (e.g. sum(is.na(x)) to find the number of missing values in x)
+</p>
+</div>
+</div>
+<div id="uwe-the-pipe-operator" class="section level3">
+<h3><span class="header-section-number">7.6.4</span> Uwe the pipe operator <code>%&gt;%</code></h3>
+<p>Finally, we can use the pipe. This is my favourite form, because it focusses on verbs (what we are doing), not nouns (what we are doing it on). You can read this series of function compositions like it’s a set of imperative actions.</p>
+<p>The pipe works by performing a “lexical transformation”: behind the scenes, magrittr reassembles the code in the pipe to a form that works by overwriting an intermediate object. This means that pipes won’t work for two classes of functions:</p>
+<ol style="list-style-type: decimal">
+<li>Functions that use the current environment. (e.g. <code>assign</code>, <code>with</code>,<code>get</code> or <code>load</code>)</li>
+<li>Functions that use lazy evaluation. In R, function arguments are only computed when the function uses them, not prior to calling the function. The pipe computes each element in turn, so you can’t rely on this behaviour. (e.g. <code>tryCatch</code>, <code>try</code>, <code>suppressMessages</code>)</li>
+</ol>
+<p>The pipe is a powerful tool, but it’s not the only tool at your disposal, and it doesn’t solve every problem! Pipes are most useful for rewriting a fairly short linear sequence of operations. I think you should reach for another tool when:</p>
+<ul>
+<li>Your pipes are longer than (say) ten steps. In that case, create intermediate objects with meaningful names. That will make debugging easier, because you can more easily check the intermediate results, and it makes it easier to understand your code, because the variable names can help communicate intent.</li>
+<li>You have multiple inputs or outputs. If there isn’t one primary object being transformed, but two or more objects being combined together, don’t use the pipe.</li>
+<li>You are starting to think about a directed graph with a complex dependency structure. Pipes are fundamentally linear and expressing complex relationships with them will typically yield confusing code.</li>
+</ul>
+</div>
+</div>
+<div id="grouped-summaries" class="section level2">
+<h2><span class="header-section-number">7.7</span> Grouped Summaries</h2>
+</div>
+<div id="grouped-mutates" class="section level2">
+<h2><span class="header-section-number">7.8</span> Grouped mutates</h2>
 
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="programming-with-ggplot2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="programming-with-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -349,7 +486,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DavisBrian/corporater/edit/master/appendix-A.Rmd",
+"link": "https://github.com/DavisBrian/corporater/edit/master/data-transform.Rmd",
 "text": "Edit"
 },
 "download": ["rclassnotes.pdf", "rclassnotes.epub"],
