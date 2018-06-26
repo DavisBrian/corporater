@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-06-25">
+<meta name="date" content="2018-06-26">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,72 +50,44 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css\style.css" type="text/css" />
 </head>
 
 <body>
@@ -250,15 +222,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="data-transformation.html"><a href="data-transformation.html#tibbles"><i class="fa fa-check"></i><b>7.1</b> Tibbles</a></li>
 <li class="chapter" data-level="7.2" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>7.2</b> Filter rows with <code>filter()</code></a></li>
 <li class="chapter" data-level="7.3" data-path="data-transformation.html"><a href="data-transformation.html#arrange-rows-with-arrange"><i class="fa fa-check"></i><b>7.3</b> Arrange rows with <code>arrange()</code></a></li>
-<li class="chapter" data-level="7.4" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>7.4</b> Select columns with <code>select</code></a></li>
-<li class="chapter" data-level="7.5" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>7.5</b> Add New Variables with <code>mutate</code></a></li>
+<li class="chapter" data-level="7.4" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>7.4</b> Select columns with <code>select()</code></a></li>
+<li class="chapter" data-level="7.5" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>7.5</b> Add new variables with <code>mutate()</code></a></li>
 <li class="chapter" data-level="7.6" data-path="data-transformation.html"><a href="data-transformation.html#pipes"><i class="fa fa-check"></i><b>7.6</b> Pipes</a><ul>
 <li class="chapter" data-level="7.6.1" data-path="data-transformation.html"><a href="data-transformation.html#intermediate-steps"><i class="fa fa-check"></i><b>7.6.1</b> Intermediate steps</a></li>
 <li class="chapter" data-level="7.6.2" data-path="data-transformation.html"><a href="data-transformation.html#overwrite-the-original"><i class="fa fa-check"></i><b>7.6.2</b> Overwrite the original</a></li>
 <li class="chapter" data-level="7.6.3" data-path="data-transformation.html"><a href="data-transformation.html#function-composition"><i class="fa fa-check"></i><b>7.6.3</b> Function composition</a></li>
-<li class="chapter" data-level="7.6.4" data-path="data-transformation.html"><a href="data-transformation.html#uwe-the-pipe-operator"><i class="fa fa-check"></i><b>7.6.4</b> Uwe the pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="7.6.4" data-path="data-transformation.html"><a href="data-transformation.html#use-the-pipe-operator"><i class="fa fa-check"></i><b>7.6.4</b> Use the pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-transformation.html"><a href="data-transformation.html#grouped-summaries"><i class="fa fa-check"></i><b>7.7</b> Grouped Summaries</a></li>
+<li class="chapter" data-level="7.7" data-path="data-transformation.html"><a href="data-transformation.html#grouped-summaries-with-summarise"><i class="fa fa-check"></i><b>7.7</b> Grouped summaries with <code>summarise()</code></a></li>
 <li class="chapter" data-level="7.8" data-path="data-transformation.html"><a href="data-transformation.html#grouped-mutates"><i class="fa fa-check"></i><b>7.8</b> Grouped mutates</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="programming-with-ggplot2.html"><a href="programming-with-ggplot2.html"><i class="fa fa-check"></i><b>8</b> Programming with ggplot2</a><ul>
@@ -295,9 +267,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-transformation" class="section level1">
 <h1><span class="header-section-number">7</span> Data transformation</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
 <div id="tibbles" class="section level2">
 <h2><span class="header-section-number">7.1</span> Tibbles</h2>
-<p>Tibbles <strong>are</strong> data frames, but they tweak some older behaviours to make life a little easier. R is an old language, and some things that were useful 10 or 20 years ago now get in your way. It’s difficult to change base R without breaking existing code, so most innovation occurs in packages.</p>
+<p>Tibbles <strong>are</strong> data frames, but they tweak some older behaviors to make life a little easier. R is an old language, and some things that were useful 10 or 20 years ago now get in your way. It’s difficult to change base R without breaking existing code, so most innovation occurs in packages.</p>
+
+<div class="rmdimportant">
+See Chapter 7 in <a href="http://r4ds.had.co.nz/tibbles.html">R for Data Science</a> and <code>vignette(&quot;tibble&quot;)</code> for a more complete description of tibbles.
+</div>
+
 <p>Key advantages of tibbles:</p>
 <ul>
 <li>Never changes the types of the inputs (e.g. it never converts strings to factors!).</li>
@@ -315,44 +293,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When creating a tibble:</p>
 <ul>
 <li>it will <strong>ONLY</strong> recycle inputs of length 1</li>
-<li>you can refer to varaibles you just created</li>
+<li>you can refer to variables you just created</li>
 </ul>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">mytibble &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb134-2" data-line-number="2">  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, </a>
-<a class="sourceLine" id="cb134-3" data-line-number="3">  <span class="dt">y =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb134-4" data-line-number="4">  <span class="dt">z =</span> x <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y</a>
-<a class="sourceLine" id="cb134-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb134-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb134-7" data-line-number="7"><span class="co"># versus</span></a>
-<a class="sourceLine" id="cb134-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb134-9" data-line-number="9">mydf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb134-10" data-line-number="10">  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb134-11" data-line-number="11">  <span class="dt">y =</span> <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb134-12" data-line-number="12">)</a>
-<a class="sourceLine" id="cb134-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb134-14" data-line-number="14">mydf<span class="op">$</span>z &lt;-<span class="st"> </span>mydf<span class="op">$</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>mydf<span class="op">$</span>y</a>
-<a class="sourceLine" id="cb134-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb134-16" data-line-number="16">mytibble</a>
-<a class="sourceLine" id="cb134-17" data-line-number="17"><span class="co">#&gt; # A tibble: 5 x 3</span></a>
-<a class="sourceLine" id="cb134-18" data-line-number="18"><span class="co">#&gt;       x     y     z</span></a>
-<a class="sourceLine" id="cb134-19" data-line-number="19"><span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb134-20" data-line-number="20"><span class="co">#&gt; 1     1    1.    2.</span></a>
-<a class="sourceLine" id="cb134-21" data-line-number="21"><span class="co">#&gt; 2     2    1.    5.</span></a>
-<a class="sourceLine" id="cb134-22" data-line-number="22"><span class="co">#&gt; 3     3    1.   10.</span></a>
-<a class="sourceLine" id="cb134-23" data-line-number="23"><span class="co">#&gt; 4     4    1.   17.</span></a>
-<a class="sourceLine" id="cb134-24" data-line-number="24"><span class="co">#&gt; 5     5    1.   26.</span></a>
-<a class="sourceLine" id="cb134-25" data-line-number="25">mydf</a>
-<a class="sourceLine" id="cb134-26" data-line-number="26"><span class="co">#&gt;   x y  z</span></a>
-<a class="sourceLine" id="cb134-27" data-line-number="27"><span class="co">#&gt; 1 1 1  2</span></a>
-<a class="sourceLine" id="cb134-28" data-line-number="28"><span class="co">#&gt; 2 2 1  5</span></a>
-<a class="sourceLine" id="cb134-29" data-line-number="29"><span class="co">#&gt; 3 3 1 10</span></a>
-<a class="sourceLine" id="cb134-30" data-line-number="30"><span class="co">#&gt; 4 4 1 17</span></a>
-<a class="sourceLine" id="cb134-31" data-line-number="31"><span class="co">#&gt; 5 5 1 26</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mytibble &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, 
+  <span class="dt">y =</span> <span class="dv">1</span>, 
+  <span class="dt">z =</span> x <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y
+)
+
+<span class="co"># versus</span>
+
+mydf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,
+  <span class="dt">y =</span> <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)
+)
+
+mydf<span class="op">$</span>z &lt;-<span class="st"> </span>mydf<span class="op">$</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>mydf<span class="op">$</span>y
+
+mytibble
+<span class="co">#&gt; # A tibble: 5 x 3</span>
+<span class="co">#&gt;       x     y     z</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1     1     2</span>
+<span class="co">#&gt; 2     2     1     5</span>
+<span class="co">#&gt; 3     3     1    10</span>
+<span class="co">#&gt; 4     4     1    17</span>
+<span class="co">#&gt; 5     5     1    26</span>
+mydf
+<span class="co">#&gt;   x y  z</span>
+<span class="co">#&gt; 1 1 1  2</span>
+<span class="co">#&gt; 2 2 1  5</span>
+<span class="co">#&gt; 3 3 1 10</span>
+<span class="co">#&gt; 4 4 1 17</span>
+<span class="co">#&gt; 5 5 1 26</span></code></pre></div>
 <p>For the most part you can use data.frames and tibbles interchangeably. However, some older functions in base R do not work properly with tibbles. This is because of the <code>[</code> subset operator. As we saw in subsetting, if you return a single column with <code>[</code> on a data.frame you will get a vector back instead of a single column data.frame. Tibbles always return tibbles and never a vector.</p>
 <p>You can convert a data frame to a tibble with <code>as_tibble()</code>, while you con coerce a tibble to a data frame with <code>as.data.fame()</code>.</p>
 
 <div class="rmdimportant">
-dplyr functions never modify their inputs, so if you want to save the result, you’ll need to use the assignment operator, &lt;-
+dplyr functions never modify their inputs, so if you want to save the result, you’ll need to use the assignment operator, <code>&lt;-</code>
 </div>
 
 </div>
@@ -370,29 +348,29 @@ dplyr functions never modify their inputs, so if you want to save the result, yo
 </ul>
 </div>
 <div id="select-columns-with-select" class="section level2">
-<h2><span class="header-section-number">7.4</span> Select columns with <code>select</code></h2>
+<h2><span class="header-section-number">7.4</span> Select columns with <code>select()</code></h2>
 <p>It’s not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often narrowing in on the variables you’re actually interested in. <code>select()</code> allows you to rapidly zoom in on a useful subset using operations based on the names of the variables.</p>
 <p>There are a number of helper functions you can use within select():</p>
 <ul>
-<li>everything(): all varaibles or everything else not already selected / deselected.</li>
+<li>everything(): all variables or everything else not already selected / deselected.</li>
 <li>starts_with(): start with a prefix.</li>
 <li>ends_with(): ends with a prefix</li>
-<li>contains(“ijk”): contains a literal string</li>
+<li>contains(): contains a literal string</li>
 <li>matches(): match a regular expression.</li>
 <li>num_range(): a numerical range like x1, x2, x3.</li>
 <li>one_of(): variable in a character vector</li>
 </ul>
 <div class="rmdnote">
 <p>
-This is a note
+Closely related to <code>select()</code> is <code>rename()</code> for renaming columns.
 </p>
 </div>
 </div>
 <div id="add-new-variables-with-mutate" class="section level2">
-<h2><span class="header-section-number">7.5</span> Add New Variables with <code>mutate</code></h2>
+<h2><span class="header-section-number">7.5</span> Add new variables with <code>mutate()</code></h2>
 <p>Besides selecting sets of existing columns, it’s often useful to add new columns that are functions of existing columns. <code>mutate()</code> always adds new columns at the end of your dataset so we’ll start by creating a narrower dataset so we can see the new variables. Remember that when you’re in RStudio, the easiest way to see all the columns is <code>View()</code>.</p>
 <p>Because we have are using tibbles you can refer to columns you just created.</p>
-<div class="rmdnote">
+<div class="rmdtip">
 <p>
 If you only want to keep the new variables, use <code>transmute()</code>
 </p>
@@ -400,18 +378,23 @@ If you only want to keep the new variables, use <code>transmute()</code>
 </div>
 <div id="pipes" class="section level2">
 <h2><span class="header-section-number">7.6</span> Pipes</h2>
-<p>Typically it takes a series of operations to go from raw data to meaningful anlaysis. There are (at least) four ways to to do this:</p>
+<p>Typically it takes a series of operations to go from raw data to meaningful analysis. There are (at least) four ways to to do this:</p>
 <ul>
 <li>Save each intermediate step as a new object.</li>
 <li>Overwrite the original object many times.</li>
 <li>Compose functions.</li>
 <li>Use pipes</li>
 </ul>
-<p>Each have the place an utility. None are perfect for every situation.</p>
+<p>Each have the place an utility. None are perfect for every situation. We’ll use piping frequently from now on because it considerably improves the readability of code.</p>
+
+<div class="rmdimportant">
+See Chapter 14 in <a href="http://r4ds.had.co.nz/pipes.html">R for Data Science</a>.
+</div>
+
 <div id="intermediate-steps" class="section level3">
 <h3><span class="header-section-number">7.6.1</span> Intermediate steps</h3>
-<p>Simplest approach is to create a new object at each step. This method tends to clutter the code with unimportant, and uninformative names. Also, each object eats up memory, whcih becomes an issue as data set sizes grow large.</p>
-<p>Rule of thumb: If there is a natrual new name it may be an appropriate method. If the natrual name is to increment a counter on the end of the original varaible a different method is generally preferable.</p>
+<p>Simplest approach is to create a new object at each step. This method tends to clutter the code with unimportant, and uninformative names. Also, each object eats up memory, which becomes an issue as data set sizes grow large.</p>
+<p>Rule of thumb: If there is a natural new name it may be an appropriate method. If the natural name is to increment a counter on the end of the original variable a different method is generally preferable.</p>
 </div>
 <div id="overwrite-the-original" class="section level3">
 <h3><span class="header-section-number">7.6.2</span> Overwrite the original</h3>
@@ -423,7 +406,7 @@ If you only want to keep the new variables, use <code>transmute()</code>
 </ul>
 <div class="rmdnote">
 <p>
-A common method is to combine the abve methods and use an temporary varaible name for the intermediate steps such a “tmp”&quot; or “.”.
+A common method is to combine the above methods and use an temporary variable name for the intermediate steps such a “tmp”&quot; or “.”.
 </p>
 </div>
 </div>
@@ -432,17 +415,17 @@ A common method is to combine the abve methods and use an temporary varaible nam
 <p>Another approach is to abandon assignment and just string the function calls together. Here the disadvantage is that you have to read from inside-out, from right-to-left, and that the arguments end up spread far apart (evocatively called the dagwood sandwhich problem). In short, this code is hard for a human to consume.</p>
 <div class="rmdnote">
 <p>
-This method is generally not appropriate if you need to next more than two functions together. However, it is appropriate in many cases. (e.g. sum(is.na(x)) to find the number of missing values in x)
+This method is generally not appropriate if you need to nest more than two functions together. However, it is appropriate in many cases. (e.g. sum(is.na(x)) to find the number of missing values in x)
 </p>
 </div>
 </div>
-<div id="uwe-the-pipe-operator" class="section level3">
-<h3><span class="header-section-number">7.6.4</span> Uwe the pipe operator <code>%&gt;%</code></h3>
-<p>Finally, we can use the pipe. This is my favourite form, because it focusses on verbs (what we are doing), not nouns (what we are doing it on). You can read this series of function compositions like it’s a set of imperative actions.</p>
-<p>The pipe works by performing a “lexical transformation”: behind the scenes, magrittr reassembles the code in the pipe to a form that works by overwriting an intermediate object. This means that pipes won’t work for two classes of functions:</p>
+<div id="use-the-pipe-operator" class="section level3">
+<h3><span class="header-section-number">7.6.4</span> Use the pipe operator <code>%&gt;%</code></h3>
+<p>Finally, we can use the pipe. This is my favorite form, because it focuses on verbs (what we are doing), not nouns (what we are doing it on). You can read this series of function compositions like it’s a set of imperative actions.</p>
+<p>The pipe works by performing a “lexical transformation”: behind the scenes, <code>magrittr</code> reassembles the code in the pipe to a form that works by overwriting an intermediate object. This means that pipes won’t work for two classes of functions:</p>
 <ol style="list-style-type: decimal">
 <li>Functions that use the current environment. (e.g. <code>assign</code>, <code>with</code>,<code>get</code> or <code>load</code>)</li>
-<li>Functions that use lazy evaluation. In R, function arguments are only computed when the function uses them, not prior to calling the function. The pipe computes each element in turn, so you can’t rely on this behaviour. (e.g. <code>tryCatch</code>, <code>try</code>, <code>suppressMessages</code>)</li>
+<li>Functions that use lazy evaluation. In R, function arguments are only computed when the function uses them, not prior to calling the function. The pipe computes each element in turn, so you can’t rely on this behavior. (e.g. <code>tryCatch</code>, <code>try</code>, <code>suppressMessages</code>)</li>
 </ol>
 <p>The pipe is a powerful tool, but it’s not the only tool at your disposal, and it doesn’t solve every problem! Pipes are most useful for rewriting a fairly short linear sequence of operations. I think you should reach for another tool when:</p>
 <ul>
@@ -452,11 +435,24 @@ This method is generally not appropriate if you need to next more than two funct
 </ul>
 </div>
 </div>
-<div id="grouped-summaries" class="section level2">
-<h2><span class="header-section-number">7.7</span> Grouped Summaries</h2>
+<div id="grouped-summaries-with-summarise" class="section level2">
+<h2><span class="header-section-number">7.7</span> Grouped summaries with <code>summarise()</code></h2>
+<p>The last key verb is <code>summarise()</code>. It collapses a data frame to a single row. <code>summarise()</code> is not terribly useful unless we pair it with <code>group_by()</code>. This changes the unit of analysis from the complete dataset to individual groups. Then, when you use the dplyr verbs on a grouped data frame they’ll be automatically applied “by group”.</p>
+<p>Together <code>group_by()</code> and <code>summarise()</code> provide one of the tools that you’ll use most commonly when working with dplyr: grouped summaries.</p>
+
+<div class="rmdimportant">
+If you need to remove grouping, and return to operations on ungrouped data, use ungroup()
+</div>
+
 </div>
 <div id="grouped-mutates" class="section level2">
 <h2><span class="header-section-number">7.8</span> Grouped mutates</h2>
+<p>Grouping is most useful in conjunction with <code>summarise()</code>, but you can also do convenient operations with <code>mutate()</code> and <code>filter()</code></p>
+<ul>
+<li>Find the best/worst members of each group.</li>
+<li>Find all groups bigger/smaller than a threshold.</li>
+<li>Standardise to compute per group metrics.</li>
+</ul>
 
 </div>
 </div>
@@ -503,7 +499,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

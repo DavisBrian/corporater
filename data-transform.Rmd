@@ -1,12 +1,17 @@
 # Data transformation
 
-```{r, echo = FALSE, message=FALSE}
-library(dplyr)
+```{r, message=FALSE}
+library(tidyverse)
 ```
 
 ## Tibbles
 
-Tibbles **are** data frames, but they tweak some older behaviours to make life a little easier. R is an old language, and some things that were useful 10 or 20 years ago now get in your way. It’s difficult to change base R without breaking existing code, so most innovation occurs in packages.
+Tibbles **are** data frames, but they tweak some older behaviors to make life a little easier. R is an old language, and some things that were useful 10 or 20 years ago now get in your way. It’s difficult to change base R without breaking existing code, so most innovation occurs in packages.
+
+```{block2, type='rmdimportant'}
+See Chapter 7 in [R for Data Science](http://r4ds.had.co.nz/tibbles.html) and `vignette("tibble")` for a more complete description of tibbles.
+```
+
 
 Key advantages of tibbles:
 
@@ -23,7 +28,7 @@ Key advantages of tibbles:
 When creating a tibble:
 
 -   it will **ONLY** recycle inputs of length 1
--   you can refer to varaibles you just created
+-   you can refer to variables you just created
 
 ```{r}
 mytibble <- tibble(
@@ -50,9 +55,8 @@ For the most part you can use data.frames and tibbles interchangeably.  However,
 
 You can convert a data frame to a tibble with `as_tibble()`, while you con coerce a tibble to a data frame with `as.data.fame()`.
 
-
 ```{block2, type='rmdimportant'}
-dplyr functions never modify their inputs, so if you want to save the result, you’ll need to use the assignment operator, <-
+dplyr functions never modify their inputs, so if you want to save the result, you’ll need to use the assignment operator, `<-`
 ```
 
 ## Filter rows with `filter()`
@@ -69,51 +73,57 @@ Notes:
 -    Missing values are always sorted at the end.
 
 
-## Select columns with `select`
+## Select columns with `select()`
 
 It’s not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often narrowing in on the variables you’re actually interested in. `select()` allows you to rapidly zoom in on a useful subset using operations based on the names of the variables.
 
 There are a number of helper functions you can use within select():
 
--    everything(): all varaibles or everything else not already selected / deselected.
+-    everything(): all variables or everything else not already selected / deselected.
 -    starts_with(): start with a prefix.
 -    ends_with(): ends with a prefix
--    contains("ijk"): contains a literal string
+-    contains(): contains a literal string
 -    matches(): match a regular expression. 
 -    num_range(): a numerical range like x1, x2, x3.
 -    one_of(): variable in a character vector
 
 ```{block type='rmdnote'}
-This is a note
+Closely related to `select()` is `rename()` for renaming columns.
 ```
 
 
-## Add New Variables with `mutate`
+## Add new variables with `mutate()`
 
 Besides selecting sets of existing columns, it’s often useful to add new columns that are functions of existing columns. `mutate()` always adds new columns at the end of your dataset so we’ll start by creating a narrower dataset so we can see the new variables. Remember that when you’re in RStudio, the easiest way to see all the columns is `View()`.
 
 Because we have are using tibbles you can refer to columns you just created.
 
-```{block type='rmdnote'}
+```{block type='rmdtip'}
 If you only want to keep the new variables, use `transmute()`
 ```
 
 ## Pipes
 
-Typically it takes a series of operations to go from raw data to meaningful anlaysis. There are (at least) four ways to to do this:
+Typically it takes a series of operations to go from raw data to meaningful analysis. There are (at least) four ways to to do this:
 
 -   Save each intermediate step as a new object.
 -   Overwrite the original object many times.
 -   Compose functions.
 -   Use pipes
 
-Each have the place an utility.  None are perfect for every situation.
+Each have the place an utility.  None are perfect for every situation.  We’ll use piping frequently from now on because it considerably improves the readability of code.
+
+
+```{block2, type='rmdimportant'}
+See Chapter 14 in [R for Data Science](http://r4ds.had.co.nz/pipes.html).
+```
+
 
 ### Intermediate steps
 
-Simplest approach is to create a new object at each step.  This method tends to clutter the code with unimportant, and uninformative names.  Also, each object eats up memory, whcih becomes an issue as data set sizes grow large.
+Simplest approach is to create a new object at each step.  This method tends to clutter the code with unimportant, and uninformative names.  Also, each object eats up memory, which becomes an issue as data set sizes grow large.
 
-Rule of thumb:  If there is a natrual new name it may be an appropriate method.  If the natrual name is to increment a counter on the end of the original varaible a different method is generally preferable.
+Rule of thumb:  If there is a natural new name it may be an appropriate method.  If the natural name is to increment a counter on the end of the original variable a different method is generally preferable.
 
 ### Overwrite the original
 
@@ -126,7 +136,7 @@ This is less typing (and less thinking), so you’re less likely to make mistake
 
 
 ```{block type='rmdnote'}
-A common method is to combine the abve methods and use an temporary varaible name for the intermediate steps such a "tmp"" or ".".
+A common method is to combine the above methods and use an temporary variable name for the intermediate steps such a "tmp"" or ".".
 ```
 
 ### Function composition
@@ -134,17 +144,17 @@ A common method is to combine the abve methods and use an temporary varaible nam
 Another approach is to abandon assignment and just string the function calls together.  Here the disadvantage is that you have to read from inside-out, from right-to-left, and that the arguments end up spread far apart (evocatively called the dagwood sandwhich problem). In short, this code is hard for a human to consume.
 
 ```{block type='rmdnote'}
-This method is generally not appropriate if you need to next more than two functions together.  However, it is appropriate in many cases. (e.g. sum(is.na(x)) to find the number of missing values in x)
+This method is generally not appropriate if you need to nest more than two functions together.  However, it is appropriate in many cases. (e.g. sum(is.na(x)) to find the number of missing values in x)
 ```
 
-### Uwe the pipe operator `%>%`
+### Use the pipe operator `%>%`
 
-Finally, we can use the pipe.  This is my favourite form, because it focusses on verbs (what we are doing), not nouns (what we are doing it on). You can read this series of function compositions like it’s a set of imperative actions.
+Finally, we can use the pipe.  This is my favorite form, because it focuses on verbs (what we are doing), not nouns (what we are doing it on). You can read this series of function compositions like it’s a set of imperative actions.
 
-The pipe works by performing a “lexical transformation”: behind the scenes, magrittr reassembles the code in the pipe to a form that works by overwriting an intermediate object. This means that pipes won't work for two classes of functions:
+The pipe works by performing a “lexical transformation”: behind the scenes, `magrittr` reassembles the code in the pipe to a form that works by overwriting an intermediate object. This means that pipes won't work for two classes of functions:
 
 1.    Functions that use the current environment. (e.g. `assign`, `with`,`get` or `load`)
-2.    Functions that use lazy evaluation. In R, function arguments are only computed when the function uses them, not prior to calling the function. The pipe computes each element in turn, so you can’t rely on this behaviour. (e.g. `tryCatch`, `try`, `suppressMessages`)
+2.    Functions that use lazy evaluation. In R, function arguments are only computed when the function uses them, not prior to calling the function. The pipe computes each element in turn, so you can’t rely on this behavior. (e.g. `tryCatch`, `try`, `suppressMessages`)
 
 
 The pipe is a powerful tool, but it’s not the only tool at your disposal, and it doesn’t solve every problem! Pipes are most useful for rewriting a fairly short linear sequence of operations. I think you should reach for another tool when:
@@ -154,8 +164,22 @@ The pipe is a powerful tool, but it’s not the only tool at your disposal, and 
 -    You are starting to think about a directed graph with a complex dependency structure. Pipes are fundamentally linear and expressing complex relationships with them will typically yield confusing code.
 
 
-## Grouped Summaries
+## Grouped summaries with `summarise()`
+
+The last key verb is `summarise()`. It collapses a data frame to a single row.  `summarise()` is not terribly useful unless we pair it with `group_by()`. This changes the unit of analysis from the complete dataset to individual groups. Then, when you use the dplyr verbs on a grouped data frame they’ll be automatically applied “by group”. 
+
+Together `group_by()` and `summarise()` provide one of the tools that you’ll use most commonly when working with dplyr: grouped summaries.
+
+```{block2, type='rmdimportant'}
+If you need to remove grouping, and return to operations on ungrouped data, use ungroup()
+```
 
 
 ## Grouped mutates
+
+Grouping is most useful in conjunction with `summarise()`, but you can also do convenient operations with `mutate()` and `filter()`
+
+-    Find the best/worst members of each group.
+-    Find all groups bigger/smaller than a threshold.
+-    Standardise to compute per group metrics.
 
