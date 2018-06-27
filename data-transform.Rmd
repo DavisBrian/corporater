@@ -1,4 +1,4 @@
-# Data transformation
+# Data Transformation
 
 ```{r, message=FALSE}
 library(tidyverse)
@@ -41,7 +41,7 @@ mytibble <- tibble(
 
 mydf <- data.frame(
   x = 1:5,
-  y = rep(1, 5)
+  y = 1
 )
 
 mydf$z <- mydf$x^2 + mydf$y
@@ -53,7 +53,7 @@ mydf
 
 For the most part you can use data.frames and tibbles interchangeably.  However, some older functions in base R do not work properly with tibbles.  This is because of the `[` subset operator.  As we saw in subsetting, if you return a single column with `[` on a data.frame you will get a vector back instead of a single column data.frame. Tibbles always return tibbles and never a vector. 
 
-You can convert a data frame to a tibble with `as_tibble()`, while you con coerce a tibble to a data frame with `as.data.fame()`.
+You can convert a data frame to a tibble with `as_tibble()`, while you can coerce a tibble to a data frame with `as.data.fame()`.
 
 ```{block2, type='rmdimportant'}
 dplyr functions never modify their inputs, so if you want to save the result, you’ll need to use the assignment operator, `<-`
@@ -85,7 +85,7 @@ There are a number of helper functions you can use within select():
 -    contains(): contains a literal string
 -    matches(): match a regular expression. 
 -    num_range(): a numerical range like x1, x2, x3.
--    one_of(): variable in a character vector
+<!-- -    one_of(): variable in a character vector -->
 
 ```{block type='rmdnote'}
 Closely related to `select()` is `rename()` for renaming columns.
@@ -99,10 +99,14 @@ Besides selecting sets of existing columns, it’s often useful to add new colum
 Because we have are using tibbles you can refer to columns you just created.
 
 ```{block type='rmdtip'}
-If you only want to keep the new variables, use `transmute()`
+If you only want to keep the new variables, use `transmute()`.
 ```
 
 ## Pipes
+
+```{block2, type='rmdimportant'}
+See Chapter 14 in [R for Data Science](http://r4ds.had.co.nz/pipes.html).
+```
 
 Typically it takes a series of operations to go from raw data to meaningful analysis. There are (at least) four ways to to do this:
 
@@ -111,13 +115,7 @@ Typically it takes a series of operations to go from raw data to meaningful anal
 -   Compose functions.
 -   Use pipes
 
-Each have the place an utility.  None are perfect for every situation.  We’ll use piping frequently from now on because it considerably improves the readability of code.
-
-
-```{block2, type='rmdimportant'}
-See Chapter 14 in [R for Data Science](http://r4ds.had.co.nz/pipes.html).
-```
-
+Each have the place and utility.  None are perfect for every situation.  We’ll use piping frequently from now on because it considerably improves the readability of code.
 
 ### Intermediate steps
 
@@ -141,7 +139,7 @@ A common method is to combine the above methods and use an temporary variable na
 
 ### Function composition
 
-Another approach is to abandon assignment and just string the function calls together.  Here the disadvantage is that you have to read from inside-out, from right-to-left, and that the arguments end up spread far apart (evocatively called the dagwood sandwhich problem). In short, this code is hard for a human to consume.
+Another approach is to abandon assignment and just string the function calls together.  Here the disadvantage is that you have to read from inside-out, from right-to-left, and that the arguments end up spread far apart (evocatively called the dagwood sandwich problem). In short, this code is hard for a human to consume.
 
 ```{block type='rmdnote'}
 This method is generally not appropriate if you need to nest more than two functions together.  However, it is appropriate in many cases. (e.g. sum(is.na(x)) to find the number of missing values in x)
@@ -151,11 +149,10 @@ This method is generally not appropriate if you need to nest more than two funct
 
 Finally, we can use the pipe.  This is my favorite form, because it focuses on verbs (what we are doing), not nouns (what we are doing it on). You can read this series of function compositions like it’s a set of imperative actions.
 
-The pipe works by performing a “lexical transformation”: behind the scenes, `magrittr` reassembles the code in the pipe to a form that works by overwriting an intermediate object. This means that pipes won't work for two classes of functions:
+The pipe works by performing a “lexical transformation”.  Behind the scenes, `magrittr` reassembles the code in the pipe to a form that works by overwriting an intermediate object. This means that pipes won't work for two classes of functions:
 
 1.    Functions that use the current environment. (e.g. `assign`, `with`,`get` or `load`)
 2.    Functions that use lazy evaluation. In R, function arguments are only computed when the function uses them, not prior to calling the function. The pipe computes each element in turn, so you can’t rely on this behavior. (e.g. `tryCatch`, `try`, `suppressMessages`)
-
 
 The pipe is a powerful tool, but it’s not the only tool at your disposal, and it doesn’t solve every problem! Pipes are most useful for rewriting a fairly short linear sequence of operations. I think you should reach for another tool when:
 
@@ -181,5 +178,5 @@ Grouping is most useful in conjunction with `summarise()`, but you can also do c
 
 -    Find the best/worst members of each group.
 -    Find all groups bigger/smaller than a threshold.
--    Standardise to compute per group metrics.
+-    Standardize to compute per group metrics.
 
