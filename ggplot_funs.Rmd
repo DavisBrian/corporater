@@ -1,3 +1,5 @@
+# (PART) Production Code{-}
+
 # Programming with ggplot2
 
 Programming with ggplot2 can be ~~a pain in the ass~~ tricky.  The same features that allow ggplot2 to build complex graphs easily makes programming and writing functions more complicated with it.  Genearlly speaking the more flexibility you want the more difficult it will be.
