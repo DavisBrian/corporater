@@ -85,7 +85,7 @@ There are a number of helper functions you can use within select():
 -    contains(): contains a literal string
 -    matches(): match a regular expression. 
 -    num_range(): a numerical range like x1, x2, x3.
-<!-- -    one_of(): variable in a character vector -->
+-    one_of(): variable in a character vector
 
 ```{block type='rmdnote'}
 Closely related to `select()` is `rename()` for renaming columns.
@@ -101,6 +101,15 @@ Because we have are using tibbles you can refer to columns you just created.
 ```{block type='rmdtip'}
 If you only want to keep the new variables, use `transmute()`.
 ```
+
+There are a number of helper functions you can use within mutate():
+
+-    na_if(): convert values to NA
+-    coalesce(): convert NA to a value.
+-    if_else(): vectorised if
+-    recode(): recode values
+-    case_when(): A general vectorised if. Equivalent of the SQL CASE WHEN statement. 
+
 
 ## Pipes
 
