@@ -4,20 +4,144 @@
 library(tidyverse)
 ```
 
+Since R is a "glue" language.  You can read in from just about any standard data source.  We will only cover the most common types, but you can also read from pdfs (package pdftools), web scraping (package rvest and httr), twitter (package twitteR), Facebook (package Rfacebook), and many many more.
+
 ## Text Files
 
+### readr
+One of the most common data sources are text files.  Usually these come with a delimiter, such a commas, semicolons, or tabs.  The **readr** package is part of the core tidyverse.
+
+Compared to Base R `read` functions, **readr** are:
+
+-    They are typically much faster (~10x)
+-    Long running reads automatically get a progress bar
+-    Default to **tibbles** not data frames
+-    Does not convert characters to factors
+-    More reproducible. (Base R read functions inherit properties from the OS)
+
+```{block2, type='rmdtip'}
+If you’re looking for raw speed, try `data.table::fread()`. It doesn’t fit quite so well into the tidyverse, but it can be quite a bit faster.
+```
+
+-    `read_csv()` reads comma delimited files
+-    `read_csv2()` reads semicolon separated files (common in countries where , is used as the decimal place)
+-    `read_tsv()` reads tab delimited files
+-    `read_delim()` reads in files with any delimiter
+-    `read_fwf()` reads fixed width files
+
+All the `read_*` functions follow the same basic structure.  The first argument is the file to read in, followed by the other parameters.  
+
+```{block type='rmdnote'}
+Files ending in .gz, .bz2, .xz, or .zip will be automatically uncompressed. Files starting with http://, https://, ftp://, or ftps:// will be automatically downloaded. Remote gz files can also be automatically downloaded and decompressed.
+```
+
+Some useful parameters are:
+-   `col_types` for specifying the data types for each column.
+-   `skip = n`  to skip the first `n` lines
+-   `comment = "#"` to drop all lines that start with `#`
+-   `locale` locale controls defaults that vary from place to place 
 
 
+### base R
+
+The tidyverse packages, and **readr** make some simplifying assumptions.  The equivalent base R functions are:
+
+-    `read.csv()` reads comma delimited files
+-    `read.csv2()` reads semicolon separated files
+-    `read.tsv()` reads tab delimited files
+-    `read.delim()` reads in files with any delimiter
+-    `read.fwf()` reads fixed width file
 
 ## SAS Files
+
+```{r, message=FALSE}
+library(haven)
+```
+
+The **haven** library, which is part of the tidyverse but not part of the core tidyverse package, must be loaded explicitly.  **haven** is the most robust option for reading SAS data files. Reading supports both sas7bdat files and the accompanying sas7bdat files that SAS uses to record value labels.
+
+`read_sas()` reads `.sas7bdat` + `sas7bcat` files
+`read_xpt()` reads SAS transport files
+
+```{block type='rmdnote'}
+The **haven** package can also read in:
+
+-    SPSS files with `read_sav()` pr `read_por()` 
+-    Stata files with `read_dta()`
+```
+
+SAS has the notion of a “labelled” variable (so do Stata and SPSS). These are similar to factors, but:
+
+-    Integer, numeric and character vectors can be labelled.
+
+-    Not every value must be associated with a label.
+
+Factors, by contrast, are always integers and every integer value must be associated with a label.
+
+Haven provides a labelled class to model these objects. It doesn’t implement any common methods, but instead focuses of ways to turn a labelled variable into standard R variable:
+
+-    as_factor(): turns labelled integers into factors. Any values that don’t have a label associated with them will become a missing value. (NOTE: there’s no way to make as.factor() work with labelled variables, so you’ll need to use this new function.)
+
+-    zap_labels(): turns any labelled values into missing values. This deals with the common pattern where you have a continuous variable that has missing values indicated by sentinel values.
+
+```{block2, type='rmdwarning'}
+There are other packages that can read SAS data files, namely `sas7bdat` and `foreign`.  `sas7bdat` is no longer being maintained for the last several years and is not recommended for production use. While `foreign` only reads SAS XPORT format.
+```
 
 
 ## Excel
 
+```{r, message=FALSE}
+library(readxl)
+```
+
+The **readxl** package makes it easy to get data out of Excel and into R. It is designed to work with tabular data. **readxl** supports both the legacy .xls format and the modern xml-based .xlsx format. The **readxl** library, which is part of the tidyverse but not part of the core tidyverse package, must be loaded explicitly. 
+
+There are two main functions in the **readxl** package.
+
+-    `excel_sheets()` lists all the sheets in an excel spreadsheet.
+-    ` read_excel()` reads in xls and xlsx files based on the file extension
+
+
+```{block type='rmdnote'}
+If you want to prevent `read_excel()` from guessing which spreadsheet type you have you can use `read_xls()` or `read_xlsx()` directly.
+```
+
+There are several other packages which also can read excel files.
+
+-   `openxlsx` - can read but is tricky to extract data, but shines in writing Excel files.
+-   `xlsx` requires Java, usually cannot get corporate IT to install it on Windows.
+-   `XLConnect` requires Java, usually cannot get corporate IT to install it on Windows.
+-   `gdata` required Perl, usually cannot get corporate IT to install it on Windows machines.
+-   `xlsReadWrite` - Does not support .xlsx files
+
 
 ## Databases
 
+Here we have to use two (or three) packages.  The **DBI** package is used to make the network connection to the database.  The connection string should look familiar if you have ever made a connection to a database from another program.  As database vendors have slightly different interfaces and connection types.  You will have to use the package for your particular database backend.  Some common ones include:
 
-## Others
+-     `RSQLite::SQLite()` for SQLite
+-     `RMySQL::MySQL()` for MySQL
+-     `RPostgreSQL::PostgreSQL()` for PostgreSQL
+-     `odbc::odbc()` for Microsoft SQL Server
+-     `bigrquery::bigquery()` for BigQuery
+
+```{r, message=FALSE, eval=FALSE}
+con <- dbConnect(odbc::odbc(),               # for a Miroscort server
+                 dsn      = "my_dsn", 
+                 server   = "our_awesome_server",
+                 database = "cool_db")
+```
+
+To interact with a database you usually use SQL, the Structured Query Language. SQL is over 40 years old, and is used by pretty much every database in existence. 
+
+This leads to two methods to extract data from a database which boil down to:
+
+-    Pull the entire table into a data frame with `dbReadTable()`
+-    Write SQL for you specific dialect and pull into a data frame with `dbGetQuery()`
+
+Alternatively, you can use the **dbplyr** and the connection to the database to auto generate SQL queries using standard dplyr syntax.
+
+The goal of **dbplyr** is to automatically generate SQL for you so that you’re not forced to use it. However, SQL is a very large language and **dbplyr** doesn’t do everything. It focuses on SELECT statements, the SQL you write most often as an analysis
 
 

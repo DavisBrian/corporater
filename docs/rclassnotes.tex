@@ -119,16 +119,17 @@
 }
 
 \setlength{\droptitle}{-2em}
+
   \title{Modern R in a Corporate Environment}
-  \pretitle{\vspace{\droptitle}\centering\huge}
+    \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-\subtitle{R course developed for the office}
+  \subtitle{R course developed for the office}
   \author{Brian Davis}
-  \preauthor{\centering\large\emph}
+    \preauthor{\centering\large\emph}
   \postauthor{\par}
-  \predate{\centering\large\emph}
+      \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-06-28}
+    \date{2018-07-02}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1820,7 +1821,7 @@ Monte-Carlo pseudo code:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e6}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    5.01    0.02    5.07}
+\CommentTok{#>    3.65    0.00    3.67}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1836,7 +1837,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.24    0.05    0.28}
+\CommentTok{#>    0.19    0.01    0.24}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2239,7 +2240,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000bd643a8>}
+\CommentTok{#> <environment: 0x000000000b727428>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2298,7 +2299,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.12    0.00    2.12}
+\CommentTok{#>    2.06    0.00    2.11}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -4395,12 +4396,12 @@ of \href{}{R for Data Science}, but for now the basic principle is
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{#> -- Attaching packages ------------------------------------------------------- tidyverse 1.2.1 --}
-\CommentTok{#> v ggplot2 2.2.1     v purrr   0.2.4}
+\CommentTok{#> -- Attaching packages --------------------------------------------------------------------------------------------- tidyverse 1.2.1 --}
+\CommentTok{#> v ggplot2 2.2.1     v purrr   0.2.5}
 \CommentTok{#> v tibble  1.4.2     v dplyr   0.7.4}
-\CommentTok{#> v tidyr   0.8.0     v stringr 1.3.0}
+\CommentTok{#> v tidyr   0.8.1     v stringr 1.3.1}
 \CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
-\CommentTok{#> -- Conflicts ---------------------------------------------------------- tidyverse_conflicts() --}
+\CommentTok{#> -- Conflicts ------------------------------------------------------------------------------------------------ tidyverse_conflicts() --}
 \CommentTok{#> x dplyr::filter() masks stats::filter()}
 \CommentTok{#> x dplyr::lag()    masks stats::lag()}
 \NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bargraphdat.RDS"}\NormalTok{)}
@@ -4425,7 +4426,7 @@ of \href{}{R for Data Science}, but for now the basic principle is
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-5-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{data-viz_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
 That's uninteresting. We haven't mapped the data to our plot yet. Let's
 work on getting the bar chart roughly right.
@@ -4451,7 +4452,7 @@ work on getting the bar chart roughly right.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-6-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{data-viz_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 \subsection{Geoms}\label{geoms}
 
@@ -4520,7 +4521,7 @@ those.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/plot1-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{data-viz_files/figure-latex/plot1-1} \end{center}
 
 Oops\ldots{}.
 
@@ -4537,7 +4538,7 @@ subgroup \texttt{dodge} each other.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-9-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{data-viz_files/figure-latex/unnamed-chunk-9-1} \end{center}
 
 \texttt{geom\_*(mapping,\ data,\ stat,\ position)}
 
@@ -4609,7 +4610,7 @@ and lower bounds to our aesthetics, and align them with our bars.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-10-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{data-viz_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 We've come pretty close to recreating the original plot. We still have
 some tweaking to do.
@@ -4653,7 +4654,7 @@ second can be done with a named vector.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-11-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{data-viz_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 \subsection{Scales}\label{scales}
 
@@ -4680,7 +4681,7 @@ modify the axis, legend, and plot labels.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-12-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{data-viz_files/figure-latex/unnamed-chunk-12-1} \end{center}
 
 \BeginKnitrBlock{rmdtip}
 library \texttt{scales} provides many useful functions for automatically
@@ -4726,7 +4727,7 @@ Themes contain a huge number or parameters, grouped by plot area:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-14-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{data-viz_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 This is almost what we want. Our final code would look like:
 
@@ -4756,7 +4757,7 @@ This is almost what we want. Our final code would look like:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-15-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{data-viz_files/figure-latex/unnamed-chunk-15-1} \end{center}
 
 \section{Facets}\label{facets}
 
@@ -4791,7 +4792,7 @@ displays are roughly rectangular.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{dataviz_files/figure-latex/unnamed-chunk-16-1} \end{center}
+\begin{center}\includegraphics[width=0.7\linewidth]{data-viz_files/figure-latex/unnamed-chunk-16-1} \end{center}
 
 \section{Stats}\label{stats}
 
@@ -5323,6 +5324,275 @@ you can also do convenient operations with \texttt{mutate()} and
   Standardize to compute per group metrics.
 \end{itemize}
 
+\chapter{Data Import}\label{data-import}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+Since R is a ``glue'' language. You can read in from just about any
+standard data source. We will only cover the most common types, but you
+can also read from pdfs (package pdftools), web scraping (package rvest
+and httr), twitter (package twitteR), Facebook (package Rfacebook), and
+many many more.
+
+\section{Text Files}\label{text-files}
+
+\subsection{readr}\label{readr}
+
+One of the most common data sources are text files. Usually these come
+with a delimiter, such a commas, semicolons, or tabs. The \textbf{readr}
+package is part of the core tidyverse.
+
+Compared to Base R \texttt{read} functions, \textbf{readr} are:
+
+\begin{itemize}
+\tightlist
+\item
+  They are typically much faster (\textasciitilde{}10x)
+\item
+  Long running reads automatically get a progress bar
+\item
+  Default to \textbf{tibbles} not data frames
+\item
+  Does not convert characters to factors
+\item
+  More reproducible. (Base R read functions inherit properties from the
+  OS)
+\end{itemize}
+
+\BeginKnitrBlock{rmdtip}
+If you're looking for raw speed, try \texttt{data.table::fread()}. It
+doesn't fit quite so well into the tidyverse, but it can be quite a bit
+faster.
+\EndKnitrBlock{rmdtip}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{read\_csv()} reads comma delimited files
+\item
+  \texttt{read\_csv2()} reads semicolon separated files (common in
+  countries where , is used as the decimal place)
+\item
+  \texttt{read\_tsv()} reads tab delimited files
+\item
+  \texttt{read\_delim()} reads in files with any delimiter
+\item
+  \texttt{read\_fwf()} reads fixed width files
+\end{itemize}
+
+All the \texttt{read\_*} functions follow the same basic structure. The
+first argument is the file to read in, followed by the other parameters.
+
+\begin{rmdnote}
+Files ending in .gz, .bz2, .xz, or .zip will be automatically
+uncompressed. Files starting with \url{http://}, \url{https://},
+\url{ftp://}, or ftps:// will be automatically downloaded. Remote gz
+files can also be automatically downloaded and decompressed.
+\end{rmdnote}
+
+Some useful parameters are: - \texttt{col\_types} for specifying the
+data types for each column. - \texttt{skip\ =\ n} to skip the first
+\texttt{n} lines - \texttt{comment\ =\ "\#"} to drop all lines that
+start with \texttt{\#} - \texttt{locale} locale controls defaults that
+vary from place to place
+
+\subsection{base R}\label{base-r}
+
+The tidyverse packages, and \textbf{readr} make some simplifying
+assumptions. The equivalent base R functions are:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{read.csv()} reads comma delimited files
+\item
+  \texttt{read.csv2()} reads semicolon separated files
+\item
+  \texttt{read.tsv()} reads tab delimited files
+\item
+  \texttt{read.delim()} reads in files with any delimiter
+\item
+  \texttt{read.fwf()} reads fixed width file
+\end{itemize}
+
+\section{SAS Files}\label{sas-files}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(haven)}
+\end{Highlighting}
+\end{Shaded}
+
+The \textbf{haven} library, which is part of the tidyverse but not part
+of the core tidyverse package, must be loaded explicitly. \textbf{haven}
+is the most robust option for reading SAS data files. Reading supports
+both sas7bdat files and the accompanying sas7bdat files that SAS uses to
+record value labels.
+
+\texttt{read\_sas()} reads \texttt{.sas7bdat} + \texttt{sas7bcat} files
+\texttt{read\_xpt()} reads SAS transport files
+
+\begin{rmdnote}
+The \textbf{haven} package can also read in:
+
+\begin{itemize}
+\tightlist
+\item
+  SPSS files with \texttt{read\_sav()} pr \texttt{read\_por()}
+\item
+  Stata files with \texttt{read\_dta()}
+\end{itemize}
+\end{rmdnote}
+
+SAS has the notion of a ``labelled'' variable (so do Stata and SPSS).
+These are similar to factors, but:
+
+\begin{itemize}
+\item
+  Integer, numeric and character vectors can be labelled.
+\item
+  Not every value must be associated with a label.
+\end{itemize}
+
+Factors, by contrast, are always integers and every integer value must
+be associated with a label.
+
+Haven provides a labelled class to model these objects. It doesn't
+implement any common methods, but instead focuses of ways to turn a
+labelled variable into standard R variable:
+
+\begin{itemize}
+\item
+  as\_factor(): turns labelled integers into factors. Any values that
+  don't have a label associated with them will become a missing value.
+  (NOTE: there's no way to make as.factor() work with labelled
+  variables, so you'll need to use this new function.)
+\item
+  zap\_labels(): turns any labelled values into missing values. This
+  deals with the common pattern where you have a continuous variable
+  that has missing values indicated by sentinel values.
+\end{itemize}
+
+\BeginKnitrBlock{rmdwarning}
+There are other packages that can read SAS data files, namely
+\texttt{sas7bdat} and \texttt{foreign}. \texttt{sas7bdat} is no longer
+being maintained for the last several years and is not recommended for
+production use. While \texttt{foreign} only reads SAS XPORT format.
+\EndKnitrBlock{rmdwarning}
+
+\section{Excel}\label{excel}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl)}
+\end{Highlighting}
+\end{Shaded}
+
+The \textbf{readxl} package makes it easy to get data out of Excel and
+into R. It is designed to work with tabular data. \textbf{readxl}
+supports both the legacy .xls format and the modern xml-based .xlsx
+format. The \textbf{readxl} library, which is part of the tidyverse but
+not part of the core tidyverse package, must be loaded explicitly.
+
+There are two main functions in the \textbf{readxl} package.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{excel\_sheets()} lists all the sheets in an excel spreadsheet.
+\item
+  \texttt{read\_excel()} reads in xls and xlsx files based on the file
+  extension
+\end{itemize}
+
+\begin{rmdnote}
+If you want to prevent \texttt{read\_excel()} from guessing which
+spreadsheet type you have you can use \texttt{read\_xls()} or
+\texttt{read\_xlsx()} directly.
+\end{rmdnote}
+
+There are several other packages which also can read excel files.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{openxlsx} - can read but is tricky to extract data, but shines
+  in writing Excel files.
+\item
+  \texttt{xlsx} requires Java, usually cannot get corporate IT to
+  install it on Windows.
+\item
+  \texttt{XLConnect} requires Java, usually cannot get corporate IT to
+  install it on Windows.
+\item
+  \texttt{gdata} required Perl, usually cannot get corporate IT to
+  install it on Windows machines.
+\item
+  \texttt{xlsReadWrite} - Does not support .xlsx files
+\end{itemize}
+
+\section{Databases}\label{databases}
+
+Here we have to use two (or three) packages. The \textbf{DBI} package is
+used to make the network connection to the database. The connection
+string should look familiar if you have ever made a connection to a
+database from another program. As database vendors have slightly
+different interfaces and connection types. You will have to use the
+package for your particular database backend. Some common ones include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{RSQLite::SQLite()} for SQLite
+\item
+  \texttt{RMySQL::MySQL()} for MySQL
+\item
+  \texttt{RPostgreSQL::PostgreSQL()} for PostgreSQL
+\item
+  \texttt{odbc::odbc()} for Microsoft SQL Server
+\item
+  \texttt{bigrquery::bigquery()} for BigQuery
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{con <-}\StringTok{ }\KeywordTok{dbConnect}\NormalTok{(odbc}\OperatorTok{::}\KeywordTok{odbc}\NormalTok{(),               }\CommentTok{# for a Miroscort server}
+                 \DataTypeTok{dsn      =} \StringTok{"my_dsn"}\NormalTok{, }
+                 \DataTypeTok{server   =} \StringTok{"our_awesome_server"}\NormalTok{,}
+                 \DataTypeTok{database =} \StringTok{"cool_db"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+To interact with a database you usually use SQL, the Structured Query
+Language. SQL is over 40 years old, and is used by pretty much every
+database in existence.
+
+This leads to two methods to extract data from a database which boil
+down to:
+
+\begin{itemize}
+\tightlist
+\item
+  Pull the entire table into a data frame with \texttt{dbReadTable()}
+\item
+  Write SQL for you specific dialect and pull into a data frame with
+  \texttt{dbGetQuery()}
+\end{itemize}
+
+Alternatively, you can use the \textbf{dbplyr} and the connection to the
+database to auto generate SQL queries using standard dplyr syntax.
+
+The goal of \textbf{dbplyr} is to automatically generate SQL for you so
+that you're not forced to use it. However, SQL is a very large language
+and \textbf{dbplyr} doesn't do everything. It focuses on SELECT
+statements, the SQL you write most often as an analysis
+
+\part{Production Code}\label{part-production-code}
+
 \chapter{Programming with ggplot2}\label{programming-with-ggplot2}
 
 Programming with ggplot2 can be \sout{a pain in the ass} tricky. The
@@ -5353,12 +5623,12 @@ Remember the plot from last chapter.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{#> -- Attaching packages ------------------------------------------------------- tidyverse 1.2.1 --}
-\CommentTok{#> v ggplot2 2.2.1     v purrr   0.2.4}
+\CommentTok{#> -- Attaching packages --------------------------------------------------------------------------------------------- tidyverse 1.2.1 --}
+\CommentTok{#> v ggplot2 2.2.1     v purrr   0.2.5}
 \CommentTok{#> v tibble  1.4.2     v dplyr   0.7.4}
-\CommentTok{#> v tidyr   0.8.0     v stringr 1.3.0}
+\CommentTok{#> v tidyr   0.8.1     v stringr 1.3.1}
 \CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
-\CommentTok{#> -- Conflicts ---------------------------------------------------------- tidyverse_conflicts() --}
+\CommentTok{#> -- Conflicts ------------------------------------------------------------------------------------------------ tidyverse_conflicts() --}
 \CommentTok{#> x dplyr::filter() masks stats::filter()}
 \CommentTok{#> x dplyr::lag()    masks stats::lag()}
 \NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bargraphdat.RDS"}\NormalTok{)}

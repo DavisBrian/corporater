@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="data-import.html">
-<link rel="next" href="appendix-resources.html">
+<link rel="prev" href="data-transformation.html">
+<link rel="next" href="programming-with-ggplot2.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -275,111 +275,135 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="programming-with-ggplot2" class="section level1">
-<h1><span class="header-section-number">9</span> Programming with ggplot2</h1>
-<p>Programming with ggplot2 can be <del>a pain in the ass</del> tricky. The same features that allow ggplot2 to build complex graphs easily makes programming and writing functions more complicated with it. Genearlly speaking the more flexibility you want the more difficult it will be.</p>
-<p>There are three main function levels you will do. you will generally write functions to:</p>
+<div id="data-import" class="section level1">
+<h1><span class="header-section-number">8</span> Data Import</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<p>Since R is a “glue” language. You can read in from just about any standard data source. We will only cover the most common types, but you can also read from pdfs (package pdftools), web scraping (package rvest and httr), twitter (package twitteR), Facebook (package Rfacebook), and many many more.</p>
+<div id="text-files" class="section level2">
+<h2><span class="header-section-number">8.1</span> Text Files</h2>
+<div id="readr" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> readr</h3>
+<p>One of the most common data sources are text files. Usually these come with a delimiter, such a commas, semicolons, or tabs. The <strong>readr</strong> package is part of the core tidyverse.</p>
+<p>Compared to Base R <code>read</code> functions, <strong>readr</strong> are:</p>
 <ul>
-<li>Modify a single component</li>
-<li>Modify multiple components</li>
-<li>Create an entire plot.</li>
+<li>They are typically much faster (~10x)</li>
+<li>Long running reads automatically get a progress bar</li>
+<li>Default to <strong>tibbles</strong> not data frames</li>
+<li>Does not convert characters to factors</li>
+<li>More reproducible. (Base R read functions inherit properties from the OS)</li>
+</ul>
+
+<div class="rmdtip">
+If you’re looking for raw speed, try <code>data.table::fread()</code>. It doesn’t fit quite so well into the tidyverse, but it can be quite a bit faster.
+</div>
+
+<ul>
+<li><code>read_csv()</code> reads comma delimited files</li>
+<li><code>read_csv2()</code> reads semicolon separated files (common in countries where , is used as the decimal place)</li>
+<li><code>read_tsv()</code> reads tab delimited files</li>
+<li><code>read_delim()</code> reads in files with any delimiter</li>
+<li><code>read_fwf()</code> reads fixed width files</li>
+</ul>
+<p>All the <code>read_*</code> functions follow the same basic structure. The first argument is the file to read in, followed by the other parameters.</p>
+<div class="rmdnote">
+<p>
+Files ending in .gz, .bz2, .xz, or .zip will be automatically uncompressed. Files starting with <a href="http://" class="uri">http://</a>, <a href="https://" class="uri">https://</a>, <a href="ftp://" class="uri">ftp://</a>, or ftps:// will be automatically downloaded. Remote gz files can also be automatically downloaded and decompressed.
+</p>
+</div>
+<p>Some useful parameters are: - <code>col_types</code> for specifying the data types for each column. - <code>skip = n</code> to skip the first <code>n</code> lines - <code>comment = &quot;#&quot;</code> to drop all lines that start with <code>#</code> - <code>locale</code> locale controls defaults that vary from place to place</p>
+</div>
+<div id="base-r" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> base R</h3>
+<p>The tidyverse packages, and <strong>readr</strong> make some simplifying assumptions. The equivalent base R functions are:</p>
+<ul>
+<li><code>read.csv()</code> reads comma delimited files</li>
+<li><code>read.csv2()</code> reads semicolon separated files</li>
+<li><code>read.tsv()</code> reads tab delimited files</li>
+<li><code>read.delim()</code> reads in files with any delimiter</li>
+<li><code>read.fwf()</code> reads fixed width file</li>
+</ul>
+</div>
+</div>
+<div id="sas-files" class="section level2">
+<h2><span class="header-section-number">8.2</span> SAS Files</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)</code></pre></div>
+<p>The <strong>haven</strong> library, which is part of the tidyverse but not part of the core tidyverse package, must be loaded explicitly. <strong>haven</strong> is the most robust option for reading SAS data files. Reading supports both sas7bdat files and the accompanying sas7bdat files that SAS uses to record value labels.</p>
+<p><code>read_sas()</code> reads <code>.sas7bdat</code> + <code>sas7bcat</code> files <code>read_xpt()</code> reads SAS transport files</p>
+<div class="rmdnote">
+<p>
+The <strong>haven</strong> package can also read in:
+</p>
+<ul>
+<li>
+SPSS files with <code>read_sav()</code> pr <code>read_por()</code>
+</li>
+<li>
+Stata files with <code>read_dta()</code>
+</li>
+</ul>
+</div>
+<p>SAS has the notion of a “labelled” variable (so do Stata and SPSS). These are similar to factors, but:</p>
+<ul>
+<li><p>Integer, numeric and character vectors can be labelled.</p></li>
+<li><p>Not every value must be associated with a label.</p></li>
+</ul>
+<p>Factors, by contrast, are always integers and every integer value must be associated with a label.</p>
+<p>Haven provides a labelled class to model these objects. It doesn’t implement any common methods, but instead focuses of ways to turn a labelled variable into standard R variable:</p>
+<ul>
+<li><p>as_factor(): turns labelled integers into factors. Any values that don’t have a label associated with them will become a missing value. (NOTE: there’s no way to make as.factor() work with labelled variables, so you’ll need to use this new function.)</p></li>
+<li><p>zap_labels(): turns any labelled values into missing values. This deals with the common pattern where you have a continuous variable that has missing values indicated by sentinel values.</p></li>
+</ul>
+
+<div class="rmdwarning">
+There are other packages that can read SAS data files, namely <code>sas7bdat</code> and <code>foreign</code>. <code>sas7bdat</code> is no longer being maintained for the last several years and is not recommended for production use. While <code>foreign</code> only reads SAS XPORT format.
+</div>
+
+</div>
+<div id="excel" class="section level2">
+<h2><span class="header-section-number">8.3</span> Excel</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)</code></pre></div>
+<p>The <strong>readxl</strong> package makes it easy to get data out of Excel and into R. It is designed to work with tabular data. <strong>readxl</strong> supports both the legacy .xls format and the modern xml-based .xlsx format. The <strong>readxl</strong> library, which is part of the tidyverse but not part of the core tidyverse package, must be loaded explicitly.</p>
+<p>There are two main functions in the <strong>readxl</strong> package.</p>
+<ul>
+<li><code>excel_sheets()</code> lists all the sheets in an excel spreadsheet.</li>
+<li><code>read_excel()</code> reads in xls and xlsx files based on the file extension</li>
 </ul>
 <div class="rmdnote">
 <p>
-There are also a few one(ish) time things you’ll write like themes and color palettes.
+If you want to prevent <code>read_excel()</code> from guessing which spreadsheet type you have you can use <code>read_xls()</code> or <code>read_xlsx()</code> directly.
 </p>
 </div>
-<p>Remember the plot from last chapter.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="co">#&gt; -- Attaching packages --------------------------------------------------------------------------------------------- tidyverse 1.2.1 --</span>
-<span class="co">#&gt; v ggplot2 2.2.1     v purrr   0.2.5</span>
-<span class="co">#&gt; v tibble  1.4.2     v dplyr   0.7.4</span>
-<span class="co">#&gt; v tidyr   0.8.1     v stringr 1.3.1</span>
-<span class="co">#&gt; v readr   1.1.1     v forcats 0.3.0</span>
-<span class="co">#&gt; -- Conflicts ------------------------------------------------------------------------------------------------ tidyverse_conflicts() --</span>
-<span class="co">#&gt; x dplyr::filter() masks stats::filter()</span>
-<span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span>
-dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)
-<span class="co"># convert the use_type to a factor with the correct label</span>
-dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))
-bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)
-
-p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
-                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
-       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span>
-        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>(),   <span class="co"># remove the legend variable</span>
-        <span class="dt">axis.text.x     =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),   <span class="co"># rotate the x-axis text</span>
-        <span class="dt">axis.ticks.x    =</span> <span class="kw">element_blank</span>())       <span class="co"># remove the x asix tick marks</span>
-p</code></pre></div>
-<p><img src="ggplot_funs_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<div id="single-components" class="section level2">
-<h2><span class="header-section-number">9.1</span> Single Components</h2>
-<p>Let’s say we do error bars often and we’ve had trouble with consitancy. One way to help with that is to write a wrapper function arround <code>geom_errorbar</code> with our typical settings. This make a drop in replacement</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">errorbar &lt;-<span class="st"> </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), 
-                  <span class="dt">width =</span> <span class="fl">0.5</span>)
-
-<span class="co"># </span>
-p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
-<span class="st">  </span>errorbar <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
-                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
-       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span>
-        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>(),   <span class="co"># remove the legend variable</span>
-        <span class="dt">axis.text.x     =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),   <span class="co"># rotate the x-axis text</span>
-        <span class="dt">axis.ticks.x    =</span> <span class="kw">element_blank</span>())       <span class="co"># remove the x asix tick marks</span>
-p</code></pre></div>
-<p><img src="ggplot_funs_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>The main problem with this function is there is no way for the user to change any of the other properties of the error bar. This <strong>may</strong> be the desired behaviour but it seems limiting. Let’s re-write the function to allow the user to control <em>some</em> aspects of the error bar.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">errorbar2 &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>),
-                      <span class="dt">width =</span> <span class="fl">0.5</span>, ...) {
-  <span class="kw">geom_errorbar</span>(<span class="dt">position =</span> position, <span class="dt">width =</span> width, ...)
-}
-                    
-<span class="co"># make the error bars red</span>
-p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">errorbar2</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
-                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
-       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span>
-        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>(),   <span class="co"># remove the legend variable</span>
-        <span class="dt">axis.text.x     =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),   <span class="co"># rotate the x-axis text</span>
-        <span class="dt">axis.ticks.x    =</span> <span class="kw">element_blank</span>())       <span class="co"># remove the x asix tick marks</span>
-p</code></pre></div>
-<p><img src="ggplot_funs_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>There are several other packages which also can read excel files.</p>
+<ul>
+<li><code>openxlsx</code> - can read but is tricky to extract data, but shines in writing Excel files.</li>
+<li><code>xlsx</code> requires Java, usually cannot get corporate IT to install it on Windows.</li>
+<li><code>XLConnect</code> requires Java, usually cannot get corporate IT to install it on Windows.</li>
+<li><code>gdata</code> required Perl, usually cannot get corporate IT to install it on Windows machines.</li>
+<li><code>xlsReadWrite</code> - Does not support .xlsx files</li>
+</ul>
 </div>
-<div id="multiple-components" class="section level2">
-<h2><span class="header-section-number">9.2</span> Multiple Components</h2>
-</div>
-<div id="whole-plots" class="section level2">
-<h2><span class="header-section-number">9.3</span> Whole Plots</h2>
-<p>Creating small reusable components is most in line with the ggplot2 spirit: you can recombine them flexibly to create whatever plot you want. But sometimes you’re creating the same plot over and over again, and you don’t need that flexibility. Instead of creating components, you might want to write a function that takes data and parameters and returns a complete plot.</p>
-</div>
-<div id="plot-style" class="section level2">
-<h2><span class="header-section-number">9.4</span> Plot Style</h2>
-<p><img src="images/dataviz/api_life_means.png" width="70%" style="display: block; margin: auto;" /><img src="images/dataviz/api_nmu_means.png" width="70%" style="display: block; margin: auto;" /><img src="images/dataviz/comp_recent_means.png" width="70%" style="display: block; margin: auto;" /></p>
-</div>
-<div id="color-palettes" class="section level2">
-<h2><span class="header-section-number">9.5</span> Color Palettes</h2>
-</div>
-<div id="themes-1" class="section level2">
-<h2><span class="header-section-number">9.6</span> Themes</h2>
+<div id="databases" class="section level2">
+<h2><span class="header-section-number">8.4</span> Databases</h2>
+<p>Here we have to use two (or three) packages. The <strong>DBI</strong> package is used to make the network connection to the database. The connection string should look familiar if you have ever made a connection to a database from another program. As database vendors have slightly different interfaces and connection types. You will have to use the package for your particular database backend. Some common ones include:</p>
+<ul>
+<li><code>RSQLite::SQLite()</code> for SQLite</li>
+<li><code>RMySQL::MySQL()</code> for MySQL</li>
+<li><code>RPostgreSQL::PostgreSQL()</code> for PostgreSQL</li>
+<li><code>odbc::odbc()</code> for Microsoft SQL Server</li>
+<li><code>bigrquery::bigquery()</code> for BigQuery</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(odbc<span class="op">::</span><span class="kw">odbc</span>(),               <span class="co"># for a Miroscort server</span>
+                 <span class="dt">dsn      =</span> <span class="st">&quot;my_dsn&quot;</span>, 
+                 <span class="dt">server   =</span> <span class="st">&quot;our_awesome_server&quot;</span>,
+                 <span class="dt">database =</span> <span class="st">&quot;cool_db&quot;</span>)</code></pre></div>
+<p>To interact with a database you usually use SQL, the Structured Query Language. SQL is over 40 years old, and is used by pretty much every database in existence.</p>
+<p>This leads to two methods to extract data from a database which boil down to:</p>
+<ul>
+<li>Pull the entire table into a data frame with <code>dbReadTable()</code></li>
+<li>Write SQL for you specific dialect and pull into a data frame with <code>dbGetQuery()</code></li>
+</ul>
+<p>Alternatively, you can use the <strong>dbplyr</strong> and the connection to the database to auto generate SQL queries using standard dplyr syntax.</p>
+<p>The goal of <strong>dbplyr</strong> is to automatically generate SQL for you so that you’re not forced to use it. However, SQL is a very large language and <strong>dbplyr</strong> doesn’t do everything. It focuses on SELECT statements, the SQL you write most often as an analysis</p>
 
 </div>
 </div>
@@ -391,8 +415,8 @@ p</code></pre></div>
           </div>
         </div>
       </div>
-<a href="data-import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="programming-with-ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -412,7 +436,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DavisBrian/corporater/edit/master/ggplot_funs.Rmd",
+"link": "https://github.com/DavisBrian/corporater/edit/master/data-import.Rmd",
 "text": "Edit"
 },
 "download": ["rclassnotes.pdf", "rclassnotes.epub"],
