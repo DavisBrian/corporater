@@ -12,7 +12,9 @@ rmd_files: [
   "data-viz.Rmd",
   "data-transform.Rmd",
   "data-import.Rmd",
-  "ggplot_funs.Rmd",
+  "strings.Rmd",
+  
+  "streetrx.Rmd",
   
   "appendix-A.Rmd"]
   

@@ -1,0 +1,45 @@
+# String
+
+Our StreetRX project is located [here](R:\RADARS\Biostatistics Resources\R Class Notes\streetrx)
+
+## String Basics
+
+
+### String Lengths
+
+
+### Combine Strings
+
+
+
+```{block2, type='rmdtip'}
+glue
+```
+
+### Subsetting strings
+
+
+
+`sep` vs `collapse`
+
+### Helpfull String functions
+
+-    `str_wrap()`
+-    `str_trim()`
+-    `str_pad()`
+-    `str_view()`
+-    `str_view_all()`
+-    `str_order()`
+-    `str_sort()`
+
+
+## Regular Expressions
+
+
+### Special Characters
+
+
+### Anchors
+
+
+### Character classes 

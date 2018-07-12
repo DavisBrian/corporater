@@ -12,5 +12,6 @@ _bookdown_files
 .httr-oauth
 *_cache
 *_files
+streetrx.*
 
 

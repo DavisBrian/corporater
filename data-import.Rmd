@@ -127,7 +127,7 @@ Here we have to use two (or three) packages.  The **DBI** package is used to mak
 -     `bigrquery::bigquery()` for BigQuery
 
 ```{r, message=FALSE, eval=FALSE}
-con <- dbConnect(odbc::odbc(),               # for a Miroscort server
+con <- dbConnect(odbc::odbc(),               # for a Mircosoft server
                  dsn      = "my_dsn", 
                  server   = "our_awesome_server",
                  database = "cool_db")
@@ -140,8 +140,11 @@ This leads to two methods to extract data from a database which boil down to:
 -    Pull the entire table into a data frame with `dbReadTable()`
 -    Write SQL for you specific dialect and pull into a data frame with `dbGetQuery()`
 
+```{block type='rmdnote'}
+Another popular package for connecting to databases is **RODBC**.  It tends to be a bit slower than **DBI**.  
+```
+
 Alternatively, you can use the **dbplyr** and the connection to the database to auto generate SQL queries using standard dplyr syntax.
 
-The goal of **dbplyr** is to automatically generate SQL for you so that you’re not forced to use it. However, SQL is a very large language and **dbplyr** doesn’t do everything. It focuses on SELECT statements, the SQL you write most often as an analysis
-
+The goal of **dbplyr** is to automatically generate SQL for you so that you’re not forced to use it. However, SQL is a very large language and **dbplyr** doesn’t do everything. It focuses on SELECT statements, the SQL you write most often as an analysis.  See `vignette(("dbplyr"))` for a in depth discussion.
 

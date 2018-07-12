@@ -81,9 +81,6 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\usepackage[normalem]{ulem}
-% avoid problems with \sout in headers with hyperref:
-\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \IfFileExists{parskip.sty}{%
 \usepackage{parskip}
 }{% else
@@ -129,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-07-02}
+    \date{2018-07-10}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1821,7 +1818,7 @@ Monte-Carlo pseudo code:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e6}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    3.65    0.00    3.67}
+\CommentTok{#>    3.56    0.02    3.62}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1837,7 +1834,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.19    0.01    0.24}
+\CommentTok{#>    0.20    0.02    0.23}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2240,7 +2237,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000b727428>}
+\CommentTok{#> <environment: 0x000000000b7bcde0>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2299,7 +2296,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.06    0.00    2.11}
+\CommentTok{#>    2.12    0.00    2.12}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -4396,12 +4393,12 @@ of \href{}{R for Data Science}, but for now the basic principle is
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{#> -- Attaching packages --------------------------------------------------------------------------------------------- tidyverse 1.2.1 --}
+\CommentTok{#> -- Attaching packages ----------------------------------------------------------------------------------- tidyverse 1.2.1 --}
 \CommentTok{#> v ggplot2 2.2.1     v purrr   0.2.5}
 \CommentTok{#> v tibble  1.4.2     v dplyr   0.7.4}
 \CommentTok{#> v tidyr   0.8.1     v stringr 1.3.1}
 \CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
-\CommentTok{#> -- Conflicts ------------------------------------------------------------------------------------------------ tidyverse_conflicts() --}
+\CommentTok{#> -- Conflicts -------------------------------------------------------------------------------------- tidyverse_conflicts() --}
 \CommentTok{#> x dplyr::filter() masks stats::filter()}
 \CommentTok{#> x dplyr::lag()    masks stats::lag()}
 \NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bargraphdat.RDS"}\NormalTok{)}
@@ -5560,7 +5557,7 @@ package for your particular database backend. Some common ones include:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{con <-}\StringTok{ }\KeywordTok{dbConnect}\NormalTok{(odbc}\OperatorTok{::}\KeywordTok{odbc}\NormalTok{(),               }\CommentTok{# for a Miroscort server}
+\NormalTok{con <-}\StringTok{ }\KeywordTok{dbConnect}\NormalTok{(odbc}\OperatorTok{::}\KeywordTok{odbc}\NormalTok{(),               }\CommentTok{# for a Mircosoft server}
                  \DataTypeTok{dsn      =} \StringTok{"my_dsn"}\NormalTok{, }
                  \DataTypeTok{server   =} \StringTok{"our_awesome_server"}\NormalTok{,}
                  \DataTypeTok{database =} \StringTok{"cool_db"}\NormalTok{)}
@@ -5583,164 +5580,198 @@ down to:
   \texttt{dbGetQuery()}
 \end{itemize}
 
+\begin{rmdnote}
+Another popular package for connecting to databases is \textbf{RODBC}.
+It tends to be a bit slower than \textbf{DBI}.
+\end{rmdnote}
+
 Alternatively, you can use the \textbf{dbplyr} and the connection to the
 database to auto generate SQL queries using standard dplyr syntax.
 
 The goal of \textbf{dbplyr} is to automatically generate SQL for you so
 that you're not forced to use it. However, SQL is a very large language
 and \textbf{dbplyr} doesn't do everything. It focuses on SELECT
-statements, the SQL you write most often as an analysis
+statements, the SQL you write most often as an analysis. See
+\texttt{vignette(("dbplyr"))} for a in depth discussion.
 
-\part{Production Code}\label{part-production-code}
+\part{Project}\label{part-project}
 
-\chapter{Programming with ggplot2}\label{programming-with-ggplot2}
+\chapter{StreetRX}\label{streetrx}
 
-Programming with ggplot2 can be \sout{a pain in the ass} tricky. The
-same features that allow ggplot2 to build complex graphs easily makes
-programming and writing functions more complicated with it. Genearlly
-speaking the more flexibility you want the more difficult it will be.
-
-There are three main function levels you will do. you will generally
-write functions to:
-
-\begin{itemize}
-\tightlist
-\item
-  Modify a single component
-\item
-  Modify multiple components
-\item
-  Create an entire plot.
-\end{itemize}
-
-\begin{rmdnote}
-There are also a few one(ish) time things you'll write like themes and
-color palettes.
-\end{rmdnote}
-
-Remember the plot from last chapter.
+Our StreetRX project is located
+\href{R:/RADARS/Biostatistics\%20Resources/R\%20Class\%20Notes/streetrx}{here}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{#> -- Attaching packages --------------------------------------------------------------------------------------------- tidyverse 1.2.1 --}
-\CommentTok{#> v ggplot2 2.2.1     v purrr   0.2.5}
-\CommentTok{#> v tibble  1.4.2     v dplyr   0.7.4}
-\CommentTok{#> v tidyr   0.8.1     v stringr 1.3.1}
-\CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
-\CommentTok{#> -- Conflicts ------------------------------------------------------------------------------------------------ tidyverse_conflicts() --}
-\CommentTok{#> x dplyr::filter() masks stats::filter()}
-\CommentTok{#> x dplyr::lag()    masks stats::lag()}
-\NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bargraphdat.RDS"}\NormalTok{)}
-\CommentTok{# convert the use_type to a factor with the correct label}
-\NormalTok{dat}\OperatorTok{$}\NormalTok{use_type <-}\KeywordTok{factor}\NormalTok{(dat}\OperatorTok{$}\NormalTok{use_type, }\DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"use"}\NormalTok{, }\StringTok{"nmu"}\NormalTok{), }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Lifetime Use"}\NormalTok{, }\StringTok{"Lifetime Non-Medical Use"}\NormalTok{))}
-\NormalTok{bar_colors <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Lifetime Use"}\NormalTok{ =}\StringTok{ "grey"}\NormalTok{, }\StringTok{"Lifetime Non-Medical Use"}\NormalTok{ =}\StringTok{ "blue"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(readxl)}
 
-\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dat, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ drug, }\DataTypeTok{y =}\NormalTok{ mean, }\DataTypeTok{fill =}\NormalTok{ use_type, }\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position_dodge}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{), }\DataTypeTok{width =} \FloatTok{0.5}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{bar_colors) }\OperatorTok{+}\StringTok{     }\CommentTok{# change the bar colors}
-\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{ceiling}\NormalTok{(}\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{upper)), }\DecValTok{5}\NormalTok{),  }\CommentTok{# change the y-axis scale}
-                     \DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{      }\CommentTok{# remove the spacing between the x axis and the bars}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \OtherTok{NULL}\NormalTok{,                             }\CommentTok{# Remove the x-axis label "drug"}
-       \DataTypeTok{y =} \StringTok{"Prevalence % (95% CI)"}\NormalTok{) }\OperatorTok{+}\StringTok{        }\CommentTok{# Change the y-axis label}
-\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{,          }\CommentTok{# move the legend to the bottom}
-        \DataTypeTok{legend.title    =} \KeywordTok{element_blank}\NormalTok{(),   }\CommentTok{# remove the legend variable}
-        \DataTypeTok{axis.text.x     =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{),   }\CommentTok{# rotate the x-axis text}
-        \DataTypeTok{axis.ticks.x    =} \KeywordTok{element_blank}\NormalTok{())       }\CommentTok{# remove the x asix tick marks}
-\NormalTok{p}
+\CommentTok{# Files to read in -------------------------------------------------------------}
+\NormalTok{path_srx  <-}\StringTok{ "R:/RADARS/Programs/Street_Rx/raw data/2018Q1"}
+\NormalTok{files_srx <-}\StringTok{ }\KeywordTok{dir}\NormalTok{(path_srx, }\DataTypeTok{pattern =} \StringTok{"RADARS}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{.xlsx$"}\NormalTok{, }\DataTypeTok{full.names =} \OtherTok{TRUE}\NormalTok{)}
+
+\CommentTok{# Read in files and stack together ---------------------------------------------}
+\NormalTok{srx <-}\StringTok{ }\KeywordTok{lapply}\NormalTok{(}\KeywordTok{setNames}\NormalTok{(files_srx, files_srx), }\ControlFlowTok{function}\NormalTok{(file) }\KeywordTok{read_excel}\NormalTok{(file)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{bind_rows}\NormalTok{(}\DataTypeTok{.id=}\StringTok{"file"}\NormalTok{) }
+
+\KeywordTok{saveRDS}\NormalTok{(srx, }\StringTok{"./data/srxdata.RDS"}\NormalTok{)       }\CommentTok{# save off the data}
+\CommentTok{# srx <- readRDS("./data/srxdata.RDS")   # use this to read in the data}
+\NormalTok{srx}
+\CommentTok{#> # A tibble: 15,374 x 29}
+\CommentTok{#>   file           quote selected_product_na~ generic  is_radars radars_code}
+\CommentTok{#>   <chr>          <dbl> <chr>                <chr>        <dbl> <chr>      }
+\CommentTok{#> 1 R:/RADARS/Pr~ 263893 hydrocodone/acetami~ hydroco~         1 309        }
+\CommentTok{#> 2 R:/RADARS/Pr~ 263894 dextroamphetamine    dextroa~         1 <NA>       }
+\CommentTok{#> 3 R:/RADARS/Pr~ 263895 Soma                 carisop~         1 1301       }
+\CommentTok{#> 4 R:/RADARS/Pr~ 263896 Valium               diazepam         0 <NA>       }
+\CommentTok{#> 5 R:/RADARS/Pr~ 263897 Percocet             oxycodo~         1 113        }
+\CommentTok{#> 6 R:/RADARS/Pr~ 263898 Xanax                alprazo~         0 <NA>       }
+\CommentTok{#> # ... with 1.537e+04 more rows, and 23 more variables:}
+\CommentTok{#> #   radars_version <dbl>, submitted_date <dttm>, price_date <dttm>,}
+\CommentTok{#> #   price <dbl>, mg_strength <chr>, price_per_mg <dbl>, dose <chr>,}
+\CommentTok{#> #   dose_unit <chr>, formulation <chr>, city <chr>, state <chr>,}
+\CommentTok{#> #   country <chr>, incomplete <dbl>, rating <dbl>, source <chr>,}
+\CommentTok{#> #   cmenter <chr>, client_device <chr>, bulk_purchase <dbl>,}
+\CommentTok{#> #   latitude <dbl>, longitude <dbl>, cq_response <dbl>, cq_reroute <dbl>,}
+\CommentTok{#> #   primary_reason <dbl>}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{ggplot_funs_files/figure-latex/unnamed-chunk-3-1} \end{center}
+\section{Data Wrangling}\label{data-wrangling}
 
-\section{Single Components}\label{single-components}
+\begin{itemize}
+\tightlist
+\item
+  create a new variable \texttt{scrape} which is an integer version of
+  \texttt{cmenter}
+\item
+  convert \texttt{mg\_strength} to an numeric data field
+\item
+  make sure \texttt{price\_per\_mg} is a numeric data filed
+\item
+  set price\_per\_mg to missing if mg\_strength is missing
+\item
+  drop the following variables:
 
-Let's say we do error bars often and we've had trouble with consitancy.
-One way to help with that is to write a wrapper function arround
-\texttt{geom\_errorbar} with our typical settings. This make a drop in
-replacement
+  \begin{itemize}
+  \tightlist
+  \item
+    incomplete
+  \item
+    radars\_code
+  \item
+    cmenter
+  \end{itemize}
+\item
+  generic, dose\_unit, city, source (sas missing is ``'', R is
+  \texttt{NA}) what do we want for each of these?
+\end{itemize}
+
+\section{Functions}\label{functions}
+
+Write a function to:
+
+\begin{itemize}
+\tightlist
+\item
+  convert a date to a year quarter (YYYYQ or YYYY'Q'Q)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    create a yearquarter variable based on price date
+  \item
+    create a yearquarter\_submitted variable based on submitted date
+  \end{itemize}
+\item
+  Fix formulation
+\item
+  Fix generic
+\item
+  Create api(based on generic)
+\item
+  correct mg strength (see SAS code)
+\end{itemize}
+
+\section{Manual Fixes}\label{manual-fixes}
+
+Functions???
+
+\begin{itemize}
+\tightlist
+\item
+  Fix/clean city (some have state or state abbreviation included, fix ?,
+  etc, use title case)
+\item
+  Fix/clean state (fix ?, use title case)
+\item
+  Search for \texttt{?} in text string (European city / states need to
+  be manually fixed)
+\item
+  Search for a \texttt{,} or ``space'' in a text string (some cities
+  have the state attached)
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{errorbar <-}\StringTok{ }\KeywordTok{geom_errorbar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position_dodge}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{), }
-                  \DataTypeTok{width =} \FloatTok{0.5}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{ quote=}\StringTok{ }\DecValTok{72422}\NormalTok{ then}
+\NormalTok{        do;}
+            \ControlFlowTok{if}\NormalTok{ state=}\StringTok{"Ohio"}\NormalTok{ then}
+\NormalTok{                state=}\StringTok{" "}\NormalTok{;}
 
-\CommentTok{# }
-\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dat, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ drug, }\DataTypeTok{y =}\NormalTok{ mean, }\DataTypeTok{fill =}\NormalTok{ use_type, }\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\NormalTok{errorbar }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{bar_colors) }\OperatorTok{+}\StringTok{     }\CommentTok{# change the bar colors}
-\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{ceiling}\NormalTok{(}\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{upper)), }\DecValTok{5}\NormalTok{),  }\CommentTok{# change the y-axis scale}
-                     \DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{      }\CommentTok{# remove the spacing between the x axis and the bars}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \OtherTok{NULL}\NormalTok{,                             }\CommentTok{# Remove the x-axis label "drug"}
-       \DataTypeTok{y =} \StringTok{"Prevalence % (95% CI)"}\NormalTok{) }\OperatorTok{+}\StringTok{        }\CommentTok{# Change the y-axis label}
-\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{,          }\CommentTok{# move the legend to the bottom}
-        \DataTypeTok{legend.title    =} \KeywordTok{element_blank}\NormalTok{(),   }\CommentTok{# remove the legend variable}
-        \DataTypeTok{axis.text.x     =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{),   }\CommentTok{# rotate the x-axis text}
-        \DataTypeTok{axis.ticks.x    =} \KeywordTok{element_blank}\NormalTok{())       }\CommentTok{# remove the x asix tick marks}
-\NormalTok{p}
+            \ControlFlowTok{if}\NormalTok{ country=}\StringTok{"Australia"}\NormalTok{ then}
+\NormalTok{                country=}\StringTok{" "}\NormalTok{;}
+\NormalTok{        end;}
+    
+    \ControlFlowTok{if}\NormalTok{ quote=}\DecValTok{61022}\NormalTok{ then do;}
+            \ControlFlowTok{if}\NormalTok{ state=}\StringTok{"Alabama"}\NormalTok{ then}
+\NormalTok{                state=}\StringTok{" "}\NormalTok{;}
+            \ControlFlowTok{if}\NormalTok{ country=}\StringTok{"Canada"}\NormalTok{ then}
+\NormalTok{                country=}\StringTok{" "}\NormalTok{;}
+\NormalTok{        end;}
+                
+    \ControlFlowTok{if}\NormalTok{ country=}\StringTok{"USA"}\NormalTok{ then do;}
+            \ControlFlowTok{if}\NormalTok{ state=}\StringTok{"DC"}\NormalTok{ then state=}\StringTok{"Washington, DC"}\NormalTok{;}
+\NormalTok{        end;    }
+                
+    \ControlFlowTok{if}\NormalTok{ country=}\StringTok{"USA"}\NormalTok{ then do;}
+        \ControlFlowTok{if} \KeywordTok{find}\NormalTok{(city, }\StringTok{"washington"}\NormalTok{, }\StringTok{'i'}\NormalTok{)}\OperatorTok{>}\DecValTok{0} \OperatorTok{&}\StringTok{ }\NormalTok{(}\KeywordTok{find}\NormalTok{(city, }\StringTok{"DC"}\NormalTok{, }\StringTok{'i'}\NormalTok{)}\OperatorTok{>}\DecValTok{0} \OperatorTok{|}\StringTok{ }\KeywordTok{find}\NormalTok{(city,}\StringTok{"D.C"}\NormalTok{, }\StringTok{'i'}\NormalTok{)}\OperatorTok{>}\DecValTok{0}\NormalTok{)}
+\NormalTok{            then state=}\StringTok{"Washington, DC"}\NormalTok{;}
+        \ControlFlowTok{if}\NormalTok{ state=}\StringTok{"Washington, DC"}\NormalTok{ then city=}\StringTok{"Washington, DC"}\NormalTok{;}
+\NormalTok{        end;                }
 \end{Highlighting}
 \end{Shaded}
-
-\begin{center}\includegraphics[width=0.7\linewidth]{ggplot_funs_files/figure-latex/unnamed-chunk-4-1} \end{center}
-
-The main problem with this function is there is no way for the user to
-change any of the other properties of the error bar. This \textbf{may}
-be the desired behaviour but it seems limiting. Let's re-write the
-function to allow the user to control \emph{some} aspects of the error
-bar.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{errorbar2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position_dodge}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{),}
-                      \DataTypeTok{width =} \FloatTok{0.5}\NormalTok{, ...) \{}
-  \KeywordTok{geom_errorbar}\NormalTok{(}\DataTypeTok{position =}\NormalTok{ position, }\DataTypeTok{width =}\NormalTok{ width, ...)}
-\NormalTok{\}}
-                    
-\CommentTok{# make the error bars red}
-\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ dat, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ drug, }\DataTypeTok{y =}\NormalTok{ mean, }\DataTypeTok{fill =}\NormalTok{ use_type, }\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{, }\DataTypeTok{width =} \FloatTok{0.75}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{errorbar2}\NormalTok{(}\DataTypeTok{color =} \StringTok{"red"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{bar_colors) }\OperatorTok{+}\StringTok{     }\CommentTok{# change the bar colors}
-\StringTok{  }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks =} \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{ceiling}\NormalTok{(}\KeywordTok{max}\NormalTok{(dat}\OperatorTok{$}\NormalTok{upper)), }\DecValTok{5}\NormalTok{),  }\CommentTok{# change the y-axis scale}
-                     \DataTypeTok{expand =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)) }\OperatorTok{+}\StringTok{      }\CommentTok{# remove the spacing between the x axis and the bars}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \OtherTok{NULL}\NormalTok{,                             }\CommentTok{# Remove the x-axis label "drug"}
-       \DataTypeTok{y =} \StringTok{"Prevalence % (95% CI)"}\NormalTok{) }\OperatorTok{+}\StringTok{        }\CommentTok{# Change the y-axis label}
-\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"bottom"}\NormalTok{,          }\CommentTok{# move the legend to the bottom}
-        \DataTypeTok{legend.title    =} \KeywordTok{element_blank}\NormalTok{(),   }\CommentTok{# remove the legend variable}
-        \DataTypeTok{axis.text.x     =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{),   }\CommentTok{# rotate the x-axis text}
-        \DataTypeTok{axis.ticks.x    =} \KeywordTok{element_blank}\NormalTok{())       }\CommentTok{# remove the x asix tick marks}
-\NormalTok{p}
+\OperatorTok{/}\ErrorTok{*}\NormalTok{HM addition see email }\ControlFlowTok{in}\NormalTok{ communication folder }\ControlFlowTok{for}\NormalTok{ explanation on deletion}\OperatorTok{*}\ErrorTok{/}
+\StringTok{    }\ControlFlowTok{if}\NormalTok{ quote }\ControlFlowTok{in}\NormalTok{ (}\DecValTok{4520} \DecValTok{8477} \DecValTok{9007} \DecValTok{11788} \DecValTok{13595} \DecValTok{14046} \DecValTok{19924} \DecValTok{21342} \DecValTok{29416} \DecValTok{29872} \DecValTok{30739} \DecValTok{31041} \DecValTok{33030} \DecValTok{35899} \DecValTok{51871}\NormalTok{) then}
+\NormalTok{        delete;}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.7\linewidth]{ggplot_funs_files/figure-latex/unnamed-chunk-5-1} \end{center}
+\begin{Shaded}
+\begin{Highlighting}[]
+    \ControlFlowTok{if}\NormalTok{ country=}\StringTok{"France"}\NormalTok{ then do;}
+            \ControlFlowTok{if}\NormalTok{ state=}\StringTok{ "?le-de-France"}\NormalTok{ then}
+\NormalTok{                state=}\StringTok{"lle-de-France"}\NormalTok{;}
+                \ControlFlowTok{if}\NormalTok{ state=}\StringTok{"Rh?ne-Alpes"}\NormalTok{ then}
+\NormalTok{                state=}\StringTok{"Rhône-Alpes"}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
 
-\section{Multiple Components}\label{multiple-components}
-
-\section{Whole Plots}\label{whole-plots}
-
-Creating small reusable components is most in line with the ggplot2
-spirit: you can recombine them flexibly to create whatever plot you
-want. But sometimes you're creating the same plot over and over again,
-and you don't need that flexibility. Instead of creating components, you
-might want to write a function that takes data and parameters and
-returns a complete plot.
-
-\section{Plot Style}\label{plot-style}
-
-\begin{center}\includegraphics[width=0.7\linewidth]{images/dataviz/api_life_means} \end{center}
-
-\includegraphics[width=0.7\linewidth]{images/dataviz/api_nmu_means}
-\includegraphics[width=0.7\linewidth]{images/dataviz/comp_recent_means}
-
-\section{Color Palettes}\label{color-palettes}
-
-\section{Themes}\label{themes-1}
+\begin{Shaded}
+\begin{Highlighting}[]
+    \ControlFlowTok{if}\NormalTok{ country =}\StringTok{ "Germany"}\NormalTok{ and state =}\StringTok{ "Baden-W?rttemberg"}\NormalTok{ then}
+\NormalTok{        state =}\StringTok{ "Baden-Württemberg";}
+\StringTok{        }
+\StringTok{    if country = "}\NormalTok{Germany}\StringTok{" then do;}
+\StringTok{        if city = "}\NormalTok{Th?ringen}\StringTok{" then city = "}\NormalTok{Thüringen";}
+        \ControlFlowTok{if}\NormalTok{ city =}\StringTok{ "D?sseldorf"}\NormalTok{ then city =}\StringTok{ "Düsseldorf";}
+\StringTok{        if city = "}\NormalTok{K?ln}\StringTok{" then city = "}\NormalTok{Köln}\StringTok{";}
+\StringTok{        end;}
+\end{Highlighting}
+\end{Shaded}
 
 \part{Appendix}\label{part-appendix}
 
