@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="data-transformation.html">
-<link rel="next" href="strings.html">
+<link rel="prev" href="data-import.html">
+<link rel="next" href="streetrx.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -291,150 +291,273 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-import" class="section level1">
-<h1><span class="header-section-number">8</span> Data Import</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
-<p>Since R is a “glue” language. You can read in from just about any standard data source. We will only cover the most common types, but you can also read from pdfs (package pdftools), web scraping (package rvest and httr), twitter (package twitteR), Facebook (package Rfacebook), and many many more.</p>
-<div id="text-files" class="section level2">
-<h2><span class="header-section-number">8.1</span> Text Files</h2>
-<div id="readr" class="section level3">
-<h3><span class="header-section-number">8.1.1</span> readr</h3>
-<p>One of the most common data sources are text files. Usually these come with a delimiter, such a commas, semicolons, or tabs. The <strong>readr</strong> package is part of the core tidyverse.</p>
-<p>Compared to Base R <code>read</code> functions, <strong>readr</strong> are:</p>
-<ul>
-<li>They are typically much faster (~10x)</li>
-<li>Long running reads automatically get a progress bar</li>
-<li>Default to <strong>tibbles</strong> not data frames</li>
-<li>Does not convert characters to factors</li>
-<li>More reproducible. (Base R read functions inherit properties from the OS)</li>
-</ul>
+<div id="strings" class="section level1">
+<h1><span class="header-section-number">9</span> Strings</h1>
+<p>This section covers basic string manipulation in R. See Chapter 11 in <a href="http://r4ds.had.co.nz/strings.html">R for Data Science</a> for a more complete coverage. The first part of this chapter will probably look familiar, but the rest will focus on <strong>regular expressions</strong>. Regular expressions (sometimes referred to as <strong>regex</strong> or <strong>regexp</strong>) are a concise language for describing patterns in strings.</p>
+<p>While base R has some string functions they tend to be inconsistent in the order of the parameters, which makes them hard to remember and you end up needing the help files. As with most of this course we will focus on the Tidyverse, and in particular the <strong>stringr</strong> package, which in not part of the core tidyverse package so you will have to load it explicitly with <code>library(stringr)</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(stringr)</code></pre></div>
+<div id="string-basics" class="section level2">
+<h2><span class="header-section-number">9.1</span> String Basics</h2>
+<p>As with most languages you create a string by putting the text in single or double quotes <code>x &lt;- &quot;This is my string!&quot;</code>, and you can create a vector of strings with <code>c()</code>. There are a handful of special characters but the most common are the newline character <code>&quot;\n&quot;</code>, and the tab character <code>&quot;\t&quot;</code>. You may also see strings like <code>\u00AE</code> or <code>\u00b5</code> which is a way of including non-English characters or special symbols that work on all platforms. These are typically known as Unicode characters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> &quot;This my registered\u00AE drug&quot;</span>
+x
+<span class="co">#&gt; [1] &quot;This my registered® drug&quot;</span></code></pre></div>
+<p>One nice feature of the stringr package is all string functions begin with <code>str_</code>. This makes it easy in RStudio to find useful string processing functions.</p>
 
 <div class="rmdtip">
-If you’re looking for raw speed, try <code>data.table::fread()</code>. It doesn’t fit quite so well into the tidyverse, but it can be quite a bit faster.
+See the tidyverse package <strong>glue</strong> which can glue strings to data in R. Small, fast, dependency free interpreted string literals.
 </div>
 
+<div id="helpful-basic-string-functions" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> Helpful Basic String functions</h3>
 <ul>
-<li><code>read_csv()</code> reads comma delimited files</li>
-<li><code>read_csv2()</code> reads semicolon separated files (common in countries where , is used as the decimal place)</li>
-<li><code>read_tsv()</code> reads tab delimited files</li>
-<li><code>read_delim()</code> reads in files with any delimiter</li>
-<li><code>read_fwf()</code> reads fixed width files</li>
+<li><code>str_to_upper()</code> converts the string to all uppercase characters</li>
+<li><code>str_to_lower()</code> converts the string to all lowercase characters</li>
+<li><code>str_to_title()</code> capitalizes the first character of each word in the string</li>
+<li><code>str_c()</code> joins multiple strings together into a single string (similar to <code>paste</code> or `paste0 from base R)</li>
+<li><code>str_length()</code> the length of a string</li>
+<li><code>str_wrap()</code> wrap strings into nicely formatted paragraphs</li>
+<li><code>str_trim()</code> trim white space from a string</li>
+<li><code>str_pad()</code> pad a string</li>
+<li><code>str_order()</code> order a character vector</li>
+<li><code>str_sort()</code> sort a character vector</li>
+<li><code>str_sub()</code> extract and replace substrings from a character vector</li>
 </ul>
-<p>All the <code>read_*</code> functions follow the same basic structure. The first argument is the file to read in, followed by the other parameters.</p>
-<div class="rmdnote">
+<div class="rmdcaution">
 <p>
-Files ending in .gz, .bz2, .xz, or .zip will be automatically uncompressed. Files starting with <a href="http://" class="uri">http://</a>, <a href="https://" class="uri">https://</a>, <a href="ftp://" class="uri">ftp://</a>, or ftps:// will be automatically downloaded. Remote gz files can also be automatically downloaded and decompressed.
+While <code>str_c</code> looks and acts very similar to the base R functions <code>paste</code> or <code>paste0</code>, they act very differently with regards to missing data. <code>paste</code> and <code>paste0</code> replace missing values with the text “NA”, while <code>str_c</code> propagates the missing value.
 </p>
 </div>
-<p>Some useful parameters are: - <code>col_types</code> for specifying the data types for each column. - <code>skip = n</code> to skip the first <code>n</code> lines - <code>comment = &quot;#&quot;</code> to drop all lines that start with <code>#</code> - <code>locale</code> locale controls defaults that vary from place to place</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;string&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;with&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;missing&quot;</span>, <span class="st">&quot;value&quot;</span>)
+<span class="co">#&gt; [1] NA</span>
+<span class="kw">paste</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;string&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;with&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;missing&quot;</span>, <span class="st">&quot;value&quot;</span>)
+<span class="co">#&gt; [1] &quot;This is a string NA with a missing value&quot;</span></code></pre></div>
+<p>Notice <code>str_c</code> and <code>paste</code> have both a <code>sep</code> and <code>collapse</code> argument. While these appear to be the same they are not. The <code>sep</code> argument is the string inserted between arguments to <code>str_c</code>, while <code>collapse</code> is the string used to separate any elements of the character vector into a character vector of length one.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;vector&quot;</span>)
+x
+<span class="co">#&gt; [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;character&quot; &quot;vector&quot;</span>
+<span class="kw">str_c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;not&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;vector&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)
+<span class="co">#&gt; [1] &quot;This_is_not_a_character_vector&quot;</span>
+<span class="kw">str_c</span>(x, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)
+<span class="co">#&gt; [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;character&quot; &quot;vector&quot;</span>
+<span class="kw">str_c</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;_&quot;</span>)
+<span class="co">#&gt; [1] &quot;This_is_a_character_vector&quot;</span></code></pre></div>
 </div>
-<div id="base-r" class="section level3">
-<h3><span class="header-section-number">8.1.2</span> base R</h3>
-<p>The tidyverse packages, and <strong>readr</strong> make some simplifying assumptions. The equivalent base R functions are:</p>
-<ul>
-<li><code>read.csv()</code> reads comma delimited files</li>
-<li><code>read.csv2()</code> reads semicolon separated files</li>
-<li><code>read.tsv()</code> reads tab delimited files</li>
-<li><code>read.delim()</code> reads in files with any delimiter</li>
-<li><code>read.fwf()</code> reads fixed width file</li>
-</ul>
 </div>
-</div>
-<div id="sas-files" class="section level2">
-<h2><span class="header-section-number">8.2</span> SAS Files</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)</code></pre></div>
-<p>The <strong>haven</strong> library, which is part of the tidyverse but not part of the core tidyverse package, must be loaded explicitly. <strong>haven</strong> is the most robust option for reading SAS data files. Reading supports both sas7bdat files and the accompanying sas7bdat files that SAS uses to record value labels.</p>
-<p><code>read_sas()</code> reads <code>.sas7bdat</code> + <code>sas7bcat</code> files <code>read_xpt()</code> reads SAS transport files</p>
+<div id="regular-expressions" class="section level2">
+<h2><span class="header-section-number">9.2</span> Regular Expressions</h2>
+<p>A regular expression (regex or regexp for short) is a special text string for describing a search pattern. Usually this pattern is then used by string searching algorithms for “find” or “find and replace” operations on strings. Patterns can be a bit tricky to wrap your head around at first since the most common case is simply looking for a sequence of letters. Patterns are much more general. Think about how would you tell a computer to look for any phone number or any email address.</p>
 <div class="rmdnote">
 <p>
-The <strong>haven</strong> package can also read in:
+Just about every modern programming language has the ability to use regular expressions. In SAS regular expressions are implemented in the PRX series of functions such as: PRXMATCH, PRXSEARCH, PRXPARSE, PRXCHANGE.
 </p>
-<ul>
-<li>
-SPSS files with <code>read_sav()</code> pr <code>read_por()</code>
-</li>
-<li>
-Stata files with <code>read_dta()</code>
-</li>
-</ul>
 </div>
-<p>SAS has the notion of a “labelled” variable (so do Stata and SPSS). These are similar to factors, but:</p>
-<ul>
-<li><p>Integer, numeric and character vectors can be labelled.</p></li>
-<li><p>Not every value must be associated with a label.</p></li>
-</ul>
-<p>Factors, by contrast, are always integers and every integer value must be associated with a label.</p>
-<p>Haven provides a labelled class to model these objects. It doesn’t implement any common methods, but instead focuses of ways to turn a labelled variable into standard R variable:</p>
-<ul>
-<li><p>as_factor(): turns labelled integers into factors. Any values that don’t have a label associated with them will become a missing value. (NOTE: there’s no way to make as.factor() work with labelled variables, so you’ll need to use this new function.)</p></li>
-<li><p>zap_labels(): turns any labelled values into missing values. This deals with the common pattern where you have a continuous variable that has missing values indicated by sentinel values.</p></li>
-</ul>
+<p>Regexps are a very terse language that allow you to describe patterns in strings. They take a little while to get your head around, but once you understand them, you’ll find them extremely useful. Any non-trivial regular expression looks likes a cat walked across your keyboard.</p>
 
-<div class="rmdwarning">
-There are other packages that can read SAS data files, namely <code>sas7bdat</code> and <code>foreign</code>. <code>sas7bdat</code> is no longer being maintained for the last several years and is not recommended for production use. While <code>foreign</code> only reads SAS XPORT format.
+<div class="rmdtip">
+To learn regular expressions, use <code>str_view()</code> and <code>str_view_all()</code>. These functions take a character vector and a regular expression, and show you how they match.
 </div>
 
+<div id="basic-matches" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Basic Matches</h3>
+<p>We’ll start with very simple regular expressions and then gradually get more and more complicated. Once you’ve mastered pattern matching, you’ll learn how to apply those ideas with various stringr functions.We’ll use the buit in fruit dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fruit
+<span class="co">#&gt;  [1] &quot;apple&quot;             &quot;apricot&quot;           &quot;avocado&quot;          </span>
+<span class="co">#&gt;  [4] &quot;banana&quot;            &quot;bell pepper&quot;       &quot;bilberry&quot;         </span>
+<span class="co">#&gt;  [7] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span>
+<span class="co">#&gt; [10] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;breadfruit&quot;       </span>
+<span class="co">#&gt; [13] &quot;canary melon&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span>
+<span class="co">#&gt; [16] &quot;cherry&quot;            &quot;chili pepper&quot;      &quot;clementine&quot;       </span>
+<span class="co">#&gt; [19] &quot;cloudberry&quot;        &quot;coconut&quot;           &quot;cranberry&quot;        </span>
+<span class="co">#&gt; [22] &quot;cucumber&quot;          &quot;currant&quot;           &quot;damson&quot;           </span>
+<span class="co">#&gt; [25] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span>
+<span class="co">#&gt; [28] &quot;eggplant&quot;          &quot;elderberry&quot;        &quot;feijoa&quot;           </span>
+<span class="co">#&gt; [31] &quot;fig&quot;               &quot;goji berry&quot;        &quot;gooseberry&quot;       </span>
+<span class="co">#&gt; [34] &quot;grape&quot;             &quot;grapefruit&quot;        &quot;guava&quot;            </span>
+<span class="co">#&gt; [37] &quot;honeydew&quot;          &quot;huckleberry&quot;       &quot;jackfruit&quot;        </span>
+<span class="co">#&gt; [40] &quot;jambul&quot;            &quot;jujube&quot;            &quot;kiwi fruit&quot;       </span>
+<span class="co">#&gt; [43] &quot;kumquat&quot;           &quot;lemon&quot;             &quot;lime&quot;             </span>
+<span class="co">#&gt; [46] &quot;loquat&quot;            &quot;lychee&quot;            &quot;mandarine&quot;        </span>
+<span class="co">#&gt; [49] &quot;mango&quot;             &quot;mulberry&quot;          &quot;nectarine&quot;        </span>
+<span class="co">#&gt; [52] &quot;nut&quot;               &quot;olive&quot;             &quot;orange&quot;           </span>
+<span class="co">#&gt; [55] &quot;pamelo&quot;            &quot;papaya&quot;            &quot;passionfruit&quot;     </span>
+<span class="co">#&gt; [58] &quot;peach&quot;             &quot;pear&quot;              &quot;persimmon&quot;        </span>
+<span class="co">#&gt; [61] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;plum&quot;             </span>
+<span class="co">#&gt; [64] &quot;pomegranate&quot;       &quot;pomelo&quot;            &quot;purple mangosteen&quot;</span>
+<span class="co">#&gt; [67] &quot;quince&quot;            &quot;raisin&quot;            &quot;rambutan&quot;         </span>
+<span class="co">#&gt; [70] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;rock melon&quot;       </span>
+<span class="co">#&gt; [73] &quot;salal berry&quot;       &quot;satsuma&quot;           &quot;star fruit&quot;       </span>
+<span class="co">#&gt; [76] &quot;strawberry&quot;        &quot;tamarillo&quot;         &quot;tangerine&quot;        </span>
+<span class="co">#&gt; [79] &quot;ugli fruit&quot;        &quot;watermelon&quot;</span></code></pre></div>
+<p>One of the most common uses of regular expressions is to find strings that contain an exact sequence of letters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;berry&quot;</span>)
+<span class="co">#&gt;  [1] &quot;bilberry&quot;    &quot;blackberry&quot;  &quot;blueberry&quot;   &quot;boysenberry&quot; &quot;cloudberry&quot; </span>
+<span class="co">#&gt;  [6] &quot;cranberry&quot;   &quot;elderberry&quot;  &quot;goji berry&quot;  &quot;gooseberry&quot;  &quot;huckleberry&quot;</span>
+<span class="co">#&gt; [11] &quot;mulberry&quot;    &quot;raspberry&quot;   &quot;salal berry&quot; &quot;strawberry&quot;</span></code></pre></div>
+<p>This works great for quite a few cases, but what if you wanted to find just “grape” and not “grapefruit”?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;grape&quot;</span>)
+<span class="co">#&gt; [1] &quot;grape&quot;      &quot;grapefruit&quot;</span></code></pre></div>
 </div>
-<div id="excel" class="section level2">
-<h2><span class="header-section-number">8.3</span> Excel</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)</code></pre></div>
-<p>The <strong>readxl</strong> package makes it easy to get data out of Excel and into R. It is designed to work with tabular data. <strong>readxl</strong> supports both the legacy .xls format and the modern xml-based .xlsx format. The <strong>readxl</strong> library, which is part of the tidyverse but not part of the core tidyverse package, must be loaded explicitly.</p>
-<p>There are two main functions in the <strong>readxl</strong> package.</p>
+<div id="special-characters" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Special Characters</h3>
+<p>Once you get beyond basic substring matching you need some helpers. Below is a list of common helpers.</p>
 <ul>
-<li><code>excel_sheets()</code> lists all the sheets in an excel spreadsheet.</li>
-<li><code>read_excel()</code> reads in xls and xlsx files based on the file extension</li>
+<li><code>.</code> match any character (excpet a newline)</li>
+<li><code>^</code> match the start of the string</li>
+<li><code>$</code> match the end of the string</li>
 </ul>
-<div class="rmdnote">
-<p>
-If you want to prevent <code>read_excel()</code> from guessing which spreadsheet type you have you can use <code>read_xls()</code> or <code>read_xlsx()</code> directly.
-</p>
+<p>So to match “grape” but not “grapefruit” you could do this is a couple ways.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;grape$&quot;</span>)   <span class="co"># match all words that end in &quot;grape&quot;</span>
+<span class="co">#&gt; [1] &quot;grape&quot;</span>
+<span class="kw">str_subset</span>(fruit, <span class="st">&quot;^grape$&quot;</span>)  <span class="co"># match all words the start AND end in &quot;grape&quot;</span>
+<span class="co">#&gt; [1] &quot;grape&quot;</span></code></pre></div>
+<p>Find the fruits that have an “a” in them but not ones that have the only “a” as the starting chracter.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;.a&quot;</span>)
+<span class="co">#&gt;  [1] &quot;avocado&quot;           &quot;banana&quot;            &quot;blackberry&quot;       </span>
+<span class="co">#&gt;  [4] &quot;blackcurrant&quot;      &quot;blood orange&quot;      &quot;breadfruit&quot;       </span>
+<span class="co">#&gt;  [7] &quot;canary melon&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span>
+<span class="co">#&gt; [10] &quot;cranberry&quot;         &quot;currant&quot;           &quot;damson&quot;           </span>
+<span class="co">#&gt; [13] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span>
+<span class="co">#&gt; [16] &quot;eggplant&quot;          &quot;feijoa&quot;            &quot;grape&quot;            </span>
+<span class="co">#&gt; [19] &quot;grapefruit&quot;        &quot;guava&quot;             &quot;jackfruit&quot;        </span>
+<span class="co">#&gt; [22] &quot;jambul&quot;            &quot;kumquat&quot;           &quot;loquat&quot;           </span>
+<span class="co">#&gt; [25] &quot;mandarine&quot;         &quot;mango&quot;             &quot;nectarine&quot;        </span>
+<span class="co">#&gt; [28] &quot;orange&quot;            &quot;pamelo&quot;            &quot;papaya&quot;           </span>
+<span class="co">#&gt; [31] &quot;passionfruit&quot;      &quot;peach&quot;             &quot;pear&quot;             </span>
+<span class="co">#&gt; [34] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;pomegranate&quot;      </span>
+<span class="co">#&gt; [37] &quot;purple mangosteen&quot; &quot;raisin&quot;            &quot;rambutan&quot;         </span>
+<span class="co">#&gt; [40] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;salal berry&quot;      </span>
+<span class="co">#&gt; [43] &quot;satsuma&quot;           &quot;star fruit&quot;        &quot;strawberry&quot;       </span>
+<span class="co">#&gt; [46] &quot;tamarillo&quot;         &quot;tangerine&quot;         &quot;watermelon&quot;</span></code></pre></div>
+<p>If “<code>.</code>” matches any character, how do you match the character “<code>.</code>”?</p>
+<p>You need to use an “escape” to tell the regular expression you want to match it exactly, not use its special behaviour. Like strings, regexps use the backslash, <code>\</code>, to escape special behaviour. So to match an <code>.</code>, you need the regexp <code>\.</code>. Unfortunately this creates a problem. We use strings to represent regular expressions, and <code>\</code> is also used as an escape symbol in strings. So to create the regular expression <code>\.</code> we need the string <code>&quot;\\.&quot;</code>.</p>
+<p>If <code>\</code> is used as an escape character in regular expressions, how do you match a literal <code>\</code>? Well you need to escape it, creating the regular expression <code>\\</code>. To create that regular expression, you need to use a string, which also needs to escape <code>\</code>. That means to match a literal <code>\</code> you need to write <code>&quot;\\\\&quot;</code> — you need four backslashes to match one!</p>
 </div>
-<p>There are several other packages which also can read excel files.</p>
+<div id="character-classes-and-alternatives" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Character classes and alternatives</h3>
+<p>There are a number of special patterns that match more than one character. You’ve already seen <code>.</code>, which matches any character apart from a newline. There are many other useful tools:</p>
 <ul>
-<li><code>openxlsx</code> - can read but is tricky to extract data, but shines in writing Excel files.</li>
-<li><code>xlsx</code> requires Java, usually cannot get corporate IT to install it on Windows.</li>
-<li><code>XLConnect</code> requires Java, usually cannot get corporate IT to install it on Windows.</li>
-<li><code>gdata</code> required Perl, usually cannot get corporate IT to install it on Windows machines.</li>
-<li><code>xlsReadWrite</code> - Does not support .xlsx files</li>
+<li><code>\d</code> match any digit</li>
+<li>[:digits] match any digit</li>
+<li><code>\D</code> match any non digit</li>
+<li><code>[:alpha:]</code> match any letter</li>
+<li><code>[:lower:]</code> match any lowercase letter</li>
+<li><code>[:upper:]</code> match any uppercase leter</li>
+<li><code>[:alnum:]</code> match any alpha numeric character.</li>
+<li><code>[:punct:]</code> match any punctuation (see cheatsheet)</li>
+<li><code>|</code> or (ex <code>ad|e</code> matches “ad” or “e”)</li>
+<li><code>[]</code> matches on of (ex <code>[ade]</code> matches “a”, “d” or “e”, equivalent to `a|d|e)</li>
+<li><code>[^]</code> match anything but (ex <code>[^ade]</code> matches everyting but “a”, “d” or “e”)</li>
+<li><code>[-]</code> match a range (ex <code>[0-5]</code> matches nmberes between 0 and 5 inclusive)</li>
+</ul>
+
+<div class="rmdimportant">
+Remember, to create a regular expression containing <code>\d</code>, you need to escape the <code>\</code> for the string, so you type <code>&quot;\\d&quot;</code>.
+</div>
+
+</div>
+<div id="repetition" class="section level3">
+<h3><span class="header-section-number">9.2.4</span> Repetition</h3>
+<ul>
+<li><code>?</code> match zero or 1</li>
+<li><code>*</code> match zero or more</li>
+<li><code>+</code> match one or more</li>
+<li><code>{n}</code>: exactly n</li>
+<li><code>{n,}</code>: n or more</li>
+<li><code>{,m}</code>: at most m</li>
+<li><code>{n,m}</code>: between n and m</li>
 </ul>
 </div>
-<div id="databases" class="section level2">
-<h2><span class="header-section-number">8.4</span> Databases</h2>
-<p>Here we have to use two (or three) packages. The <strong>DBI</strong> package is used to make the network connection to the database. The connection string should look familiar if you have ever made a connection to a database from another program. As database vendors have slightly different interfaces and connection types. You will have to use the package for your particular database backend. Some common ones include:</p>
-<ul>
-<li><code>RSQLite::SQLite()</code> for SQLite</li>
-<li><code>RMySQL::MySQL()</code> for MySQL</li>
-<li><code>RPostgreSQL::PostgreSQL()</code> for PostgreSQL</li>
-<li><code>odbc::odbc()</code> for Microsoft SQL Server</li>
-<li><code>bigrquery::bigquery()</code> for BigQuery</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(odbc<span class="op">::</span><span class="kw">odbc</span>(),               <span class="co"># for a Mircosoft server</span>
-                 <span class="dt">dsn      =</span> <span class="st">&quot;my_dsn&quot;</span>, 
-                 <span class="dt">server   =</span> <span class="st">&quot;our_awesome_server&quot;</span>,
-                 <span class="dt">database =</span> <span class="st">&quot;cool_db&quot;</span>)</code></pre></div>
-<p>To interact with a database you usually use SQL, the Structured Query Language. SQL is over 40 years old, and is used by pretty much every database in existence.</p>
-<p>This leads to two methods to extract data from a database which boil down to:</p>
-<ul>
-<li>Pull the entire table into a data frame with <code>dbReadTable()</code></li>
-<li>Write SQL for you specific dialect and pull into a data frame with <code>dbGetQuery()</code></li>
-</ul>
-<div class="rmdnote">
-<p>
-Another popular package for connecting to databases is <strong>RODBC</strong>. It tends to be a bit slower than <strong>DBI</strong>.
-</p>
+<div id="grouping" class="section level3">
+<h3><span class="header-section-number">9.2.5</span> Grouping</h3>
+<p>Find everything that is not a “berry”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;[^(berry)]&quot;</span>)
+<span class="co">#&gt;  [1] &quot;apple&quot;             &quot;apricot&quot;           &quot;avocado&quot;          </span>
+<span class="co">#&gt;  [4] &quot;banana&quot;            &quot;bell pepper&quot;       &quot;bilberry&quot;         </span>
+<span class="co">#&gt;  [7] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span>
+<span class="co">#&gt; [10] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;breadfruit&quot;       </span>
+<span class="co">#&gt; [13] &quot;canary melon&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span>
+<span class="co">#&gt; [16] &quot;cherry&quot;            &quot;chili pepper&quot;      &quot;clementine&quot;       </span>
+<span class="co">#&gt; [19] &quot;cloudberry&quot;        &quot;coconut&quot;           &quot;cranberry&quot;        </span>
+<span class="co">#&gt; [22] &quot;cucumber&quot;          &quot;currant&quot;           &quot;damson&quot;           </span>
+<span class="co">#&gt; [25] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span>
+<span class="co">#&gt; [28] &quot;eggplant&quot;          &quot;elderberry&quot;        &quot;feijoa&quot;           </span>
+<span class="co">#&gt; [31] &quot;fig&quot;               &quot;goji berry&quot;        &quot;gooseberry&quot;       </span>
+<span class="co">#&gt; [34] &quot;grape&quot;             &quot;grapefruit&quot;        &quot;guava&quot;            </span>
+<span class="co">#&gt; [37] &quot;honeydew&quot;          &quot;huckleberry&quot;       &quot;jackfruit&quot;        </span>
+<span class="co">#&gt; [40] &quot;jambul&quot;            &quot;jujube&quot;            &quot;kiwi fruit&quot;       </span>
+<span class="co">#&gt; [43] &quot;kumquat&quot;           &quot;lemon&quot;             &quot;lime&quot;             </span>
+<span class="co">#&gt; [46] &quot;loquat&quot;            &quot;lychee&quot;            &quot;mandarine&quot;        </span>
+<span class="co">#&gt; [49] &quot;mango&quot;             &quot;mulberry&quot;          &quot;nectarine&quot;        </span>
+<span class="co">#&gt; [52] &quot;nut&quot;               &quot;olive&quot;             &quot;orange&quot;           </span>
+<span class="co">#&gt; [55] &quot;pamelo&quot;            &quot;papaya&quot;            &quot;passionfruit&quot;     </span>
+<span class="co">#&gt; [58] &quot;peach&quot;             &quot;pear&quot;              &quot;persimmon&quot;        </span>
+<span class="co">#&gt; [61] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;plum&quot;             </span>
+<span class="co">#&gt; [64] &quot;pomegranate&quot;       &quot;pomelo&quot;            &quot;purple mangosteen&quot;</span>
+<span class="co">#&gt; [67] &quot;quince&quot;            &quot;raisin&quot;            &quot;rambutan&quot;         </span>
+<span class="co">#&gt; [70] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;rock melon&quot;       </span>
+<span class="co">#&gt; [73] &quot;salal berry&quot;       &quot;satsuma&quot;           &quot;star fruit&quot;       </span>
+<span class="co">#&gt; [76] &quot;strawberry&quot;        &quot;tamarillo&quot;         &quot;tangerine&quot;        </span>
+<span class="co">#&gt; [79] &quot;ugli fruit&quot;        &quot;watermelon&quot;</span></code></pre></div>
+<p>Find all the fruits with a double letter</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;([:alpha:])</span><span class="ch">\\</span><span class="st">1&quot;</span>)
+<span class="co">#&gt;  [1] &quot;apple&quot;             &quot;bell pepper&quot;       &quot;bilberry&quot;         </span>
+<span class="co">#&gt;  [4] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span>
+<span class="co">#&gt;  [7] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;cherry&quot;           </span>
+<span class="co">#&gt; [10] &quot;chili pepper&quot;      &quot;cloudberry&quot;        &quot;cranberry&quot;        </span>
+<span class="co">#&gt; [13] &quot;currant&quot;           &quot;eggplant&quot;          &quot;elderberry&quot;       </span>
+<span class="co">#&gt; [16] &quot;goji berry&quot;        &quot;gooseberry&quot;        &quot;huckleberry&quot;      </span>
+<span class="co">#&gt; [19] &quot;lychee&quot;            &quot;mulberry&quot;          &quot;passionfruit&quot;     </span>
+<span class="co">#&gt; [22] &quot;persimmon&quot;         &quot;pineapple&quot;         &quot;purple mangosteen&quot;</span>
+<span class="co">#&gt; [25] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;salal berry&quot;      </span>
+<span class="co">#&gt; [28] &quot;strawberry&quot;        &quot;tamarillo&quot;</span></code></pre></div>
 </div>
-<p>Alternatively, you can use the <strong>dbplyr</strong> and the connection to the database to auto generate SQL queries using standard dplyr syntax.</p>
-<p>The goal of <strong>dbplyr</strong> is to automatically generate SQL for you so that you’re not forced to use it. However, SQL is a very large language and <strong>dbplyr</strong> doesn’t do everything. It focuses on SELECT statements, the SQL you write most often as an analysis. See <code>vignette((&quot;dbplyr&quot;))</code> for a in depth discussion.</p>
+<div id="helpful-basic-string-functions-1" class="section level3">
+<h3><span class="header-section-number">9.2.6</span> Helpful Basic String functions</h3>
+<ul>
+<li><code>str_view()</code> show the first match of a regular expression</li>
+<li><code>str_view_all()</code> show all matches of a regular expression</li>
+<li><code>str_subset()</code> keep strings matching a pattern</li>
+<li><code>str_which()</code> find the postions of strings matching a pattern (similar to base R <code>grep()</code>)</li>
+<li><code>str_detect()</code> detect the presence of strings matching a pattern (similar to base R <code>grepl()</code>)</li>
+</ul>
+</div>
+</div>
+<div id="tools" class="section level2">
+<h2><span class="header-section-number">9.3</span> Tools</h2>
+<div id="detect-matches" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Detect Matches</h3>
+<ul>
+<li><code>str_count()</code></li>
+</ul>
+</div>
+<div id="extract-matches" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Extract Matches</h3>
+<ul>
+<li><code>str_subset()</code></li>
+<li><code>str_extract()</code></li>
+</ul>
+</div>
+<div id="replaceing-matches" class="section level3">
+<h3><span class="header-section-number">9.3.3</span> Replaceing Matches</h3>
+</div>
+<div id="splitting" class="section level3">
+<h3><span class="header-section-number">9.3.4</span> Splitting</h3>
 
 </div>
 </div>
+</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="strings.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="streetrx.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -454,7 +577,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DavisBrian/corporater/edit/master/data-import.Rmd",
+"link": "https://github.com/DavisBrian/corporater/edit/master/strings.Rmd",
 "text": "Edit"
 },
 "download": ["rclassnotes.pdf", "rclassnotes.epub"],

@@ -126,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-07-10}
+    \date{2018-07-19}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1834,7 +1834,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.20    0.02    0.23}
+\CommentTok{#>    0.17    0.03    0.20}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2237,7 +2237,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000b7bcde0>}
+\CommentTok{#> <environment: 0x000000000b5ec210>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2296,7 +2296,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.12    0.00    2.12}
+\CommentTok{#>    2.09    0.00    2.11}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -4393,12 +4393,12 @@ of \href{}{R for Data Science}, but for now the basic principle is
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{#> -- Attaching packages ----------------------------------------------------------------------------------- tidyverse 1.2.1 --}
+\CommentTok{#> -- Attaching packages ---------------------------------------------------------------------------------- tidyverse 1.2.1 --}
 \CommentTok{#> v ggplot2 2.2.1     v purrr   0.2.5}
 \CommentTok{#> v tibble  1.4.2     v dplyr   0.7.4}
 \CommentTok{#> v tidyr   0.8.1     v stringr 1.3.1}
 \CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
-\CommentTok{#> -- Conflicts -------------------------------------------------------------------------------------- tidyverse_conflicts() --}
+\CommentTok{#> -- Conflicts ------------------------------------------------------------------------------------- tidyverse_conflicts() --}
 \CommentTok{#> x dplyr::filter() masks stats::filter()}
 \CommentTok{#> x dplyr::lag()    masks stats::lag()}
 \NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bargraphdat.RDS"}\NormalTok{)}
@@ -5593,6 +5593,461 @@ that you're not forced to use it. However, SQL is a very large language
 and \textbf{dbplyr} doesn't do everything. It focuses on SELECT
 statements, the SQL you write most often as an analysis. See
 \texttt{vignette(("dbplyr"))} for a in depth discussion.
+
+\chapter{Strings}\label{strings}
+
+This section covers basic string manipulation in R. See Chapter 11 in
+\href{http://r4ds.had.co.nz/strings.html}{R for Data Science} for a more
+complete coverage. The first part of this chapter will probably look
+familiar, but the rest will focus on \textbf{regular expressions}.
+Regular expressions (sometimes referred to as \textbf{regex} or
+\textbf{regexp}) are a concise language for describing patterns in
+strings.
+
+While base R has some string functions they tend to be inconsistent in
+the order of the parameters, which makes them hard to remember and you
+end up needing the help files. As with most of this course we will focus
+on the Tidyverse, and in particular the \textbf{stringr} package, which
+in not part of the core tidyverse package so you will have to load it
+explicitly with \texttt{library(stringr)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(stringr)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{String Basics}\label{string-basics}
+
+As with most languages you create a string by putting the text in single
+or double quotes \texttt{x\ \textless{}-\ "This\ is\ my\ string!"}, and
+you can create a vector of strings with \texttt{c()}. There are a
+handful of special characters but the most common are the newline
+character \texttt{"\textbackslash{}n"}, and the tab character
+\texttt{"\textbackslash{}t"}. You may also see strings like
+\texttt{\textbackslash{}u00AE} or \texttt{\textbackslash{}u00b5} which
+is a way of including non-English characters or special symbols that
+work on all platforms. These are typically known as Unicode characters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ "This my registered\textbackslash{}u00AE drug"}
+\NormalTok{x}
+\CommentTok{#> [1] "This my registered® drug"}
+\end{Highlighting}
+\end{Shaded}
+
+One nice feature of the stringr package is all string functions begin
+with \texttt{str\_}. This makes it easy in RStudio to find useful string
+processing functions.
+
+\BeginKnitrBlock{rmdtip}
+See the tidyverse package \textbf{glue} which can glue strings to data
+in R. Small, fast, dependency free interpreted string literals.
+\EndKnitrBlock{rmdtip}
+
+\subsection{Helpful Basic String
+functions}\label{helpful-basic-string-functions}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{str\_to\_upper()} converts the string to all uppercase
+  characters
+\item
+  \texttt{str\_to\_lower()} converts the string to all lowercase
+  characters
+\item
+  \texttt{str\_to\_title()} capitalizes the first character of each word
+  in the string
+\item
+  \texttt{str\_c()} joins multiple strings together into a single string
+  (similar to \texttt{paste} or `paste0 from base R)
+\item
+  \texttt{str\_length()} the length of a string
+\item
+  \texttt{str\_wrap()} wrap strings into nicely formatted paragraphs
+\item
+  \texttt{str\_trim()} trim white space from a string
+\item
+  \texttt{str\_pad()} pad a string
+\item
+  \texttt{str\_order()} order a character vector
+\item
+  \texttt{str\_sort()} sort a character vector
+\item
+  \texttt{str\_sub()} extract and replace substrings from a character
+  vector
+\end{itemize}
+
+\begin{rmdcaution}
+While \texttt{str\_c} looks and acts very similar to the base R
+functions \texttt{paste} or \texttt{paste0}, they act very differently
+with regards to missing data. \texttt{paste} and \texttt{paste0} replace
+missing values with the text ``NA'', while \texttt{str\_c} propagates
+the missing value.
+\end{rmdcaution}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_c}\NormalTok{(}\StringTok{"This"}\NormalTok{, }\StringTok{"is"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"string"}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\StringTok{"with"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"missing"}\NormalTok{, }\StringTok{"value"}\NormalTok{)}
+\CommentTok{#> [1] NA}
+\KeywordTok{paste}\NormalTok{(}\StringTok{"This"}\NormalTok{, }\StringTok{"is"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"string"}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\StringTok{"with"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"missing"}\NormalTok{, }\StringTok{"value"}\NormalTok{)}
+\CommentTok{#> [1] "This is a string NA with a missing value"}
+\end{Highlighting}
+\end{Shaded}
+
+Notice \texttt{str\_c} and \texttt{paste} have both a \texttt{sep} and
+\texttt{collapse} argument. While these appear to be the same they are
+not. The \texttt{sep} argument is the string inserted between arguments
+to \texttt{str\_c}, while \texttt{collapse} is the string used to
+separate any elements of the character vector into a character vector of
+length one.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"This"}\NormalTok{, }\StringTok{"is"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"character"}\NormalTok{, }\StringTok{"vector"}\NormalTok{)}
+\NormalTok{x}
+\CommentTok{#> [1] "This"      "is"        "a"         "character" "vector"}
+\KeywordTok{str_c}\NormalTok{(}\StringTok{"This"}\NormalTok{, }\StringTok{"is"}\NormalTok{, }\StringTok{"not"}\NormalTok{, }\StringTok{"a"}\NormalTok{, }\StringTok{"character"}\NormalTok{, }\StringTok{"vector"}\NormalTok{, }\DataTypeTok{sep =} \StringTok{"_"}\NormalTok{)}
+\CommentTok{#> [1] "This_is_not_a_character_vector"}
+\KeywordTok{str_c}\NormalTok{(x, }\DataTypeTok{sep =} \StringTok{"_"}\NormalTok{)}
+\CommentTok{#> [1] "This"      "is"        "a"         "character" "vector"}
+\KeywordTok{str_c}\NormalTok{(x, }\DataTypeTok{collapse =} \StringTok{"_"}\NormalTok{)}
+\CommentTok{#> [1] "This_is_a_character_vector"}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Regular Expressions}\label{regular-expressions}
+
+A regular expression (regex or regexp for short) is a special text
+string for describing a search pattern. Usually this pattern is then
+used by string searching algorithms for ``find'' or ``find and replace''
+operations on strings. Patterns can be a bit tricky to wrap your head
+around at first since the most common case is simply looking for a
+sequence of letters. Patterns are much more general. Think about how
+would you tell a computer to look for any phone number or any email
+address.
+
+\begin{rmdnote}
+Just about every modern programming language has the ability to use
+regular expressions. In SAS regular expressions are implemented in the
+PRX series of functions such as: PRXMATCH, PRXSEARCH, PRXPARSE,
+PRXCHANGE.
+\end{rmdnote}
+
+Regexps are a very terse language that allow you to describe patterns in
+strings. They take a little while to get your head around, but once you
+understand them, you'll find them extremely useful. Any non-trivial
+regular expression looks likes a cat walked across your keyboard.
+
+\BeginKnitrBlock{rmdtip}
+To learn regular expressions, use \texttt{str\_view()} and
+\texttt{str\_view\_all()}. These functions take a character vector and a
+regular expression, and show you how they match.
+\EndKnitrBlock{rmdtip}
+
+\subsection{Basic Matches}\label{basic-matches}
+
+We'll start with very simple regular expressions and then gradually get
+more and more complicated. Once you've mastered pattern matching, you'll
+learn how to apply those ideas with various stringr functions.We'll use
+the buit in fruit dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fruit}
+\CommentTok{#>  [1] "apple"             "apricot"           "avocado"          }
+\CommentTok{#>  [4] "banana"            "bell pepper"       "bilberry"         }
+\CommentTok{#>  [7] "blackberry"        "blackcurrant"      "blood orange"     }
+\CommentTok{#> [10] "blueberry"         "boysenberry"       "breadfruit"       }
+\CommentTok{#> [13] "canary melon"      "cantaloupe"        "cherimoya"        }
+\CommentTok{#> [16] "cherry"            "chili pepper"      "clementine"       }
+\CommentTok{#> [19] "cloudberry"        "coconut"           "cranberry"        }
+\CommentTok{#> [22] "cucumber"          "currant"           "damson"           }
+\CommentTok{#> [25] "date"              "dragonfruit"       "durian"           }
+\CommentTok{#> [28] "eggplant"          "elderberry"        "feijoa"           }
+\CommentTok{#> [31] "fig"               "goji berry"        "gooseberry"       }
+\CommentTok{#> [34] "grape"             "grapefruit"        "guava"            }
+\CommentTok{#> [37] "honeydew"          "huckleberry"       "jackfruit"        }
+\CommentTok{#> [40] "jambul"            "jujube"            "kiwi fruit"       }
+\CommentTok{#> [43] "kumquat"           "lemon"             "lime"             }
+\CommentTok{#> [46] "loquat"            "lychee"            "mandarine"        }
+\CommentTok{#> [49] "mango"             "mulberry"          "nectarine"        }
+\CommentTok{#> [52] "nut"               "olive"             "orange"           }
+\CommentTok{#> [55] "pamelo"            "papaya"            "passionfruit"     }
+\CommentTok{#> [58] "peach"             "pear"              "persimmon"        }
+\CommentTok{#> [61] "physalis"          "pineapple"         "plum"             }
+\CommentTok{#> [64] "pomegranate"       "pomelo"            "purple mangosteen"}
+\CommentTok{#> [67] "quince"            "raisin"            "rambutan"         }
+\CommentTok{#> [70] "raspberry"         "redcurrant"        "rock melon"       }
+\CommentTok{#> [73] "salal berry"       "satsuma"           "star fruit"       }
+\CommentTok{#> [76] "strawberry"        "tamarillo"         "tangerine"        }
+\CommentTok{#> [79] "ugli fruit"        "watermelon"}
+\end{Highlighting}
+\end{Shaded}
+
+One of the most common uses of regular expressions is to find strings
+that contain an exact sequence of letters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_subset}\NormalTok{(fruit, }\StringTok{"berry"}\NormalTok{)}
+\CommentTok{#>  [1] "bilberry"    "blackberry"  "blueberry"   "boysenberry" "cloudberry" }
+\CommentTok{#>  [6] "cranberry"   "elderberry"  "goji berry"  "gooseberry"  "huckleberry"}
+\CommentTok{#> [11] "mulberry"    "raspberry"   "salal berry" "strawberry"}
+\end{Highlighting}
+\end{Shaded}
+
+This works great for quite a few cases, but what if you wanted to find
+just ``grape'' and not ``grapefruit''?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_subset}\NormalTok{(fruit, }\StringTok{"grape"}\NormalTok{)}
+\CommentTok{#> [1] "grape"      "grapefruit"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Special Characters}\label{special-characters}
+
+Once you get beyond basic substring matching you need some helpers.
+Below is a list of common helpers.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{.} match any character (excpet a newline)
+\item
+  \texttt{\^{}} match the start of the string
+\item
+  \texttt{\$} match the end of the string
+\end{itemize}
+
+So to match ``grape'' but not ``grapefruit'' you could do this is a
+couple ways.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_subset}\NormalTok{(fruit, }\StringTok{"grape$"}\NormalTok{)   }\CommentTok{# match all words that end in "grape"}
+\CommentTok{#> [1] "grape"}
+\KeywordTok{str_subset}\NormalTok{(fruit, }\StringTok{"^grape$"}\NormalTok{)  }\CommentTok{# match all words the start AND end in "grape"}
+\CommentTok{#> [1] "grape"}
+\end{Highlighting}
+\end{Shaded}
+
+Find the fruits that have an ``a'' in them but not ones that have the
+only ``a'' as the starting chracter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_subset}\NormalTok{(fruit, }\StringTok{".a"}\NormalTok{)}
+\CommentTok{#>  [1] "avocado"           "banana"            "blackberry"       }
+\CommentTok{#>  [4] "blackcurrant"      "blood orange"      "breadfruit"       }
+\CommentTok{#>  [7] "canary melon"      "cantaloupe"        "cherimoya"        }
+\CommentTok{#> [10] "cranberry"         "currant"           "damson"           }
+\CommentTok{#> [13] "date"              "dragonfruit"       "durian"           }
+\CommentTok{#> [16] "eggplant"          "feijoa"            "grape"            }
+\CommentTok{#> [19] "grapefruit"        "guava"             "jackfruit"        }
+\CommentTok{#> [22] "jambul"            "kumquat"           "loquat"           }
+\CommentTok{#> [25] "mandarine"         "mango"             "nectarine"        }
+\CommentTok{#> [28] "orange"            "pamelo"            "papaya"           }
+\CommentTok{#> [31] "passionfruit"      "peach"             "pear"             }
+\CommentTok{#> [34] "physalis"          "pineapple"         "pomegranate"      }
+\CommentTok{#> [37] "purple mangosteen" "raisin"            "rambutan"         }
+\CommentTok{#> [40] "raspberry"         "redcurrant"        "salal berry"      }
+\CommentTok{#> [43] "satsuma"           "star fruit"        "strawberry"       }
+\CommentTok{#> [46] "tamarillo"         "tangerine"         "watermelon"}
+\end{Highlighting}
+\end{Shaded}
+
+If ``\texttt{.}'' matches any character, how do you match the character
+``\texttt{.}''?
+
+You need to use an ``escape'' to tell the regular expression you want to
+match it exactly, not use its special behaviour. Like strings, regexps
+use the backslash, \texttt{\textbackslash{}}, to escape special
+behaviour. So to match an \texttt{.}, you need the regexp
+\texttt{\textbackslash{}.}. Unfortunately this creates a problem. We use
+strings to represent regular expressions, and \texttt{\textbackslash{}}
+is also used as an escape symbol in strings. So to create the regular
+expression \texttt{\textbackslash{}.} we need the string
+\texttt{"\textbackslash{}\textbackslash{}."}.
+
+If \texttt{\textbackslash{}} is used as an escape character in regular
+expressions, how do you match a literal \texttt{\textbackslash{}}? Well
+you need to escape it, creating the regular expression
+\texttt{\textbackslash{}\textbackslash{}}. To create that regular
+expression, you need to use a string, which also needs to escape
+\texttt{\textbackslash{}}. That means to match a literal
+\texttt{\textbackslash{}} you need to write
+\texttt{"\textbackslash{}\textbackslash{}\textbackslash{}\textbackslash{}"}
+--- you need four backslashes to match one!
+
+\subsection{Character classes and
+alternatives}\label{character-classes-and-alternatives}
+
+There are a number of special patterns that match more than one
+character. You've already seen \texttt{.}, which matches any character
+apart from a newline. There are many other useful tools:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\textbackslash{}d} match any digit
+\item
+  {[}:digits{]} match any digit
+\item
+  \texttt{\textbackslash{}D} match any non digit
+\item
+  \texttt{{[}:alpha:{]}} match any letter
+\item
+  \texttt{{[}:lower:{]}} match any lowercase letter
+\item
+  \texttt{{[}:upper:{]}} match any uppercase leter
+\item
+  \texttt{{[}:alnum:{]}} match any alpha numeric character.
+\item
+  \texttt{{[}:punct:{]}} match any punctuation (see cheatsheet)
+\item
+  \texttt{\textbar{}} or (ex \texttt{ad\textbar{}e} matches ``ad'' or
+  ``e'')
+\item
+  \texttt{{[}{]}} matches on of (ex \texttt{{[}ade{]}} matches ``a'',
+  ``d'' or ``e'', equivalent to `a\textbar{}d\textbar{}e)
+\item
+  \texttt{{[}\^{}{]}} match anything but (ex \texttt{{[}\^{}ade{]}}
+  matches everyting but ``a'', ``d'' or ``e'')
+\item
+  \texttt{{[}-{]}} match a range (ex \texttt{{[}0-5{]}} matches nmberes
+  between 0 and 5 inclusive)
+\end{itemize}
+
+\BeginKnitrBlock{rmdimportant}
+Remember, to create a regular expression containing
+\texttt{\textbackslash{}d}, you need to escape the
+\texttt{\textbackslash{}} for the string, so you type
+\texttt{"\textbackslash{}\textbackslash{}d"}.
+\EndKnitrBlock{rmdimportant}
+
+\subsection{Repetition}\label{repetition}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{?} match zero or 1
+\item
+  \texttt{*} match zero or more
+\item
+  \texttt{+} match one or more
+\item
+  \texttt{\{n\}}: exactly n
+\item
+  \texttt{\{n,\}}: n or more
+\item
+  \texttt{\{,m\}}: at most m
+\item
+  \texttt{\{n,m\}}: between n and m
+\end{itemize}
+
+\subsection{Grouping}\label{grouping}
+
+Find everything that is not a ``berry''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_subset}\NormalTok{(fruit, }\StringTok{"[^(berry)]"}\NormalTok{)}
+\CommentTok{#>  [1] "apple"             "apricot"           "avocado"          }
+\CommentTok{#>  [4] "banana"            "bell pepper"       "bilberry"         }
+\CommentTok{#>  [7] "blackberry"        "blackcurrant"      "blood orange"     }
+\CommentTok{#> [10] "blueberry"         "boysenberry"       "breadfruit"       }
+\CommentTok{#> [13] "canary melon"      "cantaloupe"        "cherimoya"        }
+\CommentTok{#> [16] "cherry"            "chili pepper"      "clementine"       }
+\CommentTok{#> [19] "cloudberry"        "coconut"           "cranberry"        }
+\CommentTok{#> [22] "cucumber"          "currant"           "damson"           }
+\CommentTok{#> [25] "date"              "dragonfruit"       "durian"           }
+\CommentTok{#> [28] "eggplant"          "elderberry"        "feijoa"           }
+\CommentTok{#> [31] "fig"               "goji berry"        "gooseberry"       }
+\CommentTok{#> [34] "grape"             "grapefruit"        "guava"            }
+\CommentTok{#> [37] "honeydew"          "huckleberry"       "jackfruit"        }
+\CommentTok{#> [40] "jambul"            "jujube"            "kiwi fruit"       }
+\CommentTok{#> [43] "kumquat"           "lemon"             "lime"             }
+\CommentTok{#> [46] "loquat"            "lychee"            "mandarine"        }
+\CommentTok{#> [49] "mango"             "mulberry"          "nectarine"        }
+\CommentTok{#> [52] "nut"               "olive"             "orange"           }
+\CommentTok{#> [55] "pamelo"            "papaya"            "passionfruit"     }
+\CommentTok{#> [58] "peach"             "pear"              "persimmon"        }
+\CommentTok{#> [61] "physalis"          "pineapple"         "plum"             }
+\CommentTok{#> [64] "pomegranate"       "pomelo"            "purple mangosteen"}
+\CommentTok{#> [67] "quince"            "raisin"            "rambutan"         }
+\CommentTok{#> [70] "raspberry"         "redcurrant"        "rock melon"       }
+\CommentTok{#> [73] "salal berry"       "satsuma"           "star fruit"       }
+\CommentTok{#> [76] "strawberry"        "tamarillo"         "tangerine"        }
+\CommentTok{#> [79] "ugli fruit"        "watermelon"}
+\end{Highlighting}
+\end{Shaded}
+
+Find all the fruits with a double letter
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str_subset}\NormalTok{(fruit, }\StringTok{"([:alpha:])}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{1"}\NormalTok{)}
+\CommentTok{#>  [1] "apple"             "bell pepper"       "bilberry"         }
+\CommentTok{#>  [4] "blackberry"        "blackcurrant"      "blood orange"     }
+\CommentTok{#>  [7] "blueberry"         "boysenberry"       "cherry"           }
+\CommentTok{#> [10] "chili pepper"      "cloudberry"        "cranberry"        }
+\CommentTok{#> [13] "currant"           "eggplant"          "elderberry"       }
+\CommentTok{#> [16] "goji berry"        "gooseberry"        "huckleberry"      }
+\CommentTok{#> [19] "lychee"            "mulberry"          "passionfruit"     }
+\CommentTok{#> [22] "persimmon"         "pineapple"         "purple mangosteen"}
+\CommentTok{#> [25] "raspberry"         "redcurrant"        "salal berry"      }
+\CommentTok{#> [28] "strawberry"        "tamarillo"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Helpful Basic String
+functions}\label{helpful-basic-string-functions-1}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{str\_view()} show the first match of a regular expression
+\item
+  \texttt{str\_view\_all()} show all matches of a regular expression
+\item
+  \texttt{str\_subset()} keep strings matching a pattern
+\item
+  \texttt{str\_which()} find the postions of strings matching a pattern
+  (similar to base R \texttt{grep()})
+\item
+  \texttt{str\_detect()} detect the presence of strings matching a
+  pattern (similar to base R \texttt{grepl()})
+\end{itemize}
+
+\section{Tools}\label{tools}
+
+\subsection{Detect Matches}\label{detect-matches}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{str\_count()}
+\end{itemize}
+
+\subsection{Extract Matches}\label{extract-matches}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{str\_subset()}
+\item
+  \texttt{str\_extract()}
+\end{itemize}
+
+\subsection{Replaceing Matches}\label{replaceing-matches}
+
+\subsection{Splitting}\label{splitting}
 
 \part{Project}\label{part-project}
 
