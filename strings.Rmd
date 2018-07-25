@@ -1,21 +1,3 @@
-```{r include=FALSE, cache=FALSE}
-set.seed(31415)
-options(digits = 3)
-
-knitr::opts_chunk$set(
-  comment = "#>",
-  collapse = TRUE,
-  cache = FALSE,
-  out.width = "70%",
-  fig.align = 'center',
-  fig.width = 6,
-  fig.asp = 0.618,  # 1 / phi
-  fig.show = "hold"
-)
-
-options(dplyr.print_min = 6, dplyr.print_max = 6)
-Sys.setenv(LANGUAGE = "en")
-```
 # Strings
 
 This section covers basic string manipulation in R.  See Chapter 11 in [R for Data Science](http://r4ds.had.co.nz/strings.html) for a more complete coverage.  The first part of this chapter will probably look familiar, but the rest will focus on **regular expressions**.  Regular expressions (sometimes referred to as **regex** or **regexp**) are a concise language for describing patterns in strings.
@@ -27,7 +9,7 @@ library(tidyverse)
 library(stringr)
 ```
 
-## String Basics
+## Basics
 
 As with most languages you create a string by putting the text in single or double quotes `x <- "This is my string!"`, and you can create a vector of strings with `c()`.  There are a handful of special characters but the most common are the newline character `"\n"`, and the tab character `"\t"`.  You may also see strings like `\u00AE` or `\u00b5` which is a way of including non-English characters or special symbols that work on all platforms.  These are typically known as Unicode characters.
 
@@ -42,12 +24,12 @@ One nice feature of the stringr package is all string functions begin with `str_
 See the tidyverse package **glue** which can glue strings to data in R. Small, fast, dependency free interpreted string literals.
 ```
 
-### Helpful Basic String functions
+### Helpful Basic String Functions
 
+-    `str_c()`        joins multiple strings together into a single string (similar to `paste` or `paste0` from base R)
 -    `str_to_upper()` converts the string to all uppercase characters
 -    `str_to_lower()` converts the string to all lowercase characters
 -    `str_to_title()` capitalizes the first character of each word in the string
--    `str_c()`        joins multiple strings together into a single string (similar to `paste` or `paste0 from base R)
 -    `str_length()`   the length of a string
 -    `str_wrap()`     wrap strings into nicely formatted paragraphs
 -    `str_trim()`     trim white space from a string
@@ -68,9 +50,9 @@ paste("This", "is", "a", "string", NA, "with", "a", "missing", "value")
 Notice `str_c` and `paste` have both a `sep` and `collapse` argument.  While these appear to be the same they are not.  The `sep` argument is the string inserted between arguments to `str_c`, while `collapse` is the string used to separate any elements of the character vector into a character vector of length one.
 
 ```{r}
+str_c("This", "is", "not", "a", "character", "vector", sep = "_")
 x <- c("This", "is", "a", "character", "vector")
 x
-str_c("This", "is", "not", "a", "character", "vector", sep = "_")
 str_c(x, sep = "_")
 str_c(x, collapse = "_")
 ```
@@ -92,7 +74,7 @@ To learn regular expressions, use `str_view()` and `str_view_all()`. These funct
 
 ### Basic Matches
 
-We’ll start with very simple regular expressions and then gradually get more and more complicated. Once you’ve mastered pattern matching, you’ll learn how to apply those ideas with various stringr functions.We'll use the buit in fruit dataset.
+We’ll start with very simple regular expressions and then gradually get more and more complicated. Once you’ve mastered pattern matching, you’ll learn how to apply those ideas with various stringr functions. We'll use the built in fruit data set.
 
 ```{r}
 fruit
@@ -102,6 +84,10 @@ One of the most common uses of regular expressions is to find strings that conta
 
 ```{r}
 str_subset(fruit, "berry")
+```
+
+```{block2, type='rmdnote'}
+`str_subset()` keeps strings matching a pattern.  We will use these as examples of how to use patterns, but work with any function which takes a pattern.
 ```
 
 This works great for quite a few cases, but what if you wanted to find just "grape" and not "grapefruit"?
@@ -114,7 +100,7 @@ str_subset(fruit, "grape")
 
 Once you get beyond basic substring matching you need some helpers.  Below is a list of common helpers.
 
--    `.` match any character (excpet a newline)
+-    `.` match any character (except a newline)
 -    `^` match the start of the string
 -    `$` match the end of the string
 
@@ -125,7 +111,7 @@ str_subset(fruit, "grape$")   # match all words that end in "grape"
 str_subset(fruit, "^grape$")  # match all words the start AND end in "grape"
 ```
  
-Find the fruits that have an "a" in them but not ones that have the only "a" as the starting chracter.
+Find the fruits that have an "a" in them but not ones that have the only "a" as the starting character.
 
 ```{r}
 str_subset(fruit, ".a")
@@ -133,12 +119,12 @@ str_subset(fruit, ".a")
 
 If "`.`" matches any character, how do you match the character "`.`"? 
 
-You need to use an "escape" to tell the regular expression you want to match it exactly, not use its special behaviour. Like strings, regexps use the backslash, `\`, to escape special behaviour. So to match an `.`, you need the regexp `\.`. Unfortunately this creates a problem. We use strings to represent regular expressions, and `\` is also used as an escape symbol in strings. So to create the regular expression `\.` we need the string `"\\."`. 
+You need to use an "escape" to tell the regular expression you want to match it exactly, not use its special behavior. Like strings, regexps use the backslash, `\`, to escape special behavior. So to match an `.`, you need the regexp `\.`. Unfortunately this creates a problem. We use strings to represent regular expressions, and `\` is also used as an escape symbol in strings. So to create the regular expression `\.` we need the string `"\\."`. 
 
 If `\` is used as an escape character in regular expressions, how do you match a literal `\`? Well you need to escape it, creating the regular expression `\\`. To create that regular expression, you need to use a string, which also needs to escape `\`. That means to match a literal `\` you need to write `"\\\\"` --- you need four backslashes to match one!
 
 
-### Character classes and alternatives
+### Character Classes and Alternatives
 
 There are a number of special patterns that match more than one character. You’ve already seen `.`, which matches any character apart from a newline. There are many other useful tools:
 
@@ -147,19 +133,23 @@ There are a number of special patterns that match more than one character. You�
 -    `\D` match any non digit
 -    `[:alpha:]` match any letter
 -    `[:lower:]` match any lowercase letter
--    `[:upper:]` match any uppercase leter
+-    `[:upper:]` match any uppercase letter
 -    `[:alnum:]` match any alpha numeric character.
--    `[:punct:]` match any punctuation (see cheatsheet)
+-    `[:punct:]` match any punctuation (see cheat sheet)
 -    `|`         or (ex `ad|e` matches "ad" or "e")
 -    `[]`        matches on of (ex `[ade]` matches "a", "d" or "e", equivalent to `a|d|e)
--    `[^]`       match anything but (ex `[^ade]` matches everyting but "a", "d" or "e")
--    `[-]`       match a range (ex `[0-5]` matches nmberes between 0 and 5 inclusive)
+-    `[^]`       match anything but (ex `[^ade]` matches everything but "a", "d" or "e")
+-    `[-]`       match a range (ex `[0-5]` matches numbers between 0 and 5 inclusive)
 
 ```{block2, type='rmdimportant'}
 Remember, to create a regular expression containing `\d`, you need to escape the `\` for the string, so you type `"\\d"`.
 ```
 
+A character class containing a single character is a nice alternative to backslash escapes when you want to include a single meta character in a regex. Many people find this more readable.
+
 ### Repetition
+
+The next step up in power involves controlling how many times a pattern matches:
 
 * `?` match zero or 1
 * `*` match zero or more
@@ -169,41 +159,112 @@ Remember, to create a regular expression containing `\d`, you need to escape the
 * `{,m}`: at most m
 * `{n,m}`: between n and m
 
+Find all the fruits with three or more "e"'s.
+```{r}
+str_subset(fruit, ".*e.*e.*e") 
+
+# or more succinctly
+str_subset(fruit, "(.*e){3,}")
+```
 
 ### Grouping
 
-Find everything that is not a "berry"
+Parentheses are a way to disambiguate complex expressions. Parentheses also create a **numbered capturing group** (number 1, 2 etc.). A capturing group stores **the part of the string** matched by the part of the regular expression inside the parentheses. You can refer to the same text as previously matched by a capturing group with **backreferences**, like `\1`, `\2` etc.
 
-```{r}
-str_subset(fruit, "[^(berry)]")
-```
-
-Find all the fruits with a double letter 
+For example, find all the fruits with a double letter 
 ```{r}
 str_subset(fruit, "([:alpha:])\\1")
 ```
 
-### Helpful Basic String functions
+Find all fruits that have a repeated pair of letters.
+```{r}
+str_subset(fruit, "(..)\\1")
+```
 
--    `str_view()`     show the first match of a regular expression
--    `str_view_all()` show all matches of a regular expression
--    `str_subset()`   keep strings matching a pattern
--    `str_which()`    find the postions of strings matching a pattern (similar to base R `grep()`)
--    `str_detect()`   detect the presence of strings matching a pattern (similar to base R `grepl()`)
+## Helpful String Functions
 
-## Tools
+Don’t forget that you’re in a programming language and you have other tools at your disposal. Instead of creating one complex regular expression, it’s often easier to write a series of simpler regexps. If you get stuck trying to create a single regexp that solves your problem, take a step back and think if you could break the problem down into smaller pieces, solving each challenge before moving onto the next one.
 
 ### Detect Matches
 
+-    `str_detect()`  Detect the presence of strings matching a pattern (similar to base R `grepl()`)
+-    `str_count()`   Count the number of matches in a string.
 
--    `str_count()`
+What proportion of the fruits have double letters?
+```{r}
+str_detect(fruit, "([:alpha:])\\1") %>% mean()
+```
+
+What is the distribution of vowels in fruits?
+```{r}
+str_count(fruit, "[aeiou]") %>% hist()
+```
+
+```{block2, type='rmdtip'}
+`str_detect()` has a natural fit with filter to subset data sets.
+```
 
 ### Extract Matches
 
--    `str_subset()`
--    `str_extract()`
+-    `str_subset()`       keep strings matching a pattern
+-    `str_extract()`      extract first matching patterns from a string.
+-    `str_extract_all()`  extract all matching patterns from a string.
+-    `str_which()`        find the positions of strings matching a pattern (similar to base R `grep()`)
 
-### Replaceing Matches
+Which fruits have a color in their name?
+```{r}
+# create our regular expression from a character vector
+colors <- c("red", "orange", "yellow", "green", "blue", "purple", "black")
+color_match <- str_c(colors, collapse = "|")
+color_match
+
+str_subset(fruit, color_match)
+```
+
+Pull out the vowels in all the fruits
+```{r}
+str_extract(fruit, "[aeiou]")
+str_extract_all(fruit, "[aeiou]") %>% head()
+```
+
+### Replacing Matches
+
+-    `str_replace()`      replace first matched pattern in a string.
+-    `str_replace_all()`  replace all matched pattern in a string.
+
+```{block type='rmdnote'}
+These functions are similar to base R functions `sub()` and `gsub()`
+```
+
+Replace vowels with a hyphen
+```{r}
+str_replace(fruit, "[aeiou]", "-") %>% head()
+str_replace_all(fruit, "[aeiou]", "-") %>% head()
+```
+
+Also, `str_replace_all()` can perform multiple replacements by supplying a named vector. 
+
+Instead of replacing with a fixed string you can use backreferences to insert components of the match. 
+
+If the fruit name is comprised of 2 or more words swap the first and second word. 
+```{r}
+str_replace(fruit, "([^ ]+) ([^ ]+)", "\\2 \\1")
+```
 
 
-### Splitting
+### Other String Functions
+
+-    `str_split()`      split up a string into pieces
+-    `str_locate()`     returns the starting and ending positions of the first match 
+-    `str_locate_all()` returns the starting and ending positions of all matches 
+
+Split the fruits up by word
+```{r}
+str_split(fruit, " ")  %>% head(., 10)  # split by a space
+str_split(fruit, boundary("word"))  %>% head(., 10) # split by word boundry
+str_split(fruit, " ", n = 2, simplify = TRUE)   # only split into 2 peices
+```
+
+**stringr** is built on top of the **stringi** package. stringr is useful when you’re learning because it exposes a minimal set of functions, which have been carefully picked to handle the most common string manipulation functions. stringi, on the other hand, is designed to be comprehensive. It contains almost every function you might ever need: stringi has 234 functions to stringr’s 46.
+
+If you find yourself struggling to do something in stringr, it’s worth taking a look at stringi. The packages work very similarly, so you should be able to translate your stringr knowledge in a natural way. The main difference is the prefix: `str_` vs. `stri_`.
