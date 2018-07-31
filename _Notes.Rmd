@@ -28,7 +28,7 @@ this is a Tip
 This is a warning!
 ```
 
-[R BAsics](http://r-statistics.co/R-Tutorial.html)
+[R Basics](http://r-statistics.co/R-Tutorial.html)
 
 ## String exercises
  Change as string from Windows Paths to R paths (convert \\ to / and end with / )

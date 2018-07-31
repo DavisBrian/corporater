@@ -13,8 +13,7 @@ rmd_files: [
   "data-transform.Rmd",
   "data-import.Rmd",
   "strings.Rmd",
-  
-  "streetrx.Rmd",
+  "data-tidy.Rmd",
   
   "appendix-A.Rmd"]
   
