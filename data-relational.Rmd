@@ -1,0 +1,103 @@
+# Relational Data
+
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+
+Data analysis rarely involves only a single table of data. Typically you have multiple tables of data, when combined, answer the questions at hand. Collectively, multiple tables of data are called __relational data__ because it is the relations, not just the individual datasets, that are important. Relations are **always** defined between a pair of tables. All other relations are built up from this simple idea.
+
+To work with relational data you need verbs that work with pairs of tables. There are three families of verbs designed to work with relational data:
+
+* __Mutating joins__, which add new variables to one data frame from matching
+  observations in another.
+
+* __Filtering joins__, which filter observations from one data frame based on
+  whether or not they match an observation in the other table.
+
+* __Set operations__, which treat observations as if they were set elements.
+
+The most common place to find relational data is in a _relational_ database management system (or RDBMS), a term that encompasses almost all modern databases. If you've used a database before, you've almost certainly used SQL.
+
+## Mutating Joins
+
+A mutating join allows you to combine variables from two tables. It first matches observations by their keys, then copies across variables from one table to the other. Like mutate(), the join functions add variables to the right, so if you have a lot of variables already, the new variables won’t get printed out.
+
+*  **left join** keeps all observations in x append columns from y
+*  **right join** keeps all observations in y append columns from x
+*  **full join** keeps all observations in x and y
+*  **inner join** keeps all observations in common between x and y
+
+The most common way to visualize these joins is through Venn diagrams.  
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-venn.png")
+```
+
+However, this doesn't show what happens with missing or duplicate keys.
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-outer.png")
+```
+
+```{r}
+x <- tribble(
+  ~key, ~val_x,
+     1, "x1",
+     2, "x2",
+     3, "x3"
+)
+y <- tribble(
+  ~key, ~val_y,
+     1, "y1",
+     2, "y2",
+     4, "y3"
+)
+```
+
+
+### Inner Join
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-inner.png")
+```
+
+
+
+
+
+### Duplicate keys
+
+One-to-many
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-one-to-many.png")
+```
+
+
+many-to-many
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-many-to-many.png")
+```
+
+
+### Multiple columns
+
+
+### Column names don't match
+
+
+### Missing Keys?
+
+
+## Filtering Joins
+
+*  **semi join** keeps all observations in x that have a match in y
+*  **anti join** drops all observations in x that have a match in y
+
+
+
+
+
+
+
+## Set Operations

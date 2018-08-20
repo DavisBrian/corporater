@@ -1834,7 +1834,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.16    0.06    0.22}
+\CommentTok{#>    0.20    0.02    0.22}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2237,7 +2237,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000b297d38>}
+\CommentTok{#> <environment: 0x000000000b4b6b10>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2296,7 +2296,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.23    0.00    2.30}
+\CommentTok{#>    2.12    0.00    2.14}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -4393,12 +4393,12 @@ of \href{}{R for Data Science}, but for now the basic principle is
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{#> -- Attaching packages ----------------------------------------------------------------- tidyverse 1.2.1 --}
+\CommentTok{#> -- Attaching packages -------------------------------------------------- tidyverse 1.2.1 --}
 \CommentTok{#> v ggplot2 3.0.0     v purrr   0.2.5}
 \CommentTok{#> v tibble  1.4.2     v dplyr   0.7.6}
 \CommentTok{#> v tidyr   0.8.1     v stringr 1.3.1}
 \CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
-\CommentTok{#> -- Conflicts -------------------------------------------------------------------- tidyverse_conflicts() --}
+\CommentTok{#> -- Conflicts ----------------------------------------------------- tidyverse_conflicts() --}
 \CommentTok{#> x dplyr::filter() masks stats::filter()}
 \CommentTok{#> x dplyr::lag()    masks stats::lag()}
 \NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bargraphdat.RDS"}\NormalTok{)}
@@ -7153,7 +7153,13 @@ database management system (or RDBMS), a term that encompasses almost
 all modern databases. If you've used a database before, you've almost
 certainly used SQL.
 
-Mutating Joins
+\section{Mutating Joins}\label{mutating-joins}
+
+A mutating join allows you to combine variables from two tables. It
+first matches observations by their keys, then copies across variables
+from one table to the other. Like mutate(), the join functions add
+variables to the right, so if you have a lot of variables already, the
+new variables won't get printed out.
 
 \begin{itemize}
 \tightlist
@@ -7162,10 +7168,57 @@ Mutating Joins
 \item
   \textbf{right join} keeps all observations in y append columns from x
 \item
-  \textbf{full join} keeps all observations in x and
+  \textbf{full join} keeps all observations in x and y
+\item
+  \textbf{inner join} keeps all observations in common between x and y
 \end{itemize}
 
-Filtering Joins
+The most common way to visualize these joins is through Venn diagrams.
+
+\begin{center}\includegraphics{images/relational/join-venn} \end{center}
+
+However, this doesn't show what happens with missing or duplicate keys.
+
+\begin{center}\includegraphics{images/relational/join-outer} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{key, }\OperatorTok{~}\NormalTok{val_x,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"x1"}\NormalTok{,}
+     \DecValTok{2}\NormalTok{, }\StringTok{"x2"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"x3"}
+\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{key, }\OperatorTok{~}\NormalTok{val_y,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"y1"}\NormalTok{,}
+     \DecValTok{2}\NormalTok{, }\StringTok{"y2"}\NormalTok{,}
+     \DecValTok{4}\NormalTok{, }\StringTok{"y3"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Inner Join}\label{inner-join}
+
+\begin{center}\includegraphics{images/relational/join-inner} \end{center}
+
+\subsection{Duplicate keys}\label{duplicate-keys}
+
+One-to-many
+
+\begin{center}\includegraphics{images/relational/join-one-to-many} \end{center}
+
+many-to-many
+
+\begin{center}\includegraphics{images/relational/join-many-to-many} \end{center}
+
+\subsection{Multiple columns}\label{multiple-columns}
+
+\subsection{Column names don't match}\label{column-names-dont-match}
+
+\subsection{Missing Keys?}\label{missing-keys}
+
+\section{Filtering Joins}\label{filtering-joins}
 
 \begin{itemize}
 \tightlist
@@ -7175,17 +7228,7 @@ Filtering Joins
   \textbf{anti join} drops all observations in x that have a match in y
 \end{itemize}
 
-Basic examples
-
-Duplicate keys
-
-Multiple columns
-
-Column names don't match
-
-Missing Keys?
-
-\chapter{Set Operations}\label{set-operations}
+\section{Set Operations}\label{set-operations}
 
 \part{Appendix}\label{part-appendix}
 
