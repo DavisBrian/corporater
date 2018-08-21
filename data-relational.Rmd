@@ -17,28 +17,7 @@ To work with relational data you need verbs that work with pairs of tables. Ther
 
 * __Set operations__, which treat observations as if they were set elements.
 
-The most common place to find relational data is in a _relational_ database management system (or RDBMS), a term that encompasses almost all modern databases. If you've used a database before, you've almost certainly used SQL.
-
-## Mutating Joins
-
-A mutating join allows you to combine variables from two tables. It first matches observations by their keys, then copies across variables from one table to the other. Like mutate(), the join functions add variables to the right, so if you have a lot of variables already, the new variables won’t get printed out.
-
-*  **left join** keeps all observations in x append columns from y
-*  **right join** keeps all observations in y append columns from x
-*  **full join** keeps all observations in x and y
-*  **inner join** keeps all observations in common between x and y
-
-The most common way to visualize these joins is through Venn diagrams.  
-
-```{r, echo = FALSE, out.width = NULL}
-knitr::include_graphics("images/relational/join-venn.png")
-```
-
-However, this doesn't show what happens with missing or duplicate keys.
-
-```{r, echo = FALSE, out.width = NULL}
-knitr::include_graphics("images/relational/join-outer.png")
-```
+The most common place to find relational data is in a _relational_ database management system (or RDBMS), a term that encompasses almost all modern databases. If you've used a database before, you've almost certainly used SQL. A **key** is a variable, or set of variables, that uniquely identifies an observation.
 
 ```{r}
 x <- tribble(
@@ -53,40 +32,145 @@ y <- tribble(
      2, "y2",
      4, "y3"
 )
+
+x
+y
 ```
 
 
-### Inner Join
+## Mutating Joins
+
+A mutating join allows you to combine variables from two tables. It first matches observations by their keys, then copies across variables from one table to the other. Like mutate(), the join functions add variables to the right, so if you have a lot of variables already, the new variables won’t get printed out.
+Inner Joins
+
+*  **inner join** keeps all observations in common between x and y
 
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("images/relational/join-inner.png")
 ```
 
+```{r}
+inner_join(x, y)
+```
 
+Outer Joins
 
+*  **left join** keeps all observations in x append columns from y
+*  **right join** keeps all observations in y append columns from x
+*  **full join** keeps all observations in x and y
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-outer.png")
+```
+
+```{r}
+left_join(x, y, by = "key")
+right_join(x, y, by = "key")
+full_join(x, y, by = "key")
+```
 
 
 ### Duplicate keys
 
-One-to-many
+#### **One-to-Many**
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("images/relational/join-one-to-many.png")
 ```
 
-
-many-to-many
+#### **Many-to-Many**
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("images/relational/join-many-to-many.png")
 ```
 
-
 ### Multiple columns
+
+```{r}
+x <- tribble(
+  ~id, ~yq, ~question1,
+     1, "2018Q1", "Yes",
+     1, "2018Q2", "No",
+     2, "2018Q1", "Yes",
+     3, "2018Q1", "Yes",
+     3, "2018Q2", "Yes"
+)
+
+y <- tribble(
+  ~id, ~yq, ~question2,
+     1, "2018Q2", "Method1",
+     2, "2018Q1", "Method2",
+     2, "2018Q2", "Method2",
+     3, "2018Q2", "Method2",
+     4, "2018Q1", "Method1"
+)
+
+# inner
+inner_join(x, y, by = c("id", "yq"))
+
+# left / right
+left_join(x, y, by = c("id", "yq"))
+right_join(x, y, by = c("id", "yq"))
+
+# left and right are interchangeable
+right_join(y, x, by = c("id", "yq"))
+left_join(y, x, by = c("id", "yq"))
+
+# full
+full_join(x, y, by = c("id", "yq"))
+full_join(y, x, by = c("id", "yq"))
+```
+
 
 
 ### Column names don't match
+```{r}
+x <- tribble(
+  ~id, ~yq, ~question1,
+     1, "2018Q1", "Yes",
+     1, "2018Q2", "No",
+     2, "2018Q1", "Yes",
+     3, "2018Q1", "Yes",
+     3, "2018Q2", "Yes"
+)
+
+y <- tribble(
+  ~id, ~yearquarter, ~question2,
+     1, "2018Q2", "Method1",
+     2, "2018Q1", "Method2",
+     2, "2018Q2", "Method2",
+     3, "2018Q2", "Method2",
+     4, "2018Q1", "Method1"
+)
+
+# inner
+inner_join(x, y, by = c("id", "yq" = "yearquarter"))
+```
 
 
-### Missing Keys?
+### Duplicate Columns
+
+```{r}
+orig <- tribble(
+  ~id, ~yq, ~question,
+     1, "2018Q1", "Yes",
+     1, "2018Q2", "No",
+     2, "2018Q1", "Yes",
+     3, "2018Q1", "Yes",
+     3, "2018Q2", "Yes"
+)
+
+val <- tribble(
+  ~id, ~yq, ~question,
+     1, "2018Q1", "No",
+     1, "2018Q2", "No",
+     2, "2018Q1", "Yes",
+     3, "2018Q1", "No",
+     3, "2018Q2", "Yes"
+)
+
+# left
+left_join(orig, val, by = c("id", "yq"))
+left_join(orig, val, by = c("id", "yq"), suffix = c("_orig", "_val"))
+```
 
 
 ## Filtering Joins
@@ -94,7 +178,19 @@ knitr::include_graphics("images/relational/join-many-to-many.png")
 *  **semi join** keeps all observations in x that have a match in y
 *  **anti join** drops all observations in x that have a match in y
 
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-semi.png")
+```
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-anti.png")
+```
 
+```{r}
+
+semi_join(orig, val, by = c("id", "yq", "question"))
+
+anti_join(orig, val, by = c("id", "yq", "question"))
+```
 
 
 
