@@ -5,7 +5,7 @@ library(tidyverse)
 ```
 
 
-Data analysis rarely involves only a single table of data. Typically you have multiple tables of data, when combined, answer the questions at hand. Collectively, multiple tables of data are called __relational data__ because it is the relations, not just the individual datasets, that are important. Relations are **always** defined between a pair of tables. All other relations are built up from this simple idea.
+Data analysis rarely involves only a single table of data. Typically you have multiple tables of data, which combined, answer the questions at hand. Collectively, multiple tables of data are called __relational data__ because it is the relations, not just the individual datasets, that are important. Relations are **always** defined between a pair of tables. All other relations are built up from this simple idea. A **key** is a variable, or set of variables, that uniquely identifies an observation and links tables together.
 
 To work with relational data you need verbs that work with pairs of tables. There are three families of verbs designed to work with relational data:
 
@@ -19,7 +19,11 @@ To work with relational data you need verbs that work with pairs of tables. Ther
 
 The most common place to find relational data is in a _relational_ database management system (or RDBMS), a term that encompasses almost all modern databases. If you've used a database before, you've almost certainly used SQL. A **key** is a variable, or set of variables, that uniquely identifies an observation.
 
-```{r}
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-setup.png")
+```
+
+```{r, echo = FALSE}
 x <- tribble(
   ~key, ~val_x,
      1, "x1",
@@ -32,18 +36,20 @@ y <- tribble(
      2, "y2",
      4, "y3"
 )
+```
 
+```{r}
 x
 y
 ```
 
-
 ## Mutating Joins
 
 A mutating join allows you to combine variables from two tables. It first matches observations by their keys, then copies across variables from one table to the other. Like mutate(), the join functions add variables to the right, so if you have a lot of variables already, the new variables won’t get printed out.
-Inner Joins
 
-*  **inner join** keeps all observations in common between x and y
+**Inner Joins**
+
+-  **inner join** keeps all observations in common between x and y
 
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("images/relational/join-inner.png")
@@ -53,11 +59,15 @@ knitr::include_graphics("images/relational/join-inner.png")
 inner_join(x, y)
 ```
 
-Outer Joins
+```{block2, type='rmdtip'}
+By default the **join** functions will use all variables in common as the key.  Best practice is to explicitly state the variables you wish to join by using the `by` parameter. 
+```
 
-*  **left join** keeps all observations in x append columns from y
-*  **right join** keeps all observations in y append columns from x
-*  **full join** keeps all observations in x and y
+**Outer Joins**
+
+-  **left join** keeps all observations in x append columns from y
+-  **right join** keeps all observations in y append columns from x
+-  **full join** keeps all observations in x and y
 
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("images/relational/join-outer.png")
@@ -69,24 +79,35 @@ right_join(x, y, by = "key")
 full_join(x, y, by = "key")
 ```
 
+```{block type='rmdnote'}
+**left_join** and **right_join** are interchangeable with the arguments reversed.  The only difference is the order of the columns in the resulting data frame.
+```
+
+```{r}
+left_join(x, y, by = "key")
+right_join(y, x, by = "key")
+```
 
 ### Duplicate keys
 
-#### **One-to-Many**
+There are many cases where a single key does not uniquely identify an observation. 
+
+**One-to-Many**
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("images/relational/join-one-to-many.png")
 ```
 
-#### **Many-to-Many**
+**Many-to-Many**
 ```{r, echo = FALSE, out.width = NULL}
 knitr::include_graphics("images/relational/join-many-to-many.png")
 ```
 
-### Multiple columns
+### Multi-Column Keys
 
+By default all variables that are in both tables.  To specify a subset of variables for the key use the `by` parameter.
 ```{r}
 x <- tribble(
-  ~id, ~yq, ~question1,
+  ~id, ~yq, ~question,
      1, "2018Q1", "Yes",
      1, "2018Q2", "No",
      2, "2018Q1", "Yes",
@@ -95,36 +116,33 @@ x <- tribble(
 )
 
 y <- tribble(
-  ~id, ~yq, ~question2,
+  ~id, ~yq, ~question,
      1, "2018Q2", "Method1",
      2, "2018Q1", "Method2",
      2, "2018Q2", "Method2",
      3, "2018Q2", "Method2",
      4, "2018Q1", "Method1"
 )
-
-# inner
-inner_join(x, y, by = c("id", "yq"))
-
-# left / right
-left_join(x, y, by = c("id", "yq"))
-right_join(x, y, by = c("id", "yq"))
-
-# left and right are interchangeable
-right_join(y, x, by = c("id", "yq"))
-left_join(y, x, by = c("id", "yq"))
 
 # full
+full_join(x, y)                          # probably not what we want
 full_join(x, y, by = c("id", "yq"))
-full_join(y, x, by = c("id", "yq"))
 ```
 
+### Duplicate Non-Key Columns
 
+By default if there are variables in both data frames that are not used as a key the common variables names will be appended with `".x"` and `".y"` corresponding the the first and second argument.  If you want to change these use the `suffix` parameter.
 
-### Column names don't match
+```{r}
+full_join(x, y, by = c("id", "yq"), suffix = c("_1", "_2"))
+```
+
+### Different Key Column Names
+
+A common occurrence is for the tables you wish to join to have different variable names. You can either change the variable names so the do match with `rename()` or you can use the `by` parameter to indicate which variable name in x matches the variable name in y.
 ```{r}
 x <- tribble(
-  ~id, ~yq, ~question1,
+  ~id, ~yq, ~question,
      1, "2018Q1", "Yes",
      1, "2018Q2", "No",
      2, "2018Q1", "Yes",
@@ -132,8 +150,8 @@ x <- tribble(
      3, "2018Q2", "Yes"
 )
 
-y <- tribble(
-  ~id, ~yearquarter, ~question2,
+y2 <- tribble(
+  ~id, ~yearquarter, ~question,
      1, "2018Q2", "Method1",
      2, "2018Q1", "Method2",
      2, "2018Q2", "Method2",
@@ -142,11 +160,24 @@ y <- tribble(
 )
 
 # inner
-inner_join(x, y, by = c("id", "yq" = "yearquarter"))
+full_join(x, y2, by = c("id", "yq" = "yearquarter"), suffix = c("_1", "_2"))
 ```
 
+## Filtering Joins
 
-### Duplicate Columns
+Filtering joins match observations in the same way as mutating joins, but affect the observations, not the variables. There are two types:
+
+*  **semi join** keeps all observations in x that have a match in y
+*  **anti join** drops all observations in x that have a match in y
+
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-semi.png")
+```
+```{r, echo = FALSE, out.width = NULL}
+knitr::include_graphics("images/relational/join-anti.png")
+```
+
+**Semi-joins** are useful for matching filtered summary tables back to the original rows. The inverse of a **semi-join** is an **anti-join**. An **anti-join** keeps the rows that don’t have a match. **Anti-joins** are useful for diagnosing join mismatches. 
 
 ```{r}
 orig <- tribble(
@@ -163,37 +194,47 @@ val <- tribble(
      1, "2018Q1", "No",
      1, "2018Q2", "No",
      2, "2018Q1", "Yes",
-     3, "2018Q1", "No",
+     3, "2018Q3", "No",
      3, "2018Q2", "Yes"
 )
 
-# left
-left_join(orig, val, by = c("id", "yq"))
-left_join(orig, val, by = c("id", "yq"), suffix = c("_orig", "_val"))
+semi_join(orig, val, by = c("id", "yq"))
+anti_join(orig, val, by = c("id", "yq"))
+
 ```
-
-
-## Filtering Joins
-
-*  **semi join** keeps all observations in x that have a match in y
-*  **anti join** drops all observations in x that have a match in y
-
-```{r, echo = FALSE, out.width = NULL}
-knitr::include_graphics("images/relational/join-semi.png")
-```
-```{r, echo = FALSE, out.width = NULL}
-knitr::include_graphics("images/relational/join-anti.png")
-```
-
-```{r}
-
-semi_join(orig, val, by = c("id", "yq", "question"))
-
-anti_join(orig, val, by = c("id", "yq", "question"))
-```
-
-
-
-
 
 ## Set Operations
+
+The final type of two-table verb are the set operations. These operations work with a complete row, comparing the values of every variable. These expect the `x` and `y` inputs to have the same variables, in the same order, and treat the observations like sets:
+
+* `intersect(x, y)`: return only observations in both `x` and `y`.
+* `union(x, y)`: return unique observations in `x` and `y`.
+* `setdiff(x, y)`: return observations in `x`, but not in `y`.
+
+Given this simple data:
+
+```{r}
+df1 <- tribble(
+  ~x, ~y,
+   1,  1,
+   2,  1
+)
+df2 <- tribble(
+  ~x, ~y,
+   1,  1,
+   1,  2
+)
+```
+
+The four possibilities are:
+
+```{r}
+intersect(df1, df2)
+
+# Note that we get 3 rows, not 4
+union(df1, df2)
+
+setdiff(df1, df2)
+
+setdiff(df2, df1)
+```

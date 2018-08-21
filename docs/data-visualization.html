@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-08-20">
+<meta name="date" content="2018-08-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,72 +50,44 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css\style.css" type="text/css" />
 </head>
 
 <body>
@@ -305,9 +277,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>11</b> Relational Data</a><ul>
 <li class="chapter" data-level="11.1" data-path="relational-data.html"><a href="relational-data.html#mutating-joins"><i class="fa fa-check"></i><b>11.1</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="11.1.1" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>11.1.1</b> Duplicate keys</a></li>
-<li class="chapter" data-level="11.1.2" data-path="relational-data.html"><a href="relational-data.html#multiple-columns"><i class="fa fa-check"></i><b>11.1.2</b> Multiple columns</a></li>
-<li class="chapter" data-level="11.1.3" data-path="relational-data.html"><a href="relational-data.html#column-names-dont-match"><i class="fa fa-check"></i><b>11.1.3</b> Column names don’t match</a></li>
-<li class="chapter" data-level="11.1.4" data-path="relational-data.html"><a href="relational-data.html#duplicate-columns"><i class="fa fa-check"></i><b>11.1.4</b> Duplicate Columns</a></li>
+<li class="chapter" data-level="11.1.2" data-path="relational-data.html"><a href="relational-data.html#multi-column-keys"><i class="fa fa-check"></i><b>11.1.2</b> Multi-Column Keys</a></li>
+<li class="chapter" data-level="11.1.3" data-path="relational-data.html"><a href="relational-data.html#duplicate-non-key-columns"><i class="fa fa-check"></i><b>11.1.3</b> Duplicate Non-Key Columns</a></li>
+<li class="chapter" data-level="11.1.4" data-path="relational-data.html"><a href="relational-data.html#different-key-column-names"><i class="fa fa-check"></i><b>11.1.4</b> Different Key Column Names</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#filtering-joins"><i class="fa fa-check"></i><b>11.2</b> Filtering Joins</a></li>
 <li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#set-operations"><i class="fa fa-check"></i><b>11.3</b> Set Operations</a></li>
@@ -370,10 +342,8 @@ On 6/15 ggplot2 2.3.0 will come out and there are <a href="https://github.com/ti
 <h2><span class="header-section-number">6.2</span> Example</h2>
 <p>Going to throw a lot at you …but you’ll know where and what to look for. For just about every plotting task there are multiple ways to achieve the desired result.</p>
 <p><img src="images/dataviz/api_life_means.png" width="70%" style="display: block; margin: auto;" /><img src="images/dataviz/comp_recent_means.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>What is similar / different between these plots?
-What is and what isn’t driven by data?</p>
-<p>We’ll build this style of plot in stages. In chapter 9 of <a href="">R for Data
-Science</a> we will go into detail about how to get our data in this format.</p>
+<p>What is similar / different between these plots? What is and what isn’t driven by data?</p>
+<p>We’ll build this style of plot in stages. In chapter 9 of <a href="">R for Data Science</a> we will go into detail about how to get our data in this format.</p>
 <div id="data" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Data</h3>
 <p>All plots start with data. `<code>ggplot</code> expects the data to be in a “Tidy Data” format. We’ll dive deeper into “tidy data” in Chapter 9 of <a href="">R for Data Science</a>, but for now the basic principle is</p>
@@ -382,29 +352,29 @@ Science</a> we will go into detail about how to get our data in this format.</p>
 <li>Each observation forms a <strong>row</strong></li>
 <li>Each observational unit forms a table</li>
 </ol>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb121-2" data-line-number="2"><span class="co">#&gt; ── Attaching packages ────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</span></a>
-<a class="sourceLine" id="cb121-3" data-line-number="3"><span class="co">#&gt; ✔ ggplot2 3.0.0     ✔ purrr   0.2.5</span></a>
-<a class="sourceLine" id="cb121-4" data-line-number="4"><span class="co">#&gt; ✔ tibble  1.4.2     ✔ dplyr   0.7.6</span></a>
-<a class="sourceLine" id="cb121-5" data-line-number="5"><span class="co">#&gt; ✔ tidyr   0.8.1     ✔ stringr 1.3.1</span></a>
-<a class="sourceLine" id="cb121-6" data-line-number="6"><span class="co">#&gt; ✔ readr   1.1.1     ✔ forcats 0.3.0</span></a>
-<a class="sourceLine" id="cb121-7" data-line-number="7"><span class="co">#&gt; ── Conflicts ───────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span></a>
-<a class="sourceLine" id="cb121-8" data-line-number="8"><span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span></a>
-<a class="sourceLine" id="cb121-9" data-line-number="9"><span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></a>
-<a class="sourceLine" id="cb121-10" data-line-number="10">dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)</a>
-<a class="sourceLine" id="cb121-11" data-line-number="11">dat</a>
-<a class="sourceLine" id="cb121-12" data-line-number="12"><span class="co">#&gt; # A tibble: 18 x 5</span></a>
-<a class="sourceLine" id="cb121-13" data-line-number="13"><span class="co">#&gt;   drug          use_type  mean lower upper</span></a>
-<a class="sourceLine" id="cb121-14" data-line-number="14"><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb121-15" data-line-number="15"><span class="co">#&gt; 1 Buprenorphine use       5.45  5.26  5.64</span></a>
-<a class="sourceLine" id="cb121-16" data-line-number="16"><span class="co">#&gt; 2 Fentanyl      use       9.26  9.02  9.51</span></a>
-<a class="sourceLine" id="cb121-17" data-line-number="17"><span class="co">#&gt; 3 Hydrocodone   use      46.8  46.4  47.2 </span></a>
-<a class="sourceLine" id="cb121-18" data-line-number="18"><span class="co">#&gt; 4 Hydromorphone use       6.08  5.89  6.28</span></a>
-<a class="sourceLine" id="cb121-19" data-line-number="19"><span class="co">#&gt; 5 Methadone     use       5.59  5.39  5.79</span></a>
-<a class="sourceLine" id="cb121-20" data-line-number="20"><span class="co">#&gt; 6 Morphine      use      18.7  18.4  19.0 </span></a>
-<a class="sourceLine" id="cb121-21" data-line-number="21"><span class="co">#&gt; # ... with 12 more rows</span></a></code></pre></div>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat)</a>
-<a class="sourceLine" id="cb122-2" data-line-number="2">p</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="co">#&gt; -- Attaching packages ---------------------------------------------------- tidyverse 1.2.1 --</span>
+<span class="co">#&gt; v ggplot2 3.0.0     v purrr   0.2.5</span>
+<span class="co">#&gt; v tibble  1.4.2     v dplyr   0.7.6</span>
+<span class="co">#&gt; v tidyr   0.8.1     v stringr 1.3.1</span>
+<span class="co">#&gt; v readr   1.1.1     v forcats 0.3.0</span>
+<span class="co">#&gt; -- Conflicts ------------------------------------------------------- tidyverse_conflicts() --</span>
+<span class="co">#&gt; x dplyr::filter() masks stats::filter()</span>
+<span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span>
+dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)
+dat
+<span class="co">#&gt; # A tibble: 18 x 5</span>
+<span class="co">#&gt;   drug          use_type  mean lower upper</span>
+<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Buprenorphine use       5.45  5.26  5.64</span>
+<span class="co">#&gt; 2 Fentanyl      use       9.26  9.02  9.51</span>
+<span class="co">#&gt; 3 Hydrocodone   use      46.8  46.4  47.2 </span>
+<span class="co">#&gt; 4 Hydromorphone use       6.08  5.89  6.28</span>
+<span class="co">#&gt; 5 Methadone     use       5.59  5.39  5.79</span>
+<span class="co">#&gt; 6 Morphine      use      18.7  18.4  19.0 </span>
+<span class="co">#&gt; # ... with 12 more rows</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat)
+p</code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>That’s uninteresting. We haven’t mapped the data to our plot yet. Let’s work on getting the bar chart roughly right.</p>
 </div>
@@ -416,8 +386,8 @@ Science</a> we will go into detail about how to get our data in this format.</p>
 <li><code>mean</code> -&gt; y-axis</li>
 <li><code>use_type</code> -&gt; color</li>
 </ul>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) </a>
-<a class="sourceLine" id="cb123-2" data-line-number="2">p</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) 
+p</code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="geoms" class="section level3">
@@ -494,15 +464,15 @@ Science</a> we will go into detail about how to get our data in this format.</p>
 There are two types of bar charts: <code>geom_bar</code> makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use <code>geom_col</code> instead. <code>geom_bar</code> will calculate the counts or proportions from the raw data. There is no reason to precompute those.
 </p>
 </div>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb125-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>()</a>
-<a class="sourceLine" id="cb125-3" data-line-number="3">p</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>()
+p</code></pre></div>
 <p><img src="data-viz_files/figure-html/plot1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Oops….</p>
 <p>The <code>color</code> only controls the border of our bar chart, what we want to do is <code>fill</code> the bar. Also, note that by default the bars are <code>stacked</code>. We can fix that by having the position of each subgroup <code>dodge</code> each other.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a>
-<a class="sourceLine" id="cb126-3" data-line-number="3">p</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)
+p</code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><code>geom_*(mapping, data, stat, position)</code></p>
 <ul>
@@ -531,10 +501,10 @@ There are two types of bar charts: <code>geom_bar</code> makes the height of the
 </ul></li>
 </ul>
 <p>Now lets add the error bars to our plot. We will have to add the upper and lower bounds to our aesthetics, and align them with our bars.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb127-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb127-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb127-4" data-line-number="4">p</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)
+p</code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>We’ve come pretty close to recreating the original plot. We still have some tweaking to do.</p>
 <ol style="list-style-type: decimal">
@@ -548,31 +518,31 @@ There are two types of bar charts: <code>geom_bar</code> makes the height of the
 <li>Move the legend to the bottom</li>
 </ol>
 <p>The first one is handled with our data. Factors to the rescue. while the second can be done with a named vector.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="co"># convert the use_type to a factor with the correct label</span></a>
-<a class="sourceLine" id="cb128-2" data-line-number="2">dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, </a>
-<a class="sourceLine" id="cb128-3" data-line-number="3">                      <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), </a>
-<a class="sourceLine" id="cb128-4" data-line-number="4">                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))</a>
-<a class="sourceLine" id="cb128-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb128-6" data-line-number="6">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb128-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb128-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)</a>
-<a class="sourceLine" id="cb128-9" data-line-number="9">p</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert the use_type to a factor with the correct label</span>
+dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, 
+                      <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), 
+                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))
+
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)
+p</code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="scales" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Scales</h3>
 <p>Scales control the details of how data values are translated to visual properties. Override the default scales to tweak details like the axis labels or legend keys, or to use a completely different translation from data to aesthetic.</p>
 <p><code>labs()</code> <code>xlab()</code> <code>ylab()</code> and <code>ggtitle()</code> modify the axis, legend, and plot labels.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)</a>
-<a class="sourceLine" id="cb129-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb129-3" data-line-number="3">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb129-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb129-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb129-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span></a>
-<a class="sourceLine" id="cb129-7" data-line-number="7"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>) ) <span class="op">+</span><span class="st">  </span><span class="co"># change the y-axis scale</span></a>
-<a class="sourceLine" id="cb129-8" data-line-number="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span></a>
-<a class="sourceLine" id="cb129-9" data-line-number="9">       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>)          <span class="co"># Change the y-axis label</span></a>
-<a class="sourceLine" id="cb129-10" data-line-number="10">p</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)
+
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>) ) <span class="op">+</span><span class="st">  </span><span class="co"># change the y-axis scale</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
+       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>)          <span class="co"># Change the y-axis label</span>
+p</code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /></p>
 
 <div class="rmdtip">
@@ -593,30 +563,30 @@ library <code>scales</code> provides many useful functions for automatically det
 <li><code>plot</code>: Whole image</li>
 <li><code>strip</code>: Facet labels</li>
 </ul>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>This is almost what we want. Our final code would look like:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb131-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)</a>
-<a class="sourceLine" id="cb131-3" data-line-number="3"><span class="co"># convert the use_type to a factor with the correct label</span></a>
-<a class="sourceLine" id="cb131-4" data-line-number="4">dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))</a>
-<a class="sourceLine" id="cb131-5" data-line-number="5">bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)</a>
-<a class="sourceLine" id="cb131-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb131-7" data-line-number="7">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb131-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb131-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb131-10" data-line-number="10"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span></a>
-<a class="sourceLine" id="cb131-11" data-line-number="11"><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb131-12" data-line-number="12"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)<span class="op">+</span><span class="dv">5</span>), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span></a>
-<a class="sourceLine" id="cb131-13" data-line-number="13">                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span></a>
-<a class="sourceLine" id="cb131-14" data-line-number="14"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span></a>
-<a class="sourceLine" id="cb131-15" data-line-number="15">       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span></a>
-<a class="sourceLine" id="cb131-16" data-line-number="16"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb131-17" data-line-number="17"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span></a>
-<a class="sourceLine" id="cb131-18" data-line-number="18">        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>(),   <span class="co"># remove the legend variable</span></a>
-<a class="sourceLine" id="cb131-19" data-line-number="19">        <span class="dt">axis.text.x     =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),   <span class="co"># rotate the x-axis text</span></a>
-<a class="sourceLine" id="cb131-20" data-line-number="20">        <span class="dt">axis.ticks.x    =</span> <span class="kw">element_blank</span>())       <span class="co"># remove the x asix tick marks</span></a>
-<a class="sourceLine" id="cb131-21" data-line-number="21">p</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)
+<span class="co"># convert the use_type to a factor with the correct label</span>
+dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))
+bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)
+
+p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)<span class="op">+</span><span class="dv">5</span>), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
+                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
+       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span>
+        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>(),   <span class="co"># remove the legend variable</span>
+        <span class="dt">axis.text.x     =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),   <span class="co"># rotate the x-axis text</span>
+        <span class="dt">axis.ticks.x    =</span> <span class="kw">element_blank</span>())       <span class="co"># remove the x asix tick marks</span>
+p</code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -625,20 +595,20 @@ library <code>scales</code> provides many useful functions for automatically det
 <p>Facets are subplots of the data with each subplot displaying one subset of the data. there are two ways to create facets: <code>facet_grid</code> and <code>facet_wrap</code>.</p>
 <p><code>facet_grid</code> forms a matrix of panels defined by row and column faceting variables. It is most useful when you have two discrete variables, and all combinations of the variables exist in the data.</p>
 <p><code>facet_wrap</code> wraps a 1d sequence of panels into 2d. This is generally a better use of screen space than facet_grid because most displays are roughly rectangular.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(drug, mean), <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb132-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb132-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>use_type, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb132-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span></a>
-<a class="sourceLine" id="cb132-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span></a>
-<a class="sourceLine" id="cb132-7" data-line-number="7">                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span></a>
-<a class="sourceLine" id="cb132-8" data-line-number="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span></a>
-<a class="sourceLine" id="cb132-9" data-line-number="9">       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span></a>
-<a class="sourceLine" id="cb132-10" data-line-number="10"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb132-11" data-line-number="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span></a>
-<a class="sourceLine" id="cb132-12" data-line-number="12">        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span><span class="co"># remove the legend variable</span></a>
-<a class="sourceLine" id="cb132-13" data-line-number="13"><span class="st">  </span><span class="kw">coord_flip</span>()</a>
-<a class="sourceLine" id="cb132-14" data-line-number="14">p</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(drug, mean), <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>use_type, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
+                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
+       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span>
+        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span><span class="co"># remove the legend variable</span>
+<span class="st">  </span><span class="kw">coord_flip</span>()
+p</code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="stats" class="section level2">
@@ -661,8 +631,7 @@ library <code>scales</code> provides many useful functions for automatically det
 <div id="exercises-3" class="section level2">
 <h2><span class="header-section-number">6.6</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Modify the above code to produce the plot below. You can read in the data with:
-<code>dat &lt;- readRDS(&quot;./data/bargraphdat2.RDS&quot;)</code></li>
+<li>Modify the above code to produce the plot below. You can read in the data with: <code>dat &lt;- readRDS(&quot;./data/bargraphdat2.RDS&quot;)</code></li>
 </ol>
 <p><img src="images/dataviz/comp_recent_means.png" width="70%" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
@@ -763,7 +732,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

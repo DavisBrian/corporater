@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-08-20">
+<meta name="date" content="2018-08-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,72 +50,44 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css\style.css" type="text/css" />
 </head>
 
 <body>
@@ -305,9 +277,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>11</b> Relational Data</a><ul>
 <li class="chapter" data-level="11.1" data-path="relational-data.html"><a href="relational-data.html#mutating-joins"><i class="fa fa-check"></i><b>11.1</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="11.1.1" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>11.1.1</b> Duplicate keys</a></li>
-<li class="chapter" data-level="11.1.2" data-path="relational-data.html"><a href="relational-data.html#multiple-columns"><i class="fa fa-check"></i><b>11.1.2</b> Multiple columns</a></li>
-<li class="chapter" data-level="11.1.3" data-path="relational-data.html"><a href="relational-data.html#column-names-dont-match"><i class="fa fa-check"></i><b>11.1.3</b> Column names don’t match</a></li>
-<li class="chapter" data-level="11.1.4" data-path="relational-data.html"><a href="relational-data.html#duplicate-columns"><i class="fa fa-check"></i><b>11.1.4</b> Duplicate Columns</a></li>
+<li class="chapter" data-level="11.1.2" data-path="relational-data.html"><a href="relational-data.html#multi-column-keys"><i class="fa fa-check"></i><b>11.1.2</b> Multi-Column Keys</a></li>
+<li class="chapter" data-level="11.1.3" data-path="relational-data.html"><a href="relational-data.html#duplicate-non-key-columns"><i class="fa fa-check"></i><b>11.1.3</b> Duplicate Non-Key Columns</a></li>
+<li class="chapter" data-level="11.1.4" data-path="relational-data.html"><a href="relational-data.html#different-key-column-names"><i class="fa fa-check"></i><b>11.1.4</b> Different Key Column Names</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#filtering-joins"><i class="fa fa-check"></i><b>11.2</b> Filtering Joins</a></li>
 <li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#set-operations"><i class="fa fa-check"></i><b>11.3</b> Set Operations</a></li>
@@ -340,14 +312,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">9</span> Strings</h1>
 <p>This section covers basic string manipulation in R. See Chapter 11 in <a href="http://r4ds.had.co.nz/strings.html">R for Data Science</a> for a more complete coverage. The first part of this chapter will probably look familiar, but the rest will focus on <strong>regular expressions</strong>. Regular expressions (sometimes referred to as <strong>regex</strong> or <strong>regexp</strong>) are a concise language for describing patterns in strings.</p>
 <p>While base R has some string functions they tend to be inconsistent in the order of the parameters, which makes them hard to remember and you end up needing the help files. As with most of this course we will focus on the Tidyverse, and in particular the <strong>stringr</strong> package, which in not part of the core tidyverse package so you will have to load it explicitly with <code>library(stringr)</code></p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb145-2" data-line-number="2"><span class="kw">library</span>(stringr)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(stringr)</code></pre></div>
 <div id="basics" class="section level2">
 <h2><span class="header-section-number">9.1</span> Basics</h2>
 <p>As with most languages you create a string by putting the text in single or double quotes <code>x &lt;- &quot;This is my string!&quot;</code>, and you can create a vector of strings with <code>c()</code>. There are a handful of special characters but the most common are the newline character <code>&quot;\n&quot;</code>, and the tab character <code>&quot;\t&quot;</code>. You may also see strings like <code>\u00AE</code> or <code>\u00b5</code> which is a way of including non-English characters or special symbols that work on all platforms. These are typically known as Unicode characters.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">x &lt;-<span class="st"> &quot;This my registered\u00AE drug&quot;</span></a>
-<a class="sourceLine" id="cb146-2" data-line-number="2">x</a>
-<a class="sourceLine" id="cb146-3" data-line-number="3"><span class="co">#&gt; [1] &quot;This my registered® drug&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> &quot;This my registered\u00AE drug&quot;</span>
+x
+<span class="co">#&gt; [1] &quot;This my registered® drug&quot;</span></code></pre></div>
 <p>One nice feature of the stringr package is all string functions begin with <code>str_</code>. This makes it easy in RStudio to find useful string processing functions.</p>
 
 <div class="rmdtip">
@@ -374,20 +346,20 @@ See the tidyverse package <strong>glue</strong> which can glue strings to data i
 While <code>str_c</code> looks and acts very similar to the base R functions <code>paste</code> or <code>paste0</code>, they act very differently with regards to missing data. <code>paste</code> and <code>paste0</code> replace missing values with the text “NA”, while <code>str_c</code> propagates the missing value.
 </p>
 </div>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="kw">str_c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;string&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;with&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;missing&quot;</span>, <span class="st">&quot;value&quot;</span>)</a>
-<a class="sourceLine" id="cb147-2" data-line-number="2"><span class="co">#&gt; [1] NA</span></a>
-<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="kw">paste</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;string&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;with&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;missing&quot;</span>, <span class="st">&quot;value&quot;</span>)</a>
-<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="co">#&gt; [1] &quot;This is a string NA with a missing value&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;string&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;with&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;missing&quot;</span>, <span class="st">&quot;value&quot;</span>)
+<span class="co">#&gt; [1] NA</span>
+<span class="kw">paste</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;string&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;with&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;missing&quot;</span>, <span class="st">&quot;value&quot;</span>)
+<span class="co">#&gt; [1] &quot;This is a string NA with a missing value&quot;</span></code></pre></div>
 <p>Notice <code>str_c</code> and <code>paste</code> have both a <code>sep</code> and <code>collapse</code> argument. While these appear to be the same they are not. The <code>sep</code> argument is the string inserted between arguments to <code>str_c</code>, while <code>collapse</code> is the string used to separate any elements of the character vector into a character vector of length one.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="kw">str_c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;not&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;vector&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</a>
-<a class="sourceLine" id="cb148-2" data-line-number="2"><span class="co">#&gt; [1] &quot;This_is_not_a_character_vector&quot;</span></a>
-<a class="sourceLine" id="cb148-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;vector&quot;</span>)</a>
-<a class="sourceLine" id="cb148-4" data-line-number="4">x</a>
-<a class="sourceLine" id="cb148-5" data-line-number="5"><span class="co">#&gt; [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;character&quot; &quot;vector&quot;</span></a>
-<a class="sourceLine" id="cb148-6" data-line-number="6"><span class="kw">str_c</span>(x, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</a>
-<a class="sourceLine" id="cb148-7" data-line-number="7"><span class="co">#&gt; [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;character&quot; &quot;vector&quot;</span></a>
-<a class="sourceLine" id="cb148-8" data-line-number="8"><span class="kw">str_c</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;_&quot;</span>)</a>
-<a class="sourceLine" id="cb148-9" data-line-number="9"><span class="co">#&gt; [1] &quot;This_is_a_character_vector&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;not&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;vector&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)
+<span class="co">#&gt; [1] &quot;This_is_not_a_character_vector&quot;</span>
+x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;vector&quot;</span>)
+x
+<span class="co">#&gt; [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;character&quot; &quot;vector&quot;</span>
+<span class="kw">str_c</span>(x, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)
+<span class="co">#&gt; [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;character&quot; &quot;vector&quot;</span>
+<span class="kw">str_c</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;_&quot;</span>)
+<span class="co">#&gt; [1] &quot;This_is_a_character_vector&quot;</span></code></pre></div>
 </div>
 </div>
 <div id="regular-expressions" class="section level2">
@@ -407,47 +379,47 @@ To learn regular expressions, use <code>str_view()</code> and <code>str_view_all
 <div id="basic-matches" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Basic Matches</h3>
 <p>We’ll start with very simple regular expressions and then gradually get more and more complicated. Once you’ve mastered pattern matching, you’ll learn how to apply those ideas with various stringr functions. We’ll use the built in fruit data set.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">fruit</a>
-<a class="sourceLine" id="cb149-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;apple&quot;             &quot;apricot&quot;           &quot;avocado&quot;          </span></a>
-<a class="sourceLine" id="cb149-3" data-line-number="3"><span class="co">#&gt;  [4] &quot;banana&quot;            &quot;bell pepper&quot;       &quot;bilberry&quot;         </span></a>
-<a class="sourceLine" id="cb149-4" data-line-number="4"><span class="co">#&gt;  [7] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span></a>
-<a class="sourceLine" id="cb149-5" data-line-number="5"><span class="co">#&gt; [10] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;breadfruit&quot;       </span></a>
-<a class="sourceLine" id="cb149-6" data-line-number="6"><span class="co">#&gt; [13] &quot;canary melon&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span></a>
-<a class="sourceLine" id="cb149-7" data-line-number="7"><span class="co">#&gt; [16] &quot;cherry&quot;            &quot;chili pepper&quot;      &quot;clementine&quot;       </span></a>
-<a class="sourceLine" id="cb149-8" data-line-number="8"><span class="co">#&gt; [19] &quot;cloudberry&quot;        &quot;coconut&quot;           &quot;cranberry&quot;        </span></a>
-<a class="sourceLine" id="cb149-9" data-line-number="9"><span class="co">#&gt; [22] &quot;cucumber&quot;          &quot;currant&quot;           &quot;damson&quot;           </span></a>
-<a class="sourceLine" id="cb149-10" data-line-number="10"><span class="co">#&gt; [25] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span></a>
-<a class="sourceLine" id="cb149-11" data-line-number="11"><span class="co">#&gt; [28] &quot;eggplant&quot;          &quot;elderberry&quot;        &quot;feijoa&quot;           </span></a>
-<a class="sourceLine" id="cb149-12" data-line-number="12"><span class="co">#&gt; [31] &quot;fig&quot;               &quot;goji berry&quot;        &quot;gooseberry&quot;       </span></a>
-<a class="sourceLine" id="cb149-13" data-line-number="13"><span class="co">#&gt; [34] &quot;grape&quot;             &quot;grapefruit&quot;        &quot;guava&quot;            </span></a>
-<a class="sourceLine" id="cb149-14" data-line-number="14"><span class="co">#&gt; [37] &quot;honeydew&quot;          &quot;huckleberry&quot;       &quot;jackfruit&quot;        </span></a>
-<a class="sourceLine" id="cb149-15" data-line-number="15"><span class="co">#&gt; [40] &quot;jambul&quot;            &quot;jujube&quot;            &quot;kiwi fruit&quot;       </span></a>
-<a class="sourceLine" id="cb149-16" data-line-number="16"><span class="co">#&gt; [43] &quot;kumquat&quot;           &quot;lemon&quot;             &quot;lime&quot;             </span></a>
-<a class="sourceLine" id="cb149-17" data-line-number="17"><span class="co">#&gt; [46] &quot;loquat&quot;            &quot;lychee&quot;            &quot;mandarine&quot;        </span></a>
-<a class="sourceLine" id="cb149-18" data-line-number="18"><span class="co">#&gt; [49] &quot;mango&quot;             &quot;mulberry&quot;          &quot;nectarine&quot;        </span></a>
-<a class="sourceLine" id="cb149-19" data-line-number="19"><span class="co">#&gt; [52] &quot;nut&quot;               &quot;olive&quot;             &quot;orange&quot;           </span></a>
-<a class="sourceLine" id="cb149-20" data-line-number="20"><span class="co">#&gt; [55] &quot;pamelo&quot;            &quot;papaya&quot;            &quot;passionfruit&quot;     </span></a>
-<a class="sourceLine" id="cb149-21" data-line-number="21"><span class="co">#&gt; [58] &quot;peach&quot;             &quot;pear&quot;              &quot;persimmon&quot;        </span></a>
-<a class="sourceLine" id="cb149-22" data-line-number="22"><span class="co">#&gt; [61] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;plum&quot;             </span></a>
-<a class="sourceLine" id="cb149-23" data-line-number="23"><span class="co">#&gt; [64] &quot;pomegranate&quot;       &quot;pomelo&quot;            &quot;purple mangosteen&quot;</span></a>
-<a class="sourceLine" id="cb149-24" data-line-number="24"><span class="co">#&gt; [67] &quot;quince&quot;            &quot;raisin&quot;            &quot;rambutan&quot;         </span></a>
-<a class="sourceLine" id="cb149-25" data-line-number="25"><span class="co">#&gt; [70] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;rock melon&quot;       </span></a>
-<a class="sourceLine" id="cb149-26" data-line-number="26"><span class="co">#&gt; [73] &quot;salal berry&quot;       &quot;satsuma&quot;           &quot;star fruit&quot;       </span></a>
-<a class="sourceLine" id="cb149-27" data-line-number="27"><span class="co">#&gt; [76] &quot;strawberry&quot;        &quot;tamarillo&quot;         &quot;tangerine&quot;        </span></a>
-<a class="sourceLine" id="cb149-28" data-line-number="28"><span class="co">#&gt; [79] &quot;ugli fruit&quot;        &quot;watermelon&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fruit
+<span class="co">#&gt;  [1] &quot;apple&quot;             &quot;apricot&quot;           &quot;avocado&quot;          </span>
+<span class="co">#&gt;  [4] &quot;banana&quot;            &quot;bell pepper&quot;       &quot;bilberry&quot;         </span>
+<span class="co">#&gt;  [7] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span>
+<span class="co">#&gt; [10] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;breadfruit&quot;       </span>
+<span class="co">#&gt; [13] &quot;canary melon&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span>
+<span class="co">#&gt; [16] &quot;cherry&quot;            &quot;chili pepper&quot;      &quot;clementine&quot;       </span>
+<span class="co">#&gt; [19] &quot;cloudberry&quot;        &quot;coconut&quot;           &quot;cranberry&quot;        </span>
+<span class="co">#&gt; [22] &quot;cucumber&quot;          &quot;currant&quot;           &quot;damson&quot;           </span>
+<span class="co">#&gt; [25] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span>
+<span class="co">#&gt; [28] &quot;eggplant&quot;          &quot;elderberry&quot;        &quot;feijoa&quot;           </span>
+<span class="co">#&gt; [31] &quot;fig&quot;               &quot;goji berry&quot;        &quot;gooseberry&quot;       </span>
+<span class="co">#&gt; [34] &quot;grape&quot;             &quot;grapefruit&quot;        &quot;guava&quot;            </span>
+<span class="co">#&gt; [37] &quot;honeydew&quot;          &quot;huckleberry&quot;       &quot;jackfruit&quot;        </span>
+<span class="co">#&gt; [40] &quot;jambul&quot;            &quot;jujube&quot;            &quot;kiwi fruit&quot;       </span>
+<span class="co">#&gt; [43] &quot;kumquat&quot;           &quot;lemon&quot;             &quot;lime&quot;             </span>
+<span class="co">#&gt; [46] &quot;loquat&quot;            &quot;lychee&quot;            &quot;mandarine&quot;        </span>
+<span class="co">#&gt; [49] &quot;mango&quot;             &quot;mulberry&quot;          &quot;nectarine&quot;        </span>
+<span class="co">#&gt; [52] &quot;nut&quot;               &quot;olive&quot;             &quot;orange&quot;           </span>
+<span class="co">#&gt; [55] &quot;pamelo&quot;            &quot;papaya&quot;            &quot;passionfruit&quot;     </span>
+<span class="co">#&gt; [58] &quot;peach&quot;             &quot;pear&quot;              &quot;persimmon&quot;        </span>
+<span class="co">#&gt; [61] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;plum&quot;             </span>
+<span class="co">#&gt; [64] &quot;pomegranate&quot;       &quot;pomelo&quot;            &quot;purple mangosteen&quot;</span>
+<span class="co">#&gt; [67] &quot;quince&quot;            &quot;raisin&quot;            &quot;rambutan&quot;         </span>
+<span class="co">#&gt; [70] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;rock melon&quot;       </span>
+<span class="co">#&gt; [73] &quot;salal berry&quot;       &quot;satsuma&quot;           &quot;star fruit&quot;       </span>
+<span class="co">#&gt; [76] &quot;strawberry&quot;        &quot;tamarillo&quot;         &quot;tangerine&quot;        </span>
+<span class="co">#&gt; [79] &quot;ugli fruit&quot;        &quot;watermelon&quot;</span></code></pre></div>
 <p>One of the most common uses of regular expressions is to find strings that contain an exact sequence of letters.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;berry&quot;</span>)</a>
-<a class="sourceLine" id="cb150-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;bilberry&quot;    &quot;blackberry&quot;  &quot;blueberry&quot;   &quot;boysenberry&quot; &quot;cloudberry&quot; </span></a>
-<a class="sourceLine" id="cb150-3" data-line-number="3"><span class="co">#&gt;  [6] &quot;cranberry&quot;   &quot;elderberry&quot;  &quot;goji berry&quot;  &quot;gooseberry&quot;  &quot;huckleberry&quot;</span></a>
-<a class="sourceLine" id="cb150-4" data-line-number="4"><span class="co">#&gt; [11] &quot;mulberry&quot;    &quot;raspberry&quot;   &quot;salal berry&quot; &quot;strawberry&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;berry&quot;</span>)
+<span class="co">#&gt;  [1] &quot;bilberry&quot;    &quot;blackberry&quot;  &quot;blueberry&quot;   &quot;boysenberry&quot; &quot;cloudberry&quot; </span>
+<span class="co">#&gt;  [6] &quot;cranberry&quot;   &quot;elderberry&quot;  &quot;goji berry&quot;  &quot;gooseberry&quot;  &quot;huckleberry&quot;</span>
+<span class="co">#&gt; [11] &quot;mulberry&quot;    &quot;raspberry&quot;   &quot;salal berry&quot; &quot;strawberry&quot;</span></code></pre></div>
 
 <div class="rmdnote">
 <code>str_subset()</code> keeps strings matching a pattern. We will use these as examples of how to use patterns, but work with any function which takes a pattern.
 </div>
 
 <p>This works great for quite a few cases, but what if you wanted to find just “grape” and not “grapefruit”?</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;grape&quot;</span>)</a>
-<a class="sourceLine" id="cb151-2" data-line-number="2"><span class="co">#&gt; [1] &quot;grape&quot;      &quot;grapefruit&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;grape&quot;</span>)
+<span class="co">#&gt; [1] &quot;grape&quot;      &quot;grapefruit&quot;</span></code></pre></div>
 </div>
 <div id="special-characters" class="section level3">
 <h3><span class="header-section-number">9.2.2</span> Special Characters</h3>
@@ -458,28 +430,28 @@ To learn regular expressions, use <code>str_view()</code> and <code>str_view_all
 <li><code>$</code> match the end of the string</li>
 </ul>
 <p>So to match “grape” but not “grapefruit” you could do this is a couple ways.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;grape$&quot;</span>)   <span class="co"># match all words that end in &quot;grape&quot;</span></a>
-<a class="sourceLine" id="cb152-2" data-line-number="2"><span class="co">#&gt; [1] &quot;grape&quot;</span></a>
-<a class="sourceLine" id="cb152-3" data-line-number="3"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;^grape$&quot;</span>)  <span class="co"># match all words the start AND end in &quot;grape&quot;</span></a>
-<a class="sourceLine" id="cb152-4" data-line-number="4"><span class="co">#&gt; [1] &quot;grape&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;grape$&quot;</span>)   <span class="co"># match all words that end in &quot;grape&quot;</span>
+<span class="co">#&gt; [1] &quot;grape&quot;</span>
+<span class="kw">str_subset</span>(fruit, <span class="st">&quot;^grape$&quot;</span>)  <span class="co"># match all words the start AND end in &quot;grape&quot;</span>
+<span class="co">#&gt; [1] &quot;grape&quot;</span></code></pre></div>
 <p>Find the fruits that have an “a” in them but not ones that have the only “a” as the starting character.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;.a&quot;</span>)</a>
-<a class="sourceLine" id="cb153-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;avocado&quot;           &quot;banana&quot;            &quot;blackberry&quot;       </span></a>
-<a class="sourceLine" id="cb153-3" data-line-number="3"><span class="co">#&gt;  [4] &quot;blackcurrant&quot;      &quot;blood orange&quot;      &quot;breadfruit&quot;       </span></a>
-<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="co">#&gt;  [7] &quot;canary melon&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span></a>
-<a class="sourceLine" id="cb153-5" data-line-number="5"><span class="co">#&gt; [10] &quot;cranberry&quot;         &quot;currant&quot;           &quot;damson&quot;           </span></a>
-<a class="sourceLine" id="cb153-6" data-line-number="6"><span class="co">#&gt; [13] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span></a>
-<a class="sourceLine" id="cb153-7" data-line-number="7"><span class="co">#&gt; [16] &quot;eggplant&quot;          &quot;feijoa&quot;            &quot;grape&quot;            </span></a>
-<a class="sourceLine" id="cb153-8" data-line-number="8"><span class="co">#&gt; [19] &quot;grapefruit&quot;        &quot;guava&quot;             &quot;jackfruit&quot;        </span></a>
-<a class="sourceLine" id="cb153-9" data-line-number="9"><span class="co">#&gt; [22] &quot;jambul&quot;            &quot;kumquat&quot;           &quot;loquat&quot;           </span></a>
-<a class="sourceLine" id="cb153-10" data-line-number="10"><span class="co">#&gt; [25] &quot;mandarine&quot;         &quot;mango&quot;             &quot;nectarine&quot;        </span></a>
-<a class="sourceLine" id="cb153-11" data-line-number="11"><span class="co">#&gt; [28] &quot;orange&quot;            &quot;pamelo&quot;            &quot;papaya&quot;           </span></a>
-<a class="sourceLine" id="cb153-12" data-line-number="12"><span class="co">#&gt; [31] &quot;passionfruit&quot;      &quot;peach&quot;             &quot;pear&quot;             </span></a>
-<a class="sourceLine" id="cb153-13" data-line-number="13"><span class="co">#&gt; [34] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;pomegranate&quot;      </span></a>
-<a class="sourceLine" id="cb153-14" data-line-number="14"><span class="co">#&gt; [37] &quot;purple mangosteen&quot; &quot;raisin&quot;            &quot;rambutan&quot;         </span></a>
-<a class="sourceLine" id="cb153-15" data-line-number="15"><span class="co">#&gt; [40] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;salal berry&quot;      </span></a>
-<a class="sourceLine" id="cb153-16" data-line-number="16"><span class="co">#&gt; [43] &quot;satsuma&quot;           &quot;star fruit&quot;        &quot;strawberry&quot;       </span></a>
-<a class="sourceLine" id="cb153-17" data-line-number="17"><span class="co">#&gt; [46] &quot;tamarillo&quot;         &quot;tangerine&quot;         &quot;watermelon&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;.a&quot;</span>)
+<span class="co">#&gt;  [1] &quot;avocado&quot;           &quot;banana&quot;            &quot;blackberry&quot;       </span>
+<span class="co">#&gt;  [4] &quot;blackcurrant&quot;      &quot;blood orange&quot;      &quot;breadfruit&quot;       </span>
+<span class="co">#&gt;  [7] &quot;canary melon&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span>
+<span class="co">#&gt; [10] &quot;cranberry&quot;         &quot;currant&quot;           &quot;damson&quot;           </span>
+<span class="co">#&gt; [13] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span>
+<span class="co">#&gt; [16] &quot;eggplant&quot;          &quot;feijoa&quot;            &quot;grape&quot;            </span>
+<span class="co">#&gt; [19] &quot;grapefruit&quot;        &quot;guava&quot;             &quot;jackfruit&quot;        </span>
+<span class="co">#&gt; [22] &quot;jambul&quot;            &quot;kumquat&quot;           &quot;loquat&quot;           </span>
+<span class="co">#&gt; [25] &quot;mandarine&quot;         &quot;mango&quot;             &quot;nectarine&quot;        </span>
+<span class="co">#&gt; [28] &quot;orange&quot;            &quot;pamelo&quot;            &quot;papaya&quot;           </span>
+<span class="co">#&gt; [31] &quot;passionfruit&quot;      &quot;peach&quot;             &quot;pear&quot;             </span>
+<span class="co">#&gt; [34] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;pomegranate&quot;      </span>
+<span class="co">#&gt; [37] &quot;purple mangosteen&quot; &quot;raisin&quot;            &quot;rambutan&quot;         </span>
+<span class="co">#&gt; [40] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;salal berry&quot;      </span>
+<span class="co">#&gt; [43] &quot;satsuma&quot;           &quot;star fruit&quot;        &quot;strawberry&quot;       </span>
+<span class="co">#&gt; [46] &quot;tamarillo&quot;         &quot;tangerine&quot;         &quot;watermelon&quot;</span></code></pre></div>
 <p>If “<code>.</code>” matches any character, how do you match the character “<code>.</code>”?</p>
 <p>You need to use an “escape” to tell the regular expression you want to match it exactly, not use its special behavior. Like strings, regexps use the backslash, <code>\</code>, to escape special behavior. So to match an <code>.</code>, you need the regexp <code>\.</code>. Unfortunately this creates a problem. We use strings to represent regular expressions, and <code>\</code> is also used as an escape symbol in strings. So to create the regular expression <code>\.</code> we need the string <code>&quot;\\.&quot;</code>.</p>
 <p>If <code>\</code> is used as an escape character in regular expressions, how do you match a literal <code>\</code>? Well you need to escape it, creating the regular expression <code>\\</code>. To create that regular expression, you need to use a string, which also needs to escape <code>\</code>. That means to match a literal <code>\</code> you need to write <code>&quot;\\\\&quot;</code> — you need four backslashes to match one!</p>
@@ -521,34 +493,34 @@ Remember, to create a regular expression containing <code>\d</code>, you need to
 <li><code>{n,m}</code>: between n and m</li>
 </ul>
 <p>Find all the fruits with three or more “e”’s.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;.*e.*e.*e&quot;</span>) </a>
-<a class="sourceLine" id="cb154-2" data-line-number="2"><span class="co">#&gt; [1] &quot;bell pepper&quot;       &quot;clementine&quot;        &quot;elderberry&quot;       </span></a>
-<a class="sourceLine" id="cb154-3" data-line-number="3"><span class="co">#&gt; [4] &quot;purple mangosteen&quot;</span></a>
-<a class="sourceLine" id="cb154-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb154-5" data-line-number="5"><span class="co"># or more succinctly</span></a>
-<a class="sourceLine" id="cb154-6" data-line-number="6"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;(.*e){3,}&quot;</span>)</a>
-<a class="sourceLine" id="cb154-7" data-line-number="7"><span class="co">#&gt; [1] &quot;bell pepper&quot;       &quot;clementine&quot;        &quot;elderberry&quot;       </span></a>
-<a class="sourceLine" id="cb154-8" data-line-number="8"><span class="co">#&gt; [4] &quot;purple mangosteen&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;.*e.*e.*e&quot;</span>) 
+<span class="co">#&gt; [1] &quot;bell pepper&quot;       &quot;clementine&quot;        &quot;elderberry&quot;       </span>
+<span class="co">#&gt; [4] &quot;purple mangosteen&quot;</span>
+
+<span class="co"># or more succinctly</span>
+<span class="kw">str_subset</span>(fruit, <span class="st">&quot;(.*e){3,}&quot;</span>)
+<span class="co">#&gt; [1] &quot;bell pepper&quot;       &quot;clementine&quot;        &quot;elderberry&quot;       </span>
+<span class="co">#&gt; [4] &quot;purple mangosteen&quot;</span></code></pre></div>
 </div>
 <div id="grouping" class="section level3">
 <h3><span class="header-section-number">9.2.5</span> Grouping</h3>
 <p>Parentheses are a way to disambiguate complex expressions. Parentheses also create a <strong>numbered capturing group</strong> (number 1, 2 etc.). A capturing group stores <strong>the part of the string</strong> matched by the part of the regular expression inside the parentheses. You can refer to the same text as previously matched by a capturing group with <strong>backreferences</strong>, like <code>\1</code>, <code>\2</code> etc.</p>
 <p>For example, find all the fruits with a double letter</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;([:alpha:])</span><span class="ch">\\</span><span class="st">1&quot;</span>)</a>
-<a class="sourceLine" id="cb155-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;apple&quot;             &quot;bell pepper&quot;       &quot;bilberry&quot;         </span></a>
-<a class="sourceLine" id="cb155-3" data-line-number="3"><span class="co">#&gt;  [4] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span></a>
-<a class="sourceLine" id="cb155-4" data-line-number="4"><span class="co">#&gt;  [7] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;cherry&quot;           </span></a>
-<a class="sourceLine" id="cb155-5" data-line-number="5"><span class="co">#&gt; [10] &quot;chili pepper&quot;      &quot;cloudberry&quot;        &quot;cranberry&quot;        </span></a>
-<a class="sourceLine" id="cb155-6" data-line-number="6"><span class="co">#&gt; [13] &quot;currant&quot;           &quot;eggplant&quot;          &quot;elderberry&quot;       </span></a>
-<a class="sourceLine" id="cb155-7" data-line-number="7"><span class="co">#&gt; [16] &quot;goji berry&quot;        &quot;gooseberry&quot;        &quot;huckleberry&quot;      </span></a>
-<a class="sourceLine" id="cb155-8" data-line-number="8"><span class="co">#&gt; [19] &quot;lychee&quot;            &quot;mulberry&quot;          &quot;passionfruit&quot;     </span></a>
-<a class="sourceLine" id="cb155-9" data-line-number="9"><span class="co">#&gt; [22] &quot;persimmon&quot;         &quot;pineapple&quot;         &quot;purple mangosteen&quot;</span></a>
-<a class="sourceLine" id="cb155-10" data-line-number="10"><span class="co">#&gt; [25] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;salal berry&quot;      </span></a>
-<a class="sourceLine" id="cb155-11" data-line-number="11"><span class="co">#&gt; [28] &quot;strawberry&quot;        &quot;tamarillo&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;([:alpha:])</span><span class="ch">\\</span><span class="st">1&quot;</span>)
+<span class="co">#&gt;  [1] &quot;apple&quot;             &quot;bell pepper&quot;       &quot;bilberry&quot;         </span>
+<span class="co">#&gt;  [4] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span>
+<span class="co">#&gt;  [7] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;cherry&quot;           </span>
+<span class="co">#&gt; [10] &quot;chili pepper&quot;      &quot;cloudberry&quot;        &quot;cranberry&quot;        </span>
+<span class="co">#&gt; [13] &quot;currant&quot;           &quot;eggplant&quot;          &quot;elderberry&quot;       </span>
+<span class="co">#&gt; [16] &quot;goji berry&quot;        &quot;gooseberry&quot;        &quot;huckleberry&quot;      </span>
+<span class="co">#&gt; [19] &quot;lychee&quot;            &quot;mulberry&quot;          &quot;passionfruit&quot;     </span>
+<span class="co">#&gt; [22] &quot;persimmon&quot;         &quot;pineapple&quot;         &quot;purple mangosteen&quot;</span>
+<span class="co">#&gt; [25] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;salal berry&quot;      </span>
+<span class="co">#&gt; [28] &quot;strawberry&quot;        &quot;tamarillo&quot;</span></code></pre></div>
 <p>Find all fruits that have a repeated pair of letters.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;(..)</span><span class="ch">\\</span><span class="st">1&quot;</span>)</a>
-<a class="sourceLine" id="cb156-2" data-line-number="2"><span class="co">#&gt; [1] &quot;banana&quot;      &quot;coconut&quot;     &quot;cucumber&quot;    &quot;jujube&quot;      &quot;papaya&quot;     </span></a>
-<a class="sourceLine" id="cb156-3" data-line-number="3"><span class="co">#&gt; [6] &quot;salal berry&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;(..)</span><span class="ch">\\</span><span class="st">1&quot;</span>)
+<span class="co">#&gt; [1] &quot;banana&quot;      &quot;coconut&quot;     &quot;cucumber&quot;    &quot;jujube&quot;      &quot;papaya&quot;     </span>
+<span class="co">#&gt; [6] &quot;salal berry&quot;</span></code></pre></div>
 </div>
 </div>
 <div id="helpful-string-functions" class="section level2">
@@ -561,10 +533,10 @@ Remember, to create a regular expression containing <code>\d</code>, you need to
 <li><code>str_count()</code> Count the number of matches in a string.</li>
 </ul>
 <p>What proportion of the fruits have double letters?</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="kw">str_detect</span>(fruit, <span class="st">&quot;([:alpha:])</span><span class="ch">\\</span><span class="st">1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mean</span>()</a>
-<a class="sourceLine" id="cb157-2" data-line-number="2"><span class="co">#&gt; [1] 0.362</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_detect</span>(fruit, <span class="st">&quot;([:alpha:])</span><span class="ch">\\</span><span class="st">1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mean</span>()
+<span class="co">#&gt; [1] 0.362</span></code></pre></div>
 <p>What is the distribution of vowels in fruits?</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="kw">str_count</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">hist</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_count</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">hist</span>()</code></pre></div>
 <p><img src="strings_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" /></p>
 
 <div class="rmdtip">
@@ -581,41 +553,41 @@ Remember, to create a regular expression containing <code>\d</code>, you need to
 <li><code>str_which()</code> find the positions of strings matching a pattern (similar to base R <code>grep()</code>)</li>
 </ul>
 <p>Which fruits have a color in their name?</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="co"># create our regular expression from a character vector</span></a>
-<a class="sourceLine" id="cb159-2" data-line-number="2">colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;black&quot;</span>)</a>
-<a class="sourceLine" id="cb159-3" data-line-number="3">color_match &lt;-<span class="st"> </span><span class="kw">str_c</span>(colors, <span class="dt">collapse =</span> <span class="st">&quot;|&quot;</span>)</a>
-<a class="sourceLine" id="cb159-4" data-line-number="4">color_match</a>
-<a class="sourceLine" id="cb159-5" data-line-number="5"><span class="co">#&gt; [1] &quot;red|orange|yellow|green|blue|purple|black&quot;</span></a>
-<a class="sourceLine" id="cb159-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb159-7" data-line-number="7"><span class="kw">str_subset</span>(fruit, color_match)</a>
-<a class="sourceLine" id="cb159-8" data-line-number="8"><span class="co">#&gt; [1] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span></a>
-<a class="sourceLine" id="cb159-9" data-line-number="9"><span class="co">#&gt; [4] &quot;blueberry&quot;         &quot;orange&quot;            &quot;purple mangosteen&quot;</span></a>
-<a class="sourceLine" id="cb159-10" data-line-number="10"><span class="co">#&gt; [7] &quot;redcurrant&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create our regular expression from a character vector</span>
+colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;black&quot;</span>)
+color_match &lt;-<span class="st"> </span><span class="kw">str_c</span>(colors, <span class="dt">collapse =</span> <span class="st">&quot;|&quot;</span>)
+color_match
+<span class="co">#&gt; [1] &quot;red|orange|yellow|green|blue|purple|black&quot;</span>
+
+<span class="kw">str_subset</span>(fruit, color_match)
+<span class="co">#&gt; [1] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span>
+<span class="co">#&gt; [4] &quot;blueberry&quot;         &quot;orange&quot;            &quot;purple mangosteen&quot;</span>
+<span class="co">#&gt; [7] &quot;redcurrant&quot;</span></code></pre></div>
 <p>Pull out the vowels in all the fruits</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">str_extract</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>)</a>
-<a class="sourceLine" id="cb160-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;i&quot; &quot;a&quot; &quot;a&quot; &quot;o&quot; &quot;u&quot; &quot;o&quot; &quot;e&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;e&quot; &quot;i&quot;</span></a>
-<a class="sourceLine" id="cb160-3" data-line-number="3"><span class="co">#&gt; [18] &quot;e&quot; &quot;o&quot; &quot;o&quot; &quot;a&quot; &quot;u&quot; &quot;u&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;e&quot; &quot;e&quot; &quot;e&quot; &quot;i&quot; &quot;o&quot; &quot;o&quot; &quot;a&quot;</span></a>
-<a class="sourceLine" id="cb160-4" data-line-number="4"><span class="co">#&gt; [35] &quot;a&quot; &quot;u&quot; &quot;o&quot; &quot;u&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;i&quot; &quot;u&quot; &quot;e&quot; &quot;i&quot; &quot;o&quot; &quot;e&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;e&quot;</span></a>
-<a class="sourceLine" id="cb160-5" data-line-number="5"><span class="co">#&gt; [52] &quot;u&quot; &quot;o&quot; &quot;o&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;e&quot; &quot;e&quot; &quot;a&quot; &quot;i&quot; &quot;u&quot; &quot;o&quot; &quot;o&quot; &quot;u&quot; &quot;u&quot; &quot;a&quot;</span></a>
-<a class="sourceLine" id="cb160-6" data-line-number="6"><span class="co">#&gt; [69] &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;o&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;a&quot;</span></a>
-<a class="sourceLine" id="cb160-7" data-line-number="7"><span class="kw">str_extract_all</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb160-8" data-line-number="8"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb160-9" data-line-number="9"><span class="co">#&gt; [1] &quot;a&quot; &quot;e&quot;</span></a>
-<a class="sourceLine" id="cb160-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb160-11" data-line-number="11"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb160-12" data-line-number="12"><span class="co">#&gt; [1] &quot;a&quot; &quot;i&quot; &quot;o&quot;</span></a>
-<a class="sourceLine" id="cb160-13" data-line-number="13"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb160-14" data-line-number="14"><span class="co">#&gt; [[3]]</span></a>
-<a class="sourceLine" id="cb160-15" data-line-number="15"><span class="co">#&gt; [1] &quot;a&quot; &quot;o&quot; &quot;a&quot; &quot;o&quot;</span></a>
-<a class="sourceLine" id="cb160-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb160-17" data-line-number="17"><span class="co">#&gt; [[4]]</span></a>
-<a class="sourceLine" id="cb160-18" data-line-number="18"><span class="co">#&gt; [1] &quot;a&quot; &quot;a&quot; &quot;a&quot;</span></a>
-<a class="sourceLine" id="cb160-19" data-line-number="19"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb160-20" data-line-number="20"><span class="co">#&gt; [[5]]</span></a>
-<a class="sourceLine" id="cb160-21" data-line-number="21"><span class="co">#&gt; [1] &quot;e&quot; &quot;e&quot; &quot;e&quot;</span></a>
-<a class="sourceLine" id="cb160-22" data-line-number="22"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb160-23" data-line-number="23"><span class="co">#&gt; [[6]]</span></a>
-<a class="sourceLine" id="cb160-24" data-line-number="24"><span class="co">#&gt; [1] &quot;i&quot; &quot;e&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_extract</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>)
+<span class="co">#&gt;  [1] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;i&quot; &quot;a&quot; &quot;a&quot; &quot;o&quot; &quot;u&quot; &quot;o&quot; &quot;e&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;e&quot; &quot;i&quot;</span>
+<span class="co">#&gt; [18] &quot;e&quot; &quot;o&quot; &quot;o&quot; &quot;a&quot; &quot;u&quot; &quot;u&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;e&quot; &quot;e&quot; &quot;e&quot; &quot;i&quot; &quot;o&quot; &quot;o&quot; &quot;a&quot;</span>
+<span class="co">#&gt; [35] &quot;a&quot; &quot;u&quot; &quot;o&quot; &quot;u&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;i&quot; &quot;u&quot; &quot;e&quot; &quot;i&quot; &quot;o&quot; &quot;e&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;e&quot;</span>
+<span class="co">#&gt; [52] &quot;u&quot; &quot;o&quot; &quot;o&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;e&quot; &quot;e&quot; &quot;a&quot; &quot;i&quot; &quot;u&quot; &quot;o&quot; &quot;o&quot; &quot;u&quot; &quot;u&quot; &quot;a&quot;</span>
+<span class="co">#&gt; [69] &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;o&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;a&quot;</span>
+<span class="kw">str_extract_all</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] &quot;a&quot; &quot;e&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;a&quot; &quot;i&quot; &quot;o&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] &quot;a&quot; &quot;o&quot; &quot;a&quot; &quot;o&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] &quot;a&quot; &quot;a&quot; &quot;a&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]]</span>
+<span class="co">#&gt; [1] &quot;e&quot; &quot;e&quot; &quot;e&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]]</span>
+<span class="co">#&gt; [1] &quot;i&quot; &quot;e&quot;</span></code></pre></div>
 </div>
 <div id="replacing-matches" class="section level3">
 <h3><span class="header-section-number">9.3.3</span> Replacing Matches</h3>
@@ -629,43 +601,43 @@ These functions are similar to base R functions <code>sub()</code> and <code>gsu
 </p>
 </div>
 <p>Replace vowels with a hyphen</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">str_replace</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="co">#&gt; [1] &quot;-pple&quot;       &quot;-pricot&quot;     &quot;-vocado&quot;     &quot;b-nana&quot;      &quot;b-ll pepper&quot;</span></a>
-<a class="sourceLine" id="cb161-3" data-line-number="3"><span class="co">#&gt; [6] &quot;b-lberry&quot;</span></a>
-<a class="sourceLine" id="cb161-4" data-line-number="4"><span class="kw">str_replace_all</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb161-5" data-line-number="5"><span class="co">#&gt; [1] &quot;-ppl-&quot;       &quot;-pr-c-t&quot;     &quot;-v-c-d-&quot;     &quot;b-n-n-&quot;      &quot;b-ll p-pp-r&quot;</span></a>
-<a class="sourceLine" id="cb161-6" data-line-number="6"><span class="co">#&gt; [6] &quot;b-lb-rry&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_replace</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()
+<span class="co">#&gt; [1] &quot;-pple&quot;       &quot;-pricot&quot;     &quot;-vocado&quot;     &quot;b-nana&quot;      &quot;b-ll pepper&quot;</span>
+<span class="co">#&gt; [6] &quot;b-lberry&quot;</span>
+<span class="kw">str_replace_all</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()
+<span class="co">#&gt; [1] &quot;-ppl-&quot;       &quot;-pr-c-t&quot;     &quot;-v-c-d-&quot;     &quot;b-n-n-&quot;      &quot;b-ll p-pp-r&quot;</span>
+<span class="co">#&gt; [6] &quot;b-lb-rry&quot;</span></code></pre></div>
 <p>Also, <code>str_replace_all()</code> can perform multiple replacements by supplying a named vector.</p>
 <p>Instead of replacing with a fixed string you can use backreferences to insert components of the match.</p>
 <p>If the fruit name is comprised of 2 or more words swap the first and second word.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">str_replace</span>(fruit, <span class="st">&quot;([^ ]+) ([^ ]+)&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">2 </span><span class="ch">\\</span><span class="st">1&quot;</span>)</a>
-<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="co">#&gt;  [1] &quot;apple&quot;             &quot;apricot&quot;           &quot;avocado&quot;          </span></a>
-<a class="sourceLine" id="cb162-3" data-line-number="3"><span class="co">#&gt;  [4] &quot;banana&quot;            &quot;pepper bell&quot;       &quot;bilberry&quot;         </span></a>
-<a class="sourceLine" id="cb162-4" data-line-number="4"><span class="co">#&gt;  [7] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;orange blood&quot;     </span></a>
-<a class="sourceLine" id="cb162-5" data-line-number="5"><span class="co">#&gt; [10] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;breadfruit&quot;       </span></a>
-<a class="sourceLine" id="cb162-6" data-line-number="6"><span class="co">#&gt; [13] &quot;melon canary&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span></a>
-<a class="sourceLine" id="cb162-7" data-line-number="7"><span class="co">#&gt; [16] &quot;cherry&quot;            &quot;pepper chili&quot;      &quot;clementine&quot;       </span></a>
-<a class="sourceLine" id="cb162-8" data-line-number="8"><span class="co">#&gt; [19] &quot;cloudberry&quot;        &quot;coconut&quot;           &quot;cranberry&quot;        </span></a>
-<a class="sourceLine" id="cb162-9" data-line-number="9"><span class="co">#&gt; [22] &quot;cucumber&quot;          &quot;currant&quot;           &quot;damson&quot;           </span></a>
-<a class="sourceLine" id="cb162-10" data-line-number="10"><span class="co">#&gt; [25] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span></a>
-<a class="sourceLine" id="cb162-11" data-line-number="11"><span class="co">#&gt; [28] &quot;eggplant&quot;          &quot;elderberry&quot;        &quot;feijoa&quot;           </span></a>
-<a class="sourceLine" id="cb162-12" data-line-number="12"><span class="co">#&gt; [31] &quot;fig&quot;               &quot;berry goji&quot;        &quot;gooseberry&quot;       </span></a>
-<a class="sourceLine" id="cb162-13" data-line-number="13"><span class="co">#&gt; [34] &quot;grape&quot;             &quot;grapefruit&quot;        &quot;guava&quot;            </span></a>
-<a class="sourceLine" id="cb162-14" data-line-number="14"><span class="co">#&gt; [37] &quot;honeydew&quot;          &quot;huckleberry&quot;       &quot;jackfruit&quot;        </span></a>
-<a class="sourceLine" id="cb162-15" data-line-number="15"><span class="co">#&gt; [40] &quot;jambul&quot;            &quot;jujube&quot;            &quot;fruit kiwi&quot;       </span></a>
-<a class="sourceLine" id="cb162-16" data-line-number="16"><span class="co">#&gt; [43] &quot;kumquat&quot;           &quot;lemon&quot;             &quot;lime&quot;             </span></a>
-<a class="sourceLine" id="cb162-17" data-line-number="17"><span class="co">#&gt; [46] &quot;loquat&quot;            &quot;lychee&quot;            &quot;mandarine&quot;        </span></a>
-<a class="sourceLine" id="cb162-18" data-line-number="18"><span class="co">#&gt; [49] &quot;mango&quot;             &quot;mulberry&quot;          &quot;nectarine&quot;        </span></a>
-<a class="sourceLine" id="cb162-19" data-line-number="19"><span class="co">#&gt; [52] &quot;nut&quot;               &quot;olive&quot;             &quot;orange&quot;           </span></a>
-<a class="sourceLine" id="cb162-20" data-line-number="20"><span class="co">#&gt; [55] &quot;pamelo&quot;            &quot;papaya&quot;            &quot;passionfruit&quot;     </span></a>
-<a class="sourceLine" id="cb162-21" data-line-number="21"><span class="co">#&gt; [58] &quot;peach&quot;             &quot;pear&quot;              &quot;persimmon&quot;        </span></a>
-<a class="sourceLine" id="cb162-22" data-line-number="22"><span class="co">#&gt; [61] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;plum&quot;             </span></a>
-<a class="sourceLine" id="cb162-23" data-line-number="23"><span class="co">#&gt; [64] &quot;pomegranate&quot;       &quot;pomelo&quot;            &quot;mangosteen purple&quot;</span></a>
-<a class="sourceLine" id="cb162-24" data-line-number="24"><span class="co">#&gt; [67] &quot;quince&quot;            &quot;raisin&quot;            &quot;rambutan&quot;         </span></a>
-<a class="sourceLine" id="cb162-25" data-line-number="25"><span class="co">#&gt; [70] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;melon rock&quot;       </span></a>
-<a class="sourceLine" id="cb162-26" data-line-number="26"><span class="co">#&gt; [73] &quot;berry salal&quot;       &quot;satsuma&quot;           &quot;fruit star&quot;       </span></a>
-<a class="sourceLine" id="cb162-27" data-line-number="27"><span class="co">#&gt; [76] &quot;strawberry&quot;        &quot;tamarillo&quot;         &quot;tangerine&quot;        </span></a>
-<a class="sourceLine" id="cb162-28" data-line-number="28"><span class="co">#&gt; [79] &quot;fruit ugli&quot;        &quot;watermelon&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_replace</span>(fruit, <span class="st">&quot;([^ ]+) ([^ ]+)&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">2 </span><span class="ch">\\</span><span class="st">1&quot;</span>)
+<span class="co">#&gt;  [1] &quot;apple&quot;             &quot;apricot&quot;           &quot;avocado&quot;          </span>
+<span class="co">#&gt;  [4] &quot;banana&quot;            &quot;pepper bell&quot;       &quot;bilberry&quot;         </span>
+<span class="co">#&gt;  [7] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;orange blood&quot;     </span>
+<span class="co">#&gt; [10] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;breadfruit&quot;       </span>
+<span class="co">#&gt; [13] &quot;melon canary&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span>
+<span class="co">#&gt; [16] &quot;cherry&quot;            &quot;pepper chili&quot;      &quot;clementine&quot;       </span>
+<span class="co">#&gt; [19] &quot;cloudberry&quot;        &quot;coconut&quot;           &quot;cranberry&quot;        </span>
+<span class="co">#&gt; [22] &quot;cucumber&quot;          &quot;currant&quot;           &quot;damson&quot;           </span>
+<span class="co">#&gt; [25] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span>
+<span class="co">#&gt; [28] &quot;eggplant&quot;          &quot;elderberry&quot;        &quot;feijoa&quot;           </span>
+<span class="co">#&gt; [31] &quot;fig&quot;               &quot;berry goji&quot;        &quot;gooseberry&quot;       </span>
+<span class="co">#&gt; [34] &quot;grape&quot;             &quot;grapefruit&quot;        &quot;guava&quot;            </span>
+<span class="co">#&gt; [37] &quot;honeydew&quot;          &quot;huckleberry&quot;       &quot;jackfruit&quot;        </span>
+<span class="co">#&gt; [40] &quot;jambul&quot;            &quot;jujube&quot;            &quot;fruit kiwi&quot;       </span>
+<span class="co">#&gt; [43] &quot;kumquat&quot;           &quot;lemon&quot;             &quot;lime&quot;             </span>
+<span class="co">#&gt; [46] &quot;loquat&quot;            &quot;lychee&quot;            &quot;mandarine&quot;        </span>
+<span class="co">#&gt; [49] &quot;mango&quot;             &quot;mulberry&quot;          &quot;nectarine&quot;        </span>
+<span class="co">#&gt; [52] &quot;nut&quot;               &quot;olive&quot;             &quot;orange&quot;           </span>
+<span class="co">#&gt; [55] &quot;pamelo&quot;            &quot;papaya&quot;            &quot;passionfruit&quot;     </span>
+<span class="co">#&gt; [58] &quot;peach&quot;             &quot;pear&quot;              &quot;persimmon&quot;        </span>
+<span class="co">#&gt; [61] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;plum&quot;             </span>
+<span class="co">#&gt; [64] &quot;pomegranate&quot;       &quot;pomelo&quot;            &quot;mangosteen purple&quot;</span>
+<span class="co">#&gt; [67] &quot;quince&quot;            &quot;raisin&quot;            &quot;rambutan&quot;         </span>
+<span class="co">#&gt; [70] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;melon rock&quot;       </span>
+<span class="co">#&gt; [73] &quot;berry salal&quot;       &quot;satsuma&quot;           &quot;fruit star&quot;       </span>
+<span class="co">#&gt; [76] &quot;strawberry&quot;        &quot;tamarillo&quot;         &quot;tangerine&quot;        </span>
+<span class="co">#&gt; [79] &quot;fruit ugli&quot;        &quot;watermelon&quot;</span></code></pre></div>
 </div>
 <div id="other-string-functions" class="section level3">
 <h3><span class="header-section-number">9.3.4</span> Other String Functions</h3>
@@ -675,148 +647,148 @@ These functions are similar to base R functions <code>sub()</code> and <code>gsu
 <li><code>str_locate_all()</code> returns the starting and ending positions of all matches</li>
 </ul>
 <p>Split the fruits up by word</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">str_split</span>(fruit, <span class="st">&quot; &quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(., <span class="dv">10</span>)  <span class="co"># split by a space</span></a>
-<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb163-3" data-line-number="3"><span class="co">#&gt; [1] &quot;apple&quot;</span></a>
-<a class="sourceLine" id="cb163-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-5" data-line-number="5"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb163-6" data-line-number="6"><span class="co">#&gt; [1] &quot;apricot&quot;</span></a>
-<a class="sourceLine" id="cb163-7" data-line-number="7"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-8" data-line-number="8"><span class="co">#&gt; [[3]]</span></a>
-<a class="sourceLine" id="cb163-9" data-line-number="9"><span class="co">#&gt; [1] &quot;avocado&quot;</span></a>
-<a class="sourceLine" id="cb163-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-11" data-line-number="11"><span class="co">#&gt; [[4]]</span></a>
-<a class="sourceLine" id="cb163-12" data-line-number="12"><span class="co">#&gt; [1] &quot;banana&quot;</span></a>
-<a class="sourceLine" id="cb163-13" data-line-number="13"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-14" data-line-number="14"><span class="co">#&gt; [[5]]</span></a>
-<a class="sourceLine" id="cb163-15" data-line-number="15"><span class="co">#&gt; [1] &quot;bell&quot;   &quot;pepper&quot;</span></a>
-<a class="sourceLine" id="cb163-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-17" data-line-number="17"><span class="co">#&gt; [[6]]</span></a>
-<a class="sourceLine" id="cb163-18" data-line-number="18"><span class="co">#&gt; [1] &quot;bilberry&quot;</span></a>
-<a class="sourceLine" id="cb163-19" data-line-number="19"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-20" data-line-number="20"><span class="co">#&gt; [[7]]</span></a>
-<a class="sourceLine" id="cb163-21" data-line-number="21"><span class="co">#&gt; [1] &quot;blackberry&quot;</span></a>
-<a class="sourceLine" id="cb163-22" data-line-number="22"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-23" data-line-number="23"><span class="co">#&gt; [[8]]</span></a>
-<a class="sourceLine" id="cb163-24" data-line-number="24"><span class="co">#&gt; [1] &quot;blackcurrant&quot;</span></a>
-<a class="sourceLine" id="cb163-25" data-line-number="25"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-26" data-line-number="26"><span class="co">#&gt; [[9]]</span></a>
-<a class="sourceLine" id="cb163-27" data-line-number="27"><span class="co">#&gt; [1] &quot;blood&quot;  &quot;orange&quot;</span></a>
-<a class="sourceLine" id="cb163-28" data-line-number="28"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-29" data-line-number="29"><span class="co">#&gt; [[10]]</span></a>
-<a class="sourceLine" id="cb163-30" data-line-number="30"><span class="co">#&gt; [1] &quot;blueberry&quot;</span></a>
-<a class="sourceLine" id="cb163-31" data-line-number="31"><span class="kw">str_split</span>(fruit, <span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(., <span class="dv">10</span>) <span class="co"># split by word boundry</span></a>
-<a class="sourceLine" id="cb163-32" data-line-number="32"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb163-33" data-line-number="33"><span class="co">#&gt; [1] &quot;apple&quot;</span></a>
-<a class="sourceLine" id="cb163-34" data-line-number="34"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-35" data-line-number="35"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb163-36" data-line-number="36"><span class="co">#&gt; [1] &quot;apricot&quot;</span></a>
-<a class="sourceLine" id="cb163-37" data-line-number="37"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-38" data-line-number="38"><span class="co">#&gt; [[3]]</span></a>
-<a class="sourceLine" id="cb163-39" data-line-number="39"><span class="co">#&gt; [1] &quot;avocado&quot;</span></a>
-<a class="sourceLine" id="cb163-40" data-line-number="40"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-41" data-line-number="41"><span class="co">#&gt; [[4]]</span></a>
-<a class="sourceLine" id="cb163-42" data-line-number="42"><span class="co">#&gt; [1] &quot;banana&quot;</span></a>
-<a class="sourceLine" id="cb163-43" data-line-number="43"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-44" data-line-number="44"><span class="co">#&gt; [[5]]</span></a>
-<a class="sourceLine" id="cb163-45" data-line-number="45"><span class="co">#&gt; [1] &quot;bell&quot;   &quot;pepper&quot;</span></a>
-<a class="sourceLine" id="cb163-46" data-line-number="46"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-47" data-line-number="47"><span class="co">#&gt; [[6]]</span></a>
-<a class="sourceLine" id="cb163-48" data-line-number="48"><span class="co">#&gt; [1] &quot;bilberry&quot;</span></a>
-<a class="sourceLine" id="cb163-49" data-line-number="49"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-50" data-line-number="50"><span class="co">#&gt; [[7]]</span></a>
-<a class="sourceLine" id="cb163-51" data-line-number="51"><span class="co">#&gt; [1] &quot;blackberry&quot;</span></a>
-<a class="sourceLine" id="cb163-52" data-line-number="52"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-53" data-line-number="53"><span class="co">#&gt; [[8]]</span></a>
-<a class="sourceLine" id="cb163-54" data-line-number="54"><span class="co">#&gt; [1] &quot;blackcurrant&quot;</span></a>
-<a class="sourceLine" id="cb163-55" data-line-number="55"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-56" data-line-number="56"><span class="co">#&gt; [[9]]</span></a>
-<a class="sourceLine" id="cb163-57" data-line-number="57"><span class="co">#&gt; [1] &quot;blood&quot;  &quot;orange&quot;</span></a>
-<a class="sourceLine" id="cb163-58" data-line-number="58"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb163-59" data-line-number="59"><span class="co">#&gt; [[10]]</span></a>
-<a class="sourceLine" id="cb163-60" data-line-number="60"><span class="co">#&gt; [1] &quot;blueberry&quot;</span></a>
-<a class="sourceLine" id="cb163-61" data-line-number="61"><span class="kw">str_split</span>(fruit, <span class="st">&quot; &quot;</span>, <span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)   <span class="co"># only split into 2 peices</span></a>
-<a class="sourceLine" id="cb163-62" data-line-number="62"><span class="co">#&gt;       [,1]           [,2]        </span></a>
-<a class="sourceLine" id="cb163-63" data-line-number="63"><span class="co">#&gt;  [1,] &quot;apple&quot;        &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-64" data-line-number="64"><span class="co">#&gt;  [2,] &quot;apricot&quot;      &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-65" data-line-number="65"><span class="co">#&gt;  [3,] &quot;avocado&quot;      &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-66" data-line-number="66"><span class="co">#&gt;  [4,] &quot;banana&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-67" data-line-number="67"><span class="co">#&gt;  [5,] &quot;bell&quot;         &quot;pepper&quot;    </span></a>
-<a class="sourceLine" id="cb163-68" data-line-number="68"><span class="co">#&gt;  [6,] &quot;bilberry&quot;     &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-69" data-line-number="69"><span class="co">#&gt;  [7,] &quot;blackberry&quot;   &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-70" data-line-number="70"><span class="co">#&gt;  [8,] &quot;blackcurrant&quot; &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-71" data-line-number="71"><span class="co">#&gt;  [9,] &quot;blood&quot;        &quot;orange&quot;    </span></a>
-<a class="sourceLine" id="cb163-72" data-line-number="72"><span class="co">#&gt; [10,] &quot;blueberry&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-73" data-line-number="73"><span class="co">#&gt; [11,] &quot;boysenberry&quot;  &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-74" data-line-number="74"><span class="co">#&gt; [12,] &quot;breadfruit&quot;   &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-75" data-line-number="75"><span class="co">#&gt; [13,] &quot;canary&quot;       &quot;melon&quot;     </span></a>
-<a class="sourceLine" id="cb163-76" data-line-number="76"><span class="co">#&gt; [14,] &quot;cantaloupe&quot;   &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-77" data-line-number="77"><span class="co">#&gt; [15,] &quot;cherimoya&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-78" data-line-number="78"><span class="co">#&gt; [16,] &quot;cherry&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-79" data-line-number="79"><span class="co">#&gt; [17,] &quot;chili&quot;        &quot;pepper&quot;    </span></a>
-<a class="sourceLine" id="cb163-80" data-line-number="80"><span class="co">#&gt; [18,] &quot;clementine&quot;   &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-81" data-line-number="81"><span class="co">#&gt; [19,] &quot;cloudberry&quot;   &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-82" data-line-number="82"><span class="co">#&gt; [20,] &quot;coconut&quot;      &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-83" data-line-number="83"><span class="co">#&gt; [21,] &quot;cranberry&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-84" data-line-number="84"><span class="co">#&gt; [22,] &quot;cucumber&quot;     &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-85" data-line-number="85"><span class="co">#&gt; [23,] &quot;currant&quot;      &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-86" data-line-number="86"><span class="co">#&gt; [24,] &quot;damson&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-87" data-line-number="87"><span class="co">#&gt; [25,] &quot;date&quot;         &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-88" data-line-number="88"><span class="co">#&gt; [26,] &quot;dragonfruit&quot;  &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-89" data-line-number="89"><span class="co">#&gt; [27,] &quot;durian&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-90" data-line-number="90"><span class="co">#&gt; [28,] &quot;eggplant&quot;     &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-91" data-line-number="91"><span class="co">#&gt; [29,] &quot;elderberry&quot;   &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-92" data-line-number="92"><span class="co">#&gt; [30,] &quot;feijoa&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-93" data-line-number="93"><span class="co">#&gt; [31,] &quot;fig&quot;          &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-94" data-line-number="94"><span class="co">#&gt; [32,] &quot;goji&quot;         &quot;berry&quot;     </span></a>
-<a class="sourceLine" id="cb163-95" data-line-number="95"><span class="co">#&gt; [33,] &quot;gooseberry&quot;   &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-96" data-line-number="96"><span class="co">#&gt; [34,] &quot;grape&quot;        &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-97" data-line-number="97"><span class="co">#&gt; [35,] &quot;grapefruit&quot;   &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-98" data-line-number="98"><span class="co">#&gt; [36,] &quot;guava&quot;        &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-99" data-line-number="99"><span class="co">#&gt; [37,] &quot;honeydew&quot;     &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-100" data-line-number="100"><span class="co">#&gt; [38,] &quot;huckleberry&quot;  &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-101" data-line-number="101"><span class="co">#&gt; [39,] &quot;jackfruit&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-102" data-line-number="102"><span class="co">#&gt; [40,] &quot;jambul&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-103" data-line-number="103"><span class="co">#&gt; [41,] &quot;jujube&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-104" data-line-number="104"><span class="co">#&gt; [42,] &quot;kiwi&quot;         &quot;fruit&quot;     </span></a>
-<a class="sourceLine" id="cb163-105" data-line-number="105"><span class="co">#&gt; [43,] &quot;kumquat&quot;      &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-106" data-line-number="106"><span class="co">#&gt; [44,] &quot;lemon&quot;        &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-107" data-line-number="107"><span class="co">#&gt; [45,] &quot;lime&quot;         &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-108" data-line-number="108"><span class="co">#&gt; [46,] &quot;loquat&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-109" data-line-number="109"><span class="co">#&gt; [47,] &quot;lychee&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-110" data-line-number="110"><span class="co">#&gt; [48,] &quot;mandarine&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-111" data-line-number="111"><span class="co">#&gt; [49,] &quot;mango&quot;        &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-112" data-line-number="112"><span class="co">#&gt; [50,] &quot;mulberry&quot;     &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-113" data-line-number="113"><span class="co">#&gt; [51,] &quot;nectarine&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-114" data-line-number="114"><span class="co">#&gt; [52,] &quot;nut&quot;          &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-115" data-line-number="115"><span class="co">#&gt; [53,] &quot;olive&quot;        &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-116" data-line-number="116"><span class="co">#&gt; [54,] &quot;orange&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-117" data-line-number="117"><span class="co">#&gt; [55,] &quot;pamelo&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-118" data-line-number="118"><span class="co">#&gt; [56,] &quot;papaya&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-119" data-line-number="119"><span class="co">#&gt; [57,] &quot;passionfruit&quot; &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-120" data-line-number="120"><span class="co">#&gt; [58,] &quot;peach&quot;        &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-121" data-line-number="121"><span class="co">#&gt; [59,] &quot;pear&quot;         &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-122" data-line-number="122"><span class="co">#&gt; [60,] &quot;persimmon&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-123" data-line-number="123"><span class="co">#&gt; [61,] &quot;physalis&quot;     &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-124" data-line-number="124"><span class="co">#&gt; [62,] &quot;pineapple&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-125" data-line-number="125"><span class="co">#&gt; [63,] &quot;plum&quot;         &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-126" data-line-number="126"><span class="co">#&gt; [64,] &quot;pomegranate&quot;  &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-127" data-line-number="127"><span class="co">#&gt; [65,] &quot;pomelo&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-128" data-line-number="128"><span class="co">#&gt; [66,] &quot;purple&quot;       &quot;mangosteen&quot;</span></a>
-<a class="sourceLine" id="cb163-129" data-line-number="129"><span class="co">#&gt; [67,] &quot;quince&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-130" data-line-number="130"><span class="co">#&gt; [68,] &quot;raisin&quot;       &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-131" data-line-number="131"><span class="co">#&gt; [69,] &quot;rambutan&quot;     &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-132" data-line-number="132"><span class="co">#&gt; [70,] &quot;raspberry&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-133" data-line-number="133"><span class="co">#&gt; [71,] &quot;redcurrant&quot;   &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-134" data-line-number="134"><span class="co">#&gt; [72,] &quot;rock&quot;         &quot;melon&quot;     </span></a>
-<a class="sourceLine" id="cb163-135" data-line-number="135"><span class="co">#&gt; [73,] &quot;salal&quot;        &quot;berry&quot;     </span></a>
-<a class="sourceLine" id="cb163-136" data-line-number="136"><span class="co">#&gt; [74,] &quot;satsuma&quot;      &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-137" data-line-number="137"><span class="co">#&gt; [75,] &quot;star&quot;         &quot;fruit&quot;     </span></a>
-<a class="sourceLine" id="cb163-138" data-line-number="138"><span class="co">#&gt; [76,] &quot;strawberry&quot;   &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-139" data-line-number="139"><span class="co">#&gt; [77,] &quot;tamarillo&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-140" data-line-number="140"><span class="co">#&gt; [78,] &quot;tangerine&quot;    &quot;&quot;          </span></a>
-<a class="sourceLine" id="cb163-141" data-line-number="141"><span class="co">#&gt; [79,] &quot;ugli&quot;         &quot;fruit&quot;     </span></a>
-<a class="sourceLine" id="cb163-142" data-line-number="142"><span class="co">#&gt; [80,] &quot;watermelon&quot;   &quot;&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_split</span>(fruit, <span class="st">&quot; &quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(., <span class="dv">10</span>)  <span class="co"># split by a space</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] &quot;apple&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;apricot&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] &quot;avocado&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] &quot;banana&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]]</span>
+<span class="co">#&gt; [1] &quot;bell&quot;   &quot;pepper&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]]</span>
+<span class="co">#&gt; [1] &quot;bilberry&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[7]]</span>
+<span class="co">#&gt; [1] &quot;blackberry&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[8]]</span>
+<span class="co">#&gt; [1] &quot;blackcurrant&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[9]]</span>
+<span class="co">#&gt; [1] &quot;blood&quot;  &quot;orange&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[10]]</span>
+<span class="co">#&gt; [1] &quot;blueberry&quot;</span>
+<span class="kw">str_split</span>(fruit, <span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(., <span class="dv">10</span>) <span class="co"># split by word boundry</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] &quot;apple&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;apricot&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] &quot;avocado&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] &quot;banana&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]]</span>
+<span class="co">#&gt; [1] &quot;bell&quot;   &quot;pepper&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]]</span>
+<span class="co">#&gt; [1] &quot;bilberry&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[7]]</span>
+<span class="co">#&gt; [1] &quot;blackberry&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[8]]</span>
+<span class="co">#&gt; [1] &quot;blackcurrant&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[9]]</span>
+<span class="co">#&gt; [1] &quot;blood&quot;  &quot;orange&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[10]]</span>
+<span class="co">#&gt; [1] &quot;blueberry&quot;</span>
+<span class="kw">str_split</span>(fruit, <span class="st">&quot; &quot;</span>, <span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)   <span class="co"># only split into 2 peices</span>
+<span class="co">#&gt;       [,1]           [,2]        </span>
+<span class="co">#&gt;  [1,] &quot;apple&quot;        &quot;&quot;          </span>
+<span class="co">#&gt;  [2,] &quot;apricot&quot;      &quot;&quot;          </span>
+<span class="co">#&gt;  [3,] &quot;avocado&quot;      &quot;&quot;          </span>
+<span class="co">#&gt;  [4,] &quot;banana&quot;       &quot;&quot;          </span>
+<span class="co">#&gt;  [5,] &quot;bell&quot;         &quot;pepper&quot;    </span>
+<span class="co">#&gt;  [6,] &quot;bilberry&quot;     &quot;&quot;          </span>
+<span class="co">#&gt;  [7,] &quot;blackberry&quot;   &quot;&quot;          </span>
+<span class="co">#&gt;  [8,] &quot;blackcurrant&quot; &quot;&quot;          </span>
+<span class="co">#&gt;  [9,] &quot;blood&quot;        &quot;orange&quot;    </span>
+<span class="co">#&gt; [10,] &quot;blueberry&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [11,] &quot;boysenberry&quot;  &quot;&quot;          </span>
+<span class="co">#&gt; [12,] &quot;breadfruit&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [13,] &quot;canary&quot;       &quot;melon&quot;     </span>
+<span class="co">#&gt; [14,] &quot;cantaloupe&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [15,] &quot;cherimoya&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [16,] &quot;cherry&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [17,] &quot;chili&quot;        &quot;pepper&quot;    </span>
+<span class="co">#&gt; [18,] &quot;clementine&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [19,] &quot;cloudberry&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [20,] &quot;coconut&quot;      &quot;&quot;          </span>
+<span class="co">#&gt; [21,] &quot;cranberry&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [22,] &quot;cucumber&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [23,] &quot;currant&quot;      &quot;&quot;          </span>
+<span class="co">#&gt; [24,] &quot;damson&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [25,] &quot;date&quot;         &quot;&quot;          </span>
+<span class="co">#&gt; [26,] &quot;dragonfruit&quot;  &quot;&quot;          </span>
+<span class="co">#&gt; [27,] &quot;durian&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [28,] &quot;eggplant&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [29,] &quot;elderberry&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [30,] &quot;feijoa&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [31,] &quot;fig&quot;          &quot;&quot;          </span>
+<span class="co">#&gt; [32,] &quot;goji&quot;         &quot;berry&quot;     </span>
+<span class="co">#&gt; [33,] &quot;gooseberry&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [34,] &quot;grape&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [35,] &quot;grapefruit&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [36,] &quot;guava&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [37,] &quot;honeydew&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [38,] &quot;huckleberry&quot;  &quot;&quot;          </span>
+<span class="co">#&gt; [39,] &quot;jackfruit&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [40,] &quot;jambul&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [41,] &quot;jujube&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [42,] &quot;kiwi&quot;         &quot;fruit&quot;     </span>
+<span class="co">#&gt; [43,] &quot;kumquat&quot;      &quot;&quot;          </span>
+<span class="co">#&gt; [44,] &quot;lemon&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [45,] &quot;lime&quot;         &quot;&quot;          </span>
+<span class="co">#&gt; [46,] &quot;loquat&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [47,] &quot;lychee&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [48,] &quot;mandarine&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [49,] &quot;mango&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [50,] &quot;mulberry&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [51,] &quot;nectarine&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [52,] &quot;nut&quot;          &quot;&quot;          </span>
+<span class="co">#&gt; [53,] &quot;olive&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [54,] &quot;orange&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [55,] &quot;pamelo&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [56,] &quot;papaya&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [57,] &quot;passionfruit&quot; &quot;&quot;          </span>
+<span class="co">#&gt; [58,] &quot;peach&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [59,] &quot;pear&quot;         &quot;&quot;          </span>
+<span class="co">#&gt; [60,] &quot;persimmon&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [61,] &quot;physalis&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [62,] &quot;pineapple&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [63,] &quot;plum&quot;         &quot;&quot;          </span>
+<span class="co">#&gt; [64,] &quot;pomegranate&quot;  &quot;&quot;          </span>
+<span class="co">#&gt; [65,] &quot;pomelo&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [66,] &quot;purple&quot;       &quot;mangosteen&quot;</span>
+<span class="co">#&gt; [67,] &quot;quince&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [68,] &quot;raisin&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [69,] &quot;rambutan&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [70,] &quot;raspberry&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [71,] &quot;redcurrant&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [72,] &quot;rock&quot;         &quot;melon&quot;     </span>
+<span class="co">#&gt; [73,] &quot;salal&quot;        &quot;berry&quot;     </span>
+<span class="co">#&gt; [74,] &quot;satsuma&quot;      &quot;&quot;          </span>
+<span class="co">#&gt; [75,] &quot;star&quot;         &quot;fruit&quot;     </span>
+<span class="co">#&gt; [76,] &quot;strawberry&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [77,] &quot;tamarillo&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [78,] &quot;tangerine&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [79,] &quot;ugli&quot;         &quot;fruit&quot;     </span>
+<span class="co">#&gt; [80,] &quot;watermelon&quot;   &quot;&quot;</span></code></pre></div>
 <p><strong>stringr</strong> is built on top of the <strong>stringi</strong> package. stringr is useful when you’re learning because it exposes a minimal set of functions, which have been carefully picked to handle the most common string manipulation functions. stringi, on the other hand, is designed to be comprehensive. It contains almost every function you might ever need: stringi has 234 functions to stringr’s 46.</p>
 <p>If you find yourself struggling to do something in stringr, it’s worth taking a look at stringi. The packages work very similarly, so you should be able to translate your stringr knowledge in a natural way. The main difference is the prefix: <code>str_</code> vs. <code>stri_</code>.</p>
 
@@ -866,7 +838,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

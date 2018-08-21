@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-08-20">
+<meta name="date" content="2018-08-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,72 +50,44 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css\style.css" type="text/css" />
 </head>
 
 <body>
@@ -305,9 +277,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>11</b> Relational Data</a><ul>
 <li class="chapter" data-level="11.1" data-path="relational-data.html"><a href="relational-data.html#mutating-joins"><i class="fa fa-check"></i><b>11.1</b> Mutating Joins</a><ul>
 <li class="chapter" data-level="11.1.1" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>11.1.1</b> Duplicate keys</a></li>
-<li class="chapter" data-level="11.1.2" data-path="relational-data.html"><a href="relational-data.html#multiple-columns"><i class="fa fa-check"></i><b>11.1.2</b> Multiple columns</a></li>
-<li class="chapter" data-level="11.1.3" data-path="relational-data.html"><a href="relational-data.html#column-names-dont-match"><i class="fa fa-check"></i><b>11.1.3</b> Column names don’t match</a></li>
-<li class="chapter" data-level="11.1.4" data-path="relational-data.html"><a href="relational-data.html#duplicate-columns"><i class="fa fa-check"></i><b>11.1.4</b> Duplicate Columns</a></li>
+<li class="chapter" data-level="11.1.2" data-path="relational-data.html"><a href="relational-data.html#multi-column-keys"><i class="fa fa-check"></i><b>11.1.2</b> Multi-Column Keys</a></li>
+<li class="chapter" data-level="11.1.3" data-path="relational-data.html"><a href="relational-data.html#duplicate-non-key-columns"><i class="fa fa-check"></i><b>11.1.3</b> Duplicate Non-Key Columns</a></li>
+<li class="chapter" data-level="11.1.4" data-path="relational-data.html"><a href="relational-data.html#different-key-column-names"><i class="fa fa-check"></i><b>11.1.4</b> Different Key Column Names</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#filtering-joins"><i class="fa fa-check"></i><b>11.2</b> Filtering Joins</a></li>
 <li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#set-operations"><i class="fa fa-check"></i><b>11.3</b> Set Operations</a></li>
@@ -338,14 +310,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="tidy-data" class="section level1">
 <h1><span class="header-section-number">10</span> Tidy Data</h1>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
 <blockquote>
-<p>“Happy families are all alike; every unhappy family is unhappy in its
-own way.” –– Leo Tolstoy</p>
+<p>“Happy families are all alike; every unhappy family is unhappy in its own way.” –– Leo Tolstoy</p>
 </blockquote>
 <blockquote>
-<p>“Tidy datasets are all alike, but every messy dataset is messy in its
-own way.” –– Hadley Wickham</p>
+<p>“Tidy datasets are all alike, but every messy dataset is messy in its own way.” –– Hadley Wickham</p>
 </blockquote>
 <p>In this chapter, you will learn a consistent way to organize your data in R, an organisation called <strong>tidy data</strong>. Getting your data into this format requires some upfront work, but that work pays off in the long term. Once you have tidy data and the tidy tools provided by packages in the tidyverse, you will spend much less time munging data from one representation to another, allowing you to spend more time on the analytic questions at hand.</p>
 <p>This chapter will give you a practical introduction to tidy data and the accompanying tools in the <strong>tidyr</strong> package. If you’d like to learn more about the underlying theory, you might enjoy the <em>Tidy Data</em> paper published in the Journal of Statistical Software, <a href="http://www.jstatsoft.org/v59/i10/paper" class="uri">http://www.jstatsoft.org/v59/i10/paper</a>.</p>
@@ -367,67 +337,61 @@ FIGURE 10.1: Following three rules makes a dataset tidy: variables are in column
 <p>These three rules are interrelated because it’s impossible to only satisfy two of the three.</p>
 <p>Why ensure that your data is tidy? There are two main advantages:</p>
 <ol style="list-style-type: decimal">
-<li><p>There’s a general advantage to picking one consistent way of storing
-data. If you have a consistent data structure, it’s easier to learn the
-tools that work with it because they have an underlying uniformity.</p></li>
-<li><p>There’s a specific advantage to placing variables in columns because
-it allows R’s vectorized nature to shine. As you learned in
-<a href="#mutate-funs">mutate</a> and <a href="#summary-funs">summary functions</a>, most
-built-in R functions work with vectors of values. That makes transforming
-tidy data feel particularly natural.</p></li>
+<li><p>There’s a general advantage to picking one consistent way of storing data. If you have a consistent data structure, it’s easier to learn the tools that work with it because they have an underlying uniformity.</p></li>
+<li><p>There’s a specific advantage to placing variables in columns because it allows R’s vectorized nature to shine. As you learned in <a href="#mutate-funs">mutate</a> and <a href="#summary-funs">summary functions</a>, most built-in R functions work with vectors of values. That makes transforming tidy data feel particularly natural.</p></li>
 </ol>
 <p>dplyr, ggplot2, and all the other packages in the tidyverse are designed to work with tidy data.</p>
 </div>
 <div id="example-2" class="section level2">
 <h2><span class="header-section-number">10.2</span> Example</h2>
 <p>You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. Each dataset shows the same values of four variables <em>country</em>, <em>year</em>, <em>population</em>, and <em>cases</em>, but each dataset organizes the values in a different way.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1">table1</a>
-<a class="sourceLine" id="cb165-2" data-line-number="2"><span class="co">#&gt; # A tibble: 6 x 4</span></a>
-<a class="sourceLine" id="cb165-3" data-line-number="3"><span class="co">#&gt;   country      year  cases population</span></a>
-<a class="sourceLine" id="cb165-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb165-5" data-line-number="5"><span class="co">#&gt; 1 Afghanistan  1999    745   19987071</span></a>
-<a class="sourceLine" id="cb165-6" data-line-number="6"><span class="co">#&gt; 2 Afghanistan  2000   2666   20595360</span></a>
-<a class="sourceLine" id="cb165-7" data-line-number="7"><span class="co">#&gt; 3 Brazil       1999  37737  172006362</span></a>
-<a class="sourceLine" id="cb165-8" data-line-number="8"><span class="co">#&gt; 4 Brazil       2000  80488  174504898</span></a>
-<a class="sourceLine" id="cb165-9" data-line-number="9"><span class="co">#&gt; 5 China        1999 212258 1272915272</span></a>
-<a class="sourceLine" id="cb165-10" data-line-number="10"><span class="co">#&gt; 6 China        2000 213766 1280428583</span></a>
-<a class="sourceLine" id="cb165-11" data-line-number="11">table2</a>
-<a class="sourceLine" id="cb165-12" data-line-number="12"><span class="co">#&gt; # A tibble: 12 x 4</span></a>
-<a class="sourceLine" id="cb165-13" data-line-number="13"><span class="co">#&gt;   country      year type           count</span></a>
-<a class="sourceLine" id="cb165-14" data-line-number="14"><span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb165-15" data-line-number="15"><span class="co">#&gt; 1 Afghanistan  1999 cases            745</span></a>
-<a class="sourceLine" id="cb165-16" data-line-number="16"><span class="co">#&gt; 2 Afghanistan  1999 population  19987071</span></a>
-<a class="sourceLine" id="cb165-17" data-line-number="17"><span class="co">#&gt; 3 Afghanistan  2000 cases           2666</span></a>
-<a class="sourceLine" id="cb165-18" data-line-number="18"><span class="co">#&gt; 4 Afghanistan  2000 population  20595360</span></a>
-<a class="sourceLine" id="cb165-19" data-line-number="19"><span class="co">#&gt; 5 Brazil       1999 cases          37737</span></a>
-<a class="sourceLine" id="cb165-20" data-line-number="20"><span class="co">#&gt; 6 Brazil       1999 population 172006362</span></a>
-<a class="sourceLine" id="cb165-21" data-line-number="21"><span class="co">#&gt; # ... with 6 more rows</span></a>
-<a class="sourceLine" id="cb165-22" data-line-number="22">table3</a>
-<a class="sourceLine" id="cb165-23" data-line-number="23"><span class="co">#&gt; # A tibble: 6 x 3</span></a>
-<a class="sourceLine" id="cb165-24" data-line-number="24"><span class="co">#&gt;   country      year rate             </span></a>
-<a class="sourceLine" id="cb165-25" data-line-number="25"><span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            </span></a>
-<a class="sourceLine" id="cb165-26" data-line-number="26"><span class="co">#&gt; 1 Afghanistan  1999 745/19987071     </span></a>
-<a class="sourceLine" id="cb165-27" data-line-number="27"><span class="co">#&gt; 2 Afghanistan  2000 2666/20595360    </span></a>
-<a class="sourceLine" id="cb165-28" data-line-number="28"><span class="co">#&gt; 3 Brazil       1999 37737/172006362  </span></a>
-<a class="sourceLine" id="cb165-29" data-line-number="29"><span class="co">#&gt; 4 Brazil       2000 80488/174504898  </span></a>
-<a class="sourceLine" id="cb165-30" data-line-number="30"><span class="co">#&gt; 5 China        1999 212258/1272915272</span></a>
-<a class="sourceLine" id="cb165-31" data-line-number="31"><span class="co">#&gt; 6 China        2000 213766/1280428583</span></a>
-<a class="sourceLine" id="cb165-32" data-line-number="32"></a>
-<a class="sourceLine" id="cb165-33" data-line-number="33"><span class="co"># Spread across two tibbles</span></a>
-<a class="sourceLine" id="cb165-34" data-line-number="34">table4a  <span class="co"># cases</span></a>
-<a class="sourceLine" id="cb165-35" data-line-number="35"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
-<a class="sourceLine" id="cb165-36" data-line-number="36"><span class="co">#&gt;   country     `1999` `2000`</span></a>
-<a class="sourceLine" id="cb165-37" data-line-number="37"><span class="co">#&gt; * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb165-38" data-line-number="38"><span class="co">#&gt; 1 Afghanistan    745   2666</span></a>
-<a class="sourceLine" id="cb165-39" data-line-number="39"><span class="co">#&gt; 2 Brazil       37737  80488</span></a>
-<a class="sourceLine" id="cb165-40" data-line-number="40"><span class="co">#&gt; 3 China       212258 213766</span></a>
-<a class="sourceLine" id="cb165-41" data-line-number="41">table4b  <span class="co"># population</span></a>
-<a class="sourceLine" id="cb165-42" data-line-number="42"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
-<a class="sourceLine" id="cb165-43" data-line-number="43"><span class="co">#&gt;   country         `1999`     `2000`</span></a>
-<a class="sourceLine" id="cb165-44" data-line-number="44"><span class="co">#&gt; * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb165-45" data-line-number="45"><span class="co">#&gt; 1 Afghanistan   19987071   20595360</span></a>
-<a class="sourceLine" id="cb165-46" data-line-number="46"><span class="co">#&gt; 2 Brazil       172006362  174504898</span></a>
-<a class="sourceLine" id="cb165-47" data-line-number="47"><span class="co">#&gt; 3 China       1272915272 1280428583</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country      year  cases population</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan  1999    745   19987071</span>
+<span class="co">#&gt; 2 Afghanistan  2000   2666   20595360</span>
+<span class="co">#&gt; 3 Brazil       1999  37737  172006362</span>
+<span class="co">#&gt; 4 Brazil       2000  80488  174504898</span>
+<span class="co">#&gt; 5 China        1999 212258 1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766 1280428583</span>
+table2
+<span class="co">#&gt; # A tibble: 12 x 4</span>
+<span class="co">#&gt;   country      year type           count</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan  1999 cases            745</span>
+<span class="co">#&gt; 2 Afghanistan  1999 population  19987071</span>
+<span class="co">#&gt; 3 Afghanistan  2000 cases           2666</span>
+<span class="co">#&gt; 4 Afghanistan  2000 population  20595360</span>
+<span class="co">#&gt; 5 Brazil       1999 cases          37737</span>
+<span class="co">#&gt; 6 Brazil       1999 population 172006362</span>
+<span class="co">#&gt; # ... with 6 more rows</span>
+table3
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   country      year rate             </span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 Afghanistan  1999 745/19987071     </span>
+<span class="co">#&gt; 2 Afghanistan  2000 2666/20595360    </span>
+<span class="co">#&gt; 3 Brazil       1999 37737/172006362  </span>
+<span class="co">#&gt; 4 Brazil       2000 80488/174504898  </span>
+<span class="co">#&gt; 5 China        1999 212258/1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766/1280428583</span>
+
+<span class="co"># Spread across two tibbles</span>
+table4a  <span class="co"># cases</span>
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;   country     `1999` `2000`</span>
+<span class="co">#&gt; * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan    745   2666</span>
+<span class="co">#&gt; 2 Brazil       37737  80488</span>
+<span class="co">#&gt; 3 China       212258 213766</span>
+table4b  <span class="co"># population</span>
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;   country         `1999`     `2000`</span>
+<span class="co">#&gt; * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan   19987071   20595360</span>
+<span class="co">#&gt; 2 Brazil       172006362  174504898</span>
+<span class="co">#&gt; 3 China       1272915272 1280428583</span></code></pre></div>
 <p>These are all representations of the same underlying data, but they are not equally easy to use. One dataset, the tidy dataset, will be much easier to work with inside the tidyverse.</p>
 <p>Which dataset is tidy? Why aren’t the other datasets considered tidy?</p>
 
@@ -440,14 +404,11 @@ How would you calculate the rate per 10,000 population for each data set? How wo
 <h2><span class="header-section-number">10.3</span> Spreading and gathering</h2>
 <p>The principles of tidy data seem so obvious that you might wonder if you’ll ever encounter a dataset that isn’t tidy. Unfortunately, however, most data that you will encounter will be untidy. There are two main reasons:</p>
 <ol style="list-style-type: decimal">
-<li><p>Most people aren’t familiar with the principles of tidy data, and it’s hard
-to derive them yourself unless you spend a <em>lot</em> of time working with data.</p></li>
-<li><p>Data is often organised to facilitate some use other than analysis. For
-example, data is often organised to make entry as easy as possible.</p></li>
+<li><p>Most people aren’t familiar with the principles of tidy data, and it’s hard to derive them yourself unless you spend a <em>lot</em> of time working with data.</p></li>
+<li><p>Data is often organised to facilitate some use other than analysis. For example, data is often organised to make entry as easy as possible.</p></li>
 <li><p>How to efficiently store, analyze, and present data are <em>usually</em> three different data formats.</p></li>
 </ol>
-<p>This means for most real analyses, you’ll need to do some tidying / untidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times it can be a bit more difficult.
-The second step is to resolve one of two common problems:</p>
+<p>This means for most real analyses, you’ll need to do some tidying / untidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times it can be a bit more difficult. The second step is to resolve one of two common problems:</p>
 <ol style="list-style-type: decimal">
 <li><p>One variable might be spread across multiple columns.</p></li>
 <li><p>One observation might be scattered across multiple rows.</p></li>
@@ -456,13 +417,13 @@ The second step is to resolve one of two common problems:</p>
 <div id="gathering" class="section level3">
 <h3><span class="header-section-number">10.3.1</span> Gathering</h3>
 <p>A common problem is a dataset where some of the column names are not names of variables, but <em>values</em> of a variable. Take <code>table4a</code>: the column names <code>1999</code> and <code>2000</code> represent values of the <code>year</code> variable, and each row represents two observations, not one.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1">table4a</a>
-<a class="sourceLine" id="cb166-2" data-line-number="2"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
-<a class="sourceLine" id="cb166-3" data-line-number="3"><span class="co">#&gt;   country     `1999` `2000`</span></a>
-<a class="sourceLine" id="cb166-4" data-line-number="4"><span class="co">#&gt; * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb166-5" data-line-number="5"><span class="co">#&gt; 1 Afghanistan    745   2666</span></a>
-<a class="sourceLine" id="cb166-6" data-line-number="6"><span class="co">#&gt; 2 Brazil       37737  80488</span></a>
-<a class="sourceLine" id="cb166-7" data-line-number="7"><span class="co">#&gt; 3 China       212258 213766</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4a
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;   country     `1999` `2000`</span>
+<span class="co">#&gt; * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan    745   2666</span>
+<span class="co">#&gt; 2 Brazil       37737  80488</span>
+<span class="co">#&gt; 3 China       212258 213766</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:tidy-gather"></span>
 <img src="images/tidy/tidy-9.png" alt="Gathering `table4` into a tidy form." width="100%" />
 <p class="caption">
@@ -471,25 +432,22 @@ FIGURE 10.2: Gathering <code>table4</code> into a tidy form.
 </div>
 <p>To tidy a dataset like this, we need to <strong>gather</strong> those columns into a new pair of variables. To describe that operation we need three parameters:</p>
 <ul>
-<li><p>The name of the variable whose values form the column names. This is
-the <code>key</code>, and here it is <code>year</code>.</p></li>
-<li><p>The name of the variable whose values are spread over the cells. That is the
-<code>value</code>, and here it’s the number of <code>cases</code>.</p></li>
-<li><p>The set of columns that represent values, not variables. In this example,
-those are the columns <code>1999</code> and <code>2000</code>.</p></li>
+<li><p>The name of the variable whose values form the column names. This is the <code>key</code>, and here it is <code>year</code>.</p></li>
+<li><p>The name of the variable whose values are spread over the cells. That is the <code>value</code>, and here it’s the number of <code>cases</code>.</p></li>
+<li><p>The set of columns that represent values, not variables. In this example, those are the columns <code>1999</code> and <code>2000</code>.</p></li>
 </ul>
 <p>Together those parameters generate the call to <code>gather()</code>:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1">table4a <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)</a>
-<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 3</span></a>
-<a class="sourceLine" id="cb167-4" data-line-number="4"><span class="co">#&gt;   country     year   cases</span></a>
-<a class="sourceLine" id="cb167-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb167-6" data-line-number="6"><span class="co">#&gt; 1 Afghanistan 1999     745</span></a>
-<a class="sourceLine" id="cb167-7" data-line-number="7"><span class="co">#&gt; 2 Brazil      1999   37737</span></a>
-<a class="sourceLine" id="cb167-8" data-line-number="8"><span class="co">#&gt; 3 China       1999  212258</span></a>
-<a class="sourceLine" id="cb167-9" data-line-number="9"><span class="co">#&gt; 4 Afghanistan 2000    2666</span></a>
-<a class="sourceLine" id="cb167-10" data-line-number="10"><span class="co">#&gt; 5 Brazil      2000   80488</span></a>
-<a class="sourceLine" id="cb167-11" data-line-number="11"><span class="co">#&gt; 6 China       2000  213766</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4a <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   country     year   cases</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan 1999     745</span>
+<span class="co">#&gt; 2 Brazil      1999   37737</span>
+<span class="co">#&gt; 3 China       1999  212258</span>
+<span class="co">#&gt; 4 Afghanistan 2000    2666</span>
+<span class="co">#&gt; 5 Brazil      2000   80488</span>
+<span class="co">#&gt; 6 China       2000  213766</span></code></pre></div>
 
 <div class="rmdimportant">
 Note that “1999” and “2000” are non-syntactic names (because they don’t start with a letter) so we have to surround them in backticks. To refresh your memory of the other ways to select columns, see <a href="#select">select</a>.
@@ -497,36 +455,36 @@ Note that “1999” and “2000” are non-syntactic names (because they don’
 
 <p>In the final result, the gathered columns are dropped, and we get new <code>key</code> and <code>value</code> columns. Otherwise, the relationships between the original variables are preserved. Visually, this is shown in Figure <a href="tidy-data.html#fig:tidy-gather">10.2</a>. We can use <code>gather()</code> to tidy <code>table4b</code> in a similar fashion. The only difference is the variable stored in the cell values.</p>
 <p>To combine the tidied versions of <code>table4a</code> and <code>table4b</code> into a single tibble, we need to use <code>dplyr::left_join()</code>, which you’ll learn about in <a href="relational-data.html#relational-data">relational data</a>.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1">tidy4a &lt;-<span class="st"> </span>table4a <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb168-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)</a>
-<a class="sourceLine" id="cb168-3" data-line-number="3">tidy4b &lt;-<span class="st"> </span>table4b <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb168-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;population&quot;</span>, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)</a>
-<a class="sourceLine" id="cb168-5" data-line-number="5"><span class="kw">left_join</span>(tidy4a, tidy4b)</a>
-<a class="sourceLine" id="cb168-6" data-line-number="6"><span class="co">#&gt; Joining, by = c(&quot;country&quot;, &quot;year&quot;)</span></a>
-<a class="sourceLine" id="cb168-7" data-line-number="7"><span class="co">#&gt; # A tibble: 6 x 4</span></a>
-<a class="sourceLine" id="cb168-8" data-line-number="8"><span class="co">#&gt;   country     year   cases population</span></a>
-<a class="sourceLine" id="cb168-9" data-line-number="9"><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb168-10" data-line-number="10"><span class="co">#&gt; 1 Afghanistan 1999     745   19987071</span></a>
-<a class="sourceLine" id="cb168-11" data-line-number="11"><span class="co">#&gt; 2 Brazil      1999   37737  172006362</span></a>
-<a class="sourceLine" id="cb168-12" data-line-number="12"><span class="co">#&gt; 3 China       1999  212258 1272915272</span></a>
-<a class="sourceLine" id="cb168-13" data-line-number="13"><span class="co">#&gt; 4 Afghanistan 2000    2666   20595360</span></a>
-<a class="sourceLine" id="cb168-14" data-line-number="14"><span class="co">#&gt; 5 Brazil      2000   80488  174504898</span></a>
-<a class="sourceLine" id="cb168-15" data-line-number="15"><span class="co">#&gt; 6 China       2000  213766 1280428583</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tidy4a &lt;-<span class="st"> </span>table4a <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)
+tidy4b &lt;-<span class="st"> </span>table4b <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;population&quot;</span>, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)
+<span class="kw">left_join</span>(tidy4a, tidy4b)
+<span class="co">#&gt; Joining, by = c(&quot;country&quot;, &quot;year&quot;)</span>
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country     year   cases population</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan 1999     745   19987071</span>
+<span class="co">#&gt; 2 Brazil      1999   37737  172006362</span>
+<span class="co">#&gt; 3 China       1999  212258 1272915272</span>
+<span class="co">#&gt; 4 Afghanistan 2000    2666   20595360</span>
+<span class="co">#&gt; 5 Brazil      2000   80488  174504898</span>
+<span class="co">#&gt; 6 China       2000  213766 1280428583</span></code></pre></div>
 </div>
 <div id="spreading" class="section level3">
 <h3><span class="header-section-number">10.3.2</span> Spreading</h3>
 <p>Spreading is the opposite of gathering. You use it when an observation is scattered across multiple rows. For example, take <code>table2</code>: an observation is a country in a year, but each observation is spread across two rows.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1">table2</a>
-<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="co">#&gt; # A tibble: 12 x 4</span></a>
-<a class="sourceLine" id="cb169-3" data-line-number="3"><span class="co">#&gt;   country      year type           count</span></a>
-<a class="sourceLine" id="cb169-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb169-5" data-line-number="5"><span class="co">#&gt; 1 Afghanistan  1999 cases            745</span></a>
-<a class="sourceLine" id="cb169-6" data-line-number="6"><span class="co">#&gt; 2 Afghanistan  1999 population  19987071</span></a>
-<a class="sourceLine" id="cb169-7" data-line-number="7"><span class="co">#&gt; 3 Afghanistan  2000 cases           2666</span></a>
-<a class="sourceLine" id="cb169-8" data-line-number="8"><span class="co">#&gt; 4 Afghanistan  2000 population  20595360</span></a>
-<a class="sourceLine" id="cb169-9" data-line-number="9"><span class="co">#&gt; 5 Brazil       1999 cases          37737</span></a>
-<a class="sourceLine" id="cb169-10" data-line-number="10"><span class="co">#&gt; 6 Brazil       1999 population 172006362</span></a>
-<a class="sourceLine" id="cb169-11" data-line-number="11"><span class="co">#&gt; # ... with 6 more rows</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table2
+<span class="co">#&gt; # A tibble: 12 x 4</span>
+<span class="co">#&gt;   country      year type           count</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan  1999 cases            745</span>
+<span class="co">#&gt; 2 Afghanistan  1999 population  19987071</span>
+<span class="co">#&gt; 3 Afghanistan  2000 cases           2666</span>
+<span class="co">#&gt; 4 Afghanistan  2000 population  20595360</span>
+<span class="co">#&gt; 5 Brazil       1999 cases          37737</span>
+<span class="co">#&gt; 6 Brazil       1999 population 172006362</span>
+<span class="co">#&gt; # ... with 6 more rows</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:tidy-spread"></span>
 <img src="images/tidy/tidy-8.png" alt="Spreading `table2` makes it tidy" width="100%" />
 <p class="caption">
@@ -535,23 +493,21 @@ FIGURE 10.3: Spreading <code>table2</code> makes it tidy
 </div>
 <p>To tidy this up, we first analyse the representation in similar way to <code>gather()</code>. This time, however, we only need two parameters:</p>
 <ul>
-<li><p>The column that contains variable names, the <code>key</code> column. Here, it’s
-<code>type</code>.</p></li>
-<li><p>The column that contains values from multiple variables, the <code>value</code>
-column. Here it’s <code>count</code>.</p></li>
+<li><p>The column that contains variable names, the <code>key</code> column. Here, it’s <code>type</code>.</p></li>
+<li><p>The column that contains values from multiple variables, the <code>value</code> column. Here it’s <code>count</code>.</p></li>
 </ul>
 <p>Once we’ve figured that out, we can use <code>spread()</code>, as shown programmatically below, and visually in Figure <a href="tidy-data.html#fig:tidy-spread">10.3</a>.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="st">    </span><span class="kw">spread</span>(<span class="dt">key =</span> type, <span class="dt">value =</span> count)</a>
-<a class="sourceLine" id="cb170-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 4</span></a>
-<a class="sourceLine" id="cb170-4" data-line-number="4"><span class="co">#&gt;   country      year  cases population</span></a>
-<a class="sourceLine" id="cb170-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb170-6" data-line-number="6"><span class="co">#&gt; 1 Afghanistan  1999    745   19987071</span></a>
-<a class="sourceLine" id="cb170-7" data-line-number="7"><span class="co">#&gt; 2 Afghanistan  2000   2666   20595360</span></a>
-<a class="sourceLine" id="cb170-8" data-line-number="8"><span class="co">#&gt; 3 Brazil       1999  37737  172006362</span></a>
-<a class="sourceLine" id="cb170-9" data-line-number="9"><span class="co">#&gt; 4 Brazil       2000  80488  174504898</span></a>
-<a class="sourceLine" id="cb170-10" data-line-number="10"><span class="co">#&gt; 5 China        1999 212258 1272915272</span></a>
-<a class="sourceLine" id="cb170-11" data-line-number="11"><span class="co">#&gt; 6 China        2000 213766 1280428583</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table2 <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">spread</span>(<span class="dt">key =</span> type, <span class="dt">value =</span> count)
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country      year  cases population</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan  1999    745   19987071</span>
+<span class="co">#&gt; 2 Afghanistan  2000   2666   20595360</span>
+<span class="co">#&gt; 3 Brazil       1999  37737  172006362</span>
+<span class="co">#&gt; 4 Brazil       2000  80488  174504898</span>
+<span class="co">#&gt; 5 China        1999 212258 1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766 1280428583</span></code></pre></div>
 <div class="rmdnote">
 <p>
 As you might have guessed from the common <code>key</code> and <code>value</code> arguments, <code>spread()</code> and <code>gather()</code> are complements. <code>gather()</code> makes wide tables narrower and longer; <code>spread()</code> makes long tables shorter and wider.
@@ -565,16 +521,16 @@ As you might have guessed from the common <code>key</code> and <code>value</code
 <div id="separate" class="section level3">
 <h3><span class="header-section-number">10.4.1</span> Separate</h3>
 <p><code>separate()</code> pulls apart one column into multiple columns, by splitting wherever a separator character appears. Take <code>table3</code>:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1">table3</a>
-<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="co">#&gt; # A tibble: 6 x 3</span></a>
-<a class="sourceLine" id="cb171-3" data-line-number="3"><span class="co">#&gt;   country      year rate             </span></a>
-<a class="sourceLine" id="cb171-4" data-line-number="4"><span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            </span></a>
-<a class="sourceLine" id="cb171-5" data-line-number="5"><span class="co">#&gt; 1 Afghanistan  1999 745/19987071     </span></a>
-<a class="sourceLine" id="cb171-6" data-line-number="6"><span class="co">#&gt; 2 Afghanistan  2000 2666/20595360    </span></a>
-<a class="sourceLine" id="cb171-7" data-line-number="7"><span class="co">#&gt; 3 Brazil       1999 37737/172006362  </span></a>
-<a class="sourceLine" id="cb171-8" data-line-number="8"><span class="co">#&gt; 4 Brazil       2000 80488/174504898  </span></a>
-<a class="sourceLine" id="cb171-9" data-line-number="9"><span class="co">#&gt; 5 China        1999 212258/1272915272</span></a>
-<a class="sourceLine" id="cb171-10" data-line-number="10"><span class="co">#&gt; 6 China        2000 213766/1280428583</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   country      year rate             </span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 Afghanistan  1999 745/19987071     </span>
+<span class="co">#&gt; 2 Afghanistan  2000 2666/20595360    </span>
+<span class="co">#&gt; 3 Brazil       1999 37737/172006362  </span>
+<span class="co">#&gt; 4 Brazil       2000 80488/174504898  </span>
+<span class="co">#&gt; 5 China        1999 212258/1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766/1280428583</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:tidy-separate"></span>
 <img src="images/tidy/tidy-17.png" alt="Separating `table3` makes it tidy" width="75%" />
 <p class="caption">
@@ -582,47 +538,47 @@ FIGURE 10.4: Separating <code>table3</code> makes it tidy
 </p>
 </div>
 <p>The <code>rate</code> column contains both <code>cases</code> and <code>population</code> variables, and we need to split it into two variables. <code>separate()</code> takes the name of the column to separate, and the names of the columns to separate into, as shown in Figure <a href="tidy-data.html#fig:tidy-separate">10.4</a> and the code below.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1">table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb172-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>))</a>
-<a class="sourceLine" id="cb172-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 4</span></a>
-<a class="sourceLine" id="cb172-4" data-line-number="4"><span class="co">#&gt;   country      year cases  population</span></a>
-<a class="sourceLine" id="cb172-5" data-line-number="5"><span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     </span></a>
-<a class="sourceLine" id="cb172-6" data-line-number="6"><span class="co">#&gt; 1 Afghanistan  1999 745    19987071  </span></a>
-<a class="sourceLine" id="cb172-7" data-line-number="7"><span class="co">#&gt; 2 Afghanistan  2000 2666   20595360  </span></a>
-<a class="sourceLine" id="cb172-8" data-line-number="8"><span class="co">#&gt; 3 Brazil       1999 37737  172006362 </span></a>
-<a class="sourceLine" id="cb172-9" data-line-number="9"><span class="co">#&gt; 4 Brazil       2000 80488  174504898 </span></a>
-<a class="sourceLine" id="cb172-10" data-line-number="10"><span class="co">#&gt; 5 China        1999 212258 1272915272</span></a>
-<a class="sourceLine" id="cb172-11" data-line-number="11"><span class="co">#&gt; 6 China        2000 213766 1280428583</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>))
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country      year cases  population</span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     </span>
+<span class="co">#&gt; 1 Afghanistan  1999 745    19987071  </span>
+<span class="co">#&gt; 2 Afghanistan  2000 2666   20595360  </span>
+<span class="co">#&gt; 3 Brazil       1999 37737  172006362 </span>
+<span class="co">#&gt; 4 Brazil       2000 80488  174504898 </span>
+<span class="co">#&gt; 5 China        1999 212258 1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766 1280428583</span></code></pre></div>
 
 <div class="rmdimportant">
 By default, <code>separate()</code> will split values wherever it sees a non-alphanumeric character (i.e. a character that isn’t a number or letter). For example, in the code above, <code>separate()</code> split the values of <code>rate</code> at the forward slash characters. If you wish to use a specific character to separate a column, you can pass the character to the <code>sep</code> argument of <code>separate()</code>. Formally, <code>sep</code> is a regular expression, which we learn more about in <a href="strings.html#strings">strings</a>.
 </div>
 
 <p>Look carefully at the column types: you’ll notice that <code>cases</code> and <code>population</code> are character columns. This is the default behavior in <code>separate()</code>: it leaves the type of the column as is. Here, however, it’s not very useful as those really are numbers. We can ask <code>separate()</code> to try and convert to better types using <code>convert = TRUE</code>:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1">table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb173-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb173-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 4</span></a>
-<a class="sourceLine" id="cb173-4" data-line-number="4"><span class="co">#&gt;   country      year  cases population</span></a>
-<a class="sourceLine" id="cb173-5" data-line-number="5"><span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb173-6" data-line-number="6"><span class="co">#&gt; 1 Afghanistan  1999    745   19987071</span></a>
-<a class="sourceLine" id="cb173-7" data-line-number="7"><span class="co">#&gt; 2 Afghanistan  2000   2666   20595360</span></a>
-<a class="sourceLine" id="cb173-8" data-line-number="8"><span class="co">#&gt; 3 Brazil       1999  37737  172006362</span></a>
-<a class="sourceLine" id="cb173-9" data-line-number="9"><span class="co">#&gt; 4 Brazil       2000  80488  174504898</span></a>
-<a class="sourceLine" id="cb173-10" data-line-number="10"><span class="co">#&gt; 5 China        1999 212258 1272915272</span></a>
-<a class="sourceLine" id="cb173-11" data-line-number="11"><span class="co">#&gt; 6 China        2000 213766 1280428583</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">convert =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country      year  cases population</span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan  1999    745   19987071</span>
+<span class="co">#&gt; 2 Afghanistan  2000   2666   20595360</span>
+<span class="co">#&gt; 3 Brazil       1999  37737  172006362</span>
+<span class="co">#&gt; 4 Brazil       2000  80488  174504898</span>
+<span class="co">#&gt; 5 China        1999 212258 1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766 1280428583</span></code></pre></div>
 <p>You can also pass a vector of integers to <code>sep</code>. <code>separate()</code> will interpret the integers as positions to split at. Positive values start at 1 on the far-left of the strings; negative value start at -1 on the far-right of the strings. When using integers to separate strings, the length of <code>sep</code> should be one less than the number of names in <code>into</code>.</p>
 <p>You can use this arrangement to separate the last two digits of each year. This make this data less tidy, but is useful in other cases, as you’ll see in a little bit.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1">table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb174-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb174-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 4</span></a>
-<a class="sourceLine" id="cb174-4" data-line-number="4"><span class="co">#&gt;   country     century year  rate             </span></a>
-<a class="sourceLine" id="cb174-5" data-line-number="5"><span class="co">#&gt; * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            </span></a>
-<a class="sourceLine" id="cb174-6" data-line-number="6"><span class="co">#&gt; 1 Afghanistan 19      99    745/19987071     </span></a>
-<a class="sourceLine" id="cb174-7" data-line-number="7"><span class="co">#&gt; 2 Afghanistan 20      00    2666/20595360    </span></a>
-<a class="sourceLine" id="cb174-8" data-line-number="8"><span class="co">#&gt; 3 Brazil      19      99    37737/172006362  </span></a>
-<a class="sourceLine" id="cb174-9" data-line-number="9"><span class="co">#&gt; 4 Brazil      20      00    80488/174504898  </span></a>
-<a class="sourceLine" id="cb174-10" data-line-number="10"><span class="co">#&gt; 5 China       19      99    212258/1272915272</span></a>
-<a class="sourceLine" id="cb174-11" data-line-number="11"><span class="co">#&gt; 6 China       20      00    213766/1280428583</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country     century year  rate             </span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 Afghanistan 19      99    745/19987071     </span>
+<span class="co">#&gt; 2 Afghanistan 20      00    2666/20595360    </span>
+<span class="co">#&gt; 3 Brazil      19      99    37737/172006362  </span>
+<span class="co">#&gt; 4 Brazil      20      00    80488/174504898  </span>
+<span class="co">#&gt; 5 China       19      99    212258/1272915272</span>
+<span class="co">#&gt; 6 China       20      00    213766/1280428583</span></code></pre></div>
 </div>
 <div id="unite" class="section level3">
 <h3><span class="header-section-number">10.4.2</span> Unite</h3>
@@ -634,29 +590,29 @@ FIGURE 10.5: Uniting <code>table5</code> makes it tidy
 </p>
 </div>
 <p>We can use <code>unite()</code> to rejoin the <em>century</em> and <em>year</em> columns that we created in the last example. That data is saved as <code>tidyr::table5</code>. <code>unite()</code> takes a data frame, the name of the new variable to create, and a set of columns to combine, again specified in <code>dplyr::select()</code> style:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">table5 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb175-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(new, century, year)</a>
-<a class="sourceLine" id="cb175-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 3</span></a>
-<a class="sourceLine" id="cb175-4" data-line-number="4"><span class="co">#&gt;   country     new   rate             </span></a>
-<a class="sourceLine" id="cb175-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            </span></a>
-<a class="sourceLine" id="cb175-6" data-line-number="6"><span class="co">#&gt; 1 Afghanistan 19_99 745/19987071     </span></a>
-<a class="sourceLine" id="cb175-7" data-line-number="7"><span class="co">#&gt; 2 Afghanistan 20_00 2666/20595360    </span></a>
-<a class="sourceLine" id="cb175-8" data-line-number="8"><span class="co">#&gt; 3 Brazil      19_99 37737/172006362  </span></a>
-<a class="sourceLine" id="cb175-9" data-line-number="9"><span class="co">#&gt; 4 Brazil      20_00 80488/174504898  </span></a>
-<a class="sourceLine" id="cb175-10" data-line-number="10"><span class="co">#&gt; 5 China       19_99 212258/1272915272</span></a>
-<a class="sourceLine" id="cb175-11" data-line-number="11"><span class="co">#&gt; 6 China       20_00 213766/1280428583</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unite</span>(new, century, year)
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   country     new   rate             </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 Afghanistan 19_99 745/19987071     </span>
+<span class="co">#&gt; 2 Afghanistan 20_00 2666/20595360    </span>
+<span class="co">#&gt; 3 Brazil      19_99 37737/172006362  </span>
+<span class="co">#&gt; 4 Brazil      20_00 80488/174504898  </span>
+<span class="co">#&gt; 5 China       19_99 212258/1272915272</span>
+<span class="co">#&gt; 6 China       20_00 213766/1280428583</span></code></pre></div>
 <p>In this case we also need to use the <code>sep</code> argument. The default will place an underscore (<code>_</code>) between the values from different columns. Here we don’t want any separator so we use <code>&quot;&quot;</code>:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1">table5 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(new, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb176-3" data-line-number="3"><span class="co">#&gt; # A tibble: 6 x 3</span></a>
-<a class="sourceLine" id="cb176-4" data-line-number="4"><span class="co">#&gt;   country     new   rate             </span></a>
-<a class="sourceLine" id="cb176-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            </span></a>
-<a class="sourceLine" id="cb176-6" data-line-number="6"><span class="co">#&gt; 1 Afghanistan 1999  745/19987071     </span></a>
-<a class="sourceLine" id="cb176-7" data-line-number="7"><span class="co">#&gt; 2 Afghanistan 2000  2666/20595360    </span></a>
-<a class="sourceLine" id="cb176-8" data-line-number="8"><span class="co">#&gt; 3 Brazil      1999  37737/172006362  </span></a>
-<a class="sourceLine" id="cb176-9" data-line-number="9"><span class="co">#&gt; 4 Brazil      2000  80488/174504898  </span></a>
-<a class="sourceLine" id="cb176-10" data-line-number="10"><span class="co">#&gt; 5 China       1999  212258/1272915272</span></a>
-<a class="sourceLine" id="cb176-11" data-line-number="11"><span class="co">#&gt; 6 China       2000  213766/1280428583</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unite</span>(new, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   country     new   rate             </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 Afghanistan 1999  745/19987071     </span>
+<span class="co">#&gt; 2 Afghanistan 2000  2666/20595360    </span>
+<span class="co">#&gt; 3 Brazil      1999  37737/172006362  </span>
+<span class="co">#&gt; 4 Brazil      2000  80488/174504898  </span>
+<span class="co">#&gt; 5 China       1999  212258/1272915272</span>
+<span class="co">#&gt; 6 China       2000  213766/1280428583</span></code></pre></div>
 </div>
 </div>
 <div id="missing-values" class="section level2">
@@ -667,66 +623,64 @@ FIGURE 10.5: Uniting <code>table5</code> makes it tidy
 <li><strong>Implicitly</strong>, i.e. simply not present in the data.</li>
 </ul>
 <p>Let’s illustrate this idea with a very simple data set:</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1">mydata &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
-<a class="sourceLine" id="cb177-2" data-line-number="2">  <span class="dt">year   =</span> <span class="kw">c</span>(<span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2016</span>, <span class="dv">2016</span>),</a>
-<a class="sourceLine" id="cb177-3" data-line-number="3">  <span class="dt">qtr    =</span> <span class="kw">c</span>(   <span class="dv">1</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>),</a>
-<a class="sourceLine" id="cb177-4" data-line-number="4">  <span class="dt">rate   =</span> <span class="kw">c</span>(<span class="fl">1.88</span>, <span class="fl">0.59</span>, <span class="fl">0.35</span>,   <span class="ot">NA</span>, <span class="fl">0.92</span>, <span class="fl">0.17</span>, <span class="fl">2.66</span>)</a>
-<a class="sourceLine" id="cb177-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb177-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb177-7" data-line-number="7">mydata</a>
-<a class="sourceLine" id="cb177-8" data-line-number="8"><span class="co">#&gt; # A tibble: 7 x 3</span></a>
-<a class="sourceLine" id="cb177-9" data-line-number="9"><span class="co">#&gt;    year   qtr  rate</span></a>
-<a class="sourceLine" id="cb177-10" data-line-number="10"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb177-11" data-line-number="11"><span class="co">#&gt; 1  2015     1  1.88</span></a>
-<a class="sourceLine" id="cb177-12" data-line-number="12"><span class="co">#&gt; 2  2015     2  0.59</span></a>
-<a class="sourceLine" id="cb177-13" data-line-number="13"><span class="co">#&gt; 3  2015     3  0.35</span></a>
-<a class="sourceLine" id="cb177-14" data-line-number="14"><span class="co">#&gt; 4  2015     4 NA   </span></a>
-<a class="sourceLine" id="cb177-15" data-line-number="15"><span class="co">#&gt; 5  2016     2  0.92</span></a>
-<a class="sourceLine" id="cb177-16" data-line-number="16"><span class="co">#&gt; 6  2016     3  0.17</span></a>
-<a class="sourceLine" id="cb177-17" data-line-number="17"><span class="co">#&gt; # ... with 1 more row</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">year   =</span> <span class="kw">c</span>(<span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2016</span>, <span class="dv">2016</span>),
+  <span class="dt">qtr    =</span> <span class="kw">c</span>(   <span class="dv">1</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>),
+  <span class="dt">rate   =</span> <span class="kw">c</span>(<span class="fl">1.88</span>, <span class="fl">0.59</span>, <span class="fl">0.35</span>,   <span class="ot">NA</span>, <span class="fl">0.92</span>, <span class="fl">0.17</span>, <span class="fl">2.66</span>)
+)
+
+mydata
+<span class="co">#&gt; # A tibble: 7 x 3</span>
+<span class="co">#&gt;    year   qtr  rate</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  2015     1  1.88</span>
+<span class="co">#&gt; 2  2015     2  0.59</span>
+<span class="co">#&gt; 3  2015     3  0.35</span>
+<span class="co">#&gt; 4  2015     4 NA   </span>
+<span class="co">#&gt; 5  2016     2  0.92</span>
+<span class="co">#&gt; 6  2016     3  0.17</span>
+<span class="co">#&gt; # ... with 1 more row</span></code></pre></div>
 <p>There are two missing values in this dataset:</p>
 <ul>
-<li><p>The rate for the fourth quarter of 2015 is explicitly missing, because
-the cell where its value should be instead contains <code>NA</code>.</p></li>
-<li><p>The rate for the first quarter of 2016 is implicitly missing, because it
-simply does not appear in the dataset.</p></li>
+<li><p>The rate for the fourth quarter of 2015 is explicitly missing, because the cell where its value should be instead contains <code>NA</code>.</p></li>
+<li><p>The rate for the first quarter of 2016 is implicitly missing, because it simply does not appear in the dataset.</p></li>
 </ul>
 <p>The way that a dataset is represented can make implicit values explicit. For example, we can make the implicit missing value explicit by putting years in the columns:</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb178-2" data-line-number="2"><span class="st">  </span><span class="kw">spread</span>(year, rate)</a>
-<a class="sourceLine" id="cb178-3" data-line-number="3"><span class="co">#&gt; # A tibble: 4 x 3</span></a>
-<a class="sourceLine" id="cb178-4" data-line-number="4"><span class="co">#&gt;     qtr `2015` `2016`</span></a>
-<a class="sourceLine" id="cb178-5" data-line-number="5"><span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb178-6" data-line-number="6"><span class="co">#&gt; 1     1   1.88  NA   </span></a>
-<a class="sourceLine" id="cb178-7" data-line-number="7"><span class="co">#&gt; 2     2   0.59   0.92</span></a>
-<a class="sourceLine" id="cb178-8" data-line-number="8"><span class="co">#&gt; 3     3   0.35   0.17</span></a>
-<a class="sourceLine" id="cb178-9" data-line-number="9"><span class="co">#&gt; 4     4  NA      2.66</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(year, rate)
+<span class="co">#&gt; # A tibble: 4 x 3</span>
+<span class="co">#&gt;     qtr `2015` `2016`</span>
+<span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1   1.88  NA   </span>
+<span class="co">#&gt; 2     2   0.59   0.92</span>
+<span class="co">#&gt; 3     3   0.35   0.17</span>
+<span class="co">#&gt; 4     4  NA      2.66</span></code></pre></div>
 <p>Because these explicit missing values may not be important in other representations of the data, you can set <code>na.rm = TRUE</code> in <code>gather()</code> to turn explicit missing values implicit:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb179-2" data-line-number="2"><span class="st">  </span><span class="kw">spread</span>(year, rate) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb179-3" data-line-number="3"><span class="st">  </span><span class="kw">gather</span>(year, rate, <span class="st">`</span><span class="dt">2015</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2016</span><span class="st">`</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb179-4" data-line-number="4"><span class="co">#&gt; # A tibble: 6 x 3</span></a>
-<a class="sourceLine" id="cb179-5" data-line-number="5"><span class="co">#&gt;     qtr year   rate</span></a>
-<a class="sourceLine" id="cb179-6" data-line-number="6"><span class="co">#&gt; * &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb179-7" data-line-number="7"><span class="co">#&gt; 1     1 2015   1.88</span></a>
-<a class="sourceLine" id="cb179-8" data-line-number="8"><span class="co">#&gt; 2     2 2015   0.59</span></a>
-<a class="sourceLine" id="cb179-9" data-line-number="9"><span class="co">#&gt; 3     3 2015   0.35</span></a>
-<a class="sourceLine" id="cb179-10" data-line-number="10"><span class="co">#&gt; 4     2 2016   0.92</span></a>
-<a class="sourceLine" id="cb179-11" data-line-number="11"><span class="co">#&gt; 5     3 2016   0.17</span></a>
-<a class="sourceLine" id="cb179-12" data-line-number="12"><span class="co">#&gt; 6     4 2016   2.66</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(year, rate) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(year, rate, <span class="st">`</span><span class="dt">2015</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2016</span><span class="st">`</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;     qtr year   rate</span>
+<span class="co">#&gt; * &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1 2015   1.88</span>
+<span class="co">#&gt; 2     2 2015   0.59</span>
+<span class="co">#&gt; 3     3 2015   0.35</span>
+<span class="co">#&gt; 4     2 2016   0.92</span>
+<span class="co">#&gt; 5     3 2016   0.17</span>
+<span class="co">#&gt; 6     4 2016   2.66</span></code></pre></div>
 <p>Another important tool for making missing values explicit in tidy data is <code>complete()</code>:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">mydata <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb180-2" data-line-number="2"><span class="st">  </span><span class="kw">complete</span>(year, qtr)</a>
-<a class="sourceLine" id="cb180-3" data-line-number="3"><span class="co">#&gt; # A tibble: 8 x 3</span></a>
-<a class="sourceLine" id="cb180-4" data-line-number="4"><span class="co">#&gt;    year   qtr  rate</span></a>
-<a class="sourceLine" id="cb180-5" data-line-number="5"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb180-6" data-line-number="6"><span class="co">#&gt; 1  2015     1  1.88</span></a>
-<a class="sourceLine" id="cb180-7" data-line-number="7"><span class="co">#&gt; 2  2015     2  0.59</span></a>
-<a class="sourceLine" id="cb180-8" data-line-number="8"><span class="co">#&gt; 3  2015     3  0.35</span></a>
-<a class="sourceLine" id="cb180-9" data-line-number="9"><span class="co">#&gt; 4  2015     4 NA   </span></a>
-<a class="sourceLine" id="cb180-10" data-line-number="10"><span class="co">#&gt; 5  2016     1 NA   </span></a>
-<a class="sourceLine" id="cb180-11" data-line-number="11"><span class="co">#&gt; 6  2016     2  0.92</span></a>
-<a class="sourceLine" id="cb180-12" data-line-number="12"><span class="co">#&gt; # ... with 2 more rows</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">complete</span>(year, qtr)
+<span class="co">#&gt; # A tibble: 8 x 3</span>
+<span class="co">#&gt;    year   qtr  rate</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  2015     1  1.88</span>
+<span class="co">#&gt; 2  2015     2  0.59</span>
+<span class="co">#&gt; 3  2015     3  0.35</span>
+<span class="co">#&gt; 4  2015     4 NA   </span>
+<span class="co">#&gt; 5  2016     1 NA   </span>
+<span class="co">#&gt; 6  2016     2  0.92</span>
+<span class="co">#&gt; # ... with 2 more rows</span></code></pre></div>
 <p><code>complete()</code> takes a set of columns, and finds all unique combinations. It then ensures the original dataset contains all those values, filling in explicit <code>NA</code>s where necessary.</p>
 
 <div class="rmdwarning">
@@ -734,41 +688,39 @@ It is also possible that you have such incomplete data that <code>complete()</co
 </div>
 
 <p>There’s one other important tool that you should know for working with missing values. Sometimes when a data source has primarily been used for data entry (tables from <em>Excel</em>, <em>pdf</em>, and <em>Word</em>), missing values indicate that the previous value should be carried forward:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">treatment &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
-<a class="sourceLine" id="cb181-2" data-line-number="2">  <span class="op">~</span><span class="st"> </span>person,           <span class="op">~</span><span class="st"> </span>treatment, <span class="op">~</span>response,</a>
-<a class="sourceLine" id="cb181-3" data-line-number="3">  <span class="st">&quot;Derrick Whitmore&quot;</span>, <span class="dv">1</span>,           <span class="dv">7</span>,</a>
-<a class="sourceLine" id="cb181-4" data-line-number="4">  <span class="ot">NA</span>,                 <span class="dv">2</span>,           <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb181-5" data-line-number="5">  <span class="ot">NA</span>,                 <span class="dv">3</span>,           <span class="dv">9</span>,</a>
-<a class="sourceLine" id="cb181-6" data-line-number="6">  <span class="st">&quot;Katherine Burke&quot;</span>,  <span class="dv">1</span>,           <span class="dv">4</span></a>
-<a class="sourceLine" id="cb181-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb181-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb181-9" data-line-number="9">treatment</a>
-<a class="sourceLine" id="cb181-10" data-line-number="10"><span class="co">#&gt; # A tibble: 4 x 3</span></a>
-<a class="sourceLine" id="cb181-11" data-line-number="11"><span class="co">#&gt;   person           treatment response</span></a>
-<a class="sourceLine" id="cb181-12" data-line-number="12"><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb181-13" data-line-number="13"><span class="co">#&gt; 1 Derrick Whitmore         1        7</span></a>
-<a class="sourceLine" id="cb181-14" data-line-number="14"><span class="co">#&gt; 2 &lt;NA&gt;                     2       10</span></a>
-<a class="sourceLine" id="cb181-15" data-line-number="15"><span class="co">#&gt; 3 &lt;NA&gt;                     3        9</span></a>
-<a class="sourceLine" id="cb181-16" data-line-number="16"><span class="co">#&gt; 4 Katherine Burke          1        4</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">treatment &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span><span class="st"> </span>person,           <span class="op">~</span><span class="st"> </span>treatment, <span class="op">~</span>response,
+  <span class="st">&quot;Derrick Whitmore&quot;</span>, <span class="dv">1</span>,           <span class="dv">7</span>,
+  <span class="ot">NA</span>,                 <span class="dv">2</span>,           <span class="dv">10</span>,
+  <span class="ot">NA</span>,                 <span class="dv">3</span>,           <span class="dv">9</span>,
+  <span class="st">&quot;Katherine Burke&quot;</span>,  <span class="dv">1</span>,           <span class="dv">4</span>
+)
+
+treatment
+<span class="co">#&gt; # A tibble: 4 x 3</span>
+<span class="co">#&gt;   person           treatment response</span>
+<span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Derrick Whitmore         1        7</span>
+<span class="co">#&gt; 2 &lt;NA&gt;                     2       10</span>
+<span class="co">#&gt; 3 &lt;NA&gt;                     3        9</span>
+<span class="co">#&gt; 4 Katherine Burke          1        4</span></code></pre></div>
 <p>You can fill in these missing values with <code>fill()</code>. It takes a set of columns where you want missing values to be replaced by the most recent non-missing value (sometimes called last observation carried forward).</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1">treatment <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb182-2" data-line-number="2"><span class="st">  </span><span class="kw">fill</span>(person)</a>
-<a class="sourceLine" id="cb182-3" data-line-number="3"><span class="co">#&gt; # A tibble: 4 x 3</span></a>
-<a class="sourceLine" id="cb182-4" data-line-number="4"><span class="co">#&gt;   person           treatment response</span></a>
-<a class="sourceLine" id="cb182-5" data-line-number="5"><span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb182-6" data-line-number="6"><span class="co">#&gt; 1 Derrick Whitmore         1        7</span></a>
-<a class="sourceLine" id="cb182-7" data-line-number="7"><span class="co">#&gt; 2 Derrick Whitmore         2       10</span></a>
-<a class="sourceLine" id="cb182-8" data-line-number="8"><span class="co">#&gt; 3 Derrick Whitmore         3        9</span></a>
-<a class="sourceLine" id="cb182-9" data-line-number="9"><span class="co">#&gt; 4 Katherine Burke          1        4</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">treatment <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">fill</span>(person)
+<span class="co">#&gt; # A tibble: 4 x 3</span>
+<span class="co">#&gt;   person           treatment response</span>
+<span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Derrick Whitmore         1        7</span>
+<span class="co">#&gt; 2 Derrick Whitmore         2       10</span>
+<span class="co">#&gt; 3 Derrick Whitmore         3        9</span>
+<span class="co">#&gt; 4 Katherine Burke          1        4</span></code></pre></div>
 </div>
 <div id="non-tidy-data" class="section level2">
 <h2><span class="header-section-number">10.6</span> Non-tidy data</h2>
 <p>Before we continue on to other topics, it’s worth talking briefly about non-tidy data. Earlier in the chapter, I used the pejorative term “messy” to refer to non-tidy data. That’s an oversimplification: there are lots of useful and well-founded data structures that are not tidy data. There are two main reasons to use other data structures:</p>
 <ul>
-<li><p>Alternative representations may have substantial performance or space
-advantages.</p></li>
-<li><p>Specialized fields have evolved their own conventions for storing data
-that may be quite different to the conventions of tidy data.</p></li>
+<li><p>Alternative representations may have substantial performance or space advantages.</p></li>
+<li><p>Specialized fields have evolved their own conventions for storing data that may be quite different to the conventions of tidy data.</p></li>
 </ul>
 <p>Either of these reasons means you’ll need something other than a tibble (or data frame). If your data does fit naturally into a rectangular structure composed of observations and variables, I think tidy data should be your default choice. But there are good reasons to use other structures; tidy data is not the only way.</p>
 <p>If you’d like to learn more about non-tidy data, I’d highly recommend this thoughtful blog post by Jeff Leek: <a href="http://simplystatistics.org/2016/02/17/non-tidy-data/" class="uri">http://simplystatistics.org/2016/02/17/non-tidy-data/</a></p>
@@ -818,7 +770,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
