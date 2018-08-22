@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-08-21">
+<meta name="date" content="2018-08-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -311,7 +311,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="relational-data" class="section level1">
 <h1><span class="header-section-number">11</span> Relational Data</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
-<p>Data analysis rarely involves only a single table of data. Typically you have multiple tables of data, when combined, answer the questions at hand. Collectively, multiple tables of data are called <strong>relational data</strong> because it is the relations, not just the individual datasets, that are important. Relations are <strong>always</strong> defined between a pair of tables. All other relations are built up from this simple idea. A <strong>key</strong> is a variable, or set of variables, that uniquely identifies an observation and links tables together.</p>
+<p>Data analysis rarely involves only a single table of data. Typically you have multiple tables of data, which combined, answer the questions at hand. Collectively, multiple tables of data are called <strong>relational data</strong> because it is the relations, not just the individual datasets, that are important. Relations are <strong>always</strong> defined between a pair of tables. All other relations are built up from this simple idea. A <strong>key</strong> is a variable, or set of variables, that uniquely identifies an observation and links tables together.</p>
 <p>To work with relational data you need verbs that work with pairs of tables. There are three families of verbs designed to work with relational data:</p>
 <ul>
 <li><p><strong>Mutating joins</strong>, which add new variables to one data frame from matching observations in another.</p></li>
@@ -527,7 +527,7 @@ val &lt;-<span class="st"> </span><span class="kw">tribble</span>(
      <span class="dv">1</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;No&quot;</span>,
      <span class="dv">1</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;No&quot;</span>,
      <span class="dv">2</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
-     <span class="dv">3</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;No&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q3&quot;</span>, <span class="st">&quot;No&quot;</span>,
      <span class="dv">3</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Yes&quot;</span>
 )
 
@@ -538,7 +538,6 @@ val &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <span class="co">#&gt; 1     1 2018Q2 No      </span>
 <span class="co">#&gt; 2     2 2018Q1 Yes     </span>
 <span class="co">#&gt; 3     3 2018Q2 Yes</span>
-
 <span class="kw">anti_join</span>(orig, val, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;yq&quot;</span>, <span class="st">&quot;question&quot;</span>))
 <span class="co">#&gt; # A tibble: 2 x 3</span>
 <span class="co">#&gt;      id yq     question</span>

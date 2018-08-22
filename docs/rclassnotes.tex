@@ -126,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-08-21}
+    \date{2018-08-22}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1818,7 +1818,7 @@ Monte-Carlo pseudo code:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e6}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    4.06    0.00    4.13}
+\CommentTok{#>    4.76    0.00    4.85}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1834,7 +1834,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.30    0.00    0.31}
+\CommentTok{#>    0.26    0.02    0.28}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2237,7 +2237,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000b2c4360>}
+\CommentTok{#> <environment: 0x000000000b34a250>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2296,7 +2296,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.17    0.00    2.23}
+\CommentTok{#>    3.13    0.00    3.23}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -4393,12 +4393,12 @@ of \href{}{R for Data Science}, but for now the basic principle is
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{#> -- Attaching packages ---------------------------------------------------- tidyverse 1.2.1 --}
+\CommentTok{#> -- Attaching packages -------------------------------------------------- tidyverse 1.2.1 --}
 \CommentTok{#> v ggplot2 3.0.0     v purrr   0.2.5}
 \CommentTok{#> v tibble  1.4.2     v dplyr   0.7.6}
 \CommentTok{#> v tidyr   0.8.1     v stringr 1.3.1}
 \CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
-\CommentTok{#> -- Conflicts ------------------------------------------------------- tidyverse_conflicts() --}
+\CommentTok{#> -- Conflicts ----------------------------------------------------- tidyverse_conflicts() --}
 \CommentTok{#> x dplyr::filter() masks stats::filter()}
 \CommentTok{#> x dplyr::lag()    masks stats::lag()}
 \NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bargraphdat.RDS"}\NormalTok{)}
@@ -7124,7 +7124,7 @@ Data}\label{relational-data}}
 \end{Shaded}
 
 Data analysis rarely involves only a single table of data. Typically you
-have multiple tables of data, when combined, answer the questions at
+have multiple tables of data, which combined, answer the questions at
 hand. Collectively, multiple tables of data are called
 \textbf{relational data} because it is the relations, not just the
 individual datasets, that are important. Relations are \textbf{always}
@@ -7447,7 +7447,7 @@ a match. \textbf{Anti-joins} are useful for diagnosing join mismatches.
      \DecValTok{1}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"No"}\NormalTok{,}
      \DecValTok{1}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"No"}\NormalTok{,}
      \DecValTok{2}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
-     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"No"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q3"}\NormalTok{, }\StringTok{"No"}\NormalTok{,}
      \DecValTok{3}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Yes"}
 \NormalTok{)}
 
@@ -7458,7 +7458,6 @@ a match. \textbf{Anti-joins} are useful for diagnosing join mismatches.
 \CommentTok{#> 1     1 2018Q2 No      }
 \CommentTok{#> 2     2 2018Q1 Yes     }
 \CommentTok{#> 3     3 2018Q2 Yes}
-
 \KeywordTok{anti_join}\NormalTok{(orig, val, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"yq"}\NormalTok{, }\StringTok{"question"}\NormalTok{))}
 \CommentTok{#> # A tibble: 2 x 3}
 \CommentTok{#>      id yq     question}

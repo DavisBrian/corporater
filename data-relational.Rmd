@@ -198,8 +198,8 @@ val <- tribble(
      3, "2018Q2", "Yes"
 )
 
-semi_join(orig, val, by = c("id", "yq"))
-anti_join(orig, val, by = c("id", "yq"))
+semi_join(orig, val, by = c("id", "yq", "question"))
+anti_join(orig, val, by = c("id", "yq", "question"))
 
 ```
 
