@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-08-22">
+<meta name="date" content="2018-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="tidy-data.html">
-<link rel="next" href="appendix-resources.html">
+<link rel="next" href="r-markdown.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -284,9 +284,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#filtering-joins"><i class="fa fa-check"></i><b>11.2</b> Filtering Joins</a></li>
 <li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#set-operations"><i class="fa fa-check"></i><b>11.3</b> Set Operations</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown</a><ul>
+<li class="chapter" data-level="12.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction"><i class="fa fa-check"></i><b>12.1</b> Introduction</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="r-markdown.html"><a href="r-markdown.html#code-languages"><i class="fa fa-check"></i><b>12.1.1</b> Code languages</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#markdown-basics"><i class="fa fa-check"></i><b>12.2</b> Markdown Basics</a></li>
+<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#code-chuncks"><i class="fa fa-check"></i><b>12.3</b> Code Chuncks</a></li>
+<li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>12.4</b> Inline Code</a></li>
+<li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>12.5</b> Plots</a></li>
+<li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>12.6</b> Tables</a></li>
+<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#parameters"><i class="fa fa-check"></i><b>12.7</b> Parameters</a></li>
+<li class="chapter" data-level="12.8" data-path="r-markdown.html"><a href="r-markdown.html#output-formats"><i class="fa fa-check"></i><b>12.8</b> Output Formats</a></li>
+</ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="12" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>12</b> Appendix A</a><ul>
-<li class="chapter" data-level="12.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>12.1</b> E-Books</a></li>
+<li class="chapter" data-level="13" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>13</b> Appendix A</a><ul>
+<li class="chapter" data-level="13.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>13.1</b> E-Books</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -319,7 +331,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p><strong>Set operations</strong>, which treat observations as if they were set elements.</p></li>
 </ul>
 <p>The most common place to find relational data is in a <em>relational</em> database management system (or RDBMS), a term that encompasses almost all modern databases. If you’ve used a database before, you’ve almost certainly used SQL. A <strong>key</strong> is a variable, or set of variables, that uniquely identifies an observation.</p>
-<p><img src="images/relational/join-setup.png" width="118" style="display: block; margin: auto;" /></p>
+<p><img src="images/relational/join-setup.png" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x
 <span class="co">#&gt; # A tibble: 3 x 2</span>
 <span class="co">#&gt;     key val_x</span>
@@ -341,7 +353,7 @@ y
 <ul>
 <li><strong>inner join</strong> keeps all observations in common between x and y</li>
 </ul>
-<p><img src="images/relational/join-inner.png" width="338" style="display: block; margin: auto;" /></p>
+<p><img src="images/relational/join-inner.png" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inner_join</span>(x, y)
 <span class="co">#&gt; Joining, by = &quot;key&quot;</span>
 <span class="co">#&gt; # A tibble: 2 x 3</span>
@@ -360,7 +372,7 @@ By default the <strong>join</strong> functions will use all variables in common 
 <li><strong>right join</strong> keeps all observations in y append columns from x</li>
 <li><strong>full join</strong> keeps all observations in x and y</li>
 </ul>
-<p><img src="images/relational/join-outer.png" width="355" style="display: block; margin: auto;" /></p>
+<p><img src="images/relational/join-outer.png" style="display: block; margin: auto;" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(x, y, <span class="dt">by =</span> <span class="st">&quot;key&quot;</span>)
 <span class="co">#&gt; # A tibble: 3 x 3</span>
 <span class="co">#&gt;     key val_x val_y</span>
@@ -405,8 +417,8 @@ By default the <strong>join</strong> functions will use all variables in common 
 <div id="duplicate-keys" class="section level3">
 <h3><span class="header-section-number">11.1.1</span> Duplicate keys</h3>
 <p>There are many cases where a single key does not uniquely identify an observation.</p>
-<p><strong>One-to-Many</strong> <img src="images/relational/join-one-to-many.png" width="279" style="display: block; margin: auto;" /></p>
-<p><strong>Many-to-Many</strong> <img src="images/relational/join-many-to-many.png" width="342" style="display: block; margin: auto;" /></p>
+<p><strong>One-to-Many</strong> <img src="images/relational/join-one-to-many.png" style="display: block; margin: auto;" /></p>
+<p><strong>Many-to-Many</strong> <img src="images/relational/join-many-to-many.png" style="display: block; margin: auto;" /></p>
 </div>
 <div id="multi-column-keys" class="section level3">
 <h3><span class="header-section-number">11.1.2</span> Multi-Column Keys</h3>
@@ -511,7 +523,7 @@ y2 &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 <li><strong>semi join</strong> keeps all observations in x that have a match in y</li>
 <li><strong>anti join</strong> drops all observations in x that have a match in y</li>
 </ul>
-<p><img src="images/relational/join-semi.png" width="307" style="display: block; margin: auto;" /> <img src="images/relational/join-anti.png" width="307" style="display: block; margin: auto;" /></p>
+<p><img src="images/relational/join-semi.png" style="display: block; margin: auto;" /> <img src="images/relational/join-anti.png" style="display: block; margin: auto;" /></p>
 <p><strong>Semi-joins</strong> are useful for matching filtered summary tables back to the original rows. The inverse of a <strong>semi-join</strong> is an <strong>anti-join</strong>. An <strong>anti-join</strong> keeps the rows that don’t have a match. <strong>Anti-joins</strong> are useful for diagnosing join mismatches.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">orig &lt;-<span class="st"> </span><span class="kw">tribble</span>(
   <span class="op">~</span>id, <span class="op">~</span>yq, <span class="op">~</span>question,
@@ -594,16 +606,13 @@ df2 &lt;-<span class="st"> </span><span class="kw">tribble</span>(
 
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
 <a href="tidy-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

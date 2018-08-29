@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="good-practices.html">
+<link rel="prev" href="relational-data.html">
+<link rel="next" href="appendix-resources.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,43 +49,6 @@
 
 
 
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
 <link rel="stylesheet" href="css\style.css" type="text/css" />
 </head>
@@ -126,7 +89,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
-<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em></a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em>[^DRY]</a></li>
 <li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
@@ -151,21 +114,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#control-structures"><i class="fa fa-check"></i><b>3.5</b> Control Structures</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#if-else"><i class="fa fa-check"></i><b>3.5.1</b> <code>if</code>-<code>else</code></a></li>
 <li class="chapter" data-level="3.5.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#for-loops"><i class="fa fa-check"></i><b>3.5.2</b> <code>for</code> Loops</a></li>
-<li class="chapter" data-level="3.5.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#while-loops"><i class="fa fa-check"></i><b>3.5.3</b> <code>while</code> Loops</a></li>
-<li class="chapter" data-level="3.5.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#repeat-loops"><i class="fa fa-check"></i><b>3.5.4</b> <code>repeat</code> Loops</a></li>
-<li class="chapter" data-level="3.5.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#next-break"><i class="fa fa-check"></i><b>3.5.5</b> <code>next</code>, <code>break</code></a></li>
-<li class="chapter" data-level="3.5.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#looping"><i class="fa fa-check"></i><b>3.5.6</b> Looping</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.6</b> Vectorization &amp; Recycling</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.6.1</b> Example</a></li>
+<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#generate-a-sequence-based-on-length-of-x"><i class="fa fa-check"></i><b>3.6</b> Generate a sequence based on length of ‘x’</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#while-loops"><i class="fa fa-check"></i><b>3.6.1</b> <code>while</code> Loops</a></li>
+<li class="chapter" data-level="3.6.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#repeat-loops"><i class="fa fa-check"></i><b>3.6.2</b> <code>repeat</code> Loops</a></li>
+<li class="chapter" data-level="3.6.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#next-break"><i class="fa fa-check"></i><b>3.6.3</b> <code>next</code>, <code>break</code></a></li>
+<li class="chapter" data-level="3.6.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#looping"><i class="fa fa-check"></i><b>3.6.4</b> Looping</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#function-basics"><i class="fa fa-check"></i><b>3.7</b> Function Basics</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#your-first-function"><i class="fa fa-check"></i><b>3.7.1</b> Your First Function</a></li>
-<li class="chapter" data-level="3.7.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#lazy-evaluation"><i class="fa fa-check"></i><b>3.7.2</b> Lazy Evaluation</a></li>
-<li class="chapter" data-level="3.7.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#the-...-argument"><i class="fa fa-check"></i><b>3.7.3</b> The <code>...</code> Argument</a></li>
+<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.7</b> Vectorization &amp; Recycling</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.7.1</b> Example</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#environments-scoping"><i class="fa fa-check"></i><b>3.8</b> Environments &amp; Scoping</a></li>
-<li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
+<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#function-basics"><i class="fa fa-check"></i><b>3.8</b> Function Basics</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#your-first-function"><i class="fa fa-check"></i><b>3.8.1</b> Your First Function</a></li>
+<li class="chapter" data-level="3.8.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#lazy-evaluation"><i class="fa fa-check"></i><b>3.8.2</b> Lazy Evaluation</a></li>
+<li class="chapter" data-level="3.8.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#the-...-argument"><i class="fa fa-check"></i><b>3.8.3</b> The <code>...</code> Argument</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#environments-scoping"><i class="fa fa-check"></i><b>3.9</b> Environments &amp; Scoping</a></li>
+<li class="chapter" data-level="3.10" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.10</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>4</b> Base R Data Structures</a><ul>
 <li class="chapter" data-level="4.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#naming-rules"><i class="fa fa-check"></i><b>4.1</b> Naming Rules</a></li>
@@ -288,12 +253,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="12.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction"><i class="fa fa-check"></i><b>12.1</b> Introduction</a><ul>
 <li class="chapter" data-level="12.1.1" data-path="r-markdown.html"><a href="r-markdown.html#code-languages"><i class="fa fa-check"></i><b>12.1.1</b> Code languages</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#markdown-basics"><i class="fa fa-check"></i><b>12.2</b> Markdown Basics</a></li>
-<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#code-chuncks"><i class="fa fa-check"></i><b>12.3</b> Code Chuncks</a></li>
+<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#markdown-basics"><i class="fa fa-check"></i><b>12.2</b> Markdown Basics</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="r-markdown.html"><a href="r-markdown.html#headers"><i class="fa fa-check"></i><b>12.2.1</b> Headers</a></li>
+<li class="chapter" data-level="12.2.2" data-path="r-markdown.html"><a href="r-markdown.html#paragraph-breaks-and-forced-line-breaks"><i class="fa fa-check"></i><b>12.2.2</b> Paragraph Breaks and Forced Line Breaks</a></li>
+<li class="chapter" data-level="12.2.3" data-path="r-markdown.html"><a href="r-markdown.html#italics-and-boldface"><i class="fa fa-check"></i><b>12.2.3</b> Italics and Boldface</a></li>
+<li class="chapter" data-level="12.2.4" data-path="r-markdown.html"><a href="r-markdown.html#bullet-points"><i class="fa fa-check"></i><b>12.2.4</b> Bullet Points</a></li>
+<li class="chapter" data-level="12.2.5" data-path="r-markdown.html"><a href="r-markdown.html#numbered-lists"><i class="fa fa-check"></i><b>12.2.5</b> Numbered Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#code-chunks"><i class="fa fa-check"></i><b>12.3</b> Code Chunks</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="r-markdown.html"><a href="r-markdown.html#chunk-names"><i class="fa fa-check"></i><b>12.3.1</b> Chunk Names</a></li>
+<li class="chapter" data-level="12.3.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>12.3.2</b> Chunk Options</a></li>
+</ul></li>
 <li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>12.4</b> Inline Code</a></li>
 <li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>12.5</b> Plots</a></li>
 <li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>12.6</b> Tables</a></li>
-<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#parameters"><i class="fa fa-check"></i><b>12.7</b> Parameters</a></li>
+<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#yaml"><i class="fa fa-check"></i><b>12.7</b> YAML</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="r-markdown.html"><a href="r-markdown.html#parameters"><i class="fa fa-check"></i><b>12.7.1</b> Parameters</a></li>
+</ul></li>
 <li class="chapter" data-level="12.8" data-path="r-markdown.html"><a href="r-markdown.html#output-formats"><i class="fa fa-check"></i><b>12.8</b> Output Formats</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
@@ -320,98 +296,195 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preamble-intro" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<div id="course-philosophy" class="section level2">
-<h2><span class="header-section-number">1.1</span> Course Philosophy</h2>
-<blockquote>
-<p>“The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly. A programmer is ideally an essayist who works with traditional aesthetic and literary forms as well as mathematical concepts, to communicate the way that an algorithm works and to convince a reader that the results will be correct.”</p>
-<p>— Donald Knuth</p>
-</blockquote>
-<div id="reproducible-research-approach" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Reproducible Research Approach</h3>
-<p><a href="https://www.coursera.org/learn/reproducible-research/lecture/FvOGB/what-is-reproducible-research-about">What is Reproducible Research About?</a></p>
-<p>Reproducible research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them. There are two basic reasons to be concerned about making your research reproducible. The first is <em>to show evidence of the correctness of your results</em>. The second reason to aspire to reproducibility is <em>to enable others to make use of our methods and results</em>.</p>
-<p>Modern challenges of reproducibility in research, particularly computational reproducibility, have produced a lot of discussion in papers, blogs and videos, some of which are listed <a href="http://ropensci.github.io/reproducibility-guide/sections/references/">here</a> and <a href="https://reproducibleresearch.net/">here</a>.</p>
-<blockquote>
-<p>Conclusions in experimental psychology often are the result of null hypothesis significance testing. Unfortunately, there is evidence ((from eight major psychology journals published between 1985 and 2013) that roughly half of all published empirical psychology articles contain at least one inconsistent p-value, and around one in eight articles contain a grossly inconsistent p-value that makes a non-significant result seem significant, or vice versa. <a href="https://mbnuijten.com/statcheck/">statscheck</a> and <a href="http://blog.revolutionanalytics.com/2016/10/statcheck.html">here</a></p>
-</blockquote>
-<blockquote>
-<p>“A key component of scientific communication is sufficient information for other researchers in the field to reproduce published findings. For computational and data-enabled research, this has often been interpreted to mean making available the raw data from which results were generated, the computer code that generated the findings, and any additional information needed such as workflows and input parameters. Many journals are revising author guidelines to include data and code availability. We chose a random sample of 204 scientific papers published in the journal <strong>Science</strong> after the implementation of their policy in February 2011. We found that were able to reproduce the findings for 26%.” <a href="http://www.pnas.org/content/115/11/2584">Proceedings of the National Academy of Sciences of the United States of America</a></p>
-</blockquote>
-<blockquote>
-<p>“Starting September 1 2016, JASA ACS will require code and data as a minimum standard for reproducibility of statistical scientific research.” <a href="https://magazine.amstat.org/blog/2016/07/01/jasa-reproducible16/">JASA</a></p>
-</blockquote>
-</div>
-<div id="fda-validation" class="section level3">
-<h3><span class="header-section-number">1.1.2</span> FDA Validation</h3>
-<blockquote>
-<p>“Establishing documented evidence which provides a high degree of assurance that a specific process will consistently produce a product meeting its predetermined specifications and quality attributes.” -Validation as defined by the FDA in <strong>Validation of Systems for 21 CFR Part 11 Compliance</strong></p>
-</blockquote>
-</div>
-<div id="the-sas-myth" class="section level3">
-<h3><span class="header-section-number">1.1.3</span> The SAS Myth</h3>
-<p>Contrary to what we hear the FDA does not require SAS to be used <em>EVER</em>. There are instances that you have to deliver data in XPORT format though which is open and implemented in many programming languages.</p>
-<blockquote>
-<p>“FDA does not require use of any specific software for statistical analyses, and statistical software is not explicitly discussed in Title 21 of the Code of Federal Regulations [e.g., in 21CFR part 11]. However, the software package(s) used for statistical analyses should be fully documented in the submission, including version and build identification. As noted in the FDA guidance, E9 Statistical Principles for Clinical Trials” <a href="https://www.fda.gov/downloads/forindustry/datastandards/studydatastandards/ucm587506.pdf">FDA Statistical Software Clarifying Statement</a></p>
-</blockquote>
-<p>Good <a href="http://blog.revolutionanalytics.com/2017/06/r-fda.html">write up</a> with links to several FDA talks on the subject. <a href="https://thomaswdinsmore.com/2014/12/01/sas-versus-r-part-1/">or</a></p>
-</div>
-</div>
-<div id="prerequisites" class="section level2">
-<h2><span class="header-section-number">1.2</span> Prerequisites</h2>
+<div id="r-markdown" class="section level1">
+<h1><span class="header-section-number">12</span> R Markdown</h1>
+<p><a href="http://www.jacolienvanrij.com/Tutorials/tutorialMarkdown.html" class="uri">http://www.jacolienvanrij.com/Tutorials/tutorialMarkdown.html</a> <a href="https://www.datacamp.com/courses/reporting-with-r-markdown" class="uri">https://www.datacamp.com/courses/reporting-with-r-markdown</a> <a href="http://www.stat.cmu.edu/~cshalizi/rmarkdown/" class="uri">http://www.stat.cmu.edu/~cshalizi/rmarkdown/</a> <a href="https://stanford.edu/~vbauer/teaching/rmarkdown.html" class="uri">https://stanford.edu/~vbauer/teaching/rmarkdown.html</a></p>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">12.1</span> Introduction</h2>
+<p><a href="https://player.vimeo.com/video/178485416">What is R Markdown</a></p>
+<p>R Markdown provides an unified authoring framework for data science, combining your code, its results, and your prose commentary. R Markdown documents are fully reproducible and support dozens of static and dynamic output formats like PDFs, Word files, slideshows, and more.. For a comprehnsive resource on R Markdown see <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></p>
+<p>R Markdown integrates a number of R packages and external tools. This means that help is, by-and-large, not available through ?. Instead, as you work through this chapter, and use R Markdown in the future, keep these resources close to hand:</p>
 <ul>
-<li>We will assume you have minimal experience and knowledge of R</li>
-<li>IT should have installed:
+<li>R Markdown Cheat Sheet: Help &gt; Cheatsheets &gt; R Markdown Cheat Sheet,</li>
+<li>R Markdown Reference Guide: Help &gt; Cheatsheets &gt; R Markdown Reference Guide.</li>
+</ul>
+<p>Both cheatsheets are also available at <a href="http://rstudio.com/cheatsheets" class="uri">http://rstudio.com/cheatsheets</a>.</p>
+<p>The real point of R Markdown is that it lets you include your code, have the code run automatically when your document is rendered, and seemlessly include the results of that code in your document.</p>
+<div id="code-languages" class="section level3">
+<h3><span class="header-section-number">12.1.1</span> Code languages</h3>
+<p>While there is an <strong>“R”</strong> in R Markdown this is not limited to just the R programmming languange. It is a generic markup language that can knit any code that can be run from a command line into a document. Some of the more popular languages are:</p>
 <ul>
-<li><a href="https://cran.r-project.org/">R</a> version 3.4.4</li>
-<li><a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> version 1.1</li>
-<li><a href="https://miktex.org/">MiTeX</a></li>
-<li><a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> version 3.4</li>
+<li>R</li>
+<li>Python</li>
+<li>SQL</li>
+<li>C/C++</li>
+<li>Bash</li>
+<li>Rcpp</li>
+<li>Stan</li>
+<li>JavaScript</li>
+<li>CSS</li>
+<li>Julia</li>
+<li>SAS (see SASmarkdown package)</li>
+</ul>
+<p>You can intermix languages within the same document, and in some cases pass data between languages.</p>
+</div>
+</div>
+<div id="markdown-basics" class="section level2">
+<h2><span class="header-section-number">12.2</span> Markdown Basics</h2>
+<p>Format the text in your R Markdown file with <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc’s Markdown</a>, a set of markup annotations for plain text files. When you render your file, Pandoc transforms the marked up text into formatted text in your final file format.</p>
+<p>Notice that the file contains three types of content:</p>
+<ol style="list-style-type: decimal">
+<li>Text mixed with simple text formatting.</li>
+<li>Code chunks and the corresponding output.</li>
+<li>An (optional) YAML header controlling the “whole document” settings.</li>
+</ol>
+<div id="headers" class="section level3">
+<h3><span class="header-section-number">12.2.1</span> Headers</h3>
+<p>The character <code>#</code> at the beginning of a line means that the rest of the line is interpreted as a section header. The number of <code>#</code>s at the beginning of the line indicates whether it is treated as a section, sub-section, sub-sub-section, etc. of the document.</p>
+<pre><code># Heading Level 1  
+## Heading Level 2  
+### Heading Level 3</code></pre>
+<p>In this document the chapter title <strong>R Markdown</strong> is preceded by a single <code>#</code>, but <strong>Markdown Basics</strong> at the start of this paragraph was preceded by <code>##</code> and the current section <strong>Headers</strong> is preceded by <code>###</code> in the text file.</p>
+</div>
+<div id="paragraph-breaks-and-forced-line-breaks" class="section level3">
+<h3><span class="header-section-number">12.2.2</span> Paragraph Breaks and Forced Line Breaks</h3>
+<pre><code>To insert a break between paragraphs, include a single completely blank line.
+
+To force a line break, put two blank  
+spaces at the end of a line.</code></pre>
+<p>To insert a break between paragraphs, include a single completely blank line.</p>
+<p>To force a line break, put two blank<br />
+spaces at the end of a line.</p>
+<pre><code>If you don&#39;t put the two blank
+spaces at the end of a line
+they will run together.</code></pre>
+<p>If you don’t put the two blank spaces at the end of a line they will run together.</p>
+</div>
+<div id="italics-and-boldface" class="section level3">
+<h3><span class="header-section-number">12.2.3</span> Italics and Boldface</h3>
+<pre><code>Text to be _italicized_ goes inside _a single set of underscores_ or *asterisks*.  Text to be **boldfaced** goes inside a __double set of underscores__  or **asterisks**.</code></pre>
+<p>Text to be <em>italicized</em> goes inside <em>a single set of underscores</em> or <em>asterisks</em>. Text to be <strong>boldfaced</strong> goes inside a <strong>double set of underscores</strong> or <strong>asterisks</strong>.</p>
+</div>
+<div id="bullet-points" class="section level3">
+<h3><span class="header-section-number">12.2.4</span> Bullet Points</h3>
+<pre><code>* This is a list marked where items are marked with bullet points.
+* Each item in the list should start with a `*` (asterisk) character, or a single dash (`-`) and then have a space.
+* Each item should also be on a new line.
+    + Indent lines with 4 spaces and begin them with `+` for sub-bullets.
+    + Sub-sub-bullet aren’t really a thing in R Markdown.</code></pre>
+<ul>
+<li>This is a list marked where items are marked with bullet points.</li>
+<li>Each item in the list should start with a <code>*</code> (asterisk) character, or a single dash (<code>-</code>) and then have a space.</li>
+<li>Each item should also be on a new line.
+<ul>
+<li>Indent lines with 4 spaces and begin them with <code>+</code> for sub-bullets.</li>
+<li>Sub-sub-bullet aren’t really a thing in R Markdown.</li>
 </ul></li>
-<li>We will install other dependencies throughout the course.</li>
 </ul>
 </div>
-<div id="content" class="section level2">
-<h2><span class="header-section-number">1.3</span> Content</h2>
-<p>It is impossible to become an expert in R in only one course even a multi-week one. Our aim is at gaining a wide understanding on many aspects of R as used in a corporate / production environment. It will roughly be based on <a href="http://r4ds.had.co.nz">R for Data Science</a>. While this is an <em>excellent</em> resource it does not cover much of what we will need on a routine basis. Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.</p>
-<p>This is your course so if you feel we need to hit an area deeper, or add content based on a current need, let me know an we will work to adjust it.</p>
-<p>The <strong>rough</strong> topic list of the course:</p>
+<div id="numbered-lists" class="section level3">
+<h3><span class="header-section-number">12.2.5</span> Numbered Lists</h3>
+<pre><code>1. Lines which begin with a numeral (0–9), followed by a period, will usually be interpreted as items in a numbered list.
+1. R Markdown handles the numbering in what it renders automatically, so the actual number doesn&#39;t matter.
+1. This can be handy when you lose count or don’t update the numbers yourself when editing. (Look carefully at the .Rmd file for this item.)
+    a. Sub-lists of numbered lists, with letters for sub-items, are a thing.
+    b. They are however a fragile thing, which you’d better not push too hard.</code></pre>
 <ol style="list-style-type: decimal">
-<li>Good programming practices</li>
-<li>Basics of R Programming</li>
-<li>Importing / Exporting Data</li>
-<li>Tidying Data</li>
-<li>Visualizing Data</li>
-<li>Functions</li>
-<li>Strings</li>
-<li>Dates and Time</li>
-<li>Communicating Results</li>
-</ol>
-<p>Making Code Production Ready:</p>
-<ol start="10" style="list-style-type: decimal">
-<li>Functions (part II)</li>
-<li>Assertions</li>
-<li>Unit tests</li>
-<li>Documentation</li>
-<li>Communicating Results (part II)</li>
+<li>Lines which begin with a numeral (0–9), followed by a period, will usually be interpreted as items in a numbered list.</li>
+<li>R Markdown handles the numbering in what it renders automatically, so the actual number doesn’t matter.</li>
+<li>This can be handy when you lose count or don’t update the numbers yourself when editing. (Look carefully at the .Rmd file for this item.)
+<ol style="list-style-type: lower-alpha">
+<li>Sub-lists of numbered lists, with letters for sub-items, are a thing.</li>
+<li>They are however a fragile thing, which you’d better not push too hard.</li>
+</ol></li>
 </ol>
 </div>
-<div id="structure" class="section level2">
-<h2><span class="header-section-number">1.4</span> Structure</h2>
-<p>My current thoughts are to meet an hour a week and discuss a topic. We will not be going strictly through the R4DS, but will use it as our foundation into the topic at hand. Then give some exercises due for the next week which we go over the solutions. We will incorporate these exercises into an R package(s?) so we will have a collection of useful reusable code for the future.</p>
-<p>Open to other ideas as we go along.</p>
-<p>I’m going to try to keep the assignments related to our current work so we can work on the class during work hours. Bring what you are working on and we will see how we can fit it into the class.</p>
+</div>
+<div id="code-chunks" class="section level2">
+<h2><span class="header-section-number">12.3</span> Code Chunks</h2>
+<p>Think of a chunk like a function. A chunk should be relatively self-contained, and focussed around a single task. You can quickly insert chunks like these into your file with</p>
+<ul>
+<li>the keyboard shortcut <strong>Ctrl + Alt + I</strong> (OS X: <strong>Cmd + Option + I</strong>)</li>
+<li>typing the chunk delimiters <code>```{r}</code> and <code>```</code>.</li>
+<li>the <em>Add Chunk</em> command in the editor toolbar</li>
+</ul>
+<p>When you render your .Rmd file, R Markdown will run each code chunk and embed the results beneath the code chunk in your final report.</p>
+<p>There are three main sections to a the code chunk header:</p>
+<ol style="list-style-type: decimal">
+<li>the programing language engine to run the code</li>
+<li>the code chunk name (optional but very useful)</li>
+<li>the code chunk options.</li>
+</ol>
+<div id="chunk-names" class="section level3">
+<h3><span class="header-section-number">12.3.1</span> Chunk Names</h3>
+<p>Chunks can be given an optional name: <code>```{r by-name}</code>. This has three advantages:</p>
+<ol style="list-style-type: decimal">
+<li>You can more easily navigate to specific chunks using the drop-down code navigator in the bottom-left of the script editor:</li>
+<li>Graphics produced by the chunks will have useful names that make them easier to use elsewhere.</li>
+<li>You can set up networks of cached chunks to avoid re-performing expensive computations on every run. More on that below.</li>
+</ol>
+<p>It’s a good idea to name code chunks that produce figures, even if you don’t routinely label other chunks. The chunk label is used to generate the file name of the graphic on disk, so naming your chunks makes it much easier to pick out plots and reuse in other circumstances (i.e. if you want to quickly drop a single plot into an email)</p>
+
+<div class="rmdimportant">
+There is one chunk name wit special behaviour: <code>setup</code>. In notebook mode, the chunk named <code>setup</code> will be run automatically once, before any other code is run.
+</div>
+
+</div>
+<div id="chunk-options" class="section level3">
+<h3><span class="header-section-number">12.3.2</span> Chunk Options</h3>
+<p>Chunk output can be customised with <strong>options</strong>, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we’ll cover the most important chunk options that you’ll use frequently. You can see the full list at <a href="http://yihui.name/knitr/options/" class="uri">http://yihui.name/knitr/options/</a>.</p>
+<p>The most important set of options controls if your code block is executed and what results are inserted in the finished report:</p>
+<ul>
+<li><p><code>include = FALSE</code> prevents code and results from appearing in the finished file. Use this to run code and results used by other chunks (i.e. setup code).</p></li>
+<li><p><code>echo = FALSE</code> prevents code, but not the results from appearing in the finished file. Use this when writing reports.</p></li>
+<li><p><code>message = FALSE</code> or <code>warning = FALSE</code> prevents messages or warnings from appearing in the finished file.</p></li>
+<li><p><code>results = 'hide'</code> hides printed output; <code>fig.show = 'hide'</code> hides plots.</p></li>
+<li><p><code>error = TRUE</code> causes the render to continue even if code returns an error. Use this for debugging.</p></li>
+</ul>
+<p>To set global options that apply to every chunk in your file, call <code>knitr::opts_chunk$set</code> in a code chunk. Knitr will treat each option that you pass to <code>knitr::opts_chunk$set</code> as a global default that can be overwritten in individual chunk headers If you are doing a report where you would never show code include <code>knitr::opts_chunk$set(echo = FALSE)</code> in the <code>setup</code> code block.</p>
+<pre><code>\```{r setup, include=FALSE} 
+knitr::opts_chunk$set(echo = FALSE)
+\```</code></pre>
+</div>
+</div>
+<div id="inline-code" class="section level2">
+<h2><span class="header-section-number">12.4</span> Inline Code</h2>
+<p>Code output can also be seamlessly incorporated into the text, using inline code. This is code not set off on a line by itself, but beginning with <code>`r</code> and ending with <code>`</code>. Using inline code is how this document knows that the mtcars data set contains 32 rows, and that the mean mpg of the 6 cylinder cars is 19.7.</p>
+<p>R Markdown will always</p>
+<ul>
+<li>display the results of inline code, but not the code</li>
+<li>apply relevant text formatting to the results</li>
+</ul>
+<p>As a result, inline output is indistinguishable from the surrounding text. Inline expressions do not take knitr options.</p>
+</div>
+<div id="plots" class="section level2">
+<h2><span class="header-section-number">12.5</span> Plots</h2>
+</div>
+<div id="tables" class="section level2">
+<h2><span class="header-section-number">12.6</span> Tables</h2>
+</div>
+<div id="yaml" class="section level2">
+<h2><span class="header-section-number">12.7</span> YAML</h2>
+<p>output types toc numbering parameters</p>
+<div id="parameters" class="section level3">
+<h3><span class="header-section-number">12.7.1</span> Parameters</h3>
+</div>
+</div>
+<div id="output-formats" class="section level2">
+<h2><span class="header-section-number">12.8</span> Output Formats</h2>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="good-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="relational-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -431,7 +504,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DavisBrian/corporater/edit/master/intro.Rmd",
+"link": "https://github.com/DavisBrian/corporater/edit/master/data-presentation.Rmd",
 "text": "Edit"
 },
 "download": ["rclassnotes.pdf", "rclassnotes.epub"],
@@ -443,19 +516,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

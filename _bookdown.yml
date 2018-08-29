@@ -15,6 +15,7 @@ rmd_files: [
   "strings.Rmd",
   "data-tidy.Rmd",
   "data-relational.Rmd",
+  "data-presentation.Rmd",
   
   "appendix-A.Rmd"]
   

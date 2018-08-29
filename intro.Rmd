@@ -46,7 +46,7 @@ including version and build identification.  As noted in the FDA guidance, E9
 Statistical Principles for Clinical Trials" [FDA Statistical Software Clarifying Statement](https://www.fda.gov/downloads/forindustry/datastandards/studydatastandards/ucm587506.pdf)
 
 
-Good [write up](http://blog.revolutionanalytics.com/2017/06/r-fda.html) with links to several FDA talks on the subject.
+Good [write up](http://blog.revolutionanalytics.com/2017/06/r-fda.html) with links to several FDA talks on the subject. [or](https://thomaswdinsmore.com/2014/12/01/sas-versus-r-part-1/)
 
 
 ## Prerequisites

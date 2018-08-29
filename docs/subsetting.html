@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-08-22">
+<meta name="date" content="2018-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -284,9 +284,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#filtering-joins"><i class="fa fa-check"></i><b>11.2</b> Filtering Joins</a></li>
 <li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#set-operations"><i class="fa fa-check"></i><b>11.3</b> Set Operations</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown</a><ul>
+<li class="chapter" data-level="12.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction"><i class="fa fa-check"></i><b>12.1</b> Introduction</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="r-markdown.html"><a href="r-markdown.html#code-languages"><i class="fa fa-check"></i><b>12.1.1</b> Code languages</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#markdown-basics"><i class="fa fa-check"></i><b>12.2</b> Markdown Basics</a></li>
+<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#code-chuncks"><i class="fa fa-check"></i><b>12.3</b> Code Chuncks</a></li>
+<li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>12.4</b> Inline Code</a></li>
+<li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>12.5</b> Plots</a></li>
+<li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>12.6</b> Tables</a></li>
+<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#parameters"><i class="fa fa-check"></i><b>12.7</b> Parameters</a></li>
+<li class="chapter" data-level="12.8" data-path="r-markdown.html"><a href="r-markdown.html#output-formats"><i class="fa fa-check"></i><b>12.8</b> Output Formats</a></li>
+</ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="12" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>12</b> Appendix A</a><ul>
-<li class="chapter" data-level="12.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>12.1</b> E-Books</a></li>
+<li class="chapter" data-level="13" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>13</b> Appendix A</a><ul>
+<li class="chapter" data-level="13.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>13.1</b> E-Books</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -585,11 +597,11 @@ z[<span class="dv">1</span>, drop =<span class="st"> </span><span class="ot">TRU
 </blockquote>
 <p>Let’s make a simple list and draw it as a train:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="st">&quot;a&quot;</span>, <span class="dv">4</span><span class="op">:</span><span class="dv">6</span>)</code></pre></div>
-<p><img src="images/subsetting/train.png" width="340" style="display: block; margin: auto;" /></p>
+<p><img src="images/subsetting/train.png" style="display: block; margin: auto;" /></p>
 <p>When extracting a single element, you have two options: you can create a smaller train, or you can extract the contents of a carriage. This is the difference between <code>[</code> and <code>[[</code>:</p>
-<p><img src="images/subsetting/train-single.png" width="264" style="display: block; margin: auto;" /></p>
+<p><img src="images/subsetting/train-single.png" style="display: block; margin: auto;" /></p>
 <p>When extracting multiple elements (or zero!), you have to make a smaller train:</p>
-<p><img src="images/subsetting/train-multiple.png" width="359" style="display: block; margin: auto;" /></p>
+<p><img src="images/subsetting/train-multiple.png" style="display: block; margin: auto;" /></p>
 <p>Because it can return only a single value, you must use <code>[[</code> with either a single positive integer or a string. Because data frames are lists of columns, you can use <code>[[</code> to extract a column from data frames: <code>mtcars[[1]]</code>, <code>mtcars[[&quot;cyl&quot;]]</code>.</p>
 <p>If you use a vector with <code>[[</code>, it will subset recursively:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(b &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="kw">list</span>(<span class="dt">b =</span> <span class="kw">list</span>(<span class="dt">c =</span> <span class="kw">list</span>(<span class="dt">d =</span> <span class="dv">1</span>)))))

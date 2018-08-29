@@ -126,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-08-22}
+    \date{2018-08-28}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -335,6 +335,7 @@ Statistical Software Clarifying Statement}
 
 Good \href{http://blog.revolutionanalytics.com/2017/06/r-fda.html}{write
 up} with links to several FDA talks on the subject.
+\href{https://thomaswdinsmore.com/2014/12/01/sas-versus-r-part-1/}{or}
 
 \section{Prerequisites}\label{prerequisites}
 
@@ -1834,7 +1835,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \KeywordTok{system.time}\NormalTok{(}\KeywordTok{pi_vect}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.26    0.02    0.28}
+\CommentTok{#>    0.12    0.00    0.14}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2237,7 +2238,7 @@ nested function only lives inside the parent function.
 \CommentTok{#> function(x) \{}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x000000000b34a250>}
+\CommentTok{#> <environment: 0x000000000919a640>}
 \NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)}
 \NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
 
@@ -2296,7 +2297,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    3.13    0.00    3.23}
+\CommentTok{#>    2.67    0.00    2.82}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -3608,18 +3609,18 @@ Let's make a simple list and draw it as a train:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=3.54in]{images/subsetting/train} \end{center}
+\begin{center}\includegraphics{images/subsetting/train} \end{center}
 
 When extracting a single element, you have two options: you can create a
 smaller train, or you can extract the contents of a carriage. This is
 the difference between \texttt{{[}} and \texttt{{[}{[}}:
 
-\begin{center}\includegraphics[width=2.75in]{images/subsetting/train-single} \end{center}
+\begin{center}\includegraphics{images/subsetting/train-single} \end{center}
 
 When extracting multiple elements (or zero!), you have to make a smaller
 train:
 
-\begin{center}\includegraphics[width=3.74in]{images/subsetting/train-multiple} \end{center}
+\begin{center}\includegraphics{images/subsetting/train-multiple} \end{center}
 
 Because it can return only a single value, you must use \texttt{{[}{[}}
 with either a single positive integer or a string. Because data frames
@@ -4393,12 +4394,12 @@ of \href{}{R for Data Science}, but for now the basic principle is
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(tidyverse)}
-\CommentTok{#> -- Attaching packages -------------------------------------------------- tidyverse 1.2.1 --}
+\CommentTok{#> -- Attaching packages --------------------------------------------- tidyverse 1.2.1 --}
 \CommentTok{#> v ggplot2 3.0.0     v purrr   0.2.5}
 \CommentTok{#> v tibble  1.4.2     v dplyr   0.7.6}
 \CommentTok{#> v tidyr   0.8.1     v stringr 1.3.1}
 \CommentTok{#> v readr   1.1.1     v forcats 0.3.0}
-\CommentTok{#> -- Conflicts ----------------------------------------------------- tidyverse_conflicts() --}
+\CommentTok{#> -- Conflicts ------------------------------------------------ tidyverse_conflicts() --}
 \CommentTok{#> x dplyr::filter() masks stats::filter()}
 \CommentTok{#> x dplyr::lag()    masks stats::lag()}
 \NormalTok{dat <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"./data/bargraphdat.RDS"}\NormalTok{)}
@@ -7155,7 +7156,7 @@ all modern databases. If you've used a database before, you've almost
 certainly used SQL. A \textbf{key} is a variable, or set of variables,
 that uniquely identifies an observation.
 
-\begin{center}\includegraphics[width=3.28in]{images/relational/join-setup} \end{center}
+\begin{center}\includegraphics{images/relational/join-setup} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7192,7 +7193,7 @@ new variables won't get printed out.
   \textbf{inner join} keeps all observations in common between x and y
 \end{itemize}
 
-\begin{center}\includegraphics[width=9.39in]{images/relational/join-inner} \end{center}
+\begin{center}\includegraphics{images/relational/join-inner} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7224,7 +7225,7 @@ to join by using the \texttt{by} parameter.
   \textbf{full join} keeps all observations in x and y
 \end{itemize}
 
-\begin{center}\includegraphics[width=9.86in]{images/relational/join-outer} \end{center}
+\begin{center}\includegraphics{images/relational/join-outer} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7285,11 +7286,11 @@ observation.
 
 \textbf{One-to-Many}
 
-\begin{center}\includegraphics[width=7.75in]{images/relational/join-one-to-many} \end{center}
+\begin{center}\includegraphics{images/relational/join-one-to-many} \end{center}
 
 \textbf{Many-to-Many}
 
-\begin{center}\includegraphics[width=9.51in]{images/relational/join-many-to-many} \end{center}
+\begin{center}\includegraphics{images/relational/join-many-to-many} \end{center}
 
 \subsection{Multi-Column Keys}\label{multi-column-keys}
 
@@ -7422,9 +7423,9 @@ but affect the observations, not the variables. There are two types:
   \textbf{anti join} drops all observations in x that have a match in y
 \end{itemize}
 
-\begin{center}\includegraphics[width=8.53in]{images/relational/join-semi} \end{center}
+\begin{center}\includegraphics{images/relational/join-semi} \end{center}
 
-\begin{center}\includegraphics[width=8.53in]{images/relational/join-anti} \end{center}
+\begin{center}\includegraphics{images/relational/join-anti} \end{center}
 
 \textbf{Semi-joins} are useful for matching filtered summary tables back
 to the original rows. The inverse of a \textbf{semi-join} is an
@@ -7536,6 +7537,85 @@ The four possibilities are:
 \CommentTok{#> 1     1     2}
 \end{Highlighting}
 \end{Shaded}
+
+\chapter{R Markdown}\label{r-markdown}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\url{http://www.jacolienvanrij.com/Tutorials/tutorialMarkdown.html}
+\url{https://www.datacamp.com/courses/reporting-with-r-markdown}
+\url{http://www.stat.cmu.edu/~cshalizi/rmarkdown/}
+\url{https://stanford.edu/~vbauer/teaching/rmarkdown.html}
+
+\section{Introduction}\label{introduction}
+
+\href{https://player.vimeo.com/video/178485416}{What is R Markdown}
+
+R Markdown provides an authoring framework for data science. You can use
+a single R Markdown file to both
+
+\begin{itemize}
+\tightlist
+\item
+  save and execute code
+\item
+  generate high quality reports and presentations that can be shared
+  with an audience
+\end{itemize}
+
+R Markdown documents are fully reproducible and support dozens of static
+and dynamic output formats. For a comprehnsive resource on R Markdown
+see {[}R Markdown: The Definitive
+Guide{]}\url{https://bookdown.org/yihui/rmarkdown/}
+
+\subsection{Code languages}\label{code-languages}
+
+While there is an \textbf{``R''} in R Markdown this is not limited to
+jus the R programmming languange. It is a generic markup language that
+can knit and code that can be run from a command line into a document.
+Some of the more popular languages are:
+
+\begin{itemize}
+\tightlist
+\item
+  R
+\item
+  Python
+\item
+  SQL
+\item
+  Bash
+\item
+  Rcpp
+\item
+  Stan
+\item
+  JavaScript
+\item
+  CSS
+\item
+  Julia
+\item
+  SAS (see SASmarkdown package)
+\end{itemize}
+
+\section{Markdown Basics}\label{markdown-basics}
+
+\section{Code Chuncks}\label{code-chuncks}
+
+\section{Inline Code}\label{inline-code}
+
+\section{Plots}\label{plots}
+
+\section{Tables}\label{tables}
+
+\section{Parameters}\label{parameters}
+
+\section{Output Formats}\label{output-formats}
 
 \part{Appendix}\label{part-appendix}
 

@@ -1,0 +1,217 @@
+# R Markdown
+
+http://www.jacolienvanrij.com/Tutorials/tutorialMarkdown.html
+https://www.datacamp.com/courses/reporting-with-r-markdown
+http://www.stat.cmu.edu/~cshalizi/rmarkdown/
+https://stanford.edu/~vbauer/teaching/rmarkdown.html
+
+## Introduction
+
+[What is R Markdown](https://player.vimeo.com/video/178485416)
+
+R Markdown provides an unified authoring framework for data science, combining your code, its results, and your prose commentary. R Markdown documents are fully reproducible and support dozens of static and dynamic output formats like PDFs, Word files, slideshows, and more.. For a comprehnsive resource on R Markdown see [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+
+R Markdown integrates a number of R packages and external tools. This means that help is, by-and-large, not available through ?. Instead, as you work through this chapter, and use R Markdown in the future, keep these resources close to hand:
+
+- R Markdown Cheat Sheet: Help > Cheatsheets > R Markdown Cheat Sheet,
+- R Markdown Reference Guide: Help > Cheatsheets > R Markdown Reference Guide.
+
+Both cheatsheets are also available at http://rstudio.com/cheatsheets.
+
+The real point of R Markdown is that it lets you include your code, have the code run automatically when your document is rendered, and seemlessly include the results of that code in your document.
+
+### Code languages
+
+While there is an **"R"** in R Markdown this is not limited to just the R programmming languange.  It is a generic markup language that can knit any code that can be run from a command line into a document.  Some of the more popular languages are:
+
+- R
+- Python
+- SQL
+- C/C++
+- Bash
+- Rcpp
+- Stan
+- JavaScript
+- CSS
+- Julia
+- SAS (see SASmarkdown package)
+
+
+You can intermix languages within the same document, and in some cases pass data between languages.
+
+
+## Markdown Basics
+
+Format the text in your R Markdown file with [Pandoc’s Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown), a set of markup annotations for plain text files. When you render your file, Pandoc transforms the marked up text into formatted text in your final file format.
+
+Notice that the file contains three types of content:
+
+1. Text mixed with simple text formatting.
+1. Code chunks and the corresponding output.
+1. An (optional) YAML header controlling the "whole document" settings.
+
+
+### Headers
+
+The character `#` at the beginning of a line means that the rest of the line is interpreted as a section header. The number of `#`s at the beginning of the line indicates whether it is treated as a section, sub-section, sub-sub-section, etc. of the document.
+
+```
+# Heading Level 1  
+## Heading Level 2  
+### Heading Level 3
+```
+
+In this document the chapter title **R Markdown** is preceded by a single `#`, but **Markdown Basics** at the start of this paragraph was preceded by `##` and the current section **Headers** is preceded by `###` in the text file.
+
+### Paragraph Breaks and Forced Line Breaks
+
+```
+To insert a break between paragraphs, include a single completely blank line.
+
+To force a line break, put two blank  
+spaces at the end of a line.
+```
+
+To insert a break between paragraphs, include a single completely blank line.
+
+To force a line break, put two blank  
+spaces at the end of a line.
+
+
+```
+If you don't put the two blank
+spaces at the end of a line
+they will run together.
+```
+If you don't put the two blank
+spaces at the end of a line
+they will run together.
+
+### Italics and Boldface
+
+```
+Text to be _italicized_ goes inside _a single set of underscores_ or *asterisks*.  Text to be **boldfaced** goes inside a __double set of underscores__  or **asterisks**.
+```
+Text to be _italicized_ goes inside _a single set of underscores_ or *asterisks*.  Text to be **boldfaced** goes inside a __double set of underscores__  or **asterisks**.
+
+
+### Bullet Points
+
+```
+* This is a list marked where items are marked with bullet points.
+* Each item in the list should start with a `*` (asterisk) character, or a single dash (`-`) and then have a space.
+* Each item should also be on a new line.
+    + Indent lines with 4 spaces and begin them with `+` for sub-bullets.
+    + Sub-sub-bullet aren’t really a thing in R Markdown.
+```
+
+* This is a list marked where items are marked with bullet points.
+* Each item in the list should start with a `*` (asterisk) character, or a single dash (`-`) and then have a space.
+* Each item should also be on a new line.
+    + Indent lines with 4 spaces and begin them with `+` for sub-bullets.
+    + Sub-sub-bullet aren’t really a thing in R Markdown.
+
+### Numbered Lists
+
+```
+1. Lines which begin with a numeral (0–9), followed by a period, will usually be interpreted as items in a numbered list.
+1. R Markdown handles the numbering in what it renders automatically, so the actual number doesn't matter.
+1. This can be handy when you lose count or don’t update the numbers yourself when editing. (Look carefully at the .Rmd file for this item.)
+    a. Sub-lists of numbered lists, with letters for sub-items, are a thing.
+    b. They are however a fragile thing, which you’d better not push too hard.
+```
+
+1. Lines which begin with a numeral (0–9), followed by a period, will usually be interpreted as items in a numbered list.
+1. R Markdown handles the numbering in what it renders automatically, so the actual number doesn't matter.
+1. This can be handy when you lose count or don’t update the numbers yourself when editing. (Look carefully at the .Rmd file for this item.)
+    a. Sub-lists of numbered lists, with letters for sub-items, are a thing.
+    b. They are however a fragile thing, which you’d better not push too hard.
+
+## Code Chunks
+
+Think of a chunk like a function. A chunk should be relatively self-contained, and focussed around a single task.  You can quickly insert chunks like these into your file with
+
+* the keyboard shortcut **Ctrl + Alt + I** (OS X: **Cmd + Option + I**)
+* typing the chunk delimiters ` ```{r} ` and ` ``` `.
+* the *Add Chunk* command in the editor toolbar
+
+When you render your .Rmd file, R Markdown will run each code chunk and embed the results beneath the code chunk in your final report.
+
+There are three main sections to a the code chunk header:
+
+1. the programing language engine to run the code
+2. the code chunk name (optional but very useful)
+3. the code chunk options.
+
+### Chunk Names
+
+Chunks can be given an optional name: ```` ```{r by-name} ````. This has three advantages:
+
+1.  You can more easily navigate to specific chunks using the drop-down
+    code navigator in the bottom-left of the script editor:
+1.  Graphics produced by the chunks will have useful names that make
+    them easier to use elsewhere.
+1.  You can set up networks of cached chunks to avoid re-performing expensive
+    computations on every run. More on that below.
+
+It’s a good idea to name code chunks that produce figures, even if you don’t routinely label other chunks. The chunk label is used to generate the file name of the graphic on disk, so naming your chunks makes it much easier to pick out plots and reuse in other circumstances (i.e. if you want to quickly drop a single plot into an email)
+
+```{block2, type='rmdimportant'}
+There is one chunk name wit special behaviour: `setup`. In notebook mode, the chunk named `setup` will be run automatically once, before any other code is run.
+```
+
+### Chunk Options
+
+Chunk output can be customised with __options__, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we'll cover the most important chunk options that you'll use frequently. You can see the full list at <http://yihui.name/knitr/options/>. 
+
+The most important set of options controls if your code block is executed and what results are inserted in the finished report:
+
+*   `include = FALSE` prevents code and results from appearing in the finished file. Use this to run code and results used by other chunks (i.e. setup code).
+
+*   `echo = FALSE` prevents code, but not the results from appearing in the 
+    finished file. Use this when writing reports.
+    
+*   `message = FALSE` or `warning = FALSE` prevents messages or warnings 
+    from appearing in the finished file.
+
+*   `results = 'hide'` hides printed output; `fig.show = 'hide'` hides
+    plots.
+
+*   `error = TRUE` causes the render to continue even if code returns an error. Use this for debugging.
+
+To set global options that apply to every chunk in your file, call `knitr::opts_chunk$set` in a code chunk. Knitr will treat each option that you pass to `knitr::opts_chunk$set` as a global default that can be overwritten in individual chunk headers  If you are doing a report where you would never show code include `knitr::opts_chunk$set(echo = FALSE)` in the `setup` code block.
+
+```
+\```{r setup, include=FALSE} 
+knitr::opts_chunk$set(echo = FALSE)
+\```
+```
+
+## Inline Code
+
+Code output can also be seamlessly incorporated into the text, using inline code. This is code not set off on a line by itself, but beginning with ``` `r ``` and ending with ``` ` ```. Using inline code is how this document knows that the mtcars data set contains `r nrow(mtcars)` rows, and that the mean mpg of the 6 cylinder cars is `r round(mean(mtcars[mtcars$cyl == 6, "mpg"]), 1)`.
+
+R Markdown will always
+
+* display the results of inline code, but not the code
+* apply relevant text formatting to the results
+
+As a result, inline output is indistinguishable from the surrounding text. Inline expressions do not take knitr options.
+
+## Plots
+
+
+## Tables
+
+
+## YAML
+
+output types
+toc
+numbering
+parameters
+
+### Parameters
+
+
+## Output Formats
