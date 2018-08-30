@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-08-28">
+<meta name="date" content="2018-08-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,10 +47,76 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
-<link rel="stylesheet" href="css\style.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -89,7 +155,7 @@
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
-<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em>[^DRY]</a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em></a></li>
 <li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
@@ -114,23 +180,21 @@
 <li class="chapter" data-level="3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#control-structures"><i class="fa fa-check"></i><b>3.5</b> Control Structures</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#if-else"><i class="fa fa-check"></i><b>3.5.1</b> <code>if</code>-<code>else</code></a></li>
 <li class="chapter" data-level="3.5.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#for-loops"><i class="fa fa-check"></i><b>3.5.2</b> <code>for</code> Loops</a></li>
+<li class="chapter" data-level="3.5.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#while-loops"><i class="fa fa-check"></i><b>3.5.3</b> <code>while</code> Loops</a></li>
+<li class="chapter" data-level="3.5.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#repeat-loops"><i class="fa fa-check"></i><b>3.5.4</b> <code>repeat</code> Loops</a></li>
+<li class="chapter" data-level="3.5.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#next-break"><i class="fa fa-check"></i><b>3.5.5</b> <code>next</code>, <code>break</code></a></li>
+<li class="chapter" data-level="3.5.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#looping"><i class="fa fa-check"></i><b>3.5.6</b> Looping</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#generate-a-sequence-based-on-length-of-x"><i class="fa fa-check"></i><b>3.6</b> Generate a sequence based on length of ‘x’</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#while-loops"><i class="fa fa-check"></i><b>3.6.1</b> <code>while</code> Loops</a></li>
-<li class="chapter" data-level="3.6.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#repeat-loops"><i class="fa fa-check"></i><b>3.6.2</b> <code>repeat</code> Loops</a></li>
-<li class="chapter" data-level="3.6.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#next-break"><i class="fa fa-check"></i><b>3.6.3</b> <code>next</code>, <code>break</code></a></li>
-<li class="chapter" data-level="3.6.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#looping"><i class="fa fa-check"></i><b>3.6.4</b> Looping</a></li>
+<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.6</b> Vectorization &amp; Recycling</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.6.1</b> Example</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.7</b> Vectorization &amp; Recycling</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.7.1</b> Example</a></li>
+<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#function-basics"><i class="fa fa-check"></i><b>3.7</b> Function Basics</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#your-first-function"><i class="fa fa-check"></i><b>3.7.1</b> Your First Function</a></li>
+<li class="chapter" data-level="3.7.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#lazy-evaluation"><i class="fa fa-check"></i><b>3.7.2</b> Lazy Evaluation</a></li>
+<li class="chapter" data-level="3.7.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#the-...-argument"><i class="fa fa-check"></i><b>3.7.3</b> The <code>...</code> Argument</a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#function-basics"><i class="fa fa-check"></i><b>3.8</b> Function Basics</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#your-first-function"><i class="fa fa-check"></i><b>3.8.1</b> Your First Function</a></li>
-<li class="chapter" data-level="3.8.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#lazy-evaluation"><i class="fa fa-check"></i><b>3.8.2</b> Lazy Evaluation</a></li>
-<li class="chapter" data-level="3.8.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#the-...-argument"><i class="fa fa-check"></i><b>3.8.3</b> The <code>...</code> Argument</a></li>
-</ul></li>
-<li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#environments-scoping"><i class="fa fa-check"></i><b>3.9</b> Environments &amp; Scoping</a></li>
-<li class="chapter" data-level="3.10" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.10</b> Exercises</a></li>
+<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#environments-scoping"><i class="fa fa-check"></i><b>3.8</b> Environments &amp; Scoping</a></li>
+<li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>4</b> Base R Data Structures</a><ul>
 <li class="chapter" data-level="4.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#naming-rules"><i class="fa fa-check"></i><b>4.1</b> Naming Rules</a></li>
@@ -260,17 +324,19 @@
 <li class="chapter" data-level="12.2.4" data-path="r-markdown.html"><a href="r-markdown.html#bullet-points"><i class="fa fa-check"></i><b>12.2.4</b> Bullet Points</a></li>
 <li class="chapter" data-level="12.2.5" data-path="r-markdown.html"><a href="r-markdown.html#numbered-lists"><i class="fa fa-check"></i><b>12.2.5</b> Numbered Lists</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#code-chunks"><i class="fa fa-check"></i><b>12.3</b> Code Chunks</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="r-markdown.html"><a href="r-markdown.html#chunk-names"><i class="fa fa-check"></i><b>12.3.1</b> Chunk Names</a></li>
-<li class="chapter" data-level="12.3.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>12.3.2</b> Chunk Options</a></li>
+<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#math"><i class="fa fa-check"></i><b>12.3</b> Math</a></li>
+<li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#code-chunks"><i class="fa fa-check"></i><b>12.4</b> Code Chunks</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="r-markdown.html"><a href="r-markdown.html#chunk-names"><i class="fa fa-check"></i><b>12.4.1</b> Chunk Names</a></li>
+<li class="chapter" data-level="12.4.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>12.4.2</b> Chunk Options</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>12.4</b> Inline Code</a></li>
-<li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>12.5</b> Plots</a></li>
-<li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>12.6</b> Tables</a></li>
-<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#yaml"><i class="fa fa-check"></i><b>12.7</b> YAML</a><ul>
-<li class="chapter" data-level="12.7.1" data-path="r-markdown.html"><a href="r-markdown.html#parameters"><i class="fa fa-check"></i><b>12.7.1</b> Parameters</a></li>
+<li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>12.5</b> Inline Code</a></li>
+<li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>12.6</b> Plots</a></li>
+<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>12.7</b> Tables</a></li>
+<li class="chapter" data-level="12.8" data-path="r-markdown.html"><a href="r-markdown.html#yaml"><i class="fa fa-check"></i><b>12.8</b> YAML</a><ul>
+<li class="chapter" data-level="12.8.1" data-path="r-markdown.html"><a href="r-markdown.html#table-of-contents"><i class="fa fa-check"></i><b>12.8.1</b> Table of Contents</a></li>
+<li class="chapter" data-level="12.8.2" data-path="r-markdown.html"><a href="r-markdown.html#parameterized-reports"><i class="fa fa-check"></i><b>12.8.2</b> Parameterized reports</a></li>
+<li class="chapter" data-level="12.8.3" data-path="r-markdown.html"><a href="r-markdown.html#output-types"><i class="fa fa-check"></i><b>12.8.3</b> Output Types</a></li>
 </ul></li>
-<li class="chapter" data-level="12.8" data-path="r-markdown.html"><a href="r-markdown.html#output-formats"><i class="fa fa-check"></i><b>12.8</b> Output Formats</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
 <li class="chapter" data-level="13" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>13</b> Appendix A</a><ul>
@@ -298,21 +364,20 @@
             <section class="normal" id="section-">
 <div id="r-markdown" class="section level1">
 <h1><span class="header-section-number">12</span> R Markdown</h1>
-<p><a href="http://www.jacolienvanrij.com/Tutorials/tutorialMarkdown.html" class="uri">http://www.jacolienvanrij.com/Tutorials/tutorialMarkdown.html</a> <a href="https://www.datacamp.com/courses/reporting-with-r-markdown" class="uri">https://www.datacamp.com/courses/reporting-with-r-markdown</a> <a href="http://www.stat.cmu.edu/~cshalizi/rmarkdown/" class="uri">http://www.stat.cmu.edu/~cshalizi/rmarkdown/</a> <a href="https://stanford.edu/~vbauer/teaching/rmarkdown.html" class="uri">https://stanford.edu/~vbauer/teaching/rmarkdown.html</a></p>
 <div id="introduction" class="section level2">
 <h2><span class="header-section-number">12.1</span> Introduction</h2>
 <p><a href="https://player.vimeo.com/video/178485416">What is R Markdown</a></p>
-<p>R Markdown provides an unified authoring framework for data science, combining your code, its results, and your prose commentary. R Markdown documents are fully reproducible and support dozens of static and dynamic output formats like PDFs, Word files, slideshows, and more.. For a comprehnsive resource on R Markdown see <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></p>
+<p>R Markdown provides an unified authoring framework for data science, combining your code, its results, and your prose commentary. R Markdown documents are fully reproducible and support dozens of static and dynamic output formats like PDFs, Word files, slideshows, and more.. For a comprehensive resource on R Markdown see <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></p>
 <p>R Markdown integrates a number of R packages and external tools. This means that help is, by-and-large, not available through ?. Instead, as you work through this chapter, and use R Markdown in the future, keep these resources close to hand:</p>
 <ul>
 <li>R Markdown Cheat Sheet: Help &gt; Cheatsheets &gt; R Markdown Cheat Sheet,</li>
 <li>R Markdown Reference Guide: Help &gt; Cheatsheets &gt; R Markdown Reference Guide.</li>
 </ul>
 <p>Both cheatsheets are also available at <a href="http://rstudio.com/cheatsheets" class="uri">http://rstudio.com/cheatsheets</a>.</p>
-<p>The real point of R Markdown is that it lets you include your code, have the code run automatically when your document is rendered, and seemlessly include the results of that code in your document.</p>
+<p>The real point of R Markdown is that it lets you include your code, have the code run automatically when your document is rendered, and seamlessly include the results of that code in your document.</p>
 <div id="code-languages" class="section level3">
 <h3><span class="header-section-number">12.1.1</span> Code languages</h3>
-<p>While there is an <strong>“R”</strong> in R Markdown this is not limited to just the R programmming languange. It is a generic markup language that can knit any code that can be run from a command line into a document. Some of the more popular languages are:</p>
+<p>While there is an <strong>“R”</strong> in R Markdown this is not limited to just the R programming language. It is a generic markup language that can knit any code that can be run from a command line into a document. Some of the more popular languages are:</p>
 <ul>
 <li>R</li>
 <li>Python</li>
@@ -327,6 +392,11 @@
 <li>SAS (see SASmarkdown package)</li>
 </ul>
 <p>You can intermix languages within the same document, and in some cases pass data between languages.</p>
+
+<div class="rmdimportant">
+You do not have to include any programming language. There are many books, websites, and wikis written in R Markown which contain no code.
+</div>
+
 </div>
 </div>
 <div id="markdown-basics" class="section level2">
@@ -358,7 +428,9 @@ spaces at the end of a line.</p>
 <pre><code>If you don&#39;t put the two blank
 spaces at the end of a line
 they will run together.</code></pre>
-<p>If you don’t put the two blank spaces at the end of a line they will run together.</p>
+<p>If you don’t put the two blank
+spaces at the end of a line
+they will run together.</p>
 </div>
 <div id="italics-and-boldface" class="section level3">
 <h3><span class="header-section-number">12.2.3</span> Italics and Boldface</h3>
@@ -378,7 +450,7 @@ they will run together.</code></pre>
 <li>Each item should also be on a new line.
 <ul>
 <li>Indent lines with 4 spaces and begin them with <code>+</code> for sub-bullets.</li>
-<li>Sub-sub-bullet aren’t really a thing in R Markdown.</li>
+<li>Sub-sub-bullet are not’t really a thing in R Markdown.</li>
 </ul></li>
 </ul>
 </div>
@@ -400,9 +472,17 @@ they will run together.</code></pre>
 </ol>
 </div>
 </div>
+<div id="math" class="section level2">
+<h2><span class="header-section-number">12.3</span> Math</h2>
+<p>R Markdown uses standard LaTeX to render complex mathematical formulas and derivations, and have them displayed very nicely. Like code, the math can either be inline or set off (displays).</p>
+<p>Inline math is marked off with a pair of dollar signs (<code>$</code>), <code>$\frac{a+b}{b} = 1 + \frac{a}{b}$</code> <span class="math inline">\(\frac{a+b}{b} = 1 + \frac{a}{b}\)</span></p>
+<p>Mathematical displays are marked off with <code>\[</code> and<code>\]</code>, as in</p>
+<pre><code>\[ \frac{a+b}{b} = 1 + \frac{a}{b} \]</code></pre>
+<p><span class="math display">\[ \frac{a+b}{b} = 1 + \frac{a}{b} \]</span></p>
+</div>
 <div id="code-chunks" class="section level2">
-<h2><span class="header-section-number">12.3</span> Code Chunks</h2>
-<p>Think of a chunk like a function. A chunk should be relatively self-contained, and focussed around a single task. You can quickly insert chunks like these into your file with</p>
+<h2><span class="header-section-number">12.4</span> Code Chunks</h2>
+<p>Think of a chunk like a function. A chunk should be relatively self-contained, and focused around a single task. You can quickly insert chunks like these into your file with</p>
 <ul>
 <li>the keyboard shortcut <strong>Ctrl + Alt + I</strong> (OS X: <strong>Cmd + Option + I</strong>)</li>
 <li>typing the chunk delimiters <code>```{r}</code> and <code>```</code>.</li>
@@ -411,17 +491,20 @@ they will run together.</code></pre>
 <p>When you render your .Rmd file, R Markdown will run each code chunk and embed the results beneath the code chunk in your final report.</p>
 <p>There are three main sections to a the code chunk header:</p>
 <ol style="list-style-type: decimal">
-<li>the programing language engine to run the code</li>
+<li>the programming language engine to run the code</li>
 <li>the code chunk name (optional but very useful)</li>
 <li>the code chunk options.</li>
 </ol>
 <div id="chunk-names" class="section level3">
-<h3><span class="header-section-number">12.3.1</span> Chunk Names</h3>
+<h3><span class="header-section-number">12.4.1</span> Chunk Names</h3>
 <p>Chunks can be given an optional name: <code>```{r by-name}</code>. This has three advantages:</p>
 <ol style="list-style-type: decimal">
-<li>You can more easily navigate to specific chunks using the drop-down code navigator in the bottom-left of the script editor:</li>
-<li>Graphics produced by the chunks will have useful names that make them easier to use elsewhere.</li>
-<li>You can set up networks of cached chunks to avoid re-performing expensive computations on every run. More on that below.</li>
+<li>You can more easily navigate to specific chunks using the drop-down
+code navigator in the bottom-left of the script editor:</li>
+<li>Graphics produced by the chunks will have useful names that make
+them easier to use elsewhere.</li>
+<li>You can set up networks of cached chunks to avoid re-performing expensive
+computations on every run. More on that below.</li>
 </ol>
 <p>It’s a good idea to name code chunks that produce figures, even if you don’t routinely label other chunks. The chunk label is used to generate the file name of the graphic on disk, so naming your chunks makes it much easier to pick out plots and reuse in other circumstances (i.e. if you want to quickly drop a single plot into an email)</p>
 
@@ -431,14 +514,17 @@ There is one chunk name wit special behaviour: <code>setup</code>. In notebook m
 
 </div>
 <div id="chunk-options" class="section level3">
-<h3><span class="header-section-number">12.3.2</span> Chunk Options</h3>
-<p>Chunk output can be customised with <strong>options</strong>, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we’ll cover the most important chunk options that you’ll use frequently. You can see the full list at <a href="http://yihui.name/knitr/options/" class="uri">http://yihui.name/knitr/options/</a>.</p>
+<h3><span class="header-section-number">12.4.2</span> Chunk Options</h3>
+<p>Chunk output can be customized with <strong>options</strong>, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we’ll cover the most important chunk options that you’ll use frequently. You can see the full list at <a href="http://yihui.name/knitr/options/" class="uri">http://yihui.name/knitr/options/</a>.</p>
 <p>The most important set of options controls if your code block is executed and what results are inserted in the finished report:</p>
 <ul>
 <li><p><code>include = FALSE</code> prevents code and results from appearing in the finished file. Use this to run code and results used by other chunks (i.e. setup code).</p></li>
-<li><p><code>echo = FALSE</code> prevents code, but not the results from appearing in the finished file. Use this when writing reports.</p></li>
-<li><p><code>message = FALSE</code> or <code>warning = FALSE</code> prevents messages or warnings from appearing in the finished file.</p></li>
-<li><p><code>results = 'hide'</code> hides printed output; <code>fig.show = 'hide'</code> hides plots.</p></li>
+<li><p><code>echo = FALSE</code> prevents code, but not the results from appearing in the
+finished file. Use this when writing reports.</p></li>
+<li><p><code>message = FALSE</code> or <code>warning = FALSE</code> prevents messages or warnings
+from appearing in the finished file.</p></li>
+<li><p><code>results = 'hide'</code> hides printed output; <code>fig.show = 'hide'</code> hides
+plots.</p></li>
 <li><p><code>error = TRUE</code> causes the render to continue even if code returns an error. Use this for debugging.</p></li>
 </ul>
 <p>To set global options that apply to every chunk in your file, call <code>knitr::opts_chunk$set</code> in a code chunk. Knitr will treat each option that you pass to <code>knitr::opts_chunk$set</code> as a global default that can be overwritten in individual chunk headers If you are doing a report where you would never show code include <code>knitr::opts_chunk$set(echo = FALSE)</code> in the <code>setup</code> code block.</p>
@@ -448,7 +534,7 @@ knitr::opts_chunk$set(echo = FALSE)
 </div>
 </div>
 <div id="inline-code" class="section level2">
-<h2><span class="header-section-number">12.4</span> Inline Code</h2>
+<h2><span class="header-section-number">12.5</span> Inline Code</h2>
 <p>Code output can also be seamlessly incorporated into the text, using inline code. This is code not set off on a line by itself, but beginning with <code>`r</code> and ending with <code>`</code>. Using inline code is how this document knows that the mtcars data set contains 32 rows, and that the mean mpg of the 6 cylinder cars is 19.7.</p>
 <p>R Markdown will always</p>
 <ul>
@@ -458,21 +544,1573 @@ knitr::opts_chunk$set(echo = FALSE)
 <p>As a result, inline output is indistinguishable from the surrounding text. Inline expressions do not take knitr options.</p>
 </div>
 <div id="plots" class="section level2">
-<h2><span class="header-section-number">12.5</span> Plots</h2>
+<h2><span class="header-section-number">12.6</span> Plots</h2>
+<p>Inserting a graph into RMarkdown is easy, the more energy-demanding aspect might be adjusting the formatting.</p>
+<pre><code>\```{r mtcarsplot1, fig.cap = &quot;Default Plot&quot;}
+ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
+  geom_boxplot() +
+  coord_flip()
+\```</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb203-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb203-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:mtcarsplot1"></span>
+<img src="data-presentation_files/figure-html/mtcarsplot1-1.png" alt="Default Plot" width="70%" />
+<p class="caption">
+FIGURE 12.1: Default Plot
+</p>
+</div>
+<p>By default, RMarkdown will place graphs by maximizing their height, while keeping them within the margins of the page and maintaining aspect ratio. If you have a particularly tall figure, this can mean a really huge graph. To manually set the figure dimensions in the code chunk options use <code>fig.height</code> and <code>fig.width</code>.</p>
+<p>You can also set the alignment with <code>fig.align</code> and either <code>left</code>, <code>right</code> or <code>center</code>. Also, by default the file type of the plot is determined by the output file type. You can override these defaults by using the <code>dev</code> option in the code chunk options. See <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> for more details.</p>
 </div>
 <div id="tables" class="section level2">
-<h2><span class="header-section-number">12.6</span> Tables</h2>
+<h2><span class="header-section-number">12.7</span> Tables</h2>
+<p>By default, R Markdown displays data frames and matrices as they would be in the R terminal (in a monospaced font). This generally is not what you want. If you prefer that data be displayed with additional formatting there are a number of packages that can make publication ready tables.</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/kableExtra/index.html">kable + kableExtra</a></li>
+<li><a href="https://cran.r-project.org/web/packages/xtable/index.html">xtable</a></li>
+<li><a href="https://cran.r-project.org/web/packages/stargazer/index.html">stargazer</a></li>
+<li><a href="https://cran.r-project.org/web/packages/pander/index.html">pander</a></li>
+<li><a href="https://cran.r-project.org/web/packages/tables/index.html">tables</a></li>
+<li><a href="https://cran.r-project.org/web/packages/ascii/index.html">ascii</a></li>
+</ul>
+<p>Which package you should use depends on what your output format is and which features you want. All these packages have vignettes which show how to use the major features.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="kw">library</span>(kableExtra)</a>
+<a class="sourceLine" id="cb204-2" data-line-number="2">dt &lt;-<span class="st"> </span>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</a>
+<a class="sourceLine" id="cb204-3" data-line-number="3"><span class="kw">kable</span>(dt, <span class="dt">caption =</span> <span class="st">&quot;kable table&quot;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<table>
+<caption>
+<span id="tab:kable">TABLE 12.1: </span>kable table
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+mpg
+</th>
+<th style="text-align:right;">
+cyl
+</th>
+<th style="text-align:right;">
+disp
+</th>
+<th style="text-align:right;">
+hp
+</th>
+<th style="text-align:right;">
+drat
+</th>
+<th style="text-align:right;">
+wt
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mazda RX4
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+<td style="text-align:right;">
+2.62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mazda RX4 Wag
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+<td style="text-align:right;">
+2.88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Datsun 710
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+3.85
+</td>
+<td style="text-align:right;">
+2.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet 4 Drive
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+258
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.08
+</td>
+<td style="text-align:right;">
+3.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet Sportabout
+</td>
+<td style="text-align:right;">
+18.7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+360
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+<td style="text-align:right;">
+3.44
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">kable</span>(mtcars, <span class="dt">longtable =</span> <span class="ot">TRUE</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb205-2" data-line-number="2">      <span class="dt">caption =</span> <span class="st">&quot;Kable Longtable&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-3" data-line-number="3"><span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>,<span class="st">&quot;Group 1&quot;</span> =<span class="st"> </span><span class="dv">5</span>, <span class="st">&quot;Group 2&quot;</span> =<span class="st"> </span><span class="dv">6</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb205-4" data-line-number="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">latex_options =</span> <span class="kw">c</span>(<span class="st">&quot;repeat_header&quot;</span>))</a></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:kable2">TABLE 12.2: </span>Kable Longtable
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="5">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Group 1
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
+Group 2
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+mpg
+</th>
+<th style="text-align:right;">
+cyl
+</th>
+<th style="text-align:right;">
+disp
+</th>
+<th style="text-align:right;">
+hp
+</th>
+<th style="text-align:right;">
+drat
+</th>
+<th style="text-align:right;">
+wt
+</th>
+<th style="text-align:right;">
+qsec
+</th>
+<th style="text-align:right;">
+vs
+</th>
+<th style="text-align:right;">
+am
+</th>
+<th style="text-align:right;">
+gear
+</th>
+<th style="text-align:right;">
+carb
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mazda RX4
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160.0
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+<td style="text-align:right;">
+2.62
+</td>
+<td style="text-align:right;">
+16.5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mazda RX4 Wag
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160.0
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+<td style="text-align:right;">
+2.88
+</td>
+<td style="text-align:right;">
+17.0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Datsun 710
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+108.0
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+3.85
+</td>
+<td style="text-align:right;">
+2.32
+</td>
+<td style="text-align:right;">
+18.6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet 4 Drive
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+258.0
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.08
+</td>
+<td style="text-align:right;">
+3.21
+</td>
+<td style="text-align:right;">
+19.4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet Sportabout
+</td>
+<td style="text-align:right;">
+18.7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+360.0
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+<td style="text-align:right;">
+3.44
+</td>
+<td style="text-align:right;">
+17.0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Valiant
+</td>
+<td style="text-align:right;">
+18.1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+225.0
+</td>
+<td style="text-align:right;">
+105
+</td>
+<td style="text-align:right;">
+2.76
+</td>
+<td style="text-align:right;">
+3.46
+</td>
+<td style="text-align:right;">
+20.2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Duster 360
+</td>
+<td style="text-align:right;">
+14.3
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+360.0
+</td>
+<td style="text-align:right;">
+245
+</td>
+<td style="text-align:right;">
+3.21
+</td>
+<td style="text-align:right;">
+3.57
+</td>
+<td style="text-align:right;">
+15.8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Merc 240D
+</td>
+<td style="text-align:right;">
+24.4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+146.7
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+3.69
+</td>
+<td style="text-align:right;">
+3.19
+</td>
+<td style="text-align:right;">
+20.0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Merc 230
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+140.8
+</td>
+<td style="text-align:right;">
+95
+</td>
+<td style="text-align:right;">
+3.92
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+<td style="text-align:right;">
+22.9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Merc 280
+</td>
+<td style="text-align:right;">
+19.2
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+167.6
+</td>
+<td style="text-align:right;">
+123
+</td>
+<td style="text-align:right;">
+3.92
+</td>
+<td style="text-align:right;">
+3.44
+</td>
+<td style="text-align:right;">
+18.3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Merc 280C
+</td>
+<td style="text-align:right;">
+17.8
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+167.6
+</td>
+<td style="text-align:right;">
+123
+</td>
+<td style="text-align:right;">
+3.92
+</td>
+<td style="text-align:right;">
+3.44
+</td>
+<td style="text-align:right;">
+18.9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Merc 450SE
+</td>
+<td style="text-align:right;">
+16.4
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+275.8
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:right;">
+3.07
+</td>
+<td style="text-align:right;">
+4.07
+</td>
+<td style="text-align:right;">
+17.4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Merc 450SL
+</td>
+<td style="text-align:right;">
+17.3
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+275.8
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:right;">
+3.07
+</td>
+<td style="text-align:right;">
+3.73
+</td>
+<td style="text-align:right;">
+17.6
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Merc 450SLC
+</td>
+<td style="text-align:right;">
+15.2
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+275.8
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:right;">
+3.07
+</td>
+<td style="text-align:right;">
+3.78
+</td>
+<td style="text-align:right;">
+18.0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cadillac Fleetwood
+</td>
+<td style="text-align:right;">
+10.4
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+472.0
+</td>
+<td style="text-align:right;">
+205
+</td>
+<td style="text-align:right;">
+2.93
+</td>
+<td style="text-align:right;">
+5.25
+</td>
+<td style="text-align:right;">
+18.0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lincoln Continental
+</td>
+<td style="text-align:right;">
+10.4
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+460.0
+</td>
+<td style="text-align:right;">
+215
+</td>
+<td style="text-align:right;">
+3.00
+</td>
+<td style="text-align:right;">
+5.42
+</td>
+<td style="text-align:right;">
+17.8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chrysler Imperial
+</td>
+<td style="text-align:right;">
+14.7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+440.0
+</td>
+<td style="text-align:right;">
+230
+</td>
+<td style="text-align:right;">
+3.23
+</td>
+<td style="text-align:right;">
+5.34
+</td>
+<td style="text-align:right;">
+17.4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fiat 128
+</td>
+<td style="text-align:right;">
+32.4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+78.7
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+4.08
+</td>
+<td style="text-align:right;">
+2.20
+</td>
+<td style="text-align:right;">
+19.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Honda Civic
+</td>
+<td style="text-align:right;">
+30.4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+75.7
+</td>
+<td style="text-align:right;">
+52
+</td>
+<td style="text-align:right;">
+4.93
+</td>
+<td style="text-align:right;">
+1.61
+</td>
+<td style="text-align:right;">
+18.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Toyota Corolla
+</td>
+<td style="text-align:right;">
+33.9
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+71.1
+</td>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:right;">
+4.22
+</td>
+<td style="text-align:right;">
+1.83
+</td>
+<td style="text-align:right;">
+19.9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Toyota Corona
+</td>
+<td style="text-align:right;">
+21.5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+120.1
+</td>
+<td style="text-align:right;">
+97
+</td>
+<td style="text-align:right;">
+3.70
+</td>
+<td style="text-align:right;">
+2.46
+</td>
+<td style="text-align:right;">
+20.0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dodge Challenger
+</td>
+<td style="text-align:right;">
+15.5
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+318.0
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:right;">
+2.76
+</td>
+<td style="text-align:right;">
+3.52
+</td>
+<td style="text-align:right;">
+16.9
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AMC Javelin
+</td>
+<td style="text-align:right;">
+15.2
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+304.0
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+<td style="text-align:right;">
+3.44
+</td>
+<td style="text-align:right;">
+17.3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Camaro Z28
+</td>
+<td style="text-align:right;">
+13.3
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+350.0
+</td>
+<td style="text-align:right;">
+245
+</td>
+<td style="text-align:right;">
+3.73
+</td>
+<td style="text-align:right;">
+3.84
+</td>
+<td style="text-align:right;">
+15.4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pontiac Firebird
+</td>
+<td style="text-align:right;">
+19.2
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+400.0
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+3.08
+</td>
+<td style="text-align:right;">
+3.85
+</td>
+<td style="text-align:right;">
+17.1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fiat X1-9
+</td>
+<td style="text-align:right;">
+27.3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+79.0
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+4.08
+</td>
+<td style="text-align:right;">
+1.94
+</td>
+<td style="text-align:right;">
+18.9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Porsche 914-2
+</td>
+<td style="text-align:right;">
+26.0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+120.3
+</td>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:right;">
+4.43
+</td>
+<td style="text-align:right;">
+2.14
+</td>
+<td style="text-align:right;">
+16.7
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lotus Europa
+</td>
+<td style="text-align:right;">
+30.4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+95.1
+</td>
+<td style="text-align:right;">
+113
+</td>
+<td style="text-align:right;">
+3.77
+</td>
+<td style="text-align:right;">
+1.51
+</td>
+<td style="text-align:right;">
+16.9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ford Pantera L
+</td>
+<td style="text-align:right;">
+15.8
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+351.0
+</td>
+<td style="text-align:right;">
+264
+</td>
+<td style="text-align:right;">
+4.22
+</td>
+<td style="text-align:right;">
+3.17
+</td>
+<td style="text-align:right;">
+14.5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ferrari Dino
+</td>
+<td style="text-align:right;">
+19.7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+145.0
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+<td style="text-align:right;">
+2.77
+</td>
+<td style="text-align:right;">
+15.5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Maserati Bora
+</td>
+<td style="text-align:right;">
+15.0
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+301.0
+</td>
+<td style="text-align:right;">
+335
+</td>
+<td style="text-align:right;">
+3.54
+</td>
+<td style="text-align:right;">
+3.57
+</td>
+<td style="text-align:right;">
+14.6
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Volvo 142E
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+121.0
+</td>
+<td style="text-align:right;">
+109
+</td>
+<td style="text-align:right;">
+4.11
+</td>
+<td style="text-align:right;">
+2.78
+</td>
+<td style="text-align:right;">
+18.6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="yaml" class="section level2">
-<h2><span class="header-section-number">12.7</span> YAML</h2>
-<p>output types toc numbering parameters</p>
-<div id="parameters" class="section level3">
-<h3><span class="header-section-number">12.7.1</span> Parameters</h3>
+<h2><span class="header-section-number">12.8</span> YAML</h2>
+<p>At the top of any RMarkdown script is a YAML header section enclosed by <code>---</code>. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">here for .html options</a> and <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">here for .pdf options</a>. Rules in the header section will alter the whole document. Have a flick through quickly to familiarize yourself with the sorts of things you can alter by adding an option to the YAML header.</p>
+<div id="table-of-contents" class="section level3">
+<h3><span class="header-section-number">12.8.1</span> Table of Contents</h3>
+<pre><code>---
+title: &quot;My Report&quot;
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: TRUE
+---</code></pre>
 </div>
-</div>
-<div id="output-formats" class="section level2">
-<h2><span class="header-section-number">12.8</span> Output Formats</h2>
+<div id="parameterized-reports" class="section level3">
+<h3><span class="header-section-number">12.8.2</span> Parameterized reports</h3>
+<p>One of the many benefits of working with R Markdown is that you can reproduce analysis at the click of a button. This makes it very easy to update any work and alter any input parameters within the report. Parameterized reports extend this one step further, and allow users to specify one or more parameters to customize the analysis. This is useful if you want to create a report template that can be reused across multiple similar scenarios.</p>
+<p><strong>Declaring parameters</strong></p>
+<p>Parameters are specified using the params field within the YAML section. We can specify one or more parameters with each item on a new line. As an example:</p>
+<pre><code>---
+title: &quot;My Report&quot;
+output: pdf_document
+params:
+  year: 2018
+  region: Europe
+  data: file.csv
+---</code></pre>
+<p>All standard R types that can be included as parameters, including <code>character</code>, <code>numeric</code>, <code>integer</code>, and <code>logical</code> types. We can also use R objects by including <code>!r</code> before R expressions. For example, we could include the current date with the following R code:</p>
+<pre><code>---
+title: &quot;My Report&quot;
+output: html_document
+params:
+  date: !r Sys.Date()
+---</code></pre>
+<p><strong>Using parameters</strong></p>
+<p>You can access the parameters within the knitting environment and the R console in RStudio. The values are contained within a read-only list called <code>params</code>. In the previous example, the parameters can be accessed as follows:</p>
+<pre><code>params$year
+params$region
 
+mydata &lt;- read_csv(params$data)</code></pre>
+<p><strong>Knitting with parameters</strong></p>
+<ul>
+<li>Using the <strong>Knit</strong> button within RStudio to run with the default values.</li>
+<li>Using the <strong>Knit with Parameters</strong> button within RStudio to fill in the parameters interactively.</li>
+<li>Knit with custom parameters</li>
+</ul>
+<pre><code>render_report = function(file, region, year) {
+  rmarkdown::render(
+    &quot;MyDocument.Rmd&quot;, params = list(
+      region = region,
+      year   = year,
+      data   = file
+    ),
+    output_file = paste0(&quot;Report-&quot;, region, &quot;-&quot;, year, &quot;.pdf&quot;)
+  )
+}</code></pre>
+</div>
+<div id="output-types" class="section level3">
+<h3><span class="header-section-number">12.8.3</span> Output Types</h3>
+<p><a href="https://rmarkdown.rstudio.com/formats.html">There are many types of output with more being added every day.</a> lists just the ones</p>
+<ul>
+<li>Documents
+<ul>
+<li><code>pdf_document</code> makes a PDF with LaTeX</li>
+<li><code>word_document</code> for Microsoft Word documents (<code>.docx</code>).</li>
+<li><code>odt_document</code> for OpenDocument Text documents (<code>.odt</code>).</li>
+<li><code>rtf_document</code> for Rich Text Format (<code>.rtf</code>) documents.</li>
+<li><code>md_document</code> for a Markdown document.</li>
+<li><code>github_document</code>: this is a tailored version of <code>md_document</code> designed for sharing on GitHub.</li>
+</ul></li>
+<li>Presentations
+<ul>
+<li><code>ioslides_presentation</code> - HTML presentation with ioslides</li>
+<li><code>slidy_presentation</code> - HTML presentation with W3C Slidy</li>
+<li><code>beamer_presentation</code> - PDF presentation with LaTeX Beamer.</li>
+<li><code>revealjs::revealjs_presentation</code> - HTML presentation with reveal.js.</li>
+<li><strong>rmdshower</strong>, <a href="https://github.com/MangoTheCat/rmdshower" class="uri">https://github.com/MangoTheCat/rmdshower</a>, provides a wrapper around the <strong>shower</strong>, <a href="https://github.com/shower/shower" class="uri">https://github.com/shower/shower</a>, presentation engine</li>
+<li><code>powerpoint_presentation</code> - Create MS PowerPoint presentations.</li>
+</ul></li>
+<li>Notebooks
+<ul>
+<li><code>html_notebook</code> is a variation on a <code>html_document</code>.</li>
+</ul></li>
+<li>Dashboards
+<ul>
+<li><code>flexdashboard::flex_dashboard</code>, <a href="http://rmarkdown.rstudio.com/flexdashboard/" class="uri">http://rmarkdown.rstudio.com/flexdashboard/</a> provides simple tools for creating sidebars, tabsets, value boxes, and gauges.</li>
+</ul></li>
+<li>Interactivity
+<ul>
+<li><strong>shiny</strong>, a package that allows you to create interactivity using R code, not JavaScript.</li>
+<li><strong>htmlwidgets</strong>, produce interactive HTML visualizations</li>
+<li><strong>dygraphs</strong>, <a href="http://rstudio.github.io/dygraphs/" class="uri">http://rstudio.github.io/dygraphs/</a>, for interactive time series visualizations.</li>
+<li><strong>DT</strong>, <a href="http://rstudio.github.io/DT/" class="uri">http://rstudio.github.io/DT/</a>, for interactive tables.</li>
+<li><strong>threejs</strong>, <a href="https://github.com/bwlewis/rthreejs" class="uri">https://github.com/bwlewis/rthreejs</a> for interactive 3d plots.</li>
+<li><strong>DiagrammeR</strong>, <a href="http://rich-iannone.github.io/DiagrammeR/" class="uri">http://rich-iannone.github.io/DiagrammeR/</a> for diagrams (like flow charts and simple node-link diagrams).</li>
+</ul></li>
+<li>Other
+<ul>
+<li><strong>blogdown</strong> create a simple website.</li>
+<li><strong>bookdown</strong>, <a href="https://github.com/rstudio/bookdown" class="uri">https://github.com/rstudio/bookdown</a>,makes it easy to write books, like this one</li>
+<li><strong>prettydoc</strong>, <a href="https://github.com/yixuan/prettydoc/" class="uri">https://github.com/yixuan/prettydoc/</a>, provides lightweight document formats with a range of attractive themes.</li>
+<li><strong>rticles</strong>, <a href="https://github.com/rstudio/rticles" class="uri">https://github.com/rstudio/rticles</a>, compiles a selection of formats tailored for specific scientific journals.</li>
+</ul></li>
+</ul>
+
+</div>
 </div>
 </div>
 
@@ -516,6 +2154,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

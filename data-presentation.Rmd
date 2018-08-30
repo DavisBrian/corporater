@@ -1,15 +1,14 @@
 # R Markdown
 
-http://www.jacolienvanrij.com/Tutorials/tutorialMarkdown.html
-https://www.datacamp.com/courses/reporting-with-r-markdown
-http://www.stat.cmu.edu/~cshalizi/rmarkdown/
-https://stanford.edu/~vbauer/teaching/rmarkdown.html
+```{r setup, include=FALSE}
+library(ggplot2)
+```
 
 ## Introduction
 
 [What is R Markdown](https://player.vimeo.com/video/178485416)
 
-R Markdown provides an unified authoring framework for data science, combining your code, its results, and your prose commentary. R Markdown documents are fully reproducible and support dozens of static and dynamic output formats like PDFs, Word files, slideshows, and more.. For a comprehnsive resource on R Markdown see [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+R Markdown provides an unified authoring framework for data science, combining your code, its results, and your prose commentary. R Markdown documents are fully reproducible and support dozens of static and dynamic output formats like PDFs, Word files, slideshows, and more.. For a comprehensive resource on R Markdown see [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
 
 R Markdown integrates a number of R packages and external tools. This means that help is, by-and-large, not available through ?. Instead, as you work through this chapter, and use R Markdown in the future, keep these resources close to hand:
 
@@ -18,11 +17,11 @@ R Markdown integrates a number of R packages and external tools. This means that
 
 Both cheatsheets are also available at http://rstudio.com/cheatsheets.
 
-The real point of R Markdown is that it lets you include your code, have the code run automatically when your document is rendered, and seemlessly include the results of that code in your document.
+The real point of R Markdown is that it lets you include your code, have the code run automatically when your document is rendered, and seamlessly include the results of that code in your document.
 
 ### Code languages
 
-While there is an **"R"** in R Markdown this is not limited to just the R programmming languange.  It is a generic markup language that can knit any code that can be run from a command line into a document.  Some of the more popular languages are:
+While there is an **"R"** in R Markdown this is not limited to just the R programming language.  It is a generic markup language that can knit any code that can be run from a command line into a document.  Some of the more popular languages are:
 
 - R
 - Python
@@ -36,9 +35,11 @@ While there is an **"R"** in R Markdown this is not limited to just the R progra
 - Julia
 - SAS (see SASmarkdown package)
 
-
 You can intermix languages within the same document, and in some cases pass data between languages.
 
+```{block2, type='rmdimportant'}
+You do not have to include any programming language.  There are many books, websites, and wikis written in R Markown which contain no code.
+```
 
 ## Markdown Basics
 
@@ -49,7 +50,6 @@ Notice that the file contains three types of content:
 1. Text mixed with simple text formatting.
 1. Code chunks and the corresponding output.
 1. An (optional) YAML header controlling the "whole document" settings.
-
 
 ### Headers
 
@@ -77,7 +77,6 @@ To insert a break between paragraphs, include a single completely blank line.
 To force a line break, put two blank  
 spaces at the end of a line.
 
-
 ```
 If you don't put the two blank
 spaces at the end of a line
@@ -94,7 +93,6 @@ Text to be _italicized_ goes inside _a single set of underscores_ or *asterisks*
 ```
 Text to be _italicized_ goes inside _a single set of underscores_ or *asterisks*.  Text to be **boldfaced** goes inside a __double set of underscores__  or **asterisks**.
 
-
 ### Bullet Points
 
 ```
@@ -109,7 +107,7 @@ Text to be _italicized_ goes inside _a single set of underscores_ or *asterisks*
 * Each item in the list should start with a `*` (asterisk) character, or a single dash (`-`) and then have a space.
 * Each item should also be on a new line.
     + Indent lines with 4 spaces and begin them with `+` for sub-bullets.
-    + Sub-sub-bullet aren’t really a thing in R Markdown.
+    + Sub-sub-bullet are not’t really a thing in R Markdown.
 
 ### Numbered Lists
 
@@ -126,10 +124,24 @@ Text to be _italicized_ goes inside _a single set of underscores_ or *asterisks*
 1. This can be handy when you lose count or don’t update the numbers yourself when editing. (Look carefully at the .Rmd file for this item.)
     a. Sub-lists of numbered lists, with letters for sub-items, are a thing.
     b. They are however a fragile thing, which you’d better not push too hard.
+    
+## Math
+
+R Markdown uses standard LaTeX to render complex mathematical formulas and derivations, and have them displayed very nicely. Like code, the math can either be inline or set off (displays).  
+
+Inline math is marked off with a pair of dollar signs (`$`), `$\frac{a+b}{b} = 1 + \frac{a}{b}$` $\frac{a+b}{b} = 1 + \frac{a}{b}$
+
+Mathematical displays are marked off with `\[` and` \]`, as in 
+
+```
+\[ \frac{a+b}{b} = 1 + \frac{a}{b} \]
+```
+
+\[ \frac{a+b}{b} = 1 + \frac{a}{b} \]
 
 ## Code Chunks
 
-Think of a chunk like a function. A chunk should be relatively self-contained, and focussed around a single task.  You can quickly insert chunks like these into your file with
+Think of a chunk like a function. A chunk should be relatively self-contained, and focused around a single task.  You can quickly insert chunks like these into your file with
 
 * the keyboard shortcut **Ctrl + Alt + I** (OS X: **Cmd + Option + I**)
 * typing the chunk delimiters ` ```{r} ` and ` ``` `.
@@ -139,7 +151,7 @@ When you render your .Rmd file, R Markdown will run each code chunk and embed th
 
 There are three main sections to a the code chunk header:
 
-1. the programing language engine to run the code
+1. the programming language engine to run the code
 2. the code chunk name (optional but very useful)
 3. the code chunk options.
 
@@ -162,7 +174,7 @@ There is one chunk name wit special behaviour: `setup`. In notebook mode, the ch
 
 ### Chunk Options
 
-Chunk output can be customised with __options__, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we'll cover the most important chunk options that you'll use frequently. You can see the full list at <http://yihui.name/knitr/options/>. 
+Chunk output can be customized with __options__, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we'll cover the most important chunk options that you'll use frequently. You can see the full list at <http://yihui.name/knitr/options/>. 
 
 The most important set of options controls if your code block is executed and what results are inserted in the finished report:
 
@@ -200,18 +212,160 @@ As a result, inline output is indistinguishable from the surrounding text. Inlin
 
 ## Plots
 
+Inserting a graph into RMarkdown is easy, the more energy-demanding aspect might be adjusting the formatting.
+
+```
+\```{r mtcarsplot1, fig.cap = "Default Plot"}
+ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
+  geom_boxplot() +
+  coord_flip()
+\```
+```
+
+```{r mtcarsplot1, fig.cap = "Default Plot"}
+ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
+  geom_boxplot() +
+  coord_flip()
+```
+
+By default, RMarkdown will place graphs by maximizing their height, while keeping them within the margins of the page and maintaining aspect ratio. If you have a particularly tall figure, this can mean a really huge graph. To manually set the figure dimensions in the code chunk options use `fig.height` and `fig.width`.
+
+You can also set the alignment with `fig.align` and either `left`, `right` or `center`.  Also, by default the file type of the plot is determined by the output file type.  You can override these defaults by using the `dev` option in the code chunk options.  See [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) for more details.
 
 ## Tables
 
+By default, R Markdown displays data frames and matrices as they would be in the R terminal (in a monospaced font). This generally is not what you want.  If you prefer that data be displayed with additional formatting there are a number of packages that can make publication ready tables.  
+
+* [kable + kableExtra](https://cran.r-project.org/web/packages/kableExtra/index.html)
+* [xtable](https://cran.r-project.org/web/packages/xtable/index.html)
+* [stargazer](https://cran.r-project.org/web/packages/stargazer/index.html)
+* [pander](https://cran.r-project.org/web/packages/pander/index.html)
+* [tables](https://cran.r-project.org/web/packages/tables/index.html)
+* [ascii](https://cran.r-project.org/web/packages/ascii/index.html)
+
+Which package you should use depends on what your output format is and which features you want.  All these packages have vignettes which show how to use the major features.
+
+```{r kable, results='asis'}
+library(kableExtra)
+dt <- mtcars[1:5, 1:6]
+kable(dt, caption = "kable table", booktabs = TRUE)
+```
+
+```{r kable2, results='asis'}
+kable(mtcars, longtable = TRUE, booktabs = TRUE, 
+      caption = "Kable Longtable") %>%
+  add_header_above(c(" ","Group 1" = 5, "Group 2" = 6)) %>%
+  kable_styling(latex_options = c("repeat_header"))
+```
 
 ## YAML
 
-output types
-toc
-numbering
-parameters
+At the top of any RMarkdown script is a YAML header section enclosed by `---`. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see [here for .html options](https://bookdown.org/yihui/rmarkdown/html-document.html) and [here for .pdf options](https://bookdown.org/yihui/rmarkdown/pdf-document.html). Rules in the header section will alter the whole document. Have a flick through quickly to familiarize yourself with the sorts of things you can alter by adding an option to the YAML header.
 
-### Parameters
+### Table of Contents
 
+```
+---
+title: "My Report"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: TRUE
+---
+```
 
-## Output Formats
+### Parameterized reports
+
+One of the many benefits of working with R Markdown is that you can reproduce analysis at the click of a button. This makes it very easy to update any work and alter any input parameters within the report. Parameterized reports extend this one step further, and allow users to specify one or more parameters to customize the analysis. This is useful if you want to create a report template that can be reused across multiple similar scenarios.
+
+**Declaring parameters**
+
+Parameters are specified using the params field within the YAML section. We can specify one or more parameters with each item on a new line. As an example:
+
+```
+---
+title: "My Report"
+output: pdf_document
+params:
+  year: 2018
+  region: Europe
+  data: file.csv
+---
+```
+
+All standard R types that can be included as parameters, including `character`, `numeric`, `integer`, and `logical` types. We can also use R objects by including `!r` before R expressions. For example, we could include the current date with the following R code:
+
+```
+---
+title: "My Report"
+output: html_document
+params:
+  date: !r Sys.Date()
+---
+```
+
+**Using parameters**
+
+You can access the parameters within the knitting environment and the R console in RStudio. The values are contained within a read-only list called `params`. In the previous example, the parameters can be accessed as follows:
+
+```
+params$year
+params$region
+
+mydata <- read_csv(params$data)
+```
+
+**Knitting with parameters**
+
+*  Using the **Knit** button within RStudio to run with the default values.
+*  Using the **Knit with Parameters** button within RStudio to fill in the parameters interactively.
+*  Knit with custom parameters
+
+```
+render_report = function(file, region, year) {
+  rmarkdown::render(
+    "MyDocument.Rmd", params = list(
+      region = region,
+      year   = year,
+      data   = file
+    ),
+    output_file = paste0("Report-", region, "-", year, ".pdf")
+  )
+}
+```
+
+### Output Types
+
+[There are many types of output with more being added every day.](https://rmarkdown.rstudio.com/formats.html) lists just the ones 
+
+* Documents
+    *   `pdf_document` makes a PDF with LaTeX
+    *   `word_document` for Microsoft Word documents (`.docx`).
+    *   `odt_document` for OpenDocument Text documents (`.odt`).
+    *   `rtf_document` for Rich Text Format (`.rtf`) documents.
+    *   `md_document` for a Markdown document. 
+    *   `github_document`: this is a tailored version of `md_document` designed for sharing on GitHub.
+* Presentations
+    *   `ioslides_presentation` - HTML presentation with ioslides
+    *   `slidy_presentation` - HTML presentation with W3C Slidy
+    *    `beamer_presentation` - PDF presentation with LaTeX Beamer.
+    *    `revealjs::revealjs_presentation` - HTML presentation with reveal.js.
+    *    __rmdshower__, <https://github.com/MangoTheCat/rmdshower>, provides a wrapper around the __shower__, <https://github.com/shower/shower>, presentation engine
+    *    `powerpoint_presentation` - Create MS PowerPoint presentations.
+* Notebooks
+    *   `html_notebook` is a variation on a `html_document`.
+* Dashboards
+    *   `flexdashboard::flex_dashboard`, <http://rmarkdown.rstudio.com/flexdashboard/> provides simple tools for creating sidebars, tabsets, value boxes, and gauges.
+* Interactivity
+    * __shiny__, a package that allows you to create interactivity using R code, not JavaScript.
+    * __htmlwidgets__, produce interactive HTML visualizations
+    * __dygraphs__, <http://rstudio.github.io/dygraphs/>, for interactive time series visualizations.
+    * __DT__, <http://rstudio.github.io/DT/>, for interactive tables.
+    * __threejs__, <https://github.com/bwlewis/rthreejs> for interactive 3d plots.
+    * __DiagrammeR__, <http://rich-iannone.github.io/DiagrammeR/> for diagrams (like flow charts and simple node-link diagrams).
+* Other
+    * __blogdown__ create a simple website.
+    * __bookdown__, <https://github.com/rstudio/bookdown>,makes it easy to write books, like this one
+    * __prettydoc__, <https://github.com/yixuan/prettydoc/>, provides lightweight document formats with a range of attractive themes.
+    * __rticles__, <https://github.com/rstudio/rticles>, compiles a selection of formats tailored for specific scientific journals.
