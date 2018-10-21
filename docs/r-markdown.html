@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-08-29">
+<meta name="date" content="2018-08-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,72 +51,44 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css\style.css" type="text/css" />
 </head>
 
 <body>
@@ -428,9 +400,7 @@ spaces at the end of a line.</p>
 <pre><code>If you don&#39;t put the two blank
 spaces at the end of a line
 they will run together.</code></pre>
-<p>If you don’t put the two blank
-spaces at the end of a line
-they will run together.</p>
+<p>If you don’t put the two blank spaces at the end of a line they will run together.</p>
 </div>
 <div id="italics-and-boldface" class="section level3">
 <h3><span class="header-section-number">12.2.3</span> Italics and Boldface</h3>
@@ -499,12 +469,9 @@ they will run together.</p>
 <h3><span class="header-section-number">12.4.1</span> Chunk Names</h3>
 <p>Chunks can be given an optional name: <code>```{r by-name}</code>. This has three advantages:</p>
 <ol style="list-style-type: decimal">
-<li>You can more easily navigate to specific chunks using the drop-down
-code navigator in the bottom-left of the script editor:</li>
-<li>Graphics produced by the chunks will have useful names that make
-them easier to use elsewhere.</li>
-<li>You can set up networks of cached chunks to avoid re-performing expensive
-computations on every run. More on that below.</li>
+<li>You can more easily navigate to specific chunks using the drop-down code navigator in the bottom-left of the script editor:</li>
+<li>Graphics produced by the chunks will have useful names that make them easier to use elsewhere.</li>
+<li>You can set up networks of cached chunks to avoid re-performing expensive computations on every run. More on that below.</li>
 </ol>
 <p>It’s a good idea to name code chunks that produce figures, even if you don’t routinely label other chunks. The chunk label is used to generate the file name of the graphic on disk, so naming your chunks makes it much easier to pick out plots and reuse in other circumstances (i.e. if you want to quickly drop a single plot into an email)</p>
 
@@ -519,12 +486,9 @@ There is one chunk name wit special behaviour: <code>setup</code>. In notebook m
 <p>The most important set of options controls if your code block is executed and what results are inserted in the finished report:</p>
 <ul>
 <li><p><code>include = FALSE</code> prevents code and results from appearing in the finished file. Use this to run code and results used by other chunks (i.e. setup code).</p></li>
-<li><p><code>echo = FALSE</code> prevents code, but not the results from appearing in the
-finished file. Use this when writing reports.</p></li>
-<li><p><code>message = FALSE</code> or <code>warning = FALSE</code> prevents messages or warnings
-from appearing in the finished file.</p></li>
-<li><p><code>results = 'hide'</code> hides printed output; <code>fig.show = 'hide'</code> hides
-plots.</p></li>
+<li><p><code>echo = FALSE</code> prevents code, but not the results from appearing in the finished file. Use this when writing reports.</p></li>
+<li><p><code>message = FALSE</code> or <code>warning = FALSE</code> prevents messages or warnings from appearing in the finished file.</p></li>
+<li><p><code>results = 'hide'</code> hides printed output; <code>fig.show = 'hide'</code> hides plots.</p></li>
 <li><p><code>error = TRUE</code> causes the render to continue even if code returns an error. Use this for debugging.</p></li>
 </ul>
 <p>To set global options that apply to every chunk in your file, call <code>knitr::opts_chunk$set</code> in a code chunk. Knitr will treat each option that you pass to <code>knitr::opts_chunk$set</code> as a global default that can be overwritten in individual chunk headers If you are doing a report where you would never show code include <code>knitr::opts_chunk$set(echo = FALSE)</code> in the <code>setup</code> code block.</p>
@@ -551,9 +515,9 @@ ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
   geom_boxplot() +
   coord_flip()
 \```</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb203-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb203-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:mtcarsplot1"></span>
 <img src="data-presentation_files/figure-html/mtcarsplot1-1.png" alt="Default Plot" width="70%" />
 <p class="caption">
@@ -575,9 +539,9 @@ FIGURE 12.1: Default Plot
 <li><a href="https://cran.r-project.org/web/packages/ascii/index.html">ascii</a></li>
 </ul>
 <p>Which package you should use depends on what your output format is and which features you want. All these packages have vignettes which show how to use the major features.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="kw">library</span>(kableExtra)</a>
-<a class="sourceLine" id="cb204-2" data-line-number="2">dt &lt;-<span class="st"> </span>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</a>
-<a class="sourceLine" id="cb204-3" data-line-number="3"><span class="kw">kable</span>(dt, <span class="dt">caption =</span> <span class="st">&quot;kable table&quot;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(kableExtra)
+dt &lt;-<span class="st"> </span>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]
+<span class="kw">kable</span>(dt, <span class="dt">caption =</span> <span class="st">&quot;kable table&quot;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <table>
 <caption>
 <span id="tab:kable">TABLE 12.1: </span>kable table
@@ -724,10 +688,10 @@ Hornet Sportabout
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">kable</span>(mtcars, <span class="dt">longtable =</span> <span class="ot">TRUE</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb205-2" data-line-number="2">      <span class="dt">caption =</span> <span class="st">&quot;Kable Longtable&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-3" data-line-number="3"><span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>,<span class="st">&quot;Group 1&quot;</span> =<span class="st"> </span><span class="dv">5</span>, <span class="st">&quot;Group 2&quot;</span> =<span class="st"> </span><span class="dv">6</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-4" data-line-number="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">latex_options =</span> <span class="kw">c</span>(<span class="st">&quot;repeat_header&quot;</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(mtcars, <span class="dt">longtable =</span> <span class="ot">TRUE</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, 
+      <span class="dt">caption =</span> <span class="st">&quot;Kable Longtable&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>,<span class="st">&quot;Group 1&quot;</span> =<span class="st"> </span><span class="dv">5</span>, <span class="st">&quot;Group 2&quot;</span> =<span class="st"> </span><span class="dv">6</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">latex_options =</span> <span class="kw">c</span>(<span class="st">&quot;repeat_header&quot;</span>))</code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:kable2">TABLE 12.2: </span>Kable Longtable
@@ -2159,7 +2123,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
