@@ -1,3 +1,21 @@
+```{r include=FALSE, cache=FALSE}
+set.seed(31415)
+options(digits = 3)
+
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = FALSE,
+  out.width = "70%",
+  fig.align = 'center',
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold"
+)
+
+options(dplyr.print_min = 6, dplyr.print_max = 6)
+Sys.setenv(LANGUAGE = "en")
+```
 # Good practices
 
 > "When you write a program, think of it primarily as a work of literature. You're trying to write something that human beings are going to read. Don't think of it primarily as something a computer is going to follow. The more effective you are at making your program readable, the more effective it's going to be: You'll understand it today, you'll understand it next week, and your successors who are going to maintain and modify it will understand it."

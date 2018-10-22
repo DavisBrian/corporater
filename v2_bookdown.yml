@@ -5,7 +5,19 @@ rmd_files: [
   "intro.Rmd",
   "good-practices.Rmd",
   "rbasics.Rmd",
+  
+  "data-import.Rmd",
+  "data-transform.Rmd",
+  "strings.Rmd",
+  "data-tidy.Rmd",
+  "data-relational.Rmd",
 
+  "data-viz.Rmd",
+  "data-presentation.Rmd",
+
+  "data-structures.Rmd",
+  "subset.Rmd",
+  
   "appendix-A.Rmd"]
   
 output_dir: docs
