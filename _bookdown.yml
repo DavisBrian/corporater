@@ -4,18 +4,19 @@ rmd_files: [
   "index.Rmd",
   "intro.Rmd",
   "good-practices.Rmd",
-  
   "rbasics.Rmd",
-  "data-structures.Rmd",
-  "subset.Rmd",
   
-  "data-viz.Rmd",
-  "data-transform.Rmd",
   "data-import.Rmd",
+  "data-transform.Rmd",
   "strings.Rmd",
   "data-tidy.Rmd",
   "data-relational.Rmd",
+
+  "data-viz.Rmd",
   "data-presentation.Rmd",
+
+  "data-structures.Rmd",
+  "subset.Rmd",
   
   "appendix-A.Rmd"]
   

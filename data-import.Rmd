@@ -1,3 +1,5 @@
+# (PART) R4DS {-}
+
 # Data Import
 
 ```{r, message=FALSE}
@@ -66,7 +68,7 @@ The **haven** library, which is part of the tidyverse but not part of the core t
 ```{block type='rmdnote'}
 The **haven** package can also read in:
 
--    SPSS files with `read_sav()` pr `read_por()` 
+-    SPSS files with `read_sav()` or `read_por()` 
 -    Stata files with `read_dta()`
 ```
 
@@ -148,3 +150,6 @@ Alternatively, you can use the **dbplyr** and the connection to the database to 
 
 The goal of **dbplyr** is to automatically generate SQL for you so that you’re not forced to use it. However, SQL is a very large language and **dbplyr** doesn’t do everything. It focuses on SELECT statements, the SQL you write most often as an analysis.  See `vignette(("dbplyr"))` for a in depth discussion.
 
+## Reading For Next Class
+
+1. Read Chapter on Pipes.

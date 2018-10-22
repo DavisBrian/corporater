@@ -176,7 +176,7 @@ Create variables for values that are likely to change.
 
 Try not to copy code, or copy then modify the code, more than twice.
 
--  If a change requires you to search/replace 3 or more times make a variable.
+-  If a change requires you to search/replace 3 or more times *make a variable*.
 -  If you copy a code chunk 3 or more times *make a function*
 -  If you copy a function 3 or more times *make your function more generic*
 -  If you copy a function into a project 3 or more times *make a package*
@@ -270,18 +270,25 @@ Join the [R-help](https://www.r-project.org/mail.html) mailing list.  Sign up to
 
 With over 10,000 packages on CRAN it is hard to keep up with the constantly changing landscape.  [R-Bloggers](https://www.r-bloggers.com/) is an R focused blog aggregation site with dozens of posts per day.  Check it out.
 
-## Exercises
+## Reading For Next Class
 
+1. Read the chapter on [Workflow: basics](http://r4ds.had.co.nz/workflow-basics.html)
+1. Read the chapter on [Workflow: scripts](http://r4ds.had.co.nz/workflow-scripts.html)
+1. Read the chapter on [Workflow: projects](http://r4ds.had.co.nz/workflow-projects.html)
+1. Read Chapters 1-3 of the [Tidyverse Style Guide](http://style.tidyverse.org/index.html)
 1. See these RStudio [Tips & Tricks](https://rviews.rstudio.com/categories/tips-and-tricks/) or [these](https://twitter.com/rstudiotips) and find one that looks interesting and **practice** it all week.
-2. Create an R Project for this class.
-3. Create the following directories in your project (tip sheet?)
+1. Read how to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+
+## Exercises 
+1. Create an R Project for this class.
+1. Create the following directories in your project (tip sheet?)
     - Bonus points if you can do it from R and not RStudio or Windows Explorer
     - Double Bonus points if you can make it a function.
-4. Read Chapters 1-3 of the [Tidyverse Style Guide](http://style.tidyverse.org/index.html)
-5. Copy one of your R scripts into your R directory.  (Bonus points if you can do it from R and not RStudio or Windows Explorer)
-6. Apply the style guide to your code.  
-7. Apply the "Rule of 3"
+    - Hint: In the R console type `file` and scroll through the various functions which appear in the pop-up.
+1. Copy one of your R scripts into your R directory.  (Bonus points if you can do it from R and not RStudio or Windows Explorer)
+1. Apply the style guide to your code.  
+1. Apply the "Rule of 3"
     * Create variables as needed
     * Identify code that is used 3 or more times to make functions
     * Identify code that would be useful in 3 or more projects to integrate into a package.
-8. Read how to [make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+

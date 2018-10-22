@@ -25,15 +25,15 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-08-31">
+<meta name="date" content="2018-10-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="relational-data.html">
-<link rel="next" href="appendix-resources.html">
+<link rel="prev" href="data-visualization.html">
+<link rel="next" href="base-r-data-structures.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -51,44 +51,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="css\style.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -136,179 +164,173 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#keeping-up-to-date"><i class="fa fa-check"></i><b>2.5</b> Keeping up to date</a></li>
-<li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#exercises"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#reading-for-next-class"><i class="fa fa-check"></i><b>2.6</b> Reading For Next Class</a></li>
+<li class="chapter" data-level="2.7" data-path="good-practices.html"><a href="good-practices.html#exercises"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>II Base R Basics</b></span></li>
 <li class="chapter" data-level="3" data-path="baser-rbasics.html"><a href="baser-rbasics.html"><i class="fa fa-check"></i><b>3</b> R Basics</a><ul>
 <li class="chapter" data-level="3.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#assignment-operators"><i class="fa fa-check"></i><b>3.1</b> Assignment Operators</a></li>
-<li class="chapter" data-level="3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#objects"><i class="fa fa-check"></i><b>3.2</b> Objects</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vector"><i class="fa fa-check"></i><b>3.2.1</b> Vector</a></li>
-<li class="chapter" data-level="3.2.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#matrix"><i class="fa fa-check"></i><b>3.2.2</b> Matrix</a></li>
-<li class="chapter" data-level="3.2.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#list"><i class="fa fa-check"></i><b>3.2.3</b> List</a></li>
-<li class="chapter" data-level="3.2.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#data-frame"><i class="fa fa-check"></i><b>3.2.4</b> Data frame</a></li>
+<li class="chapter" data-level="3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#naming-rules"><i class="fa fa-check"></i><b>3.2</b> Naming Rules</a></li>
+<li class="chapter" data-level="3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#objects"><i class="fa fa-check"></i><b>3.3</b> Objects</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vector"><i class="fa fa-check"></i><b>3.3.1</b> Vector</a></li>
+<li class="chapter" data-level="3.3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#atomic-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="3.3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#matrix"><i class="fa fa-check"></i><b>3.3.3</b> Matrix</a></li>
+<li class="chapter" data-level="3.3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#list"><i class="fa fa-check"></i><b>3.3.4</b> List</a></li>
+<li class="chapter" data-level="3.3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#data-frame"><i class="fa fa-check"></i><b>3.3.5</b> Data frame</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#comparision"><i class="fa fa-check"></i><b>3.3</b> Comparision</a></li>
-<li class="chapter" data-level="3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#logical-and-sets"><i class="fa fa-check"></i><b>3.4</b> Logical and sets</a></li>
-<li class="chapter" data-level="3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#control-structures"><i class="fa fa-check"></i><b>3.5</b> Control Structures</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#if-else"><i class="fa fa-check"></i><b>3.5.1</b> <code>if</code>-<code>else</code></a></li>
-<li class="chapter" data-level="3.5.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#for-loops"><i class="fa fa-check"></i><b>3.5.2</b> <code>for</code> Loops</a></li>
-<li class="chapter" data-level="3.5.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#while-loops"><i class="fa fa-check"></i><b>3.5.3</b> <code>while</code> Loops</a></li>
-<li class="chapter" data-level="3.5.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#repeat-loops"><i class="fa fa-check"></i><b>3.5.4</b> <code>repeat</code> Loops</a></li>
-<li class="chapter" data-level="3.5.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#next-break"><i class="fa fa-check"></i><b>3.5.5</b> <code>next</code>, <code>break</code></a></li>
-<li class="chapter" data-level="3.5.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#looping"><i class="fa fa-check"></i><b>3.5.6</b> Looping</a></li>
+<li class="chapter" data-level="3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#comparision"><i class="fa fa-check"></i><b>3.4</b> Comparision</a></li>
+<li class="chapter" data-level="3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#logical-and-sets"><i class="fa fa-check"></i><b>3.5</b> Logical and sets</a></li>
+<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#control-structures"><i class="fa fa-check"></i><b>3.6</b> Control Structures</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#if-else"><i class="fa fa-check"></i><b>3.6.1</b> <code>if</code>-<code>else</code></a></li>
+<li class="chapter" data-level="3.6.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#for-loops"><i class="fa fa-check"></i><b>3.6.2</b> <code>for</code> Loops</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.6</b> Vectorization &amp; Recycling</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.6.1</b> Example</a></li>
+<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.7</b> Vectorization &amp; Recycling</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.7.1</b> Example</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#function-basics"><i class="fa fa-check"></i><b>3.7</b> Function Basics</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#your-first-function"><i class="fa fa-check"></i><b>3.7.1</b> Your First Function</a></li>
-<li class="chapter" data-level="3.7.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#lazy-evaluation"><i class="fa fa-check"></i><b>3.7.2</b> Lazy Evaluation</a></li>
-<li class="chapter" data-level="3.7.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#the-...-argument"><i class="fa fa-check"></i><b>3.7.3</b> The <code>...</code> Argument</a></li>
-</ul></li>
-<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#environments-scoping"><i class="fa fa-check"></i><b>3.8</b> Environments &amp; Scoping</a></li>
+<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#reading-for-next-class-1"><i class="fa fa-check"></i><b>3.8</b> Reading For Next Class</a></li>
 <li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>4</b> Base R Data Structures</a><ul>
-<li class="chapter" data-level="4.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#naming-rules"><i class="fa fa-check"></i><b>4.1</b> Naming Rules</a></li>
-<li class="chapter" data-level="4.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#vectors"><i class="fa fa-check"></i><b>4.2</b> Vectors</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>4.2.1</b> Atomic Vectors</a></li>
-<li class="chapter" data-level="4.2.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#lists"><i class="fa fa-check"></i><b>4.2.2</b> Lists</a></li>
-<li class="chapter" data-level="4.2.3" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#null"><i class="fa fa-check"></i><b>4.2.3</b> <code>NULL</code></a></li>
-<li class="chapter" data-level="4.2.4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#attributes"><i class="fa fa-check"></i><b>4.2.4</b> Attributes</a></li>
-<li class="chapter" data-level="4.2.5" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#factors"><i class="fa fa-check"></i><b>4.2.5</b> Factors</a></li>
-<li class="chapter" data-level="4.2.6" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>4.2.6</b> Matrices and arrays</a></li>
-<li class="chapter" data-level="4.2.7" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#data-frames"><i class="fa fa-check"></i><b>4.2.7</b> Data Frames</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>5</b> Subsetting</a><ul>
-<li class="chapter" data-level="5.1" data-path="subsetting.html"><a href="subsetting.html#selecting-multiple-elements"><i class="fa fa-check"></i><b>5.1</b> Selecting multiple elements</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="subsetting.html"><a href="subsetting.html#atomic-vectors-1"><i class="fa fa-check"></i><b>5.1.1</b> Atomic vectors</a></li>
-<li class="chapter" data-level="5.1.2" data-path="subsetting.html"><a href="subsetting.html#matrices-and-arrays-1"><i class="fa fa-check"></i><b>5.1.2</b> Matrices and Arrays</a></li>
-<li class="chapter" data-level="5.1.3" data-path="subsetting.html"><a href="subsetting.html#lists-1"><i class="fa fa-check"></i><b>5.1.3</b> Lists</a></li>
-<li class="chapter" data-level="5.1.4" data-path="subsetting.html"><a href="subsetting.html#data-frames-1"><i class="fa fa-check"></i><b>5.1.4</b> Data Frames</a></li>
-<li class="chapter" data-level="5.1.5" data-path="subsetting.html"><a href="subsetting.html#preserving-dimensionality"><i class="fa fa-check"></i><b>5.1.5</b> Preserving dimensionality</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="subsetting.html"><a href="subsetting.html#selecting-a-single-elements"><i class="fa fa-check"></i><b>5.2</b> Selecting a single elements</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="subsetting.html"><a href="subsetting.html#section"><i class="fa fa-check"></i><b>5.2.1</b> <code>$</code></a></li>
-<li class="chapter" data-level="5.2.2" data-path="subsetting.html"><a href="subsetting.html#missingout-of-bounds-indices"><i class="fa fa-check"></i><b>5.2.2</b> Missing/out of bounds indices</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="subsetting.html"><a href="subsetting.html#subassignment"><i class="fa fa-check"></i><b>5.3</b> Subsetting and assignment</a></li>
-<li class="chapter" data-level="5.4" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>5.4</b> Applications</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="subsetting.html"><a href="subsetting.html#lookup-tables-character-subsetting"><i class="fa fa-check"></i><b>5.4.1</b> Lookup tables (character subsetting)</a></li>
-<li class="chapter" data-level="5.4.2" data-path="subsetting.html"><a href="subsetting.html#ordering-integer-subsetting"><i class="fa fa-check"></i><b>5.4.2</b> Ordering (integer subsetting)</a></li>
-<li class="chapter" data-level="5.4.3" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>5.4.3</b> Selecting rows based on a condition (logical subsetting)</a></li>
-<li class="chapter" data-level="5.4.4" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>5.4.4</b> Removing columns from data frames (character subsetting)</a></li>
-<li class="chapter" data-level="5.4.5" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>5.4.5</b> Random samples/bootstrap (integer subsetting)</a></li>
-<li class="chapter" data-level="5.4.6" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>5.4.6</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="subsetting.html"><a href="subsetting.html#exercises-2"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
-</ul></li>
 <li class="part"><span><b>III R4DS</b></span></li>
-<li class="chapter" data-level="6" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>6</b> Data Visualization</a><ul>
-<li class="chapter" data-level="6.1" data-path="data-visualization.html"><a href="data-visualization.html#why-ggplot2"><i class="fa fa-check"></i><b>6.1</b> Why ggplot2</a></li>
-<li class="chapter" data-level="6.2" data-path="data-visualization.html"><a href="data-visualization.html#example-1"><i class="fa fa-check"></i><b>6.2</b> Example</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="data-visualization.html"><a href="data-visualization.html#data"><i class="fa fa-check"></i><b>6.2.1</b> Data</a></li>
-<li class="chapter" data-level="6.2.2" data-path="data-visualization.html"><a href="data-visualization.html#aesthetics"><i class="fa fa-check"></i><b>6.2.2</b> Aesthetics</a></li>
-<li class="chapter" data-level="6.2.3" data-path="data-visualization.html"><a href="data-visualization.html#geoms"><i class="fa fa-check"></i><b>6.2.3</b> Geoms</a></li>
-<li class="chapter" data-level="6.2.4" data-path="data-visualization.html"><a href="data-visualization.html#scales"><i class="fa fa-check"></i><b>6.2.4</b> Scales</a></li>
-<li class="chapter" data-level="6.2.5" data-path="data-visualization.html"><a href="data-visualization.html#themes"><i class="fa fa-check"></i><b>6.2.5</b> Themes</a></li>
+<li class="chapter" data-level="4" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>4</b> Data Import</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-import.html"><a href="data-import.html#text-files"><i class="fa fa-check"></i><b>4.1</b> Text Files</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-import.html"><a href="data-import.html#readr"><i class="fa fa-check"></i><b>4.1.1</b> readr</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-import.html"><a href="data-import.html#base-r"><i class="fa fa-check"></i><b>4.1.2</b> base R</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>6.3</b> Facets</a></li>
-<li class="chapter" data-level="6.4" data-path="data-visualization.html"><a href="data-visualization.html#stats"><i class="fa fa-check"></i><b>6.4</b> Stats</a></li>
-<li class="chapter" data-level="6.5" data-path="data-visualization.html"><a href="data-visualization.html#saving"><i class="fa fa-check"></i><b>6.5</b> Saving</a></li>
-<li class="chapter" data-level="6.6" data-path="data-visualization.html"><a href="data-visualization.html#exercises-3"><i class="fa fa-check"></i><b>6.6</b> Exercises</a></li>
-<li class="chapter" data-level="6.7" data-path="data-visualization.html"><a href="data-visualization.html#resources-and-links"><i class="fa fa-check"></i><b>6.7</b> Resources and Links</a></li>
+<li class="chapter" data-level="4.2" data-path="data-import.html"><a href="data-import.html#sas-files"><i class="fa fa-check"></i><b>4.2</b> SAS Files</a></li>
+<li class="chapter" data-level="4.3" data-path="data-import.html"><a href="data-import.html#excel"><i class="fa fa-check"></i><b>4.3</b> Excel</a></li>
+<li class="chapter" data-level="4.4" data-path="data-import.html"><a href="data-import.html#databases"><i class="fa fa-check"></i><b>4.4</b> Databases</a></li>
+<li class="chapter" data-level="4.5" data-path="data-import.html"><a href="data-import.html#reading-for-next-class-2"><i class="fa fa-check"></i><b>4.5</b> Reading For Next Class</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>7</b> Data Transformation</a><ul>
-<li class="chapter" data-level="7.1" data-path="data-transformation.html"><a href="data-transformation.html#tibbles"><i class="fa fa-check"></i><b>7.1</b> Tibbles</a></li>
-<li class="chapter" data-level="7.2" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>7.2</b> Filter rows with <code>filter()</code></a></li>
-<li class="chapter" data-level="7.3" data-path="data-transformation.html"><a href="data-transformation.html#arrange-rows-with-arrange"><i class="fa fa-check"></i><b>7.3</b> Arrange rows with <code>arrange()</code></a></li>
-<li class="chapter" data-level="7.4" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>7.4</b> Select columns with <code>select()</code></a></li>
-<li class="chapter" data-level="7.5" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>7.5</b> Add new variables with <code>mutate()</code></a></li>
-<li class="chapter" data-level="7.6" data-path="data-transformation.html"><a href="data-transformation.html#pipes"><i class="fa fa-check"></i><b>7.6</b> Pipes</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="data-transformation.html"><a href="data-transformation.html#intermediate-steps"><i class="fa fa-check"></i><b>7.6.1</b> Intermediate steps</a></li>
-<li class="chapter" data-level="7.6.2" data-path="data-transformation.html"><a href="data-transformation.html#overwrite-the-original"><i class="fa fa-check"></i><b>7.6.2</b> Overwrite the original</a></li>
-<li class="chapter" data-level="7.6.3" data-path="data-transformation.html"><a href="data-transformation.html#function-composition"><i class="fa fa-check"></i><b>7.6.3</b> Function composition</a></li>
-<li class="chapter" data-level="7.6.4" data-path="data-transformation.html"><a href="data-transformation.html#use-the-pipe-operator"><i class="fa fa-check"></i><b>7.6.4</b> Use the pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="5" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>5</b> Data Transformation</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-transformation.html"><a href="data-transformation.html#tibbles"><i class="fa fa-check"></i><b>5.1</b> Tibbles</a></li>
+<li class="chapter" data-level="5.2" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>5.2</b> Filter rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="data-transformation.html"><a href="data-transformation.html#arrange-rows-with-arrange"><i class="fa fa-check"></i><b>5.3</b> Arrange rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.4" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>5.4</b> Select columns with <code>select()</code></a></li>
+<li class="chapter" data-level="5.5" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>5.5</b> Add new variables with <code>mutate()</code></a></li>
+<li class="chapter" data-level="5.6" data-path="data-transformation.html"><a href="data-transformation.html#pipes"><i class="fa fa-check"></i><b>5.6</b> Pipes</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="data-transformation.html"><a href="data-transformation.html#intermediate-steps"><i class="fa fa-check"></i><b>5.6.1</b> Intermediate steps</a></li>
+<li class="chapter" data-level="5.6.2" data-path="data-transformation.html"><a href="data-transformation.html#overwrite-the-original"><i class="fa fa-check"></i><b>5.6.2</b> Overwrite the original</a></li>
+<li class="chapter" data-level="5.6.3" data-path="data-transformation.html"><a href="data-transformation.html#function-composition"><i class="fa fa-check"></i><b>5.6.3</b> Function composition</a></li>
+<li class="chapter" data-level="5.6.4" data-path="data-transformation.html"><a href="data-transformation.html#use-the-pipe-operator"><i class="fa fa-check"></i><b>5.6.4</b> Use the pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-transformation.html"><a href="data-transformation.html#grouped-summaries-with-summarise"><i class="fa fa-check"></i><b>7.7</b> Grouped summaries with <code>summarise()</code></a></li>
-<li class="chapter" data-level="7.8" data-path="data-transformation.html"><a href="data-transformation.html#grouped-mutates"><i class="fa fa-check"></i><b>7.8</b> Grouped mutates</a></li>
+<li class="chapter" data-level="5.7" data-path="data-transformation.html"><a href="data-transformation.html#grouped-summaries-with-summarise"><i class="fa fa-check"></i><b>5.7</b> Grouped summaries with <code>summarise()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="data-transformation.html"><a href="data-transformation.html#grouped-mutates"><i class="fa fa-check"></i><b>5.8</b> Grouped mutates</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>8</b> Data Import</a><ul>
-<li class="chapter" data-level="8.1" data-path="data-import.html"><a href="data-import.html#text-files"><i class="fa fa-check"></i><b>8.1</b> Text Files</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="data-import.html"><a href="data-import.html#readr"><i class="fa fa-check"></i><b>8.1.1</b> readr</a></li>
-<li class="chapter" data-level="8.1.2" data-path="data-import.html"><a href="data-import.html#base-r"><i class="fa fa-check"></i><b>8.1.2</b> base R</a></li>
+<li class="chapter" data-level="6" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>6</b> Strings</a><ul>
+<li class="chapter" data-level="6.1" data-path="strings.html"><a href="strings.html#basics"><i class="fa fa-check"></i><b>6.1</b> Basics</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="strings.html"><a href="strings.html#helpful-basic-string-functions"><i class="fa fa-check"></i><b>6.1.1</b> Helpful Basic String Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="data-import.html"><a href="data-import.html#sas-files"><i class="fa fa-check"></i><b>8.2</b> SAS Files</a></li>
-<li class="chapter" data-level="8.3" data-path="data-import.html"><a href="data-import.html#excel"><i class="fa fa-check"></i><b>8.3</b> Excel</a></li>
-<li class="chapter" data-level="8.4" data-path="data-import.html"><a href="data-import.html#databases"><i class="fa fa-check"></i><b>8.4</b> Databases</a></li>
+<li class="chapter" data-level="6.2" data-path="strings.html"><a href="strings.html#regular-expressions"><i class="fa fa-check"></i><b>6.2</b> Regular Expressions</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="strings.html"><a href="strings.html#basic-matches"><i class="fa fa-check"></i><b>6.2.1</b> Basic Matches</a></li>
+<li class="chapter" data-level="6.2.2" data-path="strings.html"><a href="strings.html#special-characters"><i class="fa fa-check"></i><b>6.2.2</b> Special Characters</a></li>
+<li class="chapter" data-level="6.2.3" data-path="strings.html"><a href="strings.html#character-classes-and-alternatives"><i class="fa fa-check"></i><b>6.2.3</b> Character Classes and Alternatives</a></li>
+<li class="chapter" data-level="6.2.4" data-path="strings.html"><a href="strings.html#repetition"><i class="fa fa-check"></i><b>6.2.4</b> Repetition</a></li>
+<li class="chapter" data-level="6.2.5" data-path="strings.html"><a href="strings.html#grouping"><i class="fa fa-check"></i><b>6.2.5</b> Grouping</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a><ul>
-<li class="chapter" data-level="9.1" data-path="strings.html"><a href="strings.html#basics"><i class="fa fa-check"></i><b>9.1</b> Basics</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="strings.html"><a href="strings.html#helpful-basic-string-functions"><i class="fa fa-check"></i><b>9.1.1</b> Helpful Basic String Functions</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="strings.html"><a href="strings.html#regular-expressions"><i class="fa fa-check"></i><b>9.2</b> Regular Expressions</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="strings.html"><a href="strings.html#basic-matches"><i class="fa fa-check"></i><b>9.2.1</b> Basic Matches</a></li>
-<li class="chapter" data-level="9.2.2" data-path="strings.html"><a href="strings.html#special-characters"><i class="fa fa-check"></i><b>9.2.2</b> Special Characters</a></li>
-<li class="chapter" data-level="9.2.3" data-path="strings.html"><a href="strings.html#character-classes-and-alternatives"><i class="fa fa-check"></i><b>9.2.3</b> Character Classes and Alternatives</a></li>
-<li class="chapter" data-level="9.2.4" data-path="strings.html"><a href="strings.html#repetition"><i class="fa fa-check"></i><b>9.2.4</b> Repetition</a></li>
-<li class="chapter" data-level="9.2.5" data-path="strings.html"><a href="strings.html#grouping"><i class="fa fa-check"></i><b>9.2.5</b> Grouping</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="strings.html"><a href="strings.html#helpful-string-functions"><i class="fa fa-check"></i><b>9.3</b> Helpful String Functions</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="strings.html"><a href="strings.html#detect-matches"><i class="fa fa-check"></i><b>9.3.1</b> Detect Matches</a></li>
-<li class="chapter" data-level="9.3.2" data-path="strings.html"><a href="strings.html#extract-matches"><i class="fa fa-check"></i><b>9.3.2</b> Extract Matches</a></li>
-<li class="chapter" data-level="9.3.3" data-path="strings.html"><a href="strings.html#replacing-matches"><i class="fa fa-check"></i><b>9.3.3</b> Replacing Matches</a></li>
-<li class="chapter" data-level="9.3.4" data-path="strings.html"><a href="strings.html#other-string-functions"><i class="fa fa-check"></i><b>9.3.4</b> Other String Functions</a></li>
+<li class="chapter" data-level="6.3" data-path="strings.html"><a href="strings.html#helpful-string-functions"><i class="fa fa-check"></i><b>6.3</b> Helpful String Functions</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="strings.html"><a href="strings.html#detect-matches"><i class="fa fa-check"></i><b>6.3.1</b> Detect Matches</a></li>
+<li class="chapter" data-level="6.3.2" data-path="strings.html"><a href="strings.html#extract-matches"><i class="fa fa-check"></i><b>6.3.2</b> Extract Matches</a></li>
+<li class="chapter" data-level="6.3.3" data-path="strings.html"><a href="strings.html#replacing-matches"><i class="fa fa-check"></i><b>6.3.3</b> Replacing Matches</a></li>
+<li class="chapter" data-level="6.3.4" data-path="strings.html"><a href="strings.html#other-string-functions"><i class="fa fa-check"></i><b>6.3.4</b> Other String Functions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>10</b> Tidy Data</a><ul>
-<li class="chapter" data-level="10.1" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-1"><i class="fa fa-check"></i><b>10.1</b> Tidy data</a></li>
-<li class="chapter" data-level="10.2" data-path="tidy-data.html"><a href="tidy-data.html#example-2"><i class="fa fa-check"></i><b>10.2</b> Example</a></li>
-<li class="chapter" data-level="10.3" data-path="tidy-data.html"><a href="tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>10.3</b> Spreading and gathering</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="tidy-data.html"><a href="tidy-data.html#gathering"><i class="fa fa-check"></i><b>10.3.1</b> Gathering</a></li>
-<li class="chapter" data-level="10.3.2" data-path="tidy-data.html"><a href="tidy-data.html#spreading"><i class="fa fa-check"></i><b>10.3.2</b> Spreading</a></li>
+<li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a><ul>
+<li class="chapter" data-level="7.1" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-1"><i class="fa fa-check"></i><b>7.1</b> Tidy data</a></li>
+<li class="chapter" data-level="7.2" data-path="tidy-data.html"><a href="tidy-data.html#example-1"><i class="fa fa-check"></i><b>7.2</b> Example</a></li>
+<li class="chapter" data-level="7.3" data-path="tidy-data.html"><a href="tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>7.3</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="tidy-data.html"><a href="tidy-data.html#gathering"><i class="fa fa-check"></i><b>7.3.1</b> Gathering</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tidy-data.html"><a href="tidy-data.html#spreading"><i class="fa fa-check"></i><b>7.3.2</b> Spreading</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="tidy-data.html"><a href="tidy-data.html#separating-and-uniting"><i class="fa fa-check"></i><b>10.4</b> Separating and uniting</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="tidy-data.html"><a href="tidy-data.html#separate"><i class="fa fa-check"></i><b>10.4.1</b> Separate</a></li>
-<li class="chapter" data-level="10.4.2" data-path="tidy-data.html"><a href="tidy-data.html#unite"><i class="fa fa-check"></i><b>10.4.2</b> Unite</a></li>
+<li class="chapter" data-level="7.4" data-path="tidy-data.html"><a href="tidy-data.html#separating-and-uniting"><i class="fa fa-check"></i><b>7.4</b> Separating and uniting</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="tidy-data.html"><a href="tidy-data.html#separate"><i class="fa fa-check"></i><b>7.4.1</b> Separate</a></li>
+<li class="chapter" data-level="7.4.2" data-path="tidy-data.html"><a href="tidy-data.html#unite"><i class="fa fa-check"></i><b>7.4.2</b> Unite</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="tidy-data.html"><a href="tidy-data.html#missing-values"><i class="fa fa-check"></i><b>10.5</b> Missing values</a></li>
-<li class="chapter" data-level="10.6" data-path="tidy-data.html"><a href="tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>10.6</b> Non-tidy data</a></li>
+<li class="chapter" data-level="7.5" data-path="tidy-data.html"><a href="tidy-data.html#missing-values"><i class="fa fa-check"></i><b>7.5</b> Missing values</a></li>
+<li class="chapter" data-level="7.6" data-path="tidy-data.html"><a href="tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>7.6</b> Non-tidy data</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>11</b> Relational Data</a><ul>
-<li class="chapter" data-level="11.1" data-path="relational-data.html"><a href="relational-data.html#mutating-joins"><i class="fa fa-check"></i><b>11.1</b> Mutating Joins</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>11.1.1</b> Duplicate keys</a></li>
-<li class="chapter" data-level="11.1.2" data-path="relational-data.html"><a href="relational-data.html#multi-column-keys"><i class="fa fa-check"></i><b>11.1.2</b> Multi-Column Keys</a></li>
-<li class="chapter" data-level="11.1.3" data-path="relational-data.html"><a href="relational-data.html#duplicate-non-key-columns"><i class="fa fa-check"></i><b>11.1.3</b> Duplicate Non-Key Columns</a></li>
-<li class="chapter" data-level="11.1.4" data-path="relational-data.html"><a href="relational-data.html#different-key-column-names"><i class="fa fa-check"></i><b>11.1.4</b> Different Key Column Names</a></li>
+<li class="chapter" data-level="8" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>8</b> Relational Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="relational-data.html"><a href="relational-data.html#mutating-joins"><i class="fa fa-check"></i><b>8.1</b> Mutating Joins</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>8.1.1</b> Duplicate keys</a></li>
+<li class="chapter" data-level="8.1.2" data-path="relational-data.html"><a href="relational-data.html#multi-column-keys"><i class="fa fa-check"></i><b>8.1.2</b> Multi-Column Keys</a></li>
+<li class="chapter" data-level="8.1.3" data-path="relational-data.html"><a href="relational-data.html#duplicate-non-key-columns"><i class="fa fa-check"></i><b>8.1.3</b> Duplicate Non-Key Columns</a></li>
+<li class="chapter" data-level="8.1.4" data-path="relational-data.html"><a href="relational-data.html#different-key-column-names"><i class="fa fa-check"></i><b>8.1.4</b> Different Key Column Names</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#filtering-joins"><i class="fa fa-check"></i><b>11.2</b> Filtering Joins</a></li>
-<li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#set-operations"><i class="fa fa-check"></i><b>11.3</b> Set Operations</a></li>
+<li class="chapter" data-level="8.2" data-path="relational-data.html"><a href="relational-data.html#filtering-joins"><i class="fa fa-check"></i><b>8.2</b> Filtering Joins</a></li>
+<li class="chapter" data-level="8.3" data-path="relational-data.html"><a href="relational-data.html#set-operations"><i class="fa fa-check"></i><b>8.3</b> Set Operations</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown</a><ul>
-<li class="chapter" data-level="12.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction"><i class="fa fa-check"></i><b>12.1</b> Introduction</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="r-markdown.html"><a href="r-markdown.html#code-languages"><i class="fa fa-check"></i><b>12.1.1</b> Code languages</a></li>
+<li class="chapter" data-level="9" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>9</b> Data Visualization</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-visualization.html"><a href="data-visualization.html#why-ggplot2"><i class="fa fa-check"></i><b>9.1</b> Why ggplot2</a></li>
+<li class="chapter" data-level="9.2" data-path="data-visualization.html"><a href="data-visualization.html#example-2"><i class="fa fa-check"></i><b>9.2</b> Example</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-visualization.html"><a href="data-visualization.html#data"><i class="fa fa-check"></i><b>9.2.1</b> Data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-visualization.html"><a href="data-visualization.html#aesthetics"><i class="fa fa-check"></i><b>9.2.2</b> Aesthetics</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-visualization.html"><a href="data-visualization.html#geoms"><i class="fa fa-check"></i><b>9.2.3</b> Geoms</a></li>
+<li class="chapter" data-level="9.2.4" data-path="data-visualization.html"><a href="data-visualization.html#scales"><i class="fa fa-check"></i><b>9.2.4</b> Scales</a></li>
+<li class="chapter" data-level="9.2.5" data-path="data-visualization.html"><a href="data-visualization.html#themes"><i class="fa fa-check"></i><b>9.2.5</b> Themes</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#markdown-basics"><i class="fa fa-check"></i><b>12.2</b> Markdown Basics</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="r-markdown.html"><a href="r-markdown.html#headers"><i class="fa fa-check"></i><b>12.2.1</b> Headers</a></li>
-<li class="chapter" data-level="12.2.2" data-path="r-markdown.html"><a href="r-markdown.html#paragraph-breaks-and-forced-line-breaks"><i class="fa fa-check"></i><b>12.2.2</b> Paragraph Breaks and Forced Line Breaks</a></li>
-<li class="chapter" data-level="12.2.3" data-path="r-markdown.html"><a href="r-markdown.html#italics-and-boldface"><i class="fa fa-check"></i><b>12.2.3</b> Italics and Boldface</a></li>
-<li class="chapter" data-level="12.2.4" data-path="r-markdown.html"><a href="r-markdown.html#bullet-points"><i class="fa fa-check"></i><b>12.2.4</b> Bullet Points</a></li>
-<li class="chapter" data-level="12.2.5" data-path="r-markdown.html"><a href="r-markdown.html#numbered-lists"><i class="fa fa-check"></i><b>12.2.5</b> Numbered Lists</a></li>
+<li class="chapter" data-level="9.3" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>9.3</b> Facets</a></li>
+<li class="chapter" data-level="9.4" data-path="data-visualization.html"><a href="data-visualization.html#stats"><i class="fa fa-check"></i><b>9.4</b> Stats</a></li>
+<li class="chapter" data-level="9.5" data-path="data-visualization.html"><a href="data-visualization.html#saving"><i class="fa fa-check"></i><b>9.5</b> Saving</a></li>
+<li class="chapter" data-level="9.6" data-path="data-visualization.html"><a href="data-visualization.html#exercises-2"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.7" data-path="data-visualization.html"><a href="data-visualization.html#resources-and-links"><i class="fa fa-check"></i><b>9.7</b> Resources and Links</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#math"><i class="fa fa-check"></i><b>12.3</b> Math</a></li>
-<li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#code-chunks"><i class="fa fa-check"></i><b>12.4</b> Code Chunks</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="r-markdown.html"><a href="r-markdown.html#chunk-names"><i class="fa fa-check"></i><b>12.4.1</b> Chunk Names</a></li>
-<li class="chapter" data-level="12.4.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>12.4.2</b> Chunk Options</a></li>
+<li class="chapter" data-level="10" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>10</b> R Markdown</a><ul>
+<li class="chapter" data-level="10.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="r-markdown.html"><a href="r-markdown.html#code-languages"><i class="fa fa-check"></i><b>10.1.1</b> Code languages</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>12.5</b> Inline Code</a></li>
-<li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>12.6</b> Plots</a></li>
-<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>12.7</b> Tables</a></li>
-<li class="chapter" data-level="12.8" data-path="r-markdown.html"><a href="r-markdown.html#yaml"><i class="fa fa-check"></i><b>12.8</b> YAML</a><ul>
-<li class="chapter" data-level="12.8.1" data-path="r-markdown.html"><a href="r-markdown.html#table-of-contents"><i class="fa fa-check"></i><b>12.8.1</b> Table of Contents</a></li>
-<li class="chapter" data-level="12.8.2" data-path="r-markdown.html"><a href="r-markdown.html#parameterized-reports"><i class="fa fa-check"></i><b>12.8.2</b> Parameterized reports</a></li>
-<li class="chapter" data-level="12.8.3" data-path="r-markdown.html"><a href="r-markdown.html#output-types"><i class="fa fa-check"></i><b>12.8.3</b> Output Types</a></li>
+<li class="chapter" data-level="10.2" data-path="r-markdown.html"><a href="r-markdown.html#markdown-basics"><i class="fa fa-check"></i><b>10.2</b> Markdown Basics</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="r-markdown.html"><a href="r-markdown.html#headers"><i class="fa fa-check"></i><b>10.2.1</b> Headers</a></li>
+<li class="chapter" data-level="10.2.2" data-path="r-markdown.html"><a href="r-markdown.html#paragraph-breaks-and-forced-line-breaks"><i class="fa fa-check"></i><b>10.2.2</b> Paragraph Breaks and Forced Line Breaks</a></li>
+<li class="chapter" data-level="10.2.3" data-path="r-markdown.html"><a href="r-markdown.html#italics-and-boldface"><i class="fa fa-check"></i><b>10.2.3</b> Italics and Boldface</a></li>
+<li class="chapter" data-level="10.2.4" data-path="r-markdown.html"><a href="r-markdown.html#bullet-points"><i class="fa fa-check"></i><b>10.2.4</b> Bullet Points</a></li>
+<li class="chapter" data-level="10.2.5" data-path="r-markdown.html"><a href="r-markdown.html#numbered-lists"><i class="fa fa-check"></i><b>10.2.5</b> Numbered Lists</a></li>
 </ul></li>
+<li class="chapter" data-level="10.3" data-path="r-markdown.html"><a href="r-markdown.html#math"><i class="fa fa-check"></i><b>10.3</b> Math</a></li>
+<li class="chapter" data-level="10.4" data-path="r-markdown.html"><a href="r-markdown.html#code-chunks"><i class="fa fa-check"></i><b>10.4</b> Code Chunks</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="r-markdown.html"><a href="r-markdown.html#chunk-names"><i class="fa fa-check"></i><b>10.4.1</b> Chunk Names</a></li>
+<li class="chapter" data-level="10.4.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>10.4.2</b> Chunk Options</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>10.5</b> Inline Code</a></li>
+<li class="chapter" data-level="10.6" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>10.6</b> Plots</a></li>
+<li class="chapter" data-level="10.7" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>10.7</b> Tables</a></li>
+<li class="chapter" data-level="10.8" data-path="r-markdown.html"><a href="r-markdown.html#yaml"><i class="fa fa-check"></i><b>10.8</b> YAML</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="r-markdown.html"><a href="r-markdown.html#table-of-contents"><i class="fa fa-check"></i><b>10.8.1</b> Table of Contents</a></li>
+<li class="chapter" data-level="10.8.2" data-path="r-markdown.html"><a href="r-markdown.html#parameterized-reports"><i class="fa fa-check"></i><b>10.8.2</b> Parameterized reports</a></li>
+<li class="chapter" data-level="10.8.3" data-path="r-markdown.html"><a href="r-markdown.html#output-types"><i class="fa fa-check"></i><b>10.8.3</b> Output Types</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>11</b> Base R Data Structures</a><ul>
+<li class="chapter" data-level="11.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#vectors"><i class="fa fa-check"></i><b>11.1</b> Vectors</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#atomic-vectors-1"><i class="fa fa-check"></i><b>11.1.1</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="11.1.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#lists"><i class="fa fa-check"></i><b>11.1.2</b> Lists</a></li>
+<li class="chapter" data-level="11.1.3" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#null"><i class="fa fa-check"></i><b>11.1.3</b> <code>NULL</code></a></li>
+<li class="chapter" data-level="11.1.4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#attributes"><i class="fa fa-check"></i><b>11.1.4</b> Attributes</a></li>
+<li class="chapter" data-level="11.1.5" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#factors"><i class="fa fa-check"></i><b>11.1.5</b> Factors</a></li>
+<li class="chapter" data-level="11.1.6" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>11.1.6</b> Matrices and arrays</a></li>
+<li class="chapter" data-level="11.1.7" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#data-frames"><i class="fa fa-check"></i><b>11.1.7</b> Data Frames</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>12</b> Subsetting</a><ul>
+<li class="chapter" data-level="12.1" data-path="subsetting.html"><a href="subsetting.html#selecting-multiple-elements"><i class="fa fa-check"></i><b>12.1</b> Selecting multiple elements</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="subsetting.html"><a href="subsetting.html#atomic-vectors-2"><i class="fa fa-check"></i><b>12.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="12.1.2" data-path="subsetting.html"><a href="subsetting.html#matrices-and-arrays-1"><i class="fa fa-check"></i><b>12.1.2</b> Matrices and Arrays</a></li>
+<li class="chapter" data-level="12.1.3" data-path="subsetting.html"><a href="subsetting.html#lists-1"><i class="fa fa-check"></i><b>12.1.3</b> Lists</a></li>
+<li class="chapter" data-level="12.1.4" data-path="subsetting.html"><a href="subsetting.html#data-frames-1"><i class="fa fa-check"></i><b>12.1.4</b> Data Frames</a></li>
+<li class="chapter" data-level="12.1.5" data-path="subsetting.html"><a href="subsetting.html#preserving-dimensionality"><i class="fa fa-check"></i><b>12.1.5</b> Preserving dimensionality</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="subsetting.html"><a href="subsetting.html#selecting-a-single-elements"><i class="fa fa-check"></i><b>12.2</b> Selecting a single elements</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="subsetting.html"><a href="subsetting.html#section"><i class="fa fa-check"></i><b>12.2.1</b> <code>$</code></a></li>
+<li class="chapter" data-level="12.2.2" data-path="subsetting.html"><a href="subsetting.html#missingout-of-bounds-indices"><i class="fa fa-check"></i><b>12.2.2</b> Missing/out of bounds indices</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="subsetting.html"><a href="subsetting.html#subassignment"><i class="fa fa-check"></i><b>12.3</b> Subsetting and assignment</a></li>
+<li class="chapter" data-level="12.4" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>12.4</b> Applications</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="subsetting.html"><a href="subsetting.html#lookup-tables-character-subsetting"><i class="fa fa-check"></i><b>12.4.1</b> Lookup tables (character subsetting)</a></li>
+<li class="chapter" data-level="12.4.2" data-path="subsetting.html"><a href="subsetting.html#ordering-integer-subsetting"><i class="fa fa-check"></i><b>12.4.2</b> Ordering (integer subsetting)</a></li>
+<li class="chapter" data-level="12.4.3" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>12.4.3</b> Selecting rows based on a condition (logical subsetting)</a></li>
+<li class="chapter" data-level="12.4.4" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>12.4.4</b> Removing columns from data frames (character subsetting)</a></li>
+<li class="chapter" data-level="12.4.5" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>12.4.5</b> Random samples/bootstrap (integer subsetting)</a></li>
+<li class="chapter" data-level="12.4.6" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>12.4.6</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="subsetting.html"><a href="subsetting.html#exercises-3"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
 <li class="chapter" data-level="13" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>13</b> Appendix A</a><ul>
@@ -335,9 +357,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="r-markdown" class="section level1">
-<h1><span class="header-section-number">12</span> R Markdown</h1>
+<h1><span class="header-section-number">10</span> R Markdown</h1>
 <div id="introduction" class="section level2">
-<h2><span class="header-section-number">12.1</span> Introduction</h2>
+<h2><span class="header-section-number">10.1</span> Introduction</h2>
 <p><a href="https://player.vimeo.com/video/178485416">What is R Markdown</a></p>
 <p>R Markdown provides an unified authoring framework for data science, combining your code, its results, and your prose commentary. R Markdown documents are fully reproducible and support dozens of static and dynamic output formats like PDFs, Word files, slideshows, and more.. For a comprehensive resource on R Markdown see <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></p>
 <p>R Markdown integrates a number of R packages and external tools. This means that help is, by-and-large, not available through ?. Instead, as you work through this chapter, and use R Markdown in the future, keep these resources close to hand:</p>
@@ -348,7 +370,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Both cheatsheets are also available at <a href="http://rstudio.com/cheatsheets" class="uri">http://rstudio.com/cheatsheets</a>.</p>
 <p>The real point of R Markdown is that it lets you include your code, have the code run automatically when your document is rendered, and seamlessly include the results of that code in your document.</p>
 <div id="code-languages" class="section level3">
-<h3><span class="header-section-number">12.1.1</span> Code languages</h3>
+<h3><span class="header-section-number">10.1.1</span> Code languages</h3>
 <p>While there is an <strong>“R”</strong> in R Markdown this is not limited to just the R programming language. It is a generic markup language that can knit any code that can be run from a command line into a document. Some of the more popular languages are:</p>
 <ul>
 <li>R</li>
@@ -372,7 +394,7 @@ You do not have to include any programming language. There are many books, websi
 </div>
 </div>
 <div id="markdown-basics" class="section level2">
-<h2><span class="header-section-number">12.2</span> Markdown Basics</h2>
+<h2><span class="header-section-number">10.2</span> Markdown Basics</h2>
 <p>Format the text in your R Markdown file with <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc’s Markdown</a>, a set of markup annotations for plain text files. When you render your file, Pandoc transforms the marked up text into formatted text in your final file format.</p>
 <p>Notice that the file contains three types of content:</p>
 <ol style="list-style-type: decimal">
@@ -381,7 +403,7 @@ You do not have to include any programming language. There are many books, websi
 <li>An (optional) YAML header controlling the “whole document” settings.</li>
 </ol>
 <div id="headers" class="section level3">
-<h3><span class="header-section-number">12.2.1</span> Headers</h3>
+<h3><span class="header-section-number">10.2.1</span> Headers</h3>
 <p>The character <code>#</code> at the beginning of a line means that the rest of the line is interpreted as a section header. The number of <code>#</code>s at the beginning of the line indicates whether it is treated as a section, sub-section, sub-sub-section, etc. of the document.</p>
 <pre><code># Heading Level 1  
 ## Heading Level 2  
@@ -389,7 +411,7 @@ You do not have to include any programming language. There are many books, websi
 <p>In this document the chapter title <strong>R Markdown</strong> is preceded by a single <code>#</code>, but <strong>Markdown Basics</strong> at the start of this paragraph was preceded by <code>##</code> and the current section <strong>Headers</strong> is preceded by <code>###</code> in the text file.</p>
 </div>
 <div id="paragraph-breaks-and-forced-line-breaks" class="section level3">
-<h3><span class="header-section-number">12.2.2</span> Paragraph Breaks and Forced Line Breaks</h3>
+<h3><span class="header-section-number">10.2.2</span> Paragraph Breaks and Forced Line Breaks</h3>
 <pre><code>To insert a break between paragraphs, include a single completely blank line.
 
 To force a line break, put two blank  
@@ -400,15 +422,17 @@ spaces at the end of a line.</p>
 <pre><code>If you don&#39;t put the two blank
 spaces at the end of a line
 they will run together.</code></pre>
-<p>If you don’t put the two blank spaces at the end of a line they will run together.</p>
+<p>If you don’t put the two blank
+spaces at the end of a line
+they will run together.</p>
 </div>
 <div id="italics-and-boldface" class="section level3">
-<h3><span class="header-section-number">12.2.3</span> Italics and Boldface</h3>
+<h3><span class="header-section-number">10.2.3</span> Italics and Boldface</h3>
 <pre><code>Text to be _italicized_ goes inside _a single set of underscores_ or *asterisks*.  Text to be **boldfaced** goes inside a __double set of underscores__  or **asterisks**.</code></pre>
 <p>Text to be <em>italicized</em> goes inside <em>a single set of underscores</em> or <em>asterisks</em>. Text to be <strong>boldfaced</strong> goes inside a <strong>double set of underscores</strong> or <strong>asterisks</strong>.</p>
 </div>
 <div id="bullet-points" class="section level3">
-<h3><span class="header-section-number">12.2.4</span> Bullet Points</h3>
+<h3><span class="header-section-number">10.2.4</span> Bullet Points</h3>
 <pre><code>* This is a list marked where items are marked with bullet points.
 * Each item in the list should start with a `*` (asterisk) character, or a single dash (`-`) and then have a space.
 * Each item should also be on a new line.
@@ -425,7 +449,7 @@ they will run together.</code></pre>
 </ul>
 </div>
 <div id="numbered-lists" class="section level3">
-<h3><span class="header-section-number">12.2.5</span> Numbered Lists</h3>
+<h3><span class="header-section-number">10.2.5</span> Numbered Lists</h3>
 <pre><code>1. Lines which begin with a numeral (0–9), followed by a period, will usually be interpreted as items in a numbered list.
 1. R Markdown handles the numbering in what it renders automatically, so the actual number doesn&#39;t matter.
 1. This can be handy when you lose count or don’t update the numbers yourself when editing. (Look carefully at the .Rmd file for this item.)
@@ -443,7 +467,7 @@ they will run together.</code></pre>
 </div>
 </div>
 <div id="math" class="section level2">
-<h2><span class="header-section-number">12.3</span> Math</h2>
+<h2><span class="header-section-number">10.3</span> Math</h2>
 <p>R Markdown uses standard LaTeX to render complex mathematical formulas and derivations, and have them displayed very nicely. Like code, the math can either be inline or set off (displays).</p>
 <p>Inline math is marked off with a pair of dollar signs (<code>$</code>), <code>$\frac{a+b}{b} = 1 + \frac{a}{b}$</code> <span class="math inline">\(\frac{a+b}{b} = 1 + \frac{a}{b}\)</span></p>
 <p>Mathematical displays are marked off with <code>\[</code> and<code>\]</code>, as in</p>
@@ -451,7 +475,7 @@ they will run together.</code></pre>
 <p><span class="math display">\[ \frac{a+b}{b} = 1 + \frac{a}{b} \]</span></p>
 </div>
 <div id="code-chunks" class="section level2">
-<h2><span class="header-section-number">12.4</span> Code Chunks</h2>
+<h2><span class="header-section-number">10.4</span> Code Chunks</h2>
 <p>Think of a chunk like a function. A chunk should be relatively self-contained, and focused around a single task. You can quickly insert chunks like these into your file with</p>
 <ul>
 <li>the keyboard shortcut <strong>Ctrl + Alt + I</strong> (OS X: <strong>Cmd + Option + I</strong>)</li>
@@ -466,12 +490,15 @@ they will run together.</code></pre>
 <li>the code chunk options.</li>
 </ol>
 <div id="chunk-names" class="section level3">
-<h3><span class="header-section-number">12.4.1</span> Chunk Names</h3>
+<h3><span class="header-section-number">10.4.1</span> Chunk Names</h3>
 <p>Chunks can be given an optional name: <code>```{r by-name}</code>. This has three advantages:</p>
 <ol style="list-style-type: decimal">
-<li>You can more easily navigate to specific chunks using the drop-down code navigator in the bottom-left of the script editor:</li>
-<li>Graphics produced by the chunks will have useful names that make them easier to use elsewhere.</li>
-<li>You can set up networks of cached chunks to avoid re-performing expensive computations on every run. More on that below.</li>
+<li>You can more easily navigate to specific chunks using the drop-down
+code navigator in the bottom-left of the script editor:</li>
+<li>Graphics produced by the chunks will have useful names that make
+them easier to use elsewhere.</li>
+<li>You can set up networks of cached chunks to avoid re-performing expensive
+computations on every run. More on that below.</li>
 </ol>
 <p>It’s a good idea to name code chunks that produce figures, even if you don’t routinely label other chunks. The chunk label is used to generate the file name of the graphic on disk, so naming your chunks makes it much easier to pick out plots and reuse in other circumstances (i.e. if you want to quickly drop a single plot into an email)</p>
 
@@ -481,14 +508,17 @@ There is one chunk name wit special behaviour: <code>setup</code>. In notebook m
 
 </div>
 <div id="chunk-options" class="section level3">
-<h3><span class="header-section-number">12.4.2</span> Chunk Options</h3>
+<h3><span class="header-section-number">10.4.2</span> Chunk Options</h3>
 <p>Chunk output can be customized with <strong>options</strong>, arguments supplied to chunk header. Knitr provides almost 60 options that you can use to customize your code chunks. Here we’ll cover the most important chunk options that you’ll use frequently. You can see the full list at <a href="http://yihui.name/knitr/options/" class="uri">http://yihui.name/knitr/options/</a>.</p>
 <p>The most important set of options controls if your code block is executed and what results are inserted in the finished report:</p>
 <ul>
 <li><p><code>include = FALSE</code> prevents code and results from appearing in the finished file. Use this to run code and results used by other chunks (i.e. setup code).</p></li>
-<li><p><code>echo = FALSE</code> prevents code, but not the results from appearing in the finished file. Use this when writing reports.</p></li>
-<li><p><code>message = FALSE</code> or <code>warning = FALSE</code> prevents messages or warnings from appearing in the finished file.</p></li>
-<li><p><code>results = 'hide'</code> hides printed output; <code>fig.show = 'hide'</code> hides plots.</p></li>
+<li><p><code>echo = FALSE</code> prevents code, but not the results from appearing in the
+finished file. Use this when writing reports.</p></li>
+<li><p><code>message = FALSE</code> or <code>warning = FALSE</code> prevents messages or warnings
+from appearing in the finished file.</p></li>
+<li><p><code>results = 'hide'</code> hides printed output; <code>fig.show = 'hide'</code> hides
+plots.</p></li>
 <li><p><code>error = TRUE</code> causes the render to continue even if code returns an error. Use this for debugging.</p></li>
 </ul>
 <p>To set global options that apply to every chunk in your file, call <code>knitr::opts_chunk$set</code> in a code chunk. Knitr will treat each option that you pass to <code>knitr::opts_chunk$set</code> as a global default that can be overwritten in individual chunk headers If you are doing a report where you would never show code include <code>knitr::opts_chunk$set(echo = FALSE)</code> in the <code>setup</code> code block.</p>
@@ -498,7 +528,7 @@ knitr::opts_chunk$set(echo = FALSE)
 </div>
 </div>
 <div id="inline-code" class="section level2">
-<h2><span class="header-section-number">12.5</span> Inline Code</h2>
+<h2><span class="header-section-number">10.5</span> Inline Code</h2>
 <p>Code output can also be seamlessly incorporated into the text, using inline code. This is code not set off on a line by itself, but beginning with <code>`r</code> and ending with <code>`</code>. Using inline code is how this document knows that the mtcars data set contains 32 rows, and that the mean mpg of the 6 cylinder cars is 19.7.</p>
 <p>R Markdown will always</p>
 <ul>
@@ -508,27 +538,27 @@ knitr::opts_chunk$set(echo = FALSE)
 <p>As a result, inline output is indistinguishable from the surrounding text. Inline expressions do not take knitr options.</p>
 </div>
 <div id="plots" class="section level2">
-<h2><span class="header-section-number">12.6</span> Plots</h2>
+<h2><span class="header-section-number">10.6</span> Plots</h2>
 <p>Inserting a graph into RMarkdown is easy, the more energy-demanding aspect might be adjusting the formatting.</p>
 <pre><code>\```{r mtcarsplot1, fig.cap = &quot;Default Plot&quot;}
 ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
   geom_boxplot() +
   coord_flip()
 \```</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb127-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb127-3" data-line-number="3"><span class="st">  </span><span class="kw">coord_flip</span>()</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:mtcarsplot1"></span>
 <img src="data-presentation_files/figure-html/mtcarsplot1-1.png" alt="Default Plot" width="70%" />
 <p class="caption">
-FIGURE 12.1: Default Plot
+FIGURE 10.1: Default Plot
 </p>
 </div>
 <p>By default, RMarkdown will place graphs by maximizing their height, while keeping them within the margins of the page and maintaining aspect ratio. If you have a particularly tall figure, this can mean a really huge graph. To manually set the figure dimensions in the code chunk options use <code>fig.height</code> and <code>fig.width</code>.</p>
 <p>You can also set the alignment with <code>fig.align</code> and either <code>left</code>, <code>right</code> or <code>center</code>. Also, by default the file type of the plot is determined by the output file type. You can override these defaults by using the <code>dev</code> option in the code chunk options. See <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> for more details.</p>
 </div>
 <div id="tables" class="section level2">
-<h2><span class="header-section-number">12.7</span> Tables</h2>
+<h2><span class="header-section-number">10.7</span> Tables</h2>
 <p>By default, R Markdown displays data frames and matrices as they would be in the R terminal (in a monospaced font). This generally is not what you want. If you prefer that data be displayed with additional formatting there are a number of packages that can make publication ready tables.</p>
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/kableExtra/index.html">kable + kableExtra</a></li>
@@ -539,12 +569,12 @@ FIGURE 12.1: Default Plot
 <li><a href="https://cran.r-project.org/web/packages/ascii/index.html">ascii</a></li>
 </ul>
 <p>Which package you should use depends on what your output format is and which features you want. All these packages have vignettes which show how to use the major features.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(kableExtra)
-dt &lt;-<span class="st"> </span>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]
-<span class="kw">kable</span>(dt, <span class="dt">caption =</span> <span class="st">&quot;kable table&quot;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="kw">library</span>(kableExtra)</a>
+<a class="sourceLine" id="cb128-2" data-line-number="2">dt &lt;-<span class="st"> </span>mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</a>
+<a class="sourceLine" id="cb128-3" data-line-number="3"><span class="kw">kable</span>(dt, <span class="dt">caption =</span> <span class="st">&quot;kable table&quot;</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <table>
 <caption>
-<span id="tab:kable">TABLE 12.1: </span>kable table
+<span id="tab:kable">TABLE 10.1: </span>kable table
 </caption>
 <thead>
 <tr>
@@ -688,13 +718,13 @@ Hornet Sportabout
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(mtcars, <span class="dt">longtable =</span> <span class="ot">TRUE</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, 
-      <span class="dt">caption =</span> <span class="st">&quot;Kable Longtable&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>,<span class="st">&quot;Group 1&quot;</span> =<span class="st"> </span><span class="dv">5</span>, <span class="st">&quot;Group 2&quot;</span> =<span class="st"> </span><span class="dv">6</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">latex_options =</span> <span class="kw">c</span>(<span class="st">&quot;repeat_header&quot;</span>))</code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">kable</span>(mtcars, <span class="dt">longtable =</span> <span class="ot">TRUE</span>, <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb129-2" data-line-number="2">      <span class="dt">caption =</span> <span class="st">&quot;Kable Longtable&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-3" data-line-number="3"><span class="st">  </span><span class="kw">add_header_above</span>(<span class="kw">c</span>(<span class="st">&quot; &quot;</span>,<span class="st">&quot;Group 1&quot;</span> =<span class="st"> </span><span class="dv">5</span>, <span class="st">&quot;Group 2&quot;</span> =<span class="st"> </span><span class="dv">6</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb129-4" data-line-number="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">latex_options =</span> <span class="kw">c</span>(<span class="st">&quot;repeat_header&quot;</span>))</a></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:kable2">TABLE 12.2: </span>Kable Longtable
+<span id="tab:kable2">TABLE 10.2: </span>Kable Longtable
 </caption>
 <thead>
 <tr>
@@ -1970,10 +2000,10 @@ Volvo 142E
 </table>
 </div>
 <div id="yaml" class="section level2">
-<h2><span class="header-section-number">12.8</span> YAML</h2>
+<h2><span class="header-section-number">10.8</span> YAML</h2>
 <p>At the top of any RMarkdown script is a YAML header section enclosed by <code>---</code>. By default this includes a title, author, date and the file type you want to output to. Many other options are available for different functions and formatting, see <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">here for .html options</a> and <a href="https://bookdown.org/yihui/rmarkdown/pdf-document.html">here for .pdf options</a>. Rules in the header section will alter the whole document. Have a flick through quickly to familiarize yourself with the sorts of things you can alter by adding an option to the YAML header.</p>
 <div id="table-of-contents" class="section level3">
-<h3><span class="header-section-number">12.8.1</span> Table of Contents</h3>
+<h3><span class="header-section-number">10.8.1</span> Table of Contents</h3>
 <pre><code>---
 title: &quot;My Report&quot;
 output:
@@ -1984,7 +2014,7 @@ output:
 ---</code></pre>
 </div>
 <div id="parameterized-reports" class="section level3">
-<h3><span class="header-section-number">12.8.2</span> Parameterized reports</h3>
+<h3><span class="header-section-number">10.8.2</span> Parameterized reports</h3>
 <p>One of the many benefits of working with R Markdown is that you can reproduce analysis at the click of a button. This makes it very easy to update any work and alter any input parameters within the report. Parameterized reports extend this one step further, and allow users to specify one or more parameters to customize the analysis. This is useful if you want to create a report template that can be reused across multiple similar scenarios.</p>
 <p><strong>Declaring parameters</strong></p>
 <p>Parameters are specified using the params field within the YAML section. We can specify one or more parameters with each item on a new line. As an example:</p>
@@ -2027,7 +2057,7 @@ mydata &lt;- read_csv(params$data)</code></pre>
 }</code></pre>
 </div>
 <div id="output-types" class="section level3">
-<h3><span class="header-section-number">12.8.3</span> Output Types</h3>
+<h3><span class="header-section-number">10.8.3</span> Output Types</h3>
 <p><a href="https://rmarkdown.rstudio.com/formats.html">There are many types of output with more being added every day.</a> lists just the ones</p>
 <ul>
 <li>Documents
@@ -2077,16 +2107,13 @@ mydata &lt;- read_csv(params$data)</code></pre>
 </div>
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="relational-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="base-r-data-structures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -2123,7 +2150,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

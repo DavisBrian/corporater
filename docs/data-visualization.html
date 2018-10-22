@@ -25,15 +25,15 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2018-08-31">
+<meta name="date" content="2018-10-21">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="subsetting.html">
-<link rel="next" href="data-transformation.html">
+<link rel="prev" href="relational-data.html">
+<link rel="next" href="r-markdown.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -51,44 +51,72 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<link rel="stylesheet" href="css\style.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -136,179 +164,173 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#keeping-up-to-date"><i class="fa fa-check"></i><b>2.5</b> Keeping up to date</a></li>
-<li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#exercises"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#reading-for-next-class"><i class="fa fa-check"></i><b>2.6</b> Reading For Next Class</a></li>
+<li class="chapter" data-level="2.7" data-path="good-practices.html"><a href="good-practices.html#exercises"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>II Base R Basics</b></span></li>
 <li class="chapter" data-level="3" data-path="baser-rbasics.html"><a href="baser-rbasics.html"><i class="fa fa-check"></i><b>3</b> R Basics</a><ul>
 <li class="chapter" data-level="3.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#assignment-operators"><i class="fa fa-check"></i><b>3.1</b> Assignment Operators</a></li>
-<li class="chapter" data-level="3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#objects"><i class="fa fa-check"></i><b>3.2</b> Objects</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vector"><i class="fa fa-check"></i><b>3.2.1</b> Vector</a></li>
-<li class="chapter" data-level="3.2.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#matrix"><i class="fa fa-check"></i><b>3.2.2</b> Matrix</a></li>
-<li class="chapter" data-level="3.2.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#list"><i class="fa fa-check"></i><b>3.2.3</b> List</a></li>
-<li class="chapter" data-level="3.2.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#data-frame"><i class="fa fa-check"></i><b>3.2.4</b> Data frame</a></li>
+<li class="chapter" data-level="3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#naming-rules"><i class="fa fa-check"></i><b>3.2</b> Naming Rules</a></li>
+<li class="chapter" data-level="3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#objects"><i class="fa fa-check"></i><b>3.3</b> Objects</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vector"><i class="fa fa-check"></i><b>3.3.1</b> Vector</a></li>
+<li class="chapter" data-level="3.3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#atomic-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="3.3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#matrix"><i class="fa fa-check"></i><b>3.3.3</b> Matrix</a></li>
+<li class="chapter" data-level="3.3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#list"><i class="fa fa-check"></i><b>3.3.4</b> List</a></li>
+<li class="chapter" data-level="3.3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#data-frame"><i class="fa fa-check"></i><b>3.3.5</b> Data frame</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#comparision"><i class="fa fa-check"></i><b>3.3</b> Comparision</a></li>
-<li class="chapter" data-level="3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#logical-and-sets"><i class="fa fa-check"></i><b>3.4</b> Logical and sets</a></li>
-<li class="chapter" data-level="3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#control-structures"><i class="fa fa-check"></i><b>3.5</b> Control Structures</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#if-else"><i class="fa fa-check"></i><b>3.5.1</b> <code>if</code>-<code>else</code></a></li>
-<li class="chapter" data-level="3.5.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#for-loops"><i class="fa fa-check"></i><b>3.5.2</b> <code>for</code> Loops</a></li>
-<li class="chapter" data-level="3.5.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#while-loops"><i class="fa fa-check"></i><b>3.5.3</b> <code>while</code> Loops</a></li>
-<li class="chapter" data-level="3.5.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#repeat-loops"><i class="fa fa-check"></i><b>3.5.4</b> <code>repeat</code> Loops</a></li>
-<li class="chapter" data-level="3.5.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#next-break"><i class="fa fa-check"></i><b>3.5.5</b> <code>next</code>, <code>break</code></a></li>
-<li class="chapter" data-level="3.5.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#looping"><i class="fa fa-check"></i><b>3.5.6</b> Looping</a></li>
+<li class="chapter" data-level="3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#comparision"><i class="fa fa-check"></i><b>3.4</b> Comparision</a></li>
+<li class="chapter" data-level="3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#logical-and-sets"><i class="fa fa-check"></i><b>3.5</b> Logical and sets</a></li>
+<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#control-structures"><i class="fa fa-check"></i><b>3.6</b> Control Structures</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#if-else"><i class="fa fa-check"></i><b>3.6.1</b> <code>if</code>-<code>else</code></a></li>
+<li class="chapter" data-level="3.6.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#for-loops"><i class="fa fa-check"></i><b>3.6.2</b> <code>for</code> Loops</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.6</b> Vectorization &amp; Recycling</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.6.1</b> Example</a></li>
+<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.7</b> Vectorization &amp; Recycling</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.7.1</b> Example</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#function-basics"><i class="fa fa-check"></i><b>3.7</b> Function Basics</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#your-first-function"><i class="fa fa-check"></i><b>3.7.1</b> Your First Function</a></li>
-<li class="chapter" data-level="3.7.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#lazy-evaluation"><i class="fa fa-check"></i><b>3.7.2</b> Lazy Evaluation</a></li>
-<li class="chapter" data-level="3.7.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#the-...-argument"><i class="fa fa-check"></i><b>3.7.3</b> The <code>...</code> Argument</a></li>
-</ul></li>
-<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#environments-scoping"><i class="fa fa-check"></i><b>3.8</b> Environments &amp; Scoping</a></li>
+<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#reading-for-next-class-1"><i class="fa fa-check"></i><b>3.8</b> Reading For Next Class</a></li>
 <li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>4</b> Base R Data Structures</a><ul>
-<li class="chapter" data-level="4.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#naming-rules"><i class="fa fa-check"></i><b>4.1</b> Naming Rules</a></li>
-<li class="chapter" data-level="4.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#vectors"><i class="fa fa-check"></i><b>4.2</b> Vectors</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#atomic-vectors"><i class="fa fa-check"></i><b>4.2.1</b> Atomic Vectors</a></li>
-<li class="chapter" data-level="4.2.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#lists"><i class="fa fa-check"></i><b>4.2.2</b> Lists</a></li>
-<li class="chapter" data-level="4.2.3" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#null"><i class="fa fa-check"></i><b>4.2.3</b> <code>NULL</code></a></li>
-<li class="chapter" data-level="4.2.4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#attributes"><i class="fa fa-check"></i><b>4.2.4</b> Attributes</a></li>
-<li class="chapter" data-level="4.2.5" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#factors"><i class="fa fa-check"></i><b>4.2.5</b> Factors</a></li>
-<li class="chapter" data-level="4.2.6" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>4.2.6</b> Matrices and arrays</a></li>
-<li class="chapter" data-level="4.2.7" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#data-frames"><i class="fa fa-check"></i><b>4.2.7</b> Data Frames</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>5</b> Subsetting</a><ul>
-<li class="chapter" data-level="5.1" data-path="subsetting.html"><a href="subsetting.html#selecting-multiple-elements"><i class="fa fa-check"></i><b>5.1</b> Selecting multiple elements</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="subsetting.html"><a href="subsetting.html#atomic-vectors-1"><i class="fa fa-check"></i><b>5.1.1</b> Atomic vectors</a></li>
-<li class="chapter" data-level="5.1.2" data-path="subsetting.html"><a href="subsetting.html#matrices-and-arrays-1"><i class="fa fa-check"></i><b>5.1.2</b> Matrices and Arrays</a></li>
-<li class="chapter" data-level="5.1.3" data-path="subsetting.html"><a href="subsetting.html#lists-1"><i class="fa fa-check"></i><b>5.1.3</b> Lists</a></li>
-<li class="chapter" data-level="5.1.4" data-path="subsetting.html"><a href="subsetting.html#data-frames-1"><i class="fa fa-check"></i><b>5.1.4</b> Data Frames</a></li>
-<li class="chapter" data-level="5.1.5" data-path="subsetting.html"><a href="subsetting.html#preserving-dimensionality"><i class="fa fa-check"></i><b>5.1.5</b> Preserving dimensionality</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="subsetting.html"><a href="subsetting.html#selecting-a-single-elements"><i class="fa fa-check"></i><b>5.2</b> Selecting a single elements</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="subsetting.html"><a href="subsetting.html#section"><i class="fa fa-check"></i><b>5.2.1</b> <code>$</code></a></li>
-<li class="chapter" data-level="5.2.2" data-path="subsetting.html"><a href="subsetting.html#missingout-of-bounds-indices"><i class="fa fa-check"></i><b>5.2.2</b> Missing/out of bounds indices</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="subsetting.html"><a href="subsetting.html#subassignment"><i class="fa fa-check"></i><b>5.3</b> Subsetting and assignment</a></li>
-<li class="chapter" data-level="5.4" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>5.4</b> Applications</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="subsetting.html"><a href="subsetting.html#lookup-tables-character-subsetting"><i class="fa fa-check"></i><b>5.4.1</b> Lookup tables (character subsetting)</a></li>
-<li class="chapter" data-level="5.4.2" data-path="subsetting.html"><a href="subsetting.html#ordering-integer-subsetting"><i class="fa fa-check"></i><b>5.4.2</b> Ordering (integer subsetting)</a></li>
-<li class="chapter" data-level="5.4.3" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>5.4.3</b> Selecting rows based on a condition (logical subsetting)</a></li>
-<li class="chapter" data-level="5.4.4" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>5.4.4</b> Removing columns from data frames (character subsetting)</a></li>
-<li class="chapter" data-level="5.4.5" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>5.4.5</b> Random samples/bootstrap (integer subsetting)</a></li>
-<li class="chapter" data-level="5.4.6" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>5.4.6</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="subsetting.html"><a href="subsetting.html#exercises-2"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
-</ul></li>
 <li class="part"><span><b>III R4DS</b></span></li>
-<li class="chapter" data-level="6" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>6</b> Data Visualization</a><ul>
-<li class="chapter" data-level="6.1" data-path="data-visualization.html"><a href="data-visualization.html#why-ggplot2"><i class="fa fa-check"></i><b>6.1</b> Why ggplot2</a></li>
-<li class="chapter" data-level="6.2" data-path="data-visualization.html"><a href="data-visualization.html#example-1"><i class="fa fa-check"></i><b>6.2</b> Example</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="data-visualization.html"><a href="data-visualization.html#data"><i class="fa fa-check"></i><b>6.2.1</b> Data</a></li>
-<li class="chapter" data-level="6.2.2" data-path="data-visualization.html"><a href="data-visualization.html#aesthetics"><i class="fa fa-check"></i><b>6.2.2</b> Aesthetics</a></li>
-<li class="chapter" data-level="6.2.3" data-path="data-visualization.html"><a href="data-visualization.html#geoms"><i class="fa fa-check"></i><b>6.2.3</b> Geoms</a></li>
-<li class="chapter" data-level="6.2.4" data-path="data-visualization.html"><a href="data-visualization.html#scales"><i class="fa fa-check"></i><b>6.2.4</b> Scales</a></li>
-<li class="chapter" data-level="6.2.5" data-path="data-visualization.html"><a href="data-visualization.html#themes"><i class="fa fa-check"></i><b>6.2.5</b> Themes</a></li>
+<li class="chapter" data-level="4" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>4</b> Data Import</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-import.html"><a href="data-import.html#text-files"><i class="fa fa-check"></i><b>4.1</b> Text Files</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-import.html"><a href="data-import.html#readr"><i class="fa fa-check"></i><b>4.1.1</b> readr</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-import.html"><a href="data-import.html#base-r"><i class="fa fa-check"></i><b>4.1.2</b> base R</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>6.3</b> Facets</a></li>
-<li class="chapter" data-level="6.4" data-path="data-visualization.html"><a href="data-visualization.html#stats"><i class="fa fa-check"></i><b>6.4</b> Stats</a></li>
-<li class="chapter" data-level="6.5" data-path="data-visualization.html"><a href="data-visualization.html#saving"><i class="fa fa-check"></i><b>6.5</b> Saving</a></li>
-<li class="chapter" data-level="6.6" data-path="data-visualization.html"><a href="data-visualization.html#exercises-3"><i class="fa fa-check"></i><b>6.6</b> Exercises</a></li>
-<li class="chapter" data-level="6.7" data-path="data-visualization.html"><a href="data-visualization.html#resources-and-links"><i class="fa fa-check"></i><b>6.7</b> Resources and Links</a></li>
+<li class="chapter" data-level="4.2" data-path="data-import.html"><a href="data-import.html#sas-files"><i class="fa fa-check"></i><b>4.2</b> SAS Files</a></li>
+<li class="chapter" data-level="4.3" data-path="data-import.html"><a href="data-import.html#excel"><i class="fa fa-check"></i><b>4.3</b> Excel</a></li>
+<li class="chapter" data-level="4.4" data-path="data-import.html"><a href="data-import.html#databases"><i class="fa fa-check"></i><b>4.4</b> Databases</a></li>
+<li class="chapter" data-level="4.5" data-path="data-import.html"><a href="data-import.html#reading-for-next-class-2"><i class="fa fa-check"></i><b>4.5</b> Reading For Next Class</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>7</b> Data Transformation</a><ul>
-<li class="chapter" data-level="7.1" data-path="data-transformation.html"><a href="data-transformation.html#tibbles"><i class="fa fa-check"></i><b>7.1</b> Tibbles</a></li>
-<li class="chapter" data-level="7.2" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>7.2</b> Filter rows with <code>filter()</code></a></li>
-<li class="chapter" data-level="7.3" data-path="data-transformation.html"><a href="data-transformation.html#arrange-rows-with-arrange"><i class="fa fa-check"></i><b>7.3</b> Arrange rows with <code>arrange()</code></a></li>
-<li class="chapter" data-level="7.4" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>7.4</b> Select columns with <code>select()</code></a></li>
-<li class="chapter" data-level="7.5" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>7.5</b> Add new variables with <code>mutate()</code></a></li>
-<li class="chapter" data-level="7.6" data-path="data-transformation.html"><a href="data-transformation.html#pipes"><i class="fa fa-check"></i><b>7.6</b> Pipes</a><ul>
-<li class="chapter" data-level="7.6.1" data-path="data-transformation.html"><a href="data-transformation.html#intermediate-steps"><i class="fa fa-check"></i><b>7.6.1</b> Intermediate steps</a></li>
-<li class="chapter" data-level="7.6.2" data-path="data-transformation.html"><a href="data-transformation.html#overwrite-the-original"><i class="fa fa-check"></i><b>7.6.2</b> Overwrite the original</a></li>
-<li class="chapter" data-level="7.6.3" data-path="data-transformation.html"><a href="data-transformation.html#function-composition"><i class="fa fa-check"></i><b>7.6.3</b> Function composition</a></li>
-<li class="chapter" data-level="7.6.4" data-path="data-transformation.html"><a href="data-transformation.html#use-the-pipe-operator"><i class="fa fa-check"></i><b>7.6.4</b> Use the pipe operator <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="5" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>5</b> Data Transformation</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-transformation.html"><a href="data-transformation.html#tibbles"><i class="fa fa-check"></i><b>5.1</b> Tibbles</a></li>
+<li class="chapter" data-level="5.2" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>5.2</b> Filter rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="data-transformation.html"><a href="data-transformation.html#arrange-rows-with-arrange"><i class="fa fa-check"></i><b>5.3</b> Arrange rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.4" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>5.4</b> Select columns with <code>select()</code></a></li>
+<li class="chapter" data-level="5.5" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>5.5</b> Add new variables with <code>mutate()</code></a></li>
+<li class="chapter" data-level="5.6" data-path="data-transformation.html"><a href="data-transformation.html#pipes"><i class="fa fa-check"></i><b>5.6</b> Pipes</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="data-transformation.html"><a href="data-transformation.html#intermediate-steps"><i class="fa fa-check"></i><b>5.6.1</b> Intermediate steps</a></li>
+<li class="chapter" data-level="5.6.2" data-path="data-transformation.html"><a href="data-transformation.html#overwrite-the-original"><i class="fa fa-check"></i><b>5.6.2</b> Overwrite the original</a></li>
+<li class="chapter" data-level="5.6.3" data-path="data-transformation.html"><a href="data-transformation.html#function-composition"><i class="fa fa-check"></i><b>5.6.3</b> Function composition</a></li>
+<li class="chapter" data-level="5.6.4" data-path="data-transformation.html"><a href="data-transformation.html#use-the-pipe-operator"><i class="fa fa-check"></i><b>5.6.4</b> Use the pipe operator <code>%&gt;%</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-transformation.html"><a href="data-transformation.html#grouped-summaries-with-summarise"><i class="fa fa-check"></i><b>7.7</b> Grouped summaries with <code>summarise()</code></a></li>
-<li class="chapter" data-level="7.8" data-path="data-transformation.html"><a href="data-transformation.html#grouped-mutates"><i class="fa fa-check"></i><b>7.8</b> Grouped mutates</a></li>
+<li class="chapter" data-level="5.7" data-path="data-transformation.html"><a href="data-transformation.html#grouped-summaries-with-summarise"><i class="fa fa-check"></i><b>5.7</b> Grouped summaries with <code>summarise()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="data-transformation.html"><a href="data-transformation.html#grouped-mutates"><i class="fa fa-check"></i><b>5.8</b> Grouped mutates</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>8</b> Data Import</a><ul>
-<li class="chapter" data-level="8.1" data-path="data-import.html"><a href="data-import.html#text-files"><i class="fa fa-check"></i><b>8.1</b> Text Files</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="data-import.html"><a href="data-import.html#readr"><i class="fa fa-check"></i><b>8.1.1</b> readr</a></li>
-<li class="chapter" data-level="8.1.2" data-path="data-import.html"><a href="data-import.html#base-r"><i class="fa fa-check"></i><b>8.1.2</b> base R</a></li>
+<li class="chapter" data-level="6" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>6</b> Strings</a><ul>
+<li class="chapter" data-level="6.1" data-path="strings.html"><a href="strings.html#basics"><i class="fa fa-check"></i><b>6.1</b> Basics</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="strings.html"><a href="strings.html#helpful-basic-string-functions"><i class="fa fa-check"></i><b>6.1.1</b> Helpful Basic String Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="data-import.html"><a href="data-import.html#sas-files"><i class="fa fa-check"></i><b>8.2</b> SAS Files</a></li>
-<li class="chapter" data-level="8.3" data-path="data-import.html"><a href="data-import.html#excel"><i class="fa fa-check"></i><b>8.3</b> Excel</a></li>
-<li class="chapter" data-level="8.4" data-path="data-import.html"><a href="data-import.html#databases"><i class="fa fa-check"></i><b>8.4</b> Databases</a></li>
+<li class="chapter" data-level="6.2" data-path="strings.html"><a href="strings.html#regular-expressions"><i class="fa fa-check"></i><b>6.2</b> Regular Expressions</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="strings.html"><a href="strings.html#basic-matches"><i class="fa fa-check"></i><b>6.2.1</b> Basic Matches</a></li>
+<li class="chapter" data-level="6.2.2" data-path="strings.html"><a href="strings.html#special-characters"><i class="fa fa-check"></i><b>6.2.2</b> Special Characters</a></li>
+<li class="chapter" data-level="6.2.3" data-path="strings.html"><a href="strings.html#character-classes-and-alternatives"><i class="fa fa-check"></i><b>6.2.3</b> Character Classes and Alternatives</a></li>
+<li class="chapter" data-level="6.2.4" data-path="strings.html"><a href="strings.html#repetition"><i class="fa fa-check"></i><b>6.2.4</b> Repetition</a></li>
+<li class="chapter" data-level="6.2.5" data-path="strings.html"><a href="strings.html#grouping"><i class="fa fa-check"></i><b>6.2.5</b> Grouping</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>9</b> Strings</a><ul>
-<li class="chapter" data-level="9.1" data-path="strings.html"><a href="strings.html#basics"><i class="fa fa-check"></i><b>9.1</b> Basics</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="strings.html"><a href="strings.html#helpful-basic-string-functions"><i class="fa fa-check"></i><b>9.1.1</b> Helpful Basic String Functions</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="strings.html"><a href="strings.html#regular-expressions"><i class="fa fa-check"></i><b>9.2</b> Regular Expressions</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="strings.html"><a href="strings.html#basic-matches"><i class="fa fa-check"></i><b>9.2.1</b> Basic Matches</a></li>
-<li class="chapter" data-level="9.2.2" data-path="strings.html"><a href="strings.html#special-characters"><i class="fa fa-check"></i><b>9.2.2</b> Special Characters</a></li>
-<li class="chapter" data-level="9.2.3" data-path="strings.html"><a href="strings.html#character-classes-and-alternatives"><i class="fa fa-check"></i><b>9.2.3</b> Character Classes and Alternatives</a></li>
-<li class="chapter" data-level="9.2.4" data-path="strings.html"><a href="strings.html#repetition"><i class="fa fa-check"></i><b>9.2.4</b> Repetition</a></li>
-<li class="chapter" data-level="9.2.5" data-path="strings.html"><a href="strings.html#grouping"><i class="fa fa-check"></i><b>9.2.5</b> Grouping</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="strings.html"><a href="strings.html#helpful-string-functions"><i class="fa fa-check"></i><b>9.3</b> Helpful String Functions</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="strings.html"><a href="strings.html#detect-matches"><i class="fa fa-check"></i><b>9.3.1</b> Detect Matches</a></li>
-<li class="chapter" data-level="9.3.2" data-path="strings.html"><a href="strings.html#extract-matches"><i class="fa fa-check"></i><b>9.3.2</b> Extract Matches</a></li>
-<li class="chapter" data-level="9.3.3" data-path="strings.html"><a href="strings.html#replacing-matches"><i class="fa fa-check"></i><b>9.3.3</b> Replacing Matches</a></li>
-<li class="chapter" data-level="9.3.4" data-path="strings.html"><a href="strings.html#other-string-functions"><i class="fa fa-check"></i><b>9.3.4</b> Other String Functions</a></li>
+<li class="chapter" data-level="6.3" data-path="strings.html"><a href="strings.html#helpful-string-functions"><i class="fa fa-check"></i><b>6.3</b> Helpful String Functions</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="strings.html"><a href="strings.html#detect-matches"><i class="fa fa-check"></i><b>6.3.1</b> Detect Matches</a></li>
+<li class="chapter" data-level="6.3.2" data-path="strings.html"><a href="strings.html#extract-matches"><i class="fa fa-check"></i><b>6.3.2</b> Extract Matches</a></li>
+<li class="chapter" data-level="6.3.3" data-path="strings.html"><a href="strings.html#replacing-matches"><i class="fa fa-check"></i><b>6.3.3</b> Replacing Matches</a></li>
+<li class="chapter" data-level="6.3.4" data-path="strings.html"><a href="strings.html#other-string-functions"><i class="fa fa-check"></i><b>6.3.4</b> Other String Functions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>10</b> Tidy Data</a><ul>
-<li class="chapter" data-level="10.1" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-1"><i class="fa fa-check"></i><b>10.1</b> Tidy data</a></li>
-<li class="chapter" data-level="10.2" data-path="tidy-data.html"><a href="tidy-data.html#example-2"><i class="fa fa-check"></i><b>10.2</b> Example</a></li>
-<li class="chapter" data-level="10.3" data-path="tidy-data.html"><a href="tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>10.3</b> Spreading and gathering</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="tidy-data.html"><a href="tidy-data.html#gathering"><i class="fa fa-check"></i><b>10.3.1</b> Gathering</a></li>
-<li class="chapter" data-level="10.3.2" data-path="tidy-data.html"><a href="tidy-data.html#spreading"><i class="fa fa-check"></i><b>10.3.2</b> Spreading</a></li>
+<li class="chapter" data-level="7" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>7</b> Tidy Data</a><ul>
+<li class="chapter" data-level="7.1" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-1"><i class="fa fa-check"></i><b>7.1</b> Tidy data</a></li>
+<li class="chapter" data-level="7.2" data-path="tidy-data.html"><a href="tidy-data.html#example-1"><i class="fa fa-check"></i><b>7.2</b> Example</a></li>
+<li class="chapter" data-level="7.3" data-path="tidy-data.html"><a href="tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>7.3</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="tidy-data.html"><a href="tidy-data.html#gathering"><i class="fa fa-check"></i><b>7.3.1</b> Gathering</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tidy-data.html"><a href="tidy-data.html#spreading"><i class="fa fa-check"></i><b>7.3.2</b> Spreading</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="tidy-data.html"><a href="tidy-data.html#separating-and-uniting"><i class="fa fa-check"></i><b>10.4</b> Separating and uniting</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="tidy-data.html"><a href="tidy-data.html#separate"><i class="fa fa-check"></i><b>10.4.1</b> Separate</a></li>
-<li class="chapter" data-level="10.4.2" data-path="tidy-data.html"><a href="tidy-data.html#unite"><i class="fa fa-check"></i><b>10.4.2</b> Unite</a></li>
+<li class="chapter" data-level="7.4" data-path="tidy-data.html"><a href="tidy-data.html#separating-and-uniting"><i class="fa fa-check"></i><b>7.4</b> Separating and uniting</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="tidy-data.html"><a href="tidy-data.html#separate"><i class="fa fa-check"></i><b>7.4.1</b> Separate</a></li>
+<li class="chapter" data-level="7.4.2" data-path="tidy-data.html"><a href="tidy-data.html#unite"><i class="fa fa-check"></i><b>7.4.2</b> Unite</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="tidy-data.html"><a href="tidy-data.html#missing-values"><i class="fa fa-check"></i><b>10.5</b> Missing values</a></li>
-<li class="chapter" data-level="10.6" data-path="tidy-data.html"><a href="tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>10.6</b> Non-tidy data</a></li>
+<li class="chapter" data-level="7.5" data-path="tidy-data.html"><a href="tidy-data.html#missing-values"><i class="fa fa-check"></i><b>7.5</b> Missing values</a></li>
+<li class="chapter" data-level="7.6" data-path="tidy-data.html"><a href="tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>7.6</b> Non-tidy data</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>11</b> Relational Data</a><ul>
-<li class="chapter" data-level="11.1" data-path="relational-data.html"><a href="relational-data.html#mutating-joins"><i class="fa fa-check"></i><b>11.1</b> Mutating Joins</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>11.1.1</b> Duplicate keys</a></li>
-<li class="chapter" data-level="11.1.2" data-path="relational-data.html"><a href="relational-data.html#multi-column-keys"><i class="fa fa-check"></i><b>11.1.2</b> Multi-Column Keys</a></li>
-<li class="chapter" data-level="11.1.3" data-path="relational-data.html"><a href="relational-data.html#duplicate-non-key-columns"><i class="fa fa-check"></i><b>11.1.3</b> Duplicate Non-Key Columns</a></li>
-<li class="chapter" data-level="11.1.4" data-path="relational-data.html"><a href="relational-data.html#different-key-column-names"><i class="fa fa-check"></i><b>11.1.4</b> Different Key Column Names</a></li>
+<li class="chapter" data-level="8" data-path="relational-data.html"><a href="relational-data.html"><i class="fa fa-check"></i><b>8</b> Relational Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="relational-data.html"><a href="relational-data.html#mutating-joins"><i class="fa fa-check"></i><b>8.1</b> Mutating Joins</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="relational-data.html"><a href="relational-data.html#duplicate-keys"><i class="fa fa-check"></i><b>8.1.1</b> Duplicate keys</a></li>
+<li class="chapter" data-level="8.1.2" data-path="relational-data.html"><a href="relational-data.html#multi-column-keys"><i class="fa fa-check"></i><b>8.1.2</b> Multi-Column Keys</a></li>
+<li class="chapter" data-level="8.1.3" data-path="relational-data.html"><a href="relational-data.html#duplicate-non-key-columns"><i class="fa fa-check"></i><b>8.1.3</b> Duplicate Non-Key Columns</a></li>
+<li class="chapter" data-level="8.1.4" data-path="relational-data.html"><a href="relational-data.html#different-key-column-names"><i class="fa fa-check"></i><b>8.1.4</b> Different Key Column Names</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="relational-data.html"><a href="relational-data.html#filtering-joins"><i class="fa fa-check"></i><b>11.2</b> Filtering Joins</a></li>
-<li class="chapter" data-level="11.3" data-path="relational-data.html"><a href="relational-data.html#set-operations"><i class="fa fa-check"></i><b>11.3</b> Set Operations</a></li>
+<li class="chapter" data-level="8.2" data-path="relational-data.html"><a href="relational-data.html#filtering-joins"><i class="fa fa-check"></i><b>8.2</b> Filtering Joins</a></li>
+<li class="chapter" data-level="8.3" data-path="relational-data.html"><a href="relational-data.html#set-operations"><i class="fa fa-check"></i><b>8.3</b> Set Operations</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown</a><ul>
-<li class="chapter" data-level="12.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction"><i class="fa fa-check"></i><b>12.1</b> Introduction</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="r-markdown.html"><a href="r-markdown.html#code-languages"><i class="fa fa-check"></i><b>12.1.1</b> Code languages</a></li>
+<li class="chapter" data-level="9" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>9</b> Data Visualization</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-visualization.html"><a href="data-visualization.html#why-ggplot2"><i class="fa fa-check"></i><b>9.1</b> Why ggplot2</a></li>
+<li class="chapter" data-level="9.2" data-path="data-visualization.html"><a href="data-visualization.html#example-2"><i class="fa fa-check"></i><b>9.2</b> Example</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-visualization.html"><a href="data-visualization.html#data"><i class="fa fa-check"></i><b>9.2.1</b> Data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-visualization.html"><a href="data-visualization.html#aesthetics"><i class="fa fa-check"></i><b>9.2.2</b> Aesthetics</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-visualization.html"><a href="data-visualization.html#geoms"><i class="fa fa-check"></i><b>9.2.3</b> Geoms</a></li>
+<li class="chapter" data-level="9.2.4" data-path="data-visualization.html"><a href="data-visualization.html#scales"><i class="fa fa-check"></i><b>9.2.4</b> Scales</a></li>
+<li class="chapter" data-level="9.2.5" data-path="data-visualization.html"><a href="data-visualization.html#themes"><i class="fa fa-check"></i><b>9.2.5</b> Themes</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#markdown-basics"><i class="fa fa-check"></i><b>12.2</b> Markdown Basics</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="r-markdown.html"><a href="r-markdown.html#headers"><i class="fa fa-check"></i><b>12.2.1</b> Headers</a></li>
-<li class="chapter" data-level="12.2.2" data-path="r-markdown.html"><a href="r-markdown.html#paragraph-breaks-and-forced-line-breaks"><i class="fa fa-check"></i><b>12.2.2</b> Paragraph Breaks and Forced Line Breaks</a></li>
-<li class="chapter" data-level="12.2.3" data-path="r-markdown.html"><a href="r-markdown.html#italics-and-boldface"><i class="fa fa-check"></i><b>12.2.3</b> Italics and Boldface</a></li>
-<li class="chapter" data-level="12.2.4" data-path="r-markdown.html"><a href="r-markdown.html#bullet-points"><i class="fa fa-check"></i><b>12.2.4</b> Bullet Points</a></li>
-<li class="chapter" data-level="12.2.5" data-path="r-markdown.html"><a href="r-markdown.html#numbered-lists"><i class="fa fa-check"></i><b>12.2.5</b> Numbered Lists</a></li>
+<li class="chapter" data-level="9.3" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>9.3</b> Facets</a></li>
+<li class="chapter" data-level="9.4" data-path="data-visualization.html"><a href="data-visualization.html#stats"><i class="fa fa-check"></i><b>9.4</b> Stats</a></li>
+<li class="chapter" data-level="9.5" data-path="data-visualization.html"><a href="data-visualization.html#saving"><i class="fa fa-check"></i><b>9.5</b> Saving</a></li>
+<li class="chapter" data-level="9.6" data-path="data-visualization.html"><a href="data-visualization.html#exercises-2"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+<li class="chapter" data-level="9.7" data-path="data-visualization.html"><a href="data-visualization.html#resources-and-links"><i class="fa fa-check"></i><b>9.7</b> Resources and Links</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#math"><i class="fa fa-check"></i><b>12.3</b> Math</a></li>
-<li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#code-chunks"><i class="fa fa-check"></i><b>12.4</b> Code Chunks</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="r-markdown.html"><a href="r-markdown.html#chunk-names"><i class="fa fa-check"></i><b>12.4.1</b> Chunk Names</a></li>
-<li class="chapter" data-level="12.4.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>12.4.2</b> Chunk Options</a></li>
+<li class="chapter" data-level="10" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>10</b> R Markdown</a><ul>
+<li class="chapter" data-level="10.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="r-markdown.html"><a href="r-markdown.html#code-languages"><i class="fa fa-check"></i><b>10.1.1</b> Code languages</a></li>
 </ul></li>
-<li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>12.5</b> Inline Code</a></li>
-<li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>12.6</b> Plots</a></li>
-<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>12.7</b> Tables</a></li>
-<li class="chapter" data-level="12.8" data-path="r-markdown.html"><a href="r-markdown.html#yaml"><i class="fa fa-check"></i><b>12.8</b> YAML</a><ul>
-<li class="chapter" data-level="12.8.1" data-path="r-markdown.html"><a href="r-markdown.html#table-of-contents"><i class="fa fa-check"></i><b>12.8.1</b> Table of Contents</a></li>
-<li class="chapter" data-level="12.8.2" data-path="r-markdown.html"><a href="r-markdown.html#parameterized-reports"><i class="fa fa-check"></i><b>12.8.2</b> Parameterized reports</a></li>
-<li class="chapter" data-level="12.8.3" data-path="r-markdown.html"><a href="r-markdown.html#output-types"><i class="fa fa-check"></i><b>12.8.3</b> Output Types</a></li>
+<li class="chapter" data-level="10.2" data-path="r-markdown.html"><a href="r-markdown.html#markdown-basics"><i class="fa fa-check"></i><b>10.2</b> Markdown Basics</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="r-markdown.html"><a href="r-markdown.html#headers"><i class="fa fa-check"></i><b>10.2.1</b> Headers</a></li>
+<li class="chapter" data-level="10.2.2" data-path="r-markdown.html"><a href="r-markdown.html#paragraph-breaks-and-forced-line-breaks"><i class="fa fa-check"></i><b>10.2.2</b> Paragraph Breaks and Forced Line Breaks</a></li>
+<li class="chapter" data-level="10.2.3" data-path="r-markdown.html"><a href="r-markdown.html#italics-and-boldface"><i class="fa fa-check"></i><b>10.2.3</b> Italics and Boldface</a></li>
+<li class="chapter" data-level="10.2.4" data-path="r-markdown.html"><a href="r-markdown.html#bullet-points"><i class="fa fa-check"></i><b>10.2.4</b> Bullet Points</a></li>
+<li class="chapter" data-level="10.2.5" data-path="r-markdown.html"><a href="r-markdown.html#numbered-lists"><i class="fa fa-check"></i><b>10.2.5</b> Numbered Lists</a></li>
 </ul></li>
+<li class="chapter" data-level="10.3" data-path="r-markdown.html"><a href="r-markdown.html#math"><i class="fa fa-check"></i><b>10.3</b> Math</a></li>
+<li class="chapter" data-level="10.4" data-path="r-markdown.html"><a href="r-markdown.html#code-chunks"><i class="fa fa-check"></i><b>10.4</b> Code Chunks</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="r-markdown.html"><a href="r-markdown.html#chunk-names"><i class="fa fa-check"></i><b>10.4.1</b> Chunk Names</a></li>
+<li class="chapter" data-level="10.4.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>10.4.2</b> Chunk Options</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>10.5</b> Inline Code</a></li>
+<li class="chapter" data-level="10.6" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>10.6</b> Plots</a></li>
+<li class="chapter" data-level="10.7" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>10.7</b> Tables</a></li>
+<li class="chapter" data-level="10.8" data-path="r-markdown.html"><a href="r-markdown.html#yaml"><i class="fa fa-check"></i><b>10.8</b> YAML</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="r-markdown.html"><a href="r-markdown.html#table-of-contents"><i class="fa fa-check"></i><b>10.8.1</b> Table of Contents</a></li>
+<li class="chapter" data-level="10.8.2" data-path="r-markdown.html"><a href="r-markdown.html#parameterized-reports"><i class="fa fa-check"></i><b>10.8.2</b> Parameterized reports</a></li>
+<li class="chapter" data-level="10.8.3" data-path="r-markdown.html"><a href="r-markdown.html#output-types"><i class="fa fa-check"></i><b>10.8.3</b> Output Types</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html"><i class="fa fa-check"></i><b>11</b> Base R Data Structures</a><ul>
+<li class="chapter" data-level="11.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#vectors"><i class="fa fa-check"></i><b>11.1</b> Vectors</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#atomic-vectors-1"><i class="fa fa-check"></i><b>11.1.1</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="11.1.2" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#lists"><i class="fa fa-check"></i><b>11.1.2</b> Lists</a></li>
+<li class="chapter" data-level="11.1.3" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#null"><i class="fa fa-check"></i><b>11.1.3</b> <code>NULL</code></a></li>
+<li class="chapter" data-level="11.1.4" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#attributes"><i class="fa fa-check"></i><b>11.1.4</b> Attributes</a></li>
+<li class="chapter" data-level="11.1.5" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#factors"><i class="fa fa-check"></i><b>11.1.5</b> Factors</a></li>
+<li class="chapter" data-level="11.1.6" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>11.1.6</b> Matrices and arrays</a></li>
+<li class="chapter" data-level="11.1.7" data-path="base-r-data-structures.html"><a href="base-r-data-structures.html#data-frames"><i class="fa fa-check"></i><b>11.1.7</b> Data Frames</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="subsetting.html"><a href="subsetting.html"><i class="fa fa-check"></i><b>12</b> Subsetting</a><ul>
+<li class="chapter" data-level="12.1" data-path="subsetting.html"><a href="subsetting.html#selecting-multiple-elements"><i class="fa fa-check"></i><b>12.1</b> Selecting multiple elements</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="subsetting.html"><a href="subsetting.html#atomic-vectors-2"><i class="fa fa-check"></i><b>12.1.1</b> Atomic vectors</a></li>
+<li class="chapter" data-level="12.1.2" data-path="subsetting.html"><a href="subsetting.html#matrices-and-arrays-1"><i class="fa fa-check"></i><b>12.1.2</b> Matrices and Arrays</a></li>
+<li class="chapter" data-level="12.1.3" data-path="subsetting.html"><a href="subsetting.html#lists-1"><i class="fa fa-check"></i><b>12.1.3</b> Lists</a></li>
+<li class="chapter" data-level="12.1.4" data-path="subsetting.html"><a href="subsetting.html#data-frames-1"><i class="fa fa-check"></i><b>12.1.4</b> Data Frames</a></li>
+<li class="chapter" data-level="12.1.5" data-path="subsetting.html"><a href="subsetting.html#preserving-dimensionality"><i class="fa fa-check"></i><b>12.1.5</b> Preserving dimensionality</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="subsetting.html"><a href="subsetting.html#selecting-a-single-elements"><i class="fa fa-check"></i><b>12.2</b> Selecting a single elements</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="subsetting.html"><a href="subsetting.html#section"><i class="fa fa-check"></i><b>12.2.1</b> <code>$</code></a></li>
+<li class="chapter" data-level="12.2.2" data-path="subsetting.html"><a href="subsetting.html#missingout-of-bounds-indices"><i class="fa fa-check"></i><b>12.2.2</b> Missing/out of bounds indices</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="subsetting.html"><a href="subsetting.html#subassignment"><i class="fa fa-check"></i><b>12.3</b> Subsetting and assignment</a></li>
+<li class="chapter" data-level="12.4" data-path="subsetting.html"><a href="subsetting.html#applications"><i class="fa fa-check"></i><b>12.4</b> Applications</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="subsetting.html"><a href="subsetting.html#lookup-tables-character-subsetting"><i class="fa fa-check"></i><b>12.4.1</b> Lookup tables (character subsetting)</a></li>
+<li class="chapter" data-level="12.4.2" data-path="subsetting.html"><a href="subsetting.html#ordering-integer-subsetting"><i class="fa fa-check"></i><b>12.4.2</b> Ordering (integer subsetting)</a></li>
+<li class="chapter" data-level="12.4.3" data-path="subsetting.html"><a href="subsetting.html#selecting-rows-based-on-a-condition-logical-subsetting"><i class="fa fa-check"></i><b>12.4.3</b> Selecting rows based on a condition (logical subsetting)</a></li>
+<li class="chapter" data-level="12.4.4" data-path="subsetting.html"><a href="subsetting.html#removing-columns-from-data-frames-character-subsetting"><i class="fa fa-check"></i><b>12.4.4</b> Removing columns from data frames (character subsetting)</a></li>
+<li class="chapter" data-level="12.4.5" data-path="subsetting.html"><a href="subsetting.html#random-samplesbootstrap-integer-subsetting"><i class="fa fa-check"></i><b>12.4.5</b> Random samples/bootstrap (integer subsetting)</a></li>
+<li class="chapter" data-level="12.4.6" data-path="subsetting.html"><a href="subsetting.html#boolean-algebra-vs.sets-logical-integer-subsetting"><i class="fa fa-check"></i><b>12.4.6</b> Boolean algebra vs. sets (logical &amp; integer subsetting)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="subsetting.html"><a href="subsetting.html#exercises-3"><i class="fa fa-check"></i><b>12.5</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
 <li class="chapter" data-level="13" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>13</b> Appendix A</a><ul>
@@ -335,9 +357,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="data-visualization" class="section level1">
-<h1><span class="header-section-number">6</span> Data Visualization</h1>
+<h1><span class="header-section-number">9</span> Data Visualization</h1>
 <div id="why-ggplot2" class="section level2">
-<h2><span class="header-section-number">6.1</span> Why ggplot2</h2>
+<h2><span class="header-section-number">9.1</span> Why ggplot2</h2>
 <blockquote>
 <p>The transferrable skills from ggplot2 are not the idiosyncracies of plotting syntax, but a powerful way of thinking about visualisation, as a way of <strong>mapping between variables and the visual properties of geometric objects</strong> that you can perceive.</p>
 <p>— Hadley Wickham</p>
@@ -364,60 +386,62 @@ On 6/15 ggplot2 2.3.0 will come out and there are <a href="https://github.com/ti
 </div>
 
 </div>
-<div id="example-1" class="section level2">
-<h2><span class="header-section-number">6.2</span> Example</h2>
+<div id="example-2" class="section level2">
+<h2><span class="header-section-number">9.2</span> Example</h2>
 <p>Going to throw a lot at you …but you’ll know where and what to look for. For just about every plotting task there are multiple ways to achieve the desired result.</p>
 <p><img src="images/dataviz/api_life_means.png" width="70%" style="display: block; margin: auto;" /><img src="images/dataviz/comp_recent_means.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>What is similar / different between these plots? What is and what isn’t driven by data?</p>
-<p>We’ll build this style of plot in stages. In chapter 9 of <a href="">R for Data Science</a> we will go into detail about how to get our data in this format.</p>
+<p>What is similar / different between these plots?
+What is and what isn’t driven by data?</p>
+<p>We’ll build this style of plot in stages. In chapter 9 of <a href="">R for Data
+Science</a> we will go into detail about how to get our data in this format.</p>
 <div id="data" class="section level3">
-<h3><span class="header-section-number">6.2.1</span> Data</h3>
+<h3><span class="header-section-number">9.2.1</span> Data</h3>
 <p>All plots start with data. `<code>ggplot</code> expects the data to be in a “Tidy Data” format. We’ll dive deeper into “tidy data” in Chapter 9 of <a href="">R for Data Science</a>, but for now the basic principle is</p>
 <ol style="list-style-type: decimal">
 <li>Each variable forms a <strong>column</strong></li>
 <li>Each observation forms a <strong>row</strong></li>
 <li>Each observational unit forms a table</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="co">#&gt; -- Attaching packages -------------------------------------- tidyverse 1.2.1 --</span>
-<span class="co">#&gt; v ggplot2 3.0.0     v purrr   0.2.5</span>
-<span class="co">#&gt; v tibble  1.4.2     v dplyr   0.7.6</span>
-<span class="co">#&gt; v tidyr   0.8.1     v stringr 1.3.1</span>
-<span class="co">#&gt; v readr   1.1.1     v forcats 0.3.0</span>
-<span class="co">#&gt; -- Conflicts ----------------------------------------- tidyverse_conflicts() --</span>
-<span class="co">#&gt; x dplyr::filter() masks stats::filter()</span>
-<span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span>
-dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)
-dat
-<span class="co">#&gt; # A tibble: 18 x 5</span>
-<span class="co">#&gt;   drug          use_type  mean lower upper</span>
-<span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 Buprenorphine use       5.45  5.26  5.64</span>
-<span class="co">#&gt; 2 Fentanyl      use       9.26  9.02  9.51</span>
-<span class="co">#&gt; 3 Hydrocodone   use      46.8  46.4  47.2 </span>
-<span class="co">#&gt; 4 Hydromorphone use       6.08  5.89  6.28</span>
-<span class="co">#&gt; 5 Methadone     use       5.59  5.39  5.79</span>
-<span class="co">#&gt; 6 Morphine      use      18.7  18.4  19.0 </span>
-<span class="co">#&gt; # ... with 12 more rows</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat)
-p</code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="co">#&gt; ── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</span></a>
+<a class="sourceLine" id="cb105-3" data-line-number="3"><span class="co">#&gt; ✔ ggplot2 3.0.0     ✔ purrr   0.2.5</span></a>
+<a class="sourceLine" id="cb105-4" data-line-number="4"><span class="co">#&gt; ✔ tibble  1.4.2     ✔ dplyr   0.7.6</span></a>
+<a class="sourceLine" id="cb105-5" data-line-number="5"><span class="co">#&gt; ✔ tidyr   0.8.1     ✔ stringr 1.3.1</span></a>
+<a class="sourceLine" id="cb105-6" data-line-number="6"><span class="co">#&gt; ✔ readr   1.1.1     ✔ forcats 0.3.0</span></a>
+<a class="sourceLine" id="cb105-7" data-line-number="7"><span class="co">#&gt; ── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span></a>
+<a class="sourceLine" id="cb105-8" data-line-number="8"><span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span></a>
+<a class="sourceLine" id="cb105-9" data-line-number="9"><span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></a>
+<a class="sourceLine" id="cb105-10" data-line-number="10">dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)</a>
+<a class="sourceLine" id="cb105-11" data-line-number="11">dat</a>
+<a class="sourceLine" id="cb105-12" data-line-number="12"><span class="co">#&gt; # A tibble: 18 x 5</span></a>
+<a class="sourceLine" id="cb105-13" data-line-number="13"><span class="co">#&gt;   drug          use_type  mean lower upper</span></a>
+<a class="sourceLine" id="cb105-14" data-line-number="14"><span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb105-15" data-line-number="15"><span class="co">#&gt; 1 Buprenorphine use       5.45  5.26  5.64</span></a>
+<a class="sourceLine" id="cb105-16" data-line-number="16"><span class="co">#&gt; 2 Fentanyl      use       9.26  9.02  9.51</span></a>
+<a class="sourceLine" id="cb105-17" data-line-number="17"><span class="co">#&gt; 3 Hydrocodone   use      46.8  46.4  47.2 </span></a>
+<a class="sourceLine" id="cb105-18" data-line-number="18"><span class="co">#&gt; 4 Hydromorphone use       6.08  5.89  6.28</span></a>
+<a class="sourceLine" id="cb105-19" data-line-number="19"><span class="co">#&gt; 5 Methadone     use       5.59  5.39  5.79</span></a>
+<a class="sourceLine" id="cb105-20" data-line-number="20"><span class="co">#&gt; 6 Morphine      use      18.7  18.4  19.0 </span></a>
+<a class="sourceLine" id="cb105-21" data-line-number="21"><span class="co">#&gt; # ... with 12 more rows</span></a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat)</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2">p</a></code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>That’s uninteresting. We haven’t mapped the data to our plot yet. Let’s work on getting the bar chart roughly right.</p>
 </div>
 <div id="aesthetics" class="section level3">
-<h3><span class="header-section-number">6.2.2</span> Aesthetics</h3>
+<h3><span class="header-section-number">9.2.2</span> Aesthetics</h3>
 <p><strong>Aesthetics</strong> map data to visual elements or parameters.</p>
 <ul>
 <li><code>drug</code> -&gt; x-axis</li>
 <li><code>mean</code> -&gt; y-axis</li>
 <li><code>use_type</code> -&gt; color</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) 
-p</code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) </a>
+<a class="sourceLine" id="cb107-2" data-line-number="2">p</a></code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="geoms" class="section level3">
-<h3><span class="header-section-number">6.2.3</span> Geoms</h3>
+<h3><span class="header-section-number">9.2.3</span> Geoms</h3>
 <p>Geoms are short for geometric objects which are displayed on the plot. Some of the more familiar ones are</p>
 <table>
 <thead>
@@ -490,15 +514,15 @@ p</code></pre></div>
 There are two types of bar charts: <code>geom_bar</code> makes the height of the bar proportional to the number of cases in each group (or if the weight aesthetic is supplied, the sum of the weights). If you want the heights of the bars to represent values in the data, use <code>geom_col</code> instead. <code>geom_bar</code> will calculate the counts or proportions from the raw data. There is no reason to precompute those.
 </p>
 </div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>()
-p</code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">color =</span> use_type)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>()</a>
+<a class="sourceLine" id="cb109-3" data-line-number="3">p</a></code></pre></div>
 <p><img src="data-viz_files/figure-html/plot1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Oops….</p>
 <p>The <code>color</code> only controls the border of our bar chart, what we want to do is <code>fill</code> the bar. Also, note that by default the bars are <code>stacked</code>. We can fix that by having the position of each subgroup <code>dodge</code> each other.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)
-p</code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</a>
+<a class="sourceLine" id="cb110-3" data-line-number="3">p</a></code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><code>geom_*(mapping, data, stat, position)</code></p>
 <ul>
@@ -527,10 +551,10 @@ p</code></pre></div>
 </ul></li>
 </ul>
 <p>Now lets add the error bars to our plot. We will have to add the upper and lower bounds to our aesthetics, and align them with our bars.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)
-p</code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb111-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb111-4" data-line-number="4">p</a></code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>We’ve come pretty close to recreating the original plot. We still have some tweaking to do.</p>
 <ol style="list-style-type: decimal">
@@ -544,31 +568,31 @@ p</code></pre></div>
 <li>Move the legend to the bottom</li>
 </ol>
 <p>The first one is handled with our data. Factors to the rescue. while the second can be done with a named vector.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert the use_type to a factor with the correct label</span>
-dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, 
-                      <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), 
-                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))
-
-p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)
-p</code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="co"># convert the use_type to a factor with the correct label</span></a>
+<a class="sourceLine" id="cb112-2" data-line-number="2">dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, </a>
+<a class="sourceLine" id="cb112-3" data-line-number="3">                      <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), </a>
+<a class="sourceLine" id="cb112-4" data-line-number="4">                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))</a>
+<a class="sourceLine" id="cb112-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb112-6" data-line-number="6">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb112-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb112-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb112-9" data-line-number="9">p</a></code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="scales" class="section level3">
-<h3><span class="header-section-number">6.2.4</span> Scales</h3>
+<h3><span class="header-section-number">9.2.4</span> Scales</h3>
 <p>Scales control the details of how data values are translated to visual properties. Override the default scales to tweak details like the axis labels or legend keys, or to use a completely different translation from data to aesthetic.</p>
 <p><code>labs()</code> <code>xlab()</code> <code>ylab()</code> and <code>ggtitle()</code> modify the axis, legend, and plot labels.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)
-
-p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>) ) <span class="op">+</span><span class="st">  </span><span class="co"># change the y-axis scale</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
-       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>)          <span class="co"># Change the y-axis label</span>
-p</code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb113-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb113-3" data-line-number="3">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb113-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb113-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb113-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span></a>
+<a class="sourceLine" id="cb113-7" data-line-number="7"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>) ) <span class="op">+</span><span class="st">  </span><span class="co"># change the y-axis scale</span></a>
+<a class="sourceLine" id="cb113-8" data-line-number="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span></a>
+<a class="sourceLine" id="cb113-9" data-line-number="9">       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>)          <span class="co"># Change the y-axis label</span></a>
+<a class="sourceLine" id="cb113-10" data-line-number="10">p</a></code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /></p>
 
 <div class="rmdtip">
@@ -577,7 +601,7 @@ library <code>scales</code> provides many useful functions for automatically det
 
 </div>
 <div id="themes" class="section level3">
-<h3><span class="header-section-number">6.2.5</span> Themes</h3>
+<h3><span class="header-section-number">9.2.5</span> Themes</h3>
 <p>Themes control the display of all non-data elements of the plot. You can change just about everything, fonts, font sizes, background colors, etc. You can override all settings with a complete theme like theme_bw(), or choose to tweak individual settings by using theme() and the element_ functions.</p>
 <p>There are a handful of built in themes and tons of packages that have additional themes. <code>ggthemes</code> has a collection of themes used by various organization (Ex. The Economist, Fivethiryeight.com, The Wall St. Journal, etc)</p>
 <p>Themes contain a huge number or parameters, grouped by plot area:</p>
@@ -589,56 +613,56 @@ library <code>scales</code> provides many useful functions for automatically det
 <li><code>plot</code>: Whole image</li>
 <li><code>strip</code>: Facet labels</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">theme_classic</span>()</a></code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>This is almost what we want. Our final code would look like:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)
-<span class="co"># convert the use_type to a factor with the correct label</span>
-dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))
-bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)
-
-p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
-<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)<span class="op">+</span><span class="dv">5</span>), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
-                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
-       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span>
-        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>(),   <span class="co"># remove the legend variable</span>
-        <span class="dt">axis.text.x     =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),   <span class="co"># rotate the x-axis text</span>
-        <span class="dt">axis.ticks.x    =</span> <span class="kw">element_blank</span>())       <span class="co"># remove the x asix tick marks</span>
-p</code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;./data/bargraphdat.RDS&quot;</span>)</a>
+<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="co"># convert the use_type to a factor with the correct label</span></a>
+<a class="sourceLine" id="cb115-4" data-line-number="4">dat<span class="op">$</span>use_type &lt;-<span class="kw">factor</span>(dat<span class="op">$</span>use_type, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;use&quot;</span>, <span class="st">&quot;nmu&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span>))</a>
+<a class="sourceLine" id="cb115-5" data-line-number="5">bar_colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lifetime Use&quot;</span> =<span class="st"> &quot;grey&quot;</span>, <span class="st">&quot;Lifetime Non-Medical Use&quot;</span> =<span class="st"> &quot;blue&quot;</span>)</a>
+<a class="sourceLine" id="cb115-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb115-7" data-line-number="7">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> drug, <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb115-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb115-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb115-10" data-line-number="10"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span></a>
+<a class="sourceLine" id="cb115-11" data-line-number="11"><span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">50</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb115-12" data-line-number="12"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)<span class="op">+</span><span class="dv">5</span>), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span></a>
+<a class="sourceLine" id="cb115-13" data-line-number="13">                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span></a>
+<a class="sourceLine" id="cb115-14" data-line-number="14"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span></a>
+<a class="sourceLine" id="cb115-15" data-line-number="15">       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span></a>
+<a class="sourceLine" id="cb115-16" data-line-number="16"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb115-17" data-line-number="17"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span></a>
+<a class="sourceLine" id="cb115-18" data-line-number="18">        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>(),   <span class="co"># remove the legend variable</span></a>
+<a class="sourceLine" id="cb115-19" data-line-number="19">        <span class="dt">axis.text.x     =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>),   <span class="co"># rotate the x-axis text</span></a>
+<a class="sourceLine" id="cb115-20" data-line-number="20">        <span class="dt">axis.ticks.x    =</span> <span class="kw">element_blank</span>())       <span class="co"># remove the x asix tick marks</span></a>
+<a class="sourceLine" id="cb115-21" data-line-number="21">p</a></code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-15-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="facets" class="section level2">
-<h2><span class="header-section-number">6.3</span> Facets</h2>
+<h2><span class="header-section-number">9.3</span> Facets</h2>
 <p>Facets are subplots of the data with each subplot displaying one subset of the data. there are two ways to create facets: <code>facet_grid</code> and <code>facet_wrap</code>.</p>
 <p><code>facet_grid</code> forms a matrix of panels defined by row and column faceting variables. It is most useful when you have two discrete variables, and all combinations of the variables exist in the data.</p>
 <p><code>facet_wrap</code> wraps a 1d sequence of panels into 2d. This is generally a better use of screen space than facet_grid because most displays are roughly rectangular.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(drug, mean), <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>use_type, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span>
-<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span>
-                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span>
-       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span>
-        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span><span class="co"># remove the legend variable</span>
-<span class="st">  </span><span class="kw">coord_flip</span>()
-p</code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> dat, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(drug, mean), <span class="dt">y =</span> mean, <span class="dt">fill =</span> use_type, <span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">width =</span> <span class="fl">0.75</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.75</span>), <span class="dt">width =</span> <span class="fl">0.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>use_type, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>bar_colors) <span class="op">+</span><span class="st">     </span><span class="co"># change the bar colors</span></a>
+<a class="sourceLine" id="cb116-6" data-line-number="6"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="kw">ceiling</span>(<span class="kw">max</span>(dat<span class="op">$</span>upper)), <span class="dv">5</span>),  <span class="co"># change the y-axis scale</span></a>
+<a class="sourceLine" id="cb116-7" data-line-number="7">                     <span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="op">+</span><span class="st">      </span><span class="co"># remove the spacing between the x axis and the bars</span></a>
+<a class="sourceLine" id="cb116-8" data-line-number="8"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>,                             <span class="co"># Remove the x-axis label &quot;drug&quot;</span></a>
+<a class="sourceLine" id="cb116-9" data-line-number="9">       <span class="dt">y =</span> <span class="st">&quot;Prevalence % (95% CI)&quot;</span>) <span class="op">+</span><span class="st">        </span><span class="co"># Change the y-axis label</span></a>
+<a class="sourceLine" id="cb116-10" data-line-number="10"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb116-11" data-line-number="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,          <span class="co"># move the legend to the bottom</span></a>
+<a class="sourceLine" id="cb116-12" data-line-number="12">        <span class="dt">legend.title    =</span> <span class="kw">element_blank</span>()) <span class="op">+</span><span class="st"> </span><span class="co"># remove the legend variable</span></a>
+<a class="sourceLine" id="cb116-13" data-line-number="13"><span class="st">  </span><span class="kw">coord_flip</span>()</a>
+<a class="sourceLine" id="cb116-14" data-line-number="14">p</a></code></pre></div>
 <p><img src="data-viz_files/figure-html/unnamed-chunk-16-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="stats" class="section level2">
-<h2><span class="header-section-number">6.4</span> Stats</h2>
+<h2><span class="header-section-number">9.4</span> Stats</h2>
 <p>While we didn’t use them for this particular plot <code>stat_*()</code> function can be a huge time saver. <code>stat_*</code> functions display statistical summaries of the data. For a bar plot there is no reason the count then number of items in a group (or percentage) on the data. Instead we can use the appropriate function have it calculated automatically for us.</p>
 <pre><code>#&gt;  [1] &quot;stat_bin&quot;         &quot;stat_bin_2d&quot;      &quot;stat_bin_hex&quot;     &quot;stat_bin2d&quot;      
 #&gt;  [5] &quot;stat_binhex&quot;      &quot;stat_boxplot&quot;     &quot;stat_contour&quot;     &quot;stat_count&quot;      
@@ -651,13 +675,14 @@ p</code></pre></div>
 <p>There are many more useful <code>stat_*()</code> functions in various packages.</p>
 </div>
 <div id="saving" class="section level2">
-<h2><span class="header-section-number">6.5</span> Saving</h2>
+<h2><span class="header-section-number">9.5</span> Saving</h2>
 <p>Save your plot with <code>ggsave</code>. Use the correct extension for the plot type you wish to save. E.g .pdf for pdf, .png for png, etc. See <code>?ggsave</code> for details and other parameters.</p>
 </div>
-<div id="exercises-3" class="section level2">
-<h2><span class="header-section-number">6.6</span> Exercises</h2>
+<div id="exercises-2" class="section level2">
+<h2><span class="header-section-number">9.6</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Modify the above code to produce the plot below. You can read in the data with: <code>dat &lt;- readRDS(&quot;./data/bargraphdat2.RDS&quot;)</code></li>
+<li>Modify the above code to produce the plot below. You can read in the data with:
+<code>dat &lt;- readRDS(&quot;./data/bargraphdat2.RDS&quot;)</code></li>
 </ol>
 <p><img src="images/dataviz/comp_recent_means.png" width="70%" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
@@ -669,7 +694,7 @@ p</code></pre></div>
 </ol>
 </div>
 <div id="resources-and-links" class="section level2">
-<h2><span class="header-section-number">6.7</span> Resources and Links</h2>
+<h2><span class="header-section-number">9.7</span> Resources and Links</h2>
 <p><strong>Learn more</strong></p>
 <ul>
 <li><p><strong>ggplot2 docs:</strong> <a href="http://ggplot2.tidyverse.org/" class="uri">http://ggplot2.tidyverse.org/</a></p></li>
@@ -720,8 +745,8 @@ p</code></pre></div>
           </div>
         </div>
       </div>
-<a href="subsetting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="relational-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -758,7 +783,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

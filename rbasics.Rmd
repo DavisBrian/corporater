@@ -22,11 +22,29 @@ In R there three basic constructs[^constructs]; objects, functions, and environm
 
 We saw this is Coding Style. Use `<-` for assignment and use `=` for parameters.  While you can use `=` for assignment it is generally considered bad practice.
 
+## Naming Rules
+
+R has strict rules about what constitutes a valid name. A __syntactic__ name must consist of letters[^letters], digits, `.` and `_`, and can't begin with `_`. Additionally, it can not be one of a list of __reserved words__ like `TRUE`, `NULL`, `if`, and `function` (see the complete list in `?Reserved`). Names that don't follow these rules are called __non-syntactic__ names, and if you try to use them, you'll get an error:
+
+```{r, eval = FALSE}
+_abc <- 1
+#> Error: unexpected input in "_"
+
+if <- 10
+#> Error: unexpected assignment in "if <-"
+```
+
+```{block type='rmdwarning'}
+While `TRUE` and `FALSE` are reserved words `T` and `F` are not.  However, you can use `T` and `F` as logical.  If someone assigns either of those a different value you will get a __very__ hard to track down bug.  Always spell out the `TRUE` and `FALSE`.
+```
+
+[^letters]: Surprisingly, what constitutes a letter is determined by your current locale. That means that the syntax of R code actually differs from computer to computer, and it's possible for a file that works on one computer to not even parse on another!
+
 ## Objects
 
 ### Vector
 
-You create a vector with `c`.  These have to be the same data type.
+You create a vector with `c`.  These have to be the same data type (See next section).
 
 ```{r}
 v <- c("my", "first", "vector")
@@ -64,6 +82,83 @@ n <- 6
 1:(n+1)      # usually what is meant
 seq_len(n+1) # a better way
 ```
+
+
+### Atomic Vectors
+
+There are many "atomic" types of data: `logical`, `integer`, `double` and `character` (in this order, see below). There are also `raw` and `complex` but they are rarely used.
+
+You can't mix types in an atomic vector (you can in a list). Coercion will automatically occur if you mix types:
+
+```{r}
+(a <- FALSE)
+typeof(a)
+
+(b <- 1:10)
+typeof(b)
+c(a, b)         ## FALSE is coerced to integer 0
+
+(c <- 10.5)
+typeof(c)
+(d <- c(b, c))  ## coerced to double
+
+c(d, "a")       ## coerced to character
+
+50 < "7"
+```
+
+You can force coercion with `as.logical`, `as.integer`, `as.double`, `as.numeric`, and `as.character`. Most of the time the coercion rules are straight forward, but not always.
+
+```{r}
+x <- c(TRUE, FALSE)
+typeof(x)
+
+as.integer(x)
+as.numeric(x)
+as.character(x)
+```
+
+However, coercion is not associative.
+
+```{r}
+x <- c(TRUE, FALSE)
+
+x2 <- as.integer(x)
+x3 <- as.numeric(x2)
+as.character(x3)
+```
+
+What would you expect this to return?
+
+```{r, eval = FALSE}
+x <- c(TRUE, FALSE)
+
+as.integer(as.character(x))
+```
+
+You can test for an "atomic" types of data with: `is.logical`, `is.integer`, `is.double`, `is.numeric`[^numeric], and `is.character`.
+
+[^numeric]: `is.numeric()` is a general test for the “numberliness” of a vector and returns TRUE for both integer and double vectors. It is not a specific test for double vectors, which are often called numeric.
+
+```{r}
+x <- c(TRUE, FALSE)
+
+is.logical(x)
+is.integer(x)
+```
+
+What would you expect these to return?
+
+```{r, eval = FALSE}
+x <- 2
+
+is.integer(x)
+is.numeric(x)
+is.double(x)
+```
+
+Missing values are specified with `NA`, which is a logical vector of length 1. `NA` will always be coerced to the correct type if used inside `c()`, or you can create `NA`s of a specific type with `NA_real_` (a double vector), `NA_integer_` and `NA_character_`.
+
 
 ### Matrix
 
@@ -104,7 +199,7 @@ x
 length(x)
 ```
 
-We'll discuss lists in detail in the next chapter.
+We'll discuss lists in more detail later in the course.
 
 ### Data frame
 
@@ -125,7 +220,7 @@ ncol(df)
 length(df)
 ```
 
-We'll discuss data frames in greater detail in the next chapter.
+We'll discuss data frames in greater detail later in the course.
 
 ## Comparision 
 
@@ -180,7 +275,6 @@ R has two versions of the logical operators `&` and `&&`  (`|` and `||`).  The s
 df$x && df$y  # only and the first elements
 df$x || df$y  # only or the first elements
 ```
-
 
 This is a common source of bugs in control structures (if, for, while, etc) where you must have a single TRUE / FALSE. 
 
@@ -325,165 +419,11 @@ Nested loops are commonly needed for multidimensional or hierarchical
 data structures (e.g. matrices, lists). Be careful with nesting
 though. Nesting beyond 2 to 3 levels often makes it difficult to
 read/understand the code. If you find yourself in need of a large
-number of nested loops, you may want to break up the loops by using
+number of nested loops, you probably want to break up the loops by using
 functions (discussed later).
 ```
 
-### `while` Loops
-
-While loops begin by testing a condition. If it is true, then they
-execute the loop body. Once the loop body is executed, the condition
-is tested again, and so forth, until the condition is false, after
-which the loop exits.
-
-```{r}
-count <- 0
-while(count < 10) {
-        print(count)
-        count <- count + 1
-}
-```
-
-```{block2, type='rmdwarning'}
-While loops can potentially result in infinite loops if not written
-properly. Use with care!
-```
-
-Sometimes there will be more than one condition in the test.
-
-```{r}
-z <- 5
-set.seed(1)
-
-while(z >= 3 && z <= 10) {
-        coin <- rbinom(1, 1, 0.5)
-        
-        if(coin == 1) {  ## random walk
-                z <- z + 1
-        } else {
-                z <- z - 1
-        } 
-}
-print(z)
-```
-
-Conditions are always evaluated from left to right. For example, in
-the above code, if `z` were less than 3, the second test would not
-have been evaluated.
-
-### `repeat` Loops
-
-`repeat` initiates an infinite loop right from the start. These are
-not commonly used in statistical or data analysis applications but
-they do have their uses. The only way to exit a `repeat` loop is to
-call `break`.
-
-One possible paradigm might be in an iterative algorithm where you may
-be searching for a solution and you don't want to stop until you're
-close enough to the solution. In this kind of situation, you often
-don't know in advance how many iterations it's going to take to get
-"close enough" to the solution.
-
-```{r,eval=FALSE,prompt=FALSE}
-x0 <- 1
-tol <- 1e-8
-
-repeat {
-        x1 <- computeEstimate()
-        
-        if(abs(x1 - x0) < tol) {  ## Close enough?
-                break
-        } else {
-                x0 <- x1
-        } 
-}
-```
-
-```{block type='rmdnote'}
-The above code will not run since the `computeEstimate()` function is not defined. I just made it up for the purposes of this demonstration.
-```
-
-The loop above is a bit dangerous because there's no guarantee it will ever stop. You could get in a situation where the values of `x0` and `x1`
-oscillate back and forth and never converge. Better to set a hard
-limit on the number of iterations by using a `for` loop and then
-report whether convergence was achieved or not.
-
-### `next`, `break`
-
-While not used very often it's nice to know about these.
-
-`next` is used to skip an iteration of a loop. 
-
-```{r,eval=FALSE,prompt=FALSE}
-for(i in 1:100) {
-        if(i <= 20) {
-                ## Skip the first 20 iterations
-                next                 
-        }
-        ## Do something here
-}
-```
-
-`break` is used to exit a loop immediately, regardless of what
-iteration the loop may be on.
-
-```{r,eval=FALSE,prompt=FALSE}
-for(i in 1:100) {
-      print(i)
-
-      if(i > 20) {
-              ## Stop loop after 20 iterations
-              break  
-      }		
-}
-```
-
-### Looping 
-
-For loops are so common that that R has some functions which implement looping in a compact form to make your life easier.  For a more in depth look see [this](https://bookdown.org/rdpeng/rprogdatascience/loop-functions.html)
-
-*  `apply` is generic: applies a function to a matrix's rows or columns (or, more generally, to dimensions of an array)
-*  `lapply` is a list apply which acts on a list or vector and returns a list.
-*  `sapply` is a simple lapply but defaults to returning a vector (or matrix) if possible.
-*  `vapply` is a verified apply.  This is a sapply with the return object type pre-specified.
-*  `rapply` is a recursive apply for nested lists, i.e. lists within lists
-*  `tapply` is a tagged apply where the tags identify the subsets to apply a function
-*  `mapply` is a multivariate apply for functions that have multiple arguments.
-*  `Map` is a wrapper to mapply with SIMPLIFY = FALSE, so it is guaranteed to return a list.
-*  `replicate` is a wrapper around sapply for repeated evaluation of an expression
-
-```{r}
-# Two dimensional matrix
-M <- matrix(sample(1:16), 4, 4)
-M
-# apply min to rows
-apply(M, 1, min)
-# apply max to columns
-apply(M, 2, max)
-```
-
-If you want row/column means or sums for a 2D matrix, be sure to investigate the highly optimized, lightning-quick `colMeans`, `rowMeans`, `colSums`, `rowSums`.
-
-```{r}
-x <- list(a = 1, b = 1:3, c = 10:25)
-x
-lapply(x, FUN = length) 
-sapply(x, FUN = length) 
-vapply(x, FUN = length, FUN.VALUE = 0L) 
-
-x <- 1:20
-y <- factor(rep(letters[1:5], each = 4)) # a vector of the same length as x
-tapply(x, y, sum) 
-
-# Sums the 1st elements, the 2nd elements, etc. 
-mapply(sum, 1:5, 1:5, 1:5) 
-
-# find the mean of 10 random normal variables, 5 times
-replicate(5, mean(rnorm(10)))
-```
-
-`tapply` is in a similar spirit to a common data analysis paradigm called split-apply-combine where we split our data set based on a group, apply a function or code to it, and combine the results back together.  We will revisit this paradigm in greater detail when we get to _R for Data Science_.  
-
+We will discus looping and the other control structures in more detail when we get to the section on iterators.
 
 ## Vectorization & Recycling
 
@@ -576,7 +516,7 @@ pi_naive <- function(N) {
   4*hits/N
 }
 N <- 1e6
-system.time(pi_naive(N))
+(t1 <- system.time(pi_naive(N)))
 ```
 
 That's a long run time (and bad estimate).  Let's vectorize it.
@@ -588,243 +528,18 @@ pi_vect <- function(N) {
   hits <- sum(U1^2 + U2^2 < 1)
   4*hits/N
 }
-system.time(pi_vect(N))
+(t2 <- system.time(pi_vect(N)))
 ```
 
-That is ~20x speed up.
-
-## Function Basics
-
-> To understand computations in R, two slogans are helpful:  
-> - Everything that exists is an object.  
-> - Everything that happens is a function call.  
-> 
-> -- John Chambers
-
-Functions are an central part of robust R programming and we will spend a significant amount of time writing functions.
-
-Functions in R are "first class objects", which means that they can be
-treated much like any other R object. Importantly,
-
-- Functions can be passed as arguments to other functions. This is very handy for the various apply functions, like `lapply()` and `sapply()`.
-
-- Functions can be nested, so that you can define a function inside of
-  another function
-
-If you're familiar with common language like C, these features might appear a bit strange. However, they are really important in R and can be useful for data analysis.
-
-- Functions are a means of **abstraction**. A concept/computation is
-  encapsulated/isolated from the rest with a function.
-- Functions should **do one thing**, and do it well (compute, or plot,
-  or save, ... not all in one go).
-- **Side effects**: your functions should not have any (unless, of
-  course, that is the main point of that function - plotting, write to
-  disk, ...). Functions shouldn't make any changes in any
-  environment. The only return their output.
-- **Do not use global variables**. Everything the function needs is
-  being passed as an argument. Function must be **self-contained**.
-- Function streamline code and process
-
-Advice from the [R Inferno](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf):
-
-Make your functions as simple as possible. Simple has many advantages:
-
-- Simple functions are likely to be human efficient: they will be easy
-  to understand and to modify.
-- Simple functions are likely to be computer efficient.
-- Simple functions are less likely to be buggy, and bugs will be
-  easier to fix.
-- (Perhaps ironically) simple functions may be more general—thinking
-  about the heart of the matter often broadens the application.
-
-Functions can be
-
-1. Correct.
-2. An error occurs that is clearly identified.
-3. An obscure error occurs.
-4. An incorrect value is returned.
-
-We like __category 1__. __Category 2__ is the right behavior if the inputs do not make sense, but not if the inputs are sensible. __Category 3__ is an unpleasant place for your users, and possibly for you if the users have access to you.  __Category 4__ is by far the worst place to be - the user has no reason to believe that anything is wrong. Steer clear of category 4.
-
-### Your First Function
-
-All R functions have three parts: 
-
-* the `body()`, the code inside the function.
-
-* the `formals()`, the list of arguments which controls how you can call the function.
-
-* the `environment()`, the "map" of the location of the function's variables.
-
-When you print a function in R, it shows you these three important components. If the environment isn't displayed, it means that the function was created in the global environment.
+The speed up from vectorization is impressive.
 
 ```{r}
-myadd <- function(x, y) {
-  cat(paste0("x = ", x, "\n"))
-  cat(paste0("y = ", y, "\n"))
-  x + y
-}
-myadd(1, 3)            # arguments by position
-myadd(x = 1, y = 3)    # arguments by name
-myadd(y = 3, x = 1)    # name order doesn't matter
+floor(t1/t2)
 ```
 
-- The body of the function is everything between the `{ }`.  Note this does the computation __AND__ returns the result.
-- `x` and `y` are the arguments to the function.
-- the environment this function lives in is the global environment. (We'll discuss environments more in the next section.)
+## Reading For Next Class
 
-```{block2, type='rmdtip'}
-Even though it’s legal, I don’t recommend messing around with the order of the arguments too much, since it can lead to some confusion.
-```
-
-You can also specify default values for your arguments.  Default values _should_ be the values most often used.  `rnorm` uses the default of `mean = 0` and `sd = 1`.  We usually want to sample from the standard normal distribution, but we are not forced to. 
-
-```{r}
-myadd2 <- function(x = 3, y = 0){
-  cat(paste0("x = ", x, "\n"))
-  cat(paste0("y = ", y, "\n"))
-  x + y
-}
-myadd2()              # use the defaults
-myadd2(x = 1)
-myadd2(y = 1)
-myadd2(x = 1, y = 1)
-```
-
-By default the last line of the function is returned.  Thus, there is no reason to explicitly call `return`, unless you are returning from the function early.  Inside functions use `stop` to return error messages, `warning` to return warning messages, and `message` to print a message to the console.
-
-```{r warning=TRUE, error=TRUE}
-f <- function(age) {
-  if (age < 0) {
-    stop("age must be a positive number")
-  }
-  
-  if (age < 18) {
-    warning("Check your data.  We only care about adults.")
-  }
-  
-  message(paste0("Your person is ", age, " years old"))
-  invisible()
-}
-
-f(-10)
-f(10)
-f(30)
-```
-
-### Lazy Evaluation
-
-R is lazy.  Arguments to functions are evaluated _lazily_, that is they are evaluated only as needed in the body of the function.
-
-In this example, the function `f()` has two arguments: `a` and `b`.
-
-```{r}
-f <- function(a, b) {
-  a^2
-} 
-
-f(2)     # this works
-f(2, 1)  # this does too
-```
-
-This function never actually uses the argument `b`, so calling `f(2)` or `f(2, 1)` will not produce an error because the 2 gets positionally matched to a. It’s common to write a function that does not use an argument and not notice it simply because R never throws an error.
-
-### The `...` Argument
-
-There is a special argument in R known as the `...` argument, which indicate a variable number of arguments that are usually passed on to other functions. The `...` argument is often used when extending another function and you don’t want to copy the entire argument list of the original function
-
-For example, a custom plotting function may want to make use of the default `plot()` function along with its entire argument list. The function below changes the default for the `type` argument to the value `type = "l"` (the original default was `type = "p"`).
-
-```r
-myplot <- function(x, y, type = "l", ...) {
-        plot(x, y, type = type, ...)         ## Pass '...' to 'plot' function
-}
-```
-The `...` argument is also necessary when the number of arguments passed to the function cannot be known in advance. This is clear in functions like `paste()` and `cat()`.
-
-```{r}
-args(paste)
-args(cat)
-```
-
-Because both `paste()` and `cat()` print out text to the console by combining multiple character vectors together, it is impossible for those functions to know in advance how many character vectors will be passed to the function by the user. So the first argument to either function is `...`.
-
-One catch with `...` is that any arguments that appear _after_ `...` on the argument list must be named explicitly and cannot be partially matched or matched positionally.
-
-Take a look at the arguments to the `paste()` function.
-
-```{r}
-args(paste)
-```
-
-With the `paste()` function, the arguments `sep` and `collapse` must be named explicitly and in full if the default values are not going to be used.
-
-## Environments & Scoping
-
-An __environment__ is a collection of (symbol, value) pairs, i.e. `x` is a symbol and `3.14` might be its value. Every environment has a parent environment and it is possible for an environment to have multiple “children”. The only environment without a parent is the empty environment.  
-
-__Scoping__ is the set of rules that govern how R looks up the value of a symbol. In the example below, scoping is the set of rules that R applies to go from the symbol `x` to its value `10`:
-
-```{r}
-x <- 10
-x
-```
-
-R has two types of scoping: lexical scoping, implemented automatically at the language level, and dynamic scoping, used in select functions to save typing during interactive analysis. We discuss lexical scoping here because it is intimately tied to function creation. Dynamic scoping is an advanced topic and is discussed in [Advanced R](http://adv-r.had.co.nz).
-
-How do we associate a value to a free variable? There is a search process that occurs that goes as follows:
-
-If the value of a symbol is not found in the environment in which a function was defined, then the search is continued in the parent environment.
-The search continues up the sequence of parent environments until we hit the top-level environment; this usually the global environment (workspace) or the namespace of a package.
-After the top-level environment, the search continues down the search list until we hit the empty environment.
-If a value for a given symbol cannot be found once the empty environment is arrived at, then an error is thrown.
-
-```{r}
-x <- 0
-f <- function(x = -1) {
-  x <- 1
-  y <- 2
-  c(x, y)
-}
-
-g <- function(x = -1) {
-  y <- 1
-  c(x, y)
-}
-
-h <- function() {
-  y <- 1
-  c(x, y)
-}
-```
-
-What do the following return?
-
-- `f()`
-- `g()`
-- `h()`
-- `g(h())`
-- `f(g())`
-- `g(f())`
-
-Unlike most languages you can define a function within a function.  This nested function only lives inside the parent function.
-
-```{r error=TRUE}
-make.power <- function(n) {
-  pow <- function(x) {
-    x^n 
-  }
-  pow
-}
-
-make.power(4)
-cube <- make.power(3)
-square <- make.power(2)
-
-x <- 1
-n <- 2
-pow(x=4)
-```
+1. Read the chapter on [Tibbles](http://r4ds.had.co.nz/tibbles.html)
 
 ## Exercises
 

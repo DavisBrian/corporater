@@ -46,14 +46,14 @@ including version and build identification.  As noted in the FDA guidance, E9
 Statistical Principles for Clinical Trials" [FDA Statistical Software Clarifying Statement](https://www.fda.gov/downloads/forindustry/datastandards/studydatastandards/ucm587506.pdf)
 
 
-Good [write up](http://blog.revolutionanalytics.com/2017/06/r-fda.html) with links to several FDA talks on the subject. [or](https://thomaswdinsmore.com/2014/12/01/sas-versus-r-part-1/)
+Good [write up](http://blog.revolutionanalytics.com/2017/06/r-fda.html) with links to several FDA talks on the [subject](https://thomaswdinsmore.com/2014/12/01/sas-versus-r-part-1/).
 
 
 ## Prerequisites
 
 - We will assume you have minimal experience and knowledge of R
 - IT should have installed:
-    - [R](https://cran.r-project.org/) version 3.4.4
+    - [R](https://cran.r-project.org/) version 3.5.1
     - [RStudio](https://www.rstudio.com/products/rstudio/download/#download) version 1.1 
     - [MiTeX](https://miktex.org/)
     - [RTools](https://cran.r-project.org/bin/windows/Rtools/) version 3.4
@@ -64,27 +64,30 @@ Good [write up](http://blog.revolutionanalytics.com/2017/06/r-fda.html) with lin
 
 It is impossible to become an expert in R in only one course even a multi-week one. Our aim is at gaining a wide understanding on many aspects of R as used in a corporate / production environment. It will roughly be based on [R for Data Science](http://r4ds.had.co.nz).  While this is an *excellent* resource it does not cover much of what we will need on a routine basis.  Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.
 
+We will focus most of our attention to the *tidyverse* family of packages for data analysis. The *tidyverse* is an opinionated [collection of R packages](https://www.tidyverse.org/packages/) designed for data science. All packages share an underlying design philosophy, grammar, and data structures.
+
 This is your course so if you feel we need to hit an area deeper, or add content based on a current need, let me know an we will work to adjust it.
 
 The **rough** topic list of the course:
 
 1. Good programming practices
-2. Basics of R Programming
-3. Importing / Exporting Data
-4. Tidying Data
-5. Visualizing Data
-6. Functions
-7. Strings
-8. Dates and Time
-9. Communicating Results
+1. Basics of R Programming
+1. Importing / Exporting Data
+1. Tidying Data
+1. Visualizing Data
+1. Functions
+1. Strings
+1. Dates and Time
+1. Communicating Results
+1. Iteration
 
-Making Code Production Ready:
+<!-- Making Code Production Ready: -->
 
-10. Functions (part II)
-11. Assertions
-12. Unit tests
-13. Documentation
-14. Communicating Results (part II)
+<!-- 10. Functions (part II) -->
+<!-- 11. Assertions -->
+<!-- 12. Unit tests -->
+<!-- 13. Documentation -->
+<!-- 14. Communicating Results (part II) -->
 
 ## Structure
 
