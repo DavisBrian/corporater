@@ -2,13 +2,17 @@
 
 # R Basics {#baser-rbasics}
 
-Here is  a quick overview of the basics.  Next we'll dive deep into R's basic data structures and then how to subset these data structures.  This will give us a good overview of base R and the background needed to dive into __R for Data Science__.
+Here is  a quick overview of the basics.  We will dive deep into R's basic data structures and then how to subset those data structures later in the course.  This will give us a good overview of base R and the background needed to dive into [R for Data Science](http://r4ds.had.co.nz/index.html).
 
 The three most important functions in R `?`, `??`, and `str`:
 
 - `?topic` provides access to the documentation for _topic_.
 - `??topic` searches the documentation for _topic_.
 - `str` displays the structure of an R object in human readable form.
+
+```{block2, type='rmdtip'}
+`glimpse` is a tidyverse equivalent to `str` but with nicer output for complicated data structures.
+```
 
 See this [vocabulary list](http://adv-r.had.co.nz/Vocabulary.html) for a good starting point on the basics functions in base R and some important libraries.  
 
@@ -516,7 +520,8 @@ pi_naive <- function(N) {
   4*hits/N
 }
 N <- 1e6
-(t1 <- system.time(pi_naive(N)))
+(t1 <- system.time(pi_est_naive <- pi_naive(N)))
+pi_est_naive
 ```
 
 That's a long run time (and bad estimate).  Let's vectorize it.
@@ -528,7 +533,8 @@ pi_vect <- function(N) {
   hits <- sum(U1^2 + U2^2 < 1)
   4*hits/N
 }
-(t2 <- system.time(pi_vect(N)))
+(t2 <- system.time(pi_est_vect <- pi_vect(N)))
+pi_est_vect
 ```
 
 The speed up from vectorization is impressive.
@@ -540,6 +546,10 @@ floor(t1/t2)
 ## Reading For Next Class
 
 1. Read the chapter on [Tibbles](http://r4ds.had.co.nz/tibbles.html)
+1. Try the exercises at the end of the chapter.
+    - Problem 2: Create a tibble (or convert the data frame) and compare.  Also compare `str` or `glimpse` on the objects.
+    - Problem 3: Try to extract the column "mpg" from the mtcars data frame (convert to a tibble and compare) using `var <- "mpg"`.  This illustrates a common source of confusion for people coming from SAS.
+    - Problem 4: non-syntactic names usually occur when importing data from various file types.  Knowing how to use / correct them is very useful.  Don't worry about creating the plot.
 
 ## Exercises
 
@@ -565,9 +575,9 @@ The straightforward implementation using an R loop would look like this:
 
 ```{r}
 GL_naive <- function (limit) {
-  p = 0
+  p <- 0
   for (n in 0:limit) {
-    p = (-1)^n/(2 * n + 1) + p
+    p <- (-1)^n/(2 * n + 1) + p
     }
   4*p
 }

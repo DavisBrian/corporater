@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="good-practices.html">
+<link rel="prev" href="baser-rbasics.html">
+<link rel="next" href="data-transformation.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -211,88 +211,146 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preamble-intro" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<div id="course-philosophy" class="section level2">
-<h2><span class="header-section-number">1.1</span> Course Philosophy</h2>
-<blockquote>
-<p>“The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly. A programmer is ideally an essayist who works with traditional aesthetic and literary forms as well as mathematical concepts, to communicate the way that an algorithm works and to convince a reader that the results will be correct.”</p>
-<p>— Donald Knuth</p>
-</blockquote>
-<div id="reproducible-research-approach" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Reproducible Research Approach</h3>
-<p><a href="https://www.coursera.org/learn/reproducible-research/lecture/FvOGB/what-is-reproducible-research-about">What is Reproducible Research About?</a></p>
-<p>Reproducible research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them. There are two basic reasons to be concerned about making your research reproducible. The first is <em>to show evidence of the correctness of your results</em>. The second reason to aspire to reproducibility is <em>to enable others to make use of our methods and results</em>.</p>
-<p>Modern challenges of reproducibility in research, particularly computational reproducibility, have produced a lot of discussion in papers, blogs and videos, some of which are listed <a href="http://ropensci.github.io/reproducibility-guide/sections/references/">here</a> and <a href="https://reproducibleresearch.net/">here</a>.</p>
-<blockquote>
-<p>Conclusions in experimental psychology often are the result of null hypothesis significance testing. Unfortunately, there is evidence ((from eight major psychology journals published between 1985 and 2013) that roughly half of all published empirical psychology articles contain at least one inconsistent p-value, and around one in eight articles contain a grossly inconsistent p-value that makes a non-significant result seem significant, or vice versa. <a href="https://mbnuijten.com/statcheck/">statscheck</a> and <a href="http://blog.revolutionanalytics.com/2016/10/statcheck.html">here</a></p>
-</blockquote>
-<blockquote>
-<p>“A key component of scientific communication is sufficient information for other researchers in the field to reproduce published findings. For computational and data-enabled research, this has often been interpreted to mean making available the raw data from which results were generated, the computer code that generated the findings, and any additional information needed such as workflows and input parameters. Many journals are revising author guidelines to include data and code availability. We chose a random sample of 204 scientific papers published in the journal <strong>Science</strong> after the implementation of their policy in February 2011. We found that were able to reproduce the findings for 26%.” <a href="http://www.pnas.org/content/115/11/2584">Proceedings of the National Academy of Sciences of the United States of America</a></p>
-</blockquote>
-<blockquote>
-<p>“Starting September 1 2016, JASA ACS will require code and data as a minimum standard for reproducibility of statistical scientific research.” <a href="https://magazine.amstat.org/blog/2016/07/01/jasa-reproducible16/">JASA</a></p>
-</blockquote>
-</div>
-<div id="fda-validation" class="section level3">
-<h3><span class="header-section-number">1.1.2</span> FDA Validation</h3>
-<blockquote>
-<p>“Establishing documented evidence which provides a high degree of assurance that a specific process will consistently produce a product meeting its predetermined specifications and quality attributes.” -Validation as defined by the FDA in <strong>Validation of Systems for 21 CFR Part 11 Compliance</strong></p>
-</blockquote>
-</div>
-<div id="the-sas-myth" class="section level3">
-<h3><span class="header-section-number">1.1.3</span> The SAS Myth</h3>
-<p>Contrary to what we hear the FDA does not require SAS to be used <em>EVER</em>. There are instances that you have to deliver data in XPORT format though which is open and implemented in many programming languages.</p>
-<blockquote>
-<p>“FDA does not require use of any specific software for statistical analyses, and statistical software is not explicitly discussed in Title 21 of the Code of Federal Regulations [e.g., in 21CFR part 11]. However, the software package(s) used for statistical analyses should be fully documented in the submission, including version and build identification. As noted in the FDA guidance, E9 Statistical Principles for Clinical Trials” <a href="https://www.fda.gov/downloads/forindustry/datastandards/studydatastandards/ucm587506.pdf">FDA Statistical Software Clarifying Statement</a></p>
-</blockquote>
-<p>Good <a href="http://blog.revolutionanalytics.com/2017/06/r-fda.html">write up</a> with links to several FDA talks on the <a href="https://thomaswdinsmore.com/2014/12/01/sas-versus-r-part-1/">subject</a>.</p>
-</div>
-</div>
-<div id="prerequisites" class="section level2">
-<h2><span class="header-section-number">1.2</span> Prerequisites</h2>
+<div id="data-import" class="section level1">
+<h1><span class="header-section-number">4</span> Data Import</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<p>Since R is a “glue” language. You can read in from just about any standard data source. We will only cover the most common types, but you can also read from pdfs (package pdftools), web scraping (package rvest and httr), twitter (package twitteR), Facebook (package Rfacebook), and many many more.</p>
+<div id="text-files" class="section level2">
+<h2><span class="header-section-number">4.1</span> Text Files</h2>
+<div id="readr" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> readr</h3>
+<p>One of the most common data sources are text files. Usually these come with a delimiter, such a commas, semicolons, or tabs. The <strong>readr</strong> package is part of the core tidyverse.</p>
+<p>Compared to Base R <code>read</code> functions, <strong>readr</strong> are:</p>
 <ul>
-<li>We will assume you have minimal experience and knowledge of R</li>
-<li>IT should have installed:
+<li>They are typically much faster (~10x)</li>
+<li>Long running reads automatically get a progress bar</li>
+<li>Default to <strong>tibbles</strong> not data frames</li>
+<li>Does not convert characters to factors</li>
+<li>More reproducible. (Base R read functions inherit properties from the OS)</li>
+</ul>
+
+<div class="rmdtip">
+If you’re looking for raw speed, try <code>data.table::fread()</code>. It doesn’t fit quite so well into the tidyverse, but it can be quite a bit faster.
+</div>
+
 <ul>
-<li><a href="https://cran.r-project.org/">R</a> version 3.5.1</li>
-<li><a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> version 1.1</li>
-<li><a href="https://miktex.org/">MiTeX</a></li>
-<li><a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> version 3.4</li>
-</ul></li>
-<li>We will install other dependencies throughout the course.</li>
+<li><code>read_csv()</code> reads comma delimited files</li>
+<li><code>read_csv2()</code> reads semicolon separated files (common in countries where , is used as the decimal place)</li>
+<li><code>read_tsv()</code> reads tab delimited files</li>
+<li><code>read_delim()</code> reads in files with any delimiter</li>
+<li><code>read_fwf()</code> reads fixed width files</li>
+</ul>
+<p>All the <code>read_*</code> functions follow the same basic structure. The first argument is the file to read in, followed by the other parameters.</p>
+<div class="rmdnote">
+<p>
+Files ending in .gz, .bz2, .xz, or .zip will be automatically uncompressed. Files starting with <a href="http://" class="uri">http://</a>, <a href="https://" class="uri">https://</a>, <a href="ftp://" class="uri">ftp://</a>, or ftps:// will be automatically downloaded. Remote gz files can also be automatically downloaded and decompressed.
+</p>
+</div>
+<p>Some useful parameters are: - <code>col_types</code> for specifying the data types for each column. - <code>skip = n</code> to skip the first <code>n</code> lines - <code>comment = &quot;#&quot;</code> to drop all lines that start with <code>#</code> - <code>locale</code> locale controls defaults that vary from place to place</p>
+</div>
+<div id="base-r" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> base R</h3>
+<p>The tidyverse packages, and <strong>readr</strong> make some simplifying assumptions. The equivalent base R functions are:</p>
+<ul>
+<li><code>read.csv()</code> reads comma delimited files</li>
+<li><code>read.csv2()</code> reads semicolon separated files</li>
+<li><code>read.tsv()</code> reads tab delimited files</li>
+<li><code>read.delim()</code> reads in files with any delimiter</li>
+<li><code>read.fwf()</code> reads fixed width file</li>
 </ul>
 </div>
-<div id="content" class="section level2">
-<h2><span class="header-section-number">1.3</span> Content</h2>
-<p>It is impossible to become an expert in R in only one course even a multi-week one. Our aim is at gaining a wide understanding on many aspects of R as used in a corporate / production environment. It will roughly be based on <a href="http://r4ds.had.co.nz">R for Data Science</a>. While this is an <em>excellent</em> resource it does not cover much of what we will need on a routine basis. Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.</p>
-<p>We will focus most of our attention to the <em>tidyverse</em> family of packages for data analysis. The <em>tidyverse</em> is an opinionated <a href="https://www.tidyverse.org/packages/">collection of R packages</a> designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
-<p>This is your course so if you feel we need to hit an area deeper, or add content based on a current need, let me know an we will work to adjust it.</p>
-<p>The <strong>rough</strong> topic list of the course:</p>
-<ol style="list-style-type: decimal">
-<li>Good programming practices</li>
-<li>Basics of R Programming</li>
-<li>Importing / Exporting Data</li>
-<li>Tidying Data</li>
-<li>Visualizing Data</li>
-<li>Functions</li>
-<li>Strings</li>
-<li>Dates and Time</li>
-<li>Communicating Results</li>
-<li>Iteration</li>
-</ol>
-<!-- Making Code Production Ready: -->
-<!-- 10. Functions (part II) -->
-<!-- 11. Assertions -->
-<!-- 12. Unit tests -->
-<!-- 13. Documentation -->
-<!-- 14. Communicating Results (part II) -->
 </div>
-<div id="structure" class="section level2">
-<h2><span class="header-section-number">1.4</span> Structure</h2>
-<p>My current thoughts are to meet an hour a week and discuss a topic. We will not be going strictly through the R4DS, but will use it as our foundation into the topic at hand. Then give some exercises due for the next week which we go over the solutions. We will incorporate these exercises into an R package(s?) so we will have a collection of useful reusable code for the future.</p>
-<p>Open to other ideas as we go along.</p>
-<p>I’m going to try to keep the assignments related to our current work so we can work on the class during work hours. Bring what you are working on and we will see how we can fit it into the class.</p>
+<div id="sas-files" class="section level2">
+<h2><span class="header-section-number">4.2</span> SAS Files</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)</code></pre></div>
+<p>The <strong>haven</strong> library, which is part of the tidyverse but not part of the core tidyverse package, must be loaded explicitly. <strong>haven</strong> is the most robust option for reading SAS data files. Reading supports both sas7bdat files and the accompanying sas7bdat files that SAS uses to record value labels.</p>
+<p><code>read_sas()</code> reads <code>.sas7bdat</code> + <code>sas7bcat</code> files <code>read_xpt()</code> reads SAS transport files</p>
+<div class="rmdnote">
+<p>
+The <strong>haven</strong> package can also read in:
+</p>
+<ul>
+<li>
+SPSS files with <code>read_sav()</code> or <code>read_por()</code>
+</li>
+<li>
+Stata files with <code>read_dta()</code>
+</li>
+</ul>
+</div>
+<p>SAS has the notion of a “labelled” variable (so do Stata and SPSS). These are similar to factors, but:</p>
+<ul>
+<li><p>Integer, numeric and character vectors can be labelled.</p></li>
+<li><p>Not every value must be associated with a label.</p></li>
+</ul>
+<p>Factors, by contrast, are always integers and every integer value must be associated with a label.</p>
+<p>Haven provides a labelled class to model these objects. It doesn’t implement any common methods, but instead focuses of ways to turn a labelled variable into standard R variable:</p>
+<ul>
+<li><p>as_factor(): turns labelled integers into factors. Any values that don’t have a label associated with them will become a missing value. (NOTE: there’s no way to make as.factor() work with labelled variables, so you’ll need to use this new function.)</p></li>
+<li><p>zap_labels(): turns any labelled values into missing values. This deals with the common pattern where you have a continuous variable that has missing values indicated by sentinel values.</p></li>
+</ul>
+
+<div class="rmdwarning">
+There are other packages that can read SAS data files, namely <code>sas7bdat</code> and <code>foreign</code>. <code>sas7bdat</code> is no longer being maintained for the last several years and is not recommended for production use. While <code>foreign</code> only reads SAS XPORT format.
+</div>
+
+</div>
+<div id="excel" class="section level2">
+<h2><span class="header-section-number">4.3</span> Excel</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)</code></pre></div>
+<p>The <strong>readxl</strong> package makes it easy to get data out of Excel and into R. It is designed to work with tabular data. <strong>readxl</strong> supports both the legacy .xls format and the modern xml-based .xlsx format. The <strong>readxl</strong> library, which is part of the tidyverse but not part of the core tidyverse package, must be loaded explicitly.</p>
+<p>There are two main functions in the <strong>readxl</strong> package.</p>
+<ul>
+<li><code>excel_sheets()</code> lists all the sheets in an excel spreadsheet.</li>
+<li><code>read_excel()</code> reads in xls and xlsx files based on the file extension</li>
+</ul>
+<div class="rmdnote">
+<p>
+If you want to prevent <code>read_excel()</code> from guessing which spreadsheet type you have you can use <code>read_xls()</code> or <code>read_xlsx()</code> directly.
+</p>
+</div>
+<p>There are several other packages which also can read excel files.</p>
+<ul>
+<li><code>openxlsx</code> - can read but is tricky to extract data, but shines in writing Excel files.</li>
+<li><code>xlsx</code> requires Java, usually cannot get corporate IT to install it on Windows.</li>
+<li><code>XLConnect</code> requires Java, usually cannot get corporate IT to install it on Windows.</li>
+<li><code>gdata</code> required Perl, usually cannot get corporate IT to install it on Windows machines.</li>
+<li><code>xlsReadWrite</code> - Does not support .xlsx files</li>
+</ul>
+</div>
+<div id="databases" class="section level2">
+<h2><span class="header-section-number">4.4</span> Databases</h2>
+<p>Here we have to use two (or three) packages. The <strong>DBI</strong> package is used to make the network connection to the database. The connection string should look familiar if you have ever made a connection to a database from another program. As database vendors have slightly different interfaces and connection types. You will have to use the package for your particular database backend. Some common ones include:</p>
+<ul>
+<li><code>RSQLite::SQLite()</code> for SQLite</li>
+<li><code>RMySQL::MySQL()</code> for MySQL</li>
+<li><code>RPostgreSQL::PostgreSQL()</code> for PostgreSQL</li>
+<li><code>odbc::odbc()</code> for Microsoft SQL Server</li>
+<li><code>bigrquery::bigquery()</code> for BigQuery</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(odbc<span class="op">::</span><span class="kw">odbc</span>(),               <span class="co"># for a Mircosoft server</span>
+                 <span class="dt">dsn      =</span> <span class="st">&quot;my_dsn&quot;</span>, 
+                 <span class="dt">server   =</span> <span class="st">&quot;our_awesome_server&quot;</span>,
+                 <span class="dt">database =</span> <span class="st">&quot;cool_db&quot;</span>)</code></pre></div>
+<p>To interact with a database you usually use SQL, the Structured Query Language. SQL is over 40 years old, and is used by pretty much every database in existence.</p>
+<p>This leads to two methods to extract data from a database which boil down to:</p>
+<ul>
+<li>Pull the entire table into a data frame with <code>dbReadTable()</code></li>
+<li>Write SQL for you specific dialect and pull into a data frame with <code>dbGetQuery()</code></li>
+</ul>
+<div class="rmdnote">
+<p>
+Another popular package for connecting to databases is <strong>RODBC</strong>. It tends to be a bit slower than <strong>DBI</strong>.
+</p>
+</div>
+<p>Alternatively, you can use the <strong>dbplyr</strong> and the connection to the database to auto generate SQL queries using standard dplyr syntax.</p>
+<p>The goal of <strong>dbplyr</strong> is to automatically generate SQL for you so that you’re not forced to use it. However, SQL is a very large language and <strong>dbplyr</strong> doesn’t do everything. It focuses on SELECT statements, the SQL you write most often as an analysis. See <code>vignette((&quot;dbplyr&quot;))</code> for a in depth discussion.</p>
+</div>
+<div id="reading-for-next-class-2" class="section level2">
+<h2><span class="header-section-number">4.5</span> Reading For Next Class</h2>
+<ol style="list-style-type: decimal">
+<li>Read Chapter on <a href="http://r4ds.had.co.nz/pipes.html">Pipes</a>.</li>
+</ol>
 
 </div>
 </div>
@@ -301,8 +359,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="good-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="baser-rbasics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -322,7 +380,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DavisBrian/corporater/edit/master/intro.Rmd",
+"link": "https://github.com/DavisBrian/corporater/edit/master/data-import.Rmd",
 "text": "Edit"
 },
 "download": ["rclassnotes.pdf", "rclassnotes.epub"],

@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="good-practices.html">
+<link rel="prev" href="data-import.html">
+<link rel="next" href="appendix-resources.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -211,98 +211,215 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="preamble-intro" class="section level1">
-<h1><span class="header-section-number">1</span> Introduction</h1>
-<div id="course-philosophy" class="section level2">
-<h2><span class="header-section-number">1.1</span> Course Philosophy</h2>
-<blockquote>
-<p>“The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly. A programmer is ideally an essayist who works with traditional aesthetic and literary forms as well as mathematical concepts, to communicate the way that an algorithm works and to convince a reader that the results will be correct.”</p>
-<p>— Donald Knuth</p>
-</blockquote>
-<div id="reproducible-research-approach" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Reproducible Research Approach</h3>
-<p><a href="https://www.coursera.org/learn/reproducible-research/lecture/FvOGB/what-is-reproducible-research-about">What is Reproducible Research About?</a></p>
-<p>Reproducible research is the idea that data analyses, and more generally, scientific claims, are published with their data and software code so that others may verify the findings and build upon them. There are two basic reasons to be concerned about making your research reproducible. The first is <em>to show evidence of the correctness of your results</em>. The second reason to aspire to reproducibility is <em>to enable others to make use of our methods and results</em>.</p>
-<p>Modern challenges of reproducibility in research, particularly computational reproducibility, have produced a lot of discussion in papers, blogs and videos, some of which are listed <a href="http://ropensci.github.io/reproducibility-guide/sections/references/">here</a> and <a href="https://reproducibleresearch.net/">here</a>.</p>
-<blockquote>
-<p>Conclusions in experimental psychology often are the result of null hypothesis significance testing. Unfortunately, there is evidence ((from eight major psychology journals published between 1985 and 2013) that roughly half of all published empirical psychology articles contain at least one inconsistent p-value, and around one in eight articles contain a grossly inconsistent p-value that makes a non-significant result seem significant, or vice versa. <a href="https://mbnuijten.com/statcheck/">statscheck</a> and <a href="http://blog.revolutionanalytics.com/2016/10/statcheck.html">here</a></p>
-</blockquote>
-<blockquote>
-<p>“A key component of scientific communication is sufficient information for other researchers in the field to reproduce published findings. For computational and data-enabled research, this has often been interpreted to mean making available the raw data from which results were generated, the computer code that generated the findings, and any additional information needed such as workflows and input parameters. Many journals are revising author guidelines to include data and code availability. We chose a random sample of 204 scientific papers published in the journal <strong>Science</strong> after the implementation of their policy in February 2011. We found that were able to reproduce the findings for 26%.” <a href="http://www.pnas.org/content/115/11/2584">Proceedings of the National Academy of Sciences of the United States of America</a></p>
-</blockquote>
-<blockquote>
-<p>“Starting September 1 2016, JASA ACS will require code and data as a minimum standard for reproducibility of statistical scientific research.” <a href="https://magazine.amstat.org/blog/2016/07/01/jasa-reproducible16/">JASA</a></p>
-</blockquote>
+<div id="data-transformation" class="section level1">
+<h1><span class="header-section-number">5</span> Data Transformation</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<div id="tibbles" class="section level2">
+<h2><span class="header-section-number">5.1</span> Tibbles</h2>
+<p>Tibbles <strong>are</strong> data frames, but they tweak some older behaviors to make life a little easier. R is an old language, and some things that were useful 10 or 20 years ago now get in your way. It’s difficult to change base R without breaking existing code, so most innovation occurs in packages.</p>
+
+<div class="rmdimportant">
+See Chapter 7 in <a href="http://r4ds.had.co.nz/tibbles.html">R for Data Science</a> and <code>vignette(&quot;tibble&quot;)</code> for a more complete description of tibbles.
 </div>
-<div id="fda-validation" class="section level3">
-<h3><span class="header-section-number">1.1.2</span> FDA Validation</h3>
-<blockquote>
-<p>“Establishing documented evidence which provides a high degree of assurance that a specific process will consistently produce a product meeting its predetermined specifications and quality attributes.” -Validation as defined by the FDA in <strong>Validation of Systems for 21 CFR Part 11 Compliance</strong></p>
-</blockquote>
-</div>
-<div id="the-sas-myth" class="section level3">
-<h3><span class="header-section-number">1.1.3</span> The SAS Myth</h3>
-<p>Contrary to what we hear the FDA does not require SAS to be used <em>EVER</em>. There are instances that you have to deliver data in XPORT format though which is open and implemented in many programming languages.</p>
-<blockquote>
-<p>“FDA does not require use of any specific software for statistical analyses, and statistical software is not explicitly discussed in Title 21 of the Code of Federal Regulations [e.g., in 21CFR part 11]. However, the software package(s) used for statistical analyses should be fully documented in the submission, including version and build identification. As noted in the FDA guidance, E9 Statistical Principles for Clinical Trials” <a href="https://www.fda.gov/downloads/forindustry/datastandards/studydatastandards/ucm587506.pdf">FDA Statistical Software Clarifying Statement</a></p>
-</blockquote>
-<p>Good <a href="http://blog.revolutionanalytics.com/2017/06/r-fda.html">write up</a> with links to several FDA talks on the <a href="https://thomaswdinsmore.com/2014/12/01/sas-versus-r-part-1/">subject</a>.</p>
-</div>
-</div>
-<div id="prerequisites" class="section level2">
-<h2><span class="header-section-number">1.2</span> Prerequisites</h2>
+
+<p>Key advantages of tibbles:</p>
 <ul>
-<li>We will assume you have minimal experience and knowledge of R</li>
-<li>IT should have installed:
+<li>Never changes the types of the inputs (e.g. it never converts strings to factors!).</li>
+<li>Never changes the names of variables.</li>
+<li>Never creates row names.</li>
+<li>Refined printing to the console:
 <ul>
-<li><a href="https://cran.r-project.org/">R</a> version 3.5.1</li>
-<li><a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> version 1.1</li>
-<li><a href="https://miktex.org/">MiTeX</a></li>
-<li><a href="https://cran.r-project.org/bin/windows/Rtools/">RTools</a> version 3.4</li>
+<li>only prints the first 10 rows</li>
+<li>shows the data type of each column</li>
+<li>highlights missing values</li>
+<li>aligns numeric data</li>
 </ul></li>
-<li>We will install other dependencies throughout the course.</li>
+<li>Enhanced subsetting</li>
+</ul>
+<p>When creating a tibble:</p>
+<ul>
+<li>it will <strong>ONLY</strong> recycle inputs of length 1</li>
+<li>you can refer to variables you just created</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mytibble &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, 
+  <span class="dt">y =</span> <span class="dv">1</span>, 
+  <span class="dt">z =</span> x <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y
+)
+
+<span class="co"># versus</span>
+
+mydf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,
+  <span class="dt">y =</span> <span class="dv">1</span>
+)
+
+mydf<span class="op">$</span>z &lt;-<span class="st"> </span>mydf<span class="op">$</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>mydf<span class="op">$</span>y
+
+mytibble
+<span class="co">#&gt; # A tibble: 5 x 3</span>
+<span class="co">#&gt;       x     y     z</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1     1     2</span>
+<span class="co">#&gt; 2     2     1     5</span>
+<span class="co">#&gt; 3     3     1    10</span>
+<span class="co">#&gt; 4     4     1    17</span>
+<span class="co">#&gt; 5     5     1    26</span>
+mydf
+<span class="co">#&gt;   x y  z</span>
+<span class="co">#&gt; 1 1 1  2</span>
+<span class="co">#&gt; 2 2 1  5</span>
+<span class="co">#&gt; 3 3 1 10</span>
+<span class="co">#&gt; 4 4 1 17</span>
+<span class="co">#&gt; 5 5 1 26</span></code></pre></div>
+<p>For the most part you can use data.frames and tibbles interchangeably. However, some older functions in base R do not work properly with tibbles. This is because of the <code>[</code> subset operator. As we saw in subsetting, if you return a single column with <code>[</code> on a data.frame you will get a vector back instead of a single column data.frame. Tibbles always return tibbles and never a vector.</p>
+<p>You can convert a data frame to a tibble with <code>as_tibble()</code>, while you can coerce a tibble to a data frame with <code>as.data.fame()</code>.</p>
+
+<div class="rmdimportant">
+dplyr functions never modify their inputs, so if you want to save the result, you’ll need to use the assignment operator, <code>&lt;-</code>
+</div>
+
+</div>
+<div id="filter-rows-with-filter" class="section level2">
+<h2><span class="header-section-number">5.2</span> Filter rows with <code>filter()</code></h2>
+<p><code>filter()</code> allows you to subset observations based on their values. The first argument is the name of the data frame. The second and subsequent arguments are the expressions that filter the data frame.</p>
+</div>
+<div id="arrange-rows-with-arrange" class="section level2">
+<h2><span class="header-section-number">5.3</span> Arrange rows with <code>arrange()</code></h2>
+<p><code>arrange()</code> works similarly to <code>filter()</code> except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names (or more complicated expressions) to order by. If you provide more than one column name, each additional column will be used to break ties in the values of preceding columns.</p>
+<p>Notes:</p>
+<ul>
+<li>Use <code>desc()</code> to re-order by a column in descending order:</li>
+<li>Missing values are always sorted at the end.</li>
 </ul>
 </div>
-<div id="content" class="section level2">
-<h2><span class="header-section-number">1.3</span> Content</h2>
-<p>It is impossible to become an expert in R in only one course even a multi-week one. Our aim is at gaining a wide understanding on many aspects of R as used in a corporate / production environment. It will roughly be based on <a href="http://r4ds.had.co.nz">R for Data Science</a>. While this is an <em>excellent</em> resource it does not cover much of what we will need on a routine basis. Some external resources will be referred to in this book for you to be able to deepen what you would have learned in this course.</p>
-<p>We will focus most of our attention to the <em>tidyverse</em> family of packages for data analysis. The <em>tidyverse</em> is an opinionated <a href="https://www.tidyverse.org/packages/">collection of R packages</a> designed for data science. All packages share an underlying design philosophy, grammar, and data structures.</p>
-<p>This is your course so if you feel we need to hit an area deeper, or add content based on a current need, let me know an we will work to adjust it.</p>
-<p>The <strong>rough</strong> topic list of the course:</p>
-<ol style="list-style-type: decimal">
-<li>Good programming practices</li>
-<li>Basics of R Programming</li>
-<li>Importing / Exporting Data</li>
-<li>Tidying Data</li>
-<li>Visualizing Data</li>
-<li>Functions</li>
-<li>Strings</li>
-<li>Dates and Time</li>
-<li>Communicating Results</li>
-<li>Iteration</li>
-</ol>
-<!-- Making Code Production Ready: -->
-<!-- 10. Functions (part II) -->
-<!-- 11. Assertions -->
-<!-- 12. Unit tests -->
-<!-- 13. Documentation -->
-<!-- 14. Communicating Results (part II) -->
+<div id="select-columns-with-select" class="section level2">
+<h2><span class="header-section-number">5.4</span> Select columns with <code>select()</code></h2>
+<p>It’s not uncommon to get datasets with hundreds or even thousands of variables. In this case, the first challenge is often narrowing in on the variables you’re actually interested in. <code>select()</code> allows you to rapidly zoom in on a useful subset using operations based on the names of the variables.</p>
+<p>There are a number of helper functions you can use within select():</p>
+<ul>
+<li>everything(): all variables or everything else not already selected / deselected.</li>
+<li>starts_with(): start with a prefix.</li>
+<li>ends_with(): ends with a prefix</li>
+<li>contains(): contains a literal string</li>
+<li>matches(): match a regular expression.</li>
+<li>num_range(): a numerical range like x1, x2, x3.</li>
+<li>one_of(): variable in a character vector</li>
+</ul>
+<div class="rmdnote">
+<p>
+Closely related to <code>select()</code> is <code>rename()</code> for renaming columns.
+</p>
 </div>
-<div id="structure" class="section level2">
-<h2><span class="header-section-number">1.4</span> Structure</h2>
-<p>My current thoughts are to meet an hour a week and discuss a topic. We will not be going strictly through the R4DS, but will use it as our foundation into the topic at hand. Then give some exercises due for the next week which we go over the solutions. We will incorporate these exercises into an R package(s?) so we will have a collection of useful reusable code for the future.</p>
-<p>Open to other ideas as we go along.</p>
-<p>I’m going to try to keep the assignments related to our current work so we can work on the class during work hours. Bring what you are working on and we will see how we can fit it into the class.</p>
+</div>
+<div id="add-new-variables-with-mutate" class="section level2">
+<h2><span class="header-section-number">5.5</span> Add new variables with <code>mutate()</code></h2>
+<p>Besides selecting sets of existing columns, it’s often useful to add new columns that are functions of existing columns. <code>mutate()</code> always adds new columns at the end of your dataset so we’ll start by creating a narrower dataset so we can see the new variables. Remember that when you’re in RStudio, the easiest way to see all the columns is <code>View()</code>.</p>
+<p>Because we have are using tibbles you can refer to columns you just created.</p>
+<div class="rmdtip">
+<p>
+If you only want to keep the new variables, use <code>transmute()</code>.
+</p>
+</div>
+<p>There are a number of helper functions you can use within mutate():</p>
+<ul>
+<li>na_if(): convert values to NA</li>
+<li>coalesce(): convert NA to a value.</li>
+<li>if_else(): vectorised if</li>
+<li>recode(): recode values</li>
+<li>case_when(): A general vectorised if. Equivalent of the SQL CASE WHEN statement.</li>
+</ul>
+</div>
+<div id="pipes" class="section level2">
+<h2><span class="header-section-number">5.6</span> Pipes</h2>
+
+<div class="rmdimportant">
+See Chapter 14 in <a href="http://r4ds.had.co.nz/pipes.html">R for Data Science</a>.
+</div>
+
+<p>Typically it takes a series of operations to go from raw data to meaningful analysis. There are (at least) four ways to to do this:</p>
+<ul>
+<li>Save each intermediate step as a new object.</li>
+<li>Overwrite the original object many times.</li>
+<li>Compose functions.</li>
+<li>Use pipes</li>
+</ul>
+<p>Each have the place and utility. None are perfect for every situation. We’ll use piping frequently from now on because it considerably improves the readability of code.</p>
+<div id="intermediate-steps" class="section level3">
+<h3><span class="header-section-number">5.6.1</span> Intermediate steps</h3>
+<p>Simplest approach is to create a new object at each step. This method tends to clutter the code with unimportant, and uninformative names. Also, each object eats up memory, which becomes an issue as data set sizes grow large.</p>
+<p>Rule of thumb: If there is a natural new name it may be an appropriate method. If the natural name is to increment a counter on the end of the original variable a different method is generally preferable.</p>
+</div>
+<div id="overwrite-the-original" class="section level3">
+<h3><span class="header-section-number">5.6.2</span> Overwrite the original</h3>
+<p>Instead of creating intermediate objects at each step, we could overwrite the original object.</p>
+<p>This is less typing (and less thinking), so you’re less likely to make mistakes. However, there are two problems:</p>
+<ul>
+<li>Debugging is painful: if you make a mistake you’ll need to re-run the complete pipeline from the beginning.</li>
+<li>The repetition of the object being transformed (we’ve written foo_foo six times!) obscures what’s changing on each line.</li>
+</ul>
+<div class="rmdnote">
+<p>
+A common method is to combine the above methods and use an temporary variable name for the intermediate steps such a “tmp”&quot; or “.”.
+</p>
+</div>
+</div>
+<div id="function-composition" class="section level3">
+<h3><span class="header-section-number">5.6.3</span> Function composition</h3>
+<p>Another approach is to abandon assignment and just string the function calls together. Here the disadvantage is that you have to read from inside-out, from right-to-left, and that the arguments end up spread far apart (evocatively called the dagwood sandwich problem). In short, this code is hard for a human to consume.</p>
+<div class="rmdnote">
+<p>
+This method is generally not appropriate if you need to nest more than two functions together. However, it is appropriate in many cases. (e.g. sum(is.na(x)) to find the number of missing values in x)
+</p>
+</div>
+</div>
+<div id="use-the-pipe-operator" class="section level3">
+<h3><span class="header-section-number">5.6.4</span> Use the pipe operator <code>%&gt;%</code></h3>
+<p>Finally, we can use the pipe. This is my favorite form, because it focuses on verbs (what we are doing), not nouns (what we are doing it on). You can read this series of function compositions like it’s a set of imperative actions.</p>
+<p>The pipe works by performing a “lexical transformation”. Behind the scenes, <code>magrittr</code> reassembles the code in the pipe to a form that works by overwriting an intermediate object. This means that pipes won’t work for two classes of functions:</p>
+<ol style="list-style-type: decimal">
+<li>Functions that use the current environment. (e.g. <code>assign</code>, <code>with</code>,<code>get</code> or <code>load</code>)</li>
+<li>Functions that use lazy evaluation. In R, function arguments are only computed when the function uses them, not prior to calling the function. The pipe computes each element in turn, so you can’t rely on this behavior. (e.g. <code>tryCatch</code>, <code>try</code>, <code>suppressMessages</code>)</li>
+</ol>
+<p>The pipe is a powerful tool, but it’s not the only tool at your disposal, and it doesn’t solve every problem! Pipes are most useful for rewriting a fairly short linear sequence of operations. I think you should reach for another tool when:</p>
+<ul>
+<li>Your pipes are longer than (say) ten steps. In that case, create intermediate objects with meaningful names. That will make debugging easier, because you can more easily check the intermediate results, and it makes it easier to understand your code, because the variable names can help communicate intent.</li>
+<li>You have multiple inputs or outputs. If there isn’t one primary object being transformed, but two or more objects being combined together, don’t use the pipe.</li>
+<li>You are starting to think about a directed graph with a complex dependency structure. Pipes are fundamentally linear and expressing complex relationships with them will typically yield confusing code.</li>
+</ul>
+</div>
+</div>
+<div id="grouped-summaries-with-summarise" class="section level2">
+<h2><span class="header-section-number">5.7</span> Grouped summaries with <code>summarise()</code></h2>
+<p>The last key verb is <code>summarise()</code>. It collapses a data frame to a single row. <code>summarise()</code> is not terribly useful unless we pair it with <code>group_by()</code>. This changes the unit of analysis from the complete dataset to individual groups. Then, when you use the dplyr verbs on a grouped data frame they’ll be automatically applied “by group”.</p>
+<p>Together <code>group_by()</code> and <code>summarise()</code> provide one of the tools that you’ll use most commonly when working with dplyr: grouped summaries.</p>
+
+<div class="rmdimportant">
+If you need to remove grouping, and return to operations on ungrouped data, use ungroup()
+</div>
+
+</div>
+<div id="grouped-mutates" class="section level2">
+<h2><span class="header-section-number">5.8</span> Grouped mutates</h2>
+<p>Grouping is most useful in conjunction with <code>summarise()</code>, but you can also do convenient operations with <code>mutate()</code> and <code>filter()</code></p>
+<ul>
+<li>Find the best/worst members of each group.</li>
+<li>Find all groups bigger/smaller than a threshold.</li>
+<li>Standardize to compute per group metrics.</li>
+</ul>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="good-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -322,7 +439,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DavisBrian/corporater/edit/master/intro.Rmd",
+"link": "https://github.com/DavisBrian/corporater/edit/master/data-transform.Rmd",
 "text": "Edit"
 },
 "download": ["rclassnotes.pdf", "rclassnotes.epub"],
