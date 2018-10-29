@@ -153,3 +153,6 @@ The goal of **dbplyr** is to automatically generate SQL for you so that you’re
 ## Reading For Next Class
 
 1. Read Chapter on [Pipes](http://r4ds.had.co.nz/pipes.html).
+
+
+## Exercises
