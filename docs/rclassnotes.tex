@@ -126,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-10-29}
+    \date{2018-11-26}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1760,7 +1760,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \NormalTok{(t2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(pi_est_vect <-}\StringTok{ }\KeywordTok{pi_vect}\NormalTok{(N)))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.09    0.03    0.20}
+\CommentTok{#>    0.07    0.03    0.11}
 \NormalTok{pi_est_vect}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -1772,7 +1772,7 @@ The speed up from vectorization is impressive.
 \begin{Highlighting}[]
 \KeywordTok{floor}\NormalTok{(t1}\OperatorTok{/}\NormalTok{t2)}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>      41       0      19}
+\CommentTok{#>      53       0      34}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1851,7 +1851,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.15    0.00    2.18}
+\CommentTok{#>    2.28    0.00    2.30}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -2355,7 +2355,7 @@ There are a number of helper functions you can use within mutate():
 \item
   na\_if(): convert values to NA
 \item
-  coalesce(): convert NA to a value.
+  replace\_na(): convert NA to a value
 \item
   if\_else(): vectorised if
 \item
@@ -2391,104 +2391,6 @@ Each have the place and utility. None are perfect for every situation.
 We'll use piping frequently from now on because it considerably improves
 the readability of code.
 
-\subsection{Intermediate steps}\label{intermediate-steps}
-
-Simplest approach is to create a new object at each step. This method
-tends to clutter the code with unimportant, and uninformative names.
-Also, each object eats up memory, which becomes an issue as data set
-sizes grow large.
-
-Rule of thumb: If there is a natural new name it may be an appropriate
-method. If the natural name is to increment a counter on the end of the
-original variable a different method is generally preferable.
-
-\subsection{Overwrite the original}\label{overwrite-the-original}
-
-Instead of creating intermediate objects at each step, we could
-overwrite the original object.
-
-This is less typing (and less thinking), so you're less likely to make
-mistakes. However, there are two problems:
-
-\begin{itemize}
-\tightlist
-\item
-  Debugging is painful: if you make a mistake you'll need to re-run the
-  complete pipeline from the beginning.
-\item
-  The repetition of the object being transformed (we've written foo\_foo
-  six times!) obscures what's changing on each line.
-\end{itemize}
-
-\begin{rmdnote}
-A common method is to combine the above methods and use an temporary
-variable name for the intermediate steps such a ``tmp''" or ``.''.
-\end{rmdnote}
-
-\subsection{Function composition}\label{function-composition}
-
-Another approach is to abandon assignment and just string the function
-calls together. Here the disadvantage is that you have to read from
-inside-out, from right-to-left, and that the arguments end up spread far
-apart (evocatively called the dagwood sandwich problem). In short, this
-code is hard for a human to consume.
-
-\begin{rmdnote}
-This method is generally not appropriate if you need to nest more than
-two functions together. However, it is appropriate in many cases.
-(e.g.~sum(is.na(x)) to find the number of missing values in x)
-\end{rmdnote}
-
-\subsection{\texorpdfstring{Use the pipe operator
-\texttt{\%\textgreater{}\%}}{Use the pipe operator \%\textgreater{}\%}}\label{use-the-pipe-operator}
-
-Finally, we can use the pipe. This is my favorite form, because it
-focuses on verbs (what we are doing), not nouns (what we are doing it
-on). You can read this series of function compositions like it's a set
-of imperative actions.
-
-The pipe works by performing a ``lexical transformation''. Behind the
-scenes, \texttt{magrittr} reassembles the code in the pipe to a form
-that works by overwriting an intermediate object. This means that pipes
-won't work for two classes of functions:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Functions that use the current environment. (e.g. \texttt{assign},
-  \texttt{with},\texttt{get} or \texttt{load})
-\item
-  Functions that use lazy evaluation. In R, function arguments are only
-  computed when the function uses them, not prior to calling the
-  function. The pipe computes each element in turn, so you can't rely on
-  this behavior. (e.g. \texttt{tryCatch}, \texttt{try},
-  \texttt{suppressMessages})
-\end{enumerate}
-
-The pipe is a powerful tool, but it's not the only tool at your
-disposal, and it doesn't solve every problem! Pipes are most useful for
-rewriting a fairly short linear sequence of operations. I think you
-should reach for another tool when:
-
-\begin{itemize}
-\tightlist
-\item
-  Your pipes are longer than (say) ten steps. In that case, create
-  intermediate objects with meaningful names. That will make debugging
-  easier, because you can more easily check the intermediate results,
-  and it makes it easier to understand your code, because the variable
-  names can help communicate intent.
-\item
-  You have multiple inputs or outputs. If there isn't one primary object
-  being transformed, but two or more objects being combined together,
-  don't use the pipe.
-\item
-  You are starting to think about a directed graph with a complex
-  dependency structure. Pipes are fundamentally linear and expressing
-  complex relationships with them will typically yield confusing code.
-\end{itemize}
-
 \section{\texorpdfstring{Grouped summaries with
 \texttt{summarise()}}{Grouped summaries with summarise()}}\label{grouped-summaries-with-summarise}
 
@@ -2523,6 +2425,25 @@ you can also do convenient operations with \texttt{mutate()} and
 \item
   Standardize to compute per group metrics.
 \end{itemize}
+
+\section{Reading For Next Class}\label{reading-for-next-class-3}
+
+\section{Exercises}\label{exercises-3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Read and Try the exercises in
+  \href{https://r4ds.had.co.nz/transform.html}{Data transformation}.
+  There are quite a few useful functions and use cases we did not cover.
+  It also does a very good job of how does one go from a question we
+  want answered to quickly seeing the answer in a useful form.
+\item
+  We barely scratched the surface of some of the useful dplyr functions
+  for data transformations. Review the dplyr-transformation
+  \href{https://www.rstudio.com/resources/cheatsheets/\#dplyr}{cheatsheet}
+  and see the help file for interesting functions.
+\end{enumerate}
 
 \part{Appendix}\label{part-appendix}
 
