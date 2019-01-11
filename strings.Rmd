@@ -268,3 +268,13 @@ str_split(fruit, " ", n = 2, simplify = TRUE)   # only split into 2 peices
 **stringr** is built on top of the **stringi** package. stringr is useful when you’re learning because it exposes a minimal set of functions, which have been carefully picked to handle the most common string manipulation functions. stringi, on the other hand, is designed to be comprehensive. It contains almost every function you might ever need: stringi has 234 functions to stringr’s 46.
 
 If you find yourself struggling to do something in stringr, it’s worth taking a look at stringi. The packages work very similarly, so you should be able to translate your stringr knowledge in a natural way. The main difference is the prefix: `str_` vs. `stri_`.
+
+## Exercises
+
+1.  Create a function that takes a vector of numeric zip codes and converts them to a three-digit zip code, padding with 0's as necessary.
+1.  Create a function that returns the latest (most recent) input file name for your data set.
+1.  Extend the above to return a specific year-quarters data file.
+1.  Create a function that takes a year-quarter in numeric format and returns the year quarter in a character format with the **Q** (Ex 20174 becomes 2017Q4).
+1.  How would you modify the above to return 2017 Q4. How about 2017-Q4
+1.  Create a function that does the reverse of the two above.  Ex. 2017Q4 or "2017 Q4" becomes a numeric 20174.
+1. Create function that takes a character year-quater (ex 2018Q3) and the quarter n-quarters before it.  Example two quarters previous to 2018Q3 is 2018Q1.

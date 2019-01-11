@@ -1,6 +1,6 @@
-# Functions
+# (PART) Beyond Basics {-}
 
-## Function Basics
+# Function Basics
 
 > To understand computations in R, two slogans are helpful:  
 > - Everything that exists is an object.  
@@ -8,7 +8,9 @@
 > 
 > -- John Chambers
 
-Functions are an central part of robust R programming and we will spend a significant amount of time writing functions.
+## Introduction to Functions
+
+Functions are an central part of robust R programming and we will spend a significant amount of time writing functions.  Think of functions in the [mathematical sense](https://en.wikipedia.org/wiki/Function_(mathematics)) will make the properties much more apparent than any other framework. 
 
 Functions in R are "first class objects", which means that they can be
 treated much like any other R object. Importantly,
@@ -53,6 +55,11 @@ Functions can be
 
 We like __category 1__. __Category 2__ is the right behavior if the inputs do not make sense, but not if the inputs are sensible. __Category 3__ is an unpleasant place for your users, and possibly for you if the users have access to you.  __Category 4__ is by far the worst place to be - the user has no reason to believe that anything is wrong. Steer clear of category 4.
 
+```{block type='rmdimportant'}
+Software testing is important, but, in part because it is frustrating and boring, many of us avoid it. 'testthat' is a testing framework for R that is easy learn and use, and integrates with your existing 'workflow'.
+```
+
+
 ### Your First Function
 
 All R functions have three parts: 
@@ -67,21 +74,27 @@ When you print a function in R, it shows you these three important components. I
 
 ```{r}
 myadd <- function(x, y) {
-  cat(paste0("x = ", x, "\n"))
-  cat(paste0("y = ", y, "\n"))
+  message(paste0("x = ", x, "\n"))
+  message(paste0("y = ", y, "\n"))
   x + y
 }
-myadd(1, 3)            # arguments by position
-myadd(x = 1, y = 3)    # arguments by name
-myadd(y = 3, x = 1)    # name order doesn't matter
 ```
 
 - The body of the function is everything between the `{ }`.  Note this does the computation __AND__ returns the result.
 - `x` and `y` are the arguments to the function.
 - the environment this function lives in is the global environment. (We'll discuss environments more in the next section.)
 
+When calling a function you can pass the parameters __in order__, __by name__, or a combination.
+
+```{r}
+myadd(1, 3)            # arguments by position
+myadd(x = 1, y = 3)    # arguments by name
+myadd(y = 3, x = 1)    # name order doesn't matter
+myadd(y = 3, 1)        # combination
+```
+
 ```{block2, type='rmdtip'}
-Even though it’s legal, I don’t recommend messing around with the order of the arguments too much, since it can lead to some confusion.
+Even though it’s legal, I don’t recommend messing around with the order of the arguments too much, since it can lead to some confusion.  Convention is to pass arguments in the order the function defines them, and to use the arguments names if the function takes more than 2 or 3 arguments. 
 ```
 
 You can also specify default values for your arguments.  Default values _should_ be the values most often used.  `rnorm` uses the default of `mean = 0` and `sd = 1`.  We usually want to sample from the standard normal distribution, but we are not forced to. 
@@ -136,25 +149,25 @@ f(2, 1)  # this does too
 
 This function never actually uses the argument `b`, so calling `f(2)` or `f(2, 1)` will not produce an error because the 2 gets positionally matched to a. It’s common to write a function that does not use an argument and not notice it simply because R never throws an error.
 
-### The `...` Argument
+### The Dot-dot-dot (`...`) Argument
 
-There is a special argument in R known as the `...` argument, which indicate a variable number of arguments that are usually passed on to other functions. The `...` argument is often used when extending another function and you don’t want to copy the entire argument list of the original function
+There is a special argument in R known as the `...` argument, which indicate a variable number of arguments that are usually passed on to other functions. The two most common cases for using `...` in a function are:
 
-For example, a custom plotting function may want to make use of the default `plot()` function along with its entire argument list. The function below changes the default for the `type` argument to the value `type = "l"` (the original default was `type = "p"`).
+1.  The number of arguments passed to the function cannot be known in advance. 
+1.  Extending another function and you don’t want to copy the entire argument list of the original function.
 
-```r
-myplot <- function(x, y, type = "l", ...) {
-        plot(x, y, type = type, ...)         ## Pass '...' to 'plot' function
-}
-```
-The `...` argument is also necessary when the number of arguments passed to the function cannot be known in advance. This is clear in functions like `paste()` and `cat()`.
+**Number of arguments passed to the function cannot be known in advance.**  
+
+The `...` argument is also necessary when the number of arguments passed to the function cannot be known in advance. This is clear in functions like `paste()`, `cat()`, `sum()`, and `mean()`.
 
 ```{r}
 args(paste)
 args(cat)
+args(sum)
+args(mean)
 ```
 
-Because both `paste()` and `cat()` print out text to the console by combining multiple character vectors together, it is impossible for those functions to know in advance how many character vectors will be passed to the function by the user. So the first argument to either function is `...`.
+Because both `paste()` and `cat()` print out text to the console by combining multiple character vectors together, it is impossible for those functions to know in advance how many character vectors will be passed to the function by the user. So the first argument to either function is `...`.  Similarly with `sum()`, and `mean()`.
 
 One catch with `...` is that any arguments that appear _after_ `...` on the argument list must be named explicitly and cannot be partially matched or matched positionally.
 
@@ -166,9 +179,30 @@ args(paste)
 
 With the `paste()` function, the arguments `sep` and `collapse` must be named explicitly and in full if the default values are not going to be used.
 
+**Extending another function**
+
+For example, a custom plotting function may want to make use of the default `plot()` function along with its entire argument list. The function below changes the default for the `type` argument to the value `type = "l"` (the original `plot` default is `type = "p"`).
+
+```{r}
+mylineplot <- function(x, y, ...) {
+        plot(x, y, type = "l", ...)         ## Pass '...' to 'plot' function
+}
+```
+
+Sometimes you will combine both in one function.
+
+```{r}
+commas <- function(...) {
+  paste(..., sep = "", collapse = ", ")
+}
+
+commas(letters[1:10])
+```
+
+
 ## Environments & Scoping
 
-An __environment__ is a collection of (symbol, value) pairs, i.e. `x` is a symbol and `3.14` might be its value. Every environment has a parent environment and it is possible for an environment to have multiple “children”. The only environment without a parent is the empty environment.  
+An __environment__ is a collection of (symbol, value) pairs, i.e. `x <- 10`, `x` is a symbol and `10` might be its value. Every environment has a parent environment and it is possible for an environment to have multiple “children”. The only environment without a parent is the empty environment.  
 
 __Scoping__ is the set of rules that govern how R looks up the value of a symbol. In the example below, scoping is the set of rules that R applies to go from the symbol `x` to its value `10`:
 
@@ -188,6 +222,7 @@ If a value for a given symbol cannot be found once the empty environment is arri
 
 ```{r}
 x <- 0
+
 f <- function(x = -1) {
   x <- 1
   y <- 2
@@ -214,22 +249,55 @@ What do the following return?
 - `f(g())`
 - `g(f())`
 
-Unlike most languages you can define a function within a function.  This nested function only lives inside the parent function.
+## "First class objects"
+
+Since functions **ARE** objects you can pass functions as arguments and return functions as results.
+
+```{r error=TRUE}
+my_summary <- function(x, funs = c(mean, sd), ...) {
+  lapply(funs, function(f) f(x, na.rm = TRUE))
+}
+
+y <- 1:10
+my_summary(y)
+my_summary(y, c(mean, median, sd, IQR, mad))
+```
+
+Unlike most languages you can define a function within a function and / or return a function.  This nested function only lives inside the parent function.
 
 ```{r error=TRUE}
 make.power <- function(n) {
+  # [TBD] checks on n
   pow <- function(x) {
+      # [TBD] checks on x
     x^n 
   }
   pow
 }
 
-make.power(4)
-cube <- make.power(3)
-square <- make.power(2)
+make.power(4)  # returns a function
+pow(x=4)       # Note: `pow` does not exist outside of the `make.power` function
 
-x <- 1
-n <- 2
-pow(x=4)
+cube <- make.power(3)          
+as.list(environment(cube))
+cube(2)
+
+square <- make.power(2)
+squareroot <- make.power(.5)
+
+
+square(8)
+squareroot(9)
 ```
+
+
+## Exercises
+
+1. Create function that takes a numeric year-quater (ex 20183) and returns the quarter n-quarters before / after it.  Example two quarters previous to 20183 is 20181.
+1. Come up with 5 functions (you don't have program them) that will operate on your data. (Ex. Create a demographics table)
+1. Create a `read_*` function that
+  - reads in the data file
+  - converts all columns to the appropriate data types
+  - “Tidy” your data (if appropriate)  
+The first argument to your read function should be the file name.  Are there additional parameters that are needed?  Think beyond the Subscriber Report, what are other things you typically do upon first reading in a data file.
 

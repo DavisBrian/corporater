@@ -126,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-11-26}
+    \date{2019-01-11}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -184,21 +184,21 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[table]{xcolor}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
 
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[chapter]
-\newtheorem{corollary}{Corollary}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[chapter]
-\theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[chapter]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
 \let\BeginKnitrBlock\begin \let\EndKnitrBlock\end
 \begin{document}
 \maketitle
@@ -1306,11 +1306,11 @@ We'll discuss data frames in greater detail later in the course.
 
 \section{Comparision}\label{comparision}
 
-\begin{table}
+\begin{table}[t]
 
 \caption{\label{tab:table-logicalOps}Logical Operators}
 \centering
-\begin{tabular}[t]{ll}
+\begin{tabular}{ll}
 \toprule
 Operator & Description\\
 \midrule
@@ -1319,6 +1319,7 @@ Operator & Description\\
 < & less than\\
 <= & less than or equal to\\
 == & exactly equal to\\
+\addlinespace
 != & not equal to\\
 \bottomrule
 \end{tabular}
@@ -1760,7 +1761,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \NormalTok{(t2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(pi_est_vect <-}\StringTok{ }\KeywordTok{pi_vect}\NormalTok{(N)))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.07    0.03    0.11}
+\CommentTok{#>    0.10    0.00    0.18}
 \NormalTok{pi_est_vect}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -1772,7 +1773,7 @@ The speed up from vectorization is impressive.
 \begin{Highlighting}[]
 \KeywordTok{floor}\NormalTok{(t1}\OperatorTok{/}\NormalTok{t2)}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>      53       0      34}
+\CommentTok{#>      37     NaN      21}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1851,7 +1852,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.28    0.00    2.30}
+\CommentTok{#>    2.14    0.00    2.26}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -1870,9 +1871,9 @@ about it in terms of the series notation and not the summation notation.
 \end{Highlighting}
 \end{Shaded}
 
-\part{R4DS}\label{part-r4ds}
+\part{Tidyverse}\label{part-tidyverse}
 
-\chapter{Data Import}\label{data-import}
+\chapter{Data Import \& Export}\label{data-import-export}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2428,6 +2429,14 @@ you can also do convenient operations with \texttt{mutate()} and
 
 \section{Reading For Next Class}\label{reading-for-next-class-3}
 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Read Tidy Data paper published in the Journal of Statistical Software,
+  \url{http://www.jstatsoft.org/v59/i10/paper}.
+\end{enumerate}
+
 \section{Exercises}\label{exercises-3}
 
 \begin{enumerate}
@@ -2444,6 +2453,2073 @@ you can also do convenient operations with \texttt{mutate()} and
   \href{https://www.rstudio.com/resources/cheatsheets/\#dplyr}{cheatsheet}
   and see the help file for interesting functions.
 \end{enumerate}
+
+\chapter{Tidy Data}\label{tidy-data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+``Happy families are all alike; every unhappy family is unhappy in its
+own way.'' ---- Leo Tolstoy
+\end{quote}
+
+\begin{quote}
+``Tidy datasets are all alike, but every messy dataset is messy in its
+own way.'' ---- Hadley Wickham
+\end{quote}
+
+In this chapter, you will learn a consistent way to organize your data
+in R, an organisation called \textbf{tidy data}. Getting your data into
+this format requires some upfront work, but that work pays off in the
+long term. Once you have tidy data and the tidy tools provided by
+packages in the tidyverse, you will spend much less time munging data
+from one representation to another, allowing you to spend more time on
+the analytic questions at hand.
+
+This chapter will give you a practical introduction to tidy data and the
+accompanying tools in the \textbf{tidyr} package. If you'd like to learn
+more about the underlying theory, you might enjoy the \emph{Tidy Data}
+paper published in the Journal of Statistical Software,
+\url{http://www.jstatsoft.org/v59/i10/paper}.
+
+\section{Tidy data}\label{tidy-data-1}
+
+There are three interrelated rules which make a dataset tidy:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Each variable must have its own column.
+\item
+  Each observation must have its own row.
+\item
+  Each value must have its own cell.
+\end{enumerate}
+
+Figure \ref{fig:tidy-structure} shows the rules visually.
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/tidy/tidy-1} 
+
+}
+
+\caption{Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells.}\label{fig:tidy-structure}
+\end{figure}
+
+These three rules are interrelated because it's impossible to only
+satisfy two of the three.
+
+Why ensure that your data is tidy? There are two main advantages:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  There's a general advantage to picking one consistent way of storing
+  data. If you have a consistent data structure, it's easier to learn
+  the tools that work with it because they have an underlying
+  uniformity.
+\item
+  There's a specific advantage to placing variables in columns because
+  it allows R's vectorized nature to shine. As you learned in
+  \protect\hyperlink{mutate-funs}{mutate} and
+  \protect\hyperlink{summary-funs}{summary functions}, most built-in R
+  functions work with vectors of values. That makes transforming tidy
+  data feel particularly natural.
+\end{enumerate}
+
+dplyr, ggplot2, and all the other packages in the tidyverse are designed
+to work with tidy data.
+
+\section{Example}\label{example-1}
+
+You can represent the same underlying data in multiple ways. The example
+below shows the same data organised in four different ways. Each dataset
+shows the same values of four variables \emph{country}, \emph{year},
+\emph{population}, and \emph{cases}, but each dataset organizes the
+values in a different way.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1}
+\CommentTok{#> # A tibble: 6 x 4}
+\CommentTok{#>   country      year  cases population}
+\CommentTok{#>   <chr>       <int>  <int>      <int>}
+\CommentTok{#> 1 Afghanistan  1999    745   19987071}
+\CommentTok{#> 2 Afghanistan  2000   2666   20595360}
+\CommentTok{#> 3 Brazil       1999  37737  172006362}
+\CommentTok{#> 4 Brazil       2000  80488  174504898}
+\CommentTok{#> 5 China        1999 212258 1272915272}
+\CommentTok{#> 6 China        2000 213766 1280428583}
+\NormalTok{table2}
+\CommentTok{#> # A tibble: 12 x 4}
+\CommentTok{#>   country      year type           count}
+\CommentTok{#>   <chr>       <int> <chr>          <int>}
+\CommentTok{#> 1 Afghanistan  1999 cases            745}
+\CommentTok{#> 2 Afghanistan  1999 population  19987071}
+\CommentTok{#> 3 Afghanistan  2000 cases           2666}
+\CommentTok{#> 4 Afghanistan  2000 population  20595360}
+\CommentTok{#> 5 Brazil       1999 cases          37737}
+\CommentTok{#> 6 Brazil       1999 population 172006362}
+\CommentTok{#> # ... with 6 more rows}
+\NormalTok{table3}
+\CommentTok{#> # A tibble: 6 x 3}
+\CommentTok{#>   country      year rate             }
+\CommentTok{#> * <chr>       <int> <chr>            }
+\CommentTok{#> 1 Afghanistan  1999 745/19987071     }
+\CommentTok{#> 2 Afghanistan  2000 2666/20595360    }
+\CommentTok{#> 3 Brazil       1999 37737/172006362  }
+\CommentTok{#> 4 Brazil       2000 80488/174504898  }
+\CommentTok{#> 5 China        1999 212258/1272915272}
+\CommentTok{#> 6 China        2000 213766/1280428583}
+
+\CommentTok{# Spread across two tibbles}
+\NormalTok{table4a  }\CommentTok{# cases}
+\CommentTok{#> # A tibble: 3 x 3}
+\CommentTok{#>   country     `1999` `2000`}
+\CommentTok{#> * <chr>        <int>  <int>}
+\CommentTok{#> 1 Afghanistan    745   2666}
+\CommentTok{#> 2 Brazil       37737  80488}
+\CommentTok{#> 3 China       212258 213766}
+\NormalTok{table4b  }\CommentTok{# population}
+\CommentTok{#> # A tibble: 3 x 3}
+\CommentTok{#>   country         `1999`     `2000`}
+\CommentTok{#> * <chr>            <int>      <int>}
+\CommentTok{#> 1 Afghanistan   19987071   20595360}
+\CommentTok{#> 2 Brazil       172006362  174504898}
+\CommentTok{#> 3 China       1272915272 1280428583}
+\end{Highlighting}
+\end{Shaded}
+
+These are all representations of the same underlying data, but they are
+not equally easy to use. One dataset, the tidy dataset, will be much
+easier to work with inside the tidyverse.
+
+Which dataset is tidy? Why aren't the other datasets considered tidy?
+
+\BeginKnitrBlock{rmdtip}
+How would you calculate the rate per 10,000 population for each data
+set? How would you compute the cases per year? How would you visualize
+the changes over time?
+\EndKnitrBlock{rmdtip}
+
+\section{Spreading and gathering}\label{spreading-and-gathering}
+
+The principles of tidy data seem so obvious that you might wonder if
+you'll ever encounter a dataset that isn't tidy. Unfortunately, however,
+most data that you will encounter will be untidy. There are two main
+reasons:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Most people aren't familiar with the principles of tidy data, and it's
+  hard to derive them yourself unless you spend a \emph{lot} of time
+  working with data.
+\item
+  Data is often organised to facilitate some use other than analysis.
+  For example, data is often organised to make entry as easy as
+  possible.
+\item
+  How to efficiently store, analyze, and present data are \emph{usually}
+  three different data formats.
+\end{enumerate}
+
+This means for most real analyses, you'll need to do some tidying /
+untidying. The first step is always to figure out what the variables and
+observations are. Sometimes this is easy; other times it can be a bit
+more difficult. The second step is to resolve one of two common
+problems:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  One variable might be spread across multiple columns.
+\item
+  One observation might be scattered across multiple rows.
+\end{enumerate}
+
+Typically a dataset will only suffer from one of these problems; it'll
+only suffer from both if you're really unlucky! To fix these problems,
+you'll need the two most important functions in tidyr: \texttt{gather()}
+and \texttt{spread()}.
+
+\subsection{Gathering}\label{gathering}
+
+A common problem is a dataset where some of the column names are not
+names of variables, but \emph{values} of a variable. Take
+\texttt{table4a}: the column names \texttt{1999} and \texttt{2000}
+represent values of the \texttt{year} variable, and each row represents
+two observations, not one.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table4a}
+\CommentTok{#> # A tibble: 3 x 3}
+\CommentTok{#>   country     `1999` `2000`}
+\CommentTok{#> * <chr>        <int>  <int>}
+\CommentTok{#> 1 Afghanistan    745   2666}
+\CommentTok{#> 2 Brazil       37737  80488}
+\CommentTok{#> 3 China       212258 213766}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/tidy/tidy-9} 
+
+}
+
+\caption{Gathering `table4` into a tidy form.}\label{fig:tidy-gather}
+\end{figure}
+
+To tidy a dataset like this, we need to \textbf{gather} those columns
+into a new pair of variables. To describe that operation we need three
+parameters:
+
+\begin{itemize}
+\item
+  The name of the variable whose values form the column names. This is
+  the \texttt{key}, and here it is \texttt{year}.
+\item
+  The name of the variable whose values are spread over the cells. That
+  is the \texttt{value}, and here it's the number of \texttt{cases}.
+\item
+  The set of columns that represent values, not variables. In this
+  example, those are the columns \texttt{1999} and \texttt{2000}.
+\end{itemize}
+
+Together those parameters generate the call to \texttt{gather()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table4a }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"year"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"cases"}\NormalTok{, }\StringTok{`}\DataTypeTok{1999}\StringTok{`}\NormalTok{, }\StringTok{`}\DataTypeTok{2000}\StringTok{`}\NormalTok{)}
+\CommentTok{#> # A tibble: 6 x 3}
+\CommentTok{#>   country     year   cases}
+\CommentTok{#>   <chr>       <chr>  <int>}
+\CommentTok{#> 1 Afghanistan 1999     745}
+\CommentTok{#> 2 Brazil      1999   37737}
+\CommentTok{#> 3 China       1999  212258}
+\CommentTok{#> 4 Afghanistan 2000    2666}
+\CommentTok{#> 5 Brazil      2000   80488}
+\CommentTok{#> 6 China       2000  213766}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{rmdimportant}
+Note that ``1999'' and ``2000'' are non-syntactic names (because they
+don't start with a letter) so we have to surround them in backticks. To
+refresh your memory of the other ways to select columns, see
+\protect\hyperlink{select}{select}.
+\EndKnitrBlock{rmdimportant}
+
+In the final result, the gathered columns are dropped, and we get new
+\texttt{key} and \texttt{value} columns. Otherwise, the relationships
+between the original variables are preserved. Visually, this is shown in
+Figure \ref{fig:tidy-gather}. We can use \texttt{gather()} to tidy
+\texttt{table4b} in a similar fashion. The only difference is the
+variable stored in the cell values.
+
+To combine the tidied versions of \texttt{table4a} and \texttt{table4b}
+into a single tibble, we need to use \texttt{dplyr::left\_join()}, which
+you'll learn about in {[}relational data{]}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tidy4a <-}\StringTok{ }\NormalTok{table4a }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"year"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"cases"}\NormalTok{, }\StringTok{`}\DataTypeTok{1999}\StringTok{`}\NormalTok{, }\StringTok{`}\DataTypeTok{2000}\StringTok{`}\NormalTok{)}
+\NormalTok{tidy4b <-}\StringTok{ }\NormalTok{table4b }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key =} \StringTok{"year"}\NormalTok{, }\DataTypeTok{value =} \StringTok{"population"}\NormalTok{, }\StringTok{`}\DataTypeTok{1999}\StringTok{`}\NormalTok{, }\StringTok{`}\DataTypeTok{2000}\StringTok{`}\NormalTok{)}
+\KeywordTok{left_join}\NormalTok{(tidy4a, tidy4b)}
+\CommentTok{#> Joining, by = c("country", "year")}
+\CommentTok{#> # A tibble: 6 x 4}
+\CommentTok{#>   country     year   cases population}
+\CommentTok{#>   <chr>       <chr>  <int>      <int>}
+\CommentTok{#> 1 Afghanistan 1999     745   19987071}
+\CommentTok{#> 2 Brazil      1999   37737  172006362}
+\CommentTok{#> 3 China       1999  212258 1272915272}
+\CommentTok{#> 4 Afghanistan 2000    2666   20595360}
+\CommentTok{#> 5 Brazil      2000   80488  174504898}
+\CommentTok{#> 6 China       2000  213766 1280428583}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Spreading}\label{spreading}
+
+Spreading is the opposite of gathering. You use it when an observation
+is scattered across multiple rows. For example, take \texttt{table2}: an
+observation is a country in a year, but each observation is spread
+across two rows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2}
+\CommentTok{#> # A tibble: 12 x 4}
+\CommentTok{#>   country      year type           count}
+\CommentTok{#>   <chr>       <int> <chr>          <int>}
+\CommentTok{#> 1 Afghanistan  1999 cases            745}
+\CommentTok{#> 2 Afghanistan  1999 population  19987071}
+\CommentTok{#> 3 Afghanistan  2000 cases           2666}
+\CommentTok{#> 4 Afghanistan  2000 population  20595360}
+\CommentTok{#> 5 Brazil       1999 cases          37737}
+\CommentTok{#> 6 Brazil       1999 population 172006362}
+\CommentTok{#> # ... with 6 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{images/tidy/tidy-8} 
+
+}
+
+\caption{Spreading `table2` makes it tidy}\label{fig:tidy-spread}
+\end{figure}
+
+To tidy this up, we first analyse the representation in similar way to
+\texttt{gather()}. This time, however, we only need two parameters:
+
+\begin{itemize}
+\item
+  The column that contains variable names, the \texttt{key} column.
+  Here, it's \texttt{type}.
+\item
+  The column that contains values from multiple variables, the
+  \texttt{value} column. Here it's \texttt{count}.
+\end{itemize}
+
+Once we've figured that out, we can use \texttt{spread()}, as shown
+programmatically below, and visually in Figure \ref{fig:tidy-spread}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table2 }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{spread}\NormalTok{(}\DataTypeTok{key =}\NormalTok{ type, }\DataTypeTok{value =}\NormalTok{ count)}
+\CommentTok{#> # A tibble: 6 x 4}
+\CommentTok{#>   country      year  cases population}
+\CommentTok{#>   <chr>       <int>  <int>      <int>}
+\CommentTok{#> 1 Afghanistan  1999    745   19987071}
+\CommentTok{#> 2 Afghanistan  2000   2666   20595360}
+\CommentTok{#> 3 Brazil       1999  37737  172006362}
+\CommentTok{#> 4 Brazil       2000  80488  174504898}
+\CommentTok{#> 5 China        1999 212258 1272915272}
+\CommentTok{#> 6 China        2000 213766 1280428583}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{rmdnote}
+As you might have guessed from the common \texttt{key} and
+\texttt{value} arguments, \texttt{spread()} and \texttt{gather()} are
+complements. \texttt{gather()} makes wide tables narrower and longer;
+\texttt{spread()} makes long tables shorter and wider.
+\end{rmdnote}
+
+\section{Separating and uniting}\label{separating-and-uniting}
+
+So far you've learned how to tidy \texttt{table2} and \texttt{table4},
+but not \texttt{table3}. \texttt{table3} has a different problem: we
+have one column (\texttt{rate}) that contains two variables
+(\texttt{cases} and \texttt{population}). To fix this problem, we'll
+need the \texttt{separate()} function. You'll also learn about the
+complement of \texttt{separate()}: \texttt{unite()}, which you use if a
+single variable is spread across multiple columns.
+
+\subsection{Separate}\label{separate}
+
+\texttt{separate()} pulls apart one column into multiple columns, by
+splitting wherever a separator character appears. Take \texttt{table3}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table3}
+\CommentTok{#> # A tibble: 6 x 3}
+\CommentTok{#>   country      year rate             }
+\CommentTok{#> * <chr>       <int> <chr>            }
+\CommentTok{#> 1 Afghanistan  1999 745/19987071     }
+\CommentTok{#> 2 Afghanistan  2000 2666/20595360    }
+\CommentTok{#> 3 Brazil       1999 37737/172006362  }
+\CommentTok{#> 4 Brazil       2000 80488/174504898  }
+\CommentTok{#> 5 China        1999 212258/1272915272}
+\CommentTok{#> 6 China        2000 213766/1280428583}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{images/tidy/tidy-17} 
+
+}
+
+\caption{Separating `table3` makes it tidy}\label{fig:tidy-separate}
+\end{figure}
+
+The \texttt{rate} column contains both \texttt{cases} and
+\texttt{population} variables, and we need to split it into two
+variables. \texttt{separate()} takes the name of the column to separate,
+and the names of the columns to separate into, as shown in Figure
+\ref{fig:tidy-separate} and the code below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table3 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{separate}\NormalTok{(rate, }\DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"cases"}\NormalTok{, }\StringTok{"population"}\NormalTok{))}
+\CommentTok{#> # A tibble: 6 x 4}
+\CommentTok{#>   country      year cases  population}
+\CommentTok{#> * <chr>       <int> <chr>  <chr>     }
+\CommentTok{#> 1 Afghanistan  1999 745    19987071  }
+\CommentTok{#> 2 Afghanistan  2000 2666   20595360  }
+\CommentTok{#> 3 Brazil       1999 37737  172006362 }
+\CommentTok{#> 4 Brazil       2000 80488  174504898 }
+\CommentTok{#> 5 China        1999 212258 1272915272}
+\CommentTok{#> 6 China        2000 213766 1280428583}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{rmdimportant}
+By default, \texttt{separate()} will split values wherever it sees a
+non-alphanumeric character (i.e.~a character that isn't a number or
+letter). For example, in the code above, \texttt{separate()} split the
+values of \texttt{rate} at the forward slash characters. If you wish to
+use a specific character to separate a column, you can pass the
+character to the \texttt{sep} argument of \texttt{separate()}. Formally,
+\texttt{sep} is a regular expression, which we learn more about in
+{[}strings{]}.
+\EndKnitrBlock{rmdimportant}
+
+Look carefully at the column types: you'll notice that \texttt{cases}
+and \texttt{population} are character columns. This is the default
+behavior in \texttt{separate()}: it leaves the type of the column as is.
+Here, however, it's not very useful as those really are numbers. We can
+ask \texttt{separate()} to try and convert to better types using
+\texttt{convert\ =\ TRUE}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table3 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{separate}\NormalTok{(rate, }\DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"cases"}\NormalTok{, }\StringTok{"population"}\NormalTok{), }\DataTypeTok{convert =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{#> # A tibble: 6 x 4}
+\CommentTok{#>   country      year  cases population}
+\CommentTok{#> * <chr>       <int>  <int>      <int>}
+\CommentTok{#> 1 Afghanistan  1999    745   19987071}
+\CommentTok{#> 2 Afghanistan  2000   2666   20595360}
+\CommentTok{#> 3 Brazil       1999  37737  172006362}
+\CommentTok{#> 4 Brazil       2000  80488  174504898}
+\CommentTok{#> 5 China        1999 212258 1272915272}
+\CommentTok{#> 6 China        2000 213766 1280428583}
+\end{Highlighting}
+\end{Shaded}
+
+You can also pass a vector of integers to \texttt{sep}.
+\texttt{separate()} will interpret the integers as positions to split
+at. Positive values start at 1 on the far-left of the strings; negative
+value start at -1 on the far-right of the strings. When using integers
+to separate strings, the length of \texttt{sep} should be one less than
+the number of names in \texttt{into}.
+
+You can use this arrangement to separate the last two digits of each
+year. This make this data less tidy, but is useful in other cases, as
+you'll see in a little bit.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table3 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{separate}\NormalTok{(year, }\DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"century"}\NormalTok{, }\StringTok{"year"}\NormalTok{), }\DataTypeTok{sep =} \DecValTok{2}\NormalTok{)}
+\CommentTok{#> # A tibble: 6 x 4}
+\CommentTok{#>   country     century year  rate             }
+\CommentTok{#> * <chr>       <chr>   <chr> <chr>            }
+\CommentTok{#> 1 Afghanistan 19      99    745/19987071     }
+\CommentTok{#> 2 Afghanistan 20      00    2666/20595360    }
+\CommentTok{#> 3 Brazil      19      99    37737/172006362  }
+\CommentTok{#> 4 Brazil      20      00    80488/174504898  }
+\CommentTok{#> 5 China       19      99    212258/1272915272}
+\CommentTok{#> 6 China       20      00    213766/1280428583}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Unite}\label{unite}
+
+\texttt{unite()} is the inverse of \texttt{separate()}: it combines
+multiple columns into a single column. You'll need it much less
+frequently than \texttt{separate()}, but it's still a useful tool to
+have in your back pocket.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{images/tidy/tidy-18} 
+
+}
+
+\caption{Uniting `table5` makes it tidy}\label{fig:tidy-unite}
+\end{figure}
+
+We can use \texttt{unite()} to rejoin the \emph{century} and \emph{year}
+columns that we created in the last example. That data is saved as
+\texttt{tidyr::table5}. \texttt{unite()} takes a data frame, the name of
+the new variable to create, and a set of columns to combine, again
+specified in \texttt{dplyr::select()} style:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table5 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{unite}\NormalTok{(new, century, year)}
+\CommentTok{#> # A tibble: 6 x 3}
+\CommentTok{#>   country     new   rate             }
+\CommentTok{#>   <chr>       <chr> <chr>            }
+\CommentTok{#> 1 Afghanistan 19_99 745/19987071     }
+\CommentTok{#> 2 Afghanistan 20_00 2666/20595360    }
+\CommentTok{#> 3 Brazil      19_99 37737/172006362  }
+\CommentTok{#> 4 Brazil      20_00 80488/174504898  }
+\CommentTok{#> 5 China       19_99 212258/1272915272}
+\CommentTok{#> 6 China       20_00 213766/1280428583}
+\end{Highlighting}
+\end{Shaded}
+
+In this case we also need to use the \texttt{sep} argument. The default
+will place an underscore (\texttt{\_}) between the values from different
+columns. Here we don't want any separator so we use \texttt{""}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table5 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{unite}\NormalTok{(new, century, year, }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+\CommentTok{#> # A tibble: 6 x 3}
+\CommentTok{#>   country     new   rate             }
+\CommentTok{#>   <chr>       <chr> <chr>            }
+\CommentTok{#> 1 Afghanistan 1999  745/19987071     }
+\CommentTok{#> 2 Afghanistan 2000  2666/20595360    }
+\CommentTok{#> 3 Brazil      1999  37737/172006362  }
+\CommentTok{#> 4 Brazil      2000  80488/174504898  }
+\CommentTok{#> 5 China       1999  212258/1272915272}
+\CommentTok{#> 6 China       2000  213766/1280428583}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Missing values}\label{missing-values}
+
+Changing the representation of a dataset brings up an important subtlety
+of missing values. Surprisingly, a value can be missing in one of two
+possible ways:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Explicitly}, i.e.~flagged with \texttt{NA}.
+\item
+  \textbf{Implicitly}, i.e.~simply not present in the data.
+\end{itemize}
+
+Let's illustrate this idea with a very simple data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata <-}\StringTok{ }\KeywordTok{tibble}\NormalTok{(}
+  \DataTypeTok{year   =} \KeywordTok{c}\NormalTok{(}\DecValTok{2015}\NormalTok{, }\DecValTok{2015}\NormalTok{, }\DecValTok{2015}\NormalTok{, }\DecValTok{2015}\NormalTok{, }\DecValTok{2016}\NormalTok{, }\DecValTok{2016}\NormalTok{, }\DecValTok{2016}\NormalTok{),}
+  \DataTypeTok{qtr    =} \KeywordTok{c}\NormalTok{(   }\DecValTok{1}\NormalTok{,    }\DecValTok{2}\NormalTok{,    }\DecValTok{3}\NormalTok{,    }\DecValTok{4}\NormalTok{,    }\DecValTok{2}\NormalTok{,    }\DecValTok{3}\NormalTok{,    }\DecValTok{4}\NormalTok{),}
+  \DataTypeTok{rate   =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.88}\NormalTok{, }\FloatTok{0.59}\NormalTok{, }\FloatTok{0.35}\NormalTok{,   }\OtherTok{NA}\NormalTok{, }\FloatTok{0.92}\NormalTok{, }\FloatTok{0.17}\NormalTok{, }\FloatTok{2.66}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{mydata}
+\CommentTok{#> # A tibble: 7 x 3}
+\CommentTok{#>    year   qtr  rate}
+\CommentTok{#>   <dbl> <dbl> <dbl>}
+\CommentTok{#> 1  2015     1  1.88}
+\CommentTok{#> 2  2015     2  0.59}
+\CommentTok{#> 3  2015     3  0.35}
+\CommentTok{#> 4  2015     4 NA   }
+\CommentTok{#> 5  2016     2  0.92}
+\CommentTok{#> 6  2016     3  0.17}
+\CommentTok{#> # ... with 1 more row}
+\end{Highlighting}
+\end{Shaded}
+
+There are two missing values in this dataset:
+
+\begin{itemize}
+\item
+  The rate for the fourth quarter of 2015 is explicitly missing, because
+  the cell where its value should be instead contains \texttt{NA}.
+\item
+  The rate for the first quarter of 2016 is implicitly missing, because
+  it simply does not appear in the dataset.
+\end{itemize}
+
+The way that a dataset is represented can make implicit values explicit.
+For example, we can make the implicit missing value explicit by putting
+years in the columns:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(year, rate)}
+\CommentTok{#> # A tibble: 4 x 3}
+\CommentTok{#>     qtr `2015` `2016`}
+\CommentTok{#>   <dbl>  <dbl>  <dbl>}
+\CommentTok{#> 1     1   1.88  NA   }
+\CommentTok{#> 2     2   0.59   0.92}
+\CommentTok{#> 3     3   0.35   0.17}
+\CommentTok{#> 4     4  NA      2.66}
+\end{Highlighting}
+\end{Shaded}
+
+Because these explicit missing values may not be important in other
+representations of the data, you can set \texttt{na.rm\ =\ TRUE} in
+\texttt{gather()} to turn explicit missing values implicit:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{spread}\NormalTok{(year, rate) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{gather}\NormalTok{(year, rate, }\StringTok{`}\DataTypeTok{2015}\StringTok{`}\OperatorTok{:}\StringTok{`}\DataTypeTok{2016}\StringTok{`}\NormalTok{, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{#> # A tibble: 6 x 3}
+\CommentTok{#>     qtr year   rate}
+\CommentTok{#> * <dbl> <chr> <dbl>}
+\CommentTok{#> 1     1 2015   1.88}
+\CommentTok{#> 2     2 2015   0.59}
+\CommentTok{#> 3     3 2015   0.35}
+\CommentTok{#> 4     2 2016   0.92}
+\CommentTok{#> 5     3 2016   0.17}
+\CommentTok{#> 6     4 2016   2.66}
+\end{Highlighting}
+\end{Shaded}
+
+Another important tool for making missing values explicit in tidy data
+is \texttt{complete()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{complete}\NormalTok{(year, qtr)}
+\CommentTok{#> # A tibble: 8 x 3}
+\CommentTok{#>    year   qtr  rate}
+\CommentTok{#>   <dbl> <dbl> <dbl>}
+\CommentTok{#> 1  2015     1  1.88}
+\CommentTok{#> 2  2015     2  0.59}
+\CommentTok{#> 3  2015     3  0.35}
+\CommentTok{#> 4  2015     4 NA   }
+\CommentTok{#> 5  2016     1 NA   }
+\CommentTok{#> 6  2016     2  0.92}
+\CommentTok{#> # ... with 2 more rows}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{complete()} takes a set of columns, and finds all unique
+combinations. It then ensures the original dataset contains all those
+values, filling in explicit \texttt{NA}s where necessary.
+
+\BeginKnitrBlock{rmdwarning}
+It is also possible that you have such incomplete data that
+\texttt{complete()} does not have all the data needed for complete
+cases. Imagine in the above example if the year 2016 data wat instead
+complete missing but you had 2017 data. In this case a different
+technique would need to be used. A common solution to this problem is to
+use \texttt{crossing()} to make the compete cases then ``join'' the data
+set to the complete cases.
+\EndKnitrBlock{rmdwarning}
+
+There's one other important tool that you should know for working with
+missing values. Sometimes when a data source has primarily been used for
+data entry (tables from \emph{Excel}, \emph{pdf}, and \emph{Word}),
+missing values indicate that the previous value should be carried
+forward:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{treatment <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\StringTok{ }\NormalTok{person,           }\OperatorTok{~}\StringTok{ }\NormalTok{treatment, }\OperatorTok{~}\NormalTok{response,}
+  \StringTok{"Derrick Whitmore"}\NormalTok{, }\DecValTok{1}\NormalTok{,           }\DecValTok{7}\NormalTok{,}
+  \OtherTok{NA}\NormalTok{,                 }\DecValTok{2}\NormalTok{,           }\DecValTok{10}\NormalTok{,}
+  \OtherTok{NA}\NormalTok{,                 }\DecValTok{3}\NormalTok{,           }\DecValTok{9}\NormalTok{,}
+  \StringTok{"Katherine Burke"}\NormalTok{,  }\DecValTok{1}\NormalTok{,           }\DecValTok{4}
+\NormalTok{)}
+
+\NormalTok{treatment}
+\CommentTok{#> # A tibble: 4 x 3}
+\CommentTok{#>   person           treatment response}
+\CommentTok{#>   <chr>                <dbl>    <dbl>}
+\CommentTok{#> 1 Derrick Whitmore         1        7}
+\CommentTok{#> 2 <NA>                     2       10}
+\CommentTok{#> 3 <NA>                     3        9}
+\CommentTok{#> 4 Katherine Burke          1        4}
+\end{Highlighting}
+\end{Shaded}
+
+You can fill in these missing values with \texttt{fill()}. It takes a
+set of columns where you want missing values to be replaced by the most
+recent non-missing value (sometimes called last observation carried
+forward).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{treatment }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{fill}\NormalTok{(person)}
+\CommentTok{#> # A tibble: 4 x 3}
+\CommentTok{#>   person           treatment response}
+\CommentTok{#>   <chr>                <dbl>    <dbl>}
+\CommentTok{#> 1 Derrick Whitmore         1        7}
+\CommentTok{#> 2 Derrick Whitmore         2       10}
+\CommentTok{#> 3 Derrick Whitmore         3        9}
+\CommentTok{#> 4 Katherine Burke          1        4}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Non-tidy data}\label{non-tidy-data}
+
+Before we continue on to other topics, it's worth talking briefly about
+non-tidy data. Earlier in the chapter, I used the pejorative term
+``messy'' to refer to non-tidy data. That's an oversimplification: there
+are lots of useful and well-founded data structures that are not tidy
+data. There are two main reasons to use other data structures:
+
+\begin{itemize}
+\item
+  Alternative representations may have substantial performance or space
+  advantages.
+\item
+  Specialized fields have evolved their own conventions for storing data
+  that may be quite different to the conventions of tidy data.
+\end{itemize}
+
+Either of these reasons means you'll need something other than a tibble
+(or data frame). If your data does fit naturally into a rectangular
+structure composed of observations and variables, I think tidy data
+should be your default choice. But there are good reasons to use other
+structures; tidy data is not the only way.
+
+If you'd like to learn more about non-tidy data, I'd highly recommend
+this thoughtful blog post by Jeff Leek:
+\url{http://simplystatistics.org/2016/02/17/non-tidy-data/}
+
+\part{Beyond Basics}\label{part-beyond-basics}
+
+\chapter{Function Basics}\label{function-basics}
+
+\begin{quote}
+To understand computations in R, two slogans are helpful:\\
+- Everything that exists is an object.\\
+- Everything that happens is a function call.
+
+-- John Chambers
+\end{quote}
+
+\section{Introduction to Functions}\label{introduction-to-functions}
+
+Functions are an central part of robust R programming and we will spend
+a significant amount of time writing functions. Think of functions in
+the
+\href{https://en.wikipedia.org/wiki/Function_(mathematics)}{mathematical
+sense} will make the properties much more apparent than any other
+framework.
+
+Functions in R are ``first class objects'', which means that they can be
+treated much like any other R object. Importantly,
+
+\begin{itemize}
+\item
+  Functions can be passed as arguments to other functions. This is very
+  handy for the various apply functions, like \texttt{lapply()} and
+  \texttt{sapply()}.
+\item
+  Functions can be nested, so that you can define a function inside of
+  another function
+\end{itemize}
+
+If you're familiar with common language like C, these features might
+appear a bit strange. However, they are really important in R and can be
+useful for data analysis.
+
+\begin{itemize}
+\tightlist
+\item
+  Functions are a means of \textbf{abstraction}. A concept/computation
+  is encapsulated/isolated from the rest with a function.
+\item
+  Functions should \textbf{do one thing}, and do it well (compute, or
+  plot, or save, \ldots{} not all in one go).
+\item
+  \textbf{Side effects}: your functions should not have any (unless, of
+  course, that is the main point of that function - plotting, write to
+  disk, \ldots{}). Functions shouldn't make any changes in any
+  environment. The only return their output.
+\item
+  \textbf{Do not use global variables}. Everything the function needs is
+  being passed as an argument. Function must be \textbf{self-contained}.
+\item
+  Function streamline code and process
+\end{itemize}
+
+Advice from the
+\href{http://www.burns-stat.com/pages/Tutor/R_inferno.pdf}{R Inferno}:
+
+Make your functions as simple as possible. Simple has many advantages:
+
+\begin{itemize}
+\tightlist
+\item
+  Simple functions are likely to be human efficient: they will be easy
+  to understand and to modify.
+\item
+  Simple functions are likely to be computer efficient.
+\item
+  Simple functions are less likely to be buggy, and bugs will be easier
+  to fix.
+\item
+  (Perhaps ironically) simple functions may be more general---thinking
+  about the heart of the matter often broadens the application.
+\end{itemize}
+
+Functions can be
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Correct.
+\item
+  An error occurs that is clearly identified.
+\item
+  An obscure error occurs.
+\item
+  An incorrect value is returned.
+\end{enumerate}
+
+We like \textbf{category 1}. \textbf{Category 2} is the right behavior
+if the inputs do not make sense, but not if the inputs are sensible.
+\textbf{Category 3} is an unpleasant place for your users, and possibly
+for you if the users have access to you. \textbf{Category 4} is by far
+the worst place to be - the user has no reason to believe that anything
+is wrong. Steer clear of category 4.
+
+\begin{rmdimportant}
+Software testing is important, but, in part because it is frustrating
+and boring, many of us avoid it. `testthat' is a testing framework for R
+that is easy learn and use, and integrates with your existing
+`workflow'.
+\end{rmdimportant}
+
+\subsection{Your First Function}\label{your-first-function}
+
+All R functions have three parts:
+
+\begin{itemize}
+\item
+  the \texttt{body()}, the code inside the function.
+\item
+  the \texttt{formals()}, the list of arguments which controls how you
+  can call the function.
+\item
+  the \texttt{environment()}, the ``map'' of the location of the
+  function's variables.
+\end{itemize}
+
+When you print a function in R, it shows you these three important
+components. If the environment isn't displayed, it means that the
+function was created in the global environment.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myadd <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y) \{}
+  \KeywordTok{message}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"x = "}\NormalTok{, x, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{))}
+  \KeywordTok{message}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"y = "}\NormalTok{, y, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{))}
+\NormalTok{  x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  The body of the function is everything between the \texttt{\{\ \}}.
+  Note this does the computation \textbf{AND} returns the result.
+\item
+  \texttt{x} and \texttt{y} are the arguments to the function.
+\item
+  the environment this function lives in is the global environment.
+  (We'll discuss environments more in the next section.)
+\end{itemize}
+
+When calling a function you can pass the parameters \textbf{in order},
+\textbf{by name}, or a combination.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{myadd}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)            }\CommentTok{# arguments by position}
+\CommentTok{#> x = 1}
+\CommentTok{#> y = 3}
+\CommentTok{#> [1] 4}
+\KeywordTok{myadd}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{y =} \DecValTok{3}\NormalTok{)    }\CommentTok{# arguments by name}
+\CommentTok{#> x = 1}
+\CommentTok{#> }
+\CommentTok{#> y = 3}
+\CommentTok{#> [1] 4}
+\KeywordTok{myadd}\NormalTok{(}\DataTypeTok{y =} \DecValTok{3}\NormalTok{, }\DataTypeTok{x =} \DecValTok{1}\NormalTok{)    }\CommentTok{# name order doesn't matter}
+\CommentTok{#> x = 1}
+\CommentTok{#> }
+\CommentTok{#> y = 3}
+\CommentTok{#> [1] 4}
+\KeywordTok{myadd}\NormalTok{(}\DataTypeTok{y =} \DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{)        }\CommentTok{# combination}
+\CommentTok{#> x = 1}
+\CommentTok{#> }
+\CommentTok{#> y = 3}
+\CommentTok{#> [1] 4}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{rmdtip}
+Even though it's legal, I don't recommend messing around with the order
+of the arguments too much, since it can lead to some confusion.
+Convention is to pass arguments in the order the function defines them,
+and to use the arguments names if the function takes more than 2 or 3
+arguments.
+\EndKnitrBlock{rmdtip}
+
+You can also specify default values for your arguments. Default values
+\emph{should} be the values most often used. \texttt{rnorm} uses the
+default of \texttt{mean\ =\ 0} and \texttt{sd\ =\ 1}. We usually want to
+sample from the standard normal distribution, but we are not forced to.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myadd2 <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{x =} \DecValTok{3}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\NormalTok{)\{}
+  \KeywordTok{cat}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"x = "}\NormalTok{, x, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{))}
+  \KeywordTok{cat}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"y = "}\NormalTok{, y, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{))}
+\NormalTok{  x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\NormalTok{\}}
+\KeywordTok{myadd2}\NormalTok{()              }\CommentTok{# use the defaults}
+\CommentTok{#> x = 3}
+\CommentTok{#> y = 0}
+\CommentTok{#> [1] 3}
+\KeywordTok{myadd2}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{)}
+\CommentTok{#> x = 1}
+\CommentTok{#> y = 0}
+\CommentTok{#> [1] 1}
+\KeywordTok{myadd2}\NormalTok{(}\DataTypeTok{y =} \DecValTok{1}\NormalTok{)}
+\CommentTok{#> x = 3}
+\CommentTok{#> y = 1}
+\CommentTok{#> [1] 4}
+\KeywordTok{myadd2}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\NormalTok{, }\DataTypeTok{y =} \DecValTok{1}\NormalTok{)}
+\CommentTok{#> x = 1}
+\CommentTok{#> y = 1}
+\CommentTok{#> [1] 2}
+\end{Highlighting}
+\end{Shaded}
+
+By default the last line of the function is returned. Thus, there is no
+reason to explicitly call \texttt{return}, unless you are returning from
+the function early. Inside functions use \texttt{stop} to return error
+messages, \texttt{warning} to return warning messages, and
+\texttt{message} to print a message to the console.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(age) \{}
+  \ControlFlowTok{if}\NormalTok{ (age }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+    \KeywordTok{stop}\NormalTok{(}\StringTok{"age must be a positive number"}\NormalTok{)}
+\NormalTok{  \}}
+  
+  \ControlFlowTok{if}\NormalTok{ (age }\OperatorTok{<}\StringTok{ }\DecValTok{18}\NormalTok{) \{}
+    \KeywordTok{warning}\NormalTok{(}\StringTok{"Check your data.  We only care about adults."}\NormalTok{)}
+\NormalTok{  \}}
+  
+  \KeywordTok{message}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"Your person is "}\NormalTok{, age, }\StringTok{" years old"}\NormalTok{))}
+  \KeywordTok{invisible}\NormalTok{()}
+\NormalTok{\}}
+
+\KeywordTok{f}\NormalTok{(}\OperatorTok{-}\DecValTok{10}\NormalTok{)}
+\CommentTok{#> Error in f(-10): age must be a positive number}
+\KeywordTok{f}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\CommentTok{#> Warning in f(10): Check your data. We only care about adults.}
+\CommentTok{#> Your person is 10 years old}
+\KeywordTok{f}\NormalTok{(}\DecValTok{30}\NormalTok{)}
+\CommentTok{#> Your person is 30 years old}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Lazy Evaluation}\label{lazy-evaluation}
+
+R is lazy. Arguments to functions are evaluated \emph{lazily}, that is
+they are evaluated only as needed in the body of the function.
+
+In this example, the function \texttt{f()} has two arguments: \texttt{a}
+and \texttt{b}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, b) \{}
+\NormalTok{  a}\OperatorTok{^}\DecValTok{2}
+\NormalTok{\} }
+
+\KeywordTok{f}\NormalTok{(}\DecValTok{2}\NormalTok{)     }\CommentTok{# this works}
+\CommentTok{#> [1] 4}
+\KeywordTok{f}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{)  }\CommentTok{# this does too}
+\CommentTok{#> [1] 4}
+\end{Highlighting}
+\end{Shaded}
+
+This function never actually uses the argument \texttt{b}, so calling
+\texttt{f(2)} or \texttt{f(2,\ 1)} will not produce an error because the
+2 gets positionally matched to a. It's common to write a function that
+does not use an argument and not notice it simply because R never throws
+an error.
+
+\subsection{\texorpdfstring{The Dot-dot-dot (\texttt{...})
+Argument}{The Dot-dot-dot (...) Argument}}\label{the-dot-dot-dot-...-argument}
+
+There is a special argument in R known as the \texttt{...} argument,
+which indicate a variable number of arguments that are usually passed on
+to other functions. The two most common cases for using \texttt{...} in
+a function are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The number of arguments passed to the function cannot be known in
+  advance.
+\item
+  Extending another function and you don't want to copy the entire
+  argument list of the original function.
+\end{enumerate}
+
+\textbf{Number of arguments passed to the function cannot be known in
+advance.}
+
+The \texttt{...} argument is also necessary when the number of arguments
+passed to the function cannot be known in advance. This is clear in
+functions like \texttt{paste()}, \texttt{cat()}, \texttt{sum()}, and
+\texttt{mean()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(paste)}
+\CommentTok{#> function (..., sep = " ", collapse = NULL) }
+\CommentTok{#> NULL}
+\KeywordTok{args}\NormalTok{(cat)}
+\CommentTok{#> function (..., file = "", sep = " ", fill = FALSE, labels = NULL, }
+\CommentTok{#>     append = FALSE) }
+\CommentTok{#> NULL}
+\KeywordTok{args}\NormalTok{(sum)}
+\CommentTok{#> function (..., na.rm = FALSE) }
+\CommentTok{#> NULL}
+\KeywordTok{args}\NormalTok{(mean)}
+\CommentTok{#> function (x, ...) }
+\CommentTok{#> NULL}
+\end{Highlighting}
+\end{Shaded}
+
+Because both \texttt{paste()} and \texttt{cat()} print out text to the
+console by combining multiple character vectors together, it is
+impossible for those functions to know in advance how many character
+vectors will be passed to the function by the user. So the first
+argument to either function is \texttt{...}. Similarly with
+\texttt{sum()}, and \texttt{mean()}.
+
+One catch with \texttt{...} is that any arguments that appear
+\emph{after} \texttt{...} on the argument list must be named explicitly
+and cannot be partially matched or matched positionally.
+
+Take a look at the arguments to the \texttt{paste()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(paste)}
+\CommentTok{#> function (..., sep = " ", collapse = NULL) }
+\CommentTok{#> NULL}
+\end{Highlighting}
+\end{Shaded}
+
+With the \texttt{paste()} function, the arguments \texttt{sep} and
+\texttt{collapse} must be named explicitly and in full if the default
+values are not going to be used.
+
+\textbf{Extending another function}
+
+For example, a custom plotting function may want to make use of the
+default \texttt{plot()} function along with its entire argument list.
+The function below changes the default for the \texttt{type} argument to
+the value \texttt{type\ =\ "l"} (the original \texttt{plot} default is
+\texttt{type\ =\ "p"}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mylineplot <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y, ...) \{}
+        \KeywordTok{plot}\NormalTok{(x, y, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, ...)         ## Pass '...' to 'plot' function}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Sometimes you will combine both in one function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{commas <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(...) \{}
+  \KeywordTok{paste}\NormalTok{(..., }\DataTypeTok{sep =} \StringTok{""}\NormalTok{, }\DataTypeTok{collapse =} \StringTok{", "}\NormalTok{)}
+\NormalTok{\}}
+
+\KeywordTok{commas}\NormalTok{(letters[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{])}
+\CommentTok{#> [1] "a, b, c, d, e, f, g, h, i, j"}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Environments \& Scoping}\label{environments-scoping}
+
+An \textbf{environment} is a collection of (symbol, value) pairs, i.e.
+\texttt{x\ \textless{}-\ 10}, \texttt{x} is a symbol and \texttt{10}
+might be its value. Every environment has a parent environment and it is
+possible for an environment to have multiple ``children''. The only
+environment without a parent is the empty environment.
+
+\textbf{Scoping} is the set of rules that govern how R looks up the
+value of a symbol. In the example below, scoping is the set of rules
+that R applies to go from the symbol \texttt{x} to its value
+\texttt{10}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{10}
+\NormalTok{x}
+\CommentTok{#> [1] 10}
+\end{Highlighting}
+\end{Shaded}
+
+R has two types of scoping: lexical scoping, implemented automatically
+at the language level, and dynamic scoping, used in select functions to
+save typing during interactive analysis. We discuss lexical scoping here
+because it is intimately tied to function creation. Dynamic scoping is
+an advanced topic and is discussed in
+\href{http://adv-r.had.co.nz}{Advanced R}.
+
+How do we associate a value to a free variable? There is a search
+process that occurs that goes as follows:
+
+If the value of a symbol is not found in the environment in which a
+function was defined, then the search is continued in the parent
+environment. The search continues up the sequence of parent environments
+until we hit the top-level environment; this usually the global
+environment (workspace) or the namespace of a package. After the
+top-level environment, the search continues down the search list until
+we hit the empty environment. If a value for a given symbol cannot be
+found once the empty environment is arrived at, then an error is thrown.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{0}
+
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{x =} \OperatorTok{-}\DecValTok{1}\NormalTok{) \{}
+\NormalTok{  x <-}\StringTok{ }\DecValTok{1}
+\NormalTok{  y <-}\StringTok{ }\DecValTok{2}
+  \KeywordTok{c}\NormalTok{(x, y)}
+\NormalTok{\}}
+
+\NormalTok{g <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(}\DataTypeTok{x =} \OperatorTok{-}\DecValTok{1}\NormalTok{) \{}
+\NormalTok{  y <-}\StringTok{ }\DecValTok{1}
+  \KeywordTok{c}\NormalTok{(x, y)}
+\NormalTok{\}}
+
+\NormalTok{h <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
+\NormalTok{  y <-}\StringTok{ }\DecValTok{1}
+  \KeywordTok{c}\NormalTok{(x, y)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+What do the following return?
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{f()}
+\item
+  \texttt{g()}
+\item
+  \texttt{h()}
+\item
+  \texttt{g(h())}
+\item
+  \texttt{f(g())}
+\item
+  \texttt{g(f())}
+\end{itemize}
+
+\section{\texorpdfstring{``First class
+objects''}{First class objects}}\label{first-class-objects}
+
+Since functions \textbf{ARE} objects you can pass functions as arguments
+and return functions as results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_summary <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, }\DataTypeTok{funs =} \KeywordTok{c}\NormalTok{(mean, sd), ...) \{}
+  \KeywordTok{lapply}\NormalTok{(funs, }\ControlFlowTok{function}\NormalTok{(f) }\KeywordTok{f}\NormalTok{(x, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{\}}
+
+\NormalTok{y <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\KeywordTok{my_summary}\NormalTok{(y)}
+\CommentTok{#> [[1]]}
+\CommentTok{#> [1] 5.5}
+\CommentTok{#> }
+\CommentTok{#> [[2]]}
+\CommentTok{#> [1] 3.03}
+\KeywordTok{my_summary}\NormalTok{(y, }\KeywordTok{c}\NormalTok{(mean, median, sd, IQR, mad))}
+\CommentTok{#> [[1]]}
+\CommentTok{#> [1] 5.5}
+\CommentTok{#> }
+\CommentTok{#> [[2]]}
+\CommentTok{#> [1] 5.5}
+\CommentTok{#> }
+\CommentTok{#> [[3]]}
+\CommentTok{#> [1] 3.03}
+\CommentTok{#> }
+\CommentTok{#> [[4]]}
+\CommentTok{#> [1] 4.5}
+\CommentTok{#> }
+\CommentTok{#> [[5]]}
+\CommentTok{#> [1] 3.71}
+\end{Highlighting}
+\end{Shaded}
+
+Unlike most languages you can define a function within a function and /
+or return a function. This nested function only lives inside the parent
+function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{make.power <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(n) \{}
+  \CommentTok{# [}\AlertTok{TBD}\CommentTok{] checks on n}
+\NormalTok{  pow <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+      \CommentTok{# [}\AlertTok{TBD}\CommentTok{] checks on x}
+\NormalTok{    x}\OperatorTok{^}\NormalTok{n }
+\NormalTok{  \}}
+\NormalTok{  pow}
+\NormalTok{\}}
+
+\KeywordTok{make.power}\NormalTok{(}\DecValTok{4}\NormalTok{)  }\CommentTok{# returns a function}
+\CommentTok{#> function(x) \{}
+\CommentTok{#>       # [}\AlertTok{TBD}\CommentTok{] checks on x}
+\CommentTok{#>     x^n }
+\CommentTok{#>   \}}
+\CommentTok{#> <environment: 0x0000000007bf8c40>}
+\KeywordTok{pow}\NormalTok{(}\DataTypeTok{x=}\DecValTok{4}\NormalTok{)       }\CommentTok{# Note: `pow` does not exist outside of the `make.power` function}
+\CommentTok{#> Error in pow(x = 4): could not find function "pow"}
+
+\NormalTok{cube <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{3}\NormalTok{)          }
+\KeywordTok{as.list}\NormalTok{(}\KeywordTok{environment}\NormalTok{(cube))}
+\CommentTok{#> $pow}
+\CommentTok{#> function (x) }
+\CommentTok{#> \{}
+\CommentTok{#>     x^n}
+\CommentTok{#> \}}
+\CommentTok{#> <bytecode: 0x00000000078959f8>}
+\CommentTok{#> <environment: 0x00000000086c7f18>}
+\CommentTok{#> }
+\CommentTok{#> $n}
+\CommentTok{#> [1] 3}
+\KeywordTok{cube}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\CommentTok{#> [1] 8}
+
+\NormalTok{square <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\NormalTok{squareroot <-}\StringTok{ }\KeywordTok{make.power}\NormalTok{(.}\DecValTok{5}\NormalTok{)}
+
+
+\KeywordTok{square}\NormalTok{(}\DecValTok{8}\NormalTok{)}
+\CommentTok{#> [1] 64}
+\KeywordTok{squareroot}\NormalTok{(}\DecValTok{9}\NormalTok{)}
+\CommentTok{#> [1] 3}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Exercises}\label{exercises-4}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create function that takes a numeric year-quater (ex 20183) and
+  returns the quarter n-quarters before / after it. Example two quarters
+  previous to 20183 is 20181.
+\item
+  Come up with 5 functions (you don't have program them) that will
+  operate on your data. (Ex. Create a demographics table)
+\item
+  Create a \texttt{read\_*} function that
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  reads in the data file
+\item
+  converts all columns to the appropriate data types
+\item
+  ``Tidy'' your data (if appropriate)\\
+  The first argument to your read function should be the file name. Are
+  there additional parameters that are needed? Think beyond the
+  Subscriber Report, what are other things you typically do upon first
+  reading in a data file.
+\end{itemize}
+
+\chapter{R Markdown}\label{r-markdown}
+
+\section{Introduction}\label{introduction}
+
+\href{https://player.vimeo.com/video/178485416}{What is R Markdown}
+
+R Markdown provides an unified authoring framework for data science,
+combining your code, its results, and your prose commentary. R Markdown
+documents are fully reproducible and support dozens of static and
+dynamic output formats like PDFs, Word files, slideshows, and more.. For
+a comprehensive resource on R Markdown see
+\href{https://bookdown.org/yihui/rmarkdown/}{R Markdown: The Definitive
+Guide}
+
+R Markdown integrates a number of R packages and external tools. This
+means that help is, by-and-large, not available through ?. Instead, as
+you work through this chapter, and use R Markdown in the future, keep
+these resources close to hand:
+
+\begin{itemize}
+\tightlist
+\item
+  R Markdown Cheat Sheet: Help \textgreater{} Cheatsheets \textgreater{}
+  R Markdown Cheat Sheet,
+\item
+  R Markdown Reference Guide: Help \textgreater{} Cheatsheets
+  \textgreater{} R Markdown Reference Guide.
+\end{itemize}
+
+Both cheatsheets are also available at
+\url{http://rstudio.com/cheatsheets}.
+
+The real point of R Markdown is that it lets you include your code, have
+the code run automatically when your document is rendered, and
+seamlessly include the results of that code in your document.
+
+\subsection{Code languages}\label{code-languages}
+
+While there is an \textbf{``R''} in R Markdown this is not limited to
+just the R programming language. It is a generic markup language that
+can knit any code that can be run from a command line into a document.
+Some of the more popular languages are:
+
+\begin{itemize}
+\tightlist
+\item
+  R
+\item
+  Python
+\item
+  SQL
+\item
+  C/C++
+\item
+  Bash
+\item
+  Rcpp
+\item
+  Stan
+\item
+  JavaScript
+\item
+  CSS
+\item
+  Julia
+\item
+  SAS (see SASmarkdown package)
+\end{itemize}
+
+You can intermix languages within the same document, and in some cases
+pass data between languages.
+
+\BeginKnitrBlock{rmdimportant}
+You do not have to include any programming language. There are many
+books, websites, and wikis written in R Markown which contain no code.
+\EndKnitrBlock{rmdimportant}
+
+\section{Markdown Basics}\label{markdown-basics}
+
+Format the text in your R Markdown file with
+\href{https://pandoc.org/MANUAL.html\#pandocs-markdown}{Pandoc's
+Markdown}, a set of markup annotations for plain text files. When you
+render your file, Pandoc transforms the marked up text into formatted
+text in your final file format.
+
+Notice that the file contains three types of content:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Text mixed with simple text formatting.
+\item
+  Code chunks and the corresponding output.
+\item
+  An (optional) YAML header controlling the ``whole document'' settings.
+\end{enumerate}
+
+\subsection{Headers}\label{headers}
+
+The character \texttt{\#} at the beginning of a line means that the rest
+of the line is interpreted as a section header. The number of
+\texttt{\#}s at the beginning of the line indicates whether it is
+treated as a section, sub-section, sub-sub-section, etc. of the
+document.
+
+\begin{verbatim}
+# Heading Level 1  
+## Heading Level 2  
+### Heading Level 3
+\end{verbatim}
+
+In this document the chapter title \textbf{R Markdown} is preceded by a
+single \texttt{\#}, but \textbf{Markdown Basics} at the start of this
+paragraph was preceded by \texttt{\#\#} and the current section
+\textbf{Headers} is preceded by \texttt{\#\#\#} in the text file.
+
+\subsection{Paragraph Breaks and Forced Line
+Breaks}\label{paragraph-breaks-and-forced-line-breaks}
+
+\begin{verbatim}
+To insert a break between paragraphs, include a single completely blank line.
+
+To force a line break, put two blank  
+spaces at the end of a line.
+\end{verbatim}
+
+To insert a break between paragraphs, include a single completely blank
+line.
+
+To force a line break, put two blank\\
+spaces at the end of a line.
+
+\begin{verbatim}
+If you don't put the two blank
+spaces at the end of a line
+they will run together.
+\end{verbatim}
+
+If you don't put the two blank spaces at the end of a line they will run
+together.
+
+\subsection{Italics and Boldface}\label{italics-and-boldface}
+
+\begin{verbatim}
+Text to be _italicized_ goes inside _a single set of underscores_ or *asterisks*.  Text to be **boldfaced** goes inside a __double set of underscores__  or **asterisks**.
+\end{verbatim}
+
+Text to be \emph{italicized} goes inside \emph{a single set of
+underscores} or \emph{asterisks}. Text to be \textbf{boldfaced} goes
+inside a \textbf{double set of underscores} or \textbf{asterisks}.
+
+\subsection{Bullet Points}\label{bullet-points}
+
+\begin{verbatim}
+* This is a list marked where items are marked with bullet points.
+* Each item in the list should start with a `*` (asterisk) character, or a single dash (`-`) and then have a space.
+* Each item should also be on a new line.
+    + Indent lines with 4 spaces and begin them with `+` for sub-bullets.
+    + Sub-sub-bullet aren’t really a thing in R Markdown.
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  This is a list marked where items are marked with bullet points.
+\item
+  Each item in the list should start with a \texttt{*} (asterisk)
+  character, or a single dash (\texttt{-}) and then have a space.
+\item
+  Each item should also be on a new line.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Indent lines with 4 spaces and begin them with \texttt{+} for
+    sub-bullets.
+  \item
+    Sub-sub-bullet are not't really a thing in R Markdown.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Numbered Lists}\label{numbered-lists}
+
+\begin{verbatim}
+1. Lines which begin with a numeral (0–9), followed by a period, will usually be interpreted as items in a numbered list.
+1. R Markdown handles the numbering in what it renders automatically, so the actual number doesn't matter.
+1. This can be handy when you lose count or don’t update the numbers yourself when editing. (Look carefully at the .Rmd file for this item.)
+    a. Sub-lists of numbered lists, with letters for sub-items, are a thing.
+    b. They are however a fragile thing, which you’d better not push too hard.
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Lines which begin with a numeral (0--9), followed by a period, will
+  usually be interpreted as items in a numbered list.
+\item
+  R Markdown handles the numbering in what it renders automatically, so
+  the actual number doesn't matter.
+\item
+  This can be handy when you lose count or don't update the numbers
+  yourself when editing. (Look carefully at the .Rmd file for this
+  item.)
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Sub-lists of numbered lists, with letters for sub-items, are a
+    thing.
+  \item
+    They are however a fragile thing, which you'd better not push too
+    hard.
+  \end{enumerate}
+\end{enumerate}
+
+\section{Math}\label{math}
+
+R Markdown uses standard LaTeX to render complex mathematical formulas
+and derivations, and have them displayed very nicely. Like code, the
+math can either be inline or set off (displays).
+
+Inline math is marked off with a pair of dollar signs (\texttt{\$}),
+\texttt{\$\textbackslash{}frac\{a+b\}\{b\}\ =\ 1\ +\ \textbackslash{}frac\{a\}\{b\}\$}
+\(\frac{a+b}{b} = 1 + \frac{a}{b}\)
+
+Mathematical displays are marked off with \texttt{\textbackslash{}{[}}
+and\texttt{\textbackslash{}{]}}, as in
+
+\begin{verbatim}
+\[ \frac{a+b}{b} = 1 + \frac{a}{b} \]
+\end{verbatim}
+
+\[ \frac{a+b}{b} = 1 + \frac{a}{b} \]
+
+\section{Code Chunks}\label{code-chunks}
+
+Think of a chunk like a function. A chunk should be relatively
+self-contained, and focused around a single task. You can quickly insert
+chunks like these into your file with
+
+\begin{itemize}
+\tightlist
+\item
+  the keyboard shortcut \textbf{Ctrl + Alt + I} (OS X: \textbf{Cmd +
+  Option + I})
+\item
+  typing the chunk delimiters
+  \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}} and
+  \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}}.
+\item
+  the \emph{Add Chunk} command in the editor toolbar
+\end{itemize}
+
+When you render your .Rmd file, R Markdown will run each code chunk and
+embed the results beneath the code chunk in your final report.
+
+There are three main sections to a the code chunk header:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the programming language engine to run the code
+\item
+  the code chunk name (optional but very useful)
+\item
+  the code chunk options.
+\end{enumerate}
+
+\subsection{Chunk Names}\label{chunk-names}
+
+Chunks can be given an optional name:
+\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\ by-name\}}.
+This has three advantages:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  You can more easily navigate to specific chunks using the drop-down
+  code navigator in the bottom-left of the script editor:
+\item
+  Graphics produced by the chunks will have useful names that make them
+  easier to use elsewhere.
+\item
+  You can set up networks of cached chunks to avoid re-performing
+  expensive computations on every run. More on that below.
+\end{enumerate}
+
+It's a good idea to name code chunks that produce figures, even if you
+don't routinely label other chunks. The chunk label is used to generate
+the file name of the graphic on disk, so naming your chunks makes it
+much easier to pick out plots and reuse in other circumstances (i.e.~if
+you want to quickly drop a single plot into an email)
+
+\BeginKnitrBlock{rmdimportant}
+There is one chunk name wit special behaviour: \texttt{setup}. In
+notebook mode, the chunk named \texttt{setup} will be run automatically
+once, before any other code is run.
+\EndKnitrBlock{rmdimportant}
+
+\subsection{Chunk Options}\label{chunk-options}
+
+Chunk output can be customized with \textbf{options}, arguments supplied
+to chunk header. Knitr provides almost 60 options that you can use to
+customize your code chunks. Here we'll cover the most important chunk
+options that you'll use frequently. You can see the full list at
+\url{http://yihui.name/knitr/options/}.
+
+The most important set of options controls if your code block is
+executed and what results are inserted in the finished report:
+
+\begin{itemize}
+\item
+  \texttt{include\ =\ FALSE} prevents code and results from appearing in
+  the finished file. Use this to run code and results used by other
+  chunks (i.e.~setup code).
+\item
+  \texttt{echo\ =\ FALSE} prevents code, but not the results from
+  appearing in the finished file. Use this when writing reports.
+\item
+  \texttt{message\ =\ FALSE} or \texttt{warning\ =\ FALSE} prevents
+  messages or warnings from appearing in the finished file.
+\item
+  \texttt{results\ =\ \textquotesingle{}hide\textquotesingle{}} hides
+  printed output;
+  \texttt{fig.show\ =\ \textquotesingle{}hide\textquotesingle{}} hides
+  plots.
+\item
+  \texttt{error\ =\ TRUE} causes the render to continue even if code
+  returns an error. Use this for debugging.
+\end{itemize}
+
+To set global options that apply to every chunk in your file, call
+\texttt{knitr::opts\_chunk\$set} in a code chunk. Knitr will treat each
+option that you pass to \texttt{knitr::opts\_chunk\$set} as a global
+default that can be overwritten in individual chunk headers If you are
+doing a report where you would never show code include
+\texttt{knitr::opts\_chunk\$set(echo\ =\ FALSE)} in the \texttt{setup}
+code block.
+
+\begin{verbatim}
+\```{r setup, include=FALSE} 
+knitr::opts_chunk$set(echo = FALSE)
+\```
+\end{verbatim}
+
+\section{Inline Code}\label{inline-code}
+
+Code output can also be seamlessly incorporated into the text, using
+inline code. This is code not set off on a line by itself, but beginning
+with \texttt{\textasciigrave{}r} and ending with
+\texttt{\textasciigrave{}}. Using inline code is how this document knows
+that the mtcars data set contains 32 rows, and that the mean mpg of the
+6 cylinder cars is 19.7.
+
+R Markdown will always
+
+\begin{itemize}
+\tightlist
+\item
+  display the results of inline code, but not the code
+\item
+  apply relevant text formatting to the results
+\end{itemize}
+
+As a result, inline output is indistinguishable from the surrounding
+text. Inline expressions do not take knitr options.
+
+\section{Plots}\label{plots}
+
+Inserting a graph into RMarkdown is easy, the more energy-demanding
+aspect might be adjusting the formatting.
+
+\begin{verbatim}
+\```{r mtcarsplot1, fig.cap = "Default Plot"}
+ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
+  geom_boxplot() +
+  coord_flip()
+\```
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ mpg, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ class, }\DataTypeTok{y =}\NormalTok{ hwy)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{coord_flip}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{data-presentation_files/figure-latex/mtcarsplot1-1} 
+
+}
+
+\caption{Default Plot}\label{fig:mtcarsplot1}
+\end{figure}
+
+By default, RMarkdown will place graphs by maximizing their height,
+while keeping them within the margins of the page and maintaining aspect
+ratio. If you have a particularly tall figure, this can mean a really
+huge graph. To manually set the figure dimensions in the code chunk
+options use \texttt{fig.height} and \texttt{fig.width}.
+
+You can also set the alignment with \texttt{fig.align} and either
+\texttt{left}, \texttt{right} or \texttt{center}. Also, by default the
+file type of the plot is determined by the output file type. You can
+override these defaults by using the \texttt{dev} option in the code
+chunk options. See \href{https://bookdown.org/yihui/rmarkdown/}{R
+Markdown: The Definitive Guide} for more details.
+
+\section{Tables}\label{tables}
+
+By default, R Markdown displays data frames and matrices as they would
+be in the R terminal (in a monospaced font). This generally is not what
+you want. If you prefer that data be displayed with additional
+formatting there are a number of packages that can make publication
+ready tables.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://cran.r-project.org/web/packages/kableExtra/index.html}{kable
+  + kableExtra}
+\item
+  \href{https://cran.r-project.org/web/packages/xtable/index.html}{xtable}
+\item
+  \href{https://cran.r-project.org/web/packages/stargazer/index.html}{stargazer}
+\item
+  \href{https://cran.r-project.org/web/packages/pander/index.html}{pander}
+\item
+  \href{https://cran.r-project.org/web/packages/tables/index.html}{tables}
+\item
+  \href{https://cran.r-project.org/web/packages/ascii/index.html}{ascii}
+\end{itemize}
+
+Which package you should use depends on what your output format is and
+which features you want. All these packages have vignettes which show
+how to use the major features.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(kableExtra)}
+\NormalTok{dt <-}\StringTok{ }\NormalTok{mtcars[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{]}
+\KeywordTok{kable}\NormalTok{(dt, }\DataTypeTok{caption =} \StringTok{"kable table"}\NormalTok{, }\DataTypeTok{booktabs =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[t]
+
+\caption{\label{tab:kable}kable table}
+\centering
+\begin{tabular}{lrrrrrr}
+\toprule
+  & mpg & cyl & disp & hp & drat & wt\\
+\midrule
+Mazda RX4 & 21.0 & 6 & 160 & 110 & 3.90 & 2.62\\
+Mazda RX4 Wag & 21.0 & 6 & 160 & 110 & 3.90 & 2.88\\
+Datsun 710 & 22.8 & 4 & 108 & 93 & 3.85 & 2.32\\
+Hornet 4 Drive & 21.4 & 6 & 258 & 110 & 3.08 & 3.21\\
+Hornet Sportabout & 18.7 & 8 & 360 & 175 & 3.15 & 3.44\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(mtcars, }\DataTypeTok{longtable =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{booktabs =} \OtherTok{TRUE}\NormalTok{, }
+      \DataTypeTok{caption =} \StringTok{"Kable Longtable"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{add_header_above}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{" "}\NormalTok{,}\StringTok{"Group 1"}\NormalTok{ =}\StringTok{ }\DecValTok{5}\NormalTok{, }\StringTok{"Group 2"}\NormalTok{ =}\StringTok{ }\DecValTok{6}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{kable_styling}\NormalTok{(}\DataTypeTok{latex_options =} \KeywordTok{c}\NormalTok{(}\StringTok{"repeat_header"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}{lrrrrrrrrrrr}
+\caption{\label{tab:kable2}Kable Longtable}\\
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{5}{c}{Group 1} & \multicolumn{6}{c}{Group 2} \\
+\cmidrule(l{2pt}r{2pt}){2-6} \cmidrule(l{2pt}r{2pt}){7-12}
+  & mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear & carb\\
+\midrule
+\endfirsthead
+\caption[]{\label{tab:kable2}Kable Longtable \textit{(continued)}}\\
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{5}{c}{Group 1} & \multicolumn{6}{c}{Group 2} \\
+\cmidrule(l{2pt}r{2pt}){2-6} \cmidrule(l{2pt}r{2pt}){7-12}
+  & mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear & carb\\
+\midrule
+\endhead
+\
+\endfoot
+\bottomrule
+\endlastfoot
+Mazda RX4 & 21.0 & 6 & 160.0 & 110 & 3.90 & 2.62 & 16.5 & 0 & 1 & 4 & 4\\
+Mazda RX4 Wag & 21.0 & 6 & 160.0 & 110 & 3.90 & 2.88 & 17.0 & 0 & 1 & 4 & 4\\
+Datsun 710 & 22.8 & 4 & 108.0 & 93 & 3.85 & 2.32 & 18.6 & 1 & 1 & 4 & 1\\
+Hornet 4 Drive & 21.4 & 6 & 258.0 & 110 & 3.08 & 3.21 & 19.4 & 1 & 0 & 3 & 1\\
+Hornet Sportabout & 18.7 & 8 & 360.0 & 175 & 3.15 & 3.44 & 17.0 & 0 & 0 & 3 & 2\\
+\addlinespace
+Valiant & 18.1 & 6 & 225.0 & 105 & 2.76 & 3.46 & 20.2 & 1 & 0 & 3 & 1\\
+Duster 360 & 14.3 & 8 & 360.0 & 245 & 3.21 & 3.57 & 15.8 & 0 & 0 & 3 & 4\\
+Merc 240D & 24.4 & 4 & 146.7 & 62 & 3.69 & 3.19 & 20.0 & 1 & 0 & 4 & 2\\
+Merc 230 & 22.8 & 4 & 140.8 & 95 & 3.92 & 3.15 & 22.9 & 1 & 0 & 4 & 2\\
+Merc 280 & 19.2 & 6 & 167.6 & 123 & 3.92 & 3.44 & 18.3 & 1 & 0 & 4 & 4\\
+\addlinespace
+Merc 280C & 17.8 & 6 & 167.6 & 123 & 3.92 & 3.44 & 18.9 & 1 & 0 & 4 & 4\\
+Merc 450SE & 16.4 & 8 & 275.8 & 180 & 3.07 & 4.07 & 17.4 & 0 & 0 & 3 & 3\\
+Merc 450SL & 17.3 & 8 & 275.8 & 180 & 3.07 & 3.73 & 17.6 & 0 & 0 & 3 & 3\\
+Merc 450SLC & 15.2 & 8 & 275.8 & 180 & 3.07 & 3.78 & 18.0 & 0 & 0 & 3 & 3\\
+Cadillac Fleetwood & 10.4 & 8 & 472.0 & 205 & 2.93 & 5.25 & 18.0 & 0 & 0 & 3 & 4\\
+\addlinespace
+Lincoln Continental & 10.4 & 8 & 460.0 & 215 & 3.00 & 5.42 & 17.8 & 0 & 0 & 3 & 4\\
+Chrysler Imperial & 14.7 & 8 & 440.0 & 230 & 3.23 & 5.34 & 17.4 & 0 & 0 & 3 & 4\\
+Fiat 128 & 32.4 & 4 & 78.7 & 66 & 4.08 & 2.20 & 19.5 & 1 & 1 & 4 & 1\\
+Honda Civic & 30.4 & 4 & 75.7 & 52 & 4.93 & 1.61 & 18.5 & 1 & 1 & 4 & 2\\
+Toyota Corolla & 33.9 & 4 & 71.1 & 65 & 4.22 & 1.83 & 19.9 & 1 & 1 & 4 & 1\\
+\addlinespace
+Toyota Corona & 21.5 & 4 & 120.1 & 97 & 3.70 & 2.46 & 20.0 & 1 & 0 & 3 & 1\\
+Dodge Challenger & 15.5 & 8 & 318.0 & 150 & 2.76 & 3.52 & 16.9 & 0 & 0 & 3 & 2\\
+AMC Javelin & 15.2 & 8 & 304.0 & 150 & 3.15 & 3.44 & 17.3 & 0 & 0 & 3 & 2\\
+Camaro Z28 & 13.3 & 8 & 350.0 & 245 & 3.73 & 3.84 & 15.4 & 0 & 0 & 3 & 4\\
+Pontiac Firebird & 19.2 & 8 & 400.0 & 175 & 3.08 & 3.85 & 17.1 & 0 & 0 & 3 & 2\\
+\addlinespace
+Fiat X1-9 & 27.3 & 4 & 79.0 & 66 & 4.08 & 1.94 & 18.9 & 1 & 1 & 4 & 1\\
+Porsche 914-2 & 26.0 & 4 & 120.3 & 91 & 4.43 & 2.14 & 16.7 & 0 & 1 & 5 & 2\\
+Lotus Europa & 30.4 & 4 & 95.1 & 113 & 3.77 & 1.51 & 16.9 & 1 & 1 & 5 & 2\\
+Ford Pantera L & 15.8 & 8 & 351.0 & 264 & 4.22 & 3.17 & 14.5 & 0 & 1 & 5 & 4\\
+Ferrari Dino & 19.7 & 6 & 145.0 & 175 & 3.62 & 2.77 & 15.5 & 0 & 1 & 5 & 6\\
+\addlinespace
+Maserati Bora & 15.0 & 8 & 301.0 & 335 & 3.54 & 3.57 & 14.6 & 0 & 1 & 5 & 8\\
+Volvo 142E & 21.4 & 4 & 121.0 & 109 & 4.11 & 2.78 & 18.6 & 1 & 1 & 4 & 2\\*
+\end{longtable}
+
+\section{YAML}\label{yaml}
+
+At the top of any RMarkdown script is a YAML header section enclosed by
+\texttt{-\/-\/-}. By default this includes a title, author, date and the
+file type you want to output to. Many other options are available for
+different functions and formatting, see
+\href{https://bookdown.org/yihui/rmarkdown/html-document.html}{here for
+.html options} and
+\href{https://bookdown.org/yihui/rmarkdown/pdf-document.html}{here for
+.pdf options}. Rules in the header section will alter the whole
+document. Have a flick through quickly to familiarize yourself with the
+sorts of things you can alter by adding an option to the YAML header.
+
+\subsection{Table of Contents}\label{table-of-contents}
+
+\begin{verbatim}
+---
+title: "My Report"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: TRUE
+---
+\end{verbatim}
+
+\subsection{Parameterized reports}\label{parameterized-reports}
+
+One of the many benefits of working with R Markdown is that you can
+reproduce analysis at the click of a button. This makes it very easy to
+update any work and alter any input parameters within the report.
+Parameterized reports extend this one step further, and allow users to
+specify one or more parameters to customize the analysis. This is useful
+if you want to create a report template that can be reused across
+multiple similar scenarios.
+
+\textbf{Declaring parameters}
+
+Parameters are specified using the params field within the YAML section.
+We can specify one or more parameters with each item on a new line. As
+an example:
+
+\begin{verbatim}
+---
+title: "My Report"
+output: pdf_document
+params:
+  year: 2018
+  region: Europe
+  data: file.csv
+---
+\end{verbatim}
+
+All standard R types that can be included as parameters, including
+\texttt{character}, \texttt{numeric}, \texttt{integer}, and
+\texttt{logical} types. We can also use R objects by including
+\texttt{!r} before R expressions. For example, we could include the
+current date with the following R code:
+
+\begin{verbatim}
+---
+title: "My Report"
+output: html_document
+params:
+  date: !r Sys.Date()
+---
+\end{verbatim}
+
+\textbf{Using parameters}
+
+You can access the parameters within the knitting environment and the R
+console in RStudio. The values are contained within a read-only list
+called \texttt{params}. In the previous example, the parameters can be
+accessed as follows:
+
+\begin{verbatim}
+params$year
+params$region
+
+mydata <- read_csv(params$data)
+\end{verbatim}
+
+\textbf{Knitting with parameters}
+
+\begin{itemize}
+\tightlist
+\item
+  Using the \textbf{Knit} button within RStudio to run with the default
+  values.
+\item
+  Using the \textbf{Knit with Parameters} button within RStudio to fill
+  in the parameters interactively.
+\item
+  Knit with custom parameters
+\end{itemize}
+
+\begin{verbatim}
+render_report = function(file, region, year) {
+  rmarkdown::render(
+    "MyDocument.Rmd", params = list(
+      region = region,
+      year   = year,
+      data   = file
+    ),
+    output_file = paste0("Report-", region, "-", year, ".pdf")
+  )
+}
+\end{verbatim}
+
+\subsection{Output Types}\label{output-types}
+
+\href{https://rmarkdown.rstudio.com/formats.html}{There are many types
+of output with more being added every day.} lists just the ones
+
+\begin{itemize}
+\tightlist
+\item
+  Documents
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{pdf\_document} makes a PDF with LaTeX
+  \item
+    \texttt{word\_document} for Microsoft Word documents
+    (\texttt{.docx}).
+  \item
+    \texttt{odt\_document} for OpenDocument Text documents
+    (\texttt{.odt}).
+  \item
+    \texttt{rtf\_document} for Rich Text Format (\texttt{.rtf})
+    documents.
+  \item
+    \texttt{md\_document} for a Markdown document.
+  \item
+    \texttt{github\_document}: this is a tailored version of
+    \texttt{md\_document} designed for sharing on GitHub.
+  \end{itemize}
+\item
+  Presentations
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{ioslides\_presentation} - HTML presentation with ioslides
+  \item
+    \texttt{slidy\_presentation} - HTML presentation with W3C Slidy
+  \item
+    \texttt{beamer\_presentation} - PDF presentation with LaTeX Beamer.
+  \item
+    \texttt{revealjs::revealjs\_presentation} - HTML presentation with
+    reveal.js.
+  \item
+    \textbf{rmdshower}, \url{https://github.com/MangoTheCat/rmdshower},
+    provides a wrapper around the \textbf{shower},
+    \url{https://github.com/shower/shower}, presentation engine
+  \item
+    \texttt{powerpoint\_presentation} - Create MS PowerPoint
+    presentations.
+  \end{itemize}
+\item
+  Notebooks
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{html\_notebook} is a variation on a \texttt{html\_document}.
+  \end{itemize}
+\item
+  Dashboards
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{flexdashboard::flex\_dashboard},
+    \url{http://rmarkdown.rstudio.com/flexdashboard/} provides simple
+    tools for creating sidebars, tabsets, value boxes, and gauges.
+  \end{itemize}
+\item
+  Interactivity
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{shiny}, a package that allows you to create interactivity
+    using R code, not JavaScript.
+  \item
+    \textbf{htmlwidgets}, produce interactive HTML visualizations
+  \item
+    \textbf{dygraphs}, \url{http://rstudio.github.io/dygraphs/}, for
+    interactive time series visualizations.
+  \item
+    \textbf{DT}, \url{http://rstudio.github.io/DT/}, for interactive
+    tables.
+  \item
+    \textbf{threejs}, \url{https://github.com/bwlewis/rthreejs} for
+    interactive 3d plots.
+  \item
+    \textbf{DiagrammeR}, \url{http://rich-iannone.github.io/DiagrammeR/}
+    for diagrams (like flow charts and simple node-link diagrams).
+  \end{itemize}
+\item
+  Other
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{blogdown} create a simple website.
+  \item
+    \textbf{bookdown}, \url{https://github.com/rstudio/bookdown},makes
+    it easy to write books, like this one
+  \item
+    \textbf{prettydoc}, \url{https://github.com/yixuan/prettydoc/},
+    provides lightweight document formats with a range of attractive
+    themes.
+  \item
+    \textbf{rticles}, \url{https://github.com/rstudio/rticles}, compiles
+    a selection of formats tailored for specific scientific journals.
+  \end{itemize}
+\end{itemize}
 
 \part{Appendix}\label{part-appendix}
 

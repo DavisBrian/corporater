@@ -146,7 +146,7 @@ Grouping is most useful in conjunction with `summarise()`, but you can also do c
 
 ## Reading For Next Class
 
-
+1. Read Tidy Data paper published in the Journal of Statistical Software, [http://www.jstatsoft.org/v59/i10/paper](http://www.jstatsoft.org/v59/i10/paper).
 
 ## Exercises
 

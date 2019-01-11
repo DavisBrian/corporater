@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>2 Good practices | Modern R in a Corporate Environment</title>
+  <title>7 Function Basics | Modern R in a Corporate Environment</title>
   <meta name="description" content="This is an original course for RADARS">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="2 Good practices | Modern R in a Corporate Environment" />
+  <meta property="og:title" content="7 Function Basics | Modern R in a Corporate Environment" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="DavisBrian/corporater" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Good practices | Modern R in a Corporate Environment" />
+  <meta name="twitter:title" content="7 Function Basics | Modern R in a Corporate Environment" />
   
   <meta name="twitter:description" content="This is an original course for RADARS" />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="preamble-intro.html">
-<link rel="next" href="baser-rbasics.html">
+<link rel="prev" href="tidy-data.html">
+<link rel="next" href="r-markdown.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -261,296 +261,328 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="good-practices" class="section level1">
-<h1><span class="header-section-number">2</span> Good practices</h1>
+<div id="function-basics" class="section level1">
+<h1><span class="header-section-number">7</span> Function Basics</h1>
 <blockquote>
-<p>“When you write a program, think of it primarily as a work of literature. You’re trying to write something that human beings are going to read. Don’t think of it primarily as something a computer is going to follow. The more effective you are at making your program readable, the more effective it’s going to be: You’ll understand it today, you’ll understand it next week, and your successors who are going to maintain and modify it will understand it.”</p>
-<p>– Donald Knuth</p>
+<p>To understand computations in R, two slogans are helpful:<br />
+- Everything that exists is an object.<br />
+- Everything that happens is a function call.</p>
+<p>– John Chambers</p>
 </blockquote>
-<div id="coding-style" class="section level2">
-<h2><span class="header-section-number">2.1</span> Coding style</h2>
-<p>Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread. When I answer questions; first, I see if think I can answer the question, secondly, I check the coding style of the question and if the code is too difficult to read, I just move on. Please make your code readable by following e.g. <a href="http://style.tidyverse.org/">this coding style</a> (most examples below come from this guide).</p>
-<blockquote>
-<p>“To become ssignificantly more reliable, code must become more transparent. In particular, nested conditions and loops must be viewed with great suspicion. Complicated control flows confuse programmers. <strong>Messy code often hides bugs</strong>.”</p>
-<p>— Bjarne Stroustrup</p>
-</blockquote>
-<div id="comments" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Comments</h3>
-<p>In code, use comments to explain the “why” not the “what” or “how”. Each line of a comment should begin with the comment symbol and a single space: <code>#</code>.</p>
-
-<div class="rmdtip">
-Use commented lines of - to break up your file into easily readable chunks and to create a code outline in RStudio
-</div>
-
-</div>
-<div id="naming" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Naming</h3>
-<blockquote>
-<p>There are only two hard things in Computer Science: cache invalidation and naming things.</p>
-<p>– Phil Karlton</p>
-</blockquote>
-<p>Names are not limited to 8 characters as in some other languages, however they are case sensitive. Be smart with your naming; be descriptive yet concise. Think about how your names will show up in auto complete.</p>
-<p>Throughout the course we will point out some standard naming conventions that are used in R (and other languages). (Ex. <code>i</code> and <code>j</code> as row and column indices)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-average_height &lt;-<span class="st"> </span><span class="kw">mean</span>((feet <span class="op">/</span><span class="st"> </span><span class="dv">12</span>) <span class="op">+</span><span class="st"> </span>inches)
-<span class="kw">plot</span>(mtcars<span class="op">$</span>disp, mtcars<span class="op">$</span>mpg)
-
-<span class="co"># Bad</span>
-ah&lt;-<span class="kw">mean</span>(x<span class="op">/</span><span class="dv">12</span><span class="op">+</span>y)
-<span class="kw">plot</span>(mtcars[, <span class="dv">3</span>], mtcars[, <span class="dv">1</span>])</code></pre></div>
-</div>
-<div id="spacing" class="section level3">
-<h3><span class="header-section-number">2.1.3</span> Spacing</h3>
-<p>Put a space before and after <code>=</code> when naming arguments in function calls. Most infix operators (<code>==</code>, <code>+</code>, <code>-</code>, <code>&lt;-</code>, etc.) are also surrounded by spaces, except those with relatively high precedence: <code>^</code>, <code>:</code>, <code>::</code>, and <code>:::</code>. Always put a space after a comma, and never before (just like in regular English).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-average &lt;-<span class="st"> </span><span class="kw">mean</span>((feet <span class="op">/</span><span class="st"> </span><span class="dv">12</span>) <span class="op">+</span><span class="st"> </span>inches, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-<span class="kw">sqrt</span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>)
-x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
-base<span class="op">::</span>sum
-
-<span class="co"># Bad</span>
-average&lt;-<span class="kw">mean</span>(feet<span class="op">/</span><span class="dv">12</span><span class="op">+</span>inches,<span class="dt">na.rm=</span><span class="ot">TRUE</span>)
-<span class="kw">sqrt</span>(x <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)
-x &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">:</span><span class="st"> </span><span class="dv">10</span>
-base <span class="op">::</span><span class="st"> </span>sum</code></pre></div>
-</div>
-<div id="indenting" class="section level3">
-<h3><span class="header-section-number">2.1.4</span> Indenting</h3>
-<p>Curly braces, <code>{}</code>, define the the most important hierarchy of R code. To make this hierarchy easy to see, always indent the code inside <code>{}</code> by two spaces.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-<span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>debug) {
-  <span class="kw">message</span>(<span class="st">&quot;y is negative&quot;</span>)
-}
-
-<span class="cf">if</span> (y <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
-  <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
-    <span class="kw">log</span>(x)
-  } <span class="cf">else</span> {
-    <span class="kw">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)
-  }
-} <span class="cf">else</span> {
-  y <span class="op">^</span><span class="st"> </span>x
-}
-
-<span class="co"># Bad</span>
-<span class="cf">if</span> (y <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span>debug)
-<span class="kw">message</span>(<span class="st">&quot;Y is negative&quot;</span>)
-
-<span class="cf">if</span> (y <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)
-{
-    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
-      <span class="kw">log</span>(x)
-    } <span class="cf">else</span> {
-  <span class="kw">message</span>(<span class="st">&quot;x is negative or zero&quot;</span>)
-    }
-} <span class="cf">else</span> { y <span class="op">^</span><span class="st"> </span>x }</code></pre></div>
-</div>
-<div id="long-lines" class="section level3">
-<h3><span class="header-section-number">2.1.5</span> Long lines</h3>
-<p>Strive to limit your code to 80 characters per line. This fits comfortably on a printed page with a reasonably sized font. If you find yourself running out of room, this is a good indication that you should encapsulate some of the work into a separate function.</p>
-<p>If a function call is too long to fit on a single line, use one line each for the function name, each argument, and the closing <code>)</code>. This makes the code easier to read and to change later.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-<span class="kw">do_something_very_complicated</span>(
-  <span class="dt">something =</span> <span class="st">&quot;that&quot;</span>,
-  <span class="dt">requires  =</span> many,
-  <span class="dt">arguments =</span> <span class="st">&quot;some of which may be long&quot;</span>
-)
-
-<span class="co"># Bad</span>
-<span class="kw">do_something_very_complicated</span>(<span class="st">&quot;that&quot;</span>, requires, many, arguments,
-                              <span class="st">&quot;some of which may be long&quot;</span></code></pre></div>
-</div>
-<div id="other" class="section level3">
-<h3><span class="header-section-number">2.1.6</span> Other</h3>
+<div id="introduction-to-functions" class="section level2">
+<h2><span class="header-section-number">7.1</span> Introduction to Functions</h2>
+<p>Functions are an central part of robust R programming and we will spend a significant amount of time writing functions. Think of functions in the <a href="https://en.wikipedia.org/wiki/Function_(mathematics)">mathematical sense</a> will make the properties much more apparent than any other framework.</p>
+<p>Functions in R are “first class objects”, which means that they can be treated much like any other R object. Importantly,</p>
 <ul>
-<li>Use <code>&lt;-</code>, not <code>=</code>, for assignment. Keep <code>=</code> for parameters.</li>
+<li><p>Functions can be passed as arguments to other functions. This is very handy for the various apply functions, like <code>lapply()</code> and <code>sapply()</code>.</p></li>
+<li><p>Functions can be nested, so that you can define a function inside of another function</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-x &lt;-<span class="st"> </span><span class="dv">5</span>
-<span class="kw">system.time</span>(
-  x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e6</span>)
-)
-
-<span class="co"># Bad</span>
-x =<span class="st"> </span><span class="dv">5</span>
-<span class="kw">system.time</span>(
-  <span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="fl">1e6</span>)
-)</code></pre></div>
+<p>If you’re familiar with common language like C, these features might appear a bit strange. However, they are really important in R and can be useful for data analysis.</p>
 <ul>
-<li><p>Don’t put <code>;</code> at the end of a line, and don’t use <code>;</code> to put multiple commands on one line.</p></li>
-<li><p>Only use <code>return()</code> for early returns. Otherwise rely on R to return the result of the last evaluated expression.</p></li>
+<li>Functions are a means of <strong>abstraction</strong>. A concept/computation is encapsulated/isolated from the rest with a function.</li>
+<li>Functions should <strong>do one thing</strong>, and do it well (compute, or plot, or save, … not all in one go).</li>
+<li><strong>Side effects</strong>: your functions should not have any (unless, of course, that is the main point of that function - plotting, write to disk, …). Functions shouldn’t make any changes in any environment. The only return their output.</li>
+<li><strong>Do not use global variables</strong>. Everything the function needs is being passed as an argument. Function must be <strong>self-contained</strong>.</li>
+<li>Function streamline code and process</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
+<p>Advice from the <a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">R Inferno</a>:</p>
+<p>Make your functions as simple as possible. Simple has many advantages:</p>
+<ul>
+<li>Simple functions are likely to be human efficient: they will be easy to understand and to modify.</li>
+<li>Simple functions are likely to be computer efficient.</li>
+<li>Simple functions are less likely to be buggy, and bugs will be easier to fix.</li>
+<li>(Perhaps ironically) simple functions may be more general—thinking about the heart of the matter often broadens the application.</li>
+</ul>
+<p>Functions can be</p>
+<ol style="list-style-type: decimal">
+<li>Correct.</li>
+<li>An error occurs that is clearly identified.</li>
+<li>An obscure error occurs.</li>
+<li>An incorrect value is returned.</li>
+</ol>
+<p>We like <strong>category 1</strong>. <strong>Category 2</strong> is the right behavior if the inputs do not make sense, but not if the inputs are sensible. <strong>Category 3</strong> is an unpleasant place for your users, and possibly for you if the users have access to you. <strong>Category 4</strong> is by far the worst place to be - the user has no reason to believe that anything is wrong. Steer clear of category 4.</p>
+<div class="rmdimportant">
+<p>
+Software testing is important, but, in part because it is frustrating and boring, many of us avoid it. ‘testthat’ is a testing framework for R that is easy learn and use, and integrates with your existing ‘workflow’.
+</p>
+</div>
+<div id="your-first-function" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Your First Function</h3>
+<p>All R functions have three parts:</p>
+<ul>
+<li><p>the <code>body()</code>, the code inside the function.</p></li>
+<li><p>the <code>formals()</code>, the list of arguments which controls how you can call the function.</p></li>
+<li><p>the <code>environment()</code>, the “map” of the location of the function’s variables.</p></li>
+</ul>
+<p>When you print a function in R, it shows you these three important components. If the environment isn’t displayed, it means that the function was created in the global environment.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myadd &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
+  <span class="kw">message</span>(<span class="kw">paste0</span>(<span class="st">&quot;x = &quot;</span>, x, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))
+  <span class="kw">message</span>(<span class="kw">paste0</span>(<span class="st">&quot;y = &quot;</span>, y, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))
   x <span class="op">+</span><span class="st"> </span>y
-}
-
-<span class="co"># Bad</span>
-add_two &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {
-  <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span>y)
 }</code></pre></div>
 <ul>
-<li>Use <code>&quot;</code>, not <code>'</code>, for quoting text. The only exception is when the text already contains double quotes and no single quotes.</li>
+<li>The body of the function is everything between the <code>{ }</code>. Note this does the computation <strong>AND</strong> returns the result.</li>
+<li><code>x</code> and <code>y</code> are the arguments to the function.</li>
+<li>the environment this function lives in is the global environment. (We’ll discuss environments more in the next section.)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-<span class="st">&quot;Text&quot;</span>
-<span class="st">&#39;Text with &quot;quotes&quot;&#39;</span>
-<span class="st">&#39;&lt;a href=&quot;http://style.tidyverse.org&quot;&gt;A link&lt;/a&gt;&#39;</span>
+<p>When calling a function you can pass the parameters <strong>in order</strong>, <strong>by name</strong>, or a combination.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myadd</span>(<span class="dv">1</span>, <span class="dv">3</span>)            <span class="co"># arguments by position</span>
+<span class="co">#&gt; x = 1</span>
+<span class="co">#&gt; y = 3</span>
+<span class="co">#&gt; [1] 4</span>
+<span class="kw">myadd</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">3</span>)    <span class="co"># arguments by name</span>
+<span class="co">#&gt; x = 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; y = 3</span>
+<span class="co">#&gt; [1] 4</span>
+<span class="kw">myadd</span>(<span class="dt">y =</span> <span class="dv">3</span>, <span class="dt">x =</span> <span class="dv">1</span>)    <span class="co"># name order doesn&#39;t matter</span>
+<span class="co">#&gt; x = 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; y = 3</span>
+<span class="co">#&gt; [1] 4</span>
+<span class="kw">myadd</span>(<span class="dt">y =</span> <span class="dv">3</span>, <span class="dv">1</span>)        <span class="co"># combination</span>
+<span class="co">#&gt; x = 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; y = 3</span>
+<span class="co">#&gt; [1] 4</span></code></pre></div>
 
-<span class="co"># Bad</span>
-<span class="st">&#39;Text&#39;</span>
-<span class="st">&#39;Text with &quot;double&quot; and </span><span class="ch">\&#39;</span><span class="st">single</span><span class="ch">\&#39;</span><span class="st"> quotes&#39;</span></code></pre></div>
+<div class="rmdtip">
+Even though it’s legal, I don’t recommend messing around with the order of the arguments too much, since it can lead to some confusion. Convention is to pass arguments in the order the function defines them, and to use the arguments names if the function takes more than 2 or 3 arguments.
+</div>
+
+<p>You can also specify default values for your arguments. Default values <em>should</em> be the values most often used. <code>rnorm</code> uses the default of <code>mean = 0</code> and <code>sd = 1</code>. We usually want to sample from the standard normal distribution, but we are not forced to.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myadd2 &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x =</span> <span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">0</span>){
+  <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;x = &quot;</span>, x, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))
+  <span class="kw">cat</span>(<span class="kw">paste0</span>(<span class="st">&quot;y = &quot;</span>, y, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))
+  x <span class="op">+</span><span class="st"> </span>y
+}
+<span class="kw">myadd2</span>()              <span class="co"># use the defaults</span>
+<span class="co">#&gt; x = 3</span>
+<span class="co">#&gt; y = 0</span>
+<span class="co">#&gt; [1] 3</span>
+<span class="kw">myadd2</span>(<span class="dt">x =</span> <span class="dv">1</span>)
+<span class="co">#&gt; x = 1</span>
+<span class="co">#&gt; y = 0</span>
+<span class="co">#&gt; [1] 1</span>
+<span class="kw">myadd2</span>(<span class="dt">y =</span> <span class="dv">1</span>)
+<span class="co">#&gt; x = 3</span>
+<span class="co">#&gt; y = 1</span>
+<span class="co">#&gt; [1] 4</span>
+<span class="kw">myadd2</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">1</span>)
+<span class="co">#&gt; x = 1</span>
+<span class="co">#&gt; y = 1</span>
+<span class="co">#&gt; [1] 2</span></code></pre></div>
+<p>By default the last line of the function is returned. Thus, there is no reason to explicitly call <code>return</code>, unless you are returning from the function early. Inside functions use <code>stop</code> to return error messages, <code>warning</code> to return warning messages, and <code>message</code> to print a message to the console.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>(age) {
+  <span class="cf">if</span> (age <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {
+    <span class="kw">stop</span>(<span class="st">&quot;age must be a positive number&quot;</span>)
+  }
+  
+  <span class="cf">if</span> (age <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>) {
+    <span class="kw">warning</span>(<span class="st">&quot;Check your data.  We only care about adults.&quot;</span>)
+  }
+  
+  <span class="kw">message</span>(<span class="kw">paste0</span>(<span class="st">&quot;Your person is &quot;</span>, age, <span class="st">&quot; years old&quot;</span>))
+  <span class="kw">invisible</span>()
+}
+
+<span class="kw">f</span>(<span class="op">-</span><span class="dv">10</span>)
+<span class="co">#&gt; Error in f(-10): age must be a positive number</span>
+<span class="kw">f</span>(<span class="dv">10</span>)
+<span class="co">#&gt; Warning in f(10): Check your data. We only care about adults.</span>
+<span class="co">#&gt; Your person is 10 years old</span>
+<span class="kw">f</span>(<span class="dv">30</span>)
+<span class="co">#&gt; Your person is 30 years old</span></code></pre></div>
+</div>
+<div id="lazy-evaluation" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Lazy Evaluation</h3>
+<p>R is lazy. Arguments to functions are evaluated <em>lazily</em>, that is they are evaluated only as needed in the body of the function.</p>
+<p>In this example, the function <code>f()</code> has two arguments: <code>a</code> and <code>b</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {
+  a<span class="op">^</span><span class="dv">2</span>
+} 
+
+<span class="kw">f</span>(<span class="dv">2</span>)     <span class="co"># this works</span>
+<span class="co">#&gt; [1] 4</span>
+<span class="kw">f</span>(<span class="dv">2</span>, <span class="dv">1</span>)  <span class="co"># this does too</span>
+<span class="co">#&gt; [1] 4</span></code></pre></div>
+<p>This function never actually uses the argument <code>b</code>, so calling <code>f(2)</code> or <code>f(2, 1)</code> will not produce an error because the 2 gets positionally matched to a. It’s common to write a function that does not use an argument and not notice it simply because R never throws an error.</p>
+</div>
+<div id="the-dot-dot-dot-...-argument" class="section level3">
+<h3><span class="header-section-number">7.1.3</span> The Dot-dot-dot (<code>...</code>) Argument</h3>
+<p>There is a special argument in R known as the <code>...</code> argument, which indicate a variable number of arguments that are usually passed on to other functions. The two most common cases for using <code>...</code> in a function are:</p>
+<ol style="list-style-type: decimal">
+<li>The number of arguments passed to the function cannot be known in advance.</li>
+<li>Extending another function and you don’t want to copy the entire argument list of the original function.</li>
+</ol>
+<p><strong>Number of arguments passed to the function cannot be known in advance.</strong></p>
+<p>The <code>...</code> argument is also necessary when the number of arguments passed to the function cannot be known in advance. This is clear in functions like <code>paste()</code>, <code>cat()</code>, <code>sum()</code>, and <code>mean()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(paste)
+<span class="co">#&gt; function (..., sep = &quot; &quot;, collapse = NULL) </span>
+<span class="co">#&gt; NULL</span>
+<span class="kw">args</span>(cat)
+<span class="co">#&gt; function (..., file = &quot;&quot;, sep = &quot; &quot;, fill = FALSE, labels = NULL, </span>
+<span class="co">#&gt;     append = FALSE) </span>
+<span class="co">#&gt; NULL</span>
+<span class="kw">args</span>(sum)
+<span class="co">#&gt; function (..., na.rm = FALSE) </span>
+<span class="co">#&gt; NULL</span>
+<span class="kw">args</span>(mean)
+<span class="co">#&gt; function (x, ...) </span>
+<span class="co">#&gt; NULL</span></code></pre></div>
+<p>Because both <code>paste()</code> and <code>cat()</code> print out text to the console by combining multiple character vectors together, it is impossible for those functions to know in advance how many character vectors will be passed to the function by the user. So the first argument to either function is <code>...</code>. Similarly with <code>sum()</code>, and <code>mean()</code>.</p>
+<p>One catch with <code>...</code> is that any arguments that appear <em>after</em> <code>...</code> on the argument list must be named explicitly and cannot be partially matched or matched positionally.</p>
+<p>Take a look at the arguments to the <code>paste()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(paste)
+<span class="co">#&gt; function (..., sep = &quot; &quot;, collapse = NULL) </span>
+<span class="co">#&gt; NULL</span></code></pre></div>
+<p>With the <code>paste()</code> function, the arguments <code>sep</code> and <code>collapse</code> must be named explicitly and in full if the default values are not going to be used.</p>
+<p><strong>Extending another function</strong></p>
+<p>For example, a custom plotting function may want to make use of the default <code>plot()</code> function along with its entire argument list. The function below changes the default for the <code>type</code> argument to the value <code>type = &quot;l&quot;</code> (the original <code>plot</code> default is <code>type = &quot;p&quot;</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mylineplot &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {
+        <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, ...)         ## Pass &#39;...&#39; to &#39;plot&#39; function
+}</code></pre></div>
+<p>Sometimes you will combine both in one function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">commas &lt;-<span class="st"> </span><span class="cf">function</span>(...) {
+  <span class="kw">paste</span>(..., <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>, <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)
+}
+
+<span class="kw">commas</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])
+<span class="co">#&gt; [1] &quot;a, b, c, d, e, f, g, h, i, j&quot;</span></code></pre></div>
 </div>
 </div>
-<div id="coding-practices" class="section level2">
-<h2><span class="header-section-number">2.2</span> Coding practices</h2>
-<div id="variables" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Variables</h3>
-<p>Create variables for values that are likely to change.</p>
-</div>
-<div id="rule-of-threedry" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> <em>Rule of Three</em><a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></h3>
-<p>Try not to copy code, or copy then modify the code, more than twice.</p>
+<div id="environments-scoping" class="section level2">
+<h2><span class="header-section-number">7.2</span> Environments &amp; Scoping</h2>
+<p>An <strong>environment</strong> is a collection of (symbol, value) pairs, i.e. <code>x &lt;- 10</code>, <code>x</code> is a symbol and <code>10</code> might be its value. Every environment has a parent environment and it is possible for an environment to have multiple “children”. The only environment without a parent is the empty environment.</p>
+<p><strong>Scoping</strong> is the set of rules that govern how R looks up the value of a symbol. In the example below, scoping is the set of rules that R applies to go from the symbol <code>x</code> to its value <code>10</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">10</span>
+x
+<span class="co">#&gt; [1] 10</span></code></pre></div>
+<p>R has two types of scoping: lexical scoping, implemented automatically at the language level, and dynamic scoping, used in select functions to save typing during interactive analysis. We discuss lexical scoping here because it is intimately tied to function creation. Dynamic scoping is an advanced topic and is discussed in <a href="http://adv-r.had.co.nz">Advanced R</a>.</p>
+<p>How do we associate a value to a free variable? There is a search process that occurs that goes as follows:</p>
+<p>If the value of a symbol is not found in the environment in which a function was defined, then the search is continued in the parent environment. The search continues up the sequence of parent environments until we hit the top-level environment; this usually the global environment (workspace) or the namespace of a package. After the top-level environment, the search continues down the search list until we hit the empty environment. If a value for a given symbol cannot be found once the empty environment is arrived at, then an error is thrown.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">0</span>
+
+f &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x =</span> <span class="op">-</span><span class="dv">1</span>) {
+  x &lt;-<span class="st"> </span><span class="dv">1</span>
+  y &lt;-<span class="st"> </span><span class="dv">2</span>
+  <span class="kw">c</span>(x, y)
+}
+
+g &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">x =</span> <span class="op">-</span><span class="dv">1</span>) {
+  y &lt;-<span class="st"> </span><span class="dv">1</span>
+  <span class="kw">c</span>(x, y)
+}
+
+h &lt;-<span class="st"> </span><span class="cf">function</span>() {
+  y &lt;-<span class="st"> </span><span class="dv">1</span>
+  <span class="kw">c</span>(x, y)
+}</code></pre></div>
+<p>What do the following return?</p>
 <ul>
-<li>If a change requires you to search/replace 3 or more times <em>make a variable</em>.</li>
-<li>If you copy a code chunk 3 or more times <em>make a function</em></li>
-<li>If you copy a function 3 or more times <em>make your function more generic</em></li>
-<li>If you copy a function into a project 3 or more times <em>make a package</em></li>
-<li>If 3 or more people will use the function <em>make a package</em></li>
+<li><code>f()</code></li>
+<li><code>g()</code></li>
+<li><code>h()</code></li>
+<li><code>g(h())</code></li>
+<li><code>f(g())</code></li>
+<li><code>g(f())</code></li>
 </ul>
-<p>The <em>Rule of Three</em> applies to look-up tables and such also. The key thing to think about is; if something changes how many touch points will there be? If it is 3 or more places it is time to abstract this code a bit.</p>
 </div>
-<div id="path-names" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> Path names</h3>
-<p>It is better to use relative path names instead of hard coded ones. If you must read from (or write to) paths that are not in your project directory structure create a file name variable at the highest level you can (<em>always end with the <code>/</code></em>) and then use relative paths.<br />
-<strong>DO NOT EVER USE <code>setwd()</code></strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Good</span>
-raw_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;./data/mydatafile.csv&quot;</span>) 
+<div id="first-class-objects" class="section level2">
+<h2><span class="header-section-number">7.3</span> “First class objects”</h2>
+<p>Since functions <strong>ARE</strong> objects you can pass functions as arguments and return functions as results.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_summary &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">funs =</span> <span class="kw">c</span>(mean, sd), ...) {
+  <span class="kw">lapply</span>(funs, <span class="cf">function</span>(f) <span class="kw">f</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
+}
 
-input_file &lt;-<span class="st"> &quot;./data/mydatafile.csv&quot;</span>
-raw_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(input_file)  
+y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+<span class="kw">my_summary</span>(y)
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 5.5</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 3.03</span>
+<span class="kw">my_summary</span>(y, <span class="kw">c</span>(mean, median, sd, IQR, mad))
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] 5.5</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] 5.5</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] 3.03</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] 4.5</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]]</span>
+<span class="co">#&gt; [1] 3.71</span></code></pre></div>
+<p>Unlike most languages you can define a function within a function and / or return a function. This nested function only lives inside the parent function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">make.power &lt;-<span class="st"> </span><span class="cf">function</span>(n) {
+  <span class="co"># [</span><span class="al">TBD</span><span class="co">] checks on n</span>
+  pow &lt;-<span class="st"> </span><span class="cf">function</span>(x) {
+      <span class="co"># [</span><span class="al">TBD</span><span class="co">] checks on x</span>
+    x<span class="op">^</span>n 
+  }
+  pow
+}
 
-input_path &lt;-<span class="st"> &quot;C:/Path/To/Some/other/project/directory/&quot;</span>
-input_file &lt;-<span class="st"> </span><span class="kw">paste0</span>(input_path, <span class="st">&quot;data/mydatafile.csv&quot;</span>)
-raw_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(input_file)
+<span class="kw">make.power</span>(<span class="dv">4</span>)  <span class="co"># returns a function</span>
+<span class="co">#&gt; function(x) {</span>
+<span class="co">#&gt;       # [</span><span class="al">TBD</span><span class="co">] checks on x</span>
+<span class="co">#&gt;     x^n </span>
+<span class="co">#&gt;   }</span>
+<span class="co">#&gt; &lt;environment: 0x000000000928d3e0&gt;</span>
+<span class="kw">pow</span>(<span class="dt">x=</span><span class="dv">4</span>)       <span class="co"># Note: `pow` does not exist outside of the `make.power` function</span>
+<span class="co">#&gt; Error in pow(x = 4): could not find function &quot;pow&quot;</span>
 
-<span class="co"># Bad</span>
-<span class="kw">setwd</span>(<span class="st">&quot;C:/Path/To/Some/other/project/directory/data/&quot;</span>)
-raw_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;mydatafile.csv&quot;</span>)
-<span class="kw">setwd</span>(<span class="st">&quot;C:/Path/back/to/my/project/&quot;</span>)</code></pre></div>
+cube &lt;-<span class="st"> </span><span class="kw">make.power</span>(<span class="dv">3</span>)          
+<span class="kw">as.list</span>(<span class="kw">environment</span>(cube))
+<span class="co">#&gt; $pow</span>
+<span class="co">#&gt; function (x) </span>
+<span class="co">#&gt; {</span>
+<span class="co">#&gt;     x^n</span>
+<span class="co">#&gt; }</span>
+<span class="co">#&gt; &lt;bytecode: 0x0000000007639b30&gt;</span>
+<span class="co">#&gt; &lt;environment: 0x00000000091845a0&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $n</span>
+<span class="co">#&gt; [1] 3</span>
+<span class="kw">cube</span>(<span class="dv">2</span>)
+<span class="co">#&gt; [1] 8</span>
+
+square &lt;-<span class="st"> </span><span class="kw">make.power</span>(<span class="dv">2</span>)
+squareroot &lt;-<span class="st"> </span><span class="kw">make.power</span>(.<span class="dv">5</span>)
+
+
+<span class="kw">square</span>(<span class="dv">8</span>)
+<span class="co">#&gt; [1] 64</span>
+<span class="kw">squareroot</span>(<span class="dv">9</span>)
+<span class="co">#&gt; [1] 3</span></code></pre></div>
 </div>
-</div>
-<div id="rstudio" class="section level2">
-<h2><span class="header-section-number">2.3</span> RStudio</h2>
-<p>Download the latest version of <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> (&gt; 1.1) and use it!</p>
-<p>Learn more about new features of RStudio v1.1 <a href="https://www.rstudio.com/resources/videos/rstudio-1-1-new-features/">there</a>.</p>
-<p>RStudio features:</p>
-<ul>
-<li>everything you can expect from a good IDE</li>
-<li>keyboard shortcuts I use frequently
+<div id="exercises-4" class="section level2">
+<h2><span class="header-section-number">7.4</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li><em>Ctrl + Space</em> (auto-completion, better than <em>Tab</em>)</li>
-<li><em>Ctrl + Up</em> (command history &amp; search)</li>
-<li><em>Ctrl + Enter</em> (execute line of code)</li>
-<li><em>Ctrl + Shift + A</em> (reformat code)</li>
-<li><em>Ctrl + Shift + C</em> (comment/uncomment selected lines)</li>
-<li><em>Ctrl + Shift + /</em> (reflow comments)</li>
-<li><em>Ctrl + Shift + O</em> (View code outline)</li>
-<li><em>Ctrl + Shift + B</em> (build package, website or book)</li>
-<li><em>Ctrl + Shift + M</em> (pipe)</li>
-<li><em>Alt + Shift + K</em> to see all shortcuts…</li>
-</ol></li>
-<li>Panels (everything is integrated, including <strong>Git</strong> and a terminal)</li>
-<li>Interactive data importation from files and connections (see <a href="https://www.rstudio.com/resources/webinars/importing-data-into-r/">this webinar</a>)</li>
-<li><p>Use <a href="https://support.rstudio.com/hc/en-us/articles/205753617-Code-Diagnostics">code diagnostics</a>:</p></li>
-<li><strong>R Projects</strong>:
+<li>Create function that takes a numeric year-quater (ex 20183) and returns the quarter n-quarters before / after it. Example two quarters previous to 20183 is 20181.</li>
+<li>Come up with 5 functions (you don’t have program them) that will operate on your data. (Ex. Create a demographics table)</li>
+<li>Create a <code>read_*</code> function that</li>
+</ol>
 <ul>
-<li><strong>Meaningful structure</strong> in one folder</li>
-<li>The working directory automatically switches to the project’s folder</li>
-<li>File tab displays the associated files and folders in the project</li>
-<li>History of R commands and open files</li>
-<li>Any settings associated with the project, such as Git settings, are loaded. Note that a <em>set-up.R</em> or even a <em>.Rprofile</em> file in the project’s root directory enable project-specific settings to be loaded each time people work on the project.</li>
-</ul></li>
+<li>reads in the data file</li>
+<li>converts all columns to the appropriate data types</li>
+<li>“Tidy” your data (if appropriate)<br />
+The first argument to your read function should be the file name. Are there additional parameters that are needed? Think beyond the Subscriber Report, what are other things you typically do upon first reading in a data file.</li>
 </ul>
-<blockquote class="twitter-tweet" data-lang="en" align="center">
-<p lang="en" dir="ltr">
-The only two things that make <a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw">@JennyBryan</a> 😤😠🤯. Instead use projects + here::here() <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/GwxnHePL4n">pic.twitter.com/GwxnHePL4n</a>
-</p>
-— Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/940021008764846080?ref_src=twsrc%5Etfw">December 11 2017</a>
-</blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>Read more at <a href="https://www.tidyverse.org/articles/2017/12/workflow-vs-script/" class="uri">https://www.tidyverse.org/articles/2017/12/workflow-vs-script/</a> and also see chapter <a href="https://bookdown.org/csgillespie/efficientR/set-up.html"><em>Efficient set-up</em></a> of book <em>Efficient R programming</em>.</p>
-</div>
-<div id="getting-help" class="section level2">
-<h2><span class="header-section-number">2.4</span> Getting help</h2>
-<div id="help-yourself-learn-how-to-debug" class="section level3">
-<h3><span class="header-section-number">2.4.1</span> Help yourself, learn how to debug</h3>
-<p>A basic solution is to print everything, but it usually does not work well on complex problems. A convenient solution to see all the variables’ states in your code is to place some <code>browser()</code> anywhere you want to check the variables’ states.</p>
-<p>Learn more with <a href="https://bookdown.org/rdpeng/rprogdatascience/debugging.html">this book chapter</a>, <a href="http://adv-r.had.co.nz/Exceptions-Debugging.html">this other book chapter</a>, <a href="https://www.rstudio.com/resources/videos/debugging-techniques-in-rstudio/">this webinar</a> and <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-RStudio">this RStudio article</a>.</p>
-</div>
-<div id="external-help" class="section level3">
-<h3><span class="header-section-number">2.4.2</span> External help</h3>
-<p>Can’t remember useful functions? Use <a href="https://www.rstudio.com/resources/cheatsheets/">cheat sheets</a>.</p>
-<p>You can search for specific R stuff on <a href="https://rseek.org/" class="uri">https://rseek.org/</a>. You should also read documentations carefully. If you’re using a package, search for vignettes and a GitHub repository.</p>
-<p>You can also use <a href="https://stackoverflow.com/">Stack Overflow</a>. The most common use of Stack Overflow is when you have an error or a question, you Google it, and most of the times the first links are Q/A on Stack Overflow.</p>
-<p>You can ask questions on Stack Overflow (using the tag <code>r</code>). You need to <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">make a great R reproducible example</a> if you want your question to be answered. Most of the times, while making this reproducible example, you will find the answer to your problem.</p>
-<p>Join the <a href="https://www.r-project.org/mail.html">R-help</a> mailing list. Sign up to get the daily digest and scan it for questions that interest you.</p>
-</div>
-</div>
-<div id="keeping-up-to-date" class="section level2">
-<h2><span class="header-section-number">2.5</span> Keeping up to date</h2>
-<p>With over 10,000 packages on CRAN it is hard to keep up with the constantly changing landscape. <a href="https://www.r-bloggers.com/">R-Bloggers</a> is an R focused blog aggregation site with dozens of posts per day. Check it out.</p>
-</div>
-<div id="reading-for-next-class" class="section level2">
-<h2><span class="header-section-number">2.6</span> Reading For Next Class</h2>
-<ol style="list-style-type: decimal">
-<li>Read the chapter on <a href="http://r4ds.had.co.nz/workflow-basics.html">Workflow: basics</a></li>
-<li>Read the chapter on <a href="http://r4ds.had.co.nz/workflow-scripts.html">Workflow: scripts</a></li>
-<li>Read the chapter on <a href="http://r4ds.had.co.nz/workflow-projects.html">Workflow: projects</a></li>
-<li>Read Chapters 1-3 of the <a href="http://style.tidyverse.org/index.html">Tidyverse Style Guide</a></li>
-<li>See these RStudio <a href="https://rviews.rstudio.com/categories/tips-and-tricks/">Tips &amp; Tricks</a> or <a href="https://twitter.com/rstudiotips">these</a> and find one that looks interesting and <strong>practice</strong> it all week.</li>
-<li>Read how to <a href="https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">make a great R reproducible example</a></li>
-</ol>
-</div>
-<div id="exercises" class="section level2">
-<h2><span class="header-section-number">2.7</span> Exercises</h2>
-<ol style="list-style-type: decimal">
-<li>Create an R Project for this class.</li>
-<li>Create the following directories in your project (tip sheet?)
-<ul>
-<li>Bonus points if you can do it from R and not RStudio or Windows Explorer</li>
-<li>Double Bonus points if you can make it a function.</li>
-<li>Hint: In the R console type <code>file</code> and scroll through the various functions which appear in the pop-up.</li>
-</ul></li>
-<li>Copy one of your R scripts into your R directory. (Bonus points if you can do it from R and not RStudio or Windows Explorer)</li>
-<li>Apply the style guide to your code.<br />
-</li>
-<li>Apply the “Rule of 3”
-<ul>
-<li>Create variables as needed</li>
-<li>Identify code that is used 3 or more times to make functions</li>
-<li>Identify code that would be useful in 3 or more projects to integrate into a package.</li>
-</ul></li>
-</ol>
 
 </div>
-</div>
-
-
-
-<div class="footnotes">
-<hr />
-<ol start="1">
-<li id="fn1"><p>This is sometimes called the DRY principle, or Don’t Repeat Yourself.<a href="good-practices.html#fnref1">↩</a></p></li>
-</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="preamble-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="baser-rbasics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tidy-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -570,7 +602,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DavisBrian/corporater/edit/master/good-practices.Rmd",
+"link": "https://github.com/DavisBrian/corporater/edit/master/functions.Rmd",
 "text": "Edit"
 },
 "history": {

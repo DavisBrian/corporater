@@ -8,6 +8,10 @@ rmd_files: [
   
   "data-import.Rmd",
   "data-transform.Rmd",
+  "data-tidy.Rmd",
+  
+  "functions.Rmd",
+  "data-presentation.Rmd",
   "appendix-A.Rmd"]
   
 output_dir: docs
