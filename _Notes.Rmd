@@ -34,6 +34,7 @@ This is a warning!
  Change as string from Windows Paths to R paths (convert \\ to / and end with / )
  make headers sytantic names (tolower, start with a letter, replace special characters and spaces with an underscore)
 
+create a function to take a numeric zip code and pad with 0's
 ## Notes
 
 This is a place to keep track of my thoughts and notes.

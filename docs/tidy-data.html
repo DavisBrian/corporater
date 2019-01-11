@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>6 Tidy Data | Modern R in a Corporate Environment</title>
+  <meta name="description" content="This is an original course for RADARS">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="6 Tidy Data | Modern R in a Corporate Environment" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an original course for RADARS" />
+  <meta name="github-repo" content="DavisBrian/corporater" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Tidy Data | Modern R in a Corporate Environment" />
+  
+  <meta name="twitter:description" content="This is an original course for RADARS" />
+  
+
+<meta name="author" content="Brian Davis">
+
+
+<meta name="date" content="2019-01-11">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="data-transformation.html">
+<link rel="next" href="function-basics.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modern R in a Corporate Environment</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="part"><span><b>I Preamble</b></span></li>
+<li class="chapter" data-level="1" data-path="preamble-intro.html"><a href="preamble-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="preamble-intro.html"><a href="preamble-intro.html#course-philosophy"><i class="fa fa-check"></i><b>1.1</b> Course Philosophy</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="preamble-intro.html"><a href="preamble-intro.html#reproducible-research-approach"><i class="fa fa-check"></i><b>1.1.1</b> Reproducible Research Approach</a></li>
+<li class="chapter" data-level="1.1.2" data-path="preamble-intro.html"><a href="preamble-intro.html#fda-validation"><i class="fa fa-check"></i><b>1.1.2</b> FDA Validation</a></li>
+<li class="chapter" data-level="1.1.3" data-path="preamble-intro.html"><a href="preamble-intro.html#the-sas-myth"><i class="fa fa-check"></i><b>1.1.3</b> The SAS Myth</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="preamble-intro.html"><a href="preamble-intro.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="preamble-intro.html"><a href="preamble-intro.html#content"><i class="fa fa-check"></i><b>1.3</b> Content</a></li>
+<li class="chapter" data-level="1.4" data-path="preamble-intro.html"><a href="preamble-intro.html#structure"><i class="fa fa-check"></i><b>1.4</b> Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a><ul>
+<li class="chapter" data-level="2.1" data-path="good-practices.html"><a href="good-practices.html#coding-style"><i class="fa fa-check"></i><b>2.1</b> Coding style</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="good-practices.html"><a href="good-practices.html#comments"><i class="fa fa-check"></i><b>2.1.1</b> Comments</a></li>
+<li class="chapter" data-level="2.1.2" data-path="good-practices.html"><a href="good-practices.html#naming"><i class="fa fa-check"></i><b>2.1.2</b> Naming</a></li>
+<li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#spacing"><i class="fa fa-check"></i><b>2.1.3</b> Spacing</a></li>
+<li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.4</b> Indenting</a></li>
+<li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.5</b> Long lines</a></li>
+<li class="chapter" data-level="2.1.6" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.6</b> Other</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em></a></li>
+<li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
+<li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#keeping-up-to-date"><i class="fa fa-check"></i><b>2.5</b> Keeping up to date</a></li>
+<li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#reading-for-next-class"><i class="fa fa-check"></i><b>2.6</b> Reading For Next Class</a></li>
+<li class="chapter" data-level="2.7" data-path="good-practices.html"><a href="good-practices.html#exercises"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>II Base R Basics</b></span></li>
+<li class="chapter" data-level="3" data-path="baser-rbasics.html"><a href="baser-rbasics.html"><i class="fa fa-check"></i><b>3</b> R Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#assignment-operators"><i class="fa fa-check"></i><b>3.1</b> Assignment Operators</a></li>
+<li class="chapter" data-level="3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#naming-rules"><i class="fa fa-check"></i><b>3.2</b> Naming Rules</a></li>
+<li class="chapter" data-level="3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#objects"><i class="fa fa-check"></i><b>3.3</b> Objects</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vector"><i class="fa fa-check"></i><b>3.3.1</b> Vector</a></li>
+<li class="chapter" data-level="3.3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#atomic-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="3.3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#matrix"><i class="fa fa-check"></i><b>3.3.3</b> Matrix</a></li>
+<li class="chapter" data-level="3.3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#list"><i class="fa fa-check"></i><b>3.3.4</b> List</a></li>
+<li class="chapter" data-level="3.3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#data-frame"><i class="fa fa-check"></i><b>3.3.5</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#comparision"><i class="fa fa-check"></i><b>3.4</b> Comparision</a></li>
+<li class="chapter" data-level="3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#logical-and-sets"><i class="fa fa-check"></i><b>3.5</b> Logical and sets</a></li>
+<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#control-structures"><i class="fa fa-check"></i><b>3.6</b> Control Structures</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#if-else"><i class="fa fa-check"></i><b>3.6.1</b> <code>if</code>-<code>else</code></a></li>
+<li class="chapter" data-level="3.6.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#for-loops"><i class="fa fa-check"></i><b>3.6.2</b> <code>for</code> Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.7</b> Vectorization &amp; Recycling</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.7.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#reading-for-next-class-1"><i class="fa fa-check"></i><b>3.8</b> Reading For Next Class</a></li>
+<li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>III Tidyverse</b></span></li>
+<li class="chapter" data-level="4" data-path="data-import-export.html"><a href="data-import-export.html"><i class="fa fa-check"></i><b>4</b> Data Import &amp; Export</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-import-export.html"><a href="data-import-export.html#text-files"><i class="fa fa-check"></i><b>4.1</b> Text Files</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-import-export.html"><a href="data-import-export.html#readr"><i class="fa fa-check"></i><b>4.1.1</b> readr</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-import-export.html"><a href="data-import-export.html#base-r"><i class="fa fa-check"></i><b>4.1.2</b> base R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-import-export.html"><a href="data-import-export.html#sas-files"><i class="fa fa-check"></i><b>4.2</b> SAS Files</a></li>
+<li class="chapter" data-level="4.3" data-path="data-import-export.html"><a href="data-import-export.html#excel"><i class="fa fa-check"></i><b>4.3</b> Excel</a></li>
+<li class="chapter" data-level="4.4" data-path="data-import-export.html"><a href="data-import-export.html#databases"><i class="fa fa-check"></i><b>4.4</b> Databases</a></li>
+<li class="chapter" data-level="4.5" data-path="data-import-export.html"><a href="data-import-export.html#reading-for-next-class-2"><i class="fa fa-check"></i><b>4.5</b> Reading For Next Class</a></li>
+<li class="chapter" data-level="4.6" data-path="data-import-export.html"><a href="data-import-export.html#exercises-2"><i class="fa fa-check"></i><b>4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>5</b> Data Transformation</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-transformation.html"><a href="data-transformation.html#tibbles"><i class="fa fa-check"></i><b>5.1</b> Tibbles</a></li>
+<li class="chapter" data-level="5.2" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>5.2</b> Filter rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="data-transformation.html"><a href="data-transformation.html#arrange-rows-with-arrange"><i class="fa fa-check"></i><b>5.3</b> Arrange rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.4" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>5.4</b> Select columns with <code>select()</code></a></li>
+<li class="chapter" data-level="5.5" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>5.5</b> Add new variables with <code>mutate()</code></a></li>
+<li class="chapter" data-level="5.6" data-path="data-transformation.html"><a href="data-transformation.html#pipes"><i class="fa fa-check"></i><b>5.6</b> Pipes</a></li>
+<li class="chapter" data-level="5.7" data-path="data-transformation.html"><a href="data-transformation.html#grouped-summaries-with-summarise"><i class="fa fa-check"></i><b>5.7</b> Grouped summaries with <code>summarise()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="data-transformation.html"><a href="data-transformation.html#grouped-mutates"><i class="fa fa-check"></i><b>5.8</b> Grouped mutates</a></li>
+<li class="chapter" data-level="5.9" data-path="data-transformation.html"><a href="data-transformation.html#reading-for-next-class-3"><i class="fa fa-check"></i><b>5.9</b> Reading For Next Class</a></li>
+<li class="chapter" data-level="5.10" data-path="data-transformation.html"><a href="data-transformation.html#exercises-3"><i class="fa fa-check"></i><b>5.10</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>6</b> Tidy Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-1"><i class="fa fa-check"></i><b>6.1</b> Tidy data</a></li>
+<li class="chapter" data-level="6.2" data-path="tidy-data.html"><a href="tidy-data.html#example-1"><i class="fa fa-check"></i><b>6.2</b> Example</a></li>
+<li class="chapter" data-level="6.3" data-path="tidy-data.html"><a href="tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>6.3</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="tidy-data.html"><a href="tidy-data.html#gathering"><i class="fa fa-check"></i><b>6.3.1</b> Gathering</a></li>
+<li class="chapter" data-level="6.3.2" data-path="tidy-data.html"><a href="tidy-data.html#spreading"><i class="fa fa-check"></i><b>6.3.2</b> Spreading</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="tidy-data.html"><a href="tidy-data.html#separating-and-uniting"><i class="fa fa-check"></i><b>6.4</b> Separating and uniting</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="tidy-data.html"><a href="tidy-data.html#separate"><i class="fa fa-check"></i><b>6.4.1</b> Separate</a></li>
+<li class="chapter" data-level="6.4.2" data-path="tidy-data.html"><a href="tidy-data.html#unite"><i class="fa fa-check"></i><b>6.4.2</b> Unite</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="tidy-data.html"><a href="tidy-data.html#missing-values"><i class="fa fa-check"></i><b>6.5</b> Missing values</a></li>
+<li class="chapter" data-level="6.6" data-path="tidy-data.html"><a href="tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>6.6</b> Non-tidy data</a></li>
+</ul></li>
+<li class="part"><span><b>IV Beyond Basics</b></span></li>
+<li class="chapter" data-level="7" data-path="function-basics.html"><a href="function-basics.html"><i class="fa fa-check"></i><b>7</b> Function Basics</a><ul>
+<li class="chapter" data-level="7.1" data-path="function-basics.html"><a href="function-basics.html#introduction-to-functions"><i class="fa fa-check"></i><b>7.1</b> Introduction to Functions</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="function-basics.html"><a href="function-basics.html#your-first-function"><i class="fa fa-check"></i><b>7.1.1</b> Your First Function</a></li>
+<li class="chapter" data-level="7.1.2" data-path="function-basics.html"><a href="function-basics.html#lazy-evaluation"><i class="fa fa-check"></i><b>7.1.2</b> Lazy Evaluation</a></li>
+<li class="chapter" data-level="7.1.3" data-path="function-basics.html"><a href="function-basics.html#the-dot-dot-dot-...-argument"><i class="fa fa-check"></i><b>7.1.3</b> The Dot-dot-dot (<code>...</code>) Argument</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="function-basics.html"><a href="function-basics.html#environments-scoping"><i class="fa fa-check"></i><b>7.2</b> Environments &amp; Scoping</a></li>
+<li class="chapter" data-level="7.3" data-path="function-basics.html"><a href="function-basics.html#first-class-objects"><i class="fa fa-check"></i><b>7.3</b> “First class objects”</a></li>
+<li class="chapter" data-level="7.4" data-path="function-basics.html"><a href="function-basics.html#exercises-4"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>8</b> R Markdown</a><ul>
+<li class="chapter" data-level="8.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="r-markdown.html"><a href="r-markdown.html#code-languages"><i class="fa fa-check"></i><b>8.1.1</b> Code languages</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="r-markdown.html"><a href="r-markdown.html#markdown-basics"><i class="fa fa-check"></i><b>8.2</b> Markdown Basics</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="r-markdown.html"><a href="r-markdown.html#headers"><i class="fa fa-check"></i><b>8.2.1</b> Headers</a></li>
+<li class="chapter" data-level="8.2.2" data-path="r-markdown.html"><a href="r-markdown.html#paragraph-breaks-and-forced-line-breaks"><i class="fa fa-check"></i><b>8.2.2</b> Paragraph Breaks and Forced Line Breaks</a></li>
+<li class="chapter" data-level="8.2.3" data-path="r-markdown.html"><a href="r-markdown.html#italics-and-boldface"><i class="fa fa-check"></i><b>8.2.3</b> Italics and Boldface</a></li>
+<li class="chapter" data-level="8.2.4" data-path="r-markdown.html"><a href="r-markdown.html#bullet-points"><i class="fa fa-check"></i><b>8.2.4</b> Bullet Points</a></li>
+<li class="chapter" data-level="8.2.5" data-path="r-markdown.html"><a href="r-markdown.html#numbered-lists"><i class="fa fa-check"></i><b>8.2.5</b> Numbered Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="r-markdown.html"><a href="r-markdown.html#math"><i class="fa fa-check"></i><b>8.3</b> Math</a></li>
+<li class="chapter" data-level="8.4" data-path="r-markdown.html"><a href="r-markdown.html#code-chunks"><i class="fa fa-check"></i><b>8.4</b> Code Chunks</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="r-markdown.html"><a href="r-markdown.html#chunk-names"><i class="fa fa-check"></i><b>8.4.1</b> Chunk Names</a></li>
+<li class="chapter" data-level="8.4.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>8.4.2</b> Chunk Options</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>8.5</b> Inline Code</a></li>
+<li class="chapter" data-level="8.6" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>8.6</b> Plots</a></li>
+<li class="chapter" data-level="8.7" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>8.7</b> Tables</a></li>
+<li class="chapter" data-level="8.8" data-path="r-markdown.html"><a href="r-markdown.html#yaml"><i class="fa fa-check"></i><b>8.8</b> YAML</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="r-markdown.html"><a href="r-markdown.html#table-of-contents"><i class="fa fa-check"></i><b>8.8.1</b> Table of Contents</a></li>
+<li class="chapter" data-level="8.8.2" data-path="r-markdown.html"><a href="r-markdown.html#parameterized-reports"><i class="fa fa-check"></i><b>8.8.2</b> Parameterized reports</a></li>
+<li class="chapter" data-level="8.8.3" data-path="r-markdown.html"><a href="r-markdown.html#output-types"><i class="fa fa-check"></i><b>8.8.3</b> Output Types</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>V Appendix</b></span></li>
+<li class="chapter" data-level="9" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>9</b> Appendix A</a><ul>
+<li class="chapter" data-level="9.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>9.1</b> E-Books</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modern R in a Corporate Environment</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidy-data" class="section level1">
+<h1><span class="header-section-number">6</span> Tidy Data</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<blockquote>
+<p>“Happy families are all alike; every unhappy family is unhappy in its own way.” –– Leo Tolstoy</p>
+</blockquote>
+<blockquote>
+<p>“Tidy datasets are all alike, but every messy dataset is messy in its own way.” –– Hadley Wickham</p>
+</blockquote>
+<p>In this chapter, you will learn a consistent way to organize your data in R, an organisation called <strong>tidy data</strong>. Getting your data into this format requires some upfront work, but that work pays off in the long term. Once you have tidy data and the tidy tools provided by packages in the tidyverse, you will spend much less time munging data from one representation to another, allowing you to spend more time on the analytic questions at hand.</p>
+<p>This chapter will give you a practical introduction to tidy data and the accompanying tools in the <strong>tidyr</strong> package. If you’d like to learn more about the underlying theory, you might enjoy the <em>Tidy Data</em> paper published in the Journal of Statistical Software, <a href="http://www.jstatsoft.org/v59/i10/paper" class="uri">http://www.jstatsoft.org/v59/i10/paper</a>.</p>
+<div id="tidy-data-1" class="section level2">
+<h2><span class="header-section-number">6.1</span> Tidy data</h2>
+<p>There are three interrelated rules which make a dataset tidy:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable must have its own column.</li>
+<li>Each observation must have its own row.</li>
+<li>Each value must have its own cell.</li>
+</ol>
+<p>Figure <a href="tidy-data.html#fig:tidy-structure">6.1</a> shows the rules visually.</p>
+<div class="figure" style="text-align: center"><span id="fig:tidy-structure"></span>
+<img src="images/tidy/tidy-1.png" alt="Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells." width="100%" />
+<p class="caption">
+FIGURE 6.1: Following three rules makes a dataset tidy: variables are in columns, observations are in rows, and values are in cells.
+</p>
+</div>
+<p>These three rules are interrelated because it’s impossible to only satisfy two of the three.</p>
+<p>Why ensure that your data is tidy? There are two main advantages:</p>
+<ol style="list-style-type: decimal">
+<li><p>There’s a general advantage to picking one consistent way of storing data. If you have a consistent data structure, it’s easier to learn the tools that work with it because they have an underlying uniformity.</p></li>
+<li><p>There’s a specific advantage to placing variables in columns because it allows R’s vectorized nature to shine. As you learned in <a href="#mutate-funs">mutate</a> and <a href="#summary-funs">summary functions</a>, most built-in R functions work with vectors of values. That makes transforming tidy data feel particularly natural.</p></li>
+</ol>
+<p>dplyr, ggplot2, and all the other packages in the tidyverse are designed to work with tidy data.</p>
+</div>
+<div id="example-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> Example</h2>
+<p>You can represent the same underlying data in multiple ways. The example below shows the same data organised in four different ways. Each dataset shows the same values of four variables <em>country</em>, <em>year</em>, <em>population</em>, and <em>cases</em>, but each dataset organizes the values in a different way.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country      year  cases population</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan  1999    745   19987071</span>
+<span class="co">#&gt; 2 Afghanistan  2000   2666   20595360</span>
+<span class="co">#&gt; 3 Brazil       1999  37737  172006362</span>
+<span class="co">#&gt; 4 Brazil       2000  80488  174504898</span>
+<span class="co">#&gt; 5 China        1999 212258 1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766 1280428583</span>
+table2
+<span class="co">#&gt; # A tibble: 12 x 4</span>
+<span class="co">#&gt;   country      year type           count</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan  1999 cases            745</span>
+<span class="co">#&gt; 2 Afghanistan  1999 population  19987071</span>
+<span class="co">#&gt; 3 Afghanistan  2000 cases           2666</span>
+<span class="co">#&gt; 4 Afghanistan  2000 population  20595360</span>
+<span class="co">#&gt; 5 Brazil       1999 cases          37737</span>
+<span class="co">#&gt; 6 Brazil       1999 population 172006362</span>
+<span class="co">#&gt; # ... with 6 more rows</span>
+table3
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   country      year rate             </span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 Afghanistan  1999 745/19987071     </span>
+<span class="co">#&gt; 2 Afghanistan  2000 2666/20595360    </span>
+<span class="co">#&gt; 3 Brazil       1999 37737/172006362  </span>
+<span class="co">#&gt; 4 Brazil       2000 80488/174504898  </span>
+<span class="co">#&gt; 5 China        1999 212258/1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766/1280428583</span>
+
+<span class="co"># Spread across two tibbles</span>
+table4a  <span class="co"># cases</span>
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;   country     `1999` `2000`</span>
+<span class="co">#&gt; * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan    745   2666</span>
+<span class="co">#&gt; 2 Brazil       37737  80488</span>
+<span class="co">#&gt; 3 China       212258 213766</span>
+table4b  <span class="co"># population</span>
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;   country         `1999`     `2000`</span>
+<span class="co">#&gt; * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan   19987071   20595360</span>
+<span class="co">#&gt; 2 Brazil       172006362  174504898</span>
+<span class="co">#&gt; 3 China       1272915272 1280428583</span></code></pre></div>
+<p>These are all representations of the same underlying data, but they are not equally easy to use. One dataset, the tidy dataset, will be much easier to work with inside the tidyverse.</p>
+<p>Which dataset is tidy? Why aren’t the other datasets considered tidy?</p>
+
+<div class="rmdtip">
+How would you calculate the rate per 10,000 population for each data set? How would you compute the cases per year? How would you visualize the changes over time?
+</div>
+
+</div>
+<div id="spreading-and-gathering" class="section level2">
+<h2><span class="header-section-number">6.3</span> Spreading and gathering</h2>
+<p>The principles of tidy data seem so obvious that you might wonder if you’ll ever encounter a dataset that isn’t tidy. Unfortunately, however, most data that you will encounter will be untidy. There are two main reasons:</p>
+<ol style="list-style-type: decimal">
+<li><p>Most people aren’t familiar with the principles of tidy data, and it’s hard to derive them yourself unless you spend a <em>lot</em> of time working with data.</p></li>
+<li><p>Data is often organised to facilitate some use other than analysis. For example, data is often organised to make entry as easy as possible.</p></li>
+<li><p>How to efficiently store, analyze, and present data are <em>usually</em> three different data formats.</p></li>
+</ol>
+<p>This means for most real analyses, you’ll need to do some tidying / untidying. The first step is always to figure out what the variables and observations are. Sometimes this is easy; other times it can be a bit more difficult. The second step is to resolve one of two common problems:</p>
+<ol style="list-style-type: decimal">
+<li><p>One variable might be spread across multiple columns.</p></li>
+<li><p>One observation might be scattered across multiple rows.</p></li>
+</ol>
+<p>Typically a dataset will only suffer from one of these problems; it’ll only suffer from both if you’re really unlucky! To fix these problems, you’ll need the two most important functions in tidyr: <code>gather()</code> and <code>spread()</code>.</p>
+<div id="gathering" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Gathering</h3>
+<p>A common problem is a dataset where some of the column names are not names of variables, but <em>values</em> of a variable. Take <code>table4a</code>: the column names <code>1999</code> and <code>2000</code> represent values of the <code>year</code> variable, and each row represents two observations, not one.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4a
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;   country     `1999` `2000`</span>
+<span class="co">#&gt; * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan    745   2666</span>
+<span class="co">#&gt; 2 Brazil       37737  80488</span>
+<span class="co">#&gt; 3 China       212258 213766</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:tidy-gather"></span>
+<img src="images/tidy/tidy-9.png" alt="Gathering `table4` into a tidy form." width="100%" />
+<p class="caption">
+FIGURE 6.2: Gathering <code>table4</code> into a tidy form.
+</p>
+</div>
+<p>To tidy a dataset like this, we need to <strong>gather</strong> those columns into a new pair of variables. To describe that operation we need three parameters:</p>
+<ul>
+<li><p>The name of the variable whose values form the column names. This is the <code>key</code>, and here it is <code>year</code>.</p></li>
+<li><p>The name of the variable whose values are spread over the cells. That is the <code>value</code>, and here it’s the number of <code>cases</code>.</p></li>
+<li><p>The set of columns that represent values, not variables. In this example, those are the columns <code>1999</code> and <code>2000</code>.</p></li>
+</ul>
+<p>Together those parameters generate the call to <code>gather()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table4a <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   country     year   cases</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan 1999     745</span>
+<span class="co">#&gt; 2 Brazil      1999   37737</span>
+<span class="co">#&gt; 3 China       1999  212258</span>
+<span class="co">#&gt; 4 Afghanistan 2000    2666</span>
+<span class="co">#&gt; 5 Brazil      2000   80488</span>
+<span class="co">#&gt; 6 China       2000  213766</span></code></pre></div>
+
+<div class="rmdimportant">
+Note that “1999” and “2000” are non-syntactic names (because they don’t start with a letter) so we have to surround them in backticks. To refresh your memory of the other ways to select columns, see <a href="#select">select</a>.
+</div>
+
+<p>In the final result, the gathered columns are dropped, and we get new <code>key</code> and <code>value</code> columns. Otherwise, the relationships between the original variables are preserved. Visually, this is shown in Figure <a href="tidy-data.html#fig:tidy-gather">6.2</a>. We can use <code>gather()</code> to tidy <code>table4b</code> in a similar fashion. The only difference is the variable stored in the cell values.</p>
+<p>To combine the tidied versions of <code>table4a</code> and <code>table4b</code> into a single tibble, we need to use <code>dplyr::left_join()</code>, which you’ll learn about in [relational data].</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tidy4a &lt;-<span class="st"> </span>table4a <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)
+tidy4b &lt;-<span class="st"> </span>table4b <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;population&quot;</span>, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)
+<span class="kw">left_join</span>(tidy4a, tidy4b)
+<span class="co">#&gt; Joining, by = c(&quot;country&quot;, &quot;year&quot;)</span>
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country     year   cases population</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan 1999     745   19987071</span>
+<span class="co">#&gt; 2 Brazil      1999   37737  172006362</span>
+<span class="co">#&gt; 3 China       1999  212258 1272915272</span>
+<span class="co">#&gt; 4 Afghanistan 2000    2666   20595360</span>
+<span class="co">#&gt; 5 Brazil      2000   80488  174504898</span>
+<span class="co">#&gt; 6 China       2000  213766 1280428583</span></code></pre></div>
+</div>
+<div id="spreading" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Spreading</h3>
+<p>Spreading is the opposite of gathering. You use it when an observation is scattered across multiple rows. For example, take <code>table2</code>: an observation is a country in a year, but each observation is spread across two rows.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table2
+<span class="co">#&gt; # A tibble: 12 x 4</span>
+<span class="co">#&gt;   country      year type           count</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;          &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan  1999 cases            745</span>
+<span class="co">#&gt; 2 Afghanistan  1999 population  19987071</span>
+<span class="co">#&gt; 3 Afghanistan  2000 cases           2666</span>
+<span class="co">#&gt; 4 Afghanistan  2000 population  20595360</span>
+<span class="co">#&gt; 5 Brazil       1999 cases          37737</span>
+<span class="co">#&gt; 6 Brazil       1999 population 172006362</span>
+<span class="co">#&gt; # ... with 6 more rows</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:tidy-spread"></span>
+<img src="images/tidy/tidy-8.png" alt="Spreading `table2` makes it tidy" width="100%" />
+<p class="caption">
+FIGURE 6.3: Spreading <code>table2</code> makes it tidy
+</p>
+</div>
+<p>To tidy this up, we first analyse the representation in similar way to <code>gather()</code>. This time, however, we only need two parameters:</p>
+<ul>
+<li><p>The column that contains variable names, the <code>key</code> column. Here, it’s <code>type</code>.</p></li>
+<li><p>The column that contains values from multiple variables, the <code>value</code> column. Here it’s <code>count</code>.</p></li>
+</ul>
+<p>Once we’ve figured that out, we can use <code>spread()</code>, as shown programmatically below, and visually in Figure <a href="tidy-data.html#fig:tidy-spread">6.3</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table2 <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">spread</span>(<span class="dt">key =</span> type, <span class="dt">value =</span> count)
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country      year  cases population</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan  1999    745   19987071</span>
+<span class="co">#&gt; 2 Afghanistan  2000   2666   20595360</span>
+<span class="co">#&gt; 3 Brazil       1999  37737  172006362</span>
+<span class="co">#&gt; 4 Brazil       2000  80488  174504898</span>
+<span class="co">#&gt; 5 China        1999 212258 1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766 1280428583</span></code></pre></div>
+<div class="rmdnote">
+<p>
+As you might have guessed from the common <code>key</code> and <code>value</code> arguments, <code>spread()</code> and <code>gather()</code> are complements. <code>gather()</code> makes wide tables narrower and longer; <code>spread()</code> makes long tables shorter and wider.
+</p>
+</div>
+</div>
+</div>
+<div id="separating-and-uniting" class="section level2">
+<h2><span class="header-section-number">6.4</span> Separating and uniting</h2>
+<p>So far you’ve learned how to tidy <code>table2</code> and <code>table4</code>, but not <code>table3</code>. <code>table3</code> has a different problem: we have one column (<code>rate</code>) that contains two variables (<code>cases</code> and <code>population</code>). To fix this problem, we’ll need the <code>separate()</code> function. You’ll also learn about the complement of <code>separate()</code>: <code>unite()</code>, which you use if a single variable is spread across multiple columns.</p>
+<div id="separate" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Separate</h3>
+<p><code>separate()</code> pulls apart one column into multiple columns, by splitting wherever a separator character appears. Take <code>table3</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   country      year rate             </span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 Afghanistan  1999 745/19987071     </span>
+<span class="co">#&gt; 2 Afghanistan  2000 2666/20595360    </span>
+<span class="co">#&gt; 3 Brazil       1999 37737/172006362  </span>
+<span class="co">#&gt; 4 Brazil       2000 80488/174504898  </span>
+<span class="co">#&gt; 5 China        1999 212258/1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766/1280428583</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:tidy-separate"></span>
+<img src="images/tidy/tidy-17.png" alt="Separating `table3` makes it tidy" width="75%" />
+<p class="caption">
+FIGURE 6.4: Separating <code>table3</code> makes it tidy
+</p>
+</div>
+<p>The <code>rate</code> column contains both <code>cases</code> and <code>population</code> variables, and we need to split it into two variables. <code>separate()</code> takes the name of the column to separate, and the names of the columns to separate into, as shown in Figure <a href="tidy-data.html#fig:tidy-separate">6.4</a> and the code below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>))
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country      year cases  population</span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     </span>
+<span class="co">#&gt; 1 Afghanistan  1999 745    19987071  </span>
+<span class="co">#&gt; 2 Afghanistan  2000 2666   20595360  </span>
+<span class="co">#&gt; 3 Brazil       1999 37737  172006362 </span>
+<span class="co">#&gt; 4 Brazil       2000 80488  174504898 </span>
+<span class="co">#&gt; 5 China        1999 212258 1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766 1280428583</span></code></pre></div>
+
+<div class="rmdimportant">
+By default, <code>separate()</code> will split values wherever it sees a non-alphanumeric character (i.e. a character that isn’t a number or letter). For example, in the code above, <code>separate()</code> split the values of <code>rate</code> at the forward slash characters. If you wish to use a specific character to separate a column, you can pass the character to the <code>sep</code> argument of <code>separate()</code>. Formally, <code>sep</code> is a regular expression, which we learn more about in [strings].
+</div>
+
+<p>Look carefully at the column types: you’ll notice that <code>cases</code> and <code>population</code> are character columns. This is the default behavior in <code>separate()</code>: it leaves the type of the column as is. Here, however, it’s not very useful as those really are numbers. We can ask <code>separate()</code> to try and convert to better types using <code>convert = TRUE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">convert =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country      year  cases population</span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;</span>
+<span class="co">#&gt; 1 Afghanistan  1999    745   19987071</span>
+<span class="co">#&gt; 2 Afghanistan  2000   2666   20595360</span>
+<span class="co">#&gt; 3 Brazil       1999  37737  172006362</span>
+<span class="co">#&gt; 4 Brazil       2000  80488  174504898</span>
+<span class="co">#&gt; 5 China        1999 212258 1272915272</span>
+<span class="co">#&gt; 6 China        2000 213766 1280428583</span></code></pre></div>
+<p>You can also pass a vector of integers to <code>sep</code>. <code>separate()</code> will interpret the integers as positions to split at. Positive values start at 1 on the far-left of the strings; negative value start at -1 on the far-right of the strings. When using integers to separate strings, the length of <code>sep</code> should be one less than the number of names in <code>into</code>.</p>
+<p>You can use this arrangement to separate the last two digits of each year. This make this data less tidy, but is useful in other cases, as you’ll see in a little bit.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)
+<span class="co">#&gt; # A tibble: 6 x 4</span>
+<span class="co">#&gt;   country     century year  rate             </span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 Afghanistan 19      99    745/19987071     </span>
+<span class="co">#&gt; 2 Afghanistan 20      00    2666/20595360    </span>
+<span class="co">#&gt; 3 Brazil      19      99    37737/172006362  </span>
+<span class="co">#&gt; 4 Brazil      20      00    80488/174504898  </span>
+<span class="co">#&gt; 5 China       19      99    212258/1272915272</span>
+<span class="co">#&gt; 6 China       20      00    213766/1280428583</span></code></pre></div>
+</div>
+<div id="unite" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Unite</h3>
+<p><code>unite()</code> is the inverse of <code>separate()</code>: it combines multiple columns into a single column. You’ll need it much less frequently than <code>separate()</code>, but it’s still a useful tool to have in your back pocket.</p>
+<div class="figure" style="text-align: center"><span id="fig:tidy-unite"></span>
+<img src="images/tidy/tidy-18.png" alt="Uniting `table5` makes it tidy" width="75%" />
+<p class="caption">
+FIGURE 6.5: Uniting <code>table5</code> makes it tidy
+</p>
+</div>
+<p>We can use <code>unite()</code> to rejoin the <em>century</em> and <em>year</em> columns that we created in the last example. That data is saved as <code>tidyr::table5</code>. <code>unite()</code> takes a data frame, the name of the new variable to create, and a set of columns to combine, again specified in <code>dplyr::select()</code> style:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unite</span>(new, century, year)
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   country     new   rate             </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 Afghanistan 19_99 745/19987071     </span>
+<span class="co">#&gt; 2 Afghanistan 20_00 2666/20595360    </span>
+<span class="co">#&gt; 3 Brazil      19_99 37737/172006362  </span>
+<span class="co">#&gt; 4 Brazil      20_00 80488/174504898  </span>
+<span class="co">#&gt; 5 China       19_99 212258/1272915272</span>
+<span class="co">#&gt; 6 China       20_00 213766/1280428583</span></code></pre></div>
+<p>In this case we also need to use the <code>sep</code> argument. The default will place an underscore (<code>_</code>) between the values from different columns. Here we don’t want any separator so we use <code>&quot;&quot;</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">unite</span>(new, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;   country     new   rate             </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 Afghanistan 1999  745/19987071     </span>
+<span class="co">#&gt; 2 Afghanistan 2000  2666/20595360    </span>
+<span class="co">#&gt; 3 Brazil      1999  37737/172006362  </span>
+<span class="co">#&gt; 4 Brazil      2000  80488/174504898  </span>
+<span class="co">#&gt; 5 China       1999  212258/1272915272</span>
+<span class="co">#&gt; 6 China       2000  213766/1280428583</span></code></pre></div>
+</div>
+</div>
+<div id="missing-values" class="section level2">
+<h2><span class="header-section-number">6.5</span> Missing values</h2>
+<p>Changing the representation of a dataset brings up an important subtlety of missing values. Surprisingly, a value can be missing in one of two possible ways:</p>
+<ul>
+<li><strong>Explicitly</strong>, i.e. flagged with <code>NA</code>.</li>
+<li><strong>Implicitly</strong>, i.e. simply not present in the data.</li>
+</ul>
+<p>Let’s illustrate this idea with a very simple data set:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">year   =</span> <span class="kw">c</span>(<span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2016</span>, <span class="dv">2016</span>),
+  <span class="dt">qtr    =</span> <span class="kw">c</span>(   <span class="dv">1</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>),
+  <span class="dt">rate   =</span> <span class="kw">c</span>(<span class="fl">1.88</span>, <span class="fl">0.59</span>, <span class="fl">0.35</span>,   <span class="ot">NA</span>, <span class="fl">0.92</span>, <span class="fl">0.17</span>, <span class="fl">2.66</span>)
+)
+
+mydata
+<span class="co">#&gt; # A tibble: 7 x 3</span>
+<span class="co">#&gt;    year   qtr  rate</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  2015     1  1.88</span>
+<span class="co">#&gt; 2  2015     2  0.59</span>
+<span class="co">#&gt; 3  2015     3  0.35</span>
+<span class="co">#&gt; 4  2015     4 NA   </span>
+<span class="co">#&gt; 5  2016     2  0.92</span>
+<span class="co">#&gt; 6  2016     3  0.17</span>
+<span class="co">#&gt; # ... with 1 more row</span></code></pre></div>
+<p>There are two missing values in this dataset:</p>
+<ul>
+<li><p>The rate for the fourth quarter of 2015 is explicitly missing, because the cell where its value should be instead contains <code>NA</code>.</p></li>
+<li><p>The rate for the first quarter of 2016 is implicitly missing, because it simply does not appear in the dataset.</p></li>
+</ul>
+<p>The way that a dataset is represented can make implicit values explicit. For example, we can make the implicit missing value explicit by putting years in the columns:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(year, rate)
+<span class="co">#&gt; # A tibble: 4 x 3</span>
+<span class="co">#&gt;     qtr `2015` `2016`</span>
+<span class="co">#&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1   1.88  NA   </span>
+<span class="co">#&gt; 2     2   0.59   0.92</span>
+<span class="co">#&gt; 3     3   0.35   0.17</span>
+<span class="co">#&gt; 4     4  NA      2.66</span></code></pre></div>
+<p>Because these explicit missing values may not be important in other representations of the data, you can set <code>na.rm = TRUE</code> in <code>gather()</code> to turn explicit missing values implicit:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">spread</span>(year, rate) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(year, rate, <span class="st">`</span><span class="dt">2015</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2016</span><span class="st">`</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt;     qtr year   rate</span>
+<span class="co">#&gt; * &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1 2015   1.88</span>
+<span class="co">#&gt; 2     2 2015   0.59</span>
+<span class="co">#&gt; 3     3 2015   0.35</span>
+<span class="co">#&gt; 4     2 2016   0.92</span>
+<span class="co">#&gt; 5     3 2016   0.17</span>
+<span class="co">#&gt; 6     4 2016   2.66</span></code></pre></div>
+<p>Another important tool for making missing values explicit in tidy data is <code>complete()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">complete</span>(year, qtr)
+<span class="co">#&gt; # A tibble: 8 x 3</span>
+<span class="co">#&gt;    year   qtr  rate</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  2015     1  1.88</span>
+<span class="co">#&gt; 2  2015     2  0.59</span>
+<span class="co">#&gt; 3  2015     3  0.35</span>
+<span class="co">#&gt; 4  2015     4 NA   </span>
+<span class="co">#&gt; 5  2016     1 NA   </span>
+<span class="co">#&gt; 6  2016     2  0.92</span>
+<span class="co">#&gt; # ... with 2 more rows</span></code></pre></div>
+<p><code>complete()</code> takes a set of columns, and finds all unique combinations. It then ensures the original dataset contains all those values, filling in explicit <code>NA</code>s where necessary.</p>
+
+<div class="rmdwarning">
+It is also possible that you have such incomplete data that <code>complete()</code> does not have all the data needed for complete cases. Imagine in the above example if the year 2016 data wat instead complete missing but you had 2017 data. In this case a different technique would need to be used. A common solution to this problem is to use <code>crossing()</code> to make the compete cases then “join” the data set to the complete cases.
+</div>
+
+<p>There’s one other important tool that you should know for working with missing values. Sometimes when a data source has primarily been used for data entry (tables from <em>Excel</em>, <em>pdf</em>, and <em>Word</em>), missing values indicate that the previous value should be carried forward:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">treatment &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span><span class="st"> </span>person,           <span class="op">~</span><span class="st"> </span>treatment, <span class="op">~</span>response,
+  <span class="st">&quot;Derrick Whitmore&quot;</span>, <span class="dv">1</span>,           <span class="dv">7</span>,
+  <span class="ot">NA</span>,                 <span class="dv">2</span>,           <span class="dv">10</span>,
+  <span class="ot">NA</span>,                 <span class="dv">3</span>,           <span class="dv">9</span>,
+  <span class="st">&quot;Katherine Burke&quot;</span>,  <span class="dv">1</span>,           <span class="dv">4</span>
+)
+
+treatment
+<span class="co">#&gt; # A tibble: 4 x 3</span>
+<span class="co">#&gt;   person           treatment response</span>
+<span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Derrick Whitmore         1        7</span>
+<span class="co">#&gt; 2 &lt;NA&gt;                     2       10</span>
+<span class="co">#&gt; 3 &lt;NA&gt;                     3        9</span>
+<span class="co">#&gt; 4 Katherine Burke          1        4</span></code></pre></div>
+<p>You can fill in these missing values with <code>fill()</code>. It takes a set of columns where you want missing values to be replaced by the most recent non-missing value (sometimes called last observation carried forward).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">treatment <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">fill</span>(person)
+<span class="co">#&gt; # A tibble: 4 x 3</span>
+<span class="co">#&gt;   person           treatment response</span>
+<span class="co">#&gt;   &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Derrick Whitmore         1        7</span>
+<span class="co">#&gt; 2 Derrick Whitmore         2       10</span>
+<span class="co">#&gt; 3 Derrick Whitmore         3        9</span>
+<span class="co">#&gt; 4 Katherine Burke          1        4</span></code></pre></div>
+</div>
+<div id="non-tidy-data" class="section level2">
+<h2><span class="header-section-number">6.6</span> Non-tidy data</h2>
+<p>Before we continue on to other topics, it’s worth talking briefly about non-tidy data. Earlier in the chapter, I used the pejorative term “messy” to refer to non-tidy data. That’s an oversimplification: there are lots of useful and well-founded data structures that are not tidy data. There are two main reasons to use other data structures:</p>
+<ul>
+<li><p>Alternative representations may have substantial performance or space advantages.</p></li>
+<li><p>Specialized fields have evolved their own conventions for storing data that may be quite different to the conventions of tidy data.</p></li>
+</ul>
+<p>Either of these reasons means you’ll need something other than a tibble (or data frame). If your data does fit naturally into a rectangular structure composed of observations and variables, I think tidy data should be your default choice. But there are good reasons to use other structures; tidy data is not the only way.</p>
+<p>If you’d like to learn more about non-tidy data, I’d highly recommend this thoughtful blog post by Jeff Leek: <a href="http://simplystatistics.org/2016/02/17/non-tidy-data/" class="uri">http://simplystatistics.org/2016/02/17/non-tidy-data/</a></p>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="function-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DavisBrian/corporater/edit/master/data-tidy.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["rclassnotes.pdf", "rclassnotes.epub"],
+"toc": {
+"collapse": "section"
+},
+"css": "corp.css"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
