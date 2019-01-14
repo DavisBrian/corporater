@@ -129,7 +129,7 @@ If `\` is used as an escape character in regular expressions, how do you match a
 There are a number of special patterns that match more than one character. You’ve already seen `.`, which matches any character apart from a newline. There are many other useful tools:
 
 -    `\d` match any digit
--    [:digits] match any digit
+-    `[:digits:]` match any digit
 -    `\D` match any non digit
 -    `[:alpha:]` match any letter
 -    `[:lower:]` match any lowercase letter
@@ -137,7 +137,7 @@ There are a number of special patterns that match more than one character. You�
 -    `[:alnum:]` match any alpha numeric character.
 -    `[:punct:]` match any punctuation (see cheat sheet)
 -    `|`         or (ex `ad|e` matches "ad" or "e")
--    `[]`        matches on of (ex `[ade]` matches "a", "d" or "e", equivalent to `a|d|e)
+-    `[]`        matches one of (ex `[ade]` matches "a", "d" or "e", equivalent to `a|d|e)
 -    `[^]`       match anything but (ex `[^ade]` matches everything but "a", "d" or "e")
 -    `[-]`       match a range (ex `[0-5]` matches numbers between 0 and 5 inclusive)
 
@@ -271,10 +271,32 @@ If you find yourself struggling to do something in stringr, it’s worth taking 
 
 ## Exercises
 
+**Zip Codes**  
+
 1.  Create a function that takes a vector of numeric zip codes and converts them to a three-digit zip code, padding with 0's as necessary.
-1.  Create a function that returns the latest (most recent) input file name for your data set.
-1.  Extend the above to return a specific year-quarters data file.
+    + Test your function with `c(1, 11, 111)` which should return `c(001, 011, 111)`
+1.  For the above function how would you make this more generic.  What happens if you get a 5-digit zip code?  What if the user wants to return a 4-digit zip code?  Extend your function to handle these cases.
+    + Test your function with `c(1, 11, 111, 1111, 11111)`. (Note: Think about how a `1` changes based on the assumption of a 5-digit zip code vs a 3-digit zip code)
+
+```{block2, type='rmdtip'}
+There are several ways to accomplish the above.  The following `stringr` functions may be useful:  `str_pad()`, `str_length()`, `str_extract()`, and `str_trunc()`.  However, this is not an extensive list and there may be other functions which are useful.
+```
+
+**Files**  
+
+1.  Create a function that returns the latest (most recent) input file name for your data set, regardless of which year-quarter it is. **See tip below**. 
+1.  Extend the above to return a specific year-quarters data file. Note: depending on your naming convention this may be simple or difficult.  It may be easier after you work the **Year-Quarter** exercises below.
+1.  Create an error message for the above if they enter a year-quarter in which there is no data.
+
+```{block2, type='rmdtip'}
+R has many functions to help with system files.  See the help for `dir()`, `list.files()`, `list.dirs()`, `file.exists()`, `basename()`, `dirname`, `tools::file_path_sans_ext()`, and many many more.
+```
+
+**Year-Quarter**
+
 1.  Create a function that takes a year-quarter in numeric format and returns the year quarter in a character format with the **Q** (Ex 20174 becomes 2017Q4).
-1.  How would you modify the above to return 2017 Q4. How about 2017-Q4
-1.  Create a function that does the reverse of the two above.  Ex. 2017Q4 or "2017 Q4" becomes a numeric 20174.
-1. Create function that takes a character year-quater (ex 2018Q3) and the quarter n-quarters before it.  Example two quarters previous to 2018Q3 is 2018Q1.
+1.  How would you modify the above to return 2017 Q4. How about 2017-Q4?
+1.  How would you modify the above to return 4q17 or 4Q17?
+1.  Create a function that does the inverse of the above.  Ex. "2017Q4" or "2017 Q4" becomes a numeric 20174.
+1.  Create function that takes a character year-quater (ex 2018Q3) and the quarter n-quarters before it.  Example two quarters previous to 2018Q3 is 2018Q1. Hint: Use your function from part 1 in conjuction with your function from the exercise in the **Function Basics** chapter.
+

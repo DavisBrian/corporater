@@ -124,7 +124,6 @@ f <- function(age) {
   }
   
   message(paste0("Your person is ", age, " years old"))
-  invisible()
 }
 
 f(-10)
@@ -158,16 +157,15 @@ There is a special argument in R known as the `...` argument, which indicate a v
 
 **Number of arguments passed to the function cannot be known in advance.**  
 
-The `...` argument is also necessary when the number of arguments passed to the function cannot be known in advance. This is clear in functions like `paste()`, `cat()`, `sum()`, and `mean()`.
+The `...` argument is also necessary when the number of arguments passed to the function cannot be known in advance. This is clear in functions like `paste()`, `cat()`, and `sum()`.
 
 ```{r}
 args(paste)
 args(cat)
 args(sum)
-args(mean)
 ```
 
-Because both `paste()` and `cat()` print out text to the console by combining multiple character vectors together, it is impossible for those functions to know in advance how many character vectors will be passed to the function by the user. So the first argument to either function is `...`.  Similarly with `sum()`, and `mean()`.
+Because both `paste()` and `cat()` print out text to the console by combining multiple character vectors together, it is impossible for those functions to know in advance how many character vectors will be passed to the function by the user. So the first argument to either function is `...`.  Similarly with `sum()`.
 
 One catch with `...` is that any arguments that appear _after_ `...` on the argument list must be named explicitly and cannot be partially matched or matched positionally.
 
@@ -263,7 +261,7 @@ my_summary(y)
 my_summary(y, c(mean, median, sd, IQR, mad))
 ```
 
-Unlike most languages you can define a function within a function and / or return a function.  This nested function only lives inside the parent function.
+Unlike most languages you can define a function within a function and / or return a function.  This nested function only *lives* inside the parent function.
 
 ```{r error=TRUE}
 make.power <- function(n) {
@@ -293,7 +291,7 @@ squareroot(9)
 
 ## Exercises
 
-1. Create function that takes a numeric year-quater (ex 20183) and returns the quarter n-quarters before / after it.  Example two quarters previous to 20183 is 20181.
+1. Create function that takes a numeric year-quarter (ex 20183) and returns the quarter n-quarters before / after it.  Example two quarters previous to 20183 is 20181.
 1. Come up with 5 functions (you don't have program them) that will operate on your data. (Ex. Create a demographics table)
 1. Create a `read_*` function that
   - reads in the data file

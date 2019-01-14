@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>7 Strings | Modern R in a Corporate Environment</title>
+  <meta name="description" content="This is an original course for RADARS">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="7 Strings | Modern R in a Corporate Environment" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an original course for RADARS" />
+  <meta name="github-repo" content="DavisBrian/corporater" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Strings | Modern R in a Corporate Environment" />
+  
+  <meta name="twitter:description" content="This is an original course for RADARS" />
+  
+
+<meta name="author" content="Brian Davis">
+
+
+<meta name="date" content="2019-01-14">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="tidy-data.html">
+<link rel="next" href="function-basics.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css\style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Modern R in a Corporate Environment</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="part"><span><b>I Preamble</b></span></li>
+<li class="chapter" data-level="1" data-path="preamble-intro.html"><a href="preamble-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="preamble-intro.html"><a href="preamble-intro.html#course-philosophy"><i class="fa fa-check"></i><b>1.1</b> Course Philosophy</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="preamble-intro.html"><a href="preamble-intro.html#reproducible-research-approach"><i class="fa fa-check"></i><b>1.1.1</b> Reproducible Research Approach</a></li>
+<li class="chapter" data-level="1.1.2" data-path="preamble-intro.html"><a href="preamble-intro.html#fda-validation"><i class="fa fa-check"></i><b>1.1.2</b> FDA Validation</a></li>
+<li class="chapter" data-level="1.1.3" data-path="preamble-intro.html"><a href="preamble-intro.html#the-sas-myth"><i class="fa fa-check"></i><b>1.1.3</b> The SAS Myth</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="preamble-intro.html"><a href="preamble-intro.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.3" data-path="preamble-intro.html"><a href="preamble-intro.html#content"><i class="fa fa-check"></i><b>1.3</b> Content</a></li>
+<li class="chapter" data-level="1.4" data-path="preamble-intro.html"><a href="preamble-intro.html#structure"><i class="fa fa-check"></i><b>1.4</b> Structure</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="good-practices.html"><a href="good-practices.html"><i class="fa fa-check"></i><b>2</b> Good practices</a><ul>
+<li class="chapter" data-level="2.1" data-path="good-practices.html"><a href="good-practices.html#coding-style"><i class="fa fa-check"></i><b>2.1</b> Coding style</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="good-practices.html"><a href="good-practices.html#comments"><i class="fa fa-check"></i><b>2.1.1</b> Comments</a></li>
+<li class="chapter" data-level="2.1.2" data-path="good-practices.html"><a href="good-practices.html#naming"><i class="fa fa-check"></i><b>2.1.2</b> Naming</a></li>
+<li class="chapter" data-level="2.1.3" data-path="good-practices.html"><a href="good-practices.html#spacing"><i class="fa fa-check"></i><b>2.1.3</b> Spacing</a></li>
+<li class="chapter" data-level="2.1.4" data-path="good-practices.html"><a href="good-practices.html#indenting"><i class="fa fa-check"></i><b>2.1.4</b> Indenting</a></li>
+<li class="chapter" data-level="2.1.5" data-path="good-practices.html"><a href="good-practices.html#long-lines"><i class="fa fa-check"></i><b>2.1.5</b> Long lines</a></li>
+<li class="chapter" data-level="2.1.6" data-path="good-practices.html"><a href="good-practices.html#other"><i class="fa fa-check"></i><b>2.1.6</b> Other</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em></a></li>
+<li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="good-practices.html"><a href="good-practices.html#getting-help"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="good-practices.html"><a href="good-practices.html#help-yourself-learn-how-to-debug"><i class="fa fa-check"></i><b>2.4.1</b> Help yourself, learn how to debug</a></li>
+<li class="chapter" data-level="2.4.2" data-path="good-practices.html"><a href="good-practices.html#external-help"><i class="fa fa-check"></i><b>2.4.2</b> External help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="good-practices.html"><a href="good-practices.html#keeping-up-to-date"><i class="fa fa-check"></i><b>2.5</b> Keeping up to date</a></li>
+<li class="chapter" data-level="2.6" data-path="good-practices.html"><a href="good-practices.html#reading-for-next-class"><i class="fa fa-check"></i><b>2.6</b> Reading For Next Class</a></li>
+<li class="chapter" data-level="2.7" data-path="good-practices.html"><a href="good-practices.html#exercises"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>II Base R Basics</b></span></li>
+<li class="chapter" data-level="3" data-path="baser-rbasics.html"><a href="baser-rbasics.html"><i class="fa fa-check"></i><b>3</b> R Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#assignment-operators"><i class="fa fa-check"></i><b>3.1</b> Assignment Operators</a></li>
+<li class="chapter" data-level="3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#naming-rules"><i class="fa fa-check"></i><b>3.2</b> Naming Rules</a></li>
+<li class="chapter" data-level="3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#objects"><i class="fa fa-check"></i><b>3.3</b> Objects</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vector"><i class="fa fa-check"></i><b>3.3.1</b> Vector</a></li>
+<li class="chapter" data-level="3.3.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#atomic-vectors"><i class="fa fa-check"></i><b>3.3.2</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="3.3.3" data-path="baser-rbasics.html"><a href="baser-rbasics.html#matrix"><i class="fa fa-check"></i><b>3.3.3</b> Matrix</a></li>
+<li class="chapter" data-level="3.3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#list"><i class="fa fa-check"></i><b>3.3.4</b> List</a></li>
+<li class="chapter" data-level="3.3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#data-frame"><i class="fa fa-check"></i><b>3.3.5</b> Data frame</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="baser-rbasics.html"><a href="baser-rbasics.html#comparision"><i class="fa fa-check"></i><b>3.4</b> Comparision</a></li>
+<li class="chapter" data-level="3.5" data-path="baser-rbasics.html"><a href="baser-rbasics.html#logical-and-sets"><i class="fa fa-check"></i><b>3.5</b> Logical and sets</a></li>
+<li class="chapter" data-level="3.6" data-path="baser-rbasics.html"><a href="baser-rbasics.html#control-structures"><i class="fa fa-check"></i><b>3.6</b> Control Structures</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#if-else"><i class="fa fa-check"></i><b>3.6.1</b> <code>if</code>-<code>else</code></a></li>
+<li class="chapter" data-level="3.6.2" data-path="baser-rbasics.html"><a href="baser-rbasics.html#for-loops"><i class="fa fa-check"></i><b>3.6.2</b> <code>for</code> Loops</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="baser-rbasics.html"><a href="baser-rbasics.html#vectorization-recycling"><i class="fa fa-check"></i><b>3.7</b> Vectorization &amp; Recycling</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="baser-rbasics.html"><a href="baser-rbasics.html#example"><i class="fa fa-check"></i><b>3.7.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="baser-rbasics.html"><a href="baser-rbasics.html#reading-for-next-class-1"><i class="fa fa-check"></i><b>3.8</b> Reading For Next Class</a></li>
+<li class="chapter" data-level="3.9" data-path="baser-rbasics.html"><a href="baser-rbasics.html#exercises-1"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>III Tidyverse</b></span></li>
+<li class="chapter" data-level="4" data-path="data-import-export.html"><a href="data-import-export.html"><i class="fa fa-check"></i><b>4</b> Data Import &amp; Export</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-import-export.html"><a href="data-import-export.html#text-files"><i class="fa fa-check"></i><b>4.1</b> Text Files</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-import-export.html"><a href="data-import-export.html#readr"><i class="fa fa-check"></i><b>4.1.1</b> readr</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-import-export.html"><a href="data-import-export.html#base-r"><i class="fa fa-check"></i><b>4.1.2</b> base R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-import-export.html"><a href="data-import-export.html#sas-files"><i class="fa fa-check"></i><b>4.2</b> SAS Files</a></li>
+<li class="chapter" data-level="4.3" data-path="data-import-export.html"><a href="data-import-export.html#excel"><i class="fa fa-check"></i><b>4.3</b> Excel</a></li>
+<li class="chapter" data-level="4.4" data-path="data-import-export.html"><a href="data-import-export.html#databases"><i class="fa fa-check"></i><b>4.4</b> Databases</a></li>
+<li class="chapter" data-level="4.5" data-path="data-import-export.html"><a href="data-import-export.html#reading-for-next-class-2"><i class="fa fa-check"></i><b>4.5</b> Reading For Next Class</a></li>
+<li class="chapter" data-level="4.6" data-path="data-import-export.html"><a href="data-import-export.html#exercises-2"><i class="fa fa-check"></i><b>4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>5</b> Data Transformation</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-transformation.html"><a href="data-transformation.html#tibbles"><i class="fa fa-check"></i><b>5.1</b> Tibbles</a></li>
+<li class="chapter" data-level="5.2" data-path="data-transformation.html"><a href="data-transformation.html#filter-rows-with-filter"><i class="fa fa-check"></i><b>5.2</b> Filter rows with <code>filter()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="data-transformation.html"><a href="data-transformation.html#arrange-rows-with-arrange"><i class="fa fa-check"></i><b>5.3</b> Arrange rows with <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.4" data-path="data-transformation.html"><a href="data-transformation.html#select-columns-with-select"><i class="fa fa-check"></i><b>5.4</b> Select columns with <code>select()</code></a></li>
+<li class="chapter" data-level="5.5" data-path="data-transformation.html"><a href="data-transformation.html#add-new-variables-with-mutate"><i class="fa fa-check"></i><b>5.5</b> Add new variables with <code>mutate()</code></a></li>
+<li class="chapter" data-level="5.6" data-path="data-transformation.html"><a href="data-transformation.html#pipes"><i class="fa fa-check"></i><b>5.6</b> Pipes</a></li>
+<li class="chapter" data-level="5.7" data-path="data-transformation.html"><a href="data-transformation.html#grouped-summaries-with-summarise"><i class="fa fa-check"></i><b>5.7</b> Grouped summaries with <code>summarise()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="data-transformation.html"><a href="data-transformation.html#grouped-mutates"><i class="fa fa-check"></i><b>5.8</b> Grouped mutates</a></li>
+<li class="chapter" data-level="5.9" data-path="data-transformation.html"><a href="data-transformation.html#reading-for-next-class-3"><i class="fa fa-check"></i><b>5.9</b> Reading For Next Class</a></li>
+<li class="chapter" data-level="5.10" data-path="data-transformation.html"><a href="data-transformation.html#exercises-3"><i class="fa fa-check"></i><b>5.10</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tidy-data.html"><a href="tidy-data.html"><i class="fa fa-check"></i><b>6</b> Tidy Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="tidy-data.html"><a href="tidy-data.html#tidy-data-1"><i class="fa fa-check"></i><b>6.1</b> Tidy data</a></li>
+<li class="chapter" data-level="6.2" data-path="tidy-data.html"><a href="tidy-data.html#example-1"><i class="fa fa-check"></i><b>6.2</b> Example</a></li>
+<li class="chapter" data-level="6.3" data-path="tidy-data.html"><a href="tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>6.3</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="tidy-data.html"><a href="tidy-data.html#gathering"><i class="fa fa-check"></i><b>6.3.1</b> Gathering</a></li>
+<li class="chapter" data-level="6.3.2" data-path="tidy-data.html"><a href="tidy-data.html#spreading"><i class="fa fa-check"></i><b>6.3.2</b> Spreading</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="tidy-data.html"><a href="tidy-data.html#separating-and-uniting"><i class="fa fa-check"></i><b>6.4</b> Separating and uniting</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="tidy-data.html"><a href="tidy-data.html#separate"><i class="fa fa-check"></i><b>6.4.1</b> Separate</a></li>
+<li class="chapter" data-level="6.4.2" data-path="tidy-data.html"><a href="tidy-data.html#unite"><i class="fa fa-check"></i><b>6.4.2</b> Unite</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="tidy-data.html"><a href="tidy-data.html#missing-values"><i class="fa fa-check"></i><b>6.5</b> Missing values</a></li>
+<li class="chapter" data-level="6.6" data-path="tidy-data.html"><a href="tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>6.6</b> Non-tidy data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="strings.html"><a href="strings.html"><i class="fa fa-check"></i><b>7</b> Strings</a><ul>
+<li class="chapter" data-level="7.1" data-path="strings.html"><a href="strings.html#basics"><i class="fa fa-check"></i><b>7.1</b> Basics</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="strings.html"><a href="strings.html#helpful-basic-string-functions"><i class="fa fa-check"></i><b>7.1.1</b> Helpful Basic String Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="strings.html"><a href="strings.html#regular-expressions"><i class="fa fa-check"></i><b>7.2</b> Regular Expressions</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="strings.html"><a href="strings.html#basic-matches"><i class="fa fa-check"></i><b>7.2.1</b> Basic Matches</a></li>
+<li class="chapter" data-level="7.2.2" data-path="strings.html"><a href="strings.html#special-characters"><i class="fa fa-check"></i><b>7.2.2</b> Special Characters</a></li>
+<li class="chapter" data-level="7.2.3" data-path="strings.html"><a href="strings.html#character-classes-and-alternatives"><i class="fa fa-check"></i><b>7.2.3</b> Character Classes and Alternatives</a></li>
+<li class="chapter" data-level="7.2.4" data-path="strings.html"><a href="strings.html#repetition"><i class="fa fa-check"></i><b>7.2.4</b> Repetition</a></li>
+<li class="chapter" data-level="7.2.5" data-path="strings.html"><a href="strings.html#grouping"><i class="fa fa-check"></i><b>7.2.5</b> Grouping</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="strings.html"><a href="strings.html#helpful-string-functions"><i class="fa fa-check"></i><b>7.3</b> Helpful String Functions</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="strings.html"><a href="strings.html#detect-matches"><i class="fa fa-check"></i><b>7.3.1</b> Detect Matches</a></li>
+<li class="chapter" data-level="7.3.2" data-path="strings.html"><a href="strings.html#extract-matches"><i class="fa fa-check"></i><b>7.3.2</b> Extract Matches</a></li>
+<li class="chapter" data-level="7.3.3" data-path="strings.html"><a href="strings.html#replacing-matches"><i class="fa fa-check"></i><b>7.3.3</b> Replacing Matches</a></li>
+<li class="chapter" data-level="7.3.4" data-path="strings.html"><a href="strings.html#other-string-functions"><i class="fa fa-check"></i><b>7.3.4</b> Other String Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="strings.html"><a href="strings.html#exercises-4"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
+</ul></li>
+<li class="part"><span><b>IV Beyond Basics</b></span></li>
+<li class="chapter" data-level="8" data-path="function-basics.html"><a href="function-basics.html"><i class="fa fa-check"></i><b>8</b> Function Basics</a><ul>
+<li class="chapter" data-level="8.1" data-path="function-basics.html"><a href="function-basics.html#introduction-to-functions"><i class="fa fa-check"></i><b>8.1</b> Introduction to Functions</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="function-basics.html"><a href="function-basics.html#your-first-function"><i class="fa fa-check"></i><b>8.1.1</b> Your First Function</a></li>
+<li class="chapter" data-level="8.1.2" data-path="function-basics.html"><a href="function-basics.html#lazy-evaluation"><i class="fa fa-check"></i><b>8.1.2</b> Lazy Evaluation</a></li>
+<li class="chapter" data-level="8.1.3" data-path="function-basics.html"><a href="function-basics.html#the-dot-dot-dot-...-argument"><i class="fa fa-check"></i><b>8.1.3</b> The Dot-dot-dot (<code>...</code>) Argument</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="function-basics.html"><a href="function-basics.html#environments-scoping"><i class="fa fa-check"></i><b>8.2</b> Environments &amp; Scoping</a></li>
+<li class="chapter" data-level="8.3" data-path="function-basics.html"><a href="function-basics.html#first-class-objects"><i class="fa fa-check"></i><b>8.3</b> “First class objects”</a></li>
+<li class="chapter" data-level="8.4" data-path="function-basics.html"><a href="function-basics.html#exercises-5"><i class="fa fa-check"></i><b>8.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>9</b> R Markdown</a><ul>
+<li class="chapter" data-level="9.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction"><i class="fa fa-check"></i><b>9.1</b> Introduction</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="r-markdown.html"><a href="r-markdown.html#code-languages"><i class="fa fa-check"></i><b>9.1.1</b> Code languages</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="r-markdown.html"><a href="r-markdown.html#markdown-basics"><i class="fa fa-check"></i><b>9.2</b> Markdown Basics</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="r-markdown.html"><a href="r-markdown.html#headers"><i class="fa fa-check"></i><b>9.2.1</b> Headers</a></li>
+<li class="chapter" data-level="9.2.2" data-path="r-markdown.html"><a href="r-markdown.html#paragraph-breaks-and-forced-line-breaks"><i class="fa fa-check"></i><b>9.2.2</b> Paragraph Breaks and Forced Line Breaks</a></li>
+<li class="chapter" data-level="9.2.3" data-path="r-markdown.html"><a href="r-markdown.html#italics-and-boldface"><i class="fa fa-check"></i><b>9.2.3</b> Italics and Boldface</a></li>
+<li class="chapter" data-level="9.2.4" data-path="r-markdown.html"><a href="r-markdown.html#bullet-points"><i class="fa fa-check"></i><b>9.2.4</b> Bullet Points</a></li>
+<li class="chapter" data-level="9.2.5" data-path="r-markdown.html"><a href="r-markdown.html#numbered-lists"><i class="fa fa-check"></i><b>9.2.5</b> Numbered Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="r-markdown.html"><a href="r-markdown.html#math"><i class="fa fa-check"></i><b>9.3</b> Math</a></li>
+<li class="chapter" data-level="9.4" data-path="r-markdown.html"><a href="r-markdown.html#code-chunks"><i class="fa fa-check"></i><b>9.4</b> Code Chunks</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="r-markdown.html"><a href="r-markdown.html#chunk-names"><i class="fa fa-check"></i><b>9.4.1</b> Chunk Names</a></li>
+<li class="chapter" data-level="9.4.2" data-path="r-markdown.html"><a href="r-markdown.html#chunk-options"><i class="fa fa-check"></i><b>9.4.2</b> Chunk Options</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="r-markdown.html"><a href="r-markdown.html#inline-code"><i class="fa fa-check"></i><b>9.5</b> Inline Code</a></li>
+<li class="chapter" data-level="9.6" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>9.6</b> Plots</a></li>
+<li class="chapter" data-level="9.7" data-path="r-markdown.html"><a href="r-markdown.html#tables"><i class="fa fa-check"></i><b>9.7</b> Tables</a></li>
+<li class="chapter" data-level="9.8" data-path="r-markdown.html"><a href="r-markdown.html#yaml"><i class="fa fa-check"></i><b>9.8</b> YAML</a><ul>
+<li class="chapter" data-level="9.8.1" data-path="r-markdown.html"><a href="r-markdown.html#table-of-contents"><i class="fa fa-check"></i><b>9.8.1</b> Table of Contents</a></li>
+<li class="chapter" data-level="9.8.2" data-path="r-markdown.html"><a href="r-markdown.html#parameterized-reports"><i class="fa fa-check"></i><b>9.8.2</b> Parameterized reports</a></li>
+<li class="chapter" data-level="9.8.3" data-path="r-markdown.html"><a href="r-markdown.html#output-types"><i class="fa fa-check"></i><b>9.8.3</b> Output Types</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>V Appendix</b></span></li>
+<li class="chapter" data-level="10" data-path="appendix-resources.html"><a href="appendix-resources.html"><i class="fa fa-check"></i><b>10</b> Appendix A</a><ul>
+<li class="chapter" data-level="10.1" data-path="appendix-resources.html"><a href="appendix-resources.html#e-books"><i class="fa fa-check"></i><b>10.1</b> E-Books</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modern R in a Corporate Environment</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="strings" class="section level1">
+<h1><span class="header-section-number">7</span> Strings</h1>
+<p>This section covers basic string manipulation in R. See Chapter 11 in <a href="http://r4ds.had.co.nz/strings.html">R for Data Science</a> for a more complete coverage. The first part of this chapter will probably look familiar, but the rest will focus on <strong>regular expressions</strong>. Regular expressions (sometimes referred to as <strong>regex</strong> or <strong>regexp</strong>) are a concise language for describing patterns in strings.</p>
+<p>While base R has some string functions they tend to be inconsistent in the order of the parameters, which makes them hard to remember and you end up needing the help files. As with most of this course we will focus on the Tidyverse, and in particular the <strong>stringr</strong> package, which in not part of the core tidyverse package so you will have to load it explicitly with <code>library(stringr)</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(stringr)</code></pre></div>
+<div id="basics" class="section level2">
+<h2><span class="header-section-number">7.1</span> Basics</h2>
+<p>As with most languages you create a string by putting the text in single or double quotes <code>x &lt;- &quot;This is my string!&quot;</code>, and you can create a vector of strings with <code>c()</code>. There are a handful of special characters but the most common are the newline character <code>&quot;\n&quot;</code>, and the tab character <code>&quot;\t&quot;</code>. You may also see strings like <code>\u00AE</code> or <code>\u00b5</code> which is a way of including non-English characters or special symbols that work on all platforms. These are typically known as Unicode characters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> &quot;This my registered\u00AE drug&quot;</span>
+x
+<span class="co">#&gt; [1] &quot;This my registered® drug&quot;</span></code></pre></div>
+<p>One nice feature of the stringr package is all string functions begin with <code>str_</code>. This makes it easy in RStudio to find useful string processing functions.</p>
+
+<div class="rmdtip">
+See the tidyverse package <strong>glue</strong> which can glue strings to data in R. Small, fast, dependency free interpreted string literals.
+</div>
+
+<div id="helpful-basic-string-functions" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Helpful Basic String Functions</h3>
+<ul>
+<li><code>str_c()</code> joins multiple strings together into a single string (similar to <code>paste</code> or <code>paste0</code> from base R)</li>
+<li><code>str_to_upper()</code> converts the string to all uppercase characters</li>
+<li><code>str_to_lower()</code> converts the string to all lowercase characters</li>
+<li><code>str_to_title()</code> capitalizes the first character of each word in the string</li>
+<li><code>str_length()</code> the length of a string</li>
+<li><code>str_wrap()</code> wrap strings into nicely formatted paragraphs</li>
+<li><code>str_trim()</code> trim white space from a string</li>
+<li><code>str_pad()</code> pad a string</li>
+<li><code>str_order()</code> order a character vector</li>
+<li><code>str_sort()</code> sort a character vector</li>
+<li><code>str_sub()</code> extract and replace substrings from a character vector</li>
+</ul>
+<div class="rmdcaution">
+<p>
+While <code>str_c</code> looks and acts very similar to the base R functions <code>paste</code> or <code>paste0</code>, they act very differently with regards to missing data. <code>paste</code> and <code>paste0</code> replace missing values with the text “NA”, while <code>str_c</code> propagates the missing value.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;string&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;with&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;missing&quot;</span>, <span class="st">&quot;value&quot;</span>)
+<span class="co">#&gt; [1] NA</span>
+<span class="kw">paste</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;string&quot;</span>, <span class="ot">NA</span>, <span class="st">&quot;with&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;missing&quot;</span>, <span class="st">&quot;value&quot;</span>)
+<span class="co">#&gt; [1] &quot;This is a string NA with a missing value&quot;</span></code></pre></div>
+<p>Notice <code>str_c</code> and <code>paste</code> have both a <code>sep</code> and <code>collapse</code> argument. While these appear to be the same they are not. The <code>sep</code> argument is the string inserted between arguments to <code>str_c</code>, while <code>collapse</code> is the string used to separate any elements of the character vector into a character vector of length one.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;not&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;vector&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)
+<span class="co">#&gt; [1] &quot;This_is_not_a_character_vector&quot;</span>
+x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;This&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;vector&quot;</span>)
+x
+<span class="co">#&gt; [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;character&quot; &quot;vector&quot;</span>
+<span class="kw">str_c</span>(x, <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)
+<span class="co">#&gt; [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;character&quot; &quot;vector&quot;</span>
+<span class="kw">str_c</span>(x, <span class="dt">collapse =</span> <span class="st">&quot;_&quot;</span>)
+<span class="co">#&gt; [1] &quot;This_is_a_character_vector&quot;</span></code></pre></div>
+</div>
+</div>
+<div id="regular-expressions" class="section level2">
+<h2><span class="header-section-number">7.2</span> Regular Expressions</h2>
+<p>A regular expression (regex or regexp for short) is a special text string for describing a search pattern. Usually this pattern is then used by string searching algorithms for “find” or “find and replace” operations on strings. Patterns can be a bit tricky to wrap your head around at first since the most common case is simply looking for a sequence of letters. Patterns are much more general. Think about how would you tell a computer to look for any phone number or any email address.</p>
+<div class="rmdnote">
+<p>
+Just about every modern programming language has the ability to use regular expressions. In SAS regular expressions are implemented in the PRX series of functions such as: PRXMATCH, PRXSEARCH, PRXPARSE, PRXCHANGE.
+</p>
+</div>
+<p>Regexps are a very terse language that allow you to describe patterns in strings. They take a little while to get your head around, but once you understand them, you’ll find them extremely useful. Any non-trivial regular expression looks likes a cat walked across your keyboard.</p>
+
+<div class="rmdtip">
+To learn regular expressions, use <code>str_view()</code> and <code>str_view_all()</code>. These functions take a character vector and a regular expression, and show you how they match.
+</div>
+
+<div id="basic-matches" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Basic Matches</h3>
+<p>We’ll start with very simple regular expressions and then gradually get more and more complicated. Once you’ve mastered pattern matching, you’ll learn how to apply those ideas with various stringr functions. We’ll use the built in fruit data set.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fruit
+<span class="co">#&gt;  [1] &quot;apple&quot;             &quot;apricot&quot;           &quot;avocado&quot;          </span>
+<span class="co">#&gt;  [4] &quot;banana&quot;            &quot;bell pepper&quot;       &quot;bilberry&quot;         </span>
+<span class="co">#&gt;  [7] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span>
+<span class="co">#&gt; [10] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;breadfruit&quot;       </span>
+<span class="co">#&gt; [13] &quot;canary melon&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span>
+<span class="co">#&gt; [16] &quot;cherry&quot;            &quot;chili pepper&quot;      &quot;clementine&quot;       </span>
+<span class="co">#&gt; [19] &quot;cloudberry&quot;        &quot;coconut&quot;           &quot;cranberry&quot;        </span>
+<span class="co">#&gt; [22] &quot;cucumber&quot;          &quot;currant&quot;           &quot;damson&quot;           </span>
+<span class="co">#&gt; [25] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span>
+<span class="co">#&gt; [28] &quot;eggplant&quot;          &quot;elderberry&quot;        &quot;feijoa&quot;           </span>
+<span class="co">#&gt; [31] &quot;fig&quot;               &quot;goji berry&quot;        &quot;gooseberry&quot;       </span>
+<span class="co">#&gt; [34] &quot;grape&quot;             &quot;grapefruit&quot;        &quot;guava&quot;            </span>
+<span class="co">#&gt; [37] &quot;honeydew&quot;          &quot;huckleberry&quot;       &quot;jackfruit&quot;        </span>
+<span class="co">#&gt; [40] &quot;jambul&quot;            &quot;jujube&quot;            &quot;kiwi fruit&quot;       </span>
+<span class="co">#&gt; [43] &quot;kumquat&quot;           &quot;lemon&quot;             &quot;lime&quot;             </span>
+<span class="co">#&gt; [46] &quot;loquat&quot;            &quot;lychee&quot;            &quot;mandarine&quot;        </span>
+<span class="co">#&gt; [49] &quot;mango&quot;             &quot;mulberry&quot;          &quot;nectarine&quot;        </span>
+<span class="co">#&gt; [52] &quot;nut&quot;               &quot;olive&quot;             &quot;orange&quot;           </span>
+<span class="co">#&gt; [55] &quot;pamelo&quot;            &quot;papaya&quot;            &quot;passionfruit&quot;     </span>
+<span class="co">#&gt; [58] &quot;peach&quot;             &quot;pear&quot;              &quot;persimmon&quot;        </span>
+<span class="co">#&gt; [61] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;plum&quot;             </span>
+<span class="co">#&gt; [64] &quot;pomegranate&quot;       &quot;pomelo&quot;            &quot;purple mangosteen&quot;</span>
+<span class="co">#&gt; [67] &quot;quince&quot;            &quot;raisin&quot;            &quot;rambutan&quot;         </span>
+<span class="co">#&gt; [70] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;rock melon&quot;       </span>
+<span class="co">#&gt; [73] &quot;salal berry&quot;       &quot;satsuma&quot;           &quot;star fruit&quot;       </span>
+<span class="co">#&gt; [76] &quot;strawberry&quot;        &quot;tamarillo&quot;         &quot;tangerine&quot;        </span>
+<span class="co">#&gt; [79] &quot;ugli fruit&quot;        &quot;watermelon&quot;</span></code></pre></div>
+<p>One of the most common uses of regular expressions is to find strings that contain an exact sequence of letters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;berry&quot;</span>)
+<span class="co">#&gt;  [1] &quot;bilberry&quot;    &quot;blackberry&quot;  &quot;blueberry&quot;   &quot;boysenberry&quot; &quot;cloudberry&quot; </span>
+<span class="co">#&gt;  [6] &quot;cranberry&quot;   &quot;elderberry&quot;  &quot;goji berry&quot;  &quot;gooseberry&quot;  &quot;huckleberry&quot;</span>
+<span class="co">#&gt; [11] &quot;mulberry&quot;    &quot;raspberry&quot;   &quot;salal berry&quot; &quot;strawberry&quot;</span></code></pre></div>
+
+<div class="rmdnote">
+<code>str_subset()</code> keeps strings matching a pattern. We will use these as examples of how to use patterns, but work with any function which takes a pattern.
+</div>
+
+<p>This works great for quite a few cases, but what if you wanted to find just “grape” and not “grapefruit”?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;grape&quot;</span>)
+<span class="co">#&gt; [1] &quot;grape&quot;      &quot;grapefruit&quot;</span></code></pre></div>
+</div>
+<div id="special-characters" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> Special Characters</h3>
+<p>Once you get beyond basic substring matching you need some helpers. Below is a list of common helpers.</p>
+<ul>
+<li><code>.</code> match any character (except a newline)</li>
+<li><code>^</code> match the start of the string</li>
+<li><code>$</code> match the end of the string</li>
+</ul>
+<p>So to match “grape” but not “grapefruit” you could do this is a couple ways.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;grape$&quot;</span>)   <span class="co"># match all words that end in &quot;grape&quot;</span>
+<span class="co">#&gt; [1] &quot;grape&quot;</span>
+<span class="kw">str_subset</span>(fruit, <span class="st">&quot;^grape$&quot;</span>)  <span class="co"># match all words the start AND end in &quot;grape&quot;</span>
+<span class="co">#&gt; [1] &quot;grape&quot;</span></code></pre></div>
+<p>Find the fruits that have an “a” in them but not ones that have the only “a” as the starting character.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;.a&quot;</span>)
+<span class="co">#&gt;  [1] &quot;avocado&quot;           &quot;banana&quot;            &quot;blackberry&quot;       </span>
+<span class="co">#&gt;  [4] &quot;blackcurrant&quot;      &quot;blood orange&quot;      &quot;breadfruit&quot;       </span>
+<span class="co">#&gt;  [7] &quot;canary melon&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span>
+<span class="co">#&gt; [10] &quot;cranberry&quot;         &quot;currant&quot;           &quot;damson&quot;           </span>
+<span class="co">#&gt; [13] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span>
+<span class="co">#&gt; [16] &quot;eggplant&quot;          &quot;feijoa&quot;            &quot;grape&quot;            </span>
+<span class="co">#&gt; [19] &quot;grapefruit&quot;        &quot;guava&quot;             &quot;jackfruit&quot;        </span>
+<span class="co">#&gt; [22] &quot;jambul&quot;            &quot;kumquat&quot;           &quot;loquat&quot;           </span>
+<span class="co">#&gt; [25] &quot;mandarine&quot;         &quot;mango&quot;             &quot;nectarine&quot;        </span>
+<span class="co">#&gt; [28] &quot;orange&quot;            &quot;pamelo&quot;            &quot;papaya&quot;           </span>
+<span class="co">#&gt; [31] &quot;passionfruit&quot;      &quot;peach&quot;             &quot;pear&quot;             </span>
+<span class="co">#&gt; [34] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;pomegranate&quot;      </span>
+<span class="co">#&gt; [37] &quot;purple mangosteen&quot; &quot;raisin&quot;            &quot;rambutan&quot;         </span>
+<span class="co">#&gt; [40] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;salal berry&quot;      </span>
+<span class="co">#&gt; [43] &quot;satsuma&quot;           &quot;star fruit&quot;        &quot;strawberry&quot;       </span>
+<span class="co">#&gt; [46] &quot;tamarillo&quot;         &quot;tangerine&quot;         &quot;watermelon&quot;</span></code></pre></div>
+<p>If “<code>.</code>” matches any character, how do you match the character “<code>.</code>”?</p>
+<p>You need to use an “escape” to tell the regular expression you want to match it exactly, not use its special behavior. Like strings, regexps use the backslash, <code>\</code>, to escape special behavior. So to match an <code>.</code>, you need the regexp <code>\.</code>. Unfortunately this creates a problem. We use strings to represent regular expressions, and <code>\</code> is also used as an escape symbol in strings. So to create the regular expression <code>\.</code> we need the string <code>&quot;\\.&quot;</code>.</p>
+<p>If <code>\</code> is used as an escape character in regular expressions, how do you match a literal <code>\</code>? Well you need to escape it, creating the regular expression <code>\\</code>. To create that regular expression, you need to use a string, which also needs to escape <code>\</code>. That means to match a literal <code>\</code> you need to write <code>&quot;\\\\&quot;</code> — you need four backslashes to match one!</p>
+</div>
+<div id="character-classes-and-alternatives" class="section level3">
+<h3><span class="header-section-number">7.2.3</span> Character Classes and Alternatives</h3>
+<p>There are a number of special patterns that match more than one character. You’ve already seen <code>.</code>, which matches any character apart from a newline. There are many other useful tools:</p>
+<ul>
+<li><code>\d</code> match any digit</li>
+<li><code>[:digits:]</code> match any digit</li>
+<li><code>\D</code> match any non digit</li>
+<li><code>[:alpha:]</code> match any letter</li>
+<li><code>[:lower:]</code> match any lowercase letter</li>
+<li><code>[:upper:]</code> match any uppercase letter</li>
+<li><code>[:alnum:]</code> match any alpha numeric character.</li>
+<li><code>[:punct:]</code> match any punctuation (see cheat sheet)</li>
+<li><code>|</code> or (ex <code>ad|e</code> matches “ad” or “e”)</li>
+<li><code>[]</code> matches one of (ex <code>[ade]</code> matches “a”, “d” or “e”, equivalent to `a|d|e)</li>
+<li><code>[^]</code> match anything but (ex <code>[^ade]</code> matches everything but “a”, “d” or “e”)</li>
+<li><code>[-]</code> match a range (ex <code>[0-5]</code> matches numbers between 0 and 5 inclusive)</li>
+</ul>
+
+<div class="rmdimportant">
+Remember, to create a regular expression containing <code>\d</code>, you need to escape the <code>\</code> for the string, so you type <code>&quot;\\d&quot;</code>.
+</div>
+
+<p>A character class containing a single character is a nice alternative to backslash escapes when you want to include a single meta character in a regex. Many people find this more readable.</p>
+</div>
+<div id="repetition" class="section level3">
+<h3><span class="header-section-number">7.2.4</span> Repetition</h3>
+<p>The next step up in power involves controlling how many times a pattern matches:</p>
+<ul>
+<li><code>?</code> match zero or 1</li>
+<li><code>*</code> match zero or more</li>
+<li><code>+</code> match one or more</li>
+<li><code>{n}</code>: exactly n</li>
+<li><code>{n,}</code>: n or more</li>
+<li><code>{,m}</code>: at most m</li>
+<li><code>{n,m}</code>: between n and m</li>
+</ul>
+<p>Find all the fruits with three or more “e”’s.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;.*e.*e.*e&quot;</span>) 
+<span class="co">#&gt; [1] &quot;bell pepper&quot;       &quot;clementine&quot;        &quot;elderberry&quot;       </span>
+<span class="co">#&gt; [4] &quot;purple mangosteen&quot;</span>
+
+<span class="co"># or more succinctly</span>
+<span class="kw">str_subset</span>(fruit, <span class="st">&quot;(.*e){3,}&quot;</span>)
+<span class="co">#&gt; [1] &quot;bell pepper&quot;       &quot;clementine&quot;        &quot;elderberry&quot;       </span>
+<span class="co">#&gt; [4] &quot;purple mangosteen&quot;</span></code></pre></div>
+</div>
+<div id="grouping" class="section level3">
+<h3><span class="header-section-number">7.2.5</span> Grouping</h3>
+<p>Parentheses are a way to disambiguate complex expressions. Parentheses also create a <strong>numbered capturing group</strong> (number 1, 2 etc.). A capturing group stores <strong>the part of the string</strong> matched by the part of the regular expression inside the parentheses. You can refer to the same text as previously matched by a capturing group with <strong>backreferences</strong>, like <code>\1</code>, <code>\2</code> etc.</p>
+<p>For example, find all the fruits with a double letter</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;([:alpha:])</span><span class="ch">\\</span><span class="st">1&quot;</span>)
+<span class="co">#&gt;  [1] &quot;apple&quot;             &quot;bell pepper&quot;       &quot;bilberry&quot;         </span>
+<span class="co">#&gt;  [4] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span>
+<span class="co">#&gt;  [7] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;cherry&quot;           </span>
+<span class="co">#&gt; [10] &quot;chili pepper&quot;      &quot;cloudberry&quot;        &quot;cranberry&quot;        </span>
+<span class="co">#&gt; [13] &quot;currant&quot;           &quot;eggplant&quot;          &quot;elderberry&quot;       </span>
+<span class="co">#&gt; [16] &quot;goji berry&quot;        &quot;gooseberry&quot;        &quot;huckleberry&quot;      </span>
+<span class="co">#&gt; [19] &quot;lychee&quot;            &quot;mulberry&quot;          &quot;passionfruit&quot;     </span>
+<span class="co">#&gt; [22] &quot;persimmon&quot;         &quot;pineapple&quot;         &quot;purple mangosteen&quot;</span>
+<span class="co">#&gt; [25] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;salal berry&quot;      </span>
+<span class="co">#&gt; [28] &quot;strawberry&quot;        &quot;tamarillo&quot;</span></code></pre></div>
+<p>Find all fruits that have a repeated pair of letters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_subset</span>(fruit, <span class="st">&quot;(..)</span><span class="ch">\\</span><span class="st">1&quot;</span>)
+<span class="co">#&gt; [1] &quot;banana&quot;      &quot;coconut&quot;     &quot;cucumber&quot;    &quot;jujube&quot;      &quot;papaya&quot;     </span>
+<span class="co">#&gt; [6] &quot;salal berry&quot;</span></code></pre></div>
+</div>
+</div>
+<div id="helpful-string-functions" class="section level2">
+<h2><span class="header-section-number">7.3</span> Helpful String Functions</h2>
+<p>Don’t forget that you’re in a programming language and you have other tools at your disposal. Instead of creating one complex regular expression, it’s often easier to write a series of simpler regexps. If you get stuck trying to create a single regexp that solves your problem, take a step back and think if you could break the problem down into smaller pieces, solving each challenge before moving onto the next one.</p>
+<div id="detect-matches" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Detect Matches</h3>
+<ul>
+<li><code>str_detect()</code> Detect the presence of strings matching a pattern (similar to base R <code>grepl()</code>)</li>
+<li><code>str_count()</code> Count the number of matches in a string.</li>
+</ul>
+<p>What proportion of the fruits have double letters?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_detect</span>(fruit, <span class="st">&quot;([:alpha:])</span><span class="ch">\\</span><span class="st">1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mean</span>()
+<span class="co">#&gt; [1] 0.362</span></code></pre></div>
+<p>What is the distribution of vowels in fruits?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_count</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">hist</span>()</code></pre></div>
+<p><img src="strings_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" /></p>
+
+<div class="rmdtip">
+<code>str_detect()</code> has a natural fit with filter to subset data sets.
+</div>
+
+</div>
+<div id="extract-matches" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Extract Matches</h3>
+<ul>
+<li><code>str_subset()</code> keep strings matching a pattern</li>
+<li><code>str_extract()</code> extract first matching patterns from a string.</li>
+<li><code>str_extract_all()</code> extract all matching patterns from a string.</li>
+<li><code>str_which()</code> find the positions of strings matching a pattern (similar to base R <code>grep()</code>)</li>
+</ul>
+<p>Which fruits have a color in their name?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create our regular expression from a character vector</span>
+colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;black&quot;</span>)
+color_match &lt;-<span class="st"> </span><span class="kw">str_c</span>(colors, <span class="dt">collapse =</span> <span class="st">&quot;|&quot;</span>)
+color_match
+<span class="co">#&gt; [1] &quot;red|orange|yellow|green|blue|purple|black&quot;</span>
+
+<span class="kw">str_subset</span>(fruit, color_match)
+<span class="co">#&gt; [1] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;blood orange&quot;     </span>
+<span class="co">#&gt; [4] &quot;blueberry&quot;         &quot;orange&quot;            &quot;purple mangosteen&quot;</span>
+<span class="co">#&gt; [7] &quot;redcurrant&quot;</span></code></pre></div>
+<p>Pull out the vowels in all the fruits</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_extract</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>)
+<span class="co">#&gt;  [1] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;i&quot; &quot;a&quot; &quot;a&quot; &quot;o&quot; &quot;u&quot; &quot;o&quot; &quot;e&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;e&quot; &quot;i&quot;</span>
+<span class="co">#&gt; [18] &quot;e&quot; &quot;o&quot; &quot;o&quot; &quot;a&quot; &quot;u&quot; &quot;u&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;e&quot; &quot;e&quot; &quot;e&quot; &quot;i&quot; &quot;o&quot; &quot;o&quot; &quot;a&quot;</span>
+<span class="co">#&gt; [35] &quot;a&quot; &quot;u&quot; &quot;o&quot; &quot;u&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;i&quot; &quot;u&quot; &quot;e&quot; &quot;i&quot; &quot;o&quot; &quot;e&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;e&quot;</span>
+<span class="co">#&gt; [52] &quot;u&quot; &quot;o&quot; &quot;o&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;e&quot; &quot;e&quot; &quot;a&quot; &quot;i&quot; &quot;u&quot; &quot;o&quot; &quot;o&quot; &quot;u&quot; &quot;u&quot; &quot;a&quot;</span>
+<span class="co">#&gt; [69] &quot;a&quot; &quot;a&quot; &quot;e&quot; &quot;o&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;u&quot; &quot;a&quot;</span>
+<span class="kw">str_extract_all</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] &quot;a&quot; &quot;e&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;a&quot; &quot;i&quot; &quot;o&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] &quot;a&quot; &quot;o&quot; &quot;a&quot; &quot;o&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] &quot;a&quot; &quot;a&quot; &quot;a&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]]</span>
+<span class="co">#&gt; [1] &quot;e&quot; &quot;e&quot; &quot;e&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]]</span>
+<span class="co">#&gt; [1] &quot;i&quot; &quot;e&quot;</span></code></pre></div>
+</div>
+<div id="replacing-matches" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> Replacing Matches</h3>
+<ul>
+<li><code>str_replace()</code> replace first matched pattern in a string.</li>
+<li><code>str_replace_all()</code> replace all matched pattern in a string.</li>
+</ul>
+<div class="rmdnote">
+<p>
+These functions are similar to base R functions <code>sub()</code> and <code>gsub()</code>
+</p>
+</div>
+<p>Replace vowels with a hyphen</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_replace</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()
+<span class="co">#&gt; [1] &quot;-pple&quot;       &quot;-pricot&quot;     &quot;-vocado&quot;     &quot;b-nana&quot;      &quot;b-ll pepper&quot;</span>
+<span class="co">#&gt; [6] &quot;b-lberry&quot;</span>
+<span class="kw">str_replace_all</span>(fruit, <span class="st">&quot;[aeiou]&quot;</span>, <span class="st">&quot;-&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()
+<span class="co">#&gt; [1] &quot;-ppl-&quot;       &quot;-pr-c-t&quot;     &quot;-v-c-d-&quot;     &quot;b-n-n-&quot;      &quot;b-ll p-pp-r&quot;</span>
+<span class="co">#&gt; [6] &quot;b-lb-rry&quot;</span></code></pre></div>
+<p>Also, <code>str_replace_all()</code> can perform multiple replacements by supplying a named vector.</p>
+<p>Instead of replacing with a fixed string you can use backreferences to insert components of the match.</p>
+<p>If the fruit name is comprised of 2 or more words swap the first and second word.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_replace</span>(fruit, <span class="st">&quot;([^ ]+) ([^ ]+)&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">2 </span><span class="ch">\\</span><span class="st">1&quot;</span>)
+<span class="co">#&gt;  [1] &quot;apple&quot;             &quot;apricot&quot;           &quot;avocado&quot;          </span>
+<span class="co">#&gt;  [4] &quot;banana&quot;            &quot;pepper bell&quot;       &quot;bilberry&quot;         </span>
+<span class="co">#&gt;  [7] &quot;blackberry&quot;        &quot;blackcurrant&quot;      &quot;orange blood&quot;     </span>
+<span class="co">#&gt; [10] &quot;blueberry&quot;         &quot;boysenberry&quot;       &quot;breadfruit&quot;       </span>
+<span class="co">#&gt; [13] &quot;melon canary&quot;      &quot;cantaloupe&quot;        &quot;cherimoya&quot;        </span>
+<span class="co">#&gt; [16] &quot;cherry&quot;            &quot;pepper chili&quot;      &quot;clementine&quot;       </span>
+<span class="co">#&gt; [19] &quot;cloudberry&quot;        &quot;coconut&quot;           &quot;cranberry&quot;        </span>
+<span class="co">#&gt; [22] &quot;cucumber&quot;          &quot;currant&quot;           &quot;damson&quot;           </span>
+<span class="co">#&gt; [25] &quot;date&quot;              &quot;dragonfruit&quot;       &quot;durian&quot;           </span>
+<span class="co">#&gt; [28] &quot;eggplant&quot;          &quot;elderberry&quot;        &quot;feijoa&quot;           </span>
+<span class="co">#&gt; [31] &quot;fig&quot;               &quot;berry goji&quot;        &quot;gooseberry&quot;       </span>
+<span class="co">#&gt; [34] &quot;grape&quot;             &quot;grapefruit&quot;        &quot;guava&quot;            </span>
+<span class="co">#&gt; [37] &quot;honeydew&quot;          &quot;huckleberry&quot;       &quot;jackfruit&quot;        </span>
+<span class="co">#&gt; [40] &quot;jambul&quot;            &quot;jujube&quot;            &quot;fruit kiwi&quot;       </span>
+<span class="co">#&gt; [43] &quot;kumquat&quot;           &quot;lemon&quot;             &quot;lime&quot;             </span>
+<span class="co">#&gt; [46] &quot;loquat&quot;            &quot;lychee&quot;            &quot;mandarine&quot;        </span>
+<span class="co">#&gt; [49] &quot;mango&quot;             &quot;mulberry&quot;          &quot;nectarine&quot;        </span>
+<span class="co">#&gt; [52] &quot;nut&quot;               &quot;olive&quot;             &quot;orange&quot;           </span>
+<span class="co">#&gt; [55] &quot;pamelo&quot;            &quot;papaya&quot;            &quot;passionfruit&quot;     </span>
+<span class="co">#&gt; [58] &quot;peach&quot;             &quot;pear&quot;              &quot;persimmon&quot;        </span>
+<span class="co">#&gt; [61] &quot;physalis&quot;          &quot;pineapple&quot;         &quot;plum&quot;             </span>
+<span class="co">#&gt; [64] &quot;pomegranate&quot;       &quot;pomelo&quot;            &quot;mangosteen purple&quot;</span>
+<span class="co">#&gt; [67] &quot;quince&quot;            &quot;raisin&quot;            &quot;rambutan&quot;         </span>
+<span class="co">#&gt; [70] &quot;raspberry&quot;         &quot;redcurrant&quot;        &quot;melon rock&quot;       </span>
+<span class="co">#&gt; [73] &quot;berry salal&quot;       &quot;satsuma&quot;           &quot;fruit star&quot;       </span>
+<span class="co">#&gt; [76] &quot;strawberry&quot;        &quot;tamarillo&quot;         &quot;tangerine&quot;        </span>
+<span class="co">#&gt; [79] &quot;fruit ugli&quot;        &quot;watermelon&quot;</span></code></pre></div>
+</div>
+<div id="other-string-functions" class="section level3">
+<h3><span class="header-section-number">7.3.4</span> Other String Functions</h3>
+<ul>
+<li><code>str_split()</code> split up a string into pieces</li>
+<li><code>str_locate()</code> returns the starting and ending positions of the first match</li>
+<li><code>str_locate_all()</code> returns the starting and ending positions of all matches</li>
+</ul>
+<p>Split the fruits up by word</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str_split</span>(fruit, <span class="st">&quot; &quot;</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(., <span class="dv">10</span>)  <span class="co"># split by a space</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] &quot;apple&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;apricot&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] &quot;avocado&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] &quot;banana&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]]</span>
+<span class="co">#&gt; [1] &quot;bell&quot;   &quot;pepper&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]]</span>
+<span class="co">#&gt; [1] &quot;bilberry&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[7]]</span>
+<span class="co">#&gt; [1] &quot;blackberry&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[8]]</span>
+<span class="co">#&gt; [1] &quot;blackcurrant&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[9]]</span>
+<span class="co">#&gt; [1] &quot;blood&quot;  &quot;orange&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[10]]</span>
+<span class="co">#&gt; [1] &quot;blueberry&quot;</span>
+<span class="kw">str_split</span>(fruit, <span class="kw">boundary</span>(<span class="st">&quot;word&quot;</span>))  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>(., <span class="dv">10</span>) <span class="co"># split by word boundry</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [1] &quot;apple&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[2]]</span>
+<span class="co">#&gt; [1] &quot;apricot&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[3]]</span>
+<span class="co">#&gt; [1] &quot;avocado&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[4]]</span>
+<span class="co">#&gt; [1] &quot;banana&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[5]]</span>
+<span class="co">#&gt; [1] &quot;bell&quot;   &quot;pepper&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[6]]</span>
+<span class="co">#&gt; [1] &quot;bilberry&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[7]]</span>
+<span class="co">#&gt; [1] &quot;blackberry&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[8]]</span>
+<span class="co">#&gt; [1] &quot;blackcurrant&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[9]]</span>
+<span class="co">#&gt; [1] &quot;blood&quot;  &quot;orange&quot;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[10]]</span>
+<span class="co">#&gt; [1] &quot;blueberry&quot;</span>
+<span class="kw">str_split</span>(fruit, <span class="st">&quot; &quot;</span>, <span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">simplify =</span> <span class="ot">TRUE</span>)   <span class="co"># only split into 2 peices</span>
+<span class="co">#&gt;       [,1]           [,2]        </span>
+<span class="co">#&gt;  [1,] &quot;apple&quot;        &quot;&quot;          </span>
+<span class="co">#&gt;  [2,] &quot;apricot&quot;      &quot;&quot;          </span>
+<span class="co">#&gt;  [3,] &quot;avocado&quot;      &quot;&quot;          </span>
+<span class="co">#&gt;  [4,] &quot;banana&quot;       &quot;&quot;          </span>
+<span class="co">#&gt;  [5,] &quot;bell&quot;         &quot;pepper&quot;    </span>
+<span class="co">#&gt;  [6,] &quot;bilberry&quot;     &quot;&quot;          </span>
+<span class="co">#&gt;  [7,] &quot;blackberry&quot;   &quot;&quot;          </span>
+<span class="co">#&gt;  [8,] &quot;blackcurrant&quot; &quot;&quot;          </span>
+<span class="co">#&gt;  [9,] &quot;blood&quot;        &quot;orange&quot;    </span>
+<span class="co">#&gt; [10,] &quot;blueberry&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [11,] &quot;boysenberry&quot;  &quot;&quot;          </span>
+<span class="co">#&gt; [12,] &quot;breadfruit&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [13,] &quot;canary&quot;       &quot;melon&quot;     </span>
+<span class="co">#&gt; [14,] &quot;cantaloupe&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [15,] &quot;cherimoya&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [16,] &quot;cherry&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [17,] &quot;chili&quot;        &quot;pepper&quot;    </span>
+<span class="co">#&gt; [18,] &quot;clementine&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [19,] &quot;cloudberry&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [20,] &quot;coconut&quot;      &quot;&quot;          </span>
+<span class="co">#&gt; [21,] &quot;cranberry&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [22,] &quot;cucumber&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [23,] &quot;currant&quot;      &quot;&quot;          </span>
+<span class="co">#&gt; [24,] &quot;damson&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [25,] &quot;date&quot;         &quot;&quot;          </span>
+<span class="co">#&gt; [26,] &quot;dragonfruit&quot;  &quot;&quot;          </span>
+<span class="co">#&gt; [27,] &quot;durian&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [28,] &quot;eggplant&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [29,] &quot;elderberry&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [30,] &quot;feijoa&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [31,] &quot;fig&quot;          &quot;&quot;          </span>
+<span class="co">#&gt; [32,] &quot;goji&quot;         &quot;berry&quot;     </span>
+<span class="co">#&gt; [33,] &quot;gooseberry&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [34,] &quot;grape&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [35,] &quot;grapefruit&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [36,] &quot;guava&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [37,] &quot;honeydew&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [38,] &quot;huckleberry&quot;  &quot;&quot;          </span>
+<span class="co">#&gt; [39,] &quot;jackfruit&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [40,] &quot;jambul&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [41,] &quot;jujube&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [42,] &quot;kiwi&quot;         &quot;fruit&quot;     </span>
+<span class="co">#&gt; [43,] &quot;kumquat&quot;      &quot;&quot;          </span>
+<span class="co">#&gt; [44,] &quot;lemon&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [45,] &quot;lime&quot;         &quot;&quot;          </span>
+<span class="co">#&gt; [46,] &quot;loquat&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [47,] &quot;lychee&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [48,] &quot;mandarine&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [49,] &quot;mango&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [50,] &quot;mulberry&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [51,] &quot;nectarine&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [52,] &quot;nut&quot;          &quot;&quot;          </span>
+<span class="co">#&gt; [53,] &quot;olive&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [54,] &quot;orange&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [55,] &quot;pamelo&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [56,] &quot;papaya&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [57,] &quot;passionfruit&quot; &quot;&quot;          </span>
+<span class="co">#&gt; [58,] &quot;peach&quot;        &quot;&quot;          </span>
+<span class="co">#&gt; [59,] &quot;pear&quot;         &quot;&quot;          </span>
+<span class="co">#&gt; [60,] &quot;persimmon&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [61,] &quot;physalis&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [62,] &quot;pineapple&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [63,] &quot;plum&quot;         &quot;&quot;          </span>
+<span class="co">#&gt; [64,] &quot;pomegranate&quot;  &quot;&quot;          </span>
+<span class="co">#&gt; [65,] &quot;pomelo&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [66,] &quot;purple&quot;       &quot;mangosteen&quot;</span>
+<span class="co">#&gt; [67,] &quot;quince&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [68,] &quot;raisin&quot;       &quot;&quot;          </span>
+<span class="co">#&gt; [69,] &quot;rambutan&quot;     &quot;&quot;          </span>
+<span class="co">#&gt; [70,] &quot;raspberry&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [71,] &quot;redcurrant&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [72,] &quot;rock&quot;         &quot;melon&quot;     </span>
+<span class="co">#&gt; [73,] &quot;salal&quot;        &quot;berry&quot;     </span>
+<span class="co">#&gt; [74,] &quot;satsuma&quot;      &quot;&quot;          </span>
+<span class="co">#&gt; [75,] &quot;star&quot;         &quot;fruit&quot;     </span>
+<span class="co">#&gt; [76,] &quot;strawberry&quot;   &quot;&quot;          </span>
+<span class="co">#&gt; [77,] &quot;tamarillo&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [78,] &quot;tangerine&quot;    &quot;&quot;          </span>
+<span class="co">#&gt; [79,] &quot;ugli&quot;         &quot;fruit&quot;     </span>
+<span class="co">#&gt; [80,] &quot;watermelon&quot;   &quot;&quot;</span></code></pre></div>
+<p><strong>stringr</strong> is built on top of the <strong>stringi</strong> package. stringr is useful when you’re learning because it exposes a minimal set of functions, which have been carefully picked to handle the most common string manipulation functions. stringi, on the other hand, is designed to be comprehensive. It contains almost every function you might ever need: stringi has 234 functions to stringr’s 46.</p>
+<p>If you find yourself struggling to do something in stringr, it’s worth taking a look at stringi. The packages work very similarly, so you should be able to translate your stringr knowledge in a natural way. The main difference is the prefix: <code>str_</code> vs. <code>stri_</code>.</p>
+</div>
+</div>
+<div id="exercises-4" class="section level2">
+<h2><span class="header-section-number">7.4</span> Exercises</h2>
+<p><strong>Zip Codes</strong></p>
+<ol style="list-style-type: decimal">
+<li>Create a function that takes a vector of numeric zip codes and converts them to a three-digit zip code, padding with 0’s as necessary.
+<ul>
+<li>Test your function with <code>c(1, 11, 111)</code> which should return <code>c(001, 011, 111)</code></li>
+</ul></li>
+<li>For the above function how would you make this more generic. What happens if you get a 5-digit zip code? What if the user wants to return a 4-digit zip code? Extend your function to handle these cases.
+<ul>
+<li>Test your function with <code>c(1, 11, 111, 1111, 11111)</code>. (Note: Think about how a <code>1</code> changes based on the assumption of a 5-digit zip code vs a 3-digit zip code)</li>
+</ul></li>
+</ol>
+
+<div class="rmdtip">
+There are several ways to accomplish the above. The following <code>stringr</code> functions may be useful: <code>str_pad()</code>, <code>str_length()</code>, <code>str_extract()</code>, and <code>str_trunc()</code>. However, this is not an extensive list and there may be other functions which are useful.
+</div>
+
+<p><strong>Files</strong></p>
+<ol style="list-style-type: decimal">
+<li>Create a function that returns the latest (most recent) input file name for your data set, regardless of which year-quarter it is. <strong>See tip below</strong>.</li>
+<li>Extend the above to return a specific year-quarters data file. Note: depending on your naming convention this may be simple or difficult. It may be easier after you work the <strong>Year-Quarter</strong> exercises below.</li>
+<li>Create an error message for the above if they enter a year-quarter in which there is no data.</li>
+</ol>
+
+<div class="rmdtip">
+R has many functions to help with system files. See the help for <code>dir()</code>, <code>list.files()</code>, <code>list.dirs()</code>, <code>file.exists()</code>, <code>basename()</code>, <code>dirname</code>, <code>tools::file_path_sans_ext()</code>, and many many more.
+</div>
+
+<p><strong>Year-Quarter</strong></p>
+<ol style="list-style-type: decimal">
+<li>Create a function that takes a year-quarter in numeric format and returns the year quarter in a character format with the <strong>Q</strong> (Ex 20174 becomes 2017Q4).</li>
+<li>How would you modify the above to return 2017 Q4. How about 2017-Q4?</li>
+<li>How would you modify the above to return 4q17 or 4Q17?</li>
+<li>Create a function that does the inverse of the above. Ex. “2017Q4” or “2017 Q4” becomes a numeric 20174.</li>
+<li>Create function that takes a character year-quater (ex 2018Q3) and the quarter n-quarters before it. Example two quarters previous to 2018Q3 is 2018Q1. Hint: Use your function from part 1 in conjuction with your function from the exercise in the <strong>Function Basics</strong> chapter.</li>
+</ol>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tidy-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="function-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/DavisBrian/corporater/edit/master/strings.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["rclassnotes.pdf", "rclassnotes.epub"],
+"toc": {
+"collapse": "section"
+},
+"css": "corp.css"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
