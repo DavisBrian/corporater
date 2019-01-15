@@ -12,16 +12,6 @@
 
 Functions are an central part of robust R programming and we will spend a significant amount of time writing functions.  Think of functions in the [mathematical sense](https://en.wikipedia.org/wiki/Function_(mathematics)) will make the properties much more apparent than any other framework. 
 
-Functions in R are "first class objects", which means that they can be
-treated much like any other R object. Importantly,
-
-- Functions can be passed as arguments to other functions. This is very handy for the various apply functions, like `lapply()` and `sapply()`.
-
-- Functions can be nested, so that you can define a function inside of
-  another function
-
-If you're familiar with common language like C, these features might appear a bit strange. However, they are really important in R and can be useful for data analysis.
-
 - Functions are a means of **abstraction**. A concept/computation is
   encapsulated/isolated from the rest with a function.
 - Functions should **do one thing**, and do it well (compute, or plot,
@@ -248,6 +238,16 @@ What do the following return?
 - `g(f())`
 
 ## "First class objects"
+
+Functions in R are "first class objects", which means that they can be
+treated much like any other R object. Importantly,
+
+- Functions can be passed as arguments to other functions. This is very handy for the various apply functions, like `lapply()` and `sapply()`.
+
+- Functions can be nested, so that you can define a function inside of
+  another function
+
+If you're familiar with common language like C, these features might appear a bit strange. However, they are really important in R and can be useful for data analysis.
 
 Since functions **ARE** objects you can pass functions as arguments and return functions as results.
 

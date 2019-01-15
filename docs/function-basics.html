@@ -25,7 +25,7 @@
 <meta name="author" content="Brian Davis">
 
 
-<meta name="date" content="2019-01-14">
+<meta name="date" content="2019-01-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -291,12 +291,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="introduction-to-functions" class="section level2">
 <h2><span class="header-section-number">8.1</span> Introduction to Functions</h2>
 <p>Functions are an central part of robust R programming and we will spend a significant amount of time writing functions. Think of functions in the <a href="https://en.wikipedia.org/wiki/Function_(mathematics)">mathematical sense</a> will make the properties much more apparent than any other framework.</p>
-<p>Functions in R are “first class objects”, which means that they can be treated much like any other R object. Importantly,</p>
-<ul>
-<li><p>Functions can be passed as arguments to other functions. This is very handy for the various apply functions, like <code>lapply()</code> and <code>sapply()</code>.</p></li>
-<li><p>Functions can be nested, so that you can define a function inside of another function</p></li>
-</ul>
-<p>If you’re familiar with common language like C, these features might appear a bit strange. However, they are really important in R and can be useful for data analysis.</p>
 <ul>
 <li>Functions are a means of <strong>abstraction</strong>. A concept/computation is encapsulated/isolated from the rest with a function.</li>
 <li>Functions should <strong>do one thing</strong>, and do it well (compute, or plot, or save, … not all in one go).</li>
@@ -505,6 +499,12 @@ h &lt;-<span class="st"> </span><span class="cf">function</span>() {
 </div>
 <div id="first-class-objects" class="section level2">
 <h2><span class="header-section-number">8.3</span> “First class objects”</h2>
+<p>Functions in R are “first class objects”, which means that they can be treated much like any other R object. Importantly,</p>
+<ul>
+<li><p>Functions can be passed as arguments to other functions. This is very handy for the various apply functions, like <code>lapply()</code> and <code>sapply()</code>.</p></li>
+<li><p>Functions can be nested, so that you can define a function inside of another function</p></li>
+</ul>
+<p>If you’re familiar with common language like C, these features might appear a bit strange. However, they are really important in R and can be useful for data analysis.</p>
 <p>Since functions <strong>ARE</strong> objects you can pass functions as arguments and return functions as results.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_summary &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">funs =</span> <span class="kw">c</span>(mean, sd), ...) {
   <span class="kw">lapply</span>(funs, <span class="cf">function</span>(f) <span class="kw">f</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
@@ -547,7 +547,7 @@ y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</spa
 <span class="co">#&gt;       # [</span><span class="al">TBD</span><span class="co">] checks on x</span>
 <span class="co">#&gt;     x^n </span>
 <span class="co">#&gt;   }</span>
-<span class="co">#&gt; &lt;environment: 0x0000000009a3c648&gt;</span>
+<span class="co">#&gt; &lt;environment: 0x000000000656c628&gt;</span>
 <span class="kw">pow</span>(<span class="dt">x=</span><span class="dv">4</span>)       <span class="co"># Note: `pow` does not exist outside of the `make.power` function</span>
 <span class="co">#&gt; Error in pow(x = 4): could not find function &quot;pow&quot;</span>
 
@@ -558,8 +558,8 @@ cube &lt;-<span class="st"> </span><span class="kw">make.power</span>(<span clas
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     x^n</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x000000000931bbe0&gt;</span>
-<span class="co">#&gt; &lt;environment: 0x0000000009465c58&gt;</span>
+<span class="co">#&gt; &lt;bytecode: 0x0000000005e4b4a0&gt;</span>
+<span class="co">#&gt; &lt;environment: 0x0000000005f95518&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $n</span>
 <span class="co">#&gt; [1] 3</span>

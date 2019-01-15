@@ -126,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-01-14}
+    \date{2019-01-15}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1761,7 +1761,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \NormalTok{(t2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(pi_est_vect <-}\StringTok{ }\KeywordTok{pi_vect}\NormalTok{(N)))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.08    0.02    0.09}
+\CommentTok{#>    0.10    0.00    0.11}
 \NormalTok{pi_est_vect}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -1773,7 +1773,7 @@ The speed up from vectorization is impressive.
 \begin{Highlighting}[]
 \KeywordTok{floor}\NormalTok{(t1}\OperatorTok{/}\NormalTok{t2)}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>      46       0      42}
+\CommentTok{#>      37     NaN      34}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1852,7 +1852,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.12    0.00    2.16}
+\CommentTok{#>    2.15    0.00    2.18}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -4081,23 +4081,6 @@ the
 sense} will make the properties much more apparent than any other
 framework.
 
-Functions in R are ``first class objects'', which means that they can be
-treated much like any other R object. Importantly,
-
-\begin{itemize}
-\item
-  Functions can be passed as arguments to other functions. This is very
-  handy for the various apply functions, like \texttt{lapply()} and
-  \texttt{sapply()}.
-\item
-  Functions can be nested, so that you can define a function inside of
-  another function
-\end{itemize}
-
-If you're familiar with common language like C, these features might
-appear a bit strange. However, they are really important in R and can be
-useful for data analysis.
-
 \begin{itemize}
 \tightlist
 \item
@@ -4509,6 +4492,23 @@ What do the following return?
 \section{\texorpdfstring{``First class
 objects''}{First class objects}}\label{first-class-objects}
 
+Functions in R are ``first class objects'', which means that they can be
+treated much like any other R object. Importantly,
+
+\begin{itemize}
+\item
+  Functions can be passed as arguments to other functions. This is very
+  handy for the various apply functions, like \texttt{lapply()} and
+  \texttt{sapply()}.
+\item
+  Functions can be nested, so that you can define a function inside of
+  another function
+\end{itemize}
+
+If you're familiar with common language like C, these features might
+appear a bit strange. However, they are really important in R and can be
+useful for data analysis.
+
 Since functions \textbf{ARE} objects you can pass functions as arguments
 and return functions as results.
 
@@ -4563,7 +4563,7 @@ parent function.
 \CommentTok{#>       # [}\AlertTok{TBD}\CommentTok{] checks on x}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x00000000088c3c30>}
+\CommentTok{#> <environment: 0x00000000092c7a70>}
 \KeywordTok{pow}\NormalTok{(}\DataTypeTok{x=}\DecValTok{4}\NormalTok{)       }\CommentTok{# Note: `pow` does not exist outside of the `make.power` function}
 \CommentTok{#> Error in pow(x = 4): could not find function "pow"}
 
@@ -4574,8 +4574,8 @@ parent function.
 \CommentTok{#> \{}
 \CommentTok{#>     x^n}
 \CommentTok{#> \}}
-\CommentTok{#> <bytecode: 0x0000000007276120>}
-\CommentTok{#> <environment: 0x0000000007d4e850>}
+\CommentTok{#> <bytecode: 0x0000000007c76270>}
+\CommentTok{#> <environment: 0x00000000072a2db0>}
 \CommentTok{#> }
 \CommentTok{#> $n}
 \CommentTok{#> [1] 3}
