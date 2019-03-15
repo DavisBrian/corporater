@@ -289,7 +289,7 @@ There are several ways to accomplish the above.  The following `stringr` functio
 1.  Create an error message for the above if they enter a year-quarter in which there is no data.
 
 ```{block2, type='rmdtip'}
-R has many functions to help with system files.  See the help for `dir()`, `list.files()`, `list.dirs()`, `file.exists()`, `basename()`, `dirname`, `tools::file_path_sans_ext()`, and many many more.
+R has many functions to help with system files.  See the help for `dir()`, `list.files()`, `list.dirs()`, `file.exists()`, `basename()`, `dirname()`, `tools::file_path_sans_ext()`, and many many more.
 ```
 
 **Year-Quarter**
@@ -300,3 +300,15 @@ R has many functions to help with system files.  See the help for `dir()`, `list
 1.  Create a function that does the inverse of the above.  Ex. "2017Q4" or "2017 Q4" becomes a numeric 20174.
 1.  Create function that takes a character year-quater (ex 2018Q3) and the quarter n-quarters before it.  Example two quarters previous to 2018Q3 is 2018Q1. Hint: Use your function from part 1 in conjuction with your function from the exercise in the **Function Basics** chapter.
 
+
+**Read function**
+
+(@) Create a function to make your column names syntatic.
+   + make column name lower case
+   + remove any leading non-alpha characters
+   + replace special characters and spaces with underscores;
+(@)  Modify your `read_*` function to:
+   + Default file name is the most recent file
+   + create syntatic column names
+   + create a complete 3 digit zip code (if your data has zip data)
+   + if any of your columns need string manipulation perform them.

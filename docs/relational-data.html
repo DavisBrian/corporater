@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Modern R in a Corporate Environment</title>
+  <title>8 Relational Data | Modern R in a Corporate Environment</title>
   <meta name="description" content="This is an original course for RADARS">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Modern R in a Corporate Environment" />
+  <meta property="og:title" content="8 Relational Data | Modern R in a Corporate Environment" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="DavisBrian/corporater" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Modern R in a Corporate Environment" />
+  <meta name="twitter:title" content="8 Relational Data | Modern R in a Corporate Environment" />
   
   <meta name="twitter:description" content="This is an original course for RADARS" />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="preamble-intro.html">
+<link rel="prev" href="strings.html">
+<link rel="next" href="function-basics.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -128,7 +127,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="good-practices.html"><a href="good-practices.html#coding-practices"><i class="fa fa-check"></i><b>2.2</b> Coding practices</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="good-practices.html"><a href="good-practices.html#variables"><i class="fa fa-check"></i><b>2.2.1</b> Variables</a></li>
-<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em></a></li>
+<li class="chapter" data-level="2.2.2" data-path="good-practices.html"><a href="good-practices.html#rule-of-threedry"><i class="fa fa-check"></i><b>2.2.2</b> <em>Rule of Three</em>[^DRY]</a></li>
 <li class="chapter" data-level="2.2.3" data-path="good-practices.html"><a href="good-practices.html#path-names"><i class="fa fa-check"></i><b>2.2.3</b> Path names</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="good-practices.html"><a href="good-practices.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
@@ -229,6 +228,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="8.2" data-path="relational-data.html"><a href="relational-data.html#filtering-joins"><i class="fa fa-check"></i><b>8.2</b> Filtering Joins</a></li>
 <li class="chapter" data-level="8.3" data-path="relational-data.html"><a href="relational-data.html#set-operations"><i class="fa fa-check"></i><b>8.3</b> Set Operations</a></li>
+<li class="chapter" data-level="8.4" data-path="relational-data.html"><a href="relational-data.html#exercises-5"><i class="fa fa-check"></i><b>8.4</b> Exercises</a></li>
 </ul></li>
 <li class="part"><span><b>IV Programming</b></span></li>
 <li class="chapter" data-level="9" data-path="function-basics.html"><a href="function-basics.html"><i class="fa fa-check"></i><b>9</b> Function Basics</a><ul>
@@ -240,7 +240,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.2" data-path="function-basics.html"><a href="function-basics.html#environments-scoping"><i class="fa fa-check"></i><b>9.2</b> Environments &amp; Scoping</a></li>
 <li class="chapter" data-level="9.3" data-path="function-basics.html"><a href="function-basics.html#first-class-objects"><i class="fa fa-check"></i><b>9.3</b> “First class objects”</a></li>
 <li class="chapter" data-level="9.4" data-path="function-basics.html"><a href="function-basics.html#best-practices"><i class="fa fa-check"></i><b>9.4</b> Best Practices</a></li>
-<li class="chapter" data-level="9.5" data-path="function-basics.html"><a href="function-basics.html#exercises-5"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
+<li class="chapter" data-level="9.5" data-path="function-basics.html"><a href="function-basics.html#exercises-6"><i class="fa fa-check"></i><b>9.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>10</b> R Markdown</a><ul>
 <li class="chapter" data-level="10.1" data-path="r-markdown.html"><a href="r-markdown.html#introduction"><i class="fa fa-check"></i><b>10.1</b> Introduction</a><ul>
@@ -291,21 +291,339 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Modern R in a Corporate Environment</h1>
-<h2 class="subtitle"><em>R course developed for the office</em></h2>
-<p class="author"><em>Brian Davis</em></p>
-<p class="date"><em>2019-03-06</em></p>
-</div>
-<div id="welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<blockquote>
-<p>Something that will make life easier in the long-run can be the most difficult thing to do today. For coders, prioritising the long term may involve an overhaul of current practice and the learning of a new skill.</p>
-</blockquote>
-<p>This is the course notes for our class. This course will teach you how to do data science with R. You’ll learn the basics of R and then we’ll go through <a href="http://r4ds.had.co.nz/index.html">R for Data Science</a> by Garrett Grolemund &amp; Hadley Wickham. You’ll learn how to get your data into R, get it into the most useful structure, transform it, visualize it and communicate out your results. We’ll mix in various topics from our current workload as well as some unique challenges of working in a corporate environment.</p>
-<p>Most of these are the skills that allow data science to happen, and here you will find the best practices for doing each of these things with R. You’ll learn how to use the grammar of graphics, literate programming, and reproducible research to save time and reduce errors.</p>
-<p>We will build the tools to make our work easier and more streamlined together.</p>
+<div id="relational-data" class="section level1">
+<h1><span class="header-section-number">8</span> Relational Data</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<p>Data analysis rarely involves only a single table of data. Typically you have multiple tables of data, which combined, answer the questions at hand. Collectively, multiple tables of data are called <strong>relational data</strong> because it is the relations, not just the individual data sets, that are important. Relations are <strong>always</strong> defined between a pair of tables. All other relations are built up from this simple idea. A <strong>key</strong> is a variable, or set of variables, that uniquely identifies an observation and links tables together.</p>
+<p>To work with relational data you need verbs that work with pairs of tables. There are three families of verbs designed to work with relational data:</p>
+<ul>
+<li><p><strong>Mutating joins</strong>, which add new variables to one data frame from matching observations in another.</p></li>
+<li><p><strong>Filtering joins</strong>, which filter observations from one data frame based on whether or not they match an observation in the other table.</p></li>
+<li><p><strong>Set operations</strong>, which treat observations as if they were set elements.</p></li>
+</ul>
+<p>The most common place to find relational data is in a <em>relational</em> database management system (or RDBMS), a term that encompasses almost all modern databases. If you’ve used a database before, you’ve almost certainly used SQL. A <strong>key</strong> is a variable, or set of variables, that uniquely identifies an observation.</p>
+<p><img src="images/relational/join-setup.png" width="118" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x
+<span class="co">#&gt; # A tibble: 3 x 2</span>
+<span class="co">#&gt;     key val_x</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1     1 x1   </span>
+<span class="co">#&gt; 2     2 x2   </span>
+<span class="co">#&gt; 3     3 x3</span>
+y
+<span class="co">#&gt; # A tibble: 3 x 2</span>
+<span class="co">#&gt;     key val_y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1     1 y1   </span>
+<span class="co">#&gt; 2     2 y2   </span>
+<span class="co">#&gt; 3     4 y3</span></code></pre></div>
+<div id="mutating-joins" class="section level2">
+<h2><span class="header-section-number">8.1</span> Mutating Joins</h2>
+<p>A mutating join allows you to combine variables from two tables. It first matches observations by their keys, then copies across variables from one table to the other. Like mutate(), the join functions add variables to the right, so if you have a lot of variables already, the new variables won’t get printed out.</p>
+<p><strong>Inner Joins</strong></p>
+<ul>
+<li><strong>inner join</strong> keeps all observations in common between x and y</li>
+</ul>
+<p><img src="images/relational/join-inner.png" width="338" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inner_join</span>(x, y)
+<span class="co">#&gt; Joining, by = &quot;key&quot;</span>
+<span class="co">#&gt; # A tibble: 2 x 3</span>
+<span class="co">#&gt;     key val_x val_y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1     1 x1    y1   </span>
+<span class="co">#&gt; 2     2 x2    y2</span></code></pre></div>
 
+<div class="rmdtip">
+By default the <strong>join</strong> functions will use all variables in common as the key. Best practice is to explicitly state the variables you wish to join by using the <code>by</code> parameter.
+</div>
+
+<p><strong>Outer Joins</strong></p>
+<ul>
+<li><strong>left join</strong> keeps all observations in x append columns from y</li>
+<li><strong>right join</strong> keeps all observations in y append columns from x</li>
+<li><strong>full join</strong> keeps all observations in x and y</li>
+</ul>
+<p><img src="images/relational/join-outer.png" width="355" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(x, y, <span class="dt">by =</span> <span class="st">&quot;key&quot;</span>)
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;     key val_x val_y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1     1 x1    y1   </span>
+<span class="co">#&gt; 2     2 x2    y2   </span>
+<span class="co">#&gt; 3     3 x3    &lt;NA&gt;</span>
+<span class="kw">right_join</span>(x, y, <span class="dt">by =</span> <span class="st">&quot;key&quot;</span>)
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;     key val_x val_y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1     1 x1    y1   </span>
+<span class="co">#&gt; 2     2 x2    y2   </span>
+<span class="co">#&gt; 3     4 &lt;NA&gt;  y3</span>
+<span class="kw">full_join</span>(x, y, <span class="dt">by =</span> <span class="st">&quot;key&quot;</span>)
+<span class="co">#&gt; # A tibble: 4 x 3</span>
+<span class="co">#&gt;     key val_x val_y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1     1 x1    y1   </span>
+<span class="co">#&gt; 2     2 x2    y2   </span>
+<span class="co">#&gt; 3     3 x3    &lt;NA&gt; </span>
+<span class="co">#&gt; 4     4 &lt;NA&gt;  y3</span></code></pre></div>
+<div class="rmdnote">
+<p>
+<strong>left_join</strong> and <strong>right_join</strong> are interchangeable with the arguments reversed. The only difference is the order of the columns in the resulting data frame.
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(x, y, <span class="dt">by =</span> <span class="st">&quot;key&quot;</span>)
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;     key val_x val_y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1     1 x1    y1   </span>
+<span class="co">#&gt; 2     2 x2    y2   </span>
+<span class="co">#&gt; 3     3 x3    &lt;NA&gt;</span>
+<span class="kw">right_join</span>(y, x, <span class="dt">by =</span> <span class="st">&quot;key&quot;</span>)
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;     key val_y val_x</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;</span>
+<span class="co">#&gt; 1     1 y1    x1   </span>
+<span class="co">#&gt; 2     2 y2    x2   </span>
+<span class="co">#&gt; 3     3 &lt;NA&gt;  x3</span></code></pre></div>
+<div id="duplicate-keys" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> Duplicate keys</h3>
+<p>There are many cases where a single key does not uniquely identify an observation.</p>
+<p><strong>One-to-Many</strong> <img src="images/relational/join-one-to-many.png" width="279" style="display: block; margin: auto;" /></p>
+<p><strong>Many-to-Many</strong> <img src="images/relational/join-many-to-many.png" width="342" style="display: block; margin: auto;" /></p>
+</div>
+<div id="multi-column-keys" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> Multi-Column Keys</h3>
+<p>By default all variables that are in both tables. To specify a subset of variables for the key use the <code>by</code> parameter.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>id, <span class="op">~</span>yq, <span class="op">~</span>question,
+     <span class="dv">1</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
+     <span class="dv">1</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;No&quot;</span>,
+     <span class="dv">2</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Yes&quot;</span>
+)
+
+y &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>id, <span class="op">~</span>yq, <span class="op">~</span>question,
+     <span class="dv">1</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Method1&quot;</span>,
+     <span class="dv">2</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Method2&quot;</span>,
+     <span class="dv">2</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Method2&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Method2&quot;</span>,
+     <span class="dv">4</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Method1&quot;</span>
+)
+
+<span class="co"># full</span>
+<span class="kw">full_join</span>(x, y)                          <span class="co"># probably not what we want</span>
+<span class="co">#&gt; Joining, by = c(&quot;id&quot;, &quot;yq&quot;, &quot;question&quot;)</span>
+<span class="co">#&gt; # A tibble: 10 x 3</span>
+<span class="co">#&gt;      id yq     question</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   </span>
+<span class="co">#&gt; 1     1 2018Q1 Yes     </span>
+<span class="co">#&gt; 2     1 2018Q2 No      </span>
+<span class="co">#&gt; 3     2 2018Q1 Yes     </span>
+<span class="co">#&gt; 4     3 2018Q1 Yes     </span>
+<span class="co">#&gt; 5     3 2018Q2 Yes     </span>
+<span class="co">#&gt; 6     1 2018Q2 Method1 </span>
+<span class="co">#&gt; # ... with 4 more rows</span>
+<span class="kw">full_join</span>(x, y, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;yq&quot;</span>))
+<span class="co">#&gt; # A tibble: 7 x 4</span>
+<span class="co">#&gt;      id yq     question.x question.y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;     </span>
+<span class="co">#&gt; 1     1 2018Q1 Yes        &lt;NA&gt;      </span>
+<span class="co">#&gt; 2     1 2018Q2 No         Method1   </span>
+<span class="co">#&gt; 3     2 2018Q1 Yes        Method2   </span>
+<span class="co">#&gt; 4     3 2018Q1 Yes        &lt;NA&gt;      </span>
+<span class="co">#&gt; 5     3 2018Q2 Yes        Method2   </span>
+<span class="co">#&gt; 6     2 2018Q2 &lt;NA&gt;       Method2   </span>
+<span class="co">#&gt; # ... with 1 more row</span></code></pre></div>
+</div>
+<div id="duplicate-non-key-columns" class="section level3">
+<h3><span class="header-section-number">8.1.3</span> Duplicate Non-Key Columns</h3>
+<p>By default if there are variables in both data frames that are not used as a key the common variables names will be appended with <code>&quot;.x&quot;</code> and <code>&quot;.y&quot;</code> corresponding the the first and second argument. If you want to change these use the <code>suffix</code> parameter.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(x, y, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;yq&quot;</span>), <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_1&quot;</span>, <span class="st">&quot;_2&quot;</span>))
+<span class="co">#&gt; # A tibble: 7 x 4</span>
+<span class="co">#&gt;      id yq     question_1 question_2</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;     </span>
+<span class="co">#&gt; 1     1 2018Q1 Yes        &lt;NA&gt;      </span>
+<span class="co">#&gt; 2     1 2018Q2 No         Method1   </span>
+<span class="co">#&gt; 3     2 2018Q1 Yes        Method2   </span>
+<span class="co">#&gt; 4     3 2018Q1 Yes        &lt;NA&gt;      </span>
+<span class="co">#&gt; 5     3 2018Q2 Yes        Method2   </span>
+<span class="co">#&gt; 6     2 2018Q2 &lt;NA&gt;       Method2   </span>
+<span class="co">#&gt; # ... with 1 more row</span></code></pre></div>
+</div>
+<div id="different-key-column-names" class="section level3">
+<h3><span class="header-section-number">8.1.4</span> Different Key Column Names</h3>
+<p>A common occurrence is for the tables you wish to join to have different variable names. You can either change the variable names so the do match with <code>rename()</code> or you can use the <code>by</code> parameter to indicate which variable name in x matches the variable name in y.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>id, <span class="op">~</span>yq, <span class="op">~</span>question,
+     <span class="dv">1</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
+     <span class="dv">1</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;No&quot;</span>,
+     <span class="dv">2</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Yes&quot;</span>
+)
+
+y2 &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>id, <span class="op">~</span>yearquarter, <span class="op">~</span>question,
+     <span class="dv">1</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Method1&quot;</span>,
+     <span class="dv">2</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Method2&quot;</span>,
+     <span class="dv">2</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Method2&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Method2&quot;</span>,
+     <span class="dv">4</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Method1&quot;</span>
+)
+
+<span class="co"># inner</span>
+<span class="kw">full_join</span>(x, y2, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;yq&quot;</span> =<span class="st"> &quot;yearquarter&quot;</span>), <span class="dt">suffix =</span> <span class="kw">c</span>(<span class="st">&quot;_1&quot;</span>, <span class="st">&quot;_2&quot;</span>))
+<span class="co">#&gt; # A tibble: 7 x 4</span>
+<span class="co">#&gt;      id yq     question_1 question_2</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;     </span>
+<span class="co">#&gt; 1     1 2018Q1 Yes        &lt;NA&gt;      </span>
+<span class="co">#&gt; 2     1 2018Q2 No         Method1   </span>
+<span class="co">#&gt; 3     2 2018Q1 Yes        Method2   </span>
+<span class="co">#&gt; 4     3 2018Q1 Yes        &lt;NA&gt;      </span>
+<span class="co">#&gt; 5     3 2018Q2 Yes        Method2   </span>
+<span class="co">#&gt; 6     2 2018Q2 &lt;NA&gt;       Method2   </span>
+<span class="co">#&gt; # ... with 1 more row</span></code></pre></div>
+</div>
+</div>
+<div id="filtering-joins" class="section level2">
+<h2><span class="header-section-number">8.2</span> Filtering Joins</h2>
+<p>Filtering joins match observations in the same way as mutating joins, but affect the observations, not the variables. There are two types:</p>
+<ul>
+<li><strong>semi join</strong> keeps all observations in x that have a match in y</li>
+<li><strong>anti join</strong> drops all observations in x that have a match in y</li>
+</ul>
+<p><img src="images/relational/join-semi.png" width="307" style="display: block; margin: auto;" /> <img src="images/relational/join-anti.png" width="307" style="display: block; margin: auto;" /></p>
+<p><strong>Semi-joins</strong> are useful for matching filtered summary tables back to the original rows. The inverse of a <strong>semi-join</strong> is an <strong>anti-join</strong>. An <strong>anti-join</strong> keeps the rows that don’t have a match. <strong>Anti-joins</strong> are useful for diagnosing join mismatches.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">orig &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>id, <span class="op">~</span>yq, <span class="op">~</span>question,
+     <span class="dv">1</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
+     <span class="dv">1</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;No&quot;</span>,
+     <span class="dv">2</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Yes&quot;</span>
+)
+
+val &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>id, <span class="op">~</span>yq, <span class="op">~</span>question,
+     <span class="dv">1</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;No&quot;</span>,
+     <span class="dv">1</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;No&quot;</span>,
+     <span class="dv">2</span>, <span class="st">&quot;2018Q1&quot;</span>, <span class="st">&quot;Yes&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q3&quot;</span>, <span class="st">&quot;No&quot;</span>,
+     <span class="dv">3</span>, <span class="st">&quot;2018Q2&quot;</span>, <span class="st">&quot;Yes&quot;</span>
+)
+
+<span class="kw">semi_join</span>(orig, val, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;yq&quot;</span>, <span class="st">&quot;question&quot;</span>))
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;      id yq     question</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   </span>
+<span class="co">#&gt; 1     1 2018Q2 No      </span>
+<span class="co">#&gt; 2     2 2018Q1 Yes     </span>
+<span class="co">#&gt; 3     3 2018Q2 Yes</span>
+<span class="kw">anti_join</span>(orig, val, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;yq&quot;</span>, <span class="st">&quot;question&quot;</span>))
+<span class="co">#&gt; # A tibble: 2 x 3</span>
+<span class="co">#&gt;      id yq     question</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   </span>
+<span class="co">#&gt; 1     1 2018Q1 Yes     </span>
+<span class="co">#&gt; 2     3 2018Q1 Yes</span></code></pre></div>
+</div>
+<div id="set-operations" class="section level2">
+<h2><span class="header-section-number">8.3</span> Set Operations</h2>
+<p>The final type of two-table verb are the set operations. These operations work with a complete row, comparing the values of every variable. These expect the <code>x</code> and <code>y</code> inputs to have the same variables, in the same order, and treat the observations like sets:</p>
+<ul>
+<li><code>intersect(x, y)</code>: return only observations in both <code>x</code> and <code>y</code>.</li>
+<li><code>union(x, y)</code>: return unique observations in <code>x</code> and <code>y</code>.</li>
+<li><code>setdiff(x, y)</code>: return observations in <code>x</code>, but not in <code>y</code>.</li>
+</ul>
+<p>Given this simple data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>x, <span class="op">~</span>y,
+   <span class="dv">1</span>,  <span class="dv">1</span>,
+   <span class="dv">2</span>,  <span class="dv">1</span>
+)
+df2 &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>x, <span class="op">~</span>y,
+   <span class="dv">1</span>,  <span class="dv">1</span>,
+   <span class="dv">1</span>,  <span class="dv">2</span>
+)</code></pre></div>
+<p>The four possibilities are:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">intersect</span>(df1, df2)
+<span class="co">#&gt; # A tibble: 1 x 2</span>
+<span class="co">#&gt;       x     y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1     1</span>
+
+<span class="co"># Note that we get 3 rows, not 4</span>
+<span class="kw">union</span>(df1, df2)
+<span class="co">#&gt; # A tibble: 3 x 2</span>
+<span class="co">#&gt;       x     y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1     2</span>
+<span class="co">#&gt; 2     2     1</span>
+<span class="co">#&gt; 3     1     1</span>
+
+<span class="kw">setdiff</span>(df1, df2)
+<span class="co">#&gt; # A tibble: 1 x 2</span>
+<span class="co">#&gt;       x     y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     2     1</span>
+
+<span class="kw">setdiff</span>(df2, df1)
+<span class="co">#&gt; # A tibble: 1 x 2</span>
+<span class="co">#&gt;       x     y</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1     2</span></code></pre></div>
+</div>
+<div id="exercises-5" class="section level2">
+<h2><span class="header-section-number">8.4</span> Exercises</h2>
+<ol style="list-style-type: decimal">
+<li>Continue the exercises from last week. (See email)</li>
+<li>We have a survey in which the survey, questions, answers, and respondents demographics are stored in separate data sets (see below code). Generate a single analysis data set which contains every persons, with their demographic information, and their response to all questions. If they do not have a response to a question mark it as “No Response”.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subjects &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>id, <span class="op">~</span>gender, <span class="op">~</span>age,
+  101L, <span class="st">&quot;M&quot;</span>, 25L,
+  102L, <span class="st">&quot;F&quot;</span>, 40L,
+  103L, <span class="st">&quot;F&quot;</span>, 18L,
+  104L, <span class="st">&quot;M&quot;</span>, 57L
+)
+
+answers &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>id, <span class="op">~</span>qid, <span class="op">~</span>answer,
+  101L,  1L, <span class="st">&quot;Yes&quot;</span>,
+  101L,  2L, <span class="st">&quot;No&quot;</span>,
+  102L,  1L, <span class="st">&quot;No&quot;</span>,
+  102L,  2L, <span class="st">&quot;Yes&quot;</span>,
+  102L,  4L, <span class="st">&quot;Yes&quot;</span>,
+  103L,  1L, <span class="st">&quot;No&quot;</span>,
+  103L,  2L, <span class="st">&quot;No&quot;</span>,
+  103L,  3L, <span class="st">&quot;No&quot;</span>
+)
+
+survey &lt;-<span class="st"> </span><span class="kw">tribble</span>(
+  <span class="op">~</span>qid, <span class="op">~</span>question,
+  1L  , <span class="st">&quot;Have you ever used Product A?&quot;</span>,
+  2L  , <span class="st">&quot;Have you ever used Product B?&quot;</span>,
+  3L  , <span class="st">&quot;Have you ever used Product C?&quot;</span>,
+  4L  , <span class="st">&quot;Have you ever used Product D?&quot;</span>
+)</code></pre></div>
+<p>The resulting data set should look like</p>
+<pre><code>#&gt; # A tibble: 16 x 6
+#&gt;      id   qid question                      answer      gender   age
+#&gt;   &lt;int&gt; &lt;int&gt; &lt;chr&gt;                         &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+#&gt; 1   101     1 Have you ever used Product A? Yes         M         25
+#&gt; 2   101     2 Have you ever used Product B? No          M         25
+#&gt; 3   101     3 Have you ever used Product C? No Response M         25
+#&gt; 4   101     4 Have you ever used Product D? No Response M         25
+#&gt; 5   102     1 Have you ever used Product A? No          F         40
+#&gt; 6   102     2 Have you ever used Product B? Yes         F         40
+#&gt; # ... with 10 more rows</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>From the above data set what is the mean age of those answering “Yes”, “No”, “No Response”, for each equstion? Repeat by gender</li>
+</ol>
+
+</div>
 </div>
 
 
@@ -315,8 +633,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-
-<a href="preamble-intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="strings.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="function-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -336,7 +654,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/DavisBrian/corporater/edit/master/index.Rmd",
+"link": "https://github.com/DavisBrian/corporater/edit/master/data-relational.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -352,19 +670,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

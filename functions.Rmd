@@ -1,4 +1,4 @@
-# (PART) Beyond Basics {-}
+# (PART) Programming {-}
 
 # Function Basics
 
@@ -10,7 +10,7 @@
 
 ## Introduction to Functions
 
-Functions are an central part of robust R programming and we will spend a significant amount of time writing functions.  Think of functions in the [mathematical sense](https://en.wikipedia.org/wiki/Function_(mathematics)) will make the properties much more apparent than any other framework. 
+Functions are an central part of robust R programming and we will spend a significant amount of time writing functions.  Thinking of functions in the [mathematical sense](https://en.wikipedia.org/wiki/Function_(mathematics)) will make the properties more apparent than any other framework. 
 
 - Functions are a means of **abstraction**. A concept/computation is
   encapsulated/isolated from the rest with a function.
@@ -23,32 +23,6 @@ Functions are an central part of robust R programming and we will spend a signif
 - **Do not use global variables**. Everything the function needs is
   being passed as an argument. Function must be **self-contained**.
 - Function streamline code and process
-
-Advice from the [R Inferno](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf):
-
-Make your functions as simple as possible. Simple has many advantages:
-
-- Simple functions are likely to be human efficient: they will be easy
-  to understand and to modify.
-- Simple functions are likely to be computer efficient.
-- Simple functions are less likely to be buggy, and bugs will be
-  easier to fix.
-- (Perhaps ironically) simple functions may be more general—thinking
-  about the heart of the matter often broadens the application.
-
-Functions can be
-
-1. Correct.
-2. An error occurs that is clearly identified.
-3. An obscure error occurs.
-4. An incorrect value is returned.
-
-We like __category 1__. __Category 2__ is the right behavior if the inputs do not make sense, but not if the inputs are sensible. __Category 3__ is an unpleasant place for your users, and possibly for you if the users have access to you.  __Category 4__ is by far the worst place to be - the user has no reason to believe that anything is wrong. Steer clear of category 4.
-
-```{block type='rmdimportant'}
-Software testing is important, but, in part because it is frustrating and boring, many of us avoid it. 'testthat' is a testing framework for R that is easy learn and use, and integrates with your existing 'workflow'.
-```
-
 
 ### Your First Function
 
@@ -101,10 +75,13 @@ myadd2(y = 1)
 myadd2(x = 1, y = 1)
 ```
 
-By default the last line of the function is returned.  Thus, there is no reason to explicitly call `return`, unless you are returning from the function early.  Inside functions use `stop` to return error messages, `warning` to return warning messages, and `message` to print a message to the console.
+By default the last line of the function is returned.  Thus, there is no reason to explicitly call `return`, unless you are returning from the function early.  Inside functions use `stop` to return error messages, `warning` to return warning messages, and `message` to print a message to the console. `stopifnot` is useful for argument checking.   It checks that each argument is TRUE, and produces a generic error message if not.
 
 ```{r warning=TRUE, error=TRUE}
 f <- function(age) {
+  
+  stopifnot(is.numeric(age), length(age) == 1L)
+  
   if (age < 0) {
     stop("age must be a positive number")
   }
@@ -116,6 +93,7 @@ f <- function(age) {
   message(paste0("Your person is ", age, " years old"))
 }
 
+f("A")
 f(-10)
 f(10)
 f(30)
@@ -288,6 +266,46 @@ square(8)
 squareroot(9)
 ```
 
+## Best Practices
+
+Writing functions is an iterative process, they will not be perfect on your first try.  As with most things the more you practice the closer to the final version you will get on your first pass.  
+
+
+[Advice from the R Inferno](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf):
+
+Make your functions as simple as possible. Simple has many advantages:
+
+- Simple functions are likely to be human efficient: they will be easy
+  to understand and to modify.
+- Simple functions are likely to be computer efficient.
+- Simple functions are less likely to be buggy, and bugs will be
+  easier to fix.
+- (Perhaps ironically) simple functions may be more general—thinking
+  about the heart of the matter often broadens the application.
+  
+
+**Tips for writing "good" functions**
+
+- Get the correct answer first, then worry about efficiency or speed.
+- Write test cases and save the script!
+- Don't be afraid of very short and simple functions.  They can greatly add to the readability of your code.
+- What is a good name for the function? Since functions act on objects good function names tend to be verbs. Think about the auto-complete feature in RStudio.  
+- What are the inputs to the function?
+- What should the user (not) be able to control?
+- Error check user input, but be reasonable.  
+- Give useful and clear error messages.
+- Use sensible defaults to arguments.
+- Reduce duplicate code as much as possible.
+- Where are changes likely to occur and is there a way to abstract that piece away?
+- Think about corner cases, missing values, empty arguments.
+- Think about piping.
+- Write test cases and save the script!
+
+
+```{block type='rmdimportant'}
+Software testing is important, but, in part because it is frustrating and boring, many of us avoid it. 'testthat' is a testing framework for R that is easy learn and use, and integrates with your existing 'workflow'.
+```
+
 
 ## Exercises
 
@@ -295,7 +313,7 @@ squareroot(9)
 1. Come up with 5 functions (you don't have program them) that will operate on your data. (Ex. Create a demographics table)
 1. Create a `read_*` function that
   - reads in the data file
-  - converts all columns to the appropriate data types
+  - converts columns to the appropriate data types.  
   - “Tidy” your data (if appropriate)  
-The first argument to your read function should be the file name.  Are there additional parameters that are needed?  Think beyond the Subscriber Report, what are other things you typically do upon first reading in a data file.
+The first argument to your read function should be the file name to read in.  Are there additional parameters that are needed?  Think beyond the Subscriber Report, what are other things you typically do upon first reading in a data file.
 

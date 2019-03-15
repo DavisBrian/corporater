@@ -5,7 +5,7 @@ library(tidyverse)
 ```
 
 
-Data analysis rarely involves only a single table of data. Typically you have multiple tables of data, which combined, answer the questions at hand. Collectively, multiple tables of data are called __relational data__ because it is the relations, not just the individual datasets, that are important. Relations are **always** defined between a pair of tables. All other relations are built up from this simple idea. A **key** is a variable, or set of variables, that uniquely identifies an observation and links tables together.
+Data analysis rarely involves only a single table of data. Typically you have multiple tables of data, which combined, answer the questions at hand. Collectively, multiple tables of data are called __relational data__ because it is the relations, not just the individual data sets, that are important. Relations are **always** defined between a pair of tables. All other relations are built up from this simple idea. A **key** is a variable, or set of variables, that uniquely identifies an observation and links tables together.
 
 To work with relational data you need verbs that work with pairs of tables. There are three families of verbs designed to work with relational data:
 
@@ -238,3 +238,51 @@ setdiff(df1, df2)
 
 setdiff(df2, df1)
 ```
+
+
+## Exercises
+
+1. Continue the exercises from last week. (See email)
+1. We have a survey in which the survey, questions, answers, and respondents demographics are stored in separate data sets (see below code).  Generate a single analysis data set which contains every persons, with their demographic information, and their response to all questions.  If they do not have a response to a question mark it as "No Response".
+
+```{r}
+subjects <- tribble(
+  ~id, ~gender, ~age,
+  101L, "M", 25L,
+  102L, "F", 40L,
+  103L, "F", 18L,
+  104L, "M", 57L
+)
+
+answers <- tribble(
+  ~id, ~qid, ~answer,
+  101L,  1L, "Yes",
+  101L,  2L, "No",
+  102L,  1L, "No",
+  102L,  2L, "Yes",
+  102L,  4L, "Yes",
+  103L,  1L, "No",
+  103L,  2L, "No",
+  103L,  3L, "No"
+)
+
+survey <- tribble(
+  ~qid, ~question,
+  1L  , "Have you ever used Product A?",
+  2L  , "Have you ever used Product B?",
+  3L  , "Have you ever used Product C?",
+  4L  , "Have you ever used Product D?"
+)
+```
+
+The resulting data set should look like
+
+```{r echo=FALSE}
+crossing(id = subjects$id, qid = survey$qid) %>%
+  left_join(., survey, by = "qid") %>%
+  left_join(., answers, by = c("id", "qid")) %>%
+  mutate(answer = replace_na(answer, "No Response")) %>%
+  inner_join(., subjects, by = "id")
+```
+
+3.  From the above data set what is the mean age of those answering "Yes", "No", "No Response", for each equstion?  Repeat by gender

@@ -126,7 +126,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-01-15}
+    \date{2019-03-06}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1761,7 +1761,7 @@ That's a long run time (and bad estimate). Let's vectorize it.
 \NormalTok{\}}
 \NormalTok{(t2 <-}\StringTok{ }\KeywordTok{system.time}\NormalTok{(pi_est_vect <-}\StringTok{ }\KeywordTok{pi_vect}\NormalTok{(N)))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    0.10    0.00    0.11}
+\CommentTok{#>    0.10    0.01    0.18}
 \NormalTok{pi_est_vect}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -1773,7 +1773,7 @@ The speed up from vectorization is impressive.
 \begin{Highlighting}[]
 \KeywordTok{floor}\NormalTok{(t1}\OperatorTok{/}\NormalTok{t2)}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>      37     NaN      34}
+\CommentTok{#>      37       0      21}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1852,7 +1852,7 @@ The straightforward implementation using an R loop would look like this:
 \NormalTok{N <-}\StringTok{ }\FloatTok{1e7}
 \KeywordTok{system.time}\NormalTok{(pi_est <-}\StringTok{ }\KeywordTok{GL_naive}\NormalTok{(N))}
 \CommentTok{#>    user  system elapsed }
-\CommentTok{#>    2.15    0.00    2.18}
+\CommentTok{#>    2.93    0.02    3.01}
 \NormalTok{pi_est}
 \CommentTok{#> [1] 3.14}
 \end{Highlighting}
@@ -2728,7 +2728,8 @@ variable stored in the cell values.
 
 To combine the tidied versions of \texttt{table4a} and \texttt{table4b}
 into a single tibble, we need to use \texttt{dplyr::left\_join()}, which
-you'll learn about in {[}relational data{]}.
+you'll learn about in \protect\hyperlink{relational-data}{relational
+data}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4033,7 +4034,7 @@ may be other functions which are useful.
 \BeginKnitrBlock{rmdtip}
 R has many functions to help with system files. See the help for
 \texttt{dir()}, \texttt{list.files()}, \texttt{list.dirs()},
-\texttt{file.exists()}, \texttt{basename()}, \texttt{dirname},
+\texttt{file.exists()}, \texttt{basename()}, \texttt{dirname()},
 \texttt{tools::file\_path\_sans\_ext()}, and many many more.
 \EndKnitrBlock{rmdtip}
 
@@ -4060,7 +4061,469 @@ R has many functions to help with system files. See the help for
   function from the exercise in the \textbf{Function Basics} chapter.
 \end{enumerate}
 
-\part{Beyond Basics}\label{part-beyond-basics}
+\textbf{Read function}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  Create a function to make your column names syntatic.
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  make column name lower case
+\item
+  remove any leading non-alpha characters
+\item
+  replace special characters and spaces with underscores;
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Modify your \texttt{read\_*} function to:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Default file name is the most recent file
+\item
+  create syntatic column names
+\item
+  create a complete 3 digit zip code (if your data has zip data)
+\item
+  if any of your columns need string manipulation perform them.
+\end{itemize}
+
+\hypertarget{relational-data}{\chapter{Relational
+Data}\label{relational-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+Data analysis rarely involves only a single table of data. Typically you
+have multiple tables of data, which combined, answer the questions at
+hand. Collectively, multiple tables of data are called
+\textbf{relational data} because it is the relations, not just the
+individual datasets, that are important. Relations are \textbf{always}
+defined between a pair of tables. All other relations are built up from
+this simple idea. A \textbf{key} is a variable, or set of variables,
+that uniquely identifies an observation and links tables together.
+
+To work with relational data you need verbs that work with pairs of
+tables. There are three families of verbs designed to work with
+relational data:
+
+\begin{itemize}
+\item
+  \textbf{Mutating joins}, which add new variables to one data frame
+  from matching observations in another.
+\item
+  \textbf{Filtering joins}, which filter observations from one data
+  frame based on whether or not they match an observation in the other
+  table.
+\item
+  \textbf{Set operations}, which treat observations as if they were set
+  elements.
+\end{itemize}
+
+The most common place to find relational data is in a \emph{relational}
+database management system (or RDBMS), a term that encompasses almost
+all modern databases. If you've used a database before, you've almost
+certainly used SQL. A \textbf{key} is a variable, or set of variables,
+that uniquely identifies an observation.
+
+\begin{center}\includegraphics[width=3.28in]{images/relational/join-setup} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}
+\CommentTok{#> # A tibble: 3 x 2}
+\CommentTok{#>     key val_x}
+\CommentTok{#>   <dbl> <chr>}
+\CommentTok{#> 1     1 x1   }
+\CommentTok{#> 2     2 x2   }
+\CommentTok{#> 3     3 x3}
+\NormalTok{y}
+\CommentTok{#> # A tibble: 3 x 2}
+\CommentTok{#>     key val_y}
+\CommentTok{#>   <dbl> <chr>}
+\CommentTok{#> 1     1 y1   }
+\CommentTok{#> 2     2 y2   }
+\CommentTok{#> 3     4 y3}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Mutating Joins}\label{mutating-joins}
+
+A mutating join allows you to combine variables from two tables. It
+first matches observations by their keys, then copies across variables
+from one table to the other. Like mutate(), the join functions add
+variables to the right, so if you have a lot of variables already, the
+new variables won't get printed out.
+
+\textbf{Inner Joins}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{inner join} keeps all observations in common between x and y
+\end{itemize}
+
+\begin{center}\includegraphics[width=9.39in]{images/relational/join-inner} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{inner_join}\NormalTok{(x, y)}
+\CommentTok{#> Joining, by = "key"}
+\CommentTok{#> # A tibble: 2 x 3}
+\CommentTok{#>     key val_x val_y}
+\CommentTok{#>   <dbl> <chr> <chr>}
+\CommentTok{#> 1     1 x1    y1   }
+\CommentTok{#> 2     2 x2    y2}
+\end{Highlighting}
+\end{Shaded}
+
+\BeginKnitrBlock{rmdtip}
+By default the \textbf{join} functions will use all variables in common
+as the key. Best practice is to explicitly state the variables you wish
+to join by using the \texttt{by} parameter.
+\EndKnitrBlock{rmdtip}
+
+\textbf{Outer Joins}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{left join} keeps all observations in x append columns from y
+\item
+  \textbf{right join} keeps all observations in y append columns from x
+\item
+  \textbf{full join} keeps all observations in x and y
+\end{itemize}
+
+\begin{center}\includegraphics[width=9.86in]{images/relational/join-outer} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{left_join}\NormalTok{(x, y, }\DataTypeTok{by =} \StringTok{"key"}\NormalTok{)}
+\CommentTok{#> # A tibble: 3 x 3}
+\CommentTok{#>     key val_x val_y}
+\CommentTok{#>   <dbl> <chr> <chr>}
+\CommentTok{#> 1     1 x1    y1   }
+\CommentTok{#> 2     2 x2    y2   }
+\CommentTok{#> 3     3 x3    <NA>}
+\KeywordTok{right_join}\NormalTok{(x, y, }\DataTypeTok{by =} \StringTok{"key"}\NormalTok{)}
+\CommentTok{#> # A tibble: 3 x 3}
+\CommentTok{#>     key val_x val_y}
+\CommentTok{#>   <dbl> <chr> <chr>}
+\CommentTok{#> 1     1 x1    y1   }
+\CommentTok{#> 2     2 x2    y2   }
+\CommentTok{#> 3     4 <NA>  y3}
+\KeywordTok{full_join}\NormalTok{(x, y, }\DataTypeTok{by =} \StringTok{"key"}\NormalTok{)}
+\CommentTok{#> # A tibble: 4 x 3}
+\CommentTok{#>     key val_x val_y}
+\CommentTok{#>   <dbl> <chr> <chr>}
+\CommentTok{#> 1     1 x1    y1   }
+\CommentTok{#> 2     2 x2    y2   }
+\CommentTok{#> 3     3 x3    <NA> }
+\CommentTok{#> 4     4 <NA>  y3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{rmdnote}
+\textbf{left\_join} and \textbf{right\_join} are interchangeable with
+the arguments reversed. The only difference is the order of the columns
+in the resulting data frame.
+\end{rmdnote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{left_join}\NormalTok{(x, y, }\DataTypeTok{by =} \StringTok{"key"}\NormalTok{)}
+\CommentTok{#> # A tibble: 3 x 3}
+\CommentTok{#>     key val_x val_y}
+\CommentTok{#>   <dbl> <chr> <chr>}
+\CommentTok{#> 1     1 x1    y1   }
+\CommentTok{#> 2     2 x2    y2   }
+\CommentTok{#> 3     3 x3    <NA>}
+\KeywordTok{right_join}\NormalTok{(y, x, }\DataTypeTok{by =} \StringTok{"key"}\NormalTok{)}
+\CommentTok{#> # A tibble: 3 x 3}
+\CommentTok{#>     key val_y val_x}
+\CommentTok{#>   <dbl> <chr> <chr>}
+\CommentTok{#> 1     1 y1    x1   }
+\CommentTok{#> 2     2 y2    x2   }
+\CommentTok{#> 3     3 <NA>  x3}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Duplicate keys}\label{duplicate-keys}
+
+There are many cases where a single key does not uniquely identify an
+observation.
+
+\textbf{One-to-Many}
+
+\begin{center}\includegraphics[width=7.75in]{images/relational/join-one-to-many} \end{center}
+
+\textbf{Many-to-Many}
+
+\begin{center}\includegraphics[width=9.51in]{images/relational/join-many-to-many} \end{center}
+
+\subsection{Multi-Column Keys}\label{multi-column-keys}
+
+By default all variables that are in both tables. To specify a subset of
+variables for the key use the \texttt{by} parameter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{id, }\OperatorTok{~}\NormalTok{yq, }\OperatorTok{~}\NormalTok{question,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"No"}\NormalTok{,}
+     \DecValTok{2}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Yes"}
+\NormalTok{)}
+
+\NormalTok{y <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{id, }\OperatorTok{~}\NormalTok{yq, }\OperatorTok{~}\NormalTok{question,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Method1"}\NormalTok{,}
+     \DecValTok{2}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Method2"}\NormalTok{,}
+     \DecValTok{2}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Method2"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Method2"}\NormalTok{,}
+     \DecValTok{4}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Method1"}
+\NormalTok{)}
+
+\CommentTok{# full}
+\KeywordTok{full_join}\NormalTok{(x, y)                          }\CommentTok{# probably not what we want}
+\CommentTok{#> Joining, by = c("id", "yq", "question")}
+\CommentTok{#> # A tibble: 10 x 3}
+\CommentTok{#>      id yq     question}
+\CommentTok{#>   <dbl> <chr>  <chr>   }
+\CommentTok{#> 1     1 2018Q1 Yes     }
+\CommentTok{#> 2     1 2018Q2 No      }
+\CommentTok{#> 3     2 2018Q1 Yes     }
+\CommentTok{#> 4     3 2018Q1 Yes     }
+\CommentTok{#> 5     3 2018Q2 Yes     }
+\CommentTok{#> 6     1 2018Q2 Method1 }
+\CommentTok{#> # ... with 4 more rows}
+\KeywordTok{full_join}\NormalTok{(x, y, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"yq"}\NormalTok{))}
+\CommentTok{#> # A tibble: 7 x 4}
+\CommentTok{#>      id yq     question.x question.y}
+\CommentTok{#>   <dbl> <chr>  <chr>      <chr>     }
+\CommentTok{#> 1     1 2018Q1 Yes        <NA>      }
+\CommentTok{#> 2     1 2018Q2 No         Method1   }
+\CommentTok{#> 3     2 2018Q1 Yes        Method2   }
+\CommentTok{#> 4     3 2018Q1 Yes        <NA>      }
+\CommentTok{#> 5     3 2018Q2 Yes        Method2   }
+\CommentTok{#> 6     2 2018Q2 <NA>       Method2   }
+\CommentTok{#> # ... with 1 more row}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Duplicate Non-Key Columns}\label{duplicate-non-key-columns}
+
+By default if there are variables in both data frames that are not used
+as a key the common variables names will be appended with \texttt{".x"}
+and \texttt{".y"} corresponding the the first and second argument. If
+you want to change these use the \texttt{suffix} parameter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{full_join}\NormalTok{(x, y, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"yq"}\NormalTok{), }\DataTypeTok{suffix =} \KeywordTok{c}\NormalTok{(}\StringTok{"_1"}\NormalTok{, }\StringTok{"_2"}\NormalTok{))}
+\CommentTok{#> # A tibble: 7 x 4}
+\CommentTok{#>      id yq     question_1 question_2}
+\CommentTok{#>   <dbl> <chr>  <chr>      <chr>     }
+\CommentTok{#> 1     1 2018Q1 Yes        <NA>      }
+\CommentTok{#> 2     1 2018Q2 No         Method1   }
+\CommentTok{#> 3     2 2018Q1 Yes        Method2   }
+\CommentTok{#> 4     3 2018Q1 Yes        <NA>      }
+\CommentTok{#> 5     3 2018Q2 Yes        Method2   }
+\CommentTok{#> 6     2 2018Q2 <NA>       Method2   }
+\CommentTok{#> # ... with 1 more row}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Different Key Column
+Names}\label{different-key-column-names}
+
+A common occurrence is for the tables you wish to join to have different
+variable names. You can either change the variable names so the do match
+with \texttt{rename()} or you can use the \texttt{by} parameter to
+indicate which variable name in x matches the variable name in y.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{id, }\OperatorTok{~}\NormalTok{yq, }\OperatorTok{~}\NormalTok{question,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"No"}\NormalTok{,}
+     \DecValTok{2}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Yes"}
+\NormalTok{)}
+
+\NormalTok{y2 <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{id, }\OperatorTok{~}\NormalTok{yearquarter, }\OperatorTok{~}\NormalTok{question,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Method1"}\NormalTok{,}
+     \DecValTok{2}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Method2"}\NormalTok{,}
+     \DecValTok{2}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Method2"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Method2"}\NormalTok{,}
+     \DecValTok{4}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Method1"}
+\NormalTok{)}
+
+\CommentTok{# inner}
+\KeywordTok{full_join}\NormalTok{(x, y2, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"yq"}\NormalTok{ =}\StringTok{ "yearquarter"}\NormalTok{), }\DataTypeTok{suffix =} \KeywordTok{c}\NormalTok{(}\StringTok{"_1"}\NormalTok{, }\StringTok{"_2"}\NormalTok{))}
+\CommentTok{#> # A tibble: 7 x 4}
+\CommentTok{#>      id yq     question_1 question_2}
+\CommentTok{#>   <dbl> <chr>  <chr>      <chr>     }
+\CommentTok{#> 1     1 2018Q1 Yes        <NA>      }
+\CommentTok{#> 2     1 2018Q2 No         Method1   }
+\CommentTok{#> 3     2 2018Q1 Yes        Method2   }
+\CommentTok{#> 4     3 2018Q1 Yes        <NA>      }
+\CommentTok{#> 5     3 2018Q2 Yes        Method2   }
+\CommentTok{#> 6     2 2018Q2 <NA>       Method2   }
+\CommentTok{#> # ... with 1 more row}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Filtering Joins}\label{filtering-joins}
+
+Filtering joins match observations in the same way as mutating joins,
+but affect the observations, not the variables. There are two types:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{semi join} keeps all observations in x that have a match in y
+\item
+  \textbf{anti join} drops all observations in x that have a match in y
+\end{itemize}
+
+\begin{center}\includegraphics[width=8.53in]{images/relational/join-semi} \end{center}
+
+\begin{center}\includegraphics[width=8.53in]{images/relational/join-anti} \end{center}
+
+\textbf{Semi-joins} are useful for matching filtered summary tables back
+to the original rows. The inverse of a \textbf{semi-join} is an
+\textbf{anti-join}. An \textbf{anti-join} keeps the rows that don't have
+a match. \textbf{Anti-joins} are useful for diagnosing join mismatches.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{orig <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{id, }\OperatorTok{~}\NormalTok{yq, }\OperatorTok{~}\NormalTok{question,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"No"}\NormalTok{,}
+     \DecValTok{2}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Yes"}
+\NormalTok{)}
+
+\NormalTok{val <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{id, }\OperatorTok{~}\NormalTok{yq, }\OperatorTok{~}\NormalTok{question,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"No"}\NormalTok{,}
+     \DecValTok{1}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"No"}\NormalTok{,}
+     \DecValTok{2}\NormalTok{, }\StringTok{"2018Q1"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q3"}\NormalTok{, }\StringTok{"No"}\NormalTok{,}
+     \DecValTok{3}\NormalTok{, }\StringTok{"2018Q2"}\NormalTok{, }\StringTok{"Yes"}
+\NormalTok{)}
+
+\KeywordTok{semi_join}\NormalTok{(orig, val, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"yq"}\NormalTok{, }\StringTok{"question"}\NormalTok{))}
+\CommentTok{#> # A tibble: 3 x 3}
+\CommentTok{#>      id yq     question}
+\CommentTok{#>   <dbl> <chr>  <chr>   }
+\CommentTok{#> 1     1 2018Q2 No      }
+\CommentTok{#> 2     2 2018Q1 Yes     }
+\CommentTok{#> 3     3 2018Q2 Yes}
+\KeywordTok{anti_join}\NormalTok{(orig, val, }\DataTypeTok{by =} \KeywordTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"yq"}\NormalTok{, }\StringTok{"question"}\NormalTok{))}
+\CommentTok{#> # A tibble: 2 x 3}
+\CommentTok{#>      id yq     question}
+\CommentTok{#>   <dbl> <chr>  <chr>   }
+\CommentTok{#> 1     1 2018Q1 Yes     }
+\CommentTok{#> 2     3 2018Q1 Yes}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Set Operations}\label{set-operations}
+
+The final type of two-table verb are the set operations. These
+operations work with a complete row, comparing the values of every
+variable. These expect the \texttt{x} and \texttt{y} inputs to have the
+same variables, in the same order, and treat the observations like sets:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{intersect(x,\ y)}: return only observations in both \texttt{x}
+  and \texttt{y}.
+\item
+  \texttt{union(x,\ y)}: return unique observations in \texttt{x} and
+  \texttt{y}.
+\item
+  \texttt{setdiff(x,\ y)}: return observations in \texttt{x}, but not in
+  \texttt{y}.
+\end{itemize}
+
+Given this simple data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df1 <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{x, }\OperatorTok{~}\NormalTok{y,}
+   \DecValTok{1}\NormalTok{,  }\DecValTok{1}\NormalTok{,}
+   \DecValTok{2}\NormalTok{,  }\DecValTok{1}
+\NormalTok{)}
+\NormalTok{df2 <-}\StringTok{ }\KeywordTok{tribble}\NormalTok{(}
+  \OperatorTok{~}\NormalTok{x, }\OperatorTok{~}\NormalTok{y,}
+   \DecValTok{1}\NormalTok{,  }\DecValTok{1}\NormalTok{,}
+   \DecValTok{1}\NormalTok{,  }\DecValTok{2}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The four possibilities are:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{intersect}\NormalTok{(df1, df2)}
+\CommentTok{#> # A tibble: 1 x 2}
+\CommentTok{#>       x     y}
+\CommentTok{#>   <dbl> <dbl>}
+\CommentTok{#> 1     1     1}
+
+\CommentTok{# Note that we get 3 rows, not 4}
+\KeywordTok{union}\NormalTok{(df1, df2)}
+\CommentTok{#> # A tibble: 3 x 2}
+\CommentTok{#>       x     y}
+\CommentTok{#>   <dbl> <dbl>}
+\CommentTok{#> 1     1     2}
+\CommentTok{#> 2     2     1}
+\CommentTok{#> 3     1     1}
+
+\KeywordTok{setdiff}\NormalTok{(df1, df2)}
+\CommentTok{#> # A tibble: 1 x 2}
+\CommentTok{#>       x     y}
+\CommentTok{#>   <dbl> <dbl>}
+\CommentTok{#> 1     2     1}
+
+\KeywordTok{setdiff}\NormalTok{(df2, df1)}
+\CommentTok{#> # A tibble: 1 x 2}
+\CommentTok{#>       x     y}
+\CommentTok{#>   <dbl> <dbl>}
+\CommentTok{#> 1     1     2}
+\end{Highlighting}
+\end{Shaded}
+
+\part{Programming}\label{part-programming}
 
 \chapter{Function Basics}\label{function-basics}
 
@@ -4075,11 +4538,10 @@ To understand computations in R, two slogans are helpful:\\
 \section{Introduction to Functions}\label{introduction-to-functions}
 
 Functions are an central part of robust R programming and we will spend
-a significant amount of time writing functions. Think of functions in
+a significant amount of time writing functions. Thinking of functions in
 the
 \href{https://en.wikipedia.org/wiki/Function_(mathematics)}{mathematical
-sense} will make the properties much more apparent than any other
-framework.
+sense} will make the properties more apparent than any other framework.
 
 \begin{itemize}
 \tightlist
@@ -4100,55 +4562,6 @@ framework.
 \item
   Function streamline code and process
 \end{itemize}
-
-Advice from the
-\href{http://www.burns-stat.com/pages/Tutor/R_inferno.pdf}{R Inferno}:
-
-Make your functions as simple as possible. Simple has many advantages:
-
-\begin{itemize}
-\tightlist
-\item
-  Simple functions are likely to be human efficient: they will be easy
-  to understand and to modify.
-\item
-  Simple functions are likely to be computer efficient.
-\item
-  Simple functions are less likely to be buggy, and bugs will be easier
-  to fix.
-\item
-  (Perhaps ironically) simple functions may be more general---thinking
-  about the heart of the matter often broadens the application.
-\end{itemize}
-
-Functions can be
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Correct.
-\item
-  An error occurs that is clearly identified.
-\item
-  An obscure error occurs.
-\item
-  An incorrect value is returned.
-\end{enumerate}
-
-We like \textbf{category 1}. \textbf{Category 2} is the right behavior
-if the inputs do not make sense, but not if the inputs are sensible.
-\textbf{Category 3} is an unpleasant place for your users, and possibly
-for you if the users have access to you. \textbf{Category 4} is by far
-the worst place to be - the user has no reason to believe that anything
-is wrong. Steer clear of category 4.
-
-\begin{rmdimportant}
-Software testing is important, but, in part because it is frustrating
-and boring, many of us avoid it. `testthat' is a testing framework for R
-that is easy learn and use, and integrates with your existing
-`workflow'.
-\end{rmdimportant}
 
 \subsection{Your First Function}\label{your-first-function}
 
@@ -4261,11 +4674,16 @@ By default the last line of the function is returned. Thus, there is no
 reason to explicitly call \texttt{return}, unless you are returning from
 the function early. Inside functions use \texttt{stop} to return error
 messages, \texttt{warning} to return warning messages, and
-\texttt{message} to print a message to the console.
+\texttt{message} to print a message to the console. \texttt{stopifnot}
+is useful for argument checking. It checks that each argument is TRUE,
+and produces a generic error message if not.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(age) \{}
+  
+  \KeywordTok{stopifnot}\NormalTok{(}\KeywordTok{is.numeric}\NormalTok{(age), }\KeywordTok{length}\NormalTok{(age) }\OperatorTok{==}\StringTok{ }\NormalTok{1L)}
+  
   \ControlFlowTok{if}\NormalTok{ (age }\OperatorTok{<}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
     \KeywordTok{stop}\NormalTok{(}\StringTok{"age must be a positive number"}\NormalTok{)}
 \NormalTok{  \}}
@@ -4277,6 +4695,8 @@ messages, \texttt{warning} to return warning messages, and
   \KeywordTok{message}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"Your person is "}\NormalTok{, age, }\StringTok{" years old"}\NormalTok{))}
 \NormalTok{\}}
 
+\KeywordTok{f}\NormalTok{(}\StringTok{"A"}\NormalTok{)}
+\CommentTok{#> Error in f("A"): is.numeric(age) is not TRUE}
 \KeywordTok{f}\NormalTok{(}\OperatorTok{-}\DecValTok{10}\NormalTok{)}
 \CommentTok{#> Error in f(-10): age must be a positive number}
 \KeywordTok{f}\NormalTok{(}\DecValTok{10}\NormalTok{)}
@@ -4563,7 +4983,7 @@ parent function.
 \CommentTok{#>       # [}\AlertTok{TBD}\CommentTok{] checks on x}
 \CommentTok{#>     x^n }
 \CommentTok{#>   \}}
-\CommentTok{#> <environment: 0x00000000092c7a70>}
+\CommentTok{#> <environment: 0x0000000008044510>}
 \KeywordTok{pow}\NormalTok{(}\DataTypeTok{x=}\DecValTok{4}\NormalTok{)       }\CommentTok{# Note: `pow` does not exist outside of the `make.power` function}
 \CommentTok{#> Error in pow(x = 4): could not find function "pow"}
 
@@ -4574,8 +4994,8 @@ parent function.
 \CommentTok{#> \{}
 \CommentTok{#>     x^n}
 \CommentTok{#> \}}
-\CommentTok{#> <bytecode: 0x0000000007c76270>}
-\CommentTok{#> <environment: 0x00000000072a2db0>}
+\CommentTok{#> <bytecode: 0x0000000007b29b10>}
+\CommentTok{#> <environment: 0x0000000008726a70>}
 \CommentTok{#> }
 \CommentTok{#> $n}
 \CommentTok{#> [1] 3}
@@ -4592,6 +5012,77 @@ parent function.
 \CommentTok{#> [1] 3}
 \end{Highlighting}
 \end{Shaded}
+
+\section{Best Practices}\label{best-practices}
+
+Writing functions is an iterative process, they will not be perfect on
+your first try. As with most things the more you practice the closer to
+the final version you will get on your first pass.
+
+\href{http://www.burns-stat.com/pages/Tutor/R_inferno.pdf}{Advice from
+the R Inferno}:
+
+Make your functions as simple as possible. Simple has many advantages:
+
+\begin{itemize}
+\tightlist
+\item
+  Simple functions are likely to be human efficient: they will be easy
+  to understand and to modify.
+\item
+  Simple functions are likely to be computer efficient.
+\item
+  Simple functions are less likely to be buggy, and bugs will be easier
+  to fix.
+\item
+  (Perhaps ironically) simple functions may be more general---thinking
+  about the heart of the matter often broadens the application.
+\end{itemize}
+
+\textbf{Tips for writing ``good'' functions}
+
+\begin{itemize}
+\tightlist
+\item
+  Get the correct answer first, then worry about efficiency or speed.
+\item
+  Write test cases and save the script!
+\item
+  Don't be afraid of very short and simple functions. They can greatly
+  add to the readability of your code.
+\item
+  What is a good name for the function? Since functions act on objects
+  good function names tend to be verbs. Think about the auto-complete
+  feature in RStudio.\\
+\item
+  What are the inputs to the function?
+\item
+  What should the user (not) be able to control?
+\item
+  Error check user input, but be reasonable.\\
+\item
+  Give useful and clear error messages.
+\item
+  Use sensible defaults to arguments.
+\item
+  Reduce duplicate code as much as possible.
+\item
+  Where are changes likely to occur and is there a way to abstract that
+  piece away?
+\item
+  Think about corner cases, missing values, empty arguments.
+\item
+  Think about piping.
+\item
+  Write test cases and save the script!
+\end{itemize}
+
+\begin{rmdimportant}
+Software testing is important, but, in part because it is frustrating
+and boring, many of us avoid it. `testthat' is a testing framework for R
+that is easy learn and use, and integrates with your existing
+`workflow'.
+\end{rmdimportant}
 
 \section{Exercises}\label{exercises-5}
 
@@ -4614,13 +5105,13 @@ parent function.
 \item
   reads in the data file
 \item
-  converts all columns to the appropriate data types
+  converts columns to the appropriate data types.\\
 \item
   ``Tidy'' your data (if appropriate)\\
-  The first argument to your read function should be the file name. Are
-  there additional parameters that are needed? Think beyond the
-  Subscriber Report, what are other things you typically do upon first
-  reading in a data file.
+  The first argument to your read function should be the file name to
+  read in. Are there additional parameters that are needed? Think beyond
+  the Subscriber Report, what are other things you typically do upon
+  first reading in a data file.
 \end{itemize}
 
 \chapter{R Markdown}\label{r-markdown}
